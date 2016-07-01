@@ -17,13 +17,24 @@
 	],
 	"files": [
 		"./typings/index.d.ts",
+		"./src/actions/storeTodoActions.ts",
+		"./src/actions/uiTodoActions.ts",
+		"./src/index.ts",
 		"./src/main.ts",
+		"./src/registry/createTodoRegistry.ts",
+		"./src/utils/createLocalMemoryStore.ts",
+		"./src/widgets/createCheckboxInput.ts",
+		"./src/widgets/createTodoFilter.ts",
+		"./src/widgets/createTodoFooter.ts",
+		"./src/widgets/createTodoItem.ts",
+		"./src/widgets/createTodoList.ts",
 		"./tests/functional/all.ts",
 		"./tests/intern-local.ts",
 		"./tests/intern-saucelabs.ts",
 		"./tests/intern.ts",
 		"./tests/support/Reporter.ts",
 		"./tests/support/util.ts",
-		"./tests/unit/all.ts"
+		"./tests/unit/all.ts",
+		"./tests/unit/main.ts"
 	]
 }
