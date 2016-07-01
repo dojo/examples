@@ -1,0 +1,46 @@
+{
+  "name": "dojo2-todo-mvc",
+  "version": "0.0.1",
+  "description": "TodoMVC using Dojo2",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tomdye/dojo2-todo-mvc.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "codecov.io": "^0.1.6",
+    "dojo-loader": ">=2.0.0-beta.5",
+    "dts-generator": "^1.7.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-dojo2": "^2.0.0-beta.7",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-ts": "^5.5.1",
+    "grunt-tslint": "^3.1.0",
+    "intern": "^3.2.3",
+    "remap-istanbul": "^0.6.4",
+    "tslint": "^3.10.2"
+  },
+  "dependencies": {
+    "@reactivex/rxjs": "5.0.0-beta.6",
+    "dojo-actions": ">=2.0.0-alpha.4",
+    "dojo-app": ">=2.0.0-alpha.1",
+    "dojo-compose": ">=2.0.0-beta.5",
+    "dojo-core": ">=2.0.0-alpha.7",
+    "dojo-dom": "^2.0.0-alpha.1",
+    "dojo-loader": ">=2.0.0-beta.5",
+    "dojo-routing": ">=2.0.0-alpha",
+    "dojo-typings": "dojo/typings",
+    "dojo-widgets": ">=2.0.0-alpha.3",
+    "immutable": "^3.8.1",
+    "maquette": "^2.3.2",
+    "todomvc-app-css": "^2.0.6",
+    "todomvc-common": "^1.0.2"
+  }
+}
