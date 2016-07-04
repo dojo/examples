@@ -12,7 +12,7 @@ export const addTodo: AnyAction = createAction({
 	configure,
 	do(todo: any) {
 		const { todoStore } = <any> this;
-		return todoStore.add(todo);
+		return todoStore.add({ id: `${Date.now()}`, label: todo.label });
 	}
 });
 
