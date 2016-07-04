@@ -90,9 +90,11 @@ todoStore.observe().subscribe((options: any) => {
 todoStore.observe().subscribe((options: any) => {
 	const { deleted, item } = options;
 	if (deleted) {
-		widgetStore.get('todo-list').then((todoList: any) => {
-			const children = todoList.children.filter((id: string) => id !== item);
-			return widgetStore.delete(item).patch({id: todoList.id, children});
+		todoStore.get().then((todoItems: any) => {
+			const children = Array.from(todoItems)
+				.filter((todoItem: any) => todoItem.id !== item)
+				.map((item: any) => item.id);
+			return widgetStore.delete(item).patch({ id: 'todo-list', children });
 		});
 	} else {
 		widgetStore.get('todo-list').then((todoList: any) => {
