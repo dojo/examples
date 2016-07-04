@@ -12,7 +12,6 @@ export const todoInput: AnyAction = createAction({
 	configure,
 	do(options: any) {
 		const { widgetStore } = <any> this;
-
 		if (options.event.keyCode === 13 && options.event.target.value) {
 			storeActions.addTodo.do({label: options.event.target.value, completed: false});
 			widgetStore.patch({id: 'new-todo', value: ''});
@@ -37,7 +36,7 @@ export const filter: AnyAction = createAction({
 	configure,
 	do(options: any) {
 		const { widgetStore } = <any> this;
-
 		widgetStore.patch({id: 'todo-footer', activeFilter: options.filter});
+		widgetStore.patch({id: 'todo-list', activeFilter: options.filter});
 	}
 });
