@@ -50,11 +50,31 @@ const todoStore = createMemoryStore({
 
 const widgetStore = createMemoryStore({
 	data: [
-		{id: 'title', label: 'todos'},
-		{id: 'new-todo', classes: ['new-todo'], placeholder: 'What needs to be done?'},
-		{id: 'main-section', classes: ['main']},
-		{id: 'todo-list', classes: ['todo-list'], children: []},
-		{id: 'todo-footer', classes: ['footer'], completedCount: 0, activeCount: 0}
+		{
+			id: 'title',
+			label: 'todos'
+		},
+		{
+			id: 'new-todo',
+			classes: ['new-todo'],
+			placeholder: 'What needs to be done?'
+		},
+		{
+			id: 'main-section',
+			classes: ['main']
+		},
+		{
+			id: 'todo-list',
+			classes: ['todo-list'],
+			children: []
+		},
+		{
+			id: 'todo-footer',
+			classes: ['footer'],
+			completedCount: 0,
+			activeCount: 0,
+			activeFilter: 'all'
+		}
 	]
 });
 
