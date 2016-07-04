@@ -32,3 +32,12 @@ export const todoToggleComplete: AnyAction = createAction({
 		storeActions.updateTodo.do(item);
 	}
 });
+
+export const filter: AnyAction = createAction({
+	configure,
+	do(options: any) {
+		const { widgetStore } = <any> this;
+
+		widgetStore.patch({id: 'todo-footer', activeFilter: options.filter});
+	}
+});

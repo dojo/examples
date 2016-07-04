@@ -1,5 +1,8 @@
 import createApp from 'dojo-app/createApp';
 import { AnyAction } from 'dojo-actions/createAction';
+import createRoute from 'dojo-routing/createRoute';
+import createRouter from 'dojo-routing/createRouter';
+import createHashHistory from 'dojo-routing/history/createHashHistory';
 import createPanel from 'dojo-widgets/createPanel';
 import createTextInput from 'dojo-widgets/createTextInput';
 import createWidget from 'dojo-widgets/createWidget';
@@ -10,6 +13,34 @@ import * as uiTodoActions from './actions/uiTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
 import createTodoList from './widgets/createTodoList';
 import createTodoFooter from './widgets/createTodoFooter';
+
+const router = createRouter();
+const history = createHashHistory();
+
+history.on('change', (event) => {
+	router.dispatch({}, event.value);
+});
+
+router.append(createRoute({
+	path: '/completed',
+	exec (request) {
+		uiTodoActions.filter.do({ 'filter': 'completed' });
+	}
+}));
+
+router.append(createRoute({
+	path: '/all',
+	exec (request) {
+		uiTodoActions.filter.do({ 'filter': 'none' });
+	}
+}));
+
+router.append(createRoute({
+	path: '/active',
+	exec (request) {
+		uiTodoActions.filter.do({ 'filter': 'active' });
+	}
+}));
 
 const todoStore = createMemoryStore({
 	data: [
