@@ -9,6 +9,7 @@ import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
 import createTodoList from './widgets/createTodoList';
+import createTodoFooter from './widgets/createTodoFooter';
 
 const todoStore = createMemoryStore({
 	data: [
@@ -21,8 +22,18 @@ const widgetStore = createMemoryStore({
 		{id: 'title', label: 'todos'},
 		{id: 'new-todo', classes: ['new-todo'], placeholder: 'What needs to be done?'},
 		{id: 'main-section', classes: ['main']},
-		{id: 'todo-list', classes: ['todo-list'], children: []}
+		{id: 'todo-list', classes: ['todo-list'], children: []},
+		{id: 'todo-footer', classes: ['footer'], completedCount: 0, activeCount: 0}
 	]
+});
+
+todoStore.observe().subscribe((options: any) => {
+	todoStore.get().then((items: any) => {
+		const todos: any = [...Array.from(items)];
+		const completedCount = todos.filter((todo: any) => todo.completed).length;
+		const activeCount = todos.filter((todo: any) => !todo.completed).length;
+		widgetStore.patch({id: 'todo-footer', completedCount, activeCount});
+	});
 });
 
 todoStore.observe().subscribe((options: any) => {
@@ -35,7 +46,6 @@ todoStore.observe().subscribe((options: any) => {
 	} else {
 		widgetStore.get('todo-list').then((todoList: any) => {
 			const { id, children } = todoList;
-
 			function put() {
 				return widgetStore
 					.put(item)
@@ -90,6 +100,10 @@ app.loadDefinition({
 			options: {
 				widgetRegistry: todoRegistryFactory({ widgetStore })
 			}
+		},
+		{
+			id: 'todo-footer',
+			factory: createTodoFooter
 		}
 	],
 	customElements: [
