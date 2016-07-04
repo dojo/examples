@@ -29,7 +29,7 @@ const widgetStore = createMemoryStore({
 
 todoStore.observe().subscribe((options: any) => {
 	todoStore.get().then((items: any) => {
-		const todos: any = [...Array.from(items)];
+		const todos: any = Array.from(items);
 		const completedCount = todos.filter((todo: any) => todo.completed).length;
 		const activeCount = todos.filter((todo: any) => !todo.completed).length;
 		widgetStore.patch({id: 'todo-footer', completedCount, activeCount});
