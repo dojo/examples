@@ -330,9 +330,11 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 				}
 			}
 
-			const storeObservers = storeObserverWeakMap.get(store);
-			if (storeObservers) {
-				storeObservers.forEach((observer) => observer.next({item, deleted: true}));
+			function completeStoreObservers() {
+				const storeObservers = storeObserverWeakMap.get(store);
+				if (storeObservers) {
+					storeObservers.forEach((observer) => observer.next({item, deleted: true}));
+				}
 			}
 
 			const idProperty = store.idProperty;
@@ -341,6 +343,7 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 				if (idProperty in item && data && data.has(String(item[idProperty]))) {
 					dataWeakMap.set(store, data.delete(String(item[idProperty])));
 					completeObservable(item[idProperty]);
+					completeStoreObservers();
 					return wrapResult(store, true);
 				}
 			}
@@ -348,6 +351,7 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 				if (data && data.has(String(item))) {
 					dataWeakMap.set(store, data.delete(String(item)));
 					completeObservable(item);
+					completeStoreObservers();
 					return wrapResult(store, true);
 				}
 			}
