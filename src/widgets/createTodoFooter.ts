@@ -18,7 +18,7 @@ function manageChildren(parent: any) {
 	});
 
 	const clearCompletedButtonClasses = ['clear-completed'];
-	if ((<any> todoFooter).state.completedTodos === 0) {
+	if ((<any> todoFooter).state.completedCount === 0) {
 		clearCompletedButtonClasses.push('hidden');
 	}
 
