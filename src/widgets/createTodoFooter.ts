@@ -5,6 +5,7 @@ import createRenderableChildrenMixin, {} from 'dojo-widgets/mixins/createRendera
 import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createButton from 'dojo-widgets/createButton';
 import createTodoFilter from './createTodoFilter';
+import { clearCompleted } from '../actions/uiTodoActions';
 
 type TodoFooter = ParentMap<Widget<WidgetState>>;
 
@@ -35,16 +36,19 @@ const createTodoFooter = createWidget
 		mixin: createParentMixin,
 		initialize(instance) {
 			const filterWidget = createTodoFilter({
-				'state': {
-					'id': 'filter',
-					'classes': ['filters']
+				state: {
+					id: 'filter',
+					classes: ['filters']
 				}
 			});
 			const clearCompletedButton = createButton({
-				'state': {
-					'id': 'button',
-					'label': 'Clear Completed',
-					'classes': ['clear-completed']
+				state: {
+					id: 'button',
+					label: 'Clear Completed',
+					classes: ['clear-completed']
+				},
+				listeners: {
+					click: clearCompleted
 				}
 			});
 			instance.append([filterWidget, clearCompletedButton]);

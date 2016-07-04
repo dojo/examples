@@ -24,6 +24,18 @@ export const deleteTodo: AnyAction = createAction({
 	}
 });
 
+export const deleteCompleted: AnyAction = createAction({
+	configure,
+	do(id: any) {
+		const { todoStore } = <any> this;
+		todoStore.get().then((items: any) => {
+			Array.from(items)
+				.filter((item: any) => item.completed)
+				.forEach((item: any) => todoStore.delete(item.id));
+		});
+	}
+});
+
 export const updateTodo: AnyAction = createAction({
 	configure,
 	do(todo: any) {

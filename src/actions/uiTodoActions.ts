@@ -40,3 +40,10 @@ export const filter: AnyAction = createAction({
 		widgetStore.patch({id: 'todo-list', activeFilter: options.filter});
 	}
 });
+
+export const clearCompleted: AnyAction = createAction({
+	configure,
+	do(options: any) {
+		storeActions.deleteCompleted.do();
+	}
+});
