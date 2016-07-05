@@ -87,11 +87,21 @@ todoStore.observe().subscribe((options: any) => {
 		const todos: any = Array.from(items);
 		const completedCount = todos.filter((todo: any) => todo.completed).length;
 		const activeCount = todos.filter((todo: any) => !todo.completed).length;
-		const todoFooterClasses = todos.length !== 0 ? ['footer'] : ['footer', 'hidden'];
-		const todoToggleClasses = todos.length !== 0 ? ['toggle-all'] : ['toggle-all', 'hidden'];
+		const hidden = todos.length ? [] : ['hidden'];
+		const allCompleted = todos.length === completedCount;
 
-		widgetStore.patch({id: 'todo-footer', completedCount, activeCount, classes: todoFooterClasses});
-		widgetStore.patch({id: 'todo-toggle', checked: todos.length === completedCount, classes: todoToggleClasses});
+		widgetStore.patch({
+			id: 'todo-footer',
+			completedCount,
+			activeCount,
+			classes: ['footer', ...hidden]
+		});
+
+		widgetStore.patch({
+			id: 'todo-toggle',
+			checked: allCompleted,
+			classes: ['toggle-all', ...hidden]
+		});
 	});
 });
 
