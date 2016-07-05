@@ -254,15 +254,19 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 			}
 			else {
 				return new Observable<T>(function subscribe(observer: Observer<T>) {
-						const observers = storeObserverWeakMap.get(store) || [];
-						store.get().then((items: any) => {
-							Array.from(items).forEach((item: any) => {
-								const options: any = { item: item, deleted: false };
-								observer.next(options);
-							});
-						});
-						observers.push(observer);
-						storeObserverWeakMap.set(store, observers);
+					const data = dataWeakMap.get(store);
+					const observers = storeObserverWeakMap.get(store) || [];
+					const values: any = data.values();
+					const items = Array.from(values);
+					const payload: any = {
+						puts: items,
+						deletes: [],
+						beforeAll: [],
+						afterAll: items
+					};
+					observer.next(payload);
+					observers.push(observer);
+					storeObserverWeakMap.set(store, observers);
 				});
 			}
 		},
@@ -270,6 +274,7 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 		put(item: { [property: string]: number | string; }, options?: MemoryStorePragma): MemoryStorePromise<Object> {
 			const store: MemoryStore<Object> = this;
 			const data = dataWeakMap.get(store);
+			const beforeAll: any = data.values();
 			const idProperty = store.idProperty;
 			const id =  options && 'id' in options ? options.id :
 				idProperty in item ? item[idProperty] :
@@ -286,8 +291,16 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 			}
 			const storeObservers = storeObserverWeakMap.get(store);
 			if (storeObservers) {
+				const afterData = dataWeakMap.get(store);
+				const afterAll: any = afterData.values();
+				const payload: any = {
+					puts: [item],
+					deletes: [],
+					beforeAll: Array.from(beforeAll),
+					afterAll: Array.from(afterAll)
+				};
 				storeObservers.forEach((observer) => {
-					observer.next({item});
+					observer.next(payload);
 				});
 			}
 			return wrapResult(store, item);
@@ -318,6 +331,9 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 
 		delete(item: StoreIndex | { [property: string]: number | string; }): MemoryStorePromise<boolean> {
 			const store: MemoryStore<Object> = this;
+			const idProperty = store.idProperty;
+			const data = dataWeakMap.get(store);
+			const beforeAll: any = data.values();
 
 			/**
 			 * Complete any observers associated with this items id
@@ -333,12 +349,19 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 			function completeStoreObservers() {
 				const storeObservers = storeObserverWeakMap.get(store);
 				if (storeObservers) {
-					storeObservers.forEach((observer) => observer.next({item, deleted: true}));
+					const afterData = dataWeakMap.get(store);
+					const afterAll: any = afterData.values();
+					const payload: any = {
+						puts: [],
+						deletes: [item],
+						beforeAll: Array.from(beforeAll),
+						afterAll: Array.from(afterAll)
+					};
+					storeObservers.forEach((observer) => {
+						observer.next(payload);
+					});
 				}
 			}
-
-			const idProperty = store.idProperty;
-			const data = dataWeakMap.get(store);
 			if (typeof item === 'object') {
 				if (idProperty in item && data && data.has(String(item[idProperty]))) {
 					dataWeakMap.set(store, data.delete(String(item[idProperty])));

@@ -10,6 +10,7 @@ import createMemoryStore from './utils/createLocalMemoryStore';
 
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
+import * as widgetTodoActions from './actions/widgetTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
 import createCheckboxInput from './widgets/createCheckboxInput';
 import createTodoList from './widgets/createTodoList';
@@ -82,58 +83,6 @@ const widgetStore = createMemoryStore({
 	]
 });
 
-todoStore.observe().subscribe((options: any) => {
-	todoStore.get().then((items: any) => {
-		const todos: any = Array.from(items);
-		const completedCount = todos.filter((todo: any) => todo.completed).length;
-		const activeCount = todos.filter((todo: any) => !todo.completed).length;
-		const hidden = todos.length ? [] : ['hidden'];
-		const allCompleted = todos.length === completedCount;
-
-		widgetStore.patch({
-			id: 'todo-footer',
-			completedCount,
-			activeCount,
-			classes: ['footer', ...hidden]
-		});
-
-		widgetStore.patch({
-			id: 'todo-toggle',
-			checked: allCompleted,
-			classes: ['toggle-all', ...hidden]
-		});
-	});
-});
-
-todoStore.observe().subscribe((options: any) => {
-	const { deleted, item } = options;
-	if (deleted) {
-		todoStore.get().then((todoItems: any) => {
-			const children = Array.from(todoItems)
-				.filter((todoItem: any) => todoItem.id !== item)
-				.map((item: any) => item.id);
-			return widgetStore.delete(item).patch({ id: 'todo-list', children });
-		});
-	} else {
-		widgetStore.get('todo-list').then((todoList: any) => {
-			const { id, children } = todoList;
-			function put() {
-				return widgetStore
-					.put(item)
-					.patch({id, children: [...children, item.id]});
-			}
-
-			function patch() {
-				return widgetStore
-					.patch(item)
-					.patch({id, children});
-			}
-
-			return children.includes(item.id) ? patch() : put();
-		});
-	}
-});
-
 const app = createApp({ defaultStore: widgetStore });
 
 app.registerStore('widget-store', widgetStore);
@@ -147,6 +96,24 @@ Object.keys(storeTodoActions).forEach((actionName) => {
 Object.keys(uiTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> uiTodoActions)[actionName];
 	app.registerAction(actionName, action);
+});
+
+Object.keys(widgetTodoActions).forEach((actionName) => {
+	const action: AnyAction = (<any> widgetTodoActions)[actionName];
+	action.configure(widgetStore);
+});
+
+todoStore.observe().subscribe((options: any) => {
+	const { puts, deletes } = options;
+	widgetTodoActions.updateHeaderAndFooter.do(options);
+
+	if (deletes.length) {
+		widgetTodoActions.deleteTodo.do(options);
+	}
+
+	if (puts.length) {
+		widgetTodoActions.putTodo.do(options);
+	}
 });
 
 app.loadDefinition({
@@ -193,4 +160,3 @@ app.loadDefinition({
 });
 
 app.realize(document.body);
-
