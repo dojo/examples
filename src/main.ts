@@ -31,7 +31,7 @@ router.append(createRoute({
 router.append(createRoute({
 	path: '/all',
 	exec (request) {
-		uiTodoActions.filter.do({ 'filter': 'none' });
+		uiTodoActions.filter.do({ 'filter': 'all' });
 	}
 }));
 
