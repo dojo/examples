@@ -44,9 +44,7 @@ router.append(createRoute({
 }));
 
 const todoStore = createMemoryStore({
-	data: [
-		{id: 'todo1', label: 'My First Todo!', completed: false}
-	]
+	data: []
 });
 
 const widgetStore = createMemoryStore({
@@ -89,8 +87,11 @@ todoStore.observe().subscribe((options: any) => {
 		const todos: any = Array.from(items);
 		const completedCount = todos.filter((todo: any) => todo.completed).length;
 		const activeCount = todos.filter((todo: any) => !todo.completed).length;
-		widgetStore.patch({id: 'todo-footer', completedCount, activeCount});
-		widgetStore.patch({id: 'todo-toggle', checked: todos.length === completedCount});
+		const todoFooterClasses = todos.length !== 0 ? ['footer'] : ['footer', 'hidden'];
+		const todoToggleClasses = todos.length !== 0 ? ['toggle-all'] : ['toggle-all', 'hidden'];
+
+		widgetStore.patch({id: 'todo-footer', completedCount, activeCount, classes: todoFooterClasses});
+		widgetStore.patch({id: 'todo-toggle', checked: todos.length === completedCount, classes: todoToggleClasses});
 	});
 });
 
