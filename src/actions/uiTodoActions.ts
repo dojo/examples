@@ -3,7 +3,7 @@ import * as storeActions from './storeTodoActions';
 
 function configure (registry: any) {
 	const action = <any> this;
-	registry.getStore('widget-store').then((widgetStore: any) => {
+	return registry.getStore('widget-store').then((widgetStore: any) => {
 		action.widgetStore = widgetStore;
 	});
 };

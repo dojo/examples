@@ -10,6 +10,7 @@ import createMemoryStore from './utils/createLocalMemoryStore';
 
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
+import * as widgetTodoActions from './actions/widgetTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
 import createCheckboxInput from './widgets/createCheckboxInput';
 import createTodoList from './widgets/createTodoList';
@@ -82,59 +83,6 @@ const widgetStore = createMemoryStore({
 	]
 });
 
-todoStore.observe().subscribe((options: any) => {
-	const { afterAll } = options;
-	const completedCount = afterAll.filter((todo: any) => todo.completed).length;
-	const activeCount = afterAll.filter((todo: any) => !todo.completed).length;
-	const hidden = afterAll.length ? [] : ['hidden'];
-	const allCompleted = afterAll.length === completedCount;
-
-	widgetStore.patch({
-		id: 'todo-footer',
-		completedCount,
-		activeCount,
-		classes: ['footer', ...hidden]
-	});
-
-	widgetStore.patch({
-		id: 'todo-toggle',
-		checked: allCompleted,
-		classes: ['toggle-all', ...hidden]
-	});
-});
-
-todoStore.observe().subscribe((options: any) => {
-	const { deletes, afterAll } = options;
-	if (deletes.length) {
-		const item = deletes[0];
-		const children = afterAll.filter((todoItem: any) => todoItem.id !== item)
-			.map((item: any) => item.id);
-		return widgetStore.delete(item).patch({ id: 'todo-list', children });
-	}
-});
-
-todoStore.observe().subscribe((options: any) => {
-	const { puts, beforeAll } = options;
-	if (puts.length) {
-		const item = puts[0];
-		const children = beforeAll.map((child: any) => child.id);
-
-		function put() {
-			return widgetStore
-			.put(item)
-			.patch({id: 'todo-list', children: [...children, item.id]});
-		}
-
-		function patch() {
-			return widgetStore
-			.patch(item)
-			.patch({id: 'todo-list', children});
-		}
-
-		return children.includes(item.id) ? patch() : put();
-	}
-});
-
 const app = createApp({ defaultStore: widgetStore });
 
 app.registerStore('widget-store', widgetStore);
@@ -148,6 +96,24 @@ Object.keys(storeTodoActions).forEach((actionName) => {
 Object.keys(uiTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> uiTodoActions)[actionName];
 	app.registerAction(actionName, action);
+});
+
+Object.keys(widgetTodoActions).forEach((actionName) => {
+	const action: AnyAction = (<any> widgetTodoActions)[actionName];
+	action.configure(widgetStore);
+});
+
+todoStore.observe().subscribe((options: any) => {
+	const { puts, deletes } = options;
+	widgetTodoActions.updateHeaderAndFooter.do(options);
+
+	if (deletes.length) {
+		widgetTodoActions.delTodo.do(options);
+	}
+
+	if (puts.length) {
+		widgetTodoActions.putTodo.do(options);
+	}
 });
 
 app.loadDefinition({
@@ -194,4 +160,3 @@ app.loadDefinition({
 });
 
 app.realize(document.body);
-
