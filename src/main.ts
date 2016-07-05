@@ -83,38 +83,40 @@ const widgetStore = createMemoryStore({
 });
 
 todoStore.observe().subscribe((options: any) => {
-	todoStore.get().then((items: any) => {
-		const todos: any = Array.from(items);
-		const completedCount = todos.filter((todo: any) => todo.completed).length;
-		const activeCount = todos.filter((todo: any) => !todo.completed).length;
-		const hidden = todos.length ? [] : ['hidden'];
-		const allCompleted = todos.length === completedCount;
+	const { all } = options;
+	const completedCount = all.filter((todo: any) => todo.completed).length;
+	const activeCount = all.filter((todo: any) => !todo.completed).length;
+	const hidden = all.length ? [] : ['hidden'];
+	const allCompleted = all.length === completedCount;
 
-		widgetStore.patch({
-			id: 'todo-footer',
-			completedCount,
-			activeCount,
-			classes: ['footer', ...hidden]
-		});
+	widgetStore.patch({
+		id: 'todo-footer',
+		completedCount,
+		activeCount,
+		classes: ['footer', ...hidden]
+	});
 
-		widgetStore.patch({
-			id: 'todo-toggle',
-			checked: allCompleted,
-			classes: ['toggle-all', ...hidden]
-		});
+	widgetStore.patch({
+		id: 'todo-toggle',
+		checked: allCompleted,
+		classes: ['toggle-all', ...hidden]
 	});
 });
 
 todoStore.observe().subscribe((options: any) => {
-	const { deleted, item } = options;
-	if (deleted) {
-		todoStore.get().then((todoItems: any) => {
-			const children = Array.from(todoItems)
-				.filter((todoItem: any) => todoItem.id !== item)
-				.map((item: any) => item.id);
-			return widgetStore.delete(item).patch({ id: 'todo-list', children });
-		});
-	} else {
+	const { deletes, all } = options;
+	if (deletes.length) {
+		const item = deletes[0];
+		const children = all.filter((todoItem: any) => todoItem.id !== item)
+			.map((item: any) => item.id);
+		return widgetStore.delete(item).patch({ id: 'todo-list', children });
+	}
+});
+
+todoStore.observe().subscribe((options: any) => {
+	const { puts } = options;
+	if (puts.length) {
+		const item = puts[0];
 		widgetStore.get('todo-list').then((todoList: any) => {
 			const { id, children } = todoList;
 			function put() {

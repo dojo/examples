@@ -256,10 +256,12 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 				return new Observable<T>(function subscribe(observer: Observer<T>) {
 						const observers = storeObserverWeakMap.get(store) || [];
 						store.get().then((items: any) => {
-							Array.from(items).forEach((item: any) => {
-								const options: any = { item: item, deleted: false };
-								observer.next(options);
-							});
+							const payload: any = {
+								puts: items,
+								deletes: [],
+								all: Array.from(items)
+							};
+							observer.next(payload);
 						});
 						observers.push(observer);
 						storeObserverWeakMap.set(store, observers);
@@ -286,8 +288,15 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 			}
 			const storeObservers = storeObserverWeakMap.get(store);
 			if (storeObservers) {
-				storeObservers.forEach((observer) => {
-					observer.next({item});
+				store.get().then((items: any) => {
+					const payload: any = {
+						puts: [item],
+						deletes: [],
+						all: Array.from(items)
+					};
+					storeObservers.forEach((observer) => {
+						observer.next(payload);
+					});
 				});
 			}
 			return wrapResult(store, item);
@@ -333,7 +342,16 @@ const createMemoryStore = compose<MemoryStoreMixin<Object>, MemoryStoreOptions<O
 			function completeStoreObservers() {
 				const storeObservers = storeObserverWeakMap.get(store);
 				if (storeObservers) {
-					storeObservers.forEach((observer) => observer.next({item, deleted: true}));
+					store.get().then((items: any) => {
+						const payload: any = {
+							puts: [],
+							deletes: [item],
+							all: Array.from(items)
+						};
+						storeObservers.forEach((observer) => {
+							observer.next(payload);
+						});
+					});
 				}
 			}
 
