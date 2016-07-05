@@ -11,6 +11,7 @@ import createMemoryStore from './utils/createLocalMemoryStore';
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
+import createCheckboxInput from './widgets/createCheckboxInput';
 import createTodoList from './widgets/createTodoList';
 import createTodoFooter from './widgets/createTodoFooter';
 
@@ -69,6 +70,11 @@ const widgetStore = createMemoryStore({
 			children: []
 		},
 		{
+			id: 'todo-toggle',
+			classes: ['toggle-all'],
+			checked: false
+		},
+		{
 			id: 'todo-footer',
 			classes: ['footer'],
 			completedCount: 0,
@@ -84,6 +90,7 @@ todoStore.observe().subscribe((options: any) => {
 		const completedCount = todos.filter((todo: any) => todo.completed).length;
 		const activeCount = todos.filter((todo: any) => !todo.completed).length;
 		widgetStore.patch({id: 'todo-footer', completedCount, activeCount});
+		widgetStore.patch({id: 'todo-toggle', checked: todos.length === completedCount});
 	});
 });
 
@@ -152,6 +159,13 @@ app.loadDefinition({
 			factory: createTodoList,
 			options: {
 				widgetRegistry: todoRegistryFactory({ widgetStore })
+			}
+		},
+		{
+			id: 'todo-toggle',
+			factory: createCheckboxInput,
+			listeners: {
+				change: uiTodoActions.todoToggleAll
 			}
 		},
 		{

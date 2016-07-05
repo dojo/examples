@@ -41,6 +41,14 @@ export const filter: AnyAction = createAction({
 	}
 });
 
+export const todoToggleAll: AnyAction = createAction({
+	configure,
+	do(options: any) {
+		const checked = options.event.target.checked;
+		storeActions.toggleAll.do({checked});
+	}
+});
+
 export const clearCompleted: AnyAction = createAction({
 	configure,
 	do(options: any) {

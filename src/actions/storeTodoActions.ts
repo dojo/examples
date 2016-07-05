@@ -36,6 +36,18 @@ export const deleteCompleted: AnyAction = createAction({
 	}
 });
 
+export const toggleAll: AnyAction = createAction({
+	configure,
+	do(options: any) {
+		const { todoStore } = <any> this;
+
+		return todoStore.get().then((items: any) => {
+			return Promise.all(Array.from(items).map((item: any) =>
+				todoStore.patch(Object.assign({}, item, {completed: options.checked}))));
+		});
+	}
+});
+
 export const updateTodo: AnyAction = createAction({
 	configure,
 	do(todo: any) {
