@@ -83,11 +83,11 @@ const widgetStore = createMemoryStore({
 });
 
 todoStore.observe().subscribe((options: any) => {
-	const { all } = options;
-	const completedCount = all.filter((todo: any) => todo.completed).length;
-	const activeCount = all.filter((todo: any) => !todo.completed).length;
-	const hidden = all.length ? [] : ['hidden'];
-	const allCompleted = all.length === completedCount;
+	const { afterAll } = options;
+	const completedCount = afterAll.filter((todo: any) => todo.completed).length;
+	const activeCount = afterAll.filter((todo: any) => !todo.completed).length;
+	const hidden = afterAll.length ? [] : ['hidden'];
+	const allCompleted = afterAll.length === completedCount;
 
 	widgetStore.patch({
 		id: 'todo-footer',
@@ -104,35 +104,34 @@ todoStore.observe().subscribe((options: any) => {
 });
 
 todoStore.observe().subscribe((options: any) => {
-	const { deletes, all } = options;
+	const { deletes, afterAll } = options;
 	if (deletes.length) {
 		const item = deletes[0];
-		const children = all.filter((todoItem: any) => todoItem.id !== item)
+		const children = afterAll.filter((todoItem: any) => todoItem.id !== item)
 			.map((item: any) => item.id);
 		return widgetStore.delete(item).patch({ id: 'todo-list', children });
 	}
 });
 
 todoStore.observe().subscribe((options: any) => {
-	const { puts } = options;
+	const { puts, beforeAll } = options;
 	if (puts.length) {
 		const item = puts[0];
-		widgetStore.get('todo-list').then((todoList: any) => {
-			const { id, children } = todoList;
-			function put() {
-				return widgetStore
-					.put(item)
-					.patch({id, children: [...children, item.id]});
-			}
+		const children = beforeAll.map((child: any) => child.id);
 
-			function patch() {
-				return widgetStore
-					.patch(item)
-					.patch({id, children});
-			}
+		function put() {
+			return widgetStore
+			.put(item)
+			.patch({id: 'todo-list', children: [...children, item.id]});
+		}
 
-			return children.includes(item.id) ? patch() : put();
-		});
+		function patch() {
+			return widgetStore
+			.patch(item)
+			.patch({id: 'todo-list', children});
+		}
+
+		return children.includes(item.id) ? patch() : put();
 	}
 });
 
