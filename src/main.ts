@@ -108,7 +108,7 @@ todoStore.observe().subscribe((options: any) => {
 	widgetTodoActions.updateHeaderAndFooter.do(options);
 
 	if (deletes.length) {
-		widgetTodoActions.delTodo.do(options);
+		widgetTodoActions.deleteTodo.do(options);
 	}
 
 	if (puts.length) {
