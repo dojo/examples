@@ -24,7 +24,7 @@ function manageChildren(parent: any) {
 
 	editInput.setState({
 		value: todoItem.state.label,
-		editing: todoItem.state.editing
+		focused: todoItem.state.editing
 	});
 
 	checkbox.setState({
