@@ -1,5 +1,4 @@
 import createButton from 'dojo-widgets/createButton';
-import createTextInput from 'dojo-widgets/createTextInput';
 import createWidget, { Widget, WidgetState } from 'dojo-widgets/createWidget';
 import createParentMixin, { ParentMap } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderableChildrenMixin, {} from 'dojo-widgets/mixins/createRenderableChildrenMixin';
@@ -7,17 +6,11 @@ import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChild
 import { h, VNode } from 'maquette/maquette';
 
 import createCheckboxInput from './createCheckboxInput';
+import createFocusableTextInput from './createFocusableTextInput';
 
 import { todoRemove, todoToggleComplete, todoEdit, todoSave }  from './../actions/uiTodoActions';
 
 type TodoItem = ParentMap<Widget<WidgetState>> & { state: any } & { afterUpdate(): void };
-
-function afterUpdate(element: any) {
-	const todoItem: TodoItem = this;
-	if (todoItem.state.editing) {
-		setTimeout(() => element.focus(), 0);
-	}
-}
 
 function manageChildren(parent: any) {
 	const todoItem = <TodoItem> this;
@@ -30,7 +23,8 @@ function manageChildren(parent: any) {
 	});
 
 	editInput.setState({
-		value: todoItem.state.label
+		value: todoItem.state.label,
+		editing: todoItem.state.editing
 	});
 
 	checkbox.setState({
@@ -45,7 +39,6 @@ const createTodoItem = createWidget
 	.mixin({
 		mixin: createParentMixin,
 		initialize(instance) {
-			(<any> instance).afterUpdate = afterUpdate.bind(instance);
 			const checkbox = createCheckboxInput({
 				state: {
 					id: 'checkbox',
@@ -76,7 +69,7 @@ const createTodoItem = createWidget
 				tagName: 'label'
 			});
 
-			const editInput = createTextInput({
+			const editInput = createFocusableTextInput({
 				state: {
 					id: 'editInput',
 					classes: ['edit']
@@ -102,15 +95,13 @@ const createTodoItem = createWidget
 			},
 			getChildrenNodes(): VNode[] {
 				const todoItem = <TodoItem> this;
-				const inputVNode = todoItem.children.get('editInput').render();
-				inputVNode.properties.afterUpdate = todoItem.afterUpdate;
 				return [
 					h('div.view', [
 						todoItem.children.get('checkbox').render(),
 						todoItem.children.get('label').render(),
 						todoItem.children.get('button').render()
 					]),
-					inputVNode
+					todoItem.children.get('editInput').render()
 				];
 			}
 		}

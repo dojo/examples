@@ -25,6 +25,7 @@
 		"./src/registry/createTodoRegistry.ts",
 		"./src/utils/createLocalMemoryStore.ts",
 		"./src/widgets/createCheckboxInput.ts",
+		"./src/widgets/createFocusableTextInput.ts",
 		"./src/widgets/createTodoFilter.ts",
 		"./src/widgets/createTodoFooter.ts",
 		"./src/widgets/createTodoItem.ts",
