@@ -28,6 +28,20 @@ export const todoEdit: AnyAction = createAction({
 	}
 });
 
+export const todoEditInput: AnyAction = createAction({
+	configure,
+	do(options: any) {
+		const { widgetStore } = <any> this;
+
+		if (options.event.keyCode === 13) {
+			todoSave.do(options);
+		}
+		else if (options.event.keyCode === 27) {
+			widgetStore.patch(Object.assign(options.state, {editing: false}));
+		}
+	}
+});
+
 export const todoSave: AnyAction = createAction({
 	do(options: any) {
 		const label = options.event.target.value;
