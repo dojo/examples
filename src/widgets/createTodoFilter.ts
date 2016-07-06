@@ -1,12 +1,20 @@
-import createWidget, { Widget, WidgetState} from 'dojo-widgets/createWidget';
+import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import { h, VNode } from 'maquette/maquette';
+
+interface TodoFilterState extends WidgetState {
+	activeFilter?: string;
+}
+
+interface TodoFilterOptions extends WidgetOptions<TodoFilterState> { }
+
+type TodoFilter = Widget<TodoFilterState>;
 
 const createTodoFilter = createWidget
 	.mixin({
 		mixin: {
 			getChildrenNodes(): VNode[] {
-				const todoFilter: Widget<WidgetState> = this;
-				const filter = (<any> todoFilter.state).activeFilter;
+				const todoFilter: TodoFilter = this;
+				const filter = todoFilter.state.activeFilter;
 				return [
 					h('li', {}, [
 						h('a', {

@@ -1,25 +1,36 @@
 import { h, VNode } from 'maquette/maquette';
-import createWidget, { Widget, WidgetState } from 'dojo-widgets/createWidget';
-import createParentMixin, { ParentMap } from 'dojo-widgets/mixins/createParentMapMixin';
-import createRenderableChildrenMixin, {} from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+
 import createButton from 'dojo-widgets/createButton';
+import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
+import createParentMixin, { ParentMap, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
+import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import { Child } from 'dojo-widgets/mixins/interfaces';
+
 import createTodoFilter from './createTodoFilter';
 import { clearCompleted } from '../actions/uiTodoActions';
 
-type TodoFooter = ParentMap<Widget<WidgetState>>;
+export interface TodoFooterState extends WidgetState, StatefulChildrenState {
+	activeFilter?: string;
+	activeCount?: number;
+	completedCount?: number;
+}
 
-function manageChildren(parent: any) {
+export interface TodoFooterOptions extends WidgetOptions<TodoFooterState>, ParentMapMixinOptions<Child>, StatefulChildrenOptions<Child, TodoFooterState> { }
+
+export type TodoFooter = Widget<TodoFooterState> & ParentMap<Widget<TodoFooterState>>;
+
+function manageChildren() {
 	const todoFooter = <TodoFooter> this;
 	const filterWidget = todoFooter.children.get('filter');
 	const buttonWidget = todoFooter.children.get('button');
 
 	filterWidget.setState({
-		'activeFilter': (<any> todoFooter).state.activeFilter
+		'activeFilter': todoFooter.state.activeFilter
 	});
 
 	const clearCompletedButtonClasses = ['clear-completed'];
-	if ((<any> todoFooter).state.completedCount === 0) {
+	if (todoFooter.state.completedCount === 0) {
 		clearCompletedButtonClasses.push('hidden');
 	}
 
@@ -59,7 +70,7 @@ const createTodoFooter = createWidget
 		mixin: {
 			getChildrenNodes(): VNode[] {
 				const todoFooter = <TodoFooter> this;
-				const activeCount = (<any> todoFooter).state.activeCount;
+				const activeCount = todoFooter.state.activeCount;
 				const countLabel = activeCount === 1 ? 'item' : 'items';
 
 				return [

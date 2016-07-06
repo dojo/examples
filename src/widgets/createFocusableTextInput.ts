@@ -16,11 +16,10 @@ export type FocusableTextInput = Widget<FormFieldMixinState<string>> & FormField
 
 export interface FocusableTextInputFactory extends ComposeFactory<FocusableTextInput, FocusableTextInputOptions> { }
 
-const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: any): any}>();
+const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: HTMLInputElement): void}>();
 
-function afterUpdate(instance: any, element: any) {
-	const focusableTextInput: FocusableTextInput = instance;
-	const focused: boolean = focusableTextInput.state.focused;
+function afterUpdate(instance: FocusableTextInput, element: HTMLInputElement) {
+	const focused: boolean = instance.state.focused;
 	if (focused) {
 		setTimeout(() => element.focus(), 0);
 	}
@@ -47,7 +46,7 @@ const createFocusableTextInput: FocusableTextInputFactory = createTextInput
 			instance.own(instance.on('input', (event: TypedTargetEvent<HTMLInputElement>) => {
 				instance.value = event.target.value;
 			}));
-			afterUpdateFunctions.set(instance, (element: any) => afterUpdate(instance, element));
+			afterUpdateFunctions.set(instance, (element: HTMLInputElement) => afterUpdate(instance, element));
 		}
 	})
 	.extend({

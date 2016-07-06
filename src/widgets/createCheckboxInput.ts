@@ -1,5 +1,4 @@
 import { ComposeFactory } from 'dojo-compose/compose';
-import { assign } from 'dojo-core/lang';
 import createWidget, { Widget, WidgetOptions } from 'dojo-widgets/createWidget';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinState, FormFieldMixinOptions } from 'dojo-widgets/mixins/createFormFieldMixin';
 import { VNodeProperties } from 'maquette/maquette';
@@ -20,11 +19,10 @@ const createCheckboxInput: CheckboxInputFactory = createWidget
 		mixin: createFormFieldMixin,
 		aspectAdvice: {
 			before: {
-				getNodeAttributes(...args: any[]) {
+				getNodeAttributes(overrides: VNodeProperties) {
 					const formfield: FormFieldMixin<any, FormFieldMixinState<any>> & {
 						state: any;
 					} = this;
-					const overrides: VNodeProperties = {};
 
 					if (formfield.state.checked !== undefined) {
 						overrides.checked = formfield.state.checked;
@@ -35,12 +33,7 @@ const createCheckboxInput: CheckboxInputFactory = createWidget
 						overrides.placeholder = formfield.state.placeholder;
 					}
 
-					if (!args[0]) {
-						args[0] = {};
-					}
-					assign(args[0], overrides);
-
-					return args;
+					return [overrides];
 				}
 			}
 		},
