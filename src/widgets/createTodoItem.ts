@@ -1,18 +1,25 @@
 import createButton from 'dojo-widgets/createButton';
-import createWidget, { Widget, WidgetState } from 'dojo-widgets/createWidget';
-import createParentMixin, { ParentMap } from 'dojo-widgets/mixins/createParentMapMixin';
-import createRenderableChildrenMixin, {} from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
+import createParentMixin, { ParentMap, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
+import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import { Child } from 'dojo-widgets/mixins/interfaces';
 import { h, VNode } from 'maquette/maquette';
 
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
-
 import { todoRemove, todoToggleComplete, todoEdit, todoSave, todoEditInput }  from './../actions/uiTodoActions';
 
-type TodoItem = ParentMap<Widget<WidgetState>> & { state: any } & { afterUpdate(): void };
+interface TodoItemState extends WidgetState, StatefulChildrenState {
+	editing?: boolean;
+	completed?: boolean;
+}
 
-function manageChildren(parent: any) {
+interface TodoItemOptions extends WidgetOptions<TodoItemState>, ParentMapMixinOptions<Child>, StatefulChildrenOptions<Child, TodoItemState> { }
+
+export type TodoItem = Widget<TodoItemState> & ParentMap<Widget<TodoItemState>>;
+
+function manageChildren() {
 	const todoItem = <TodoItem> this;
 	const label = todoItem.children.get('label');
 	const checkbox = todoItem.children.get('checkbox');
