@@ -1,43 +1,40 @@
-import createButton, { Button } from 'dojo-widgets/createButton';
-import createTextInput, { TextInput } from 'dojo-widgets/createTextInput';
+import createButton from 'dojo-widgets/createButton';
+import createTextInput from 'dojo-widgets/createTextInput';
 import createWidget, { Widget, WidgetState } from 'dojo-widgets/createWidget';
 import createParentMixin, { ParentMap } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderableChildrenMixin, {} from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { h, VNode } from 'maquette/maquette';
 
-import createCheckboxInput, { CheckboxInput } from './createCheckboxInput';
+import createCheckboxInput from './createCheckboxInput';
 
-import { todoRemove, todoToggleComplete }  from './../actions/uiTodoActions';
+import { todoRemove, todoToggleComplete, todoEdit, todoSave }  from './../actions/uiTodoActions';
 
-export interface TodoItemMixin {
-	childWidgets: TodoItemChildWidgets;
+type TodoItem = ParentMap<Widget<WidgetState>> & { state: any } & { afterUpdate(): void };
+
+function afterUpdate(element: any) {
+	const todoItem: TodoItem = this;
+	if (todoItem.state.editing) {
+		setTimeout(() => element.focus(), 0);
+	}
 }
-
-interface TodoItemChildWidgets {
-	checkbox: CheckboxInput;
-	button: Button;
-	label: Widget<WidgetState>;
-	editInput: TextInput;
-}
-
-interface TodoItemCheckedEvent extends Event {
-	target: any;
-}
-
-type TodoItem = ParentMap<Widget<WidgetState>>;
 
 function manageChildren(parent: any) {
 	const todoItem = <TodoItem> this;
 	const label = todoItem.children.get('label');
 	const checkbox = todoItem.children.get('checkbox');
+	const editInput = todoItem.children.get('editInput');
 
 	label.setState({
-		label: (<any> todoItem).state.label
+		label: todoItem.state.label
+	});
+
+	editInput.setState({
+		value: todoItem.state.label
 	});
 
 	checkbox.setState({
-		checked: (<any> todoItem).state.completed
+		checked: todoItem.state.completed
 	});
 }
 
@@ -48,6 +45,7 @@ const createTodoItem = createWidget
 	.mixin({
 		mixin: createParentMixin,
 		initialize(instance) {
+			(<any> instance).afterUpdate = afterUpdate.bind(instance);
 			const checkbox = createCheckboxInput({
 				state: {
 					id: 'checkbox',
@@ -72,13 +70,19 @@ const createTodoItem = createWidget
 				state: {
 					id: 'label'
 				},
-				'tagName': 'label'
+				listeners: {
+					dblclick: () => { todoEdit.do(instance.state); }
+				},
+				tagName: 'label'
 			});
 
 			const editInput = createTextInput({
 				state: {
 					id: 'editInput',
 					classes: ['edit']
+				},
+				listeners: {
+					blur: (event) => { todoSave.do({state: instance.state, event}); }
 				}
 			});
 
@@ -90,17 +94,23 @@ const createTodoItem = createWidget
 		mixin: {
 			get classes(): string[] {
 				const todoItem: TodoItem = this;
-				return (<any> todoItem).state.completed ? ['completed'] : [];
+				const classes: string[] = [];
+				if (todoItem.state.editing) {
+					classes.push('editing');
+				}
+				return todoItem.state.completed ? ['completed', ...classes] : classes;
 			},
 			getChildrenNodes(): VNode[] {
 				const todoItem = <TodoItem> this;
+				const inputVNode = todoItem.children.get('editInput').render();
+				inputVNode.properties.afterUpdate = todoItem.afterUpdate;
 				return [
 					h('div.view', [
 						todoItem.children.get('checkbox').render(),
 						todoItem.children.get('label').render(),
 						todoItem.children.get('button').render()
 					]),
-					todoItem.children.get('editInput').render()
+					inputVNode
 				];
 			}
 		}
