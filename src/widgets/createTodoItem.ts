@@ -8,7 +8,7 @@ import { h, VNode } from 'maquette/maquette';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 
-import { todoRemove, todoToggleComplete, todoEdit, todoSave }  from './../actions/uiTodoActions';
+import { todoRemove, todoToggleComplete, todoEdit, todoSave, todoEditInput }  from './../actions/uiTodoActions';
 
 type TodoItem = ParentMap<Widget<WidgetState>> & { state: any } & { afterUpdate(): void };
 
@@ -75,7 +75,8 @@ const createTodoItem = createWidget
 					classes: ['edit']
 				},
 				listeners: {
-					blur: (event) => { todoSave.do({state: instance.state, event}); }
+					blur: (event) => { todoSave.do({state: instance.state, event}); },
+					keyup: (event) => { todoEditInput.do({state: instance.state, event}); }
 				}
 			});
 
