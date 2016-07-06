@@ -5,9 +5,10 @@ import { h, VNode } from 'maquette/maquette';
 
 import createCheckboxInput, { CheckboxInput } from './createCheckboxInput';
 
-import { todoRemove, todoToggleComplete }  from './../actions/uiTodoActions';
+import { todoRemove, todoToggleComplete, todoEdit, todoSave }  from './../actions/uiTodoActions';
 
 export interface TodoItemMixin {
+	afterUpdate(): void;
 	childWidgets: TodoItemChildWidgets;
 }
 
@@ -24,9 +25,17 @@ interface TodoItemCheckedEvent extends Event {
 
 export type TodoItem = Widget<any> & TodoItemMixin;
 
+function afterUpdate(element: any) {
+	const todoItem: TodoItem = this;
+	if (todoItem.state.editing) {
+		setTimeout(() => element.focus(), 0);
+	}
+}
+
 const createTodoItem = createWidget
 	.mixin({
 		initialize(instance) {
+			(<any> instance).afterUpdate = afterUpdate.bind(instance);
 			instance.childWidgets = {
 				checkbox: createCheckboxInput({
 					listeners: { 'change': () => { todoToggleComplete.do(instance.state); } }
@@ -35,16 +44,25 @@ const createTodoItem = createWidget
 					listeners: { 'click': () => { todoRemove.do(instance.state); } }
 				}),
 				label: createWidget({
-					'tagName': 'label'
+					'tagName': 'label',
+					listeners: { 'dblclick': () => { todoEdit.do(instance.state); } }
 				}),
-				editInput: createTextInput({})
+				editInput: createTextInput({
+					listeners: { 'blur': (event) => {
+						todoSave.do({state: instance.state, event});
+					}}
+				})
 			};
 		},
 		mixin: {
 			childWidgets: <TodoItemChildWidgets> null,
 			get classes(): string[] {
 				const todoItem: TodoItem = this;
-				return todoItem.state.completed ? ['completed'] : [];
+				const classes: string[] = [];
+				if (todoItem.state.editing) {
+					classes.push('editing');
+				}
+				return todoItem.state.completed ? ['completed', ...classes] : classes;
 			},
 			getChildrenNodes(): VNode[] {
 				const todoItem: TodoItem = this;
@@ -72,6 +90,9 @@ const createTodoItem = createWidget
 
 				const checkboxVNode = checkbox.render();
 				checkboxVNode.properties.checked = todoItem.state.completed;
+
+				const inputVNode = editInput.render();
+				inputVNode.properties.afterUpdate = todoItem.afterUpdate;
 
 				return [
 					h('div.view', [

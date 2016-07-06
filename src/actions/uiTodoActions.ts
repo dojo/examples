@@ -19,6 +19,28 @@ export const todoInput: AnyAction = createAction({
 	}
 });
 
+export const todoEdit: AnyAction = createAction({
+	configure,
+	do(options: any) {
+		const { widgetStore } = <any> this;
+
+		widgetStore.patch(Object.assign(options, {editing: true}));
+	}
+});
+
+export const todoSave: AnyAction = createAction({
+	do(options: any) {
+		const label = options.event.target.value;
+
+		if (!label) {
+			storeActions.deleteTodo.do(options.state.id);
+		}
+		else {
+			storeActions.updateTodo.do(Object.assign(options.state, {label, editing: false}));
+		}
+	}
+});
+
 export const todoRemove: AnyAction = createAction({
 	do(options: any) {
 		storeActions.deleteTodo.do(options.id);
