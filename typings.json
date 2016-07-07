@@ -10,6 +10,8 @@
 		"dojo-app": "npm:dojo-app",
 		"dojo-compose": "npm:dojo-compose",
 		"dojo-core": "npm:dojo-core",
+		"dojo-shim": "npm:dojo-shim",
+		"dojo-has": "npm:dojo-has",
 		"dojo-dom": "npm:dojo-dom",
 		"dojo-loader": "npm:dojo-loader",
 		"dojo-routing": "npm:dojo-routing",

@@ -1,5 +1,7 @@
-import { CombinedRegistry } from 'dojo-app/createApp';
 import createAction, { AnyAction } from 'dojo-actions/createAction';
+import { CombinedRegistry } from 'dojo-app/createApp';
+import Promise from 'dojo-shim/Promise';
+
 import { MemoryStore } from '../utils/createLocalMemoryStore';
 
 interface StoreTodoAction {

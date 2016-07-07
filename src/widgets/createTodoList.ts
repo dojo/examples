@@ -3,6 +3,7 @@ import createParentMixin, { ParentList, ParentListMixinOptions } from 'dojo-widg
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
+
 import { VNode } from 'maquette/maquette';
 import { List } from 'immutable/immutable';
 

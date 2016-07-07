@@ -1,5 +1,6 @@
-import { CombinedRegistry } from 'dojo-app/createApp';
 import createAction, { AnyAction } from 'dojo-actions/createAction';
+import { CombinedRegistry } from 'dojo-app/createApp';
+
 import * as storeActions from './storeTodoActions';
 import { MemoryStore } from '../utils/createLocalMemoryStore';
 
