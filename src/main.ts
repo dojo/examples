@@ -136,7 +136,11 @@ app.loadDefinition({
 			id: 'todo-list',
 			factory: createTodoList,
 			options: {
-				widgetRegistry: todoRegistryFactory({ widgetStore })
+				registryProvider: {
+					get(type: string) {
+						return type === 'widgets' ? todoRegistryFactory({ widgetStore }) : null;
+					}
+				}
 			}
 		},
 		{
