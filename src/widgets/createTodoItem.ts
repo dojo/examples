@@ -1,6 +1,7 @@
+import { ComposeFactory } from 'dojo-compose/compose';
 import createButton from 'dojo-widgets/createButton';
 import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
-import createParentMixin, { ParentMap, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
+import createParentMixin, { ParentMapMixin, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
@@ -15,15 +16,17 @@ interface TodoItemState extends WidgetState, StatefulChildrenState {
 	completed?: boolean;
 }
 
-interface TodoItemOptions extends WidgetOptions<TodoItemState>, ParentMapMixinOptions<Child>, StatefulChildrenOptions<Child, TodoItemState> { }
+export interface TodoItemOptions extends WidgetOptions<TodoItemState>, ParentMapMixinOptions<Widget<TodoItemState>>, StatefulChildrenOptions<Child, TodoItemState> { }
 
-export type TodoItem = Widget<TodoItemState> & ParentMap<Widget<TodoItemState>>;
+export type TodoItem = Widget<TodoItemState> & ParentMapMixin<Child>;
+
+export interface TodoItemFactory extends ComposeFactory<TodoItem, TodoItemOptions> { }
 
 function manageChildren() {
 	const todoItem = <TodoItem> this;
-	const label = todoItem.children.get('label');
-	const checkbox = todoItem.children.get('checkbox');
-	const editInput = todoItem.children.get('editInput');
+	const label = <Widget<WidgetState>> todoItem.children.get('label');
+	const checkbox = <Widget<WidgetState>> todoItem.children.get('checkbox');
+	const editInput = <Widget<WidgetState>> todoItem.children.get('editInput');
 
 	label.setState({
 		label: todoItem.state.label
@@ -39,7 +42,7 @@ function manageChildren() {
 	});
 }
 
-const createTodoItem = createWidget
+const createTodoItem: TodoItemFactory = createWidget
 	.mixin(createParentMixin)
 	.mixin(createRenderableChildrenMixin)
 	.mixin(createStatefulChildrenMixin)

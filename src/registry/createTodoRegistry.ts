@@ -1,21 +1,27 @@
 import Promise from 'dojo-core/Promise';
-import { Child } from 'dojo-widgets/mixins/interfaces';
-import createTodoItem from '../widgets/createTodoItem';
+import createTodoItem, { TodoItem } from '../widgets/createTodoItem';
 import WeakMap from 'dojo-core/WeakMap';
 import Map from 'dojo-core/Map';
 import compose from 'dojo-compose/compose';
 import { MemoryStore } from 'dojo-widgets/util/createMemoryStore';
 
-const idToWidgetMap = new Map<string, Child>();
-const widgetToIdMap = new WeakMap<Child, string>();
+const idToWidgetMap = new Map<string, TodoItem>();
+const widgetToIdMap = new WeakMap<TodoItem, string>();
 
 interface TodoRegistryOptions {
-	widgetStore: MemoryStore<Object>;
+	[key: string]: MemoryStore<Object>;
+}
+
+interface TodoRegistry {
+	get(id: string): Promise<TodoItem>;
+	identify(value: TodoItem): string;
+	widgetStore?: MemoryStore<Object>;
+	[key: string]: any;
 }
 
 const todoRegistryFactory = compose({
-	get(id: string): Promise<Child> {
-		let widget: Child = idToWidgetMap.get(id);
+	get(id: string): Promise<TodoItem> {
+		let widget: TodoItem = idToWidgetMap.get(id);
 		if (!widget) {
 			widget = createTodoItem({id, stateFrom: this.widgetStore});
 			widgetToIdMap.set(widget, id);
@@ -23,10 +29,10 @@ const todoRegistryFactory = compose({
 		}
 		return Promise.resolve(widget);
 	},
-	identify(value: Child): string {
+	identify(value: TodoItem): string {
 		return widgetToIdMap.get(value);
 	}
-}, function (todoRegistry: any, options: any) {
+}, function (todoRegistry: TodoRegistry, options: TodoRegistryOptions) {
 	if (options) {
 		for (let key in options) {
 			todoRegistry[key] = options[key];

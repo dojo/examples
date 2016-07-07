@@ -1,33 +1,39 @@
+import { CombinedRegistry } from 'dojo-app/createApp';
 import createAction, { AnyAction } from 'dojo-actions/createAction';
+import { MemoryStore } from '../utils/createLocalMemoryStore';
 
-function configure (registry: any) {
-	const action = <any> this;
+interface StoreTodoAction {
+	todoStore: MemoryStore<Object>;
+}
 
-	registry.getStore('todo-store').then((todoStore: any) => {
+function configure (registry: CombinedRegistry) {
+	const action = <StoreTodoAction> this;
+
+	registry.getStore('todo-store').then((todoStore: MemoryStore<Object>) => {
 		action.todoStore = todoStore;
 	});
 };
 
 export const addTodo: AnyAction = createAction({
 	configure,
-	do(todo: any) {
-		const { todoStore } = <any> this;
+	do(todo: {label: string}) {
+		const { todoStore } = <StoreTodoAction> this;
 		return todoStore.add({ id: `${Date.now()}`, label: todo.label });
 	}
 });
 
 export const deleteTodo: AnyAction = createAction({
 	configure,
-	do(id: any) {
-		const { todoStore } = <any> this;
-		return todoStore.delete(id);
+	do(options: {id: string}) {
+		const { todoStore } = <StoreTodoAction> this;
+		return todoStore.delete(options.id);
 	}
 });
 
 export const deleteCompleted: AnyAction = createAction({
 	configure,
-	do(id: any) {
-		const { todoStore } = <any> this;
+	do() {
+		const { todoStore } = <StoreTodoAction> this;
 		todoStore.get().then((items: any) => {
 			Array.from(items)
 				.filter((item: any) => item.completed)
@@ -38,8 +44,8 @@ export const deleteCompleted: AnyAction = createAction({
 
 export const toggleAll: AnyAction = createAction({
 	configure,
-	do(options: any) {
-		const { todoStore } = <any> this;
+	do(options: {checked: boolean}) {
+		const { todoStore } = <StoreTodoAction> this;
 
 		return todoStore.get().then((items: any) => {
 			return Promise.all(Array.from(items).map((item: any) =>
@@ -51,7 +57,7 @@ export const toggleAll: AnyAction = createAction({
 export const updateTodo: AnyAction = createAction({
 	configure,
 	do(todo: any) {
-		const { todoStore } = <any> this;
+		const { todoStore } = <StoreTodoAction> this;
 		return todoStore.patch(todo);
 	}
 });
