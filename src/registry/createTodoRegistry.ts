@@ -32,7 +32,7 @@ const todoRegistryFactory = compose({
 	identify(value: TodoItem): string {
 		return widgetToIdMap.get(value);
 	}
-}, function (todoRegistry: TodoRegistry, options: TodoRegistryOptions) {
+}, function (todoRegistry: TodoRegistry, options: any) {
 	if (options) {
 		for (let key in options) {
 			todoRegistry[key] = options[key];
