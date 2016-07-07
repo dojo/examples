@@ -38,6 +38,10 @@ const createFocusableTextInput: FocusableTextInputFactory = createTextInput
 
 					overrides.afterUpdate = afterUpdateFunctions.get(focusableTextInput);
 
+					if (focusableTextInput.state.placeholder !== undefined) {
+						overrides.placeholder = focusableTextInput.state.placeholder;
+					}
+
 					return [overrides];
 				}
 			}

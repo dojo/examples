@@ -4,7 +4,6 @@ import createRoute from 'dojo-routing/createRoute';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 import createPanel from 'dojo-widgets/createPanel';
-import createTextInput from 'dojo-widgets/createTextInput';
 import createWidget from 'dojo-widgets/createWidget';
 
 import * as storeTodoActions from './actions/storeTodoActions';
@@ -13,6 +12,7 @@ import * as widgetTodoActions from './actions/widgetTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
 import createMemoryStore from './utils/createLocalMemoryStore';
 import createCheckboxInput from './widgets/createCheckboxInput';
+import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter from './widgets/createTodoFooter';
 import createTodoList from './widgets/createTodoList';
 
@@ -120,7 +120,7 @@ app.loadDefinition({
 	widgets: [
 		{
 			id: 'new-todo',
-			factory: createTextInput,
+			factory: createFocusableTextInput,
 			listeners: {
 				keypress: 'todoInput'
 			}

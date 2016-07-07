@@ -28,11 +28,6 @@ const createCheckboxInput: CheckboxInputFactory = createWidget
 						overrides.checked = formfield.state.checked;
 					}
 
-					// this is a hack, it should go into the formfield mixin
-					if (formfield.state.placeholder !== undefined) {
-						overrides.placeholder = formfield.state.placeholder;
-					}
-
 					return [overrides];
 				}
 			}
