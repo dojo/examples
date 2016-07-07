@@ -19,7 +19,7 @@ const createCheckboxInput: CheckboxInputFactory = createWidget
 		mixin: createFormFieldMixin,
 		aspectAdvice: {
 			before: {
-				getNodeAttributes(overrides: VNodeProperties) {
+				getNodeAttributes(overrides: VNodeProperties = {}) {
 					const formfield: FormFieldMixin<any, FormFieldMixinState<any>> & {
 						state: any;
 					} = this;
