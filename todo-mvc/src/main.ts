@@ -57,6 +57,7 @@ const widgetStore = createMemoryStore({
 		{
 			id: 'new-todo',
 			classes: ['new-todo'],
+			focused: true,
 			placeholder: 'What needs to be done?'
 		},
 		{
