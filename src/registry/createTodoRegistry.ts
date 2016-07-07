@@ -1,7 +1,7 @@
-import Promise from 'dojo-core/Promise';
+import Promise from 'dojo-shim/Promise';
 import createTodoItem, { TodoItem } from '../widgets/createTodoItem';
-import WeakMap from 'dojo-core/WeakMap';
-import Map from 'dojo-core/Map';
+import WeakMap from 'dojo-shim/WeakMap';
+import Map from 'dojo-shim/Map';
 import compose from 'dojo-compose/compose';
 import { MemoryStore } from '../utils/createLocalMemoryStore';
 

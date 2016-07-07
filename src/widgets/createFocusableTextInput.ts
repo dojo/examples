@@ -1,5 +1,5 @@
 import { ComposeFactory } from 'dojo-compose/compose';
-import WeakMap from 'dojo-core/WeakMap';
+import WeakMap from 'dojo-shim/WeakMap';
 import createTextInput from 'dojo-widgets/createTextInput';
 import { Widget, WidgetOptions } from 'dojo-widgets/createWidget';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinState, FormFieldMixinOptions } from 'dojo-widgets/mixins/createFormFieldMixin';
