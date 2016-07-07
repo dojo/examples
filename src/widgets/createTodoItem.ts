@@ -5,6 +5,7 @@ import createParentMixin, { ParentMapMixin, ParentMapMixinOptions } from 'dojo-w
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
+
 import { h, VNode } from 'maquette/maquette';
 
 import createCheckboxInput from './createCheckboxInput';

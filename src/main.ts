@@ -1,20 +1,20 @@
-import createApp from 'dojo-app/createApp';
 import { AnyAction } from 'dojo-actions/createAction';
+import createApp from 'dojo-app/createApp';
 import createRoute from 'dojo-routing/createRoute';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 import createPanel from 'dojo-widgets/createPanel';
 import createTextInput from 'dojo-widgets/createTextInput';
 import createWidget from 'dojo-widgets/createWidget';
-import createMemoryStore from './utils/createLocalMemoryStore';
 
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
 import * as widgetTodoActions from './actions/widgetTodoActions';
 import todoRegistryFactory from './registry/createTodoRegistry';
+import createMemoryStore from './utils/createLocalMemoryStore';
 import createCheckboxInput from './widgets/createCheckboxInput';
-import createTodoList from './widgets/createTodoList';
 import createTodoFooter from './widgets/createTodoFooter';
+import createTodoList from './widgets/createTodoList';
 
 const router = createRouter();
 const history = createHashHistory();

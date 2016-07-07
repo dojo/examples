@@ -1,9 +1,10 @@
+import compose from 'dojo-compose/compose';
 import Promise from 'dojo-shim/Promise';
-import createTodoItem, { TodoItem } from '../widgets/createTodoItem';
 import WeakMap from 'dojo-shim/WeakMap';
 import Map from 'dojo-shim/Map';
-import compose from 'dojo-compose/compose';
+
 import { MemoryStore } from '../utils/createLocalMemoryStore';
+import createTodoItem, { TodoItem } from '../widgets/createTodoItem';
 
 const idToWidgetMap = new Map<string, TodoItem>();
 const widgetToIdMap = new WeakMap<TodoItem, string>();
