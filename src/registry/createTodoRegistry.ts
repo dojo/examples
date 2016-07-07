@@ -3,20 +3,19 @@ import createTodoItem, { TodoItem } from '../widgets/createTodoItem';
 import WeakMap from 'dojo-core/WeakMap';
 import Map from 'dojo-core/Map';
 import compose from 'dojo-compose/compose';
-import { MemoryStore } from 'dojo-widgets/util/createMemoryStore';
+import { MemoryStore } from '../utils/createLocalMemoryStore';
 
 const idToWidgetMap = new Map<string, TodoItem>();
 const widgetToIdMap = new WeakMap<TodoItem, string>();
 
 interface TodoRegistryOptions {
-	[key: string]: MemoryStore<Object>;
+	widgetStore: MemoryStore<Object>;
 }
 
 interface TodoRegistry {
 	get(id: string): Promise<TodoItem>;
 	identify(value: TodoItem): string;
 	widgetStore?: MemoryStore<Object>;
-	[key: string]: any;
 }
 
 const todoRegistryFactory = compose({
@@ -32,11 +31,9 @@ const todoRegistryFactory = compose({
 	identify(value: TodoItem): string {
 		return widgetToIdMap.get(value);
 	}
-}, function (todoRegistry: TodoRegistry, options: any) {
+}, function (todoRegistry: TodoRegistry, options: TodoRegistryOptions) {
 	if (options) {
-		for (let key in options) {
-			todoRegistry[key] = options[key];
-		}
+		todoRegistry.widgetStore = options.widgetStore;
 	}
 });
 
