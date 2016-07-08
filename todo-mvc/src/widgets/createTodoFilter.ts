@@ -51,5 +51,4 @@ const createTodoFilter = createWidget
 		'tagName': 'ul'
 	});
 
-	export default createTodoFilter;
-
+export default createTodoFilter;

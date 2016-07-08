@@ -85,5 +85,4 @@ const createTodoFooter = createWidget
 		}
 	});
 
-	export default createTodoFooter;
-
+export default createTodoFooter;

@@ -69,4 +69,3 @@ export const putTodo: AnyAction = createAction({
 		}
 	}
 });
-

@@ -24,4 +24,3 @@
 });
 
 require([ 'src/main' ], function () {});
-
