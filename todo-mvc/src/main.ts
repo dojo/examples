@@ -84,7 +84,7 @@ const widgetStore = createMemoryStore({
 	]
 });
 
-const app = createApp({ defaultStore: widgetStore });
+const app = createApp({ defaultWidgetStore: widgetStore });
 
 app.registerStore('widget-store', widgetStore);
 app.registerStore('todo-store', todoStore);

@@ -53,17 +53,17 @@ export const putTodo: AnyAction = createAction({
 			const item = puts[0];
 			const children = beforeAll.map((child: any) => child.id);
 
-			function put() {
+			const put = function() {
 				return widgetStore
 				.put(item)
 				.patch({id: 'todo-list', children: [...children, item.id]});
-			}
+			};
 
-			function patch() {
+			const patch = function() {
 				return widgetStore
 				.patch(item)
 				.patch({id: 'todo-list', children});
-			}
+			};
 
 			return children.includes(item.id) ? patch() : put();
 		}

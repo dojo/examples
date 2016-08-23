@@ -3,6 +3,13 @@ module.exports = function (grunt) {
 	var staticFiles = [ 'src/**/*.html' ];
 
 	require('grunt-dojo2').initConfig(grunt, {
+		ts: {
+			dist: {
+				compilerOptions: {
+					declaration: false
+				}
+			}
+		},
 		copy: {
 			staticFiles: {
 				expand: true,
@@ -14,12 +21,12 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('dev', [
+		"clean:typings",
 		'typings',
-		/*'tslint',*/
+		'tslint',
 		'clean:dev',
 		'ts:dev',
-		'copy:staticFiles',
-		'updateTsconfig'
+		'copy:staticFiles'
 	]);
 
 };
