@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tomdye/dojo2-todo-mvc.git"
+    "url": "https://github.com/dojo/examples.git"
   },
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "dojo-loader": ">=2.0.0-beta.5",
