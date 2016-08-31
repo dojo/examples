@@ -6,16 +6,7 @@
 		"maquette": "npm:maquette"
 	},
 	"globalDependencies": {
-		"dojo-actions": "npm:dojo-actions",
-		"dojo-app": "npm:dojo-app",
-		"dojo-compose": "npm:dojo-compose",
-		"dojo-core": "npm:dojo-core",
-		"dojo-shim": "npm:dojo-shim",
-		"dojo-has": "npm:dojo-has",
-		"dojo-dom": "npm:dojo-dom",
 		"dojo-loader": "npm:dojo-loader",
-		"dojo-routing": "npm:dojo-routing",
-		"dojo-widgets": "npm:dojo-widgets",
 		"es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#6697d6f7dadbf5773cb40ecda35a76027e0783b2",
 		"extra-immutable": "github:dojo/typings/custom/dojo2-extras/immutable.d.ts#004fc065b3b24412c9b6575cdc06545964c370b5",
 		"extra-maquette": "github:dojo/typings/custom/dojo2-extras/maquette.d.ts#004fc065b3b24412c9b6575cdc06545964c370b5",

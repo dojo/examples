@@ -1,42 +1,48 @@
 {
-	"version": "1.8.10",
+	"version": "2.0.0",
 	"compilerOptions": {
 		"declaration": false,
 		"module": "umd",
 		"noImplicitAny": true,
 		"outDir": "_build/",
+		"baseUrl": "node_modules",
+		"paths": {
+			"dojo-actions/*": [
+				"dojo-actions/dist/umd/*"
+			],
+			"dojo-compose/*": [
+				"dojo-compose/dist/umd/*"
+			],
+			"dojo-core/*": [
+				"dojo-core/dist/umd/*"
+			],
+			"dojo-dom/*": [
+				"dojo-dom/dist/umd/*"
+			],
+			"dojo-has/*": [
+				"dojo-has/dist/umd/*"
+			],
+			"dojo-shim/*": [
+				"dojo-shim/dist/umd/*"
+			],
+			"dojo-widgets/*": [
+				"dojo-widgets/dist/umd/*"
+			],
+			"dojo-routing/*": [
+				"dojo-routing/dist/umd/*"
+			],
+			"dojo-app/*": [
+				"dojo-app/dist/umd/*"
+			]
+		},
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",
 		"moduleResolution": "classic"
 	},
-	"filesGlob": [
+	"include": [
 		"./typings/index.d.ts",
 		"./src/**/*.ts",
 		"./tests/**/*.ts"
-	],
-	"files": [
-		"./typings/index.d.ts",
-		"./src/actions/storeTodoActions.ts",
-		"./src/actions/uiTodoActions.ts",
-		"./src/actions/widgetTodoActions.ts",
-		"./src/index.ts",
-		"./src/main.ts",
-		"./src/registry/createTodoRegistry.ts",
-		"./src/utils/createLocalMemoryStore.ts",
-		"./src/widgets/createCheckboxInput.ts",
-		"./src/widgets/createFocusableTextInput.ts",
-		"./src/widgets/createTodoFilter.ts",
-		"./src/widgets/createTodoFooter.ts",
-		"./src/widgets/createTodoItem.ts",
-		"./src/widgets/createTodoList.ts",
-		"./tests/functional/all.ts",
-		"./tests/intern-local.ts",
-		"./tests/intern-saucelabs.ts",
-		"./tests/intern.ts",
-		"./tests/support/Reporter.ts",
-		"./tests/support/util.ts",
-		"./tests/unit/all.ts",
-		"./tests/unit/main.ts"
 	]
 }

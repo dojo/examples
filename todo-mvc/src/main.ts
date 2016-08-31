@@ -9,7 +9,6 @@ import createWidget from 'dojo-widgets/createWidget';
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
 import * as widgetTodoActions from './actions/widgetTodoActions';
-import todoRegistryFactory from './registry/createTodoRegistry';
 import createMemoryStore from './utils/createLocalMemoryStore';
 import createCheckboxInput from './widgets/createCheckboxInput';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
@@ -84,9 +83,8 @@ const widgetStore = createMemoryStore({
 	]
 });
 
-const app = createApp({ defaultStore: widgetStore });
+const app = createApp({ defaultWidgetStore: widgetStore });
 
-app.registerStore('widget-store', widgetStore);
 app.registerStore('todo-store', todoStore);
 
 Object.keys(storeTodoActions).forEach((actionName) => {
@@ -101,7 +99,7 @@ Object.keys(uiTodoActions).forEach((actionName) => {
 
 Object.keys(widgetTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> widgetTodoActions)[actionName];
-	action.configure(widgetStore);
+	action.configure({widgetStore, app});
 });
 
 todoStore.observe().subscribe((options: any) => {
@@ -135,14 +133,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'todo-list',
-			factory: createTodoList,
-			options: {
-				registryProvider: {
-					get(type: string) {
-						return type === 'widgets' ? todoRegistryFactory({ widgetStore }) : null;
-					}
-				}
-			}
+			factory: createTodoList
 		},
 		{
 			id: 'todo-toggle',

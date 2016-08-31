@@ -1,8 +1,11 @@
 import createAction, { AnyAction } from 'dojo-actions/createAction';
+import { App } from 'dojo-app/createApp';
+import createTodoItem from './../widgets/createTodoItem';
 
-function configure (widgetStore: any) {
+function configure (options: {widgetStore: any, app: App}) {
 	const action = <any> this;
-	action.widgetStore = widgetStore;
+	action.widgetStore = options.widgetStore;
+	action.app = options.app;
 };
 
 export const updateHeaderAndFooter: AnyAction = createAction({
@@ -47,23 +50,24 @@ export const deleteTodo: AnyAction = createAction({
 export const putTodo: AnyAction = createAction({
 	configure,
 	do(options: any) {
-		const { widgetStore } = <any> this;
+		const { widgetStore, app }: { widgetStore: any, app: App } = <any> this;
 		const { puts, beforeAll } = options;
 		if (puts.length) {
 			const item = puts[0];
 			const children = beforeAll.map((child: any) => child.id);
 
-			function put() {
+			const put = function() {
+				app.registerWidgetFactory(item.id, createTodoItem);
 				return widgetStore
 				.put(item)
 				.patch({id: 'todo-list', children: [...children, item.id]});
-			}
+			};
 
-			function patch() {
+			const patch = function() {
 				return widgetStore
 				.patch(item)
 				.patch({id: 'todo-list', children});
-			}
+			};
 
 			return children.includes(item.id) ? patch() : put();
 		}
