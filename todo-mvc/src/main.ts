@@ -1,6 +1,7 @@
 import { AnyAction } from 'dojo-actions/createAction';
 import createApp from 'dojo-app/createApp';
-import createRoute from 'dojo-routing/createRoute';
+import createRoute, { Route } from 'dojo-routing/createRoute';
+import { Parameters } from 'dojo-routing/interfaces';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 import createPanel from 'dojo-widgets/createPanel';
@@ -16,32 +17,31 @@ import createTodoFooter from './widgets/createTodoFooter';
 import createTodoList from './widgets/createTodoList';
 
 const router = createRouter();
-const history = createHashHistory();
 
-history.on('change', (event) => {
-	router.dispatch({}, event.value);
-});
+router.observeHistory(createHashHistory(), {}, true);
 
-router.append(createRoute({
+const completedRoute: Route<Parameters> = createRoute({
 	path: '/completed',
 	exec (request) {
 		uiTodoActions.filter.do({ 'filter': 'completed' });
 	}
-}));
+});
 
-router.append(createRoute({
+const allRoute: Route<Parameters> = createRoute({
 	path: '/all',
 	exec (request) {
 		uiTodoActions.filter.do({ 'filter': 'all' });
 	}
-}));
+});
 
-router.append(createRoute({
+const activeRoute: Route<Parameters> = createRoute({
 	path: '/active',
 	exec (request) {
 		uiTodoActions.filter.do({ 'filter': 'active' });
 	}
-}));
+});
+
+router.append([allRoute, activeRoute, completedRoute]);
 
 const todoStore = createMemoryStore({
 	data: []
