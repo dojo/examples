@@ -119,22 +119,22 @@ const createTodoItem: TodoItemFactory = createWidget
 					 * that necessary? */
 					childrenMap.set(instance, children);
 					instance.on('statechange', manageChildren);
-					/* TODO: I had to do this in order for the first render of the widget to work, not sure
-					 * why */
-					manageChildren.call(instance);
 
-					/* TODO: Should this be baked into the createChildren API? */
-					instance.own({
-						destroy() {
-							for (const label in children) {
-								children[label].widget.destroy();
-							}
-						}
+					/* We have missed the widgets initial state change because we created the widgets async
+					 * so we should emit a statechange event just to ensure we get the logic we expect
+					 * to be handled */
+					instance.emit({
+						type: 'statechange',
+						target: instance,
+						state: instance.state
 					});
 				})
 				.catch((err) => {
-					/* TODO: We should find a way to better manage exceptions */
-					console.error(err);
+					instance.emit({
+						type: 'error',
+						target: instance,
+						error: err
+					});
 				});
 		}
 	})
