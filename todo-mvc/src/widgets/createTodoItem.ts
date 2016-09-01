@@ -122,6 +122,15 @@ const createTodoItem: TodoItemFactory = createWidget
 					/* TODO: I had to do this in order for the first render of the widget to work, not sure
 					 * why */
 					manageChildren.call(instance);
+
+					/* TODO: Should this be baked into the createChildren API? */
+					instance.own({
+						destroy() {
+							for (const label in children) {
+								children[label].widget.destroy();
+							}
+						}
+					});
 				})
 				.catch((err) => {
 					/* TODO: We should find a way to better manage exceptions */
