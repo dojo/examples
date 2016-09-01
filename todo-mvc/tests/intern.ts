@@ -12,7 +12,7 @@ export const proxyUrl = 'http://localhost:9000/';
 export const capabilities = {
 	'browserstack.debug': false,
 	project: 'Dojo 2',
-	name: 'dojo-<< package-name >>'
+	name: 'dojo-todomvc'
 };
 
 // Browsers to run integration testing against. Note that version numbers must be strings if used with Sauce
@@ -53,7 +53,19 @@ export const loaderOptions = {
 	packages: [
 		{ name: 'src', location: '_build/src' },
 		{ name: 'tests', location: '_build/tests' },
-		{ name: 'dojo', location: 'node_modules/intern/node_modules/dojo' }
+		{ name: 'dojo', location: 'node_modules/intern/node_modules/dojo' },
+		{ name: 'dojo-actions', location: 'node_modules/dojo-actions/dist/umd' },
+		{ name: 'dojo-app', location: 'node_modules/dojo-app/dist/umd' },
+		{ name: 'dojo-compose', location: 'node_modules/dojo-compose/dist/umd' },
+		{ name: 'dojo-core', location: 'node_modules/dojo-core/dist/umd' },
+		{ name: 'dojo-dom', location: 'node_modules/dojo-dom/dist/umd' },
+		{ name: 'dojo-has', location: 'node_modules/dojo-has/dist/umd' },
+		{ name: 'dojo-routing', location: 'node_modules/dojo-routing/dist/umd' },
+		{ name: 'dojo-shim', location: 'node_modules/dojo-shim/dist/umd' },
+		{ name: 'dojo-widgets', location: 'node_modules/dojo-widgets/dist/umd' },
+		{ name: 'immutable', location: 'node_modules/immutable/dist' },
+		{ name: 'maquette', location: 'node_modules/maquette/dist' },
+		{ name: 'rxjs', location: 'node_modules/@reactivex/rxjs/dist/amd' }
 	]
 };
 
