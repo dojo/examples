@@ -10,7 +10,6 @@
   "license": "BSD-3-Clause",
   "main": "main.js",
   "files": [
-    "index.js",
     "dist",
     "src",
     "typings.json"
