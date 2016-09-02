@@ -5,7 +5,7 @@ import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableC
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-import { h, VNode } from 'maquette/maquette';
+import { h, VNode } from 'maquette';
 
 import createTodoFilter from './createTodoFilter';
 import { clearCompleted } from '../actions/uiTodoActions';

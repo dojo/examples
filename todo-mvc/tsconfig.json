@@ -1,40 +1,11 @@
 {
-	"version": "2.0.0",
+	"version": "2.0.2",
 	"compilerOptions": {
 		"declaration": false,
 		"module": "umd",
 		"noImplicitAny": true,
 		"outDir": "_build/",
 		"baseUrl": "node_modules",
-		"paths": {
-			"dojo-actions/*": [
-				"dojo-actions/dist/umd/*"
-			],
-			"dojo-compose/*": [
-				"dojo-compose/dist/umd/*"
-			],
-			"dojo-core/*": [
-				"dojo-core/dist/umd/*"
-			],
-			"dojo-dom/*": [
-				"dojo-dom/dist/umd/*"
-			],
-			"dojo-has/*": [
-				"dojo-has/dist/umd/*"
-			],
-			"dojo-shim/*": [
-				"dojo-shim/dist/umd/*"
-			],
-			"dojo-widgets/*": [
-				"dojo-widgets/dist/umd/*"
-			],
-			"dojo-routing/*": [
-				"dojo-routing/dist/umd/*"
-			],
-			"dojo-app/*": [
-				"dojo-app/dist/umd/*"
-			]
-		},
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",

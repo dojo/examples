@@ -4,8 +4,8 @@ import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableC
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-import { VNode } from 'maquette/maquette';
-import { List } from 'immutable/immutable';
+import { VNode } from 'maquette';
+import { List } from 'immutable';
 
 import { TodoItem } from './createTodoItem';
 
