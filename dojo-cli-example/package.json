@@ -1,0 +1,49 @@
+{
+  "name": "dojo-cli-example-command",
+  "version": "2.0.0-pre",
+  "description": "Example command for dojo-cli",
+  "homepage": "http://dojotoolkit.org",
+  "bugs": {
+    "url": "https://github.com/dojo/examples/issues"
+  },
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist",
+    "src",
+    "typings.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojo/examples.git"
+  },
+  "scripts": {
+    "prepublish": "grunt peerDepInstall dist",
+    "test": "grunt test"
+  },
+  "typings": "./dist/umd/dojo-cli-example.d.ts",
+  "peerDependencies": {
+	  "dojo-cli": "2.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "codecov.io": "0.1.6",
+    "dojo-loader": ">=2.0.0-beta",
+    "dts-generator": "~1.7.0",
+    "glob": "^7.0.3",
+    "grunt": "~1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-dojo2": ">=2.0.0-beta.7",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-ts": "^5.5.1",
+    "grunt-tslint": "^3.1.0",
+    "grunt-typings": ">=0.1.5",
+    "intern": "^3.2.3",
+    "istanbul": "^0.4.3",
+    "remap-istanbul": "^0.6.4",
+    "tslint": "^3.11.0",
+    "typescript": "beta"
+  }
+}
