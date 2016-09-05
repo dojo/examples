@@ -55,7 +55,7 @@ const createTodoFooter = createWidget
 			const clearCompletedButton = createButton({
 				state: {
 					id: 'button',
-					label: 'Clear Completed',
+					label: 'Clear completed',
 					classes: ['clear-completed']
 				},
 				listeners: {
@@ -76,13 +76,16 @@ const createTodoFooter = createWidget
 				return [
 					h('span', {'class': 'todo-count'}, [
 						h('strong', [activeCount + ' ']),
-						h('span', [countLabel])
+						h('span', [countLabel + ' left'])
 					]),
 					todoFooter.children.get('filter').render(),
 					todoFooter.children.get('button').render()
 				];
 			}
 		}
+	})
+	.extend({
+		tagName: 'footer'
 	});
 
 export default createTodoFooter;
