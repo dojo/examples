@@ -62,6 +62,7 @@ export const loaderOptions = {
 		{ name: 'dojo-has', location: 'node_modules/dojo-has' },
 		{ name: 'dojo-routing', location: 'node_modules/dojo-routing' },
 		{ name: 'dojo-shim', location: 'node_modules/dojo-shim' },
+		{ name: 'dojo-stores', location: 'node_modules/dojo-stores' },
 		{ name: 'dojo-widgets', location: 'node_modules/dojo-widgets' },
 		{ name: 'immutable', location: 'node_modules/immutable/dist', main: 'immutable' },
 		{ name: 'maquette', location: 'node_modules/maquette/dist', main: 'maquette' },
