@@ -18,7 +18,6 @@ install:
 script:
 - grunt
 - grunt intern:saucelabs
-- grunt uploadCoverage
 notifications:
   slack:
     on_success: change
