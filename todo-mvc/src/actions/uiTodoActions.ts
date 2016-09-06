@@ -2,7 +2,7 @@ import createAction, { AnyAction } from 'dojo-actions/createAction';
 import { CombinedRegistry, DEFAULT_WIDGET_STORE } from 'dojo-app/createApp';
 
 import * as storeActions from './storeTodoActions';
-import { MemoryStore } from '../utils/createLocalMemoryStore';
+import { MemoryStore } from 'dojo-stores/createMemoryStore';
 
 interface UiTodoAction {
 	widgetStore: MemoryStore<Object>;

@@ -10,7 +10,7 @@ import createWidget from 'dojo-widgets/createWidget';
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
 import * as widgetTodoActions from './actions/widgetTodoActions';
-import createMemoryStore from './utils/createLocalMemoryStore';
+import createMemoryStore from 'dojo-stores/createMemoryStore';
 import createCheckboxInput from './widgets/createCheckboxInput';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter from './widgets/createTodoFooter';

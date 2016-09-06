@@ -2,7 +2,7 @@ import createAction, { AnyAction } from 'dojo-actions/createAction';
 import { CombinedRegistry } from 'dojo-app/createApp';
 import Promise from 'dojo-shim/Promise';
 
-import { MemoryStore } from '../utils/createLocalMemoryStore';
+import { MemoryStore } from 'dojo-stores/createMemoryStore';
 
 interface StoreTodoAction {
 	todoStore: MemoryStore<Object>;
