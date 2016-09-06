@@ -17,6 +17,8 @@ install:
 - travis_retry npm install
 script:
 - grunt
+- grunt intern:saucelabs --combined
+- grunt uploadCoverage
 notifications:
   slack:
     on_success: change
