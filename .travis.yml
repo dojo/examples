@@ -5,6 +5,7 @@ node_js:
 env:
   matrix:
   - PROJECT_DIR=todo-mvc
+  - PROJECT_DIR=monster-cards
   global:
   - SAUCE_USERNAME: dojo2-ts-ci
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
