@@ -5,11 +5,10 @@
 		"module": "umd",
 		"noImplicitAny": true,
 		"outDir": "_build/",
-		"baseUrl": "node_modules",
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",
-		"moduleResolution": "classic"
+		"moduleResolution": "node"
 	},
 	"include": [
 		"./typings/index.d.ts",
