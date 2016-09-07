@@ -1,0 +1,49 @@
+{
+  "name": "dojo2-monster-cards",
+  "version": "0.0.1",
+  "description": "Dojo2 Monster Cards App",
+  "bugs": {
+    "url": "https://github.com/agubler/dojo2-monster-cards/issues"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agubler/dojo2-monster-cards.git"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@reactivex/rxjs": "5.0.0-beta.6",
+    "dojo-actions": "2.0.0-alpha.8",
+    "dojo-app": "2.0.0-alpha.4",
+    "dojo-compose": "2.0.0-beta.10",
+    "dojo-core": "2.0.0-alpha.12",
+    "dojo-dom": "2.0.0-alpha.5",
+    "dojo-has": "2.0.0-alpha.4",
+    "dojo-loader": "2.0.0-beta.5",
+    "dojo-routing": "2.0.0-alpha.5",
+    "dojo-shim": "2.0.0-alpha.4",
+    "dojo-stores": "2.0.0-alpha.1",
+    "dojo-widgets": "2.0.0-alpha.7",
+    "immutable": "3.8.1",
+    "maquette": "2.3.2"
+  },
+  "devDependencies": {
+    "codecov.io": "^0.1.6",
+    "dojo-loader": ">=2.0.0-beta.5",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-dojo2": "^2.0.0-beta.16",
+    "grunt-text-replace": "^0.4.0",
+    "grunt-ts": "^5.5.1",
+    "grunt-tslint": "^3.1.0",
+    "intern": "^3.2.3",
+    "remap-istanbul": "^0.6.4",
+    "tslint": "next",
+    "typescript": "2.0.2"
+  }
+}
