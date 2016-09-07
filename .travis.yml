@@ -1,0 +1,24 @@
+sudo: false
+language: node_js
+node_js:
+- '6'
+env:
+  matrix:
+  - PROJECT_DIR=todo-mvc
+  global:
+  - SAUCE_USERNAME: dojo2-ts-ci
+  - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
+cache:
+  directories:
+  - node_modules
+install:
+- cd $PROJECT_DIR
+- travis_retry npm install grunt-cli
+- travis_retry npm install
+script:
+- grunt
+- grunt intern:saucelabs
+notifications:
+  slack:
+    on_success: change
+    secure: RhoK6ZiY+y/lmq+TlyPEBioCCW3St+GPUolPBRd6z58RGLyt7pNAS5wKh40SGwpEf/4vawisbEzShYbQ9NTct1DlIrsKoDSmq11d04I4iqDI4mHdlM+Gf2hf+VTj/A9ID5nzx84xtV5uXO3V8qukkEEdrq63+v3aO5zNI7Qmi6tOIH29SoVql860O+JC0nn+PzBpQihe/75SrilCYRRY0ItEcy7CEGksPzQ48tmjt6dl/G2nhap+Z6km96ZtJg8KPtcwpkzr2qHsgLEu9C2Vz6KH9EGPC9lT7pulIQxLYDGHNAVTN39jinr1YGiGxiPPZcaNy9/UR0tYO5oBdhrhtfLyIAlftVc/KRKMRIE9maXUiP3PZfVPlggP7J87mnQZFhhbbzeD+35jUe03kPGL8r/xTH2ZOnFQO9Hb2rNp+fC0eNs7dbuIA4FMv8vhKB/f24Mfa+UUhmckUwrRQdXYuO+TR+63TjS//vQJfcdTN+cgwhtpBxSB3+s4sWi8q2P+ankjj/ivQb67iqRrTASvSDgttfJAJq4uWX1NwH7CN6TVTtMgHf1Q3CvzTXOnEJxKEX/tVfF/9zWOFC4ZHpI7fveAJT/F+8TfvC7aq4f0PFeev5j9mKOu8oR48LMnFTEB0zBq0lWXyoUnVOI1/KlEEVl5gdaEoaD4SzZxuufQ54M=
