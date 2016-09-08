@@ -3,7 +3,7 @@ import WeakMap from 'dojo-shim/WeakMap';
 import createButton from 'dojo-widgets/createButton';
 import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions, CreateChildrenResults } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import { h, VNode } from 'maquette';
@@ -23,22 +23,17 @@ export type TodoItem = Widget<TodoItemState>;
 
 export interface TodoItemFactory extends ComposeFactory<TodoItem, TodoItemOptions> { }
 
-interface TodoItemChildrenItem {
-	id: string;
-	widget: Widget<WidgetState>;
-}
-
-interface TodoItemChildren extends CreateChildrenResults<Widget<WidgetState>> {
-	label: TodoItemChildrenItem;
-	checkbox: TodoItemChildrenItem;
-	editInput: TodoItemChildrenItem;
-	button: TodoItemChildrenItem;
+interface TodoItemChildren<C extends Child> extends CreateChildrenResults<C> {
+	label: CreateChildrenResultsItem<C>;
+	checkbox: CreateChildrenResultsItem<C>;
+	editInput: CreateChildrenResultsItem<C>;
+	button: CreateChildrenResultsItem<C>;
 }
 
 /**
  * Internal map of sub children IDs
  */
-const childrenMap = new WeakMap<TodoItem, TodoItemChildren>();
+const childrenMap = new WeakMap<TodoItem, TodoItemChildren<Widget<WidgetState>>>();
 
 /**
  * Internal function to manage the children widgets
@@ -114,7 +109,7 @@ const createTodoItem: TodoItemFactory = createWidget
 						}
 					}
 				})
-				.then((children: TodoItemChildren) => {
+				.then((children: TodoItemChildren<Widget<WidgetState>>) => {
 					/* TODO: We are only using the label.widget but we are storing label: { id, widget }, is
 					 * that necessary? */
 					childrenMap.set(instance, children);
