@@ -1,11 +1,14 @@
 {
-	"version": "2.0.2",
+	"version": "2.0.0",
 	"compilerOptions": {
 		"declaration": false,
 		"module": "umd",
 		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"strictNullChecks": true,
 		"outDir": "_build/",
 		"baseUrl": "node_modules",
+		"paths": {},
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",

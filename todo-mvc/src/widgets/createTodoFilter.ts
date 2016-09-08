@@ -1,5 +1,5 @@
 import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
-import { h, VNode } from 'maquette/maquette';
+import { h, VNode } from 'maquette';
 
 interface TodoFilterState extends WidgetState {
 	activeFilter?: string;
