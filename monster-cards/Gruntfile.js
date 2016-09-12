@@ -14,4 +14,8 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('dev', grunt.config.get('devTasks').concat(['copy:staticFiles']));
+
+	grunt.registerTask('ci', [
+		'intern:saucelabs'
+	]);
 };
