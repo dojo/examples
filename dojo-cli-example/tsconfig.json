@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"compilerOptions": {
 		"declaration": false,
-		"module": "commonjs",
+		"module": "umd",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"strictNullChecks": true,
