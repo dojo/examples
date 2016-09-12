@@ -25,7 +25,12 @@ const command: Command = {
 	},
 	run(helper: Helper, args: MyArgv) {
 		const message = (<MyContext> helper.context).message;
-		message && console.log(args.shout ? message.toUpperCase() : message);
+
+		if (message) {
+			const outputMessage = args.shout ? message.toUpperCase() : message;
+			console.log(outputMessage);
+		}
+
 		return new Promise((resolve) => setTimeout(resolve, 500));
 	}
 };
