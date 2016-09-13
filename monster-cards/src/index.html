@@ -3,28 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>dojo2 Monster Cards</title>
+		<link rel="stylesheet" href="./styles/css/app.css">
 	</head>
 	<body>
 		<script src="./../../node_modules/dojo-loader/dist/umd/loader.min.js"></script>
 		<script src="./index.js"></script>
-			<header is="app-projector">
-				<div>
-					<dojo-widget data-options='{"id":"header-1"}'>
-					</dojo-widget>
-				</div>
-			</header>
-			<main is="app-projector">
-				<div>
-					<dojo-widget data-options='{"id":"main-1"}'>
-					</dojo-widget>
-				</div>
-			</main>
-			<footer is="app-projector">
-				<div>
-					<dojo-widget data-options='{"id":"footer-1"}'>
-					</dojo-widget>
-				</div>
-			</footer>
+		<main is="app-projector">
+			<header is="app-widget" id="navbar"></header>
+		</main>
 	</body>
 </html>
 
