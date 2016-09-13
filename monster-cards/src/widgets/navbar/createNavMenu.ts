@@ -1,7 +1,7 @@
 import { ComposeFactory } from 'dojo-compose/compose';
 import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { CreateChildrenResults } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createStatefulChildrenMixin  from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 
 import createIconMenuItem from './../common/createIconMenuItem';
 import createLinkMenuItem from './../common/createLinkMenuItem';
@@ -9,18 +9,6 @@ import createLinkMenuItem from './../common/createLinkMenuItem';
 export type NavMenu = Widget<WidgetState>;
 
 export interface NavMenuFactory extends ComposeFactory<NavMenu, WidgetOptions<WidgetState>> { }
-
-interface ChildItem {
-	id: string;
-	widget: Widget<WidgetState>;
-}
-
-interface NavMenuChildren extends CreateChildrenResults<Widget<WidgetState>> {
-	appIcon: ChildItem;
-	cardsLink: ChildItem;
-	gameLink: ChildItem;
-	aboutLink: ChildItem;
-}
 
 const createNavMenu: NavMenuFactory = createWidget
 	.mixin(createRenderableChildrenMixin)

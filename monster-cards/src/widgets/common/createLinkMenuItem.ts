@@ -22,7 +22,9 @@ const createLinkMenuItem: LinkMenuItemFactory = createWidget
 			const classes = options && options.state && options.state.classes || [];
 			const label = options && options.state && options.state.label || undefined;
 
-			instance.createChild(createLink, { state: { classes, label } });
+			instance.createChild(createLink, { state: { classes, label } }).then(() => {
+				instance.invalidate();
+			});
 		}
 	})
 	.extend({

@@ -22,15 +22,7 @@ const createIconMenuItem: IconMenuItemFactory = createWidget
 		mixin: createStatefulChildrenMixin,
 		initialize(instance: IconMenuItem, options: IconMenuItemOptions) {
 			const classes = options && options.state && options.state.icon || [];
-			instance.createChildren({
-				icon: {
-					factory: createIcon,
-					options: {
-						state: { classes }
-					}
-				}
-			})
-			.then(() => {
+			instance.createChild(createIcon, { state: { classes } }).then(() => {
 				instance.invalidate();
 			});
 		}
