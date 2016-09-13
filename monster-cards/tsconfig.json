@@ -5,6 +5,7 @@
 		"module": "umd",
 		"noImplicitAny": true,
 		"outDir": "_build/",
+		"baseUrl": "node_modules",
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",
