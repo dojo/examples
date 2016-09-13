@@ -27,6 +27,7 @@
     "dojo-shim": "2.0.0-alpha.4",
     "dojo-stores": "2.0.0-alpha.1",
     "dojo-widgets": "2.0.0-alpha.7",
+    "font-awesome": "^4.6.3",
     "immutable": "3.8.1",
     "maquette": "2.3.2"
   },
