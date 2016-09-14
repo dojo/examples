@@ -29,6 +29,7 @@ const createNavMenu: NavMenuFactory = createWidget
 						factory: createLinkMenuItem,
 						options: {
 							state: {
+								href: '#cards',
 								label: 'The Cards'
 							}
 						}
@@ -37,6 +38,7 @@ const createNavMenu: NavMenuFactory = createWidget
 						factory: createLinkMenuItem,
 						options: {
 							state: {
+								href: '#game',
 								label: 'The Game'
 							}
 						}
@@ -45,6 +47,7 @@ const createNavMenu: NavMenuFactory = createWidget
 						factory: createLinkMenuItem,
 						options: {
 							state: {
+								href: '#about',
 								label: 'About'
 							}
 						}
