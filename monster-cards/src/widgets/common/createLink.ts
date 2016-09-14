@@ -4,7 +4,7 @@ import { VNodeProperties } from 'maquette';
 import createCachedRenderMixin from 'dojo-widgets/mixins/createCachedRenderMixin';
 
 export interface LinkState extends WidgetState {
-	href?: string[];
+	href?: string;
 }
 
 export interface LinkOptions extends WidgetOptions<LinkState> { }

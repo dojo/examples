@@ -1,14 +1,20 @@
 import { ComposeFactory } from 'dojo-compose/compose';
 import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions }  from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+
+import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import createSearchInput from './../common/createSearchInput';
 import createIconMenuItem from './../common/createIconMenuItem';
 
-export type NavActions = Widget<WidgetState>;
+interface NavActionsState extends WidgetState, StatefulChildrenState {}
 
-export interface NavActionsFactory extends ComposeFactory<NavActions, WidgetOptions<WidgetState>> { }
+export interface NavActionsOptions extends WidgetOptions<NavActionsState>, StatefulChildrenOptions<Child, NavActionsState> { }
+
+export type NavActions = Widget<NavActionsState>;
+
+export interface NavActionsFactory extends ComposeFactory<NavActions, NavActionsOptions> { }
 
 const createNavActions: NavActionsFactory = createWidget
 	.mixin(createRenderableChildrenMixin)
