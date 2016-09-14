@@ -19,7 +19,8 @@ install:
 - travis_retry npm install
 script:
 - grunt
-- grunt ci
+- grunt ci --combined
+- grunt remapIstanbul:ci
 notifications:
   slack:
     on_success: change

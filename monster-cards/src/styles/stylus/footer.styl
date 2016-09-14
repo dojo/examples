@@ -1,0 +1,23 @@
+footer {
+	text-align: center;
+	background: footer-background;
+	position:fixed;
+	left:0;
+	bottom:0;
+	right:0;
+	height:45px;
+	vertical-align: middle;
+
+	img {
+		image-height = 80%;
+		position: relative;
+		top: ((100 - image-height) / 2);
+		height: image-height;
+	}
+}
+
+@media (max-width: 800px) {
+	footer {
+		display: none;
+	}
+}
