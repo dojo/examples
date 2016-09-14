@@ -27,6 +27,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('dev', grunt.config.get('devTasks').concat(['copy:staticFiles', 'stylus:dev']));
 
 	grunt.registerTask('ci', [
+		'intern:node',
 		'intern:saucelabs'
 	]);
 };
