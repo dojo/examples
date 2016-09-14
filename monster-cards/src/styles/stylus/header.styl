@@ -1,8 +1,10 @@
- header {
+header {
 	background-color: header-background;
 	height: 45px;
-	width: 100%;
+	padding: 0 side-padding;
 	position: fixed;
+	left: 0;
+	right: 0;
 
 	.search {
 		padding: 0 16px;
@@ -10,39 +12,40 @@
 
 	li {
 		height: 100%;
+		vertical-align: top;
 		a {
-			vertical-align: super;
 			padding: 0 16px;
 			display: inline-block;
 			text-align: center;
 			text-decoration: none;
+			color: inherited;
+
+			&:hover:not(.active) {
+				background-color: darken(header-background, 10%);
+			}
+			&:visited, &:active {
+				color: inherit;
+			}
+		}
+
+		a,
+		i:before {
 			line-height: 45px;
 		}
-		i {
-			height: 100%;
-		}
-	}
-
-	 li a:hover:not(.active) {
-		background-color: darken(header-background, 10%);
 	}
 
 	input {
 		border: none;
 		font-size: 10pt;
 		color: #63717f;
-		-webkit-border-radius: 15px;
-		-moz-border-radius: 15px;
-		border-radius: 15px;
+		border-radius: 10px;
+		outline: none;
+		margin-right: 5px;
 	}
-
 }
 
 @media (max-width: 800px) {
 	 header {
-		position:fixed;
-		left:0px;
 		bottom:0px;
-		width: 100%;
 	}
 }

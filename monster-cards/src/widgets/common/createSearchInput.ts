@@ -22,7 +22,10 @@ const createSearchInput: SearchInputFactory = createWidget
 		initialize(instance, options) {
 			instance.createChildren({
 				searchInput: {
-					factory: createTextInput
+					factory: createTextInput,
+					options: {
+						type: 'search'
+					}
 				},
 				searchIcon: {
 					factory: createIcon,
