@@ -1,24 +1,27 @@
 import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
+import Map from 'dojo-shim/Map';
 
 import createNavMenu from './../../../../src/widgets/navbar/createNavMenu';
 
-let widget: any;
+let widgetMap = new Map<string, any>();
 let idx = 0;
 
 const widgetRegistry = {
 	stack: <any[]> [],
 	get(id: any): Promise<any> {
 		widgetRegistry.stack.push(id);
-		return Promise.resolve(widget);
+		return Promise.resolve(widgetMap.get(id));
 	},
 	identify(value: any): any {
 		return '';
 	},
 	create<T>(factory: any, options?: any): Promise<any> {
-		const w = factory(options);
-		widget = w;
-		return Promise.resolve([options && options.id || `widget${idx++}`, w]);
+		const widget = createWidget(factory, options);
+		const id = options && options.id || `widget${idx++}`;
+
+		widgetMap.set(id, widget);
+		return Promise.resolve([id, widget]);
 	}
 };
 
@@ -28,14 +31,22 @@ const registryProvider: any = {
 	}
 };
 
+function createWidget(factory: any, options: any) {
+	if (!options.registryProvider) {
+		options.registryProvider = registryProvider;
+	}
+	return factory(options);
+}
+
 registerSuite({
 	name: 'createNavMenu',
 	render() {
 		const navMenu = createNavMenu({
+			id: 'nav-menu',
 			registryProvider
 		});
 
-		const promise = new Promise((resolve) => setTimeout(resolve, 10));
+		const promise = new Promise((resolve) => setTimeout(resolve, 500));
 
 		return promise.then(() => {
 			const vnode = navMenu.render();
