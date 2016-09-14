@@ -4,9 +4,9 @@ import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableC
 import createStatefulChildrenMixin, { StatefulChildren, StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-import createLink from './createLink';
+import createLink, { LinkState } from './createLink';
 
-interface LinkMenuItemState extends WidgetState, StatefulChildrenState {}
+interface LinkMenuItemState extends LinkState, StatefulChildrenState {}
 
 export interface LinkMenuItemOptions extends WidgetOptions<LinkMenuItemState>, StatefulChildrenOptions<Child, LinkMenuItemState> { }
 
@@ -19,10 +19,9 @@ const createLinkMenuItem: LinkMenuItemFactory = createWidget
 	.mixin({
 		mixin: createStatefulChildrenMixin,
 		initialize(instance: LinkMenuItem, options: LinkMenuItemOptions) {
-			const classes = options && options.state && options.state.classes || [];
-			const label = options && options.state && options.state.label || undefined;
+			const state: LinkMenuItemState = options && options.state || undefined;
 
-			instance.createChild(createLink, { state: { classes, label } }).then(() => {
+			instance.createChild(createLink, { state }).then(() => {
 				instance.invalidate();
 			});
 		}
