@@ -2,7 +2,7 @@ import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
 import Map from 'dojo-shim/Map';
 
-import createNavMenu from './../../../../src/widgets/navbar/createNavMenu';
+import createFooterIcons from './../../../../src/widgets/footer/createFooterIcons';
 
 let widgetMap = new Map<string, any>();
 let idx = 0;
@@ -39,20 +39,21 @@ function createWidget(factory: any, options: any) {
 }
 
 registerSuite({
-	name: 'createNavMenu',
+	name: 'createFooterIcons',
 	render() {
-		const navMenu = createNavMenu({
-			id: 'nav-menu',
+		const footerIcons = createFooterIcons({
 			registryProvider
 		});
 
 		const promise = new Promise((resolve) => setTimeout(resolve, 10));
 
 		return promise.then(() => {
-			const vnode = navMenu.render();
+			const vnode = footerIcons.render();
 
 			assert.strictEqual(vnode.vnodeSelector, 'ul');
-			assert.strictEqual(vnode.children.length, 4);
+			assert.strictEqual(vnode.children.length, 2);
+			assert.deepEqual(vnode.children[0].children[0].properties.classes, { 'fa': true, 'fa-facebook-official': true });
+			assert.deepEqual(vnode.children[1].children[0].properties.classes, { 'fa': true, 'fa-twitter': true });
 		});
 	}
 });
