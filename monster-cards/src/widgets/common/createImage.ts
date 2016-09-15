@@ -23,7 +23,7 @@ const createImage: ImageFactory = createWidget
 						overrides.src = this.state.src;
 					}
 
-					return [overrides];
+					return [ overrides ];
 				}
 			}
 		}
