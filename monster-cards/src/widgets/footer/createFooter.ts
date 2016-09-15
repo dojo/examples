@@ -34,7 +34,7 @@ const createFooter: FooterFactory = createWidget
 						factory: createImage,
 						options: {
 							state: {
-								src: 'images/sitepen.png'
+								src: 'images/dojo_logo.png'
 							}
 						}
 					}
