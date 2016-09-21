@@ -1,7 +1,7 @@
 import { ComposeFactory } from 'dojo-compose/compose';
 import WeakMap from 'dojo-shim/WeakMap';
 import createButton from 'dojo-widgets/createButton';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
+import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
@@ -12,14 +12,14 @@ import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 import { todoRemove, todoToggleComplete, todoEdit, todoSave, todoEditInput }  from './../actions/uiTodoActions';
 
-interface TodoItemState extends WidgetState, StatefulChildrenState {
+interface TodoItemState extends RenderMixinState, StatefulChildrenState {
 	editing?: boolean;
 	completed?: boolean;
 }
 
-export type TodoItemOptions = WidgetOptions<TodoItemState> & StatefulChildrenOptions<Child, TodoItemState>;
+export type TodoItemOptions = RenderMixinOptions<TodoItemState> & StatefulChildrenOptions<Child, TodoItemState>;
 
-export type TodoItem = Widget<TodoItemState>;
+export type TodoItem = RenderMixin<TodoItemState>;
 
 export interface TodoItemFactory extends ComposeFactory<TodoItem, TodoItemOptions> { }
 
@@ -33,7 +33,7 @@ interface TodoItemChildren<C extends Child> extends CreateChildrenResults<C> {
 /**
  * Internal map of sub children IDs
  */
-const childrenMap = new WeakMap<TodoItem, TodoItemChildren<Widget<WidgetState>>>();
+const childrenMap = new WeakMap<TodoItem, TodoItemChildren<RenderMixin<any>>>();
 
 /**
  * Internal function to manage the children widgets
@@ -58,7 +58,7 @@ function manageChildren(this: TodoItem) {
 	});
 }
 
-const createTodoItem: TodoItemFactory = createWidget
+const createTodoItem: TodoItemFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
@@ -88,7 +88,7 @@ const createTodoItem: TodoItemFactory = createWidget
 						}
 					},
 					label: {
-						factory: createWidget,
+						factory: createRenderMixin,
 						options: {
 							listeners: {
 								dblclick: () => { todoEdit.do(instance.state); }
@@ -109,7 +109,7 @@ const createTodoItem: TodoItemFactory = createWidget
 						}
 					}
 				})
-				.then((children: TodoItemChildren<Widget<WidgetState>>) => {
+				.then((children: TodoItemChildren<RenderMixin<any>>) => {
 					/* TODO: We are only using the label.widget but we are storing label: { id, widget }, is
 					 * that necessary? */
 					childrenMap.set(instance, children);

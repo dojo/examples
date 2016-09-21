@@ -1,6 +1,7 @@
 import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetOptions } from 'dojo-widgets/createWidget';
-import createFormFieldMixin, { FormFieldMixin, FormFieldMixinState, FormFieldMixinOptions } from 'dojo-widgets/mixins/createFormFieldMixin';
+import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
+import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
+import createVNodeEvented, { VNodeEvented } from 'dojo-widgets/mixins/createVNodeEvented';
 import { VNodeProperties } from 'maquette';
 
 /* I suspect this needs to go somewhere else */
@@ -8,30 +9,20 @@ export interface TypedTargetEvent<T extends EventTarget> extends Event {
 	target: T;
 }
 
-export type CheckboxInputOptions = WidgetOptions<FormFieldMixinState<string>> & FormFieldMixinOptions<string, FormFieldMixinState<string>>;
+export type CheckboxInputState = RenderMixinState & FormFieldMixinState<string> & {
+	checked?: boolean
+};
 
-export type CheckboxInput = Widget<FormFieldMixinState<string>> & FormFieldMixin<string, FormFieldMixinState<string>>;
+export type CheckboxInputOptions = RenderMixinOptions<CheckboxInputState> & FormFieldMixinOptions<string, CheckboxInputState>;
+
+export type CheckboxInput = RenderMixin<CheckboxInputState> & FormFieldMixin<string, CheckboxInputState> & VNodeEvented;
 
 export interface CheckboxInputFactory extends ComposeFactory<CheckboxInput, CheckboxInputOptions> { }
 
-const createCheckboxInput: CheckboxInputFactory = createWidget
+const createCheckboxInput: CheckboxInputFactory = createRenderMixin
+	.mixin(createFormFieldMixin)
 	.mixin({
-		mixin: createFormFieldMixin,
-		aspectAdvice: {
-			before: {
-				getNodeAttributes(overrides: VNodeProperties = {}) {
-					const formfield: FormFieldMixin<any, FormFieldMixinState<any>> & {
-						state: any;
-					} = this;
-
-					if (formfield.state.checked !== undefined) {
-						overrides.checked = formfield.state.checked;
-					}
-
-					return [overrides];
-				}
-			}
-		},
+		mixin: createVNodeEvented,
 		initialize(instance) {
 			instance.own(instance.on('input', (event: TypedTargetEvent<HTMLInputElement>) => {
 				instance.value = event.target.value;
@@ -39,6 +30,17 @@ const createCheckboxInput: CheckboxInputFactory = createWidget
 		}
 	})
 	.extend({
+		nodeAttributes: [
+			function (this: CheckboxInput) {
+				const props: VNodeProperties = {};
+
+				if (this.state.checked !== undefined) {
+					props.checked = this.state.checked;
+				}
+
+				return props;
+			}
+		],
 		type: 'checkbox',
 		tagName: 'input'
 	});
