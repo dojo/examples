@@ -12,8 +12,8 @@
   },
   "license": "BSD-3-Clause",
   "engines": {
-    "node" : ">=6",
-    "npm" : ">=3"
+    "node": ">=6",
+    "npm": ">=3"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
@@ -27,6 +27,7 @@
     "grunt-text-replace": "^0.4.0",
     "grunt-ts": "^5.5.1",
     "grunt-tslint": "^3.1.0",
+    "grunt-typings": "^0.1.5",
     "intern": "^3.2.3",
     "remap-istanbul": "^0.6.4",
     "tslint": "next",
