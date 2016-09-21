@@ -22,9 +22,6 @@
     "prepublish": "grunt peerDepInstall",
     "test": "grunt test"
   },
-  "peerDependencies": {
-    "dojo-cli": "2.0.0-alpha.2"
-  },
   "devDependencies": {
     "codecov.io": "0.1.6",
     "dojo-loader": ">=2.0.0-beta",
@@ -42,7 +39,9 @@
     "intern": "^3.2.3",
     "istanbul": "^0.4.3",
     "remap-istanbul": "^0.6.4",
+    "sinon": "^1.17.5",
     "tslint": "^3.11.0",
-    "typescript": "2.0.2"
+    "typescript": "2.0.2",
+    "yargs": "^5.0.0"
   }
 }

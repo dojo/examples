@@ -29,4 +29,8 @@ module.exports = function (grunt) {
 		'copy:staticFiles'
 	]);
 
+	grunt.registerTask('ci', [
+		'intern:saucelabs'
+	]);
+
 };

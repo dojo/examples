@@ -6,6 +6,7 @@ env:
   matrix:
   - PROJECT_DIR=todo-mvc
   - PROJECT_DIR=monster-cards
+  - PROJECT_DIR=dojo-cli-example
   global:
   - SAUCE_USERNAME: dojo2-ts-ci
   - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
@@ -18,7 +19,8 @@ install:
 - travis_retry npm install
 script:
 - grunt
-- grunt intern:saucelabs
+- grunt ci --combined
+- grunt remapIstanbul:ci
 notifications:
   slack:
     on_success: change

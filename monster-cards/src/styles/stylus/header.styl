@@ -1,0 +1,51 @@
+header {
+	background-color: header-background;
+	height: header-height;
+	padding: 0 side-padding;
+	position: fixed;
+	left: 0;
+	right: 0;
+
+	.search {
+		padding: 0 16px;
+	}
+
+	li {
+		height: 100%;
+		vertical-align: top;
+		a {
+			padding: 0 16px;
+			display: inline-block;
+			text-align: center;
+			text-decoration: none;
+			color: inherited;
+
+			&:hover:not(.active) {
+				background-color: darken(header-background, 10%);
+			}
+			&:visited, &:active {
+				color: inherit;
+			}
+		}
+
+		a,
+		i:before {
+			line-height: header-height;
+		}
+	}
+
+	input {
+		border: none;
+		font-size: 10pt;
+		color: #63717f;
+		border-radius: 10px;
+		outline: none;
+		margin-right: 5px;
+	}
+}
+
+@media (max-width: 800px) {
+	 header {
+		bottom:0px;
+	}
+}

@@ -1,20 +1,18 @@
 import createApp from 'dojo-app/createApp';
-import createWidget from 'dojo-widgets/createWidget';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
+
+import createNavbar from './widgets/navbar/createNavbar';
+import createFooter from './widgets/footer/createFooter';
 
 const widgetStore = createMemoryStore({
 	data: [
 		{
-			id: 'header-1',
-			label: 'Header1'
+			id: 'navbar',
+			classes: [ 'navbar' ]
 		},
 		{
-			id: 'main-1',
-			label: 'Main1'
-		},
-		{
-			id: 'footer-1',
-			label: 'Footer1'
+			id: 'footer',
+			classes: [ 'footer' ]
 		}
 	]
 });
@@ -22,10 +20,14 @@ const widgetStore = createMemoryStore({
 const app = createApp({ defaultWidgetStore: widgetStore });
 
 app.loadDefinition({
-	customElements: [
+	widgets: [
 		{
-			name: 'dojo-widget',
-			factory: createWidget
+			id: 'navbar',
+			factory: createNavbar
+		},
+		{
+			id: 'footer',
+			factory: createFooter
 		}
 	]
 });

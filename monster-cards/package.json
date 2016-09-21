@@ -17,7 +17,7 @@
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-beta.6",
     "dojo-actions": "2.0.0-alpha.8",
-    "dojo-app": "2.0.0-alpha.4",
+    "dojo-app": "2.0.0-alpha.5",
     "dojo-compose": "2.0.0-beta.10",
     "dojo-core": "2.0.0-alpha.12",
     "dojo-dom": "2.0.0-alpha.5",
@@ -26,7 +26,8 @@
     "dojo-routing": "2.0.0-alpha.5",
     "dojo-shim": "2.0.0-alpha.4",
     "dojo-stores": "2.0.0-alpha.1",
-    "dojo-widgets": "2.0.0-alpha.7",
+    "dojo-widgets": "2.0.0-alpha.8",
+    "font-awesome": "^4.6.3",
     "immutable": "3.8.1",
     "maquette": "2.3.2"
   },
@@ -36,6 +37,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-stylus": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dojo2": "^2.0.0-beta.16",
     "grunt-text-replace": "^0.4.0",
