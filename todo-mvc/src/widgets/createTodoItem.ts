@@ -1,9 +1,9 @@
 import { ComposeFactory } from 'dojo-compose/compose';
+import WeakMap from 'dojo-shim/WeakMap';
 import createButton from 'dojo-widgets/createButton';
 import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
-import createParentMixin, { ParentMapMixin, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import { h, VNode } from 'maquette';
@@ -17,82 +17,115 @@ interface TodoItemState extends WidgetState, StatefulChildrenState {
 	completed?: boolean;
 }
 
-export interface TodoItemOptions extends WidgetOptions<TodoItemState>, ParentMapMixinOptions<Widget<TodoItemState>>, StatefulChildrenOptions<Child, TodoItemState> { }
+export interface TodoItemOptions extends WidgetOptions<TodoItemState>, StatefulChildrenOptions<Child, TodoItemState> { }
 
-export type TodoItem = Widget<TodoItemState> & ParentMapMixin<Child>;
+export type TodoItem = Widget<TodoItemState>;
 
 export interface TodoItemFactory extends ComposeFactory<TodoItem, TodoItemOptions> { }
 
-function manageChildren() {
-	const todoItem = <TodoItem> this;
-	const label = <Widget<WidgetState>> todoItem.children.get('label');
-	const checkbox = <Widget<WidgetState>> todoItem.children.get('checkbox');
-	const editInput = <Widget<WidgetState>> todoItem.children.get('editInput');
+interface TodoItemChildren<C extends Child> extends CreateChildrenResults<C> {
+	label: CreateChildrenResultsItem<C>;
+	checkbox: CreateChildrenResultsItem<C>;
+	editInput: CreateChildrenResultsItem<C>;
+	button: CreateChildrenResultsItem<C>;
+}
 
-	label.setState({
-		label: todoItem.state.label
+/**
+ * Internal map of sub children IDs
+ */
+const childrenMap = new WeakMap<TodoItem, TodoItemChildren<Widget<WidgetState>>>();
+
+/**
+ * Internal function to manage the children widgets
+ */
+function manageChildren(this: TodoItem) {
+	/* Obtain references to children widgets */
+	const { checkbox, label, editInput } = childrenMap.get(this);
+
+	/* Adjust the state of the children to reflect parent */
+
+	label.widget.setState({
+		label: this.state.label
 	});
 
-	editInput.setState({
-		value: todoItem.state.label,
-		focused: todoItem.state.editing
+	editInput.widget.setState({
+		value: this.state.label,
+		focused: this.state.editing
 	});
 
-	checkbox.setState({
-		checked: todoItem.state.completed
+	checkbox.widget.setState({
+		checked: this.state.completed
 	});
 }
 
 const createTodoItem: TodoItemFactory = createWidget
-	.mixin(createParentMixin)
 	.mixin(createRenderableChildrenMixin)
-	.mixin(createStatefulChildrenMixin)
 	.mixin({
-		mixin: createParentMixin,
-		initialize(instance) {
-			const checkbox = createCheckboxInput({
-				state: {
-					id: 'checkbox',
-					classes: ['toggle']
-				},
-				listeners: {
-					change: () => { todoToggleComplete.do(instance.state); }
-				}
-			});
+		mixin: createStatefulChildrenMixin,
+		initialize(instance, options) {
+			instance
+				.createChildren({
+					checkbox: {
+						factory: createCheckboxInput,
+						options: {
+							state: {
+								classes: [ 'toggle' ]
+							},
+							listeners: {
+								change: () => { todoToggleComplete.do(instance.state); }
+							}
+						}
+					},
+					button: {
+						factory: createButton,
+						options: {
+							state: {
+								classes: [ 'destroy' ]
+							},
+							listeners: {
+								click: () => { todoRemove.do(instance.state); }
+							}
+						}
+					},
+					label: {
+						factory: createWidget,
+						options: {
+							listeners: {
+								dblclick: () => { todoEdit.do(instance.state); }
+							},
+							tagName: 'label'
+						}
+					},
+					editInput: {
+						factory: createFocusableTextInput,
+						options: {
+							state: {
+								classes: [ 'edit' ]
+							},
+							listeners: {
+								blur: (event: Event) => { todoSave.do({state: instance.state, event}); },
+								keyup: (event: Event) => { todoEditInput.do({state: instance.state, event}); }
+							}
+						}
+					}
+				})
+				.then((children: TodoItemChildren<Widget<WidgetState>>) => {
+					/* TODO: We are only using the label.widget but we are storing label: { id, widget }, is
+					 * that necessary? */
+					childrenMap.set(instance, children);
+					instance.on('statechange', manageChildren);
 
-			const button = createButton({
-				state: {
-					id: 'button',
-					classes: ['destroy']
-				},
-				listeners: {
-					click: () => { todoRemove.do(instance.state); }
-				}
-			});
-
-			const label = createWidget({
-				state: {
-					id: 'label'
-				},
-				listeners: {
-					dblclick: () => { todoEdit.do(instance.state); }
-				},
-				tagName: 'label'
-			});
-
-			const editInput = createFocusableTextInput({
-				state: {
-					id: 'editInput',
-					classes: ['edit']
-				},
-				listeners: {
-					blur: (event) => { todoSave.do({state: instance.state, event}); },
-					keyup: (event) => { todoEditInput.do({state: instance.state, event}); }
-				}
-			});
-
-			instance.append([checkbox, button, label, editInput]);
-			instance.on('statechange', manageChildren);
+					/* We have missed the widgets initial state change because we created the widgets async
+					 * so we should set state on the instance, so it will re-calculate its children */
+					instance.setState({});
+				})
+				.catch((err) => {
+					instance.emit({
+						type: 'error',
+						target: instance,
+						error: err
+					});
+				});
 		}
 	})
 	.mixin({
@@ -105,15 +138,15 @@ const createTodoItem: TodoItemFactory = createWidget
 				}
 				return todoItem.state.completed ? ['completed', ...classes] : classes;
 			},
-			getChildrenNodes(): VNode[] {
-				const todoItem = <TodoItem> this;
+			getChildrenNodes(this: TodoItem): VNode[] {
+				const { checkbox, label, button, editInput } = childrenMap.get(this);
 				return [
 					h('div.view', [
-						todoItem.children.get('checkbox').render(),
-						todoItem.children.get('label').render(),
-						todoItem.children.get('button').render()
+						checkbox.widget.render(),
+						label.widget.render(),
+						button.widget.render()
 					]),
-					todoItem.children.get('editInput').render()
+					editInput.widget.render()
 				];
 			}
 		}
