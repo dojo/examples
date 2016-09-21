@@ -15,6 +15,7 @@ import createCheckboxInput from './widgets/createCheckboxInput';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter from './widgets/createTodoFooter';
 import createTodoList from './widgets/createTodoList';
+import createTodoItem from './widgets/createTodoItem';
 
 const router = createRouter();
 
@@ -151,6 +152,10 @@ app.loadDefinition({
 		{
 			name: 'dojo-widget',
 			factory: createWidget
+		},
+		{
+			name: 'todo-item',
+			factory: createTodoItem
 		}
 	]
 });

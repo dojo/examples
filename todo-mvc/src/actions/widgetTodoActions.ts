@@ -1,6 +1,5 @@
 import createAction, { AnyAction } from 'dojo-actions/createAction';
 import { App } from 'dojo-app/createApp';
-import createTodoItem from './../widgets/createTodoItem';
 
 function configure (options: {widgetStore: any, app: App}) {
 	const action = <any> this;
@@ -56,8 +55,9 @@ export const putTodo: AnyAction = createAction({
 			const item = puts[0];
 			const children = beforeAll.map((child: any) => child.id);
 
+			item.type = 'todo-item';
+
 			const put = function() {
-				app.registerWidgetFactory(item.id, createTodoItem);
 				return widgetStore
 				.put(item)
 				.patch({id: 'todo-list', children: [...children, item.id]});
