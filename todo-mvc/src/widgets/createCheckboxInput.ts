@@ -1,4 +1,3 @@
-import { ComposeFactory } from 'dojo-compose/compose';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
 import createVNodeEvented, { VNodeEvented } from 'dojo-widgets/mixins/createVNodeEvented';
@@ -10,16 +9,14 @@ export interface TypedTargetEvent<T extends EventTarget> extends Event {
 }
 
 export type CheckboxInputState = RenderMixinState & FormFieldMixinState<string> & {
-	checked?: boolean
+	checked?: boolean;
 };
 
 export type CheckboxInputOptions = RenderMixinOptions<CheckboxInputState> & FormFieldMixinOptions<string, CheckboxInputState>;
 
 export type CheckboxInput = RenderMixin<CheckboxInputState> & FormFieldMixin<string, CheckboxInputState> & VNodeEvented;
 
-export interface CheckboxInputFactory extends ComposeFactory<CheckboxInput, CheckboxInputOptions> { }
-
-const createCheckboxInput: CheckboxInputFactory = createRenderMixin
+const createCheckboxInput = createRenderMixin
 	.mixin(createFormFieldMixin)
 	.mixin({
 		mixin: createVNodeEvented,
@@ -31,18 +28,15 @@ const createCheckboxInput: CheckboxInputFactory = createRenderMixin
 	})
 	.extend({
 		nodeAttributes: [
-			function (this: CheckboxInput) {
-				const props: VNodeProperties = {};
-
-				if (this.state.checked !== undefined) {
-					props.checked = this.state.checked;
-				}
-
-				return props;
+			function (this: CheckboxInput): VNodeProperties {
+				const { checked } = this.state;
+				return checked !== undefined ? { checked } : {};
 			}
 		],
-		type: 'checkbox',
-		tagName: 'input'
+
+		tagName: 'input',
+
+		type: 'checkbox'
 	});
 
 export default createCheckboxInput;

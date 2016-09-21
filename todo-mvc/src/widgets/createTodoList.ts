@@ -1,6 +1,5 @@
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import createParentListMixin, { ParentList, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
-import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 
 import { VNode } from 'maquette';
@@ -8,15 +7,15 @@ import { List } from 'immutable';
 
 import { TodoItem } from './createTodoItem';
 
-interface TodoListState extends WidgetState, StatefulChildrenState {
+type TodoListState = RenderMixinState & StatefulChildrenState & {
 	activeFilter?: string;
-}
+};
 
-type TodoListOptions = WidgetOptions<TodoListState> & ParentListMixinOptions<TodoItem> & StatefulChildrenOptions<TodoItem, TodoListState>;
+type TodoListOptions = RenderMixinOptions<TodoListState> & ParentListMixinOptions<TodoItem> & StatefulChildrenOptions<TodoItem, TodoListState>;
 
-export type TodoList = Widget<TodoListState> & ParentList<TodoItem> & {
+export type TodoList = RenderMixin<TodoListState> & ParentList<TodoItem> & {
 	children: List<TodoItem>;
-}
+};
 
 function filterCompleted(children: List<TodoItem>): List<TodoItem> {
 	return <List<TodoItem>> children.filter((child) => {
@@ -30,13 +29,10 @@ function filterActive(children: List<TodoItem>): List<TodoItem> {
 	});
 }
 
-const createTodoList = createWidget
+const createTodoList = createRenderMixin
 	.mixin(createParentListMixin)
-	.mixin(createRenderableChildrenMixin)
 	.mixin(createStatefulChildrenMixin)
 	.extend({
-		tagName: 'ul',
-
 		getChildrenNodes(this: TodoList): (VNode | string)[] {
 			const results: (VNode | string)[] = [];
 			const { children } = this;
@@ -50,7 +46,9 @@ const createTodoList = createWidget
 			}
 			filteredChildren.forEach((child) => results.push(child.render()));
 			return results;
-		}
+		},
+
+		tagName: 'ul'
 	});
 
 export default createTodoList;

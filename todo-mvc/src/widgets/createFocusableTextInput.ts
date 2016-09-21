@@ -1,4 +1,3 @@
-import { ComposeFactory } from 'dojo-compose/compose';
 import WeakMap from 'dojo-shim/WeakMap';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
@@ -19,8 +18,6 @@ export type FocusableTextInputOptions = RenderMixinOptions<FocusableTextInputSta
 
 export type FocusableTextInput = RenderMixin<FocusableTextInputState> & FormFieldMixin<string, FocusableTextInputState> & VNodeEvented;
 
-export type FocusableTextInputFactory = ComposeFactory<FocusableTextInput, FocusableTextInputOptions>;
-
 const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: HTMLInputElement): void}>();
 
 function afterUpdate(instance: FocusableTextInput, element: HTMLInputElement) {
@@ -33,7 +30,7 @@ function afterUpdate(instance: FocusableTextInput, element: HTMLInputElement) {
 	}
 }
 
-const createFocusableTextInput: FocusableTextInputFactory = createRenderMixin
+const createFocusableTextInput = createRenderMixin
 	.mixin(createFormFieldMixin)
 	.mixin({
 		mixin: createVNodeEvented,
@@ -58,8 +55,10 @@ const createFocusableTextInput: FocusableTextInputFactory = createRenderMixin
 				return props;
 			}
 		],
-		type: 'text',
-		tagName: 'input'
+
+		tagName: 'input',
+
+		type: 'text'
 	});
 
 export default createFocusableTextInput;

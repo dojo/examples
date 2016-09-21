@@ -1,8 +1,6 @@
-import { ComposeFactory } from 'dojo-compose/compose';
 import WeakMap from 'dojo-shim/WeakMap';
 import createButton from 'dojo-widgets/createButton';
 import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
-import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
@@ -12,16 +10,14 @@ import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 import { todoRemove, todoToggleComplete, todoEdit, todoSave, todoEditInput }  from './../actions/uiTodoActions';
 
-interface TodoItemState extends RenderMixinState, StatefulChildrenState {
+type TodoItemState = RenderMixinState & StatefulChildrenState & {
 	editing?: boolean;
 	completed?: boolean;
-}
+};
 
 export type TodoItemOptions = RenderMixinOptions<TodoItemState> & StatefulChildrenOptions<Child, TodoItemState>;
 
 export type TodoItem = RenderMixin<TodoItemState>;
-
-export interface TodoItemFactory extends ComposeFactory<TodoItem, TodoItemOptions> { }
 
 interface TodoItemChildren<C extends Child> extends CreateChildrenResults<C> {
 	label: CreateChildrenResultsItem<C>;
@@ -58,8 +54,7 @@ function manageChildren(this: TodoItem) {
 	});
 }
 
-const createTodoItem: TodoItemFactory = createRenderMixin
-	.mixin(createRenderableChildrenMixin)
+const createTodoItem = createRenderMixin
 	.mixin({
 		mixin: createStatefulChildrenMixin,
 		initialize(instance, options) {
@@ -128,30 +123,28 @@ const createTodoItem: TodoItemFactory = createRenderMixin
 				});
 		}
 	})
-	.mixin({
-		mixin: {
-			get classes(): string[] {
-				const todoItem: TodoItem = this;
-				const classes: string[] = [];
-				if (todoItem.state.editing) {
-					classes.push('editing');
-				}
-				return todoItem.state.completed ? ['completed', ...classes] : classes;
-			},
-			getChildrenNodes(this: TodoItem): VNode[] {
-				const { checkbox, label, button, editInput } = childrenMap.get(this);
-				return [
-					h('div.view', [
-						checkbox.widget.render(),
-						label.widget.render(),
-						button.widget.render()
-					]),
-					editInput.widget.render()
-				];
-			}
-		}
-	})
 	.extend({
+		get classes(this: TodoItem): string[] {
+			/* TODO: Deal with this in nodeAttributes when class classes are implementend */
+			const classes: string[] = [];
+			if (this.state.editing) {
+				classes.push('editing');
+			}
+			return this.state.completed ? [ 'completed', ...classes ] : classes;
+		},
+
+		getChildrenNodes(this: TodoItem): VNode[] {
+			const { checkbox, label, button, editInput } = childrenMap.get(this);
+			return [
+				h('div.view', [
+					checkbox.widget.render(),
+					label.widget.render(),
+					button.widget.render()
+				]),
+				editInput.widget.render()
+			];
+		},
+
 		tagName: 'li'
 	});
 
