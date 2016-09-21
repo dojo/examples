@@ -5,7 +5,7 @@ interface TodoFilterState extends WidgetState {
 	activeFilter?: string;
 }
 
-interface TodoFilterOptions extends WidgetOptions<TodoFilterState> { }
+type TodoFilterOptions = WidgetOptions<TodoFilterState>;
 
 type TodoFilter = Widget<TodoFilterState>;
 

@@ -16,7 +16,7 @@ export interface TodoFooterState extends WidgetState, StatefulChildrenState {
 	completedCount?: number;
 }
 
-export interface TodoFooterOptions extends WidgetOptions<TodoFooterState>, ParentMapMixinOptions<Child>, StatefulChildrenOptions<Child, TodoFooterState> { }
+export type TodoFooterOptions = WidgetOptions<TodoFooterState> & ParentMapMixinOptions<Child> & StatefulChildrenOptions<Child, TodoFooterState>;
 
 export type TodoFooter = Widget<TodoFooterState> & ParentMap<Widget<TodoFooterState>>;
 

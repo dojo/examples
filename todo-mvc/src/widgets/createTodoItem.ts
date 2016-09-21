@@ -17,7 +17,7 @@ interface TodoItemState extends WidgetState, StatefulChildrenState {
 	completed?: boolean;
 }
 
-export interface TodoItemOptions extends WidgetOptions<TodoItemState>, StatefulChildrenOptions<Child, TodoItemState> { }
+export type TodoItemOptions = WidgetOptions<TodoItemState> & StatefulChildrenOptions<Child, TodoItemState>;
 
 export type TodoItem = Widget<TodoItemState>;
 
