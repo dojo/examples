@@ -116,8 +116,8 @@ const createTodoItem: TodoItemFactory = createWidget
 					instance.on('statechange', manageChildren);
 
 					/* We have missed the widgets initial state change because we created the widgets async
-					 * so we should invlidate the instance, so it will re-calculate its children */
-					instance.invalidate();
+					 * so we should set state on the instance, so it will re-calculate its children */
+					instance.setState({});
 				})
 				.catch((err) => {
 					instance.emit({
