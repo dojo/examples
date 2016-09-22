@@ -13,7 +13,6 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "codecov.io": "^0.1.6",
-    "dojo-loader": ">=2.0.0-beta.5",
     "dts-generator": "^1.7.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
@@ -36,7 +35,7 @@
     "dojo-core": "^2.0.0-alpha.12",
     "dojo-dom": "^2.0.0-alpha.5",
     "dojo-has": "^2.0.0-alpha.4",
-    "dojo-loader": "^2.0.0-beta.5",
+    "dojo-loader": "^2.0.0-beta.7",
     "dojo-routing": "^2.0.0-alpha.5",
     "dojo-shim": "^2.0.0-alpha.4",
     "dojo-stores": "^2.0.0-alpha.1",
