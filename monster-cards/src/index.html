@@ -6,12 +6,15 @@
 		<link rel="stylesheet" href="./styles/css/app.css">
 	</head>
 	<body>
-		<script src="./../../node_modules/dojo-loader/dist/umd/loader.min.js"></script>
+		<script src="./../../node_modules/dojo-loader/loader.min.js"></script>
 		<script src="./index.js"></script>
-		<main is="app-projector">
+		<app-projector>
 			<header is="app-widget" id="navbar"></header>
+			<main>
+				<div is="app-widget" id="container"></div>
+			</main>
 			<footer is="app-widget" id="footer"></footer>
-		</main>
+		</app-projector>
 	</body>
 </html>
 
