@@ -91,7 +91,7 @@ app.registerStore('todo-store', todoStore);
 
 Object.keys(storeTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> storeTodoActions)[actionName];
-	app.registerAction(actionName, action);
+	action.configure(app.registryProvider);
 });
 
 Object.keys(uiTodoActions).forEach((actionName) => {
