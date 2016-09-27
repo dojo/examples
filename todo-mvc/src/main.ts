@@ -4,6 +4,7 @@ import createRoute, { Route } from 'dojo-routing/createRoute';
 import { Parameters } from 'dojo-routing/interfaces';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
+import ShimPromise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
 
@@ -155,4 +156,6 @@ app.loadDefinition({
 	]
 });
 
-app.realize(document.body);
+// Try to use the native promise so the browser can report unhandled rejections.
+const P = (<any> window).Promise || ShimPromise;
+P.resolve(app.realize(document.body));
