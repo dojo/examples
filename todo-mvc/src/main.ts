@@ -1,9 +1,11 @@
 import { AnyAction } from 'dojo-actions/createAction';
 import createApp from 'dojo-app/createApp';
+import global from 'dojo-core/global';
 import createRoute, { Route } from 'dojo-routing/createRoute';
 import { Parameters } from 'dojo-routing/interfaces';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
+import ShimPromise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
 
@@ -155,4 +157,6 @@ app.loadDefinition({
 	]
 });
 
-app.realize(document.body);
+// Try to use the native promise so the browser can report unhandled rejections.
+const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
+Promise.resolve(app.realize(document.body));
