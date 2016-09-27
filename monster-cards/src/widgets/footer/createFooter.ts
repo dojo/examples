@@ -1,25 +1,15 @@
-import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
-import { Child } from 'dojo-widgets/mixins/interfaces';
+import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
+import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 
 import createFooterIcons from './createFooterIcons';
 import createImage from './../common/createImage';
 
-interface FooterState extends WidgetState, StatefulChildrenState { }
-
-export interface FooterOptions extends WidgetOptions<FooterState>, StatefulChildrenOptions<Child, FooterState> { }
-
-export type Footer = Widget<FooterState>;
-
-export interface FooterFactory extends ComposeFactory<Footer, FooterOptions> { }
-
-const createFooter: FooterFactory = createWidget
+const createFooter = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
-		initialize(instance, options) {
+		initialize(instance) {
 			instance
 				.createChildren({
 					navMenu: {
@@ -43,7 +33,8 @@ const createFooter: FooterFactory = createWidget
 					instance.invalidate();
 				});
 		}
-	}).extend({
+	})
+	.extend({
 		tagName: 'footer'
 	});
 

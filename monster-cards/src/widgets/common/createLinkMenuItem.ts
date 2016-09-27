@@ -1,29 +1,29 @@
 import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
-import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createRenderableChildrenMixin, { RenderableChildrenMixin, RenderableChildrenOptions } from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createRenderMixin, { RenderMixin, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildren, StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import createLink, { LinkState } from './createLink';
 
-interface LinkMenuItemState extends LinkState, StatefulChildrenState {}
+type LinkMenuItemState = LinkState & StatefulChildrenState;
 
-export interface LinkMenuItemOptions extends WidgetOptions<LinkMenuItemState>, StatefulChildrenOptions<Child, LinkMenuItemState> { }
+type LinkMenuItemOptions = RenderMixinOptions<LinkMenuItemState> & RenderableChildrenOptions & StatefulChildrenOptions<Child, LinkMenuItemState>;
 
-export type LinkMenuItem = Widget<WidgetState> & StatefulChildren<Child, LinkMenuItemState>;
+type LinkMenuItem = RenderMixin<LinkMenuItemState> & RenderableChildrenMixin & StatefulChildren<Child>;
 
-export interface LinkMenuItemFactory extends ComposeFactory<LinkMenuItem, LinkMenuItemOptions> { }
+type LinkMenuItemFactory = ComposeFactory<LinkMenuItem, LinkMenuItemOptions>;
 
-const createLinkMenuItem: LinkMenuItemFactory = createWidget
+const createLinkMenuItem: LinkMenuItemFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
-		initialize(instance: LinkMenuItem, options: LinkMenuItemOptions) {
-			const state: LinkMenuItemState = options && options.state || undefined;
-
-			instance.createChild(createLink, { state }).then(() => {
-				instance.invalidate();
-			});
+		initialize(instance: LinkMenuItem, { state }: LinkMenuItemOptions = {}) {
+			instance
+				.createChild(createLink, { state })
+				.then(() => {
+					instance.invalidate();
+				});
 		}
 	})
 	.extend({

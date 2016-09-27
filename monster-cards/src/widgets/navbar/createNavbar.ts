@@ -1,25 +1,15 @@
-import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
-import { Child } from 'dojo-widgets/mixins/interfaces';
+import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
+import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 
 import createNavMenu from './createNavMenu';
 import createNavActions from './createNavActions';
 
-interface NavbarState extends WidgetState, StatefulChildrenState { }
-
-export interface NavbarOptions extends WidgetOptions<NavbarState>, StatefulChildrenOptions<Child, NavbarState> { }
-
-export type Navbar = Widget<WidgetState>;
-
-export interface NavbarFactory extends ComposeFactory<Navbar, NavbarOptions> { }
-
-const createNavbar: NavbarFactory = createWidget
+const createNavbar = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
-		initialize(instance, options) {
+		initialize(instance) {
 			instance
 				.createChildren({
 					navMenu: {
@@ -43,7 +33,8 @@ const createNavbar: NavbarFactory = createWidget
 					instance.invalidate();
 				});
 		}
-	}).extend({
+	})
+	.extend({
 		tagName: 'header'
 	});
 
