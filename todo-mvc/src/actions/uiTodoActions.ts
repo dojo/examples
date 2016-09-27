@@ -1,5 +1,5 @@
 import createAction, { AnyAction } from 'dojo-actions/createAction';
-import { CombinedRegistry, DEFAULT_WIDGET_STORE } from 'dojo-app/createApp';
+import { DEFAULT_WIDGET_STORE, RegistryProvider } from 'dojo-app/createApp';
 
 import * as storeActions from './storeTodoActions';
 import { MemoryStore } from 'dojo-stores/createMemoryStore';
@@ -8,9 +8,9 @@ interface UiTodoAction {
 	widgetStore: MemoryStore<Object>;
 }
 
-function configure (registry: CombinedRegistry) {
+function configure (registryProvider: RegistryProvider) {
 	const action = <UiTodoAction> this;
-	return registry.getStore(DEFAULT_WIDGET_STORE).then((widgetStore: MemoryStore<Object>) => {
+	return registryProvider.get('stores').get(DEFAULT_WIDGET_STORE).then((widgetStore: MemoryStore<Object>) => {
 		action.widgetStore = widgetStore;
 	});
 };

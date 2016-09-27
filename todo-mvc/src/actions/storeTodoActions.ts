@@ -1,5 +1,5 @@
 import createAction, { AnyAction } from 'dojo-actions/createAction';
-import { CombinedRegistry } from 'dojo-app/createApp';
+import { RegistryProvider } from 'dojo-app/createApp';
 import Promise from 'dojo-shim/Promise';
 
 import { MemoryStore } from 'dojo-stores/createMemoryStore';
@@ -8,10 +8,10 @@ interface StoreTodoAction {
 	todoStore: MemoryStore<Object>;
 }
 
-function configure (registry: CombinedRegistry) {
+function configure (registryProvider: RegistryProvider) {
 	const action = <StoreTodoAction> this;
 
-	registry.getStore('todo-store').then((todoStore: MemoryStore<Object>) => {
+	return registryProvider.get('stores').get('todo-store').then((todoStore: MemoryStore<Object>) => {
 		action.todoStore = todoStore;
 	});
 };
