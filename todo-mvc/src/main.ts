@@ -8,10 +8,7 @@ import * as widgetTodoActions from './actions/widgetTodoActions';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
 
 import startRouter from './routes';
-
-const todoStore = createMemoryStore({
-	data: []
-});
+import { bindActions as bindTodoStoreActions } from './stores/todoStore';
 
 const widgetStore = createMemoryStore({
 	data: [
@@ -51,32 +48,19 @@ const widgetStore = createMemoryStore({
 
 const app = createApp({ defaultWidgetStore: widgetStore });
 
-app.registerStore('todo-store', todoStore);
-
-Object.keys(storeTodoActions).forEach((actionName) => {
-	const action: AnyAction = (<any> storeTodoActions)[actionName];
-	action.configure(app.registryProvider);
-});
-
 Object.keys(widgetTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> widgetTodoActions)[actionName];
-	action.configure({widgetStore});
-});
-
-todoStore.observe().subscribe((options: any) => {
-	const { puts, deletes } = options;
-	widgetTodoActions.updateHeaderAndFooter.do(options);
-
-	if (deletes.length) {
-		widgetTodoActions.deleteTodo.do(options);
-	}
-
-	if (puts.length) {
-		widgetTodoActions.putTodo.do(options);
-	}
+	app.registerAction(actionName, action);
 });
 
 // Try to use the native promise so the browser can report unhandled rejections.
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
 Promise.resolve(app.realize(document.body))
+	.then(() => {
+		return Promise.all(Object.keys(storeTodoActions).map((actionName) => {
+			const action: AnyAction = (<any> storeTodoActions)[actionName];
+			return action.configure(app.registryProvider);
+		}));
+	})
+	.then(() => bindTodoStoreActions(app))
 	.then(() => startRouter(app));
