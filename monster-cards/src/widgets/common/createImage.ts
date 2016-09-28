@@ -2,11 +2,11 @@ import { ComposeFactory } from 'dojo-compose/compose';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import { VNodeProperties } from 'maquette';
 
-type ImageState = RenderMixinState & {
+export type ImageState = RenderMixinState & {
 	src?: string;
 };
 
-type ImageOptions = RenderMixinOptions<ImageState>;
+export type ImageOptions = RenderMixinOptions<ImageState>;
 
 type Image = RenderMixin<ImageState>;
 

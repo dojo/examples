@@ -22,7 +22,7 @@ const createSearchInput = createRenderMixin
 						factory: createIcon,
 						options: {
 							state: {
-								classes: [ 'fa', 'fa-search' ]
+								classes: [ 'fa', 'fa-2x', 'fa-search' ]
 							}
 						}
 					}

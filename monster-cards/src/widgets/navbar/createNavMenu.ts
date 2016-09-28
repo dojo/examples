@@ -2,7 +2,7 @@ import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableC
 import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 
-import createIconMenuItem from './../common/createIconMenuItem';
+import createImageMenuItem from './../common/createImageMenuItem';
 import createLinkMenuItem from './../common/createLinkMenuItem';
 
 const createNavMenu = createRenderMixin
@@ -13,10 +13,10 @@ const createNavMenu = createRenderMixin
 			instance
 				.createChildren({
 					appIcon: {
-						factory: createIconMenuItem,
+						factory: createImageMenuItem,
 						options: {
 							state: {
-								icon: [ 'fa', 'fa-2x', 'fa-optin-monster' ]
+								src: 'images/navbar-app-icon.png'
 							}
 						}
 					},
@@ -25,7 +25,7 @@ const createNavMenu = createRenderMixin
 						options: {
 							state: {
 								href: '#cards',
-								label: 'The Cards'
+								label: 'THE CARDS'
 							}
 						}
 					},
@@ -33,8 +33,8 @@ const createNavMenu = createRenderMixin
 						factory: createLinkMenuItem,
 						options: {
 							state: {
-								href: '#game',
-								label: 'The Game'
+								href: '#gameplay',
+								label: 'GAMEPLAY'
 							}
 						}
 					},
@@ -43,7 +43,7 @@ const createNavMenu = createRenderMixin
 						options: {
 							state: {
 								href: '#about',
-								label: 'About'
+								label: 'ABOUT'
 							}
 						}
 					}
