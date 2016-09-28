@@ -17,19 +17,19 @@
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-beta.6",
     "dojo-actions": "2.0.0-alpha.8",
-    "dojo-app": "2.0.0-alpha.5",
-    "dojo-compose": "2.0.0-beta.10",
-    "dojo-core": "2.0.0-alpha.12",
+    "dojo-app": ">=2.0.0-alpha.6",
+    "dojo-compose": ">=2.0.0-beta.11",
+    "dojo-core": ">=2.0.0-alpha.13",
     "dojo-dom": "2.0.0-alpha.5",
     "dojo-has": "2.0.0-alpha.4",
     "dojo-loader": "2.0.0-beta.7",
     "dojo-routing": "2.0.0-alpha.5",
     "dojo-shim": "2.0.0-alpha.4",
     "dojo-stores": "2.0.0-alpha.1",
-    "dojo-widgets": "2.0.0-alpha.8",
+    "dojo-widgets": ">=2.0.0-alpha.9",
     "font-awesome": "^4.6.3",
-    "immutable": "3.8.1",
-    "maquette": "2.3.2"
+    "immutable": "^3.8.1",
+    "maquette": "^2.3.2"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
@@ -45,6 +45,6 @@
     "intern": "^3.2.3",
     "remap-istanbul": "^0.6.4",
     "tslint": "next",
-    "typescript": "2.0.2"
+    "typescript": "^2.0.3"
   }
 }

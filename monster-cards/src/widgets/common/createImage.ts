@@ -1,34 +1,26 @@
 import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
+import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import { VNodeProperties } from 'maquette';
-import createCachedRenderMixin from 'dojo-widgets/mixins/createCachedRenderMixin';
 
-export interface ImageState extends WidgetState {
+type ImageState = RenderMixinState & {
 	src?: string;
-}
+};
 
-export interface ImageOptions extends WidgetOptions<ImageState> { }
+type ImageOptions = RenderMixinOptions<ImageState>;
 
-export type Image = Widget<ImageState>;
+type Image = RenderMixin<ImageState>;
 
-export interface ImageFactory extends ComposeFactory<Image, ImageOptions> { }
+type ImageFactory = ComposeFactory<Image, ImageOptions>;
 
-const createImage: ImageFactory = createWidget
-	.mixin({
-		mixin: createCachedRenderMixin,
-		aspectAdvice: {
-			before: {
-				getNodeAttributes(this: Image, overrides: VNodeProperties = {}): VNodeProperties[] {
-					if (this.state.src !== undefined) {
-						overrides.src = this.state.src;
-					}
-
-					return [ overrides ];
-				}
-			}
-		}
-	})
+const createImage: ImageFactory = createRenderMixin
 	.extend({
+		nodeAttributes: [
+			function (this: Image): VNodeProperties {
+				const { src } = this.state;
+				return src ? { src } : {};
+			}
+		],
+
 		tagName: 'img'
 	});
 

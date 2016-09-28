@@ -1,11 +1,6 @@
-import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
+import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
 
-export type Icon = Widget<WidgetState>;
-
-export interface IconFactory extends ComposeFactory<Icon, WidgetOptions<WidgetState>> { }
-
-const createIcon: IconFactory = createWidget
+const createIcon = createRenderMixin
 	.extend({
 		tagName: 'i'
 	});

@@ -1,34 +1,26 @@
 import { ComposeFactory } from 'dojo-compose/compose';
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
+import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import { VNodeProperties } from 'maquette';
-import createCachedRenderMixin from 'dojo-widgets/mixins/createCachedRenderMixin';
 
-export interface LinkState extends WidgetState {
+export type LinkState = RenderMixinState & {
 	href?: string;
 }
 
-export interface LinkOptions extends WidgetOptions<LinkState> { }
+type LinkOptions = RenderMixinOptions<LinkState>;
 
-export type Link = Widget<LinkState>;
+export type Link = RenderMixin<LinkState>;
 
-export interface LinkFactory extends ComposeFactory<Link, LinkOptions> { }
+type LinkFactory = ComposeFactory<Link, LinkOptions>;
 
-const createLink: LinkFactory = createWidget
-	.mixin({
-		mixin: createCachedRenderMixin,
-		aspectAdvice: {
-			before: {
-				getNodeAttributes(this: Link, overrides: VNodeProperties = {}): VNodeProperties[] {
-					if (this.state.href !== undefined) {
-						overrides['href'] = this.state.href;
-					}
-
-					return [overrides];
-				}
-			}
-		}
-	})
+const createLink: LinkFactory = createRenderMixin
 	.extend({
+		nodeAttributes: [
+			function (this: Link): VNodeProperties {
+				const { href } = this.state;
+				return href ? { href } : {};
+			}
+		],
+
 		tagName: 'a'
 	});
 

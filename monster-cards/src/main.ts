@@ -48,4 +48,9 @@ app.loadDefinition({
 	]
 });
 
-app.realize(document.body);
+app
+	.realize(document.body)
+	.catch((err) => {
+		/* Report any realization errors */
+		console.error(err);
+	});
