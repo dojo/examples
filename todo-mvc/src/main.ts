@@ -1,10 +1,6 @@
 import { AnyAction } from 'dojo-actions/createAction';
 import createApp from 'dojo-app/createApp';
 import global from 'dojo-core/global';
-import createRoute, { Route } from 'dojo-routing/createRoute';
-import { Parameters } from 'dojo-routing/interfaces';
-import createRouter from 'dojo-routing/createRouter';
-import createHashHistory from 'dojo-routing/history/createHashHistory';
 import ShimPromise from 'dojo-shim/Promise';
 
 import * as storeTodoActions from './actions/storeTodoActions';
@@ -12,30 +8,7 @@ import * as uiTodoActions from './actions/uiTodoActions';
 import * as widgetTodoActions from './actions/widgetTodoActions';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
 
-const router = createRouter();
-
-const completedRoute: Route<Parameters> = createRoute({
-	path: '/completed',
-	exec (request) {
-		uiTodoActions.filter.do({ 'filter': 'completed' });
-	}
-});
-
-const allRoute: Route<Parameters> = createRoute({
-	path: '/all',
-	exec (request) {
-		uiTodoActions.filter.do({ 'filter': 'all' });
-	}
-});
-
-const activeRoute: Route<Parameters> = createRoute({
-	path: '/active',
-	exec (request) {
-		uiTodoActions.filter.do({ 'filter': 'active' });
-	}
-});
-
-router.append([allRoute, activeRoute, completedRoute]);
+import startRouter from './routes';
 
 const todoStore = createMemoryStore({
 	data: []
@@ -88,13 +61,7 @@ Object.keys(storeTodoActions).forEach((actionName) => {
 
 Object.keys(uiTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> uiTodoActions)[actionName];
-	if (actionName === 'filter') {
-		// This action is referenced from the routes only, so does not need to be registered. Configure it instead.
-		action.configure(app.registryProvider);
-	}
-	else {
-		app.registerAction(actionName, action);
-	}
+	app.registerAction(actionName, action);
 });
 
 Object.keys(widgetTodoActions).forEach((actionName) => {
@@ -118,6 +85,4 @@ todoStore.observe().subscribe((options: any) => {
 // Try to use the native promise so the browser can report unhandled rejections.
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
 Promise.resolve(app.realize(document.body))
-	.then(() => {
-		router.observeHistory(createHashHistory(), {}, true);
-	});
+	.then(() => startRouter(app));
