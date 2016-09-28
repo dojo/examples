@@ -19,8 +19,6 @@ import createTodoList from './widgets/createTodoList';
 
 const router = createRouter();
 
-router.observeHistory(createHashHistory(), {}, true);
-
 const completedRoute: Route<Parameters> = createRoute({
 	path: '/completed',
 	exec (request) {
@@ -164,4 +162,7 @@ app.loadDefinition({
 
 // Try to use the native promise so the browser can report unhandled rejections.
 const P = (<any> window).Promise || ShimPromise;
-P.resolve(app.realize(document.body));
+P.resolve(app.realize(document.body))
+	.then(() => {
+		router.observeHistory(createHashHistory(), {}, true);
+	});
