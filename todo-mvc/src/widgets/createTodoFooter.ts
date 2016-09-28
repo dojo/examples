@@ -1,3 +1,4 @@
+import { RegistryProvider } from 'dojo-app/createApp';
 import createButton from 'dojo-widgets/createButton';
 import createParentMapMixin, { ParentMap, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
@@ -7,7 +8,6 @@ import { Child } from 'dojo-widgets/mixins/interfaces';
 import { h, VNode } from 'maquette';
 
 import createTodoFilter from './createTodoFilter';
-import { clearCompleted } from '../actions/uiTodoActions';
 
 export type TodoFooterState = RenderMixinState & StatefulChildrenState & {
 	activeFilter?: string;
@@ -41,25 +41,41 @@ const createTodoFooter = createRenderMixin
 	.mixin(createStatefulChildrenMixin)
 	.mixin({
 		mixin: createParentMapMixin,
-		initialize(instance) {
-			const filterWidget = createTodoFilter({
-				state: {
-					id: 'filter',
-					classes: ['filters']
+		initialize(instance, options) {
+			let destroyed = false;
+			instance.own({
+				destroy() {
+					destroyed = true;
 				}
 			});
-			const clearCompletedButton = createButton({
-				state: {
-					id: 'button',
-					label: 'Clear completed',
-					classes: ['clear-completed']
-				},
-				listeners: {
-					click: clearCompleted
-				}
-			});
-			instance.append([filterWidget, clearCompletedButton]);
-			instance.on('statechange', manageChildren);
+
+			// FIXME: The RegistryProvider interface from dojo-widgets assumes all registries return widgets.
+			const registryProvider = <RegistryProvider> options.registryProvider;
+			registryProvider.get('actions').get('clearCompleted')
+				.then((clearCompleted) => {
+					if (destroyed) {
+						return;
+					}
+
+					const filterWidget = createTodoFilter({
+						state: {
+							id: 'filter',
+							classes: ['filters']
+						}
+					});
+					const clearCompletedButton = createButton({
+						state: {
+							id: 'button',
+							label: 'Clear completed',
+							classes: ['clear-completed']
+						},
+						listeners: {
+							click: clearCompleted
+						}
+					});
+					instance.append([filterWidget, clearCompletedButton]);
+					instance.on('statechange', manageChildren);
+				});
 		}
 	})
 	.extend({

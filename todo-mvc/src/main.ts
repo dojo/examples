@@ -4,7 +4,6 @@ import global from 'dojo-core/global';
 import ShimPromise from 'dojo-shim/Promise';
 
 import * as storeTodoActions from './actions/storeTodoActions';
-import * as uiTodoActions from './actions/uiTodoActions';
 import * as widgetTodoActions from './actions/widgetTodoActions';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
 
@@ -57,11 +56,6 @@ app.registerStore('todo-store', todoStore);
 Object.keys(storeTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> storeTodoActions)[actionName];
 	action.configure(app.registryProvider);
-});
-
-Object.keys(uiTodoActions).forEach((actionName) => {
-	const action: AnyAction = (<any> uiTodoActions)[actionName];
-	app.registerAction(actionName, action);
 });
 
 Object.keys(widgetTodoActions).forEach((actionName) => {

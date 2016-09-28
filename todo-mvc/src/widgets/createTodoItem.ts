@@ -1,3 +1,4 @@
+import { RegistryProvider } from 'dojo-app/createApp';
 import WeakMap from 'dojo-shim/WeakMap';
 import createButton from 'dojo-widgets/createButton';
 import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
@@ -8,7 +9,6 @@ import { h, VNode } from 'maquette';
 
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
-import { todoRemove, todoToggleComplete, todoEdit, todoSave, todoEditInput }  from './../actions/uiTodoActions';
 
 type TodoItemState = RenderMixinState & StatefulChildrenState & {
 	editing?: boolean;
@@ -58,8 +58,35 @@ const createTodoItem = createRenderMixin
 	.mixin({
 		mixin: createStatefulChildrenMixin,
 		initialize(instance, options) {
-			instance
-				.createChildren({
+			let destroyed = false;
+			instance.own({
+				destroy() {
+					destroyed = true;
+				}
+			});
+
+			// FIXME: The RegistryProvider interface from dojo-widgets assumes all registries return widgets.
+			const registryProvider = <RegistryProvider> options.registryProvider;
+			const actions = registryProvider.get('actions');
+			Promise.all([
+				actions.get('todoEdit'),
+				actions.get('todoEditInput'),
+				actions.get('todoRemove'),
+				actions.get('todoSave'),
+				actions.get('todoToggleComplete')
+			])
+			.then(([
+				todoEdit,
+				todoEditInput,
+				todoRemove,
+				todoSave,
+				todoToggleComplete
+			]) => {
+				if (destroyed) {
+					return;
+				}
+
+				return instance.createChildren({
 					checkbox: {
 						factory: createCheckboxInput,
 						options: {
@@ -103,24 +130,29 @@ const createTodoItem = createRenderMixin
 							}
 						}
 					}
-				})
-				.then((children: TodoItemChildren<RenderMixin<any>>) => {
-					/* TODO: We are only using the label.widget but we are storing label: { id, widget }, is
-					 * that necessary? */
-					childrenMap.set(instance, children);
-					instance.on('statechange', manageChildren);
-
-					/* We have missed the widgets initial state change because we created the widgets async
-					 * so we should set state on the instance, so it will re-calculate its children */
-					instance.setState({});
-				})
-				.catch((err) => {
-					instance.emit({
-						type: 'error',
-						target: instance,
-						error: err
-					});
 				});
+			})
+			.then((children: TodoItemChildren<RenderMixin<any>>) => {
+				if (destroyed) {
+					return;
+				}
+
+				/* TODO: We are only using the label.widget but we are storing label: { id, widget }, is
+					* that necessary? */
+				childrenMap.set(instance, children);
+				instance.on('statechange', manageChildren);
+
+				/* We have missed the widgets initial state change because we created the widgets async
+					* so we should set state on the instance, so it will re-calculate its children */
+				instance.setState({});
+			})
+			.catch((err) => {
+				instance.emit({
+					type: 'error',
+					target: instance,
+					error: err
+				});
+			});
 		}
 	})
 	.extend({
