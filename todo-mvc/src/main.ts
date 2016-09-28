@@ -4,7 +4,6 @@ import global from 'dojo-core/global';
 import ShimPromise from 'dojo-shim/Promise';
 
 import * as storeTodoActions from './actions/storeTodoActions';
-import * as widgetTodoActions from './actions/widgetTodoActions';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
 
 import startRouter from './routes';
@@ -47,11 +46,6 @@ const widgetStore = createMemoryStore({
 });
 
 const app = createApp({ defaultWidgetStore: widgetStore });
-
-Object.keys(widgetTodoActions).forEach((actionName) => {
-	const action: AnyAction = (<any> widgetTodoActions)[actionName];
-	app.registerAction(actionName, action);
-});
 
 // Try to use the native promise so the browser can report unhandled rejections.
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
