@@ -1,8 +1,7 @@
-import { ComposeFactory } from 'dojo-compose/compose';
 import WeakMap from 'dojo-shim/WeakMap';
-import createTextInput from 'dojo-widgets/createTextInput';
-import { Widget, WidgetOptions } from 'dojo-widgets/createWidget';
-import createFormFieldMixin, { FormFieldMixin, FormFieldMixinState, FormFieldMixinOptions } from 'dojo-widgets/mixins/createFormFieldMixin';
+import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
+import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
+import createVNodeEvented, { VNodeEvented } from 'dojo-widgets/mixins/createVNodeEvented';
 import { VNodeProperties } from 'maquette';
 
 /* I suspect this needs to go somewhere else */
@@ -10,11 +9,14 @@ export interface TypedTargetEvent<T extends EventTarget> extends Event {
 	target: T;
 }
 
-export interface FocusableTextInputOptions extends WidgetOptions<FormFieldMixinState<string>>, FormFieldMixinOptions<string, FormFieldMixinState<string>> { }
+export type FocusableTextInputState = RenderMixinState & FormFieldMixinState<string> & {
+	focused?: boolean;
+	placeholder?: string;
+};
 
-export type FocusableTextInput = Widget<FormFieldMixinState<string>> & FormFieldMixin<string, FormFieldMixinState<string>> & {state: any};
+export type FocusableTextInputOptions = RenderMixinOptions<FocusableTextInputState> & FormFieldMixinOptions<string, FocusableTextInputState>;
 
-export interface FocusableTextInputFactory extends ComposeFactory<FocusableTextInput, FocusableTextInputOptions> { }
+export type FocusableTextInput = RenderMixin<FocusableTextInputState> & FormFieldMixin<string, FocusableTextInputState> & VNodeEvented;
 
 const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: HTMLInputElement): void}>();
 
@@ -28,24 +30,10 @@ function afterUpdate(instance: FocusableTextInput, element: HTMLInputElement) {
 	}
 }
 
-const createFocusableTextInput: FocusableTextInputFactory = createTextInput
+const createFocusableTextInput = createRenderMixin
+	.mixin(createFormFieldMixin)
 	.mixin({
-		mixin: createFormFieldMixin,
-		aspectAdvice: {
-			before: {
-				getNodeAttributes(overrides: VNodeProperties = {}) {
-					const focusableTextInput: FocusableTextInput = this;
-
-					overrides.afterUpdate = afterUpdateFunctions.get(focusableTextInput);
-
-					if (focusableTextInput.state.placeholder !== undefined) {
-						overrides.placeholder = focusableTextInput.state.placeholder;
-					}
-
-					return [overrides];
-				}
-			}
-		},
+		mixin: createVNodeEvented,
 		initialize(instance) {
 			instance.own(instance.on('input', (event: TypedTargetEvent<HTMLInputElement>) => {
 				instance.value = event.target.value;
@@ -54,8 +42,23 @@ const createFocusableTextInput: FocusableTextInputFactory = createTextInput
 		}
 	})
 	.extend({
-		type: 'text',
-		tagName: 'input'
+		nodeAttributes: [
+			function (this: FocusableTextInput) {
+				const props: VNodeProperties = {
+					afterUpdate: afterUpdateFunctions.get(this)
+				};
+
+				if (this.state.placeholder) {
+					props.placeholder = this.state.placeholder;
+				}
+
+				return props;
+			}
+		],
+
+		tagName: 'input',
+
+		type: 'text'
 	});
 
 export default createFocusableTextInput;
