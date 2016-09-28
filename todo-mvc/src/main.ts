@@ -60,7 +60,7 @@ Object.keys(storeTodoActions).forEach((actionName) => {
 
 Object.keys(widgetTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> widgetTodoActions)[actionName];
-	action.configure({widgetStore, app});
+	action.configure({widgetStore});
 });
 
 todoStore.observe().subscribe((options: any) => {
