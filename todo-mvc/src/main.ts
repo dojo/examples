@@ -96,7 +96,13 @@ Object.keys(storeTodoActions).forEach((actionName) => {
 
 Object.keys(uiTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> uiTodoActions)[actionName];
-	app.registerAction(actionName, action);
+	if (actionName === 'filter') {
+		// This action is referenced from the routes only, so does not need to be registered. Configure it instead.
+		action.configure(app.registryProvider);
+	}
+	else {
+		app.registerAction(actionName, action);
+	}
 });
 
 Object.keys(widgetTodoActions).forEach((actionName) => {
