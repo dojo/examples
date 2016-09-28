@@ -16,3 +16,16 @@ npm install
 grunt dev
 ```
 
+## Testing
+
+You can test TodoMVC locally. First make sure you have a WebDriver client running, e.g. install [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home). Start it like this:
+
+```shell
+chromedriver --port=4444 --url-base=wd/hub
+```
+
+Then run the tests:
+
+```shell
+grunt test:local
+```

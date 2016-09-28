@@ -1,55 +1,54 @@
-import createWidget, { Widget, WidgetState, WidgetOptions } from 'dojo-widgets/createWidget';
-import createParentMixin, { ParentList, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
-import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createParentListMixin, { ParentList, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
+import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
-import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import { VNode } from 'maquette';
 import { List } from 'immutable';
 
 import { TodoItem } from './createTodoItem';
 
-interface TodoListState extends WidgetState, StatefulChildrenState {
+type TodoListState = RenderMixinState & StatefulChildrenState & {
 	activeFilter?: string;
-}
+};
 
-interface TodoListOptions extends WidgetOptions<TodoListState>, ParentListMixinOptions<TodoItem>, StatefulChildrenOptions<Child, TodoListState> { }
+type TodoListOptions = RenderMixinOptions<TodoListState> & ParentListMixinOptions<TodoItem> & StatefulChildrenOptions<TodoItem, TodoListState>;
 
-export type TodoList = Widget<TodoListState> & ParentList<TodoItem>;
+export type TodoList = RenderMixin<TodoListState> & ParentList<TodoItem> & {
+	children: List<TodoItem>;
+};
 
 function filterCompleted(children: List<TodoItem>): List<TodoItem> {
-	return <List<TodoItem>> children.filter((child: TodoItem) => {
+	return <List<TodoItem>> children.filter((child) => {
 		return child.state.completed;
 	});
 }
 
 function filterActive(children: List<TodoItem>): List<TodoItem> {
-	return <List<TodoItem>> children.filter((child: TodoItem) => {
+	return <List<TodoItem>> children.filter((child) => {
 		return !child.state.completed;
 	});
 }
 
-const createTodoList = createWidget
-	.mixin(createParentMixin)
-	.mixin(createRenderableChildrenMixin)
+const createTodoList = createRenderMixin
+	.mixin(createParentListMixin)
 	.mixin(createStatefulChildrenMixin)
 	.extend({
-		tagName: 'ul',
-
-		getChildrenNodes(): (VNode | string)[] {
-			const todoList: TodoList = this;
+		getChildrenNodes(this: TodoList): (VNode | string)[] {
 			const results: (VNode | string)[] = [];
-			const { children } = todoList;
-			let filteredChildren: List<TodoItem> = children;
+			const { children } = this;
+			let filteredChildren = children;
 
-			if (todoList.state.activeFilter === 'completed') {
+			if (this.state.activeFilter === 'completed') {
 				filteredChildren = filterCompleted(children);
-			} else if (todoList.state.activeFilter === 'active') {
+			}
+			else if (this.state.activeFilter === 'active') {
 				filteredChildren = filterActive(children);
 			}
-			filteredChildren.forEach((child: Child) => results.push(child.render()));
+			filteredChildren.forEach((child) => results.push(child.render()));
 			return results;
-		}
+		},
+
+		tagName: 'ul'
 	});
 
 export default createTodoList;
