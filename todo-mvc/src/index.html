@@ -11,18 +11,22 @@
 		<script src="./index.js"></script>
 		<section class="todoapp">
 			<header>
-				<app-projector><div>
-					<dojo-widget id="title" data-options='{"tagName": "h1"}'></dojo-widget>
-					<div is="app-widget" id="new-todo"/>
-					</div></app-projector>
+				<app-projector>
+					<div>
+						<app-widget id="title" data-factory="dojo-widgets/createWidget" data-options='{"tagName": "h1"}'></app-widget>
+						<app-widget id="new-todo"  data-factory="src/widgets/createFocusableTextInput" data-listeners='{"keypress": "todoInput"}'></app-widget>
+					</div>
+				</app-projector>
 			</header>
-			<app-projector><div>
-				<div is="app-widget" id="main-section">
-					<div is="app-widget" id="todo-list"></div>
-					<div is="app-widget" id="todo-toggle"></div>
+			<app-projector>
+				<div>
+					<app-widget id="main-section" data-factory="dojo-widgets/createPanel" data-options='{"tagName": "section"}'>
+						<app-widget id="todo-list" data-factory="src/widgets/createTodoList"></app-widget>
+						<app-widget id="todo-toggle" data-factory="src/widgets/createCheckboxInput" data-listeners='{"change": "todoToggleAll"}'></app-widget>
+					</app-widget>
+					<app-widget id="todo-footer" data-factory="src/widgets/createTodoFooter"></app-widget>
 				</div>
-				<div is="app-widget" id="todo-footer"></div>
-				</div></app-projector>
+			</app-projector>
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>

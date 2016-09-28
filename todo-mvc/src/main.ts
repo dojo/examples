@@ -6,17 +6,11 @@ import { Parameters } from 'dojo-routing/interfaces';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 import ShimPromise from 'dojo-shim/Promise';
-import createPanel from 'dojo-widgets/createPanel';
-import createWidget from 'dojo-widgets/createWidget';
 
 import * as storeTodoActions from './actions/storeTodoActions';
 import * as uiTodoActions from './actions/uiTodoActions';
 import * as widgetTodoActions from './actions/widgetTodoActions';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
-import createCheckboxInput from './widgets/createCheckboxInput';
-import createFocusableTextInput from './widgets/createFocusableTextInput';
-import createTodoFooter from './widgets/createTodoFooter';
-import createTodoList from './widgets/createTodoList';
 
 const router = createRouter();
 
@@ -119,46 +113,6 @@ todoStore.observe().subscribe((options: any) => {
 	if (puts.length) {
 		widgetTodoActions.putTodo.do(options);
 	}
-});
-
-app.loadDefinition({
-	widgets: [
-		{
-			id: 'new-todo',
-			factory: createFocusableTextInput,
-			listeners: {
-				keypress: 'todoInput'
-			}
-		},
-		{
-			id: 'main-section',
-			factory: createPanel,
-			options: {
-				tagName: 'section'
-			}
-		},
-		{
-			id: 'todo-list',
-			factory: createTodoList
-		},
-		{
-			id: 'todo-toggle',
-			factory: createCheckboxInput,
-			listeners: {
-				change: uiTodoActions.todoToggleAll
-			}
-		},
-		{
-			id: 'todo-footer',
-			factory: createTodoFooter
-		}
-	],
-	customElements: [
-		{
-			name: 'dojo-widget',
-			factory: createWidget
-		}
-	]
 });
 
 // Try to use the native promise so the browser can report unhandled rejections.
