@@ -1,9 +1,12 @@
 import createAction, { AnyAction } from 'dojo-actions/createAction';
+import { DEFAULT_WIDGET_STORE, RegistryProvider } from 'dojo-app/createApp';
 import { assign } from 'dojo-core/lang';
 
-function configure (options: {widgetStore: any}) {
+function configure (registryProvider: RegistryProvider) {
 	const action = <any> this;
-	action.widgetStore = options.widgetStore;
+	return registryProvider.get('stores').get(DEFAULT_WIDGET_STORE).then((widgetStore: any) => {
+		action.widgetStore = widgetStore;
+	});
 };
 
 export const updateHeaderAndFooter: AnyAction = createAction({
