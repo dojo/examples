@@ -1,4 +1,5 @@
 import createAction from 'dojo-actions/createAction';
+import { assign } from 'dojo-core/lang';
 
 import widgetStore from '../stores/widgetStore';
 import {
@@ -20,7 +21,7 @@ export const todoInput = createAction({
 
 export const todoEdit = createAction({
 	do(options: any) {
-		widgetStore.patch(Object.assign(options, {editing: true}));
+		widgetStore.patch(assign(options, {editing: true}));
 	}
 });
 
@@ -30,7 +31,7 @@ export const todoEditInput = createAction({
 			todoSave.do(options);
 		}
 		else if (options.event.keyCode === 27) {
-			widgetStore.patch(Object.assign(options.state, {editing: false}));
+			widgetStore.patch(assign(options.state, {editing: false}));
 		}
 	}
 });
@@ -43,7 +44,7 @@ export const todoSave = createAction({
 			deleteTodo.do({id: options.state.id});
 		}
 		else {
-			updateTodo.do(Object.assign(options.state, {label, editing: false}));
+			updateTodo.do(assign(options.state, {label, editing: false}));
 		}
 	}
 });
@@ -56,7 +57,7 @@ export const todoRemove = createAction({
 
 export const todoToggleComplete = createAction({
 	do(options: any) {
-		const item = Object.assign({}, options, { completed: !options.completed });
+		const item = assign({}, options, { completed: !options.completed });
 		updateTodo.do(item);
 	}
 });
