@@ -27,38 +27,42 @@ function createStoreAction(options: ActionOptions<any, any>) {
 }
 
 export const addTodo = createStoreAction({
-	do(todo: {label: string}) {
-		return todoStore.add({ id: `${Date.now()}`, label: todo.label });
+	do({ label }: { label: string }) {
+		return todoStore.add({ id: `${Date.now()}`, label });
 	}
 });
 
 export const deleteTodo = createStoreAction({
-	do(options: {id: string}) {
-		return todoStore.delete(options.id);
+	do({ id }: { id: string }) {
+		return todoStore.delete(id);
 	}
 });
 
 export const deleteCompleted = createStoreAction({
 	do() {
-		todoStore.get().then((items: any) => {
-			Array.from(items)
-				.filter((item: any) => item.completed)
-				.forEach((item: any) => todoStore.delete(item.id));
-		});
+		return todoStore.get()
+			.then((items: any) => {
+				const promises = Array.from(items)
+					.filter((item: any) => item.completed)
+					.map((item: any) => todoStore.delete(item.id));
+				return Promise.all(promises);
+			});
 	}
 });
 
 export const toggleAll = createStoreAction({
-	do(options: {checked: boolean}) {
-		return todoStore.get().then((items: any) => {
-			return Promise.all(Array.from(items).map((item: any) =>
-				todoStore.patch(Object.assign({}, item, {completed: options.checked}))));
-		});
+	do({ checked: completed }: { checked: boolean }) {
+		return todoStore.get()
+			.then((items: any) => {
+				const promises = Array.from(items)
+					.map(({ id }: { id: string }) => todoStore.patch({ completed }, { id }));
+				return Promise.all(promises);
+			});
 	}
 });
 
 export const updateTodo = createStoreAction({
-	do(todo: any) {
-		return todoStore.patch(todo);
+	do(item: any) {
+		return todoStore.patch(item);
 	}
 });
