@@ -11,10 +11,10 @@ export default todoStore;
 export function bindActions(app: App) {
 	return Promise.all([
 		app.getAction('updateHeaderAndFooter'),
-		app.getAction('deleteTodo'),
-		app.getAction('putTodo')
+		app.getAction('afterTodoDelete'),
+		app.getAction('afterTodoPut')
 	])
-	.then(([ updateHeaderAndFooter, deleteTodo, putTodo ]) => {
+	.then(([ updateHeaderAndFooter, afterTodoDelete, afterTodoPut ]) => {
 		return todoStore
 			.observe()
 			// FIXME: options should be typed
@@ -23,10 +23,10 @@ export function bindActions(app: App) {
 
 				const { puts, deletes } = options;
 				if (deletes.length) {
-					deleteTodo.do(options);
+					afterTodoDelete.do(options);
 				}
 				if (puts.length) {
-					putTodo.do(options);
+					afterTodoPut.do(options);
 				}
 			});
 	});
