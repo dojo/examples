@@ -2,10 +2,10 @@ import createAction, { ActionOptions } from 'dojo-actions/createAction';
 import { RegistryProvider } from 'dojo-app/createApp';
 import Promise from 'dojo-shim/Promise';
 
-import { MemoryStore } from 'dojo-stores/createMemoryStore';
+import { Item, Store } from '../stores/todoStore';
 
 // Cast object so the variable is never undefined.
-let todoStore = <MemoryStore<Object>> {};
+let todoStore = <Store> {};
 
 let configurationResolution: Promise<void>;
 function resolveConfiguration(registryProvider: RegistryProvider) {
@@ -15,7 +15,7 @@ function resolveConfiguration(registryProvider: RegistryProvider) {
 
 	configurationResolution = registryProvider.get('stores')
 		.get('todo-store')
-		.then((store: MemoryStore<Object>) => {
+		.then((store: Store) => {
 			todoStore = store;
 		});
 	return configurationResolution;
@@ -41,10 +41,11 @@ export const deleteTodo = createStoreAction({
 export const deleteCompleted = createStoreAction({
 	do() {
 		return todoStore.get()
+			// <any> hammer since the store isn't typed to return an iterator (which it does).
 			.then((items: any) => {
-				const promises = Array.from(items)
-					.filter((item: any) => item.completed)
-					.map((item: any) => todoStore.delete(item.id));
+				const promises = Array.from<Item>(items)
+					.filter(({ completed }) => completed)
+					.map(({ id }) => todoStore.delete(id));
 				return Promise.all(promises);
 			});
 	}
@@ -53,16 +54,17 @@ export const deleteCompleted = createStoreAction({
 export const toggleAll = createStoreAction({
 	do({ checked: completed }: { checked: boolean }) {
 		return todoStore.get()
+			// <any> hammer since the store isn't typed to return an iterator (which it does).
 			.then((items: any) => {
-				const promises = Array.from(items)
-					.map(({ id }: { id: string }) => todoStore.patch({ completed }, { id }));
+				const promises = Array.from<Item>(items)
+					.map(({ id }) => todoStore.patch({ completed }, { id }));
 				return Promise.all(promises);
 			});
 	}
 });
 
 export const updateTodo = createStoreAction({
-	do(item: any) {
+	do(item: Item) {
 		return todoStore.patch(item);
 	}
 });
