@@ -1,7 +1,23 @@
 import { App } from 'dojo-app/createApp';
-import createMemoryStore from 'dojo-stores/createMemoryStore';
+import createMemoryStore, { MemoryStore } from 'dojo-stores/createMemoryStore';
 
-const todoStore = createMemoryStore({
+export interface Item {
+	id: string;
+	label: string;
+	completed?: boolean;
+}
+
+export type Store = MemoryStore<Item>;
+
+// FIXME: The ChangeRecord from createMemoryStore should define these properties.
+export interface ChangeRecord {
+	beforeAll: Item[];
+	afterAll: Item[];
+	deletes: string[];
+	puts: Item[];
+}
+
+const todoStore: Store = createMemoryStore<Item>({
 	data: []
 });
 
@@ -17,16 +33,16 @@ export function bindActions(app: App) {
 	.then(([ updateHeaderAndFooter, afterTodoDelete, afterTodoPut ]) => {
 		return todoStore
 			.observe()
-			// FIXME: options should be typed
 			.subscribe((options: any) => {
-				updateHeaderAndFooter.do(options);
+				const changeRecord = <ChangeRecord> options;
+				updateHeaderAndFooter.do(changeRecord);
 
-				const { puts, deletes } = options;
+				const { puts, deletes } = changeRecord;
 				if (deletes.length) {
-					afterTodoDelete.do(options);
+					afterTodoDelete.do(changeRecord);
 				}
 				if (puts.length) {
-					afterTodoPut.do(options);
+					afterTodoPut.do(changeRecord);
 				}
 			});
 	});

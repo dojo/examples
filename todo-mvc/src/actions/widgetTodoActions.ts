@@ -1,6 +1,9 @@
 import createAction, { AnyAction } from 'dojo-actions/createAction';
 import { DEFAULT_WIDGET_STORE, RegistryProvider } from 'dojo-app/createApp';
 import { assign } from 'dojo-core/lang';
+import { includes } from 'dojo-shim/array';
+
+import { ChangeRecord } from '../stores/todoStore';
 
 function configure (registryProvider: RegistryProvider) {
 	const action = <any> this;
@@ -11,11 +14,11 @@ function configure (registryProvider: RegistryProvider) {
 
 export const updateHeaderAndFooter: AnyAction = createAction({
 	configure,
-	do(options: any) {
+	do(options: ChangeRecord) {
 		const { widgetStore } = <any> this;
 		const { afterAll } = options;
-		const completedCount = afterAll.filter((todo: any) => todo.completed).length;
-		const activeCount = afterAll.filter((todo: any) => !todo.completed).length;
+		const completedCount = afterAll.filter(({ completed }) => completed).length;
+		const activeCount = afterAll.filter(({ completed }) => !completed).length;
 		const hidden = afterAll.length ? [] : ['hidden'];
 		const allCompleted = afterAll.length === completedCount;
 
@@ -36,30 +39,31 @@ export const updateHeaderAndFooter: AnyAction = createAction({
 
 export const afterTodoDelete: AnyAction = createAction({
 	configure,
-	do(options: any) {
+	do(options: ChangeRecord) {
 		const { widgetStore } = <any> this;
 		const { deletes, afterAll } = options;
 		if (deletes.length) {
-			const item = deletes[0];
-			const children = afterAll.filter((todoItem: any) => todoItem.id !== item)
-			.map((item: any) => item.id);
-			return widgetStore.delete(item).patch({ id: 'todo-list', children });
+			const deletedId = deletes[0];
+			const children = afterAll
+				.filter(({ id }) => id !== deletedId)
+				.map(({ id }) => id);
+			return widgetStore.delete(deletedId).patch({ id: 'todo-list', children });
 		}
 	}
 });
 
 export const afterTodoPut: AnyAction = createAction({
 	configure,
-	do(options: any) {
+	do(options: ChangeRecord) {
 		const { widgetStore }: { widgetStore: any } = <any> this;
 		const { puts, beforeAll } = options;
 		if (puts.length) {
 			const item = puts[0];
-			const children = beforeAll.map((child: any) => child.id);
+			const children = beforeAll.map(({ id }) => id);
 
 			const put = function() {
 				return widgetStore
-				.put(assign({}, item, { type: 'todo-item' }))
+				.put(assign({}, <any> item, { type: 'todo-item' }))
 				.patch({id: 'todo-list', children: [...children, item.id]});
 			};
 
@@ -69,7 +73,7 @@ export const afterTodoPut: AnyAction = createAction({
 				.patch({id: 'todo-list', children});
 			};
 
-			return children.includes(item.id) ? patch() : put();
+			return includes(children, item.id) ? patch() : put();
 		}
 	}
 });
