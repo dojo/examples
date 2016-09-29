@@ -1,5 +1,6 @@
-import { App } from 'dojo-app/createApp';
 import createMemoryStore, { MemoryStore } from 'dojo-stores/createMemoryStore';
+
+import { updateHeaderAndFooter, afterTodoDelete, afterTodoPut } from '../actions/widgetTodoActions';
 
 export interface Item {
 	id: string;
@@ -23,27 +24,20 @@ const todoStore: Store = createMemoryStore<Item>({
 
 export default todoStore;
 
-// FIXME: Would be great if the app could trigger a callback like this, passing the registry provider.
-export function bindActions(app: App) {
-	return Promise.all([
-		app.getAction('updateHeaderAndFooter'),
-		app.getAction('afterTodoDelete'),
-		app.getAction('afterTodoPut')
-	])
-	.then(([ updateHeaderAndFooter, afterTodoDelete, afterTodoPut ]) => {
-		return todoStore
-			.observe()
-			.subscribe((options: any) => {
-				const changeRecord = <ChangeRecord> options;
-				updateHeaderAndFooter.do(changeRecord);
+// FIXME: Would be great if the app could trigger a callback like this.
+export function bindActions() {
+	return todoStore
+		.observe()
+		.subscribe((options: any) => {
+			const changeRecord = <ChangeRecord> options;
+			updateHeaderAndFooter.do(changeRecord);
 
-				const { puts, deletes } = changeRecord;
-				if (deletes.length) {
-					afterTodoDelete.do(changeRecord);
-				}
-				if (puts.length) {
-					afterTodoPut.do(changeRecord);
-				}
-			});
-	});
+			const { puts, deletes } = changeRecord;
+			if (deletes.length) {
+				afterTodoDelete.do(changeRecord);
+			}
+			if (puts.length) {
+				afterTodoPut.do(changeRecord);
+			}
+		});
 }

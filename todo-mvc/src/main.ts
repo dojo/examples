@@ -10,5 +10,5 @@ const app = createApp();
 // Try to use the native promise so the browser can report unhandled rejections.
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
 Promise.resolve(app.realize(document.body))
-	.then(() => bindTodoStoreActions(app))
-	.then(() => startRouter(app));
+	.then(() => bindTodoStoreActions())
+	.then(() => startRouter());

@@ -9,9 +9,8 @@
 	<body>
 		<script src="./../../node_modules/dojo-loader/loader.min.js"></script>
 		<script src="./index.js"></script>
-		<app-actions data-from="src/actions/storeTodoActions"></app-actions>
-		<app-actions data-from="src/actions/uiTodoActions"></app-actions>
-		<app-actions data-from="src/actions/widgetTodoActions"></app-actions>
+		<app-action data-import="todoInput" data-from="src/actions/uiTodoActions"></app-action>
+		<app-action data-import="todoToggleAll" data-from="src/actions/uiTodoActions"></app-action>
 		<app-element data-name="todo-item" data-factory="src/widgets/createTodoItem"></app-element>
 		<app-store data-uid="todo-store" data-from="src/stores/todoStore"></app-store>
 		<app-store data-type="widget" data-from="src/stores/widgetStore"></app-store>

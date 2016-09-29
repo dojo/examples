@@ -1,44 +1,21 @@
-import createAction, { ActionOptions } from 'dojo-actions/createAction';
-import { RegistryProvider } from 'dojo-app/createApp';
+import createAction from 'dojo-actions/createAction';
 import Promise from 'dojo-shim/Promise';
 
-import { Item, Store } from '../stores/todoStore';
+import todoStore, { Item } from '../stores/todoStore';
 
-// Cast object so the variable is never undefined.
-let todoStore = <Store> {};
-
-let configurationResolution: Promise<void>;
-function resolveConfiguration(registryProvider: RegistryProvider) {
-	if (configurationResolution) {
-		return configurationResolution;
-	}
-
-	configurationResolution = registryProvider.get('stores')
-		.get('todo-store')
-		.then((store: Store) => {
-			todoStore = store;
-		});
-	return configurationResolution;
-}
-
-function createStoreAction(options: ActionOptions<any, any>) {
-	options.configure = resolveConfiguration;
-	return createAction(options);
-}
-
-export const addTodo = createStoreAction({
+export const addTodo = createAction({
 	do({ label }: { label: string }) {
 		return todoStore.add({ id: `${Date.now()}`, label });
 	}
 });
 
-export const deleteTodo = createStoreAction({
+export const deleteTodo = createAction({
 	do({ id }: { id: string }) {
 		return todoStore.delete(id);
 	}
 });
 
-export const deleteCompleted = createStoreAction({
+export const deleteCompleted = createAction({
 	do() {
 		return todoStore.get()
 			// <any> hammer since the store isn't typed to return an iterator (which it does).
@@ -51,7 +28,7 @@ export const deleteCompleted = createStoreAction({
 	}
 });
 
-export const toggleAll = createStoreAction({
+export const toggleAll = createAction({
 	do({ checked: completed }: { checked: boolean }) {
 		return todoStore.get()
 			// <any> hammer since the store isn't typed to return an iterator (which it does).
@@ -63,7 +40,7 @@ export const toggleAll = createStoreAction({
 	}
 });
 
-export const updateTodo = createStoreAction({
+export const updateTodo = createAction({
 	do(item: Item) {
 		return todoStore.patch(item);
 	}
