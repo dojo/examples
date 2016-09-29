@@ -1,53 +1,15 @@
-import createAction, { AnyAction, ActionOptions } from 'dojo-actions/createAction';
-import { DEFAULT_WIDGET_STORE, RegistryProvider } from 'dojo-app/createApp';
-import Promise from 'dojo-shim/Promise';
-import { MemoryStore } from 'dojo-stores/createMemoryStore';
+import createAction from 'dojo-actions/createAction';
 
-// Cast objects so these variables are never undefined.
-let addTodo = <AnyAction> {};
-let deleteCompleted = <AnyAction> {};
-let deleteTodo = <AnyAction> {};
-let toggleAll = <AnyAction> {};
-let updateTodo = <AnyAction> {};
-let widgetStore = <MemoryStore<Object>> {};
+import widgetStore from '../stores/widgetStore';
+import {
+	addTodo,
+	deleteCompleted,
+	deleteTodo,
+	toggleAll,
+	updateTodo
+} from './storeTodoActions';
 
-let configurationResolution: Promise<void>;
-function resolveConfiguration(registryProvider: RegistryProvider) {
-	if (configurationResolution) {
-		return configurationResolution;
-	}
-
-	const actionRegistry = registryProvider.get('actions');
-	const gotActions = Promise.all([
-		actionRegistry.get('addTodo'),
-		actionRegistry.get('deleteCompleted'),
-		actionRegistry.get('deleteTodo'),
-		actionRegistry.get('toggleAll'),
-		actionRegistry.get('updateTodo')
-	]).then((results) => {
-		addTodo = results[0];
-		deleteCompleted = results[1];
-		deleteTodo = results[2];
-		toggleAll = results[3];
-		updateTodo = results[4];
-	});
-
-	const storeRegistry = registryProvider.get('stores');
-	const gotStore = storeRegistry.get(DEFAULT_WIDGET_STORE)
-		.then((store: MemoryStore<Object>) => {
-			widgetStore = store;
-		});
-
-	configurationResolution = Promise.all([gotActions, gotStore]).then(() => {});
-	return configurationResolution;
-}
-
-function createUserAction(options: ActionOptions<any, any>) {
-	options.configure = resolveConfiguration;
-	return createAction(options);
-}
-
-export const todoInput = createUserAction({
+export const todoInput = createAction({
 	do(options: any) {
 		if (options.event.keyCode === 13 && options.event.target.value) {
 			addTodo.do({label: options.event.target.value, completed: false});
@@ -56,13 +18,13 @@ export const todoInput = createUserAction({
 	}
 });
 
-export const todoEdit = createUserAction({
+export const todoEdit = createAction({
 	do(options: any) {
 		widgetStore.patch(Object.assign(options, {editing: true}));
 	}
 });
 
-export const todoEditInput = createUserAction({
+export const todoEditInput = createAction({
 	do(options: any) {
 		if (options.event.keyCode === 13) {
 			todoSave.do(options);
@@ -73,7 +35,7 @@ export const todoEditInput = createUserAction({
 	}
 });
 
-export const todoSave = createUserAction({
+export const todoSave = createAction({
 	do(options: any) {
 		const label = options.event.target.value;
 
@@ -86,34 +48,34 @@ export const todoSave = createUserAction({
 	}
 });
 
-export const todoRemove = createUserAction({
+export const todoRemove = createAction({
 	do(options: {id: string}) {
 		deleteTodo.do(options);
 	}
 });
 
-export const todoToggleComplete = createUserAction({
+export const todoToggleComplete = createAction({
 	do(options: any) {
 		const item = Object.assign({}, options, { completed: !options.completed });
 		updateTodo.do(item);
 	}
 });
 
-export const filter = createUserAction({
+export const filter = createAction({
 	do(options: {filter: string}) {
 		widgetStore.patch({id: 'todo-footer', activeFilter: options.filter});
 		widgetStore.patch({id: 'todo-list', activeFilter: options.filter});
 	}
 });
 
-export const todoToggleAll = createUserAction({
+export const todoToggleAll = createAction({
 	do(options: any) {
 		const checked = options.event.target.checked;
 		toggleAll.do({checked});
 	}
 });
 
-export const clearCompleted = createUserAction({
+export const clearCompleted = createAction({
 	do() {
 		deleteCompleted.do();
 	}

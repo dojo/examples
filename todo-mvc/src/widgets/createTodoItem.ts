@@ -1,4 +1,3 @@
-import { RegistryProvider } from 'dojo-app/createApp';
 import WeakMap from 'dojo-shim/WeakMap';
 import createButton from 'dojo-widgets/createButton';
 import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
@@ -7,6 +6,13 @@ import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import { h, VNode } from 'maquette';
 
+import {
+	todoEdit,
+	todoEditInput,
+	todoRemove,
+	todoSave,
+	todoToggleComplete
+} from '../actions/uiTodoActions';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 
@@ -65,72 +71,50 @@ const createTodoItem = createRenderMixin
 				}
 			});
 
-			// FIXME: The RegistryProvider interface from dojo-widgets assumes all registries return widgets.
-			const registryProvider = <RegistryProvider> options.registryProvider;
-			const actions = registryProvider.get('actions');
-			Promise.all([
-				actions.get('todoEdit'),
-				actions.get('todoEditInput'),
-				actions.get('todoRemove'),
-				actions.get('todoSave'),
-				actions.get('todoToggleComplete')
-			])
-			.then(([
-				todoEdit,
-				todoEditInput,
-				todoRemove,
-				todoSave,
-				todoToggleComplete
-			]) => {
-				if (destroyed) {
-					return;
-				}
-
-				return instance.createChildren({
-					checkbox: {
-						factory: createCheckboxInput,
-						options: {
-							state: {
-								classes: [ 'toggle' ]
-							},
-							listeners: {
-								change: () => { todoToggleComplete.do(instance.state); }
-							}
-						}
-					},
-					button: {
-						factory: createButton,
-						options: {
-							state: {
-								classes: [ 'destroy' ]
-							},
-							listeners: {
-								click: () => { todoRemove.do(instance.state); }
-							}
-						}
-					},
-					label: {
-						factory: createRenderMixin,
-						options: {
-							listeners: {
-								dblclick: () => { todoEdit.do(instance.state); }
-							},
-							tagName: 'label'
-						}
-					},
-					editInput: {
-						factory: createFocusableTextInput,
-						options: {
-							state: {
-								classes: [ 'edit' ]
-							},
-							listeners: {
-								blur: (event: Event) => { todoSave.do({state: instance.state, event}); },
-								keyup: (event: Event) => { todoEditInput.do({state: instance.state, event}); }
-							}
+			return instance.createChildren({
+				checkbox: {
+					factory: createCheckboxInput,
+					options: {
+						state: {
+							classes: [ 'toggle' ]
+						},
+						listeners: {
+							change: () => { todoToggleComplete.do(instance.state); }
 						}
 					}
-				});
+				},
+				button: {
+					factory: createButton,
+					options: {
+						state: {
+							classes: [ 'destroy' ]
+						},
+						listeners: {
+							click: () => { todoRemove.do(instance.state); }
+						}
+					}
+				},
+				label: {
+					factory: createRenderMixin,
+					options: {
+						listeners: {
+							dblclick: () => { todoEdit.do(instance.state); }
+						},
+						tagName: 'label'
+					}
+				},
+				editInput: {
+					factory: createFocusableTextInput,
+					options: {
+						state: {
+							classes: [ 'edit' ]
+						},
+						listeners: {
+							blur: (event: Event) => { todoSave.do({state: instance.state, event}); },
+							keyup: (event: Event) => { todoEditInput.do({state: instance.state, event}); }
+						}
+					}
+				}
 			})
 			.then((children: TodoItemChildren<RenderMixin<any>>) => {
 				if (destroyed) {

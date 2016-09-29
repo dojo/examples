@@ -1,21 +1,12 @@
-import createAction, { AnyAction } from 'dojo-actions/createAction';
-import { DEFAULT_WIDGET_STORE, RegistryProvider } from 'dojo-app/createApp';
+import createAction from 'dojo-actions/createAction';
 import { assign } from 'dojo-core/lang';
 import { includes } from 'dojo-shim/array';
 
 import { ChangeRecord } from '../stores/todoStore';
+import widgetStore from '../stores/widgetStore';
 
-function configure (registryProvider: RegistryProvider) {
-	const action = <any> this;
-	return registryProvider.get('stores').get(DEFAULT_WIDGET_STORE).then((widgetStore: any) => {
-		action.widgetStore = widgetStore;
-	});
-};
-
-export const updateHeaderAndFooter: AnyAction = createAction({
-	configure,
+export const updateHeaderAndFooter = createAction({
 	do(options: ChangeRecord) {
-		const { widgetStore } = <any> this;
 		const { afterAll } = options;
 		const completedCount = afterAll.filter(({ completed }) => completed).length;
 		const activeCount = afterAll.filter(({ completed }) => !completed).length;
@@ -37,10 +28,8 @@ export const updateHeaderAndFooter: AnyAction = createAction({
 	}
 });
 
-export const afterTodoDelete: AnyAction = createAction({
-	configure,
+export const afterTodoDelete = createAction({
 	do(options: ChangeRecord) {
-		const { widgetStore } = <any> this;
 		const { deletes, afterAll } = options;
 		if (deletes.length) {
 			const deletedId = deletes[0];
@@ -52,10 +41,8 @@ export const afterTodoDelete: AnyAction = createAction({
 	}
 });
 
-export const afterTodoPut: AnyAction = createAction({
-	configure,
+export const afterTodoPut = createAction({
 	do(options: ChangeRecord) {
-		const { widgetStore }: { widgetStore: any } = <any> this;
 		const { puts, beforeAll } = options;
 		if (puts.length) {
 			const item = puts[0];
