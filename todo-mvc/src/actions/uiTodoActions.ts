@@ -1,18 +1,22 @@
-import createAction, { Action } from 'dojo-actions/createAction';
+import createAction, { AnyAction, ActionOptions } from 'dojo-actions/createAction';
 import { DEFAULT_WIDGET_STORE, RegistryProvider } from 'dojo-app/createApp';
 import Promise from 'dojo-shim/Promise';
 import { MemoryStore } from 'dojo-stores/createMemoryStore';
 
-type UserAction = Action<void, {}, {}> & {
-	addTodo: Action<void, {}, {}>;
-	deleteCompleted: Action<void, {}, {}>;
-	deleteTodo: Action<void, {}, {}>;
-	toggleAll: Action<void, {}, {}>;
-	updateTodo: Action<void, {}, {}>;
-	widgetStore: MemoryStore<Object>;
-}
+// Cast objects so these variables are never undefined.
+let addTodo = <AnyAction> {};
+let deleteCompleted = <AnyAction> {};
+let deleteTodo = <AnyAction> {};
+let toggleAll = <AnyAction> {};
+let updateTodo = <AnyAction> {};
+let widgetStore = <MemoryStore<Object>> {};
 
-function configure(this: UserAction, registryProvider: RegistryProvider) {
+let configurationResolution: Promise<void>;
+function resolveConfiguration(registryProvider: RegistryProvider) {
+	if (configurationResolution) {
+		return configurationResolution;
+	}
+
 	const actionRegistry = registryProvider.get('actions');
 	const gotActions = Promise.all([
 		actionRegistry.get('addTodo'),
@@ -21,99 +25,96 @@ function configure(this: UserAction, registryProvider: RegistryProvider) {
 		actionRegistry.get('toggleAll'),
 		actionRegistry.get('updateTodo')
 	]).then((results) => {
-		this.addTodo = results[0];
-		this.deleteCompleted = results[1];
-		this.deleteTodo = results[2];
-		this.toggleAll = results[3];
-		this.updateTodo = results[4];
+		addTodo = results[0];
+		deleteCompleted = results[1];
+		deleteTodo = results[2];
+		toggleAll = results[3];
+		updateTodo = results[4];
 	});
 
 	const storeRegistry = registryProvider.get('stores');
 	const gotStore = storeRegistry.get(DEFAULT_WIDGET_STORE)
 		.then((store: MemoryStore<Object>) => {
-			this.widgetStore = store;
+			widgetStore = store;
 		});
 
-	return Promise.all([gotActions, gotStore]).then(() => {});
+	configurationResolution = Promise.all([gotActions, gotStore]).then(() => {});
+	return configurationResolution;
 }
 
-export const todoInput = createAction({
-	configure,
-	do(this: UserAction, options: any) {
+function createUserAction(options: ActionOptions<any, any>) {
+	options.configure = resolveConfiguration;
+	return createAction(options);
+}
+
+export const todoInput = createUserAction({
+	do(options: any) {
 		if (options.event.keyCode === 13 && options.event.target.value) {
-			this.addTodo.do({label: options.event.target.value, completed: false});
-			this.widgetStore.patch({id: 'new-todo', value: ''});
+			addTodo.do({label: options.event.target.value, completed: false});
+			widgetStore.patch({id: 'new-todo', value: ''});
 		}
 	}
 });
 
-export const todoEdit = createAction({
-	configure,
-	do(this: UserAction, options: any) {
-		this.widgetStore.patch(Object.assign(options, {editing: true}));
+export const todoEdit = createUserAction({
+	do(options: any) {
+		widgetStore.patch(Object.assign(options, {editing: true}));
 	}
 });
 
-export const todoEditInput = createAction({
-	configure,
-	do(this: UserAction, options: any) {
+export const todoEditInput = createUserAction({
+	do(options: any) {
 		if (options.event.keyCode === 13) {
 			todoSave.do(options);
 		}
 		else if (options.event.keyCode === 27) {
-			this.widgetStore.patch(Object.assign(options.state, {editing: false}));
+			widgetStore.patch(Object.assign(options.state, {editing: false}));
 		}
 	}
 });
 
-export const todoSave = createAction({
-	configure,
-	do(this: UserAction, options: any) {
+export const todoSave = createUserAction({
+	do(options: any) {
 		const label = options.event.target.value;
 
 		if (!label) {
-			this.deleteTodo.do({id: options.state.id});
+			deleteTodo.do({id: options.state.id});
 		}
 		else {
-			this.updateTodo.do(Object.assign(options.state, {label, editing: false}));
+			updateTodo.do(Object.assign(options.state, {label, editing: false}));
 		}
 	}
 });
 
-export const todoRemove = createAction({
-	configure,
-	do(this: UserAction, options: {id: string}) {
-		this.deleteTodo.do(options);
+export const todoRemove = createUserAction({
+	do(options: {id: string}) {
+		deleteTodo.do(options);
 	}
 });
 
-export const todoToggleComplete = createAction({
-	configure,
-	do(this: UserAction, options: any) {
+export const todoToggleComplete = createUserAction({
+	do(options: any) {
 		const item = Object.assign({}, options, { completed: !options.completed });
-		this.updateTodo.do(item);
+		updateTodo.do(item);
 	}
 });
 
-export const filter = createAction({
-	configure,
+export const filter = createUserAction({
 	do(options: {filter: string}) {
-		this.widgetStore.patch({id: 'todo-footer', activeFilter: options.filter});
-		this.widgetStore.patch({id: 'todo-list', activeFilter: options.filter});
+		widgetStore.patch({id: 'todo-footer', activeFilter: options.filter});
+		widgetStore.patch({id: 'todo-list', activeFilter: options.filter});
 	}
 });
 
-export const todoToggleAll = createAction({
-	configure,
-	do(this: UserAction, options: any) {
+export const todoToggleAll = createUserAction({
+	do(options: any) {
 		const checked = options.event.target.checked;
-		this.toggleAll.do({checked});
+		toggleAll.do({checked});
 	}
 });
 
-export const clearCompleted = createAction({
-	configure,
-	do(this: UserAction) {
-		this.deleteCompleted.do();
+export const clearCompleted = createUserAction({
+	do() {
+		deleteCompleted.do();
 	}
 });
