@@ -6,61 +6,59 @@ import { ChangeRecord } from '../stores/todoStore';
 import widgetStore from '../stores/widgetStore';
 
 export const updateHeaderAndFooter = createAction({
-	do(options: ChangeRecord) {
-		const { afterAll } = options;
+	do({ afterAll }: ChangeRecord) {
 		const completedCount = afterAll.filter(({ completed }) => completed).length;
-		const activeCount = afterAll.filter(({ completed }) => !completed).length;
+		const activeCount = afterAll.length - completedCount;
 		const hidden = afterAll.length ? [] : ['hidden'];
 		const allCompleted = afterAll.length === completedCount;
 
-		widgetStore.patch({
-			id: 'todo-footer',
-			completedCount,
-			activeCount,
-			classes: ['footer', ...hidden]
-		});
+		return Promise.all([
+			widgetStore.patch({
+				id: 'todo-footer',
+				completedCount,
+				activeCount,
+				classes: ['footer', ...hidden]
+			}),
 
-		widgetStore.patch({
-			id: 'todo-toggle',
-			checked: allCompleted,
-			classes: ['toggle-all', ...hidden]
-		});
+			widgetStore.patch({
+				id: 'todo-toggle',
+				checked: allCompleted,
+				classes: ['toggle-all', ...hidden]
+			})
+		]);
 	}
 });
 
-export const afterTodoDelete = createAction({
-	do(options: ChangeRecord) {
-		const { deletes, afterAll } = options;
+export const deleteTodo = createAction({
+	do({ afterAll, deletes }: ChangeRecord) {
 		if (deletes.length) {
-			const deletedId = deletes[0];
+			const [ deletedId ] = deletes;
 			const children = afterAll
 				.filter(({ id }) => id !== deletedId)
 				.map(({ id }) => id);
-			return widgetStore.delete(deletedId).patch({ id: 'todo-list', children });
+
+			return widgetStore
+				.delete(deletedId)
+				.patch({ id: 'todo-list', children });
 		}
 	}
 });
 
-export const afterTodoPut = createAction({
-	do(options: ChangeRecord) {
-		const { puts, beforeAll } = options;
+export const putTodo = createAction({
+	do({ beforeAll, puts }: ChangeRecord) {
 		if (puts.length) {
-			const item = puts[0];
+			const [ item ] = puts;
 			const children = beforeAll.map(({ id }) => id);
 
-			const put = function() {
+			if (includes(children, item.id)) {
 				return widgetStore
+					.patch(item)
+					.patch({ id: 'todo-list', children });
+			}
+
+			return widgetStore
 				.put(assign({}, <any> item, { type: 'todo-item' }))
 				.patch({id: 'todo-list', children: [...children, item.id]});
-			};
-
-			const patch = function() {
-				return widgetStore
-				.patch(item)
-				.patch({id: 'todo-list', children});
-			};
-
-			return includes(children, item.id) ? patch() : put();
 		}
 	}
 });
