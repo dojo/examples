@@ -34,7 +34,7 @@ export const updateHeaderAndFooter: AnyAction = createAction({
 	}
 });
 
-export const deleteTodo: AnyAction = createAction({
+export const afterTodoDelete: AnyAction = createAction({
 	configure,
 	do(options: any) {
 		const { widgetStore } = <any> this;
@@ -48,7 +48,7 @@ export const deleteTodo: AnyAction = createAction({
 	}
 });
 
-export const putTodo: AnyAction = createAction({
+export const afterTodoPut: AnyAction = createAction({
 	configure,
 	do(options: any) {
 		const { widgetStore }: { widgetStore: any } = <any> this;
