@@ -1,41 +1,45 @@
-import createAction, { AnyAction } from 'dojo-actions/createAction';
+import createAction, { ActionOptions } from 'dojo-actions/createAction';
 import { RegistryProvider } from 'dojo-app/createApp';
 import Promise from 'dojo-shim/Promise';
 
 import { MemoryStore } from 'dojo-stores/createMemoryStore';
 
-interface StoreTodoAction {
-	todoStore: MemoryStore<Object>;
+// Cast object so the variable is never undefined.
+let todoStore = <MemoryStore<Object>> {};
+
+let configurationResolution: Promise<void>;
+function resolveConfiguration(registryProvider: RegistryProvider) {
+	if (configurationResolution) {
+		return configurationResolution;
+	}
+
+	configurationResolution = registryProvider.get('stores')
+		.get('todo-store')
+		.then((store: MemoryStore<Object>) => {
+			todoStore = store;
+		});
+	return configurationResolution;
 }
 
-function configure (registryProvider: RegistryProvider) {
-	const action = <StoreTodoAction> this;
+function createStoreAction(options: ActionOptions<any, any>) {
+	options.configure = resolveConfiguration;
+	return createAction(options);
+}
 
-	return registryProvider.get('stores').get('todo-store').then((todoStore: MemoryStore<Object>) => {
-		action.todoStore = todoStore;
-	});
-};
-
-export const addTodo: AnyAction = createAction({
-	configure,
+export const addTodo = createStoreAction({
 	do(todo: {label: string}) {
-		const { todoStore } = <StoreTodoAction> this;
 		return todoStore.add({ id: `${Date.now()}`, label: todo.label });
 	}
 });
 
-export const deleteTodo: AnyAction = createAction({
-	configure,
+export const deleteTodo = createStoreAction({
 	do(options: {id: string}) {
-		const { todoStore } = <StoreTodoAction> this;
 		return todoStore.delete(options.id);
 	}
 });
 
-export const deleteCompleted: AnyAction = createAction({
-	configure,
+export const deleteCompleted = createStoreAction({
 	do() {
-		const { todoStore } = <StoreTodoAction> this;
 		todoStore.get().then((items: any) => {
 			Array.from(items)
 				.filter((item: any) => item.completed)
@@ -44,11 +48,8 @@ export const deleteCompleted: AnyAction = createAction({
 	}
 });
 
-export const toggleAll: AnyAction = createAction({
-	configure,
+export const toggleAll = createStoreAction({
 	do(options: {checked: boolean}) {
-		const { todoStore } = <StoreTodoAction> this;
-
 		return todoStore.get().then((items: any) => {
 			return Promise.all(Array.from(items).map((item: any) =>
 				todoStore.patch(Object.assign({}, item, {completed: options.checked}))));
@@ -56,10 +57,8 @@ export const toggleAll: AnyAction = createAction({
 	}
 });
 
-export const updateTodo: AnyAction = createAction({
-	configure,
+export const updateTodo = createStoreAction({
 	do(todo: any) {
-		const { todoStore } = <StoreTodoAction> this;
 		return todoStore.patch(todo);
 	}
 });
