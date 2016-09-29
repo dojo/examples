@@ -3,7 +3,7 @@ import createRouter from 'dojo-routing/createRouter';
 import { Parameters } from 'dojo-routing/interfaces';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 
-import { filter as filterAction } from './actions/uiTodoActions';
+import { filter as filterAction } from './actions/userActions';
 
 interface FilterParameters extends Parameters {
 	filter: 'active' | 'all' | 'completed';
