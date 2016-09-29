@@ -1,5 +1,6 @@
 import { AnyAction } from 'dojo-actions/createAction';
 import createApp from 'dojo-app/createApp';
+import global from 'dojo-core/global';
 import createRoute, { Route } from 'dojo-routing/createRoute';
 import { Parameters } from 'dojo-routing/interfaces';
 import createRouter from 'dojo-routing/createRouter';
@@ -161,8 +162,8 @@ app.loadDefinition({
 });
 
 // Try to use the native promise so the browser can report unhandled rejections.
-const P = (<any> window).Promise || ShimPromise;
-P.resolve(app.realize(document.body))
+const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
+Promise.resolve(app.realize(document.body))
 	.then(() => {
 		router.observeHistory(createHashHistory(), {}, true);
 	});
