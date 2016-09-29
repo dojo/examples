@@ -1,6 +1,6 @@
 import createMemoryStore, { MemoryStore } from 'dojo-stores/createMemoryStore';
 
-import { updateHeaderAndFooter, deleteTodo, putTodo } from '../actions/widgetTodoActions';
+import { updateHeaderAndFooter, deleteTodo, putTodo } from '../actions/widgetStoreActions';
 
 export interface Item {
 	id: string;

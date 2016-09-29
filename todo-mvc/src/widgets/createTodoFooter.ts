@@ -6,7 +6,7 @@ import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import { h, VNode } from 'maquette';
 
-import { clearCompleted } from '../actions/uiTodoActions';
+import { clearCompleted } from '../actions/userActions';
 import createTodoFilter from './createTodoFilter';
 
 export type TodoFooterState = RenderMixinState & StatefulChildrenState & {

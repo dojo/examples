@@ -7,7 +7,7 @@ import {
 	deleteTodo,
 	toggleAll,
 	updateTodo
-} from './storeTodoActions';
+} from './todoStoreActions';
 
 export const todoInput = createAction({
 	do(options: any) {

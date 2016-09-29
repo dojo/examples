@@ -12,7 +12,7 @@ import {
 	todoRemove,
 	todoSave,
 	todoToggleComplete
-} from '../actions/uiTodoActions';
+} from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 
