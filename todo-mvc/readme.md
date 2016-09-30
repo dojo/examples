@@ -4,7 +4,9 @@
 
 > Current progress of Dojo2 is available from the _[Meta](https://github.com/dojo/meta)_ repository.
 
-## Learning Dojo2
+## Pre-requisites
+
+You need to be running node `v6+` and npm `v3+`.
 
 ## Running
 

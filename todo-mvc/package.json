@@ -11,6 +11,10 @@
     "url": "https://github.com/dojo/examples.git"
   },
   "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "dts-generator": "^1.7.0",
