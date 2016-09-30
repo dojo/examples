@@ -10,19 +10,21 @@
 		<script src="./../../node_modules/dojo-loader/loader.min.js"></script>
 		<script src="./index.js"></script>
 		<section class="todoapp">
-			<header>
-				<app-projector><div>
+			<header is="app-projector">
+				<div>
 					<dojo-widget data-options='{"id":"title","tagName": "h1"}'></dojo-widget>
 					<div is="app-widget" id="new-todo"/>
-					</div></app-projector>
-			</header>
-			<app-projector><div>
-				<div is="app-widget" id="main-section">
-					<div is="app-widget" id="todo-list"></div>
-					<div is="app-widget" id="todo-toggle"></div>
 				</div>
-				<div is="app-widget" id="todo-footer"></div>
-				</div></app-projector>
+			</header>
+			<app-projector>
+				<div>
+					<div is="app-widget" id="main-section">
+						<div is="app-widget" id="todo-list"></div>
+						<div is="app-widget" id="todo-toggle"></div>
+					</div>
+					<div is="app-widget" id="todo-footer"></div>
+				</div>
+			</app-projector>
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
