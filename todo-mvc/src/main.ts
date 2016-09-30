@@ -1,9 +1,11 @@
 import { AnyAction } from 'dojo-actions/createAction';
 import createApp from 'dojo-app/createApp';
+import global from 'dojo-core/global';
 import createRoute, { Route } from 'dojo-routing/createRoute';
 import { Parameters } from 'dojo-routing/interfaces';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
+import ShimPromise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
 
@@ -17,8 +19,6 @@ import createTodoFooter from './widgets/createTodoFooter';
 import createTodoList from './widgets/createTodoList';
 
 const router = createRouter();
-
-router.observeHistory(createHashHistory(), {}, true);
 
 const completedRoute: Route<Parameters> = createRoute({
 	path: '/completed',
@@ -89,12 +89,18 @@ app.registerStore('todo-store', todoStore);
 
 Object.keys(storeTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> storeTodoActions)[actionName];
-	app.registerAction(actionName, action);
+	action.configure(app.registryProvider);
 });
 
 Object.keys(uiTodoActions).forEach((actionName) => {
 	const action: AnyAction = (<any> uiTodoActions)[actionName];
-	app.registerAction(actionName, action);
+	if (actionName === 'filter') {
+		// This action is referenced from the routes only, so does not need to be registered. Configure it instead.
+		action.configure(app.registryProvider);
+	}
+	else {
+		app.registerAction(actionName, action);
+	}
 });
 
 Object.keys(widgetTodoActions).forEach((actionName) => {
@@ -155,4 +161,9 @@ app.loadDefinition({
 	]
 });
 
-app.realize(document.body);
+// Try to use the native promise so the browser can report unhandled rejections.
+const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
+Promise.resolve(app.realize(document.body))
+	.then(() => {
+		router.observeHistory(createHashHistory(), {}, true);
+	});
