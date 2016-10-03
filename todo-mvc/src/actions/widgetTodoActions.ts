@@ -1,3 +1,4 @@
+import { assign } from 'dojo-core/lang';
 import createAction, { AnyAction } from 'dojo-actions/createAction';
 import { App } from 'dojo-app/createApp';
 
@@ -52,10 +53,8 @@ export const putTodo: AnyAction = createAction({
 		const { widgetStore, app }: { widgetStore: any, app: App } = <any> this;
 		const { puts, beforeAll } = options;
 		if (puts.length) {
-			const item = puts[0];
+			const item = assign({}, puts[0], { type: 'todo-item' });
 			const children = beforeAll.map((child: any) => child.id);
-
-			item.type = 'todo-item';
 
 			const put = function() {
 				return widgetStore
