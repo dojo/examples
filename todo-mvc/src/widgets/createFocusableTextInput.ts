@@ -43,16 +43,10 @@ const createFocusableTextInput = createRenderMixin
 	})
 	.extend({
 		nodeAttributes: [
-			function (this: FocusableTextInput) {
-				const props: VNodeProperties = {
-					afterUpdate: afterUpdateFunctions.get(this)
-				};
-
-				if (this.state.placeholder) {
-					props.placeholder = this.state.placeholder;
-				}
-
-				return props;
+			function (this: FocusableTextInput): VNodeProperties {
+				const afterUpdate = afterUpdateFunctions.get(this);
+				const { placeholder } = this.state;
+				return { afterUpdate, placeholder };
 			}
 		],
 
