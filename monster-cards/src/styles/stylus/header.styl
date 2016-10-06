@@ -13,6 +13,11 @@ header {
 	li {
 		height: 100%;
 		vertical-align: top;
+		img {
+			cursor: pointer;
+			padding-right: 35px;
+		}
+
 		a {
 			padding: 0 16px;
 			display: inline-block;
@@ -20,10 +25,16 @@ header {
 			text-decoration: none;
 			color: inherited;
 
+			font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+			font-weight: 700;
+			font-style: normal;
+			font-size: 20px;
+
 			&:hover:not(.active) {
 				background-color: darken(header-background, 10%);
 			}
-			&:visited, &:active {
+			&:visited, &:active, &:link {
+				text-decoration: none;
 				color: inherit;
 			}
 		}
