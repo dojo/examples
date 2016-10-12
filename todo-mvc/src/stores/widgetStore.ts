@@ -10,7 +10,9 @@ export default createMemoryStore({
 			id: 'new-todo',
 			classes: ['new-todo'],
 			focused: true,
-			placeholder: 'What needs to be done?'
+			labels: {
+				placeholder: 'nls/main:newTodoPlaceholder'
+			}
 		},
 		{
 			id: 'main-section',
@@ -32,6 +34,12 @@ export default createMemoryStore({
 			completedCount: 0,
 			activeCount: 0,
 			activeFilter: 'all'
+		},
+		{
+			id: 'footer-instructions',
+			labels: {
+				label: 'nls/main:instructions'
+			}
 		}
 	]
 });

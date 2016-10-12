@@ -1,5 +1,6 @@
 import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
 import { h, VNode } from 'maquette';
+import bundle from '../nls/main';
 
 type TodoFilterState = RenderMixinState & {
 	activeFilter?: string;
@@ -13,10 +14,11 @@ const createTodoFilter = createRenderMixin
 	.extend({
 		getChildrenNodes(this: TodoFilter): VNode[] {
 			const { activeFilter } = this.state;
+			const messages = this.localizeBundle(bundle);
 			return [
 				h('li', {}, [
 					h('a', {
-						innerHTML: 'All',
+						innerHTML: messages['all'],
 						href: '#all',
 						classes: {
 							selected: activeFilter === 'all'
@@ -25,7 +27,7 @@ const createTodoFilter = createRenderMixin
 				]),
 				h('li', {}, [
 					h('a', {
-						innerHTML: 'Active',
+						innerHTML: messages['active'],
 						href: '#active',
 						classes: {
 							selected: activeFilter === 'active'
@@ -34,7 +36,7 @@ const createTodoFilter = createRenderMixin
 				]),
 				h('li', {}, [
 					h('a', {
-						innerHTML: 'Completed',
+						innerHTML: messages['completed'],
 						href: '#completed',
 						classes: {
 							selected: activeFilter === 'completed'
@@ -44,6 +46,7 @@ const createTodoFilter = createRenderMixin
 			];
 		},
 
+		bundles: [ bundle ],
 		tagName: 'ul'
 	});
 

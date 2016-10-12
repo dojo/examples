@@ -3,6 +3,7 @@ import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldM
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createVNodeEvented, { VNodeEvented } from 'dojo-widgets/mixins/createVNodeEvented';
 import { VNodeProperties } from 'maquette';
+import bundle from '../nls/main';
 
 /* I suspect this needs to go somewhere else */
 export interface TypedTargetEvent<T extends EventTarget> extends Event {
@@ -50,8 +51,8 @@ const createFocusableTextInput = createRenderMixin
 			}
 		],
 
+		bundles: [ bundle ],
 		tagName: 'input',
-
 		type: 'text'
 	});
 

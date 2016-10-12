@@ -1,5 +1,6 @@
 import createApp from 'dojo-app/createApp';
 import global from 'dojo-core/global';
+import { switchLocale } from 'dojo-i18n/i18n';
 import ShimPromise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
