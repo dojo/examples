@@ -10,5 +10,6 @@
 /typings
 .baseDir.ts
 .tscache
+.history
 coverage-unmapped.json
 npm-debug.log
