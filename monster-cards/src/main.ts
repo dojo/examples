@@ -42,12 +42,7 @@ const widgetStore = createMemoryStore <any>({
 			children: [ 'cardDetailsDescription' ]
 		},
 		{
-			id: 'cardDetailsDescription',
-			details: {
-				name: 'badger',
-				tagline: 'apple',
-				description: 'hello, world'
-			}
+			id: 'cardDetailsDescription'
 		}
 	]
 });
@@ -78,16 +73,11 @@ for (let i = 0; i < 10; i++) {
 	});
 }
 
-// Set state for the card details description
-setTimeout(() => {
-	cardStore.get('card-1').then(({ details }) => {
-		widgetStore.patch({ id: 'cardDetailsDescription', details });
-	});
-}, 2000);
+cardStore.get('card-1').then(({ details }) => {
+	widgetStore.patch({ id: 'cardDetailsDescription', details });
+});
 
 const app = createApp({ defaultWidgetStore: widgetStore });
-
-app.registerStore('card-store', cardStore);
 
 app.loadDefinition({
 	customElements: [
