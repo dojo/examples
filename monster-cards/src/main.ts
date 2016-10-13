@@ -1,42 +1,81 @@
 import createApp from 'dojo-app/createApp';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
-import createWidget from 'dojo-widgets/createWidget';
+import createContainer from './widgets/common/createContainer';
 
 import createNavbar from './widgets/navbar/createNavbar';
-import createCardDetails from './widgets/cardDetails/createCardDetails';
+import createCardDescription, { MilestoneCardDetails } from './widgets/cardDetails/createCardDescription';
+import createCard from './widgets/card/createCard';
+import ShimPromise from 'dojo-shim/Promise';
+import global from 'dojo-core/global';
 
-let text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis dolor euismod, consequat nisl in, condimentum odio. Vivamus sit amet ipsum volutpat, auctor risus sit amet, consequat libero. Etiam quis suscipit ipsum, sit amet porta lectus. In sollicitudin orci quis tempus bibendum. Nam non ex in est cursus elementum. Praesent imperdiet ante eget leo varius porta. Quisque mollis ipsum eu augue efficitur dignissim. Sed a fermentum metus. In pretium nisi odio, eu aliquam purus interdum eget. Nulla ut mi at felis facilisis porttitor facilisis quis massa. Integer egestas neque sem, non ultrices ex blandit sit amet. Sed eu lectus urna.';
+import { assign } from 'dojo-core/lang';
 
-for (let i = 0; i < 5; i++) {
-	text += text;
+export type MilestoneCard = {
+	id: string;
+	details: MilestoneCardDetails;
 }
 
-const widgetStore = createMemoryStore({
+const widgetStore = createMemoryStore <any>({
 	data: [
 		{
 			id: 'navbar',
 			classes: [ 'navbar' ]
 		},
-		// {
-		// 	id: 'container',
-		// 	classes: [ 'content' ],
-		// 	label: text
-		// },
 		{
-			id: 'cardDetails'
+			id: 'container',
+			children: [ 'cardDetails' ]
+		},
+		{
+			id: 'cardDetails',
+			children: [
+				'cardDetailsNavbar',
+				'cardDetailsJumbotron'
+			]
+		},
+		{
+			id: 'cardDetailsNavbar',
+			children: []
+		},
+		{
+			id: 'cardDetailsJumbotron',
+			classes: [ 'jumbotron' ],
+			children: [ 'cardDetailsDescription' ]
+		},
+		{
+			id: 'cardDetailsDescription'
 		}
 	]
 });
 
-const cards: { name: string }[] = [];
+const cards: MilestoneCard[] = [];
+const cardStore = createMemoryStore({
+	data: cards
+});
+
+cardStore.observe().subscribe(function(options: any) {
+	const { puts, beforeAll } = options;
+	puts.forEach((item: any) => {
+		widgetStore
+			.put(assign({}, item, { type: 'milestone-card'}))
+			.patch({ id: 'cardDetailsNavbar', children: [ ...beforeAll.map((item: any) => item.id), item.id ] });
+	});
+});
+
+// make some cards
 for (let i = 0; i < 10; i++) {
-	cards.push({
-		name: `card-${i}`
+	cardStore.put({
+		id: `card-${i}`,
+		details: {
+			name: 'The Horde',
+			tagline: 'Throw more bodies at the problem',
+			description: 'Your milestone\'s slipping? No worries, your boss has a great idea'
+		}
 	});
 }
 
-const cardStore = createMemoryStore({
-	data: cards
+// Set state for the card details description
+cardStore.get('card-1').then(({ details }) => {
+	widgetStore.patch({ id: 'cardDetailsDescription', details });
 });
 
 const app = createApp({ defaultWidgetStore: widgetStore });
@@ -46,8 +85,8 @@ app.registerStore('card-store', cardStore);
 app.loadDefinition({
 	customElements: [
 		{
-			name: 'card-details',
-			factory: createCardDetails
+			name: 'milestone-card',
+			factory: createCard
 		}
 	],
 	widgets: [
@@ -55,20 +94,34 @@ app.loadDefinition({
 			id: 'navbar',
 			factory: createNavbar
 		},
-		// {
-		// 	id: 'container',
-		// 	factory: createWidget
-		// }
-		// {
-		// 	id: 'cardDetails',
-		// 	factory: createCardDetails
-		// }
+		{
+			id: 'container',
+			factory: createContainer
+		},
+		{
+			id: 'cardDetails',
+			factory: createContainer,
+			options: {
+				tagName: 'card-details'
+			}
+		},
+		{
+			id: 'cardDetailsNavbar',
+			factory: createContainer,
+			options: {
+				tagName: 'card-details-nav-bar'
+			}
+		},
+		{
+			id: 'cardDetailsJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'cardDetailsDescription',
+			factory: createCardDescription
+		}
 	]
 });
 
-app
-	.realize(document.body)
-	.catch((err) => {
-		/* Report any realization errors */
-		console.error(err);
-	});
+const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
+Promise.resolve(app.realize(document.body));
