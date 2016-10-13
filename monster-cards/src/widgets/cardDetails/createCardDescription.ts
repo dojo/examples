@@ -14,8 +14,6 @@ export type CardDescriptionState = RenderMixinState & StatefulChildrenState & {
 	details?: MilestoneCardDetails,
 };
 
-// export type CardDescriptionItem = RenderMixin<CardDescriptionState>;
-
 type CardDescription = RenderMixin<CardDescriptionState> & StatefulChildren<Child>;
 
 interface CardDescriptionChildren<C extends Child> extends CreateChildrenResults<C> {
@@ -23,8 +21,6 @@ interface CardDescriptionChildren<C extends Child> extends CreateChildrenResults
 	tagline: CreateChildrenResultsItem<C>;
 	description: CreateChildrenResultsItem<C>;
 }
-
-// type CardDescriptionFactory = ComposeFactory<CardDescription, CardDescriptionOptions>;
 
 const create = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
@@ -62,21 +58,24 @@ const create = createRenderMixin
 					}
 				})
 				.then((children: CardDescriptionChildren<RenderMixin<any>>) => {
-					instance.on('statechange', (event) => {
-						// const { name, tagline, description } = children;
-						console.log('here');
+					function manageChildren() {
+						const { name, tagline, description } = children;
 
-						// children.name.widget.setState({
-						// 	label: 'badger'
-						// });
-						// console.log(JSON.stringify(event));
-						// console.dir(children);
-						// children.name.widget.setState({
-						// 	label: instance.state.details.name
-						// });
-					});
-					instance.setState({});
-					// instance.invalidate();
+						name.widget.setState({
+							label: instance.state.details.name
+						});
+
+						tagline.widget.setState({
+							label: instance.state.details.tagline
+						});
+
+						description.widget.setState({
+							label: instance.state.details.description
+						});
+					}
+
+					instance.on('statechange', manageChildren);
+					manageChildren();
 				});
 		}
 	})
