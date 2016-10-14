@@ -68,7 +68,9 @@ for (let i = 0; i < 10; i++) {
 		details: {
 			name: 'The Horde',
 			tagline: 'Throw more bodies at the problem',
-			description: 'Your milestone\'s slipping? No worries, your boss has a great idea'
+			description: 'Your milestone\'s slipping? No worries, your boss has a great idea',
+			cardImage: 'images/horde.png',
+			favouriteCount: 4332
 		}
 	});
 }
