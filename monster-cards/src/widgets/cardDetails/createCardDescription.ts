@@ -2,6 +2,7 @@ import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableC
 import createRenderMixin, { RenderMixin, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createWidget from 'dojo-widgets/createWidget';
+import createLink from '../common/createLink';
 import createImage from '../common/createImage';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 import { h, VNode } from 'maquette';
@@ -13,6 +14,7 @@ export type MilestoneCardDetails = {
 	description: string;
 	cardImage: string;
 	favouriteCount: number;
+	id: string;
 }
 
 export type CardDescriptionState = RenderMixinState & StatefulChildrenState & {
@@ -33,8 +35,10 @@ interface CardDescriptionChildren<C extends Child> extends CreateChildrenResults
 
 const childrenMap = new WeakMap<CardDescriptionItem, CardDescriptionChildren<RenderMixin<any>>>();
 
+const favouriteHref = '/api/favourite/';
+
 function manageChildren(this: CardDescriptionItem) {
-	const { cardImage, name, tagline, description, favouriteCount } = childrenMap.get(this);
+	const { cardImage, name, tagline, description, favouriteCount, favouriteLink } = childrenMap.get(this);
 
 	cardImage.widget.setState({
 		src: this.state.details.cardImage
@@ -54,6 +58,10 @@ function manageChildren(this: CardDescriptionItem) {
 
 	favouriteCount.widget.setState({
 		label: this.state.details.favouriteCount
+	});
+
+	favouriteLink.widget.setState({
+		href: favouriteHref + this.state.details.id
 	});
 }
 
@@ -97,6 +105,10 @@ const create = createRenderMixin
 								classes: [ 'favouriteCount' ]
 							}
 						}
+					},
+					favouriteLink: {
+						factory: createLink,
+						options: { state: { classes: [ 'favourite' ] } }
 					}
 				})
 				.then((children: CardDescriptionChildren<RenderMixin<any>>) => {
@@ -111,7 +123,7 @@ const create = createRenderMixin
 	.extend({
 		tagName: 'card-details-description',
 		getChildrenNodes(this: CardDescriptionItem): VNode[] {
-			const { cardImage, name, tagline, description, favouriteCount } = childrenMap.get(this);
+			const { cardImage, name, tagline, description, favouriteCount, favouriteLink } = childrenMap.get(this);
 			return [
 				cardImage.widget.render(),
 				h('article', [
@@ -119,7 +131,10 @@ const create = createRenderMixin
 					tagline.widget.render(),
 					description.widget.render(),
 					h('span', 'Favourited: '),
-					favouriteCount.widget.render()
+					favouriteCount.widget.render(),
+					favouriteLink.widget.render(),
+					h('a', { href: '#blank', target: 'blank', class: 'twitter' }),
+					h('a', { href: '#blank', target: 'blank', class: 'facebook' })
 				])
 			];
 		}

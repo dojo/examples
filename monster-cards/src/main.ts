@@ -10,11 +10,6 @@ import global from 'dojo-core/global';
 
 import { assign } from 'dojo-core/lang';
 
-export type MilestoneCard = {
-	id: string;
-	details: MilestoneCardDetails;
-}
-
 const widgetStore = createMemoryStore <any>({
 	data: [
 		{
@@ -47,7 +42,7 @@ const widgetStore = createMemoryStore <any>({
 	]
 });
 
-const cards: MilestoneCard[] = [];
+const cards: MilestoneCardDetails[] = [];
 const cardStore = createMemoryStore({
 	data: cards
 });
@@ -65,17 +60,15 @@ cardStore.observe().subscribe(function(options: any) {
 for (let i = 0; i < 10; i++) {
 	cardStore.put({
 		id: `card-${i}`,
-		details: {
-			name: 'The Horde',
-			tagline: 'Throw more bodies at the problem',
-			description: 'Your milestone\'s slipping? No worries, your boss has a great idea',
-			cardImage: 'images/horde.png',
-			favouriteCount: 4332
-		}
+		name: 'The Horde',
+		tagline: 'Throw more bodies at the problem',
+		description: 'Your milestone\'s slipping? No worries, your boss has a great idea',
+		cardImage: 'images/horde.png',
+		favouriteCount: 4332
 	});
 }
 
-cardStore.get('card-1').then(({ details }) => {
+cardStore.get('card-1').then((details) => {
 	widgetStore.patch({ id: 'cardDetailsDescription', details });
 });
 
