@@ -8,19 +8,35 @@
 
 You need to be running node `v6+` and npm `v3+`.
 
+package `dojo-cli` installed globally.
+
+```shell
+npm install dojo-cli -g
+```
+
 ## Running
 
-To run the app, run the following commands and spin up an HTTP server (e.g. python -m SimpleHTTPServer) and visit http://localhost/.../build/src/.
+To run the application simply install the dependencies and run the dojo build.
 
 ```
 cd /path/to/todomvc
 npm install
-grunt dev
+dojo build webpack
+```
+
+To watch and serve the application source, then run the build with the `-w` command.
+
+```
+dojo build webpack -w
 ```
 
 ## Testing
 
 You can test TodoMVC locally. First make sure you have a WebDriver client running, e.g. install [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home). Start it like this:
+
+```shell
+grunt dev
+```
 
 ```shell
 chromedriver --port=4444 --url-base=wd/hub
