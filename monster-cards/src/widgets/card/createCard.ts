@@ -4,10 +4,7 @@ import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 const create = createRenderMixin
 	.mixin(createVNodeEvented)
 	.extend({
-		tagName: 'milestone-card',
-		listeners: {
-			click: () => { console.log('clicked'); }
-		}
+		tagName: 'milestone-card'
 	});
 
 export default create;
