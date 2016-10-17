@@ -14,6 +14,7 @@ require.config({
 		{ name: 'dojo-widgets', location: 'node_modules/dojo-widgets' },
 		{ name: 'immutable', location: 'node_modules/immutable/dist', main: 'immutable' },
 		{ name: 'maquette', location: 'node_modules/maquette/dist', main: 'maquette' },
+		{ name: 'node-uuid', location: 'node_modules/node-uuid', main: 'uuid' },
 		{ name: 'rxjs', location: 'node_modules/@reactivex/rxjs/dist/amd' }
 	]
 });

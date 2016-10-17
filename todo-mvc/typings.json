@@ -3,7 +3,8 @@
 	"dependencies": {
 		"@reactivex/RxJS": "npm:@reactivex/rxjs",
 		"immutable": "npm:immutable",
-		"maquette": "npm:maquette"
+		"maquette": "npm:maquette",
+		"node-uuid": "registry:npm/node-uuid#1.4.7+20160723033700"
 	},
 	"globalDependencies": {
 		"dojo-loader": "npm:dojo-loader",

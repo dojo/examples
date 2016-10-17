@@ -1,11 +1,13 @@
 import createAction from 'dojo-actions/createAction';
 import Promise from 'dojo-shim/Promise';
+import * as uuid from 'node-uuid';
 
 import todoStore, { Item } from '../stores/todoStore';
 
 export const addTodo = createAction({
 	do({ label }: { label: string }) {
-		return todoStore.add({ id: `${Date.now()}`, label });
+		const id = uuid.v4();
+		return todoStore.add({ id, label });
 	}
 });
 
