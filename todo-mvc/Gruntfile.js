@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 
-	var staticFiles = [ 'src/**/*.html' ];
+	var staticFiles = [ 'src/**/*.html', 'src/**/*.css' ];
 
 	require('grunt-dojo2').initConfig(grunt, {
 		ts: {
