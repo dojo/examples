@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
+    "dojo-cli-build-webpack": "^2.0.0-alpha.1",
     "dts-generator": "^1.7.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
