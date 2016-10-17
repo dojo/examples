@@ -1,0 +1,7 @@
+.item {
+	vertical-align: top;
+}
+
+.item a {
+	display: inline-block;
+}
