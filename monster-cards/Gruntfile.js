@@ -22,9 +22,7 @@ module.exports = function (grunt) {
 		},
 		stylus: {
 			dev: {
-				// options: {
-				// 	'include css': true
-				// },
+				options: {},
 				files: [ {
 					expand: false,
 					src: 'src/styles/theme/app.styl',
