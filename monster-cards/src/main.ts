@@ -41,11 +41,7 @@ const widgetStore = createMemoryStore <any>({
 		},
 		{
 			id: 'cardDetailsJumbotron',
-			classes: [ 'jumbotron' ],
-			children: [ 'cardDetailsDescription' ]
-		},
-		{
-			id: 'cardDetailsDescription'
+			classes: [ 'jumbotron' ]
 		}
 	]
 });
@@ -54,13 +50,23 @@ const cards: MilestoneCardDetails[] = [];
 const cardStore = createMemoryStore({
 	data: cards
 });
+const cardIdToDescriptionIdMap = new Map();
 
 cardStore.observe().subscribe(function(options: any) {
 	const { puts, beforeAll } = options;
 	puts.forEach((item: any) => {
-		widgetStore
-			.put(assign({}, item, { type: 'milestone-card'}))
-			.patch({ id: 'cardDetailsNavbar', children: [ ...beforeAll.map((item: any) => item.id), item.id ] });
+		const cardId = item.id;
+		const descriptionId = `description-${cardId}`;
+		cardIdToDescriptionIdMap.set(cardId, descriptionId);
+
+		Promise.all([
+			widgetStore.put(assign({}, item, { type: 'milestone-card' })),
+			widgetStore.put(assign({}, item, { type: 'card-description', id: descriptionId }))
+		]).then(() => {
+			widgetStore.patch({
+				id: 'cardDetailsNavbar',
+				children: [ ...beforeAll.map((item: any) => item.id), item.id ] });
+		});
 	});
 });
 
@@ -81,11 +87,10 @@ const cardDetailRoute: Route<Parameters> = createRoute({
 	path: 'cards/{id}',
 	exec (request: any) {
 		const id = request.params.id;
-		cardStore.get(id).then((details) => {
-			widgetStore
-				.patch({ id: 'cardDetailsDescription', details })
-				.patch({ id: 'container', children: [ 'cardDetails' ] });
-		});
+		const descriptionId = cardIdToDescriptionIdMap.get(id);
+		widgetStore
+			.patch({ id: 'cardDetailsJumbotron', children: [ descriptionId ] })
+			.patch({ id: 'container', children: [ 'cardDetails' ] });
 	}
 });
 
@@ -100,6 +105,10 @@ app.loadDefinition({
 		{
 			name: 'milestone-card',
 			factory: createCard
+		},
+		{
+			name: 'card-description',
+			factory: createCardDescription
 		}
 	],
 	widgets: [
@@ -128,13 +137,8 @@ app.loadDefinition({
 		{
 			id: 'cardDetailsJumbotron',
 			factory: createContainer
-		},
-		{
-			id: 'cardDetailsDescription',
-			factory: createCardDescription
 		}
 	]
 });
 
-const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
-Promise.resolve(app.realize(document.body));
+app.realize(document.body);

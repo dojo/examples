@@ -3,6 +3,7 @@ import createRenderMixin, { RenderMixin, RenderMixinState } from 'dojo-widgets/m
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createWidget from 'dojo-widgets/createWidget';
 import createImage from '../common/createImage';
+import createIconLink from '../common/createIconLink';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 import { h, VNode } from 'maquette';
 import WeakMap from 'dojo-shim/WeakMap';
@@ -37,7 +38,8 @@ const childrenMap = new WeakMap<CardDescriptionItem, CardDescriptionChildren<Ren
 const favouriteHref = '/api/favourite/';
 
 function manageChildren(this: CardDescriptionItem) {
-	const { cardImage, name, tagline, description, favouriteCount } = childrenMap.get(this);
+	console.log('boom');
+	const { cardImage, name, tagline, description, favouriteCount, addToFavouritesLink } = childrenMap.get(this);
 
 	cardImage.widget.setState({
 		src: this.state.details.cardImage
@@ -57,6 +59,10 @@ function manageChildren(this: CardDescriptionItem) {
 
 	favouriteCount.widget.setState({
 		label: this.state.details.favouriteCount
+	});
+
+	addToFavouritesLink.widget.setState({
+		href: favouriteHref + this.state.details.id
 	});
 }
 
@@ -100,6 +106,33 @@ const create = createRenderMixin
 								classes: [ 'favouriteCount' ]
 							}
 						}
+					},
+					addToFavouritesLink: {
+						factory: createIconLink,
+						options: {
+							state: {
+								iconClass: [ 'fa', 'fa-heart-o'],
+								text: 'Add to favourites'
+							}
+						}
+					},
+					twitterLink: {
+						factory: createIconLink,
+						options: {
+							state: {
+								href: 'http://www.twitter.com',
+								iconClass: [ 'fa', 'fa-twitter-o' ]
+							}
+						}
+					},
+					facebookLink: {
+						factory: createIconLink,
+						options: {
+							state: {
+								href: 'http://www.facebook.com',
+								iconClass: [ 'fa', 'fa-facebook' ]
+							}
+						}
 					}
 				})
 				.then((children: CardDescriptionChildren<RenderMixin<any>>) => {
@@ -108,13 +141,23 @@ const create = createRenderMixin
 
 					// This only works now that I have overridden `getChildrenNodes`
 					instance.setState({});
+					instance.invalidate();
 				});
 		}
 	})
 	.extend({
 		tagName: 'card-details-description',
 		getChildrenNodes(this: CardDescriptionItem): VNode[] {
-			const { cardImage, name, tagline, description, favouriteCount } = childrenMap.get(this);
+			const { cardImage,
+					name,
+					tagline,
+					description,
+					favouriteCount,
+					twitterLink,
+					facebookLink,
+					addToFavouritesLink
+				} = childrenMap.get(this);
+
 			return [
 				cardImage.widget.render(),
 				h('article', [
@@ -124,18 +167,9 @@ const create = createRenderMixin
 					h('span', 'Favourited: '),
 					favouriteCount.widget.render(),
 					h('div.buttonHolder', [
-						h('a.button.addToFavourites', {
-							href: favouriteHref + this.state.details.id
-						}, [
-							h('i.fa.fa-heart-o'),
-							'add to favourites'
-						]),
-						h('a.button.twitter', { href: '#blank', target: 'blank' }, [
-							h('i.fa.fa-twitter')
-						]),
-						h('a.button.facebook', { href: '#blank', target: 'blank' }, [
-							h('i.fa.fa-facebook')
-						])
+						addToFavouritesLink.widget.render(),
+						twitterLink.widget.render(),
+						facebookLink.widget.render()
 					])
 				])
 			];
