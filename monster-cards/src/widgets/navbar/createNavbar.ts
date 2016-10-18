@@ -4,6 +4,7 @@ import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChild
 
 import createNavMenu from './createNavMenu';
 import createNavActions from './createNavActions';
+import css from '../../styles/structural/modules/Navbar';
 
 const createNavbar = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
@@ -35,7 +36,8 @@ const createNavbar = createRenderMixin
 		}
 	})
 	.extend({
-		tagName: 'header'
+		tagName: 'header',
+		classes: [ css.navbar ]
 	});
 
 export default createNavbar;

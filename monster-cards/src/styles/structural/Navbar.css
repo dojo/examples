@@ -1,0 +1,11 @@
+.navbar {
+	position: fixed;
+	left: 0;
+	right: 0;
+}
+
+@media (max-width: $sizeTablet) {
+	.navbar {
+		bottom: 0px;
+	}
+}

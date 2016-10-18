@@ -4,6 +4,7 @@ import createStatefulChildrenMixin, { StatefulChildren } from 'dojo-widgets/mixi
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import createImage, { ImageState, ImageOptions } from './createImage';
+import css from '../../styles/structural/modules/ImageMenuItem';
 
 type ImageMenuItem = RenderMixin<ImageState> & StatefulChildren<Child>;
 
@@ -21,7 +22,8 @@ const createImageMenuItem = createRenderMixin
 		}
 	})
 	.extend({
-		tagName: 'li'
+		tagName: 'li',
+		classes: [ css.logo ]
 	});
 
 export default createImageMenuItem;

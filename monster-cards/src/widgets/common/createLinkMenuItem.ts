@@ -5,6 +5,7 @@ import createStatefulChildrenMixin, { StatefulChildren, StatefulChildrenState, S
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
 import createLink, { LinkState } from './createLink';
+import css from '../../styles/structural/modules/LinkMenuItem';
 
 type LinkMenuItemState = LinkState & StatefulChildrenState;
 
@@ -27,7 +28,8 @@ const createLinkMenuItem: LinkMenuItemFactory = createRenderMixin
 		}
 	})
 	.extend({
-		tagName: 'li'
+		tagName: 'li',
+		classes: [ css.item ]
 	});
 
 export default createLinkMenuItem;
