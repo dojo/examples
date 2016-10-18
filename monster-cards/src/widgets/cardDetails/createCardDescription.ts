@@ -38,7 +38,7 @@ const childrenMap = new WeakMap<CardDescriptionItem, CardDescriptionChildren<Ren
 const favouriteHref = '/api/favourite/';
 
 function manageChildren(this: CardDescriptionItem) {
-	console.log('boom');
+	console.log('manage children called');
 	const { cardImage, name, tagline, description, favouriteCount, addToFavouritesLink } = childrenMap.get(this);
 
 	cardImage.widget.setState({
@@ -141,7 +141,6 @@ const create = createRenderMixin
 
 					// This only works now that I have overridden `getChildrenNodes`
 					instance.setState({});
-					instance.invalidate();
 				});
 		}
 	})

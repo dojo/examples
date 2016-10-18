@@ -88,9 +88,13 @@ const cardDetailRoute: Route<Parameters> = createRoute({
 	exec (request: any) {
 		const id = request.params.id;
 		const descriptionId = cardIdToDescriptionIdMap.get(id);
+
+		// setTimeout(() => {
 		widgetStore
 			.patch({ id: 'cardDetailsJumbotron', children: [ descriptionId ] })
 			.patch({ id: 'container', children: [ 'cardDetails' ] });
+		// }, 1000);
+
 	}
 });
 
