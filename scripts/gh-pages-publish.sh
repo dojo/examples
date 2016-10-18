@@ -20,8 +20,8 @@ mkdir samples/todo-mvc
 mkdir samples/monster-cards
 
 cp index.html samples/index.html
-cp monster-cards/dist/* samples/monster-cards/
-cp todo-mvc/dist/* samples/todo-mvc/
+cp -r monster-cards/dist/* samples/monster-cards/
+cp -r todo-mvc/dist/* samples/todo-mvc/
 
 git add -f samples
 git commit -am "built example"
