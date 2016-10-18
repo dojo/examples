@@ -2,6 +2,11 @@ import createApp from 'dojo-app/createApp';
 import createMemoryStore from 'dojo-stores/createMemoryStore';
 import createContainer from './widgets/common/createContainer';
 
+import createRoute, { Route } from 'dojo-routing/createRoute';
+import { Parameters } from 'dojo-routing/interfaces';
+import createRouter from 'dojo-routing/createRouter';
+import createHashHistory from 'dojo-routing/history/createHashHistory';
+
 import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription, { MilestoneCardDetails } from './widgets/cardDetails/createCardDescription';
 import createCard from './widgets/card/createCard';
@@ -9,6 +14,9 @@ import ShimPromise from 'dojo-shim/Promise';
 import global from 'dojo-core/global';
 
 import { assign } from 'dojo-core/lang';
+
+const router = createRouter();
+router.observeHistory(createHashHistory(), {}, true);
 
 const widgetStore = createMemoryStore <any>({
 	data: [
@@ -18,7 +26,7 @@ const widgetStore = createMemoryStore <any>({
 		},
 		{
 			id: 'container',
-			children: [ 'cardDetails' ]
+			children: []
 		},
 		{
 			id: 'cardDetails',
@@ -58,9 +66,10 @@ cardStore.observe().subscribe(function(options: any) {
 
 // make some cards
 for (let i = 0; i < 10; i++) {
+	const id = `card-${i}`;
 	cardStore.put({
-		id: `card-${i}`,
-		name: 'The Horde',
+		id,
+		name: `The Horde id: ${id}`,
 		tagline: 'Throw more bodies at the problem',
 		description: 'Your milestone\'s slipping? No worries, your boss has a great idea',
 		cardImage: 'images/horde.png',
@@ -68,11 +77,23 @@ for (let i = 0; i < 10; i++) {
 	});
 }
 
-cardStore.get('card-1').then((details) => {
-	widgetStore.patch({ id: 'cardDetailsDescription', details });
+const cardDetailRoute: Route<Parameters> = createRoute({
+	path: 'cards/{id}',
+	exec (request: any) {
+		const id = request.params.id;
+		cardStore.get(id).then((details) => {
+			widgetStore
+				.patch({ id: 'cardDetailsDescription', details })
+				.patch({ id: 'container', children: [ 'cardDetails' ] });
+		});
+	}
 });
 
+router.append([ cardDetailRoute ]);
+
 const app = createApp({ defaultWidgetStore: widgetStore });
+
+app.registerStore('cards-store', cardStore);
 
 app.loadDefinition({
 	customElements: [
