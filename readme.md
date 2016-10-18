@@ -12,7 +12,7 @@ There are currently three examples:
 - [Monster Cards](./examples/tree/master/monster-cards) - A work in progress example application showing a feature rich single page app that leverages most of the Dojo 2 functionality.
 - [dojo-cli-example](./examples/tree/master/dojo-cli-example) - An example of working with Dojo cli
 
-Application examples that are deployed to gh-pages:
+Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
  - [todoMVC](https://dojo.github.io/examples/todo-mvc)
  - [Monster Cards](https://dojo.github.io/examples/monster-cards)
@@ -49,21 +49,14 @@ To build a version of a web application you can access, the *default* task for G
 Assuming that the root of this repository is available on your local web server under `/examples` then the
 application should be available on [`http://localhost/examples/todo-mvc/_build/src/`](http://localhost/examples/todo-mvc/_build/src/) or [`http://localhost/examples/monster-cards/_build/src/`](http://localhost/examples/monster-cards/_build/src/).
 
-### Manually Deploying to gh-pages
+### Deploying to gh-pages
 
 Assuming that you are working on a clone of the repository on the branch that you would like to deploy (typically `master`)
 
-This assumes that npm & typings have been installed for todo-mvc.
+This assumes that npm & typings & dojo-cli have been installed for the example applications.
 
 ```shell
-git checkout -B gh-pages
-cd todo-mvc && dojo build webpack && cd ..
-git add -f todo-mvc/dist
-git commit -am "Rebuild website"
-git filter-branch -f --tree-filter "mkdir samples && test -d todo-mvc/dist && mv todo-mvc/dist samples/todo-mvc || echo 'nothing to do'" HEAD
-git filter-branch -f --prune-empty --subdirectory-filter samples
-git push -f origin gh-pages
-git checkout -
+./scripts/gh-pages-publish.sh
 ```
 
 The latest version(s) will now be available [here](https://dojo.github.io/examples).
