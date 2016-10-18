@@ -1,0 +1,158 @@
+<html>
+	<!DOCTYPE html>
+	<head>
+		<script src="https://use.fontawesome.com/f0f61fe257.js"></script>
+		<style media="screen">
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				font-family: Lato, sans-serif;
+			}
+			h1, h2, h3 {
+				margin: 0;
+				font-weight: normal;
+			}
+			.row {
+				max-width: 1150px;
+				margin: 0 auto;
+			}
+			nav {
+				height: 86px;
+				background: #fff;
+			}
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				 display: inline-block;
+			}
+			nav ul li {
+				line-height: 86px;
+				font-size: 15px;
+				margin-left: 30px;
+			}
+			a {
+				text-decoration: none;
+			}
+			nav a {
+				text-transform: uppercase;
+				color: #f02541;
+			}
+			nav img {
+				position: relative;
+				top: 24px;
+				height: 46px;
+			}
+			.pull-right {
+				float: right;
+			}
+			.heading {
+				text-align: center;
+				background: linear-gradient(141deg,#fc5b3a 0,#f02541 100%);
+				color: #fff;
+				padding: 3rem 0 1.5rem;
+			}
+			.heading h1 {
+				color: #fff;
+				font-size: 67.5px;
+				font-weight: 300;
+				margin: 0 0 1rem;
+			}
+			a.download {
+				font-weight: bold;
+				padding: 15px 60px;
+				margin: 40px 0px;
+				border: 2px solid #fff;
+				border-radius: 40px;
+				color: #fff;
+				display: inline-block;
+				text-transform: uppercase;
+				transition: background .3s,color .3s;
+			}
+			.download:hover {
+				background: #fff;
+				color: #f02541;
+			}
+			p {
+				font-family: Merriweather, serif;
+				font-size: 20px;
+			}
+			.examples {
+				background: #353535;
+				padding: 2rem;
+				text-align: center;
+				color: #fff;
+			}
+			.examples h2 {
+				color: #fc5b3a;
+				font-size: 22.5px;
+				text-transform: uppercase;
+				margin-bottom: 40px;
+			}
+			.examples ul li {
+				display: inline-block;
+				max-width: 250px;
+				border: 2px solid #fff;
+				border-radius: 20px;
+				margin: 0 10px;
+				height: 210px;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.examples ul li a {
+				color: #fff;
+				display: block;
+				padding: 20px;
+			}
+			.examples h3 {
+				margin: 10px 0;
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="row">
+				<img src="https://dojotoolkit.org/documentation/tutorials/1.10/gfx/images/gfxlogo.png">
+				<ul class='pull-right'>
+					<li><a href='http://dojotoolkit.org/download' target="blank">get dojo</a></li>
+					<li><a href='http://dojotoolkit.org/documentation' target="blank">docs</a></li>
+					<li><a href='http://dojotoolkit.org/community' target="blank">community</a></li>
+					<li><a href='http://dojotoolkit.org/community/roadmap' target="blank">roadmap</a></li>
+					<li><a href='http://dojotoolkit.org/blog' target="blank">blog</a></li>
+				</ul>
+			</div>
+		</nav>
+		<section class="heading">
+			<div class="row">
+				<h1>Dojo 2 Examples</h1>
+				<p>Use these examples to learn about the dojo 2 toolkit and to get started with your own app</p>
+				<a href="http://dojotoolkit.org/download" class="download" target='blank'>Get Dojo</a>
+			</div>
+		</section>
+		<section class="examples">
+			<div class="row">
+				<h2>Examples</h2>
+				<ul>
+					<li>
+						<a href="https://dojo.github.io/examples/todo-mvc/" target="blank">
+							<i class="fa fa-check-square-o fa-3x"></i>
+							<h3>todo mvc</h3>
+							<p>A dojo 2 implementation of todo mvc</p>
+						</a>
+					</li>
+					<li>
+						<a href="https://dojo.github.io/examples/monster-cards/" target="blank">
+							<i class="fa fa-gamepad fa-3x"></i>
+							<h3>monster cards</h3>
+							<p>The homepage of the milestone card game</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+</html>
