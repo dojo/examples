@@ -1,13 +1,17 @@
+import compose from 'dojo-compose/compose';
 import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
+import global from 'dojo-core/global';
 
-import compose from 'dojo-compose/compose';
+import { historyManager } from './../../routes';
 
 const create = compose({
 	},
 	(instance: any, options: any) => {
 		options.listeners = {
-			click: (event: any): void => { console.log('clicked'); }
+			click: (event: any): void => {
+				historyManager.set(`/cards/${instance.state.id}`);
+			}
 		};
 	})
 	.mixin(createRenderMixin)
