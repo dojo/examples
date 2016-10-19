@@ -32,6 +32,7 @@
     "maquette": "^2.3.2"
   },
   "devDependencies": {
+    "animate.css": "^3.5.2",
     "codecov.io": "^0.1.6",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
