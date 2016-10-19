@@ -16,6 +16,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-beta.6",
+    "animate.css": "^3.5.2",
     "dojo-actions": ">=2.0.0-alpha.9",
     "dojo-app": ">=2.0.0-alpha.8",
     "dojo-compose": ">=2.0.0-beta.13",

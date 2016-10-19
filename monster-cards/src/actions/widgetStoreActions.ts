@@ -12,7 +12,13 @@ export const putCard = createAction({
 
 			return Promise.all([
 				widgetStore.put(assign({}, <any> item, { type: 'milestone-card' })),
-				widgetStore.put(assign({}, <any> item, { type: 'card-description', id: `description-${item.id}` }))
+				widgetStore.put(assign({}, <any> item, {
+					type: 'card-description',
+					classes: [ 'animated' ],
+					id: `description-${item.id}`,
+					enterAnimation: 'fadeInRightBig',
+					exitAnimation: 'fadeOutRightBig'
+				}))
 			]).then(() => {
 				return widgetStore.patch({
 					id: 'cardDetailsNavbar',

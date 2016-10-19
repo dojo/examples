@@ -1,6 +1,7 @@
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createWidget from 'dojo-widgets/createWidget';
 import createImage from '../common/createImage';
 import createIconLink from '../common/createIconLink';
@@ -54,6 +55,7 @@ function manageChildren(this: CardDescriptionItem) {
 
 const create = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
+	.mixin(createCssTransitionMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
 		initialize(instance: CardDescription, options: CardDescriptionOptions) {

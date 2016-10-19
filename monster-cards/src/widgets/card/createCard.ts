@@ -1,7 +1,6 @@
 import compose from 'dojo-compose/compose';
 import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
-import global from 'dojo-core/global';
 
 import { historyManager } from './../../routes';
 
