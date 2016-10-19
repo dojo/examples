@@ -1,4 +1,6 @@
+import { Messages } from 'dojo-i18n/i18n';
 import createButton from 'dojo-widgets/createButton';
+import createI18nMixin, { I18nMixin, I18nOptions, I18nState } from 'dojo-widgets/mixins/createI18nMixin';
 import createParentMapMixin, { ParentMap, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
@@ -16,9 +18,9 @@ export type TodoFooterState = RenderMixinState & StatefulChildrenState & {
 	completedCount?: number;
 };
 
-export type TodoFooterOptions = RenderMixinOptions<TodoFooterState> & ParentMapMixinOptions<Child> & StatefulChildrenOptions<Child, TodoFooterState>;
+export type TodoFooterOptions = I18nOptions & RenderMixinOptions<TodoFooterState> & ParentMapMixinOptions<Child> & StatefulChildrenOptions<Child, TodoFooterState>;
 
-export type TodoFooter = RenderMixin<TodoFooterState> & ParentMap<RenderMixin<TodoFooterState>>;
+export type TodoFooter = RenderMixin<TodoFooterState> & ParentMap<RenderMixin<TodoFooterState>> & I18nMixin<Messages, I18nState>;
 
 function manageChildren(this: TodoFooter) {
 	const filterWidget = this.children.get('filter');
@@ -40,6 +42,7 @@ function manageChildren(this: TodoFooter) {
 
 const createTodoFooter = createRenderMixin
 	.mixin(createStatefulChildrenMixin)
+	.mixin(createI18nMixin)
 	.mixin({
 		mixin: createParentMapMixin,
 		initialize(instance, options) {
