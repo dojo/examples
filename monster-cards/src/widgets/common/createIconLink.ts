@@ -23,14 +23,14 @@ const createLink: LinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
-		initialize(instance: Link) {
+		initialize(instance: Link, options: LinkOptions) {
 			instance
 				.createChildren({
 					icon: {
 						factory: createIcon,
 						options: {
 							state: {
-								classes: instance.state.iconClass
+								classes: options.state.iconClass
 							}
 						}
 					},
@@ -39,10 +39,13 @@ const createLink: LinkFactory = createRenderMixin
 						options: {
 							tagName: 'span',
 							state: {
-								label: instance.state.text
+								label: options.state.text
 							}
 						}
 					}
+				})
+				.then(() => {
+					instance.invalidate();
 				});
 		}
 	})

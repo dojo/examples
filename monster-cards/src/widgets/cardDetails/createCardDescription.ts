@@ -1,5 +1,5 @@
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createRenderMixin, { RenderMixin, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
+import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createWidget from 'dojo-widgets/createWidget';
 import createImage from '../common/createImage';
@@ -18,8 +18,15 @@ export type MilestoneCardDetails = {
 }
 
 export type CardDescriptionState = RenderMixinState & StatefulChildrenState & {
-	details?: MilestoneCardDetails,
+	name?: string;
+	tagline?: string;
+	description?: string;
+	cardImage?: string;
+	favouriteCount?: number;
+	id?: string;
 };
+
+type CardDescriptionOptions = RenderMixinOptions<CardDescriptionState>;
 
 type CardDescription = RenderMixin<CardDescriptionState> & StatefulChildren<Child>;
 
@@ -38,31 +45,10 @@ const childrenMap = new WeakMap<CardDescriptionItem, CardDescriptionChildren<Ren
 const favouriteHref = '/api/favourite/';
 
 function manageChildren(this: CardDescriptionItem) {
-	console.log('manage children called');
-	const { cardImage, name, tagline, description, favouriteCount, addToFavouritesLink } = childrenMap.get(this);
-
-	cardImage.widget.setState({
-		src: this.state.details.cardImage
-	});
-
-	name.widget.setState({
-		label: this.state.details.name
-	});
-
-	tagline.widget.setState({
-		label: this.state.details.tagline
-	});
-
-	description.widget.setState({
-		label: this.state.details.description
-	});
+	const { favouriteCount } = childrenMap.get(this);
 
 	favouriteCount.widget.setState({
-		label: this.state.details.favouriteCount
-	});
-
-	addToFavouritesLink.widget.setState({
-		href: favouriteHref + this.state.details.id
+		label: this.state.favouriteCount
 	});
 }
 
@@ -70,39 +56,52 @@ const create = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
-		initialize(instance: CardDescription) {
+		initialize(instance: CardDescription, options: CardDescriptionOptions) {
 			instance
 				.createChildren({
 					cardImage: {
 						factory: createImage,
 						options: {
 							state: {
+								src: options.state.cardImage,
 								classes: [ 'cardImage' ]
 							}
 						}
 					},
 					name: {
 						factory: createWidget,
-						options: { tagName: 'h1' }
+						options: {
+							state: {
+								label: options.state.name
+							},
+							tagName: 'h1'
+						}
 					},
 					tagline: {
 						factory: createWidget,
 						options: {
 							tagName: 'strong',
 							state: {
+								label: options.state.tagline,
 								classes: [ 'tagline' ]
 							}
 						}
 					},
 					description: {
 						factory: createWidget,
-						options: { tagName: 'p' }
+						options: {
+							state: {
+								label: options.state.description
+							},
+							tagName: 'p'
+						}
 					},
 					favouriteCount: {
 						factory: createWidget,
 						options: {
 							tagName: 'span',
 							state: {
+								label: options.state.favouriteCount,
 								classes: [ 'favouriteCount' ]
 							}
 						}
@@ -111,6 +110,7 @@ const create = createRenderMixin
 						factory: createIconLink,
 						options: {
 							state: {
+								href: favouriteHref + options.state.id,
 								iconClass: [ 'fa', 'fa-heart-o'],
 								text: 'Add to favourites'
 							}
@@ -135,12 +135,9 @@ const create = createRenderMixin
 						}
 					}
 				})
-				.then((children: CardDescriptionChildren<RenderMixin<any>>) => {
+				.then((children: CardDescriptionChildren<RenderMixin<Child>>) => {
 					childrenMap.set(instance, children);
 					instance.on('statechange', manageChildren);
-
-					// This only works now that I have overridden `getChildrenNodes`
-					instance.setState({});
 				});
 		}
 	})

@@ -10,8 +10,6 @@ import createHashHistory from 'dojo-routing/history/createHashHistory';
 import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription, { MilestoneCardDetails } from './widgets/cardDetails/createCardDescription';
 import createCard from './widgets/card/createCard';
-import ShimPromise from 'dojo-shim/Promise';
-import global from 'dojo-core/global';
 
 import { assign } from 'dojo-core/lang';
 
