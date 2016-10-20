@@ -14,7 +14,10 @@ import createTodoFooter from './widgets/createTodoFooter';
 import createTodoItem from './widgets/createTodoItem';
 import createTodoList from './widgets/createTodoList';
 
-const app = createApp({ defaultWidgetStore: widgetStore });
+const app = createApp({
+	defaultWidgetStore: widgetStore,
+	router
+});
 
 app.registerStore('todo-store', todoStore);
 app.loadDefinition({
@@ -63,6 +66,9 @@ app.loadDefinition({
 
 // Try to use the native promise so the browser can report unhandled rejections.
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
-Promise.resolve(app.realize(document.body))
-	.then(() => bindTodoStoreActions())
-	.then(() => router.start());
+Promise.resolve(app.start({
+	afterCreate() {
+		bindTodoStoreActions();
+	},
+	root: document.body
+}));
