@@ -6,12 +6,13 @@
 		<link rel="stylesheet" href="./styles/css/app.css">
 	</head>
 	<body>
+		<script src="./../../node_modules/maquette/src/css-transitions.js"></script>
 		<script src="./../../node_modules/dojo-loader/loader.min.js"></script>
 		<script src="./index.js"></script>
-		<app-projector>
-			<header is="app-widget" id="navbar"></header>
+		<app-projector data-css-transitions="true">
+			<header is="app-widget" data-uid="navbar"></header>
 			<main>
-				<div is="app-widget" id="container"></div>
+				<div is="app-widget" data-uid="container"></div>
 			</main>
 		</app-projector>
 	</body>
