@@ -8,26 +8,33 @@
 
 You need to be running node `v6+` and npm `v3+`.
 
-package `dojo-cli` installed globally.
+package `typings` and `dojo-cli` installed globally.
 
 ```shell
+npm install typings -g
 npm install dojo-cli -g
 ```
 
 ## Running
 
-To run the application simply install the dependencies and run the dojo build.
+Install the required dependencies and typings
 
 ```
 cd /path/to/todomvc
 npm install
-dojo build webpack
+typings install
+```
+
+To run the application simply install the dependencies and run the dojo build.
+
+```
+dojo build
 ```
 
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build webpack -w
+dojo build -w
 ```
 
 ## Testing
