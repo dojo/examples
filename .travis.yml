@@ -21,11 +21,6 @@ script:
 - grunt
 - grunt ci --combined
 - grunt remapIstanbul:ci
-deploy:
-  provider: script
-  script: scripts/gh-pages-publish.sh
-  on:
-    branch: master
 notifications:
   slack:
     on_success: change
