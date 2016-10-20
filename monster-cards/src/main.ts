@@ -1,6 +1,6 @@
 import createApp from 'dojo-app/createApp';
 
-import startRouter from './routes';
+import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
@@ -8,6 +8,8 @@ import createCardDescription from './widgets/cardDetails/createCardDescription';
 import createContainer from './widgets/common/createContainer';
 import createCard from './widgets/card/createCard';
 import defaultWidgetStore from './stores/widgetStore';
+
+import 'maquette/src/css-transitions';
 
 const app = createApp({ defaultWidgetStore });
 
@@ -55,4 +57,4 @@ app.loadDefinition({
 
 Promise.resolve(app.realize(document.body))
 	.then(() => bindCardStoreActions())
-	.then(() => startRouter());
+	.then(() => router.start());
