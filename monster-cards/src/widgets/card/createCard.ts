@@ -1,11 +1,9 @@
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
-import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createImage from '../common/createImage';
+import { VNodeProperties } from 'maquette';
 import { Child } from 'dojo-widgets/mixins/interfaces';
-import compose, { ComposeFactory } from 'dojo-compose/compose';
-import { historyManager } from './../../routes';
 
 export type CardState = RenderMixinState & StatefulChildrenState & {
 	name: string;
@@ -20,18 +18,7 @@ type CardOptions = RenderMixinOptions<CardState>;
 
 export type Card = RenderMixin<CardState> & StatefulChildren<Child>;
 
-type CardFactory = ComposeFactory<Card, CardOptions>;
-const create = compose({
-	},
-	(instance: any, options: any) => {
-		options.listeners = {
-			click: (event: any): void => {
-				historyManager.set(`/cards/${instance.state.id}`);
-			}
-		};
-	})
-	.mixin(createRenderMixin)
-	.mixin(createVNodeEvented)
+const create = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
@@ -39,13 +26,8 @@ const create = compose({
 			instance
 				.createChildren({
 					image: {
-						factory: createImage.mixin(createVNodeEvented),
+						factory: createImage,
 						options: {
-							listeners: {
-								click: (event: any): void => {
-									historyManager.set(`/cards/${instance.state.id}`);
-								}
-							},
 							state: {
 								src: options.state.cardImage
 							}
@@ -58,6 +40,13 @@ const create = compose({
 		}
 	})
 	.extend({
+		nodeAttributes: [
+			function (this: Card): VNodeProperties {
+				return {
+					href: `#/cards/${this.state.id}`
+				};
+			}
+		],
 		classes: [ 'milestoneCard' ],
 		tagName: 'a'
 	});
