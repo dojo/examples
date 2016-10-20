@@ -19,6 +19,9 @@ const widgetRegistry = {
 		const w = factory(options);
 		widget = w;
 		return Promise.resolve([options && options.id || `widget${idx++}`, w]);
+	},
+	has() {
+		return Promise.resolve(true);
 	}
 };
 

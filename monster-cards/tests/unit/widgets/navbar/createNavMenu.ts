@@ -22,6 +22,9 @@ const widgetRegistry = {
 
 		widgetMap.set(id, widget);
 		return Promise.resolve([id, widget]);
+	},
+	has() {
+		return Promise.resolve(true);
 	}
 };
 
