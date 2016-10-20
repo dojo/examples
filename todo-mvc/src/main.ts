@@ -5,7 +5,7 @@ import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
 
 import { todoToggleAll, todoInput } from './actions/userActions';
-import startRouter from './routes';
+import router from './router';
 import todoStore, { bindActions as bindTodoStoreActions } from './stores/todoStore';
 import widgetStore from './stores/widgetStore';
 import createCheckboxInput from './widgets/createCheckboxInput';
@@ -65,4 +65,4 @@ app.loadDefinition({
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
 Promise.resolve(app.realize(document.body))
 	.then(() => bindTodoStoreActions())
-	.then(() => startRouter());
+	.then(() => router.start());
