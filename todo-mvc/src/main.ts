@@ -5,7 +5,6 @@ import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
 
 import { todoToggleAll, todoInput } from './actions/userActions';
-import router from './router';
 import todoStore, { bindActions as bindTodoStoreActions } from './stores/todoStore';
 import widgetStore from './stores/widgetStore';
 import createCheckboxInput from './widgets/createCheckboxInput';
@@ -63,6 +62,9 @@ app.loadDefinition({
 
 // Try to use the native promise so the browser can report unhandled rejections.
 const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
-Promise.resolve(app.realize(document.body))
-	.then(() => bindTodoStoreActions())
-	.then(() => router.start());
+Promise.resolve(app.start({
+	afterCreate() {
+		bindTodoStoreActions();
+	},
+	root: document.body
+}));
