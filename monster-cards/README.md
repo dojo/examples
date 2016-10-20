@@ -21,14 +21,15 @@ To run the application simply install the dependencies and run the dojo build.
 ```
 cd /path/to/monster-cards
 npm install
-dojo build webpack
+grunt stylus:dist
+dojo build
 ```
 
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
 grunt stylus:dist
-dojo build webpack -w
+dojo build -w
 ```
 
 The resources by default are served at [http://localhost:9999](http://localhost:9999)

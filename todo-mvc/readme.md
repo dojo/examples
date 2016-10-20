@@ -21,13 +21,13 @@ To run the application simply install the dependencies and run the dojo build.
 ```
 cd /path/to/todomvc
 npm install
-dojo build webpack
+dojo build
 ```
 
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build webpack -w
+dojo build -w
 ```
 
 ## Testing
