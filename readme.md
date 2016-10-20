@@ -8,9 +8,9 @@ For current progress on Dojo 2, contribution guidelines and other information, p
 
 There are currently three examples:
 
-- [todo-mvc](./examples/tree/master/todo-mvc) - A reference implementation of [Todo MVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
-- [Monster Cards](./examples/tree/master/monster-cards) - A work in progress example application showing a feature rich single page app that leverages most of the Dojo 2 functionality.
-- [dojo-cli-example](./examples/tree/master/dojo-cli-example) - An example of working with Dojo cli
+- [todo-mvc](./tree/master/todo-mvc) - A reference implementation of [Todo MVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
+- [Monster Cards](./tree/master/monster-cards) - A work in progress example application showing a feature rich single page app that leverages most of the Dojo 2 functionality.
+- [dojo-cli-example](./tree/master/dojo-cli-example) - An example of working with Dojo cli
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
