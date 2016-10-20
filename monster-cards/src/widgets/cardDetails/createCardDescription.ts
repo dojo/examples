@@ -112,6 +112,7 @@ const create = createRenderMixin
 						factory: createIconLink,
 						options: {
 							state: {
+								classes: [ 'button' ],
 								href: favouriteHref + options.state.id,
 								iconClass: [ 'fa', 'fa-heart-o'],
 								text: 'Add to favourites'
@@ -122,8 +123,9 @@ const create = createRenderMixin
 						factory: createIconLink,
 						options: {
 							state: {
+								classes: [ 'button' ],
 								href: 'http://www.twitter.com',
-								iconClass: [ 'fa', 'fa-twitter-o' ]
+								iconClass: [ 'fa', 'fa-twitter' ]
 							}
 						}
 					},
@@ -131,6 +133,7 @@ const create = createRenderMixin
 						factory: createIconLink,
 						options: {
 							state: {
+								classes: [ 'button' ],
 								href: 'http://www.facebook.com',
 								iconClass: [ 'fa', 'fa-facebook' ]
 							}
