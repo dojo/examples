@@ -12,12 +12,9 @@ const cardDetailRoute = createRoute({
 	}
 });
 
-export const router = createRouter();
+export const history = createHashHistory();
 
+const router = createRouter({ history });
 router.append(cardDetailRoute);
 
-export const historyManager = createHashHistory();
-
-export default function start() {
-	return router.observeHistory(historyManager, {}, true);
-}
+export default router;
