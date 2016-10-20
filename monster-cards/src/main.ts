@@ -1,15 +1,14 @@
 import createApp from 'dojo-app/createApp';
 
-import router from './routes';
+import startRouter from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription from './widgets/cardDetails/createCardDescription';
 import createContainer from './widgets/common/createContainer';
 import createCard from './widgets/card/createCard';
+import createCardSummary from './widgets/card/createCardSummary';
 import defaultWidgetStore from './stores/widgetStore';
-
-import 'maquette/src/css-transitions';
 
 const app = createApp({ defaultWidgetStore });
 
@@ -23,6 +22,10 @@ app.loadDefinition({
 		{
 			name: 'card-description',
 			factory: createCardDescription
+		},
+		{
+			name: 'milestone-card-summary',
+			factory: createCardSummary
 		}
 	],
 	widgets: [
@@ -51,10 +54,22 @@ app.loadDefinition({
 		{
 			id: 'cardDetailsJumbotron',
 			factory: createContainer
+		},
+		{
+			id: 'cards',
+			factory: createContainer
+		},
+		{
+			id: 'cardsJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'cardsList',
+			factory: createContainer
 		}
 	]
 });
 
 Promise.resolve(app.realize(document.body))
 	.then(() => bindCardStoreActions())
-	.then(() => router.start());
+	.then(() => startRouter());

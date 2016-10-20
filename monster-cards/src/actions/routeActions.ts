@@ -9,3 +9,11 @@ export const gotoCardDetails = createAction({
 		]);
 	}
 });
+
+export const gotoCards = createAction({
+	do() {
+		return Promise.all([
+			widgetStore.patch({ id: 'container', children: [ 'cards' ] })
+		]);
+	}
+});
