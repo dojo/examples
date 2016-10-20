@@ -5,8 +5,17 @@ import { ChangeRecord, Card } from '../stores/cardStore';
 import widgetStore from '../stores/widgetStore';
 
 function createWidgetsRecords(item: Card) {
+	const cardId = item.id;
 	return Promise.all([
-		widgetStore.put(assign({}, <any> item, { type: 'milestone-card' })),
+		widgetStore.put(assign({}, <any> item, {
+			type: 'milestone-card',
+			cardId
+		})),
+		widgetStore.put(assign({}, <any> item, {
+			type: 'milestone-card-summary',
+			id: `summary-${item.id}`,
+			cardId
+		})),
 		widgetStore.put(assign({}, <any> item, {
 			type: 'card-description',
 			classes: [ 'animated' ],
@@ -20,10 +29,19 @@ function createWidgetsRecords(item: Card) {
 export const putCard = createAction({
 	do({ afterAll, puts }: ChangeRecord) {
 		if (puts.length) {
-			const children = afterAll.map(({ id }) => id);
-
 			return Promise.all(puts.map(createWidgetsRecords))
-				.then(() => widgetStore.patch({ id: 'cardDetailsNavbar', children: children }));
+				.then((response: any) => {
+					const cardIds: string[] = [];
+					const summaryIds: string[] = [];
+
+					response.forEach(([card, summary]: [Card, Card]) => {
+						cardIds.push(card.id);
+						summaryIds.push(summary.id);
+					});
+
+					widgetStore.patch({ id: 'cardDetailsNavbar', children: cardIds });
+					widgetStore.patch({ id: 'cardsList', children: summaryIds });
+				});
 		}
 	}
 });

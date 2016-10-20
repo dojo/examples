@@ -2,7 +2,7 @@ import createRoute from 'dojo-routing/createRoute';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 
-import { gotoCardDetails as gotoCardDetailsAction } from './actions/routeActions';
+import { gotoCardDetails as gotoCardDetailsAction, gotoCards as gotoCardsAction } from './actions/routeActions';
 
 const cardDetailRoute = createRoute({
 	path: 'cards/{id}',
@@ -12,9 +12,20 @@ const cardDetailRoute = createRoute({
 	}
 });
 
+const cardsRoute = createRoute({
+	path: 'cards',
+	exec (request: any) {
+		return gotoCardsAction.do();
+	}
+});
+
 export const history = createHashHistory();
 
 const router = createRouter({ history });
-router.append(cardDetailRoute);
 
 export default router;
+
+router.append([
+	cardsRoute,
+	cardDetailRoute
+]);

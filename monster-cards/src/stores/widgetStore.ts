@@ -23,7 +23,23 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cardDetailsJumbotron',
-			classes: [ 'jumbotron' ]
+			classes: [ 'jumbotron', 'cardDetailsJumbotron' ]
+		},
+		{
+			id: 'cards',
+			classes: [ 'cards' ],
+			children: [
+				'cardsJumbotron',
+				'cardsList'
+			]
+		},
+		{
+			id: 'cardsList',
+			classes: [ 'cardsList' ]
+		},
+		{
+			id: 'cardsJumbotron',
+			classes: [ 'jumbotron', 'cardsJumbotron' ]
 		}
 	]
 });
