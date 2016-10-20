@@ -8,7 +8,6 @@ import createCardDescription from './widgets/cardDetails/createCardDescription';
 import createContainer from './widgets/common/createContainer';
 import createCard from './widgets/card/createCard';
 import createCardSummary from './widgets/card/createCardSummary';
-// import createCardsList from './widgets/cards/createCardsList';
 import defaultWidgetStore from './stores/widgetStore';
 
 const app = createApp({ defaultWidgetStore });
