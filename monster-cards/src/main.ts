@@ -55,17 +55,4 @@ app.loadDefinition({
 
 Promise.resolve(app.realize(document.body))
 	.then(() => bindCardStoreActions())
-	.then(() => startRouter())
-	.then(() => {
-		for (let i = 0; i < 10; i++) {
-			const id = `card-${i}`;
-			cardStore.put({
-				id,
-				name: `The Horde id: ${id}`,
-				tagline: 'Throw more bodies at the problem',
-				description: 'Your milestone\'s slipping? No worries, your boss has a great idea',
-				cardImage: 'images/horde.png',
-				favouriteCount: 4332
-			});
-		}
-	});
+	.then(() => startRouter());
