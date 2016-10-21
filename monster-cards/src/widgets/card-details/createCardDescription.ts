@@ -80,12 +80,15 @@ const createCardDescription = createRenderMixin
 				tagName: 'span'
 			}));
 			childrenMap.set('addToFavouritesLink', createIconLink({
+				listeners: {
+					click: () => { console.log('clicked'); }
+				},
 				state: {
 					classes: [ 'button' ],
 					iconClass: [ 'fa', 'fa-heart-o'],
 					text: 'Add to favourites'
 				}
-			}));
+			})),
 			childrenMap.set('twitterLink', createIconLink({
 				state: {
 					classes: [ 'button' ],

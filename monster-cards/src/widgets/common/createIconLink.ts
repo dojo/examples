@@ -3,6 +3,7 @@ import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } 
 import { VNodeProperties } from 'maquette';
 import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import createIcon from './createIcon';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
@@ -21,6 +22,7 @@ type IconLinkFactory = ComposeFactory<IconLink, IconLinkOptions>;
 
 const createIconLink: IconLinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
+	.mixin(createVNodeEvented)
 	.mixin({
 		mixin: createParentListMixin,
 		initialize(instance: IconLink, options: IconLinkOptions) {

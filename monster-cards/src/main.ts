@@ -2,6 +2,7 @@ import createApp from 'dojo-app/createApp';
 
 import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
+import favStore, { bindActions as bindFavStoreActions } from './stores/favoriteStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription from './widgets/card-details/createCardDescription';
@@ -18,6 +19,7 @@ import 'maquette/src/css-transitions';
 const app = createApp({ defaultWidgetStore });
 
 app.registerStore('cards-store', cardStore);
+app.registerStore('fav-store', favStore);
 app.loadDefinition({
 	customElements: [
 		{
@@ -30,6 +32,10 @@ app.loadDefinition({
 		},
 		{
 			name: 'milestone-card-summary',
+			factory: createCardSummary
+		},
+		{
+			name: 'fav-milestone-card',
 			factory: createCardSummary
 		}
 	],
@@ -119,4 +125,5 @@ app.loadDefinition({
 
 Promise.resolve(app.realize(document.body))
 	.then(() => bindCardStoreActions())
+	.then(() => bindFavStoreActions())
 	.then(() => router.start());

@@ -45,3 +45,11 @@ export const putCard = createAction({
 		}
 	}
 });
+
+export const favCard = createAction({
+	do({ afterAll, puts }: ChangeRecord) {
+		if (puts.length) {
+			// create fav "widgets"
+		}
+	}
+});
