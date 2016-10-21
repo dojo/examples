@@ -9,3 +9,9 @@ export const gotoCardDetails = createAction({
 		]);
 	}
 });
+
+export const gotoCards = createAction({
+	do() {
+		return widgetStore.patch({ id: 'container', children: [ 'cards' ] });
+	}
+});

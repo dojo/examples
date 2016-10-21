@@ -11,14 +11,14 @@ export type CardState = RenderMixinState & StatefulChildrenState & {
 	description: string;
 	cardImage: string;
 	favouriteCount: number;
-	id: string;
+	cardId: string;
 }
 
 type CardOptions = RenderMixinOptions<CardState>;
 
 export type Card = RenderMixin<CardState> & StatefulChildren<Child>;
 
-const create = createRenderMixin
+const createCard = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
@@ -43,7 +43,7 @@ const create = createRenderMixin
 		nodeAttributes: [
 			function (this: Card): VNodeProperties {
 				return {
-					href: `#/cards/${this.state.id}`
+					href: `#/cards/${this.state.cardId}`
 				};
 			}
 		],
@@ -51,4 +51,4 @@ const create = createRenderMixin
 		tagName: 'a'
 	});
 
-export default create;
+export default createCard;

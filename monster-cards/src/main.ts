@@ -7,6 +7,7 @@ import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription from './widgets/cardDetails/createCardDescription';
 import createContainer from './widgets/common/createContainer';
 import createCard from './widgets/card/createCard';
+import createCardSummary from './widgets/card/createCardSummary';
 import defaultWidgetStore from './stores/widgetStore';
 
 import 'maquette/src/css-transitions';
@@ -23,6 +24,10 @@ app.loadDefinition({
 		{
 			name: 'card-description',
 			factory: createCardDescription
+		},
+		{
+			name: 'milestone-card-summary',
+			factory: createCardSummary
 		}
 	],
 	widgets: [
@@ -50,6 +55,18 @@ app.loadDefinition({
 		},
 		{
 			id: 'cardDetailsJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'cards',
+			factory: createContainer
+		},
+		{
+			id: 'cardsJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'cardsList',
 			factory: createContainer
 		}
 	]

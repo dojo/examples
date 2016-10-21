@@ -19,7 +19,7 @@ export type Link = RenderMixin<LinkState> & StatefulChildren<Child>;
 
 type LinkFactory = ComposeFactory<Link, LinkOptions>;
 
-const createLink: LinkFactory = createRenderMixin
+const createIconLink: LinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
@@ -59,4 +59,4 @@ const createLink: LinkFactory = createRenderMixin
 		tagName: 'a'
 	});
 
-export default createLink;
+export default createIconLink;
