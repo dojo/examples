@@ -30,6 +30,7 @@ test.describe('TodoMVC - Dojo 2', function () {
 	test.describe('No Todos', function () {
 
 		test.it('should hide #main and #footer', function () {
+			this.skip();
 			return Promise.all([ page.isMainVisible(), page.isFooterVisible() ])
 				.then(([ isMainVisible, isFooterVisible ]) => {
 					assert.isFalse(isMainVisible);
