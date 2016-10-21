@@ -8,7 +8,6 @@ cd ..
 
 cd monster-cards
 
-grunt stylus:dist
 dojo build webpack
 
 cd ..
