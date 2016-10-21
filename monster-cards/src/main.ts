@@ -4,7 +4,7 @@ import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
-import createCardDescription from './widgets/cardDetails/createCardDescription';
+import createCardDescription from './widgets/card-details/createCardDescription';
 import createContainer from './widgets/common/createContainer';
 import createCard from './widgets/card/createCard';
 import createCardSummary from './widgets/card/createCardSummary';
