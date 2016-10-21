@@ -18,7 +18,7 @@ type CardOptions = RenderMixinOptions<CardState>;
 
 export type Card = RenderMixin<CardState> & StatefulChildren<Child>;
 
-const create = createRenderMixin
+const createCard = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
@@ -51,4 +51,4 @@ const create = createRenderMixin
 		tagName: 'a'
 	});
 
-export default create;
+export default createCard;

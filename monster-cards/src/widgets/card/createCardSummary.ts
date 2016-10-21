@@ -17,7 +17,7 @@ type CardSummaryOptions = RenderMixinOptions<CardSummaryState>;
 
 export type CardSummary = RenderMixin<CardSummaryState> & StatefulChildren<Child>;
 
-const create = createRenderMixin
+const createCardSummary = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
@@ -61,4 +61,4 @@ const create = createRenderMixin
 		classes: [ 'cardSummary' ]
 	});
 
-export default create;
+export default createCardSummary;

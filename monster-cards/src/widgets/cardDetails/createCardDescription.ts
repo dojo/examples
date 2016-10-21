@@ -53,7 +53,7 @@ function manageChildren(this: CardDescriptionItem) {
 	});
 }
 
-const create = createRenderMixin
+const createCardDescription = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin(createCssTransitionMixin)
 	.mixin({
@@ -177,4 +177,4 @@ const create = createRenderMixin
 		}
 	});
 
-export default create;
+export default createCardDescription;
