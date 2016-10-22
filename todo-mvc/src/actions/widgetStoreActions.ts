@@ -2,35 +2,32 @@ import createAction from 'dojo-actions/createAction';
 import { assign } from 'dojo-core/lang';
 import { includes } from 'dojo-shim/array';
 
-import { ChangeRecord } from '../stores/todoStore';
 import widgetStore from '../stores/widgetStore';
+import { Item } from '../stores/todoStore';
+import { StoreDelta } from 'dojo-stores/store/mixins/createObservableStoreMixin';
 
 export const updateHeaderAndFooter = createAction({
-	do({ afterAll }: ChangeRecord) {
+	do({ afterAll }: StoreDelta<Item>) {
 		const completedCount = afterAll.filter(({ completed }) => completed).length;
 		const activeCount = afterAll.length - completedCount;
 		const hidden = afterAll.length ? [] : ['hidden'];
 		const allCompleted = afterAll.length === completedCount;
 
-		return Promise.all([
-			widgetStore.patch({
-				id: 'todo-footer',
-				completedCount,
-				activeCount,
-				classes: ['footer', ...hidden]
-			}),
-
-			widgetStore.patch({
-				id: 'todo-toggle',
-				checked: allCompleted,
-				classes: ['toggle-all', ...hidden]
-			})
-		]);
+		return widgetStore.patch([{
+			id: 'todo-footer',
+			completedCount,
+			activeCount,
+			classes: ['footer', ...hidden]
+		}, {
+			id: 'todo-toggle',
+			checked: allCompleted,
+			classes: ['toggle-all', ...hidden]
+		}]).then();
 	}
 });
 
 export const deleteTodo = createAction({
-	do({ afterAll, deletes }: ChangeRecord) {
+	do({ afterAll, deletes }: StoreDelta<Item>) {
 		if (deletes.length) {
 			const [ deletedId ] = deletes;
 			const children = afterAll
@@ -39,26 +36,36 @@ export const deleteTodo = createAction({
 
 			return widgetStore
 				.delete(deletedId)
-				.patch({ id: 'todo-list', children });
+				.then(() => {
+					return widgetStore.patch({ id: 'todo-list', children });
+				});
 		}
 	}
 });
 
 export const putTodo = createAction({
-	do({ beforeAll, puts }: ChangeRecord) {
-		if (puts.length) {
-			const [ item ] = puts;
+	do({ beforeAll, adds, updates }: StoreDelta<Item>) {
+		if (adds.length || updates.length) {
+			const [ item ] = adds;
+			const [ update ] = updates;
 			const children = beforeAll.map(({ id }) => id);
 
-			if (includes(children, item.id)) {
-				return widgetStore
-					.patch(item)
-					.patch({ id: 'todo-list', children });
+			let promise: Promise<any> = Promise.resolve();
+			if (includes(children, update && update.id)) {
+				promise = widgetStore.patch([ ...updates.filter((update) => {
+					return includes(children, update && update.id);
+				}, { id: 'todo-list', children } ]);
 			}
-
-			return widgetStore
-				.put(assign({}, <any> item, { type: 'todo-item' }))
-				.patch({id: 'todo-list', children: [...children, item.id]});
+			if (item) {
+				promise = promise.then(() =>
+					widgetStore
+						.put(assign({}, <any> item, { type: 'todo-item' }))
+						.then(() => {
+							return widgetStore.patch({id: 'todo-list', children: [...children, item.id]});
+						})
+				);
+			}
+			return promise;
 		}
 	}
 });

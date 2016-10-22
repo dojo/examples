@@ -1,5 +1,5 @@
 import createAction from 'dojo-actions/createAction';
-import Promise from 'dojo-shim/Promise';
+import createFilter from 'dojo-stores/query/createFilter';
 
 import todoStore, { Item } from '../stores/todoStore';
 
@@ -17,31 +17,30 @@ export const deleteTodo = createAction({
 
 export const deleteCompleted = createAction({
 	do() {
-		return todoStore.get()
-			// <any> hammer since the store isn't typed to return an iterator (which it does).
-			.then((items: any) => {
-				const promises = Array.from<Item>(items)
-					.filter(({ completed }) => completed)
-					.map(({ id }) => todoStore.delete(id));
-				return Promise.all(promises);
-			});
+		return todoStore.fetch(createFilter<Item>().exists('completed'))
+			.then((items) => todoStore.identify(items))
+			.then((ids) => todoStore.delete(ids));
 	}
 });
 
 export const toggleAll = createAction({
 	do({ checked: completed }: { checked: boolean }) {
-		return todoStore.get()
-			// <any> hammer since the store isn't typed to return an iterator (which it does).
-			.then((items: any) => {
-				const promises = Array.from<Item>(items)
-					.map(({ id }) => todoStore.patch({ completed }, { id }));
-				return Promise.all(promises);
+		return todoStore.fetch()
+			.then((items) => {
+				return todoStore.patch(
+					todoStore.identify(items).map((id) => {
+						return {
+							id: id,
+							completed
+						};
+					})
+				).then();
 			});
 	}
 });
 
 export const updateTodo = createAction({
 	do(item: Item) {
-		return todoStore.patch(item);
+		return todoStore.put(item);
 	}
 });

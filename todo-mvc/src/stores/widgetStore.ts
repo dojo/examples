@@ -1,6 +1,7 @@
-import createMemoryStore from 'dojo-stores/createMemoryStore';
+import createStore from 'dojo-stores/store/createStore';
+import createObservableStoreMixin from 'dojo-stores/store/mixins/createObservableStoreMixin';
 
-export default createMemoryStore({
+export default createStore.mixin(createObservableStoreMixin())({
 	data: [
 		{
 			id: 'title',

@@ -1,6 +1,5 @@
 import createApp from 'dojo-app/createApp';
-import global from 'dojo-core/global';
-import ShimPromise from 'dojo-shim/Promise';
+import Promise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
 import createWidget from 'dojo-widgets/createWidget';
 
@@ -62,7 +61,7 @@ app.loadDefinition({
 });
 
 // Try to use the native promise so the browser can report unhandled rejections.
-const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
+// const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
 Promise.resolve(app.realize(document.body))
 	.then(() => bindTodoStoreActions())
 	.then(() => router.start());

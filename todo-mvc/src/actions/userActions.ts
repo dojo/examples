@@ -28,13 +28,13 @@ export const todoInput = createAction({
 	}: { event: FormInputEvent }) {
 		if (keyCode === 13 && label) {
 			addTodo.do({ label, completed: false });
-			return widgetStore.patch({ id: 'new-todo', value: '' });
+			return widgetStore.patch({ id: 'new-todo',  value: '' });
 		}
 	}
 });
 
 export const todoEdit = createAction({
-	do(options: any) {
+	do(options: { id: string }) {
 		return widgetStore.patch(assign(options, { editing: true }));
 	}
 });
@@ -82,10 +82,7 @@ export const todoToggleComplete = createAction({
 
 export const filter = createAction({
 	do({ filter: activeFilter }: {filter: string}) {
-		return Promise.all([
-			widgetStore.patch({ id: 'todo-footer', activeFilter }),
-			widgetStore.patch({ id: 'todo-list', activeFilter })
-		]);
+		return widgetStore.patch({ id: 'todo-footer', activeFilter }, { id: 'todo-list', activeFilter });
 	}
 });
 
