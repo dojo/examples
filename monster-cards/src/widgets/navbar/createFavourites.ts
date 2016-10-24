@@ -2,8 +2,8 @@ import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableC
 import createRenderMixin from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 
-import createSearchInput from './../common/createSearchInput';
-import createFavourites from './createFavourites';
+import createContainer from './../common/createContainer';
+import createIcon from './../common/createIcon';
 
 const createNavActions = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
@@ -12,25 +12,28 @@ const createNavActions = createRenderMixin
 		initialize(instance) {
 			instance
 				.createChildren({
-					searchInput: {
-						factory: createSearchInput,
+					favIcon: {
+						factory: createIcon,
 						options: {
 							state: {
-								classes: [ 'search' ]
+								classes: [ 'fa', 'fa-2x', 'fa-heart-o' ]
 							}
 						}
 					},
-					favIcon: {
-						factory: createFavourites
+					favCards: {
+						factory: createContainer,
+						options: {
+							id: 'fav-container'
+						}
 					}
 				})
-				.then((widgets: any) => {
+				.then(() => {
 					instance.invalidate();
 				});
 		}
 	})
 	.extend({
-		tagName: 'ul'
+		tagName: 'li'
 	});
 
 export default createNavActions;

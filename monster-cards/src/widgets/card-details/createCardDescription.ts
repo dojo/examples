@@ -6,6 +6,8 @@ import createIconLink from '../common/createIconLink';
 import { h, VNode } from 'maquette';
 import Map from 'dojo-shim/Map';
 
+import { cardFav } from './../../actions/userActions';
+
 export type MilestoneCardDetails = {
 	name: string;
 	tagline: string;
@@ -81,7 +83,7 @@ const createCardDescription = createRenderMixin
 			}));
 			childrenMap.set('addToFavouritesLink', createIconLink({
 				listeners: {
-					click: () => { console.log('clicked'); }
+					click: () => { cardFav.do(instance.state); }
 				},
 				state: {
 					classes: [ 'button' ],

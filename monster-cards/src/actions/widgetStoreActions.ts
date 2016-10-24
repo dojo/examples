@@ -21,7 +21,8 @@ function createWidgetsRecords(item: Card) {
 			classes: [ 'animated', 'cardDetailsDescription' ],
 			id: `description-${item.id}`,
 			enterAnimation: 'fadeInRight',
-			exitAnimation: 'fadeOutLeft'
+			exitAnimation: 'fadeOutLeft',
+			cardId
 		}))
 	]);
 }
@@ -47,9 +48,26 @@ export const putCard = createAction({
 });
 
 export const favCard = createAction({
-	do({ afterAll, puts }: ChangeRecord) {
+	do({ afterAll, puts, deletes }: ChangeRecord) {
 		if (puts.length) {
-			// create fav "widgets"
+			const item = puts[0];
+			widgetStore.put(assign({}, <any> item, {
+				type: 'fav-card',
+				classes: [ 'animated' ],
+				id: `fav-${item.id}`,
+				cardId: item.id
+			})).then(() => {
+				const children = afterAll.map((item) => `fav-${item.id}`);
+				return widgetStore.patch({ id: 'navbar-fav-cards', children });
+			});
+		}
+		if (deletes.length) {
+			const id = deletes[0];
+
+			widgetStore.delete(`fav-${id}`).then(() => {
+				const children = afterAll.map((item) => `fav-${item.id}`);
+				return widgetStore.patch({ id: 'navbar-fav-cards', children });
+			});
 		}
 	}
 });

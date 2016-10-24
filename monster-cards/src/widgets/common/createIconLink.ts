@@ -22,7 +22,6 @@ type IconLinkFactory = ComposeFactory<IconLink, IconLinkOptions>;
 
 const createIconLink: IconLinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
-	.mixin(createVNodeEvented)
 	.mixin({
 		mixin: createParentListMixin,
 		initialize(instance: IconLink, options: IconLinkOptions) {
@@ -41,6 +40,7 @@ const createIconLink: IconLinkFactory = createRenderMixin
 			instance.append([ icon, text ]);
 		}
 	})
+	.mixin(createVNodeEvented)
 	.extend({
 		nodeAttributes: [
 			function (this: IconLink): VNodeProperties {
