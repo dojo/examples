@@ -28,8 +28,8 @@ export default createMemoryStore<any>({
 		{
 			id: 'navbar-fav-cards',
 			classes: [ 'cardFavoriteContainer', 'animated' ],
-			enterAnimation: 'rollIn',
-			exitAnimation: 'rollOut'
+			enterAnimation: 'fadeInDownBig',
+			exitAnimation: 'fadeOutUpBig'
 		},
 		{
 			id: 'container',
