@@ -15,7 +15,18 @@ export type MilestoneCardDetails = {
 	id: string;
 }
 
+<<<<<<< 110685f0a7f314c7eac1cbeea5ab0818467e40bd
+export type CardDescriptionState = RenderMixinState & StatefulChildrenState & {
+	name?: string;
+	tagline?: string;
+	description?: string;
+	imageClass?: string;
+	favouriteCount?: number;
+	id?: string;
+};
+=======
 export type CardDescriptionState = RenderMixinState & MilestoneCardDetails;
+>>>>>>> changed card descrition implementation
 
 type CardDescriptionOptions = RenderMixinOptions<CardDescriptionState>;
 
@@ -106,6 +117,7 @@ const createCardDescription = createRenderMixin
 
 			instance.on('statechange', manageChildren);
 			instance.invalidate();
+>>>>>>> changed card descrition implementation
 		}
 	})
 	.extend({

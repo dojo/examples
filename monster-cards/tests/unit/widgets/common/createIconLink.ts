@@ -1,10 +1,6 @@
 import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
-import Promise from 'dojo-shim/Promise';
 import createIconLink from '../../../../src/widgets/common/createIconLink';
-import { getWidgetRegistry, getRegistryProvider } from '../../testHelper';
-
-const registryProvider = getRegistryProvider(getWidgetRegistry());
 
 registerSuite({
 	name: 'createIconLink',
@@ -20,25 +16,17 @@ registerSuite({
 		assert.isUndefined(vnode.properties['href']);
 	},
 	renderWithText() {
-		const iconLink = createIconLink({ state: { text: 'test' }, registryProvider});
-
-		const promise = new Promise((resolve) => setTimeout(resolve, 10));
-		return promise.then(() => {
-			const vnode = iconLink.render();
-			assert.strictEqual(vnode.children.length, 2);
-			assert.strictEqual(vnode.children[1].vnodeSelector, 'span');
-			assert.strictEqual(vnode.children[1].text, 'test');
-		});
+		const iconLink = createIconLink({ state: { text: 'test' }});
+		const vnode = iconLink.render();
+		assert.strictEqual(vnode.children.length, 2);
+		assert.strictEqual(vnode.children[1].vnodeSelector, 'span');
+		assert.strictEqual(vnode.children[1].text, 'test');
 	},
 	renderWithIcon() {
-		const iconLink = createIconLink({ state: { iconClass: 'testIconClass' }, registryProvider});
-
-		const promise = new Promise((resolve) => setTimeout(resolve, 10));
-		return promise.then(() => {
-			const vnode = iconLink.render();
-			assert.strictEqual(vnode.children.length, 2);
-			assert.strictEqual(vnode.children[0].vnodeSelector, 'i');
-			assert.strictEqual(vnode.children[0].properties.classes, [ 'testIconClass' ]);
-		});
+		const iconLink = createIconLink({ state: { iconClass: [ 'testIconClass' ]}});
+		const vnode = iconLink.render();
+		assert.strictEqual(vnode.children.length, 2);
+		assert.strictEqual(vnode.children[0].vnodeSelector, 'i');
+		assert.isTrue(vnode.children[0].properties.classes['testIconClass']);
 	}
 });

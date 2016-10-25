@@ -1,52 +1,42 @@
 import { ComposeFactory } from 'dojo-compose/compose';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import { VNodeProperties } from 'maquette';
+import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createIcon from './createIcon';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-export type IconLinkState = RenderMixinState & StatefulChildrenState & {
+export type IconLinkState = RenderMixinState & {
 	href?: string;
-	iconClass?: string;
+	iconClass?: string[];
 	text?: string;
 }
 
-type IconLinkOptions = RenderMixinOptions<IconLinkState> & StatefulChildrenOptions<Child, IconLinkState>;
+type IconLinkOptions = RenderMixinOptions<IconLinkState> & ParentListMixinOptions<Child>;
 
-export type IconLink = RenderMixin<IconLinkState> & StatefulChildren<Child>;
+export type IconLink = RenderMixin<IconLinkState> & ParentListMixin<Child>;
 
 type IconLinkFactory = ComposeFactory<IconLink, IconLinkOptions>;
 
 const createIconLink: IconLinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
-		mixin: createStatefulChildrenMixin,
+		mixin: createParentListMixin,
 		initialize(instance: IconLink, options: IconLinkOptions) {
-			instance
-				.createChildren({
-					icon: {
-						factory: createIcon,
-						options: {
-							state: {
-								classes: options.state.iconClass
-							}
-						}
-					},
-					text: {
-						factory: createWidget,
-						options: {
-							tagName: 'span',
-							state: {
-								label: options.state.text
-							}
-						}
-					}
-				})
-				.then(() => {
-					instance.invalidate();
-				});
+			const icon = createIcon({
+				state: {
+					classes: options.state.iconClass
+				}
+			});
+			const text = createWidget({
+				tagName: 'span',
+				state: {
+					label: options.state.text
+				}
+			});
+
+			instance.append([ icon, text ]);
 		}
 	})
 	.extend({
