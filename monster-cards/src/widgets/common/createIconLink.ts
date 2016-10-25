@@ -2,28 +2,28 @@ import { ComposeFactory } from 'dojo-compose/compose';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import { VNodeProperties } from 'maquette';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createIcon from './createIcon';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-export type LinkState = RenderMixinState & StatefulChildrenState & {
+export type IconLinkState = RenderMixinState & StatefulChildrenState & {
 	href?: string;
 	iconClass?: string;
 	text?: string;
 }
 
-type LinkOptions = RenderMixinOptions<LinkState>;
+type IconLinkOptions = RenderMixinOptions<IconLinkState> & StatefulChildrenOptions<Child, IconLinkState>;
 
-export type Link = RenderMixin<LinkState> & StatefulChildren<Child>;
+export type IconLink = RenderMixin<IconLinkState> & StatefulChildren<Child>;
 
-type LinkFactory = ComposeFactory<Link, LinkOptions>;
+type IconLinkFactory = ComposeFactory<IconLink, IconLinkOptions>;
 
-const createIconLink: LinkFactory = createRenderMixin
+const createIconLink: IconLinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
-		initialize(instance: Link, options: LinkOptions) {
+		initialize(instance: IconLink, options: IconLinkOptions) {
 			instance
 				.createChildren({
 					icon: {
@@ -51,7 +51,7 @@ const createIconLink: LinkFactory = createRenderMixin
 	})
 	.extend({
 		nodeAttributes: [
-			function (this: Link): VNodeProperties {
+			function (this: IconLink): VNodeProperties {
 				const { href } = this.state;
 				return href ? { href } : {};
 			}
