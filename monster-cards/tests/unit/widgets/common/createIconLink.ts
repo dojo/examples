@@ -29,5 +29,16 @@ registerSuite({
 			assert.strictEqual(vnode.children[1].vnodeSelector, 'span');
 			assert.strictEqual(vnode.children[1].text, 'test');
 		});
+	},
+	renderWithIcon() {
+		const iconLink = createIconLink({ state: { iconClass: 'testIconClass' }, registryProvider});
+
+		const promise = new Promise((resolve) => setTimeout(resolve, 10));
+		return promise.then(() => {
+			const vnode = iconLink.render();
+			assert.strictEqual(vnode.children.length, 2);
+			assert.strictEqual(vnode.children[0].vnodeSelector, 'i');
+			assert.strictEqual(vnode.children[0].properties.classes, [ 'testIconClass' ]);
+		});
 	}
 });
