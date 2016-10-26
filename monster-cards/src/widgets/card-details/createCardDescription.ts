@@ -38,7 +38,6 @@ type ChildWidgetNames =
 const childrenMap = new Map<ChildWidgetNames, RenderMixin<any>>();
 
 function manageChildren(this: CardDescriptionItem) {
-	console.log('favourited');
 	childrenMap.get('favouriteCount').setState({
 		label: this.state.favouriteCount
 	});
