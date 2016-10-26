@@ -9,7 +9,6 @@ export type CardSummaryState = RenderMixinState & {
 	name: string;
 	imageClass: string;
 	score: number;
-	id: string;
 	cardId: string;
 }
 

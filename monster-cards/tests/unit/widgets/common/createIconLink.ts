@@ -9,7 +9,7 @@ registerSuite({
 		const vnode = iconLink.render();
 		assert.strictEqual(vnode.vnodeSelector, 'a');
 	},
-	renderWitouthRef() {
+	renderWithouthRef() {
 		const iconLink = createIconLink({ state: {}});
 		const vnode = iconLink.render();
 		assert.strictEqual(vnode.vnodeSelector, 'a');

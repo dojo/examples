@@ -12,7 +12,7 @@ export type MilestoneCardDetails = {
 	description: string;
 	imageClass: string;
 	favouriteCount: number;
-	id: string;
+	cardId: string;
 }
 
 export type CardDescriptionState = RenderMixinState & MilestoneCardDetails;
