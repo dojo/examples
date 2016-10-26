@@ -21,7 +21,7 @@ function createWidgetsRecords(item: Card) {
 			classes: [ 'animated' ],
 			id: `description-${item.id}`,
 			enterAnimation: 'fadeInRightBig',
-			exitAnimation: 'fadeOutRightBig'
+			exitAnimation: 'fadeOutLeftBig'
 		}))
 	]);
 }
