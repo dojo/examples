@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
 
 	var staticFiles = [ 'src/**/*.html', 'src/**/*.css' ];
+	var testFiles = [ 'tests/support/index.html' ];
 
 	require('grunt-dojo2').initConfig(grunt, {
 		ts: {
@@ -16,6 +17,13 @@ module.exports = function (grunt) {
 				cwd: '.',
 				src: staticFiles,
 				dest: '<%= devDirectory %>'
+			},
+			testIndexFiles: {
+				expand: false,
+				flatten: true,
+				cwd: '.',
+				src: testFiles,
+				dest: '<%= devDirectory %>src/index.html'
 			}
 		}
 	});
@@ -26,7 +34,8 @@ module.exports = function (grunt) {
 		'tslint',
 		'clean:dev',
 		'ts:dev',
-		'copy:staticFiles'
+		'copy:staticFiles',
+		'copy:testIndexFiles'
 	]);
 
 	grunt.registerTask('ci', [
