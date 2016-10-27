@@ -25,7 +25,9 @@ const createNavMenu = createRenderMixin
 						options: {
 							state: {
 								href: '#cards',
-								label: 'THE CARDS'
+								labels: {
+									label: 'navCards'
+								}
 							}
 						}
 					},
@@ -34,7 +36,9 @@ const createNavMenu = createRenderMixin
 						options: {
 							state: {
 								href: '#gameplay',
-								label: 'GAMEPLAY'
+								labels: {
+									label: 'navGameplay'
+								}
 							}
 						}
 					},
@@ -43,7 +47,9 @@ const createNavMenu = createRenderMixin
 						options: {
 							state: {
 								href: '#about',
-								label: 'ABOUT'
+								labels: {
+									label: 'navAbout'
+								}
 							}
 						}
 					}

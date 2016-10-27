@@ -1,11 +1,13 @@
+import createI18nMixin, { I18nState } from 'dojo-widgets/mixins/createI18nMixin';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createCard from './createCard';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
+import bundle from './../../nls/cards';
 
-export type CardSummaryState = RenderMixinState & StatefulChildrenState & {
+export type CardSummaryState = RenderMixinState & StatefulChildrenState & I18nState & {
 	name: string;
 	cardImage: string;
 	score: number;
@@ -34,10 +36,11 @@ const createCardSummary = createRenderMixin
 						}
 					},
 					name: {
-						factory: createWidget,
+						factory: createWidget.mixin(createI18nMixin),
 						options: {
+							bundles: [ bundle ],
 							state: {
-								label: options.state.name
+								labels: { label: options.state.name }
 							},
 							tagName: 'h2'
 						}
@@ -47,6 +50,8 @@ const createCardSummary = createRenderMixin
 						options: {
 							state: {
 								classes: [ 'points' ],
+								// TODO: update once ICU message formatting is supported to:
+								// label: { key: 'milestonPoints', score: options.state.score }
 								label: `milestone points: ${options.state.score}`
 							},
 							tagName: 'p'
