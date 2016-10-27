@@ -20,7 +20,7 @@ type CardOptions = RenderMixinOptions<CardState>;
 export type Card = RenderMixin<CardState> & StatefulChildren<Child>;
 
 const imagePath = {
-	small: '/images/cards/large/',
+	small: '/images/cards/small/',
 	large: '/images/cards/large/'
 };
 

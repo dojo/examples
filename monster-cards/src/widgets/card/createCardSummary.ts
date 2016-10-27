@@ -29,7 +29,8 @@ const createCardSummary = createRenderMixin
 						options: {
 							state: {
 								cardId: options.state.cardId,
-								cardImage: options.state.cardImage
+								cardImage: options.state.cardImage,
+								large: true
 							}
 						}
 					},
