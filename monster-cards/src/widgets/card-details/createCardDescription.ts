@@ -53,6 +53,8 @@ function manageChildren(this: CardDescriptionItem) {
 	});
 }
 
+const imageBaseSrc = '/images/cards/large/';
+
 const createCardDescription = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin(createCssTransitionMixin)
@@ -65,7 +67,7 @@ const createCardDescription = createRenderMixin
 						factory: createImage,
 						options: {
 							state: {
-								src: options.state.cardImage,
+								src: imageBaseSrc + options.state.cardImage,
 								classes: [ 'cardImage' ]
 							}
 						}

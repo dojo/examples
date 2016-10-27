@@ -12,24 +12,31 @@ export type CardState = RenderMixinState & StatefulChildrenState & {
 	cardImage: string;
 	favouriteCount: number;
 	cardId: string;
+	large?: boolean;
 }
 
 type CardOptions = RenderMixinOptions<CardState>;
 
 export type Card = RenderMixin<CardState> & StatefulChildren<Child>;
 
+const imagePath = {
+	small: '/images/cards/large/',
+	large: '/images/cards/large/'
+};
+
 const createCard = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
 		initialize(instance: Card, options: CardOptions) {
+			const baseSrc = options.state.large ? imagePath.large : imagePath.small;
 			instance
 				.createChildren({
 					image: {
 						factory: createImage,
 						options: {
 							state: {
-								src: options.state.cardImage
+								src: baseSrc + options.state.cardImage
 							}
 						}
 					}
