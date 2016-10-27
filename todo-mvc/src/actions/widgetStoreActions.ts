@@ -54,7 +54,7 @@ export const putTodo = createAction({
 			if (includes(children, update && update.id)) {
 				promise = widgetStore.patch([ ...updates.filter((update) => {
 					return includes(children, update && update.id);
-				}, { id: 'todo-list', children } ]);
+				}), { id: 'todo-list', children } ]);
 			}
 			if (item) {
 				promise = promise.then(() =>
