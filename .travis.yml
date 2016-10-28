@@ -21,11 +21,11 @@ install:
 - cd $PROJECT_DIR
 - travis_retry npm install grunt-cli
 - travis_retry npm install
-- cd ..
 script:
 - grunt
 - grunt ci --combined
 - grunt remapIstanbul:ci
+- cd ..
 deploy:
   provider: script
   script: auto-deploy/gh-pages-publish.sh
