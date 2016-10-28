@@ -3,7 +3,6 @@ import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } 
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren, CreateChildrenResults, CreateChildrenResultsItem } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createWidget from 'dojo-widgets/createWidget';
-import createImage from '../common/createImage';
 import createIconLink from '../common/createIconLink';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 import { h, VNode } from 'maquette';
@@ -13,7 +12,7 @@ export type MilestoneCardDetails = {
 	name: string;
 	tagline: string;
 	description: string;
-	cardImage: string;
+	imageClass: string;
 	favouriteCount: number;
 	id: string;
 }
@@ -22,7 +21,7 @@ export type CardDescriptionState = RenderMixinState & StatefulChildrenState & {
 	name?: string;
 	tagline?: string;
 	description?: string;
-	cardImage?: string;
+	imageClass?: string;
 	favouriteCount?: number;
 	id?: string;
 };
@@ -62,11 +61,11 @@ const createCardDescription = createRenderMixin
 			instance
 				.createChildren({
 					cardImage: {
-						factory: createImage,
+						factory: createWidget,
 						options: {
+							tagName: 'div',
 							state: {
-								src: options.state.cardImage,
-								classes: [ 'cardImage' ]
+								classes: [ 'cardImage', 'cardImageLarge', options.state.imageClass ]
 							}
 						}
 					},

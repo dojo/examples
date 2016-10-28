@@ -4,6 +4,7 @@
 	height: card-height-small;
 	border-radius: 4px;
 	background: #c5c5c5;
+	overflow: hidden;
 
 	img {
 		width: 100%;
@@ -15,4 +16,20 @@
 		height: card-height-large;
 		border-radius: 12px;
 	}
+}
+
+.cardImageLarge {
+	background-image: url('/images/cards/large.jpg');
+	width: 193px;
+	height: 270px;
+
+	@import './card-sprite-large';
+}
+
+.cardImageSmall {
+	background-image: url('/images/cards/small.jpg');
+	width: 49px;
+	height: 68px;
+
+	@import './card-sprite-small';
 }
