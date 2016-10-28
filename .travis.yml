@@ -7,12 +7,16 @@ env:
   - PROJECT_DIR=todo-mvc
   - PROJECT_DIR=monster-cards
   - PROJECT_DIR=dojo-cli-example
+  - PROJECT_DIR=auto-deploy
   global:
-  - SAUCE_USERNAME: dojo2-ts-ci
-  - SAUCE_ACCESS_KEY: e92610e3-834e-4bec-a3b5-6f7b9d874601
+  - SAUCE_USERNAME=dojo2-ts-ci
+  - SAUCE_ACCESS_KEY=e92610e3-834e-4bec-a3b5-6f7b9d874601
+matrix:
+  allow_failures:
+  - env: PROJECT_DIR=auto-deploy
 cache:
   directories:
-  - node_modules
+  - $PROJECT_DIR/node_modules
 install:
 - cd $PROJECT_DIR
 - travis_retry npm install grunt-cli
@@ -21,6 +25,11 @@ script:
 - grunt
 - grunt ci --combined
 - grunt remapIstanbul:ci
+deploy:
+  provider: script
+  script: auto-deploy/gh-pages-publish.sh
+  on:
+    branch: master
 notifications:
   slack:
     on_success: change
