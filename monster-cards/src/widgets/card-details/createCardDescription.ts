@@ -13,7 +13,7 @@ export type MilestoneCardDetails = {
 	name: string;
 	tagline: string;
 	description: string;
-	cardImage: string;
+	imageClass: string;
 	favouriteCount: number;
 	id: string;
 }
@@ -22,7 +22,7 @@ export type CardDescriptionState = RenderMixinState & StatefulChildrenState & {
 	name?: string;
 	tagline?: string;
 	description?: string;
-	cardImage?: string;
+	imageClass?: string;
 	favouriteCount?: number;
 	id?: string;
 };
@@ -53,8 +53,6 @@ function manageChildren(this: CardDescriptionItem) {
 	});
 }
 
-const imageBaseSrc = '/images/cards/large/';
-
 const createCardDescription = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin(createCssTransitionMixin)
@@ -64,11 +62,11 @@ const createCardDescription = createRenderMixin
 			instance
 				.createChildren({
 					cardImage: {
-						factory: createImage,
+						factory: createWidget,
 						options: {
+							tagName: 'div',
 							state: {
-								src: imageBaseSrc + options.state.cardImage,
-								classes: [ 'cardImage' ]
+								classes: [ 'cardImage', 'cardImageLarge', options.state.imageClass ]
 							}
 						}
 					},

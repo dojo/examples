@@ -1,7 +1,7 @@
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
-import createImage from '../common/createImage';
+import createWidget from 'dojo-widgets/createWidget';
 import { VNodeProperties } from 'maquette';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
@@ -9,7 +9,7 @@ export type CardState = RenderMixinState & StatefulChildrenState & {
 	name: string;
 	tagline: string;
 	description: string;
-	cardImage: string;
+	imageClass: string;
 	favouriteCount: number;
 	cardId: string;
 	large?: boolean;
@@ -19,24 +19,20 @@ type CardOptions = RenderMixinOptions<CardState>;
 
 export type Card = RenderMixin<CardState> & StatefulChildren<Child>;
 
-const imagePath = {
-	small: '/images/cards/small/',
-	large: '/images/cards/large/'
-};
-
 const createCard = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
 		mixin: createStatefulChildrenMixin,
 		initialize(instance: Card, options: CardOptions) {
-			const baseSrc = options.state.large ? imagePath.large : imagePath.small;
+			const baseImageClass = options.state.large ? 'cardImageLarge' : 'cardImageSmall';
 			instance
 				.createChildren({
 					image: {
-						factory: createImage,
+						factory: createWidget,
 						options: {
+							tagName: 'div',
 							state: {
-								src: baseSrc + options.state.cardImage
+								classes: [ baseImageClass, options.state.imageClass ]
 							}
 						}
 					}

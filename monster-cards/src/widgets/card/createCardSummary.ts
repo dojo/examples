@@ -7,7 +7,7 @@ import { Child } from 'dojo-widgets/mixins/interfaces';
 
 export type CardSummaryState = RenderMixinState & StatefulChildrenState & {
 	name: string;
-	cardImage: string;
+	imageClass: string;
 	score: number;
 	id: string;
 	cardId: string;
@@ -29,7 +29,7 @@ const createCardSummary = createRenderMixin
 						options: {
 							state: {
 								cardId: options.state.cardId,
-								cardImage: options.state.cardImage,
+								imageClass: options.state.imageClass,
 								large: true
 							}
 						}
