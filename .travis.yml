@@ -21,6 +21,7 @@ install:
 - cd $PROJECT_DIR
 - travis_retry npm install grunt-cli
 - travis_retry npm install
+  cd ..
 script:
 - grunt
 - grunt ci --combined
