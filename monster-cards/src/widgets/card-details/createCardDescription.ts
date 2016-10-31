@@ -17,13 +17,9 @@ export type MilestoneCardDetails = {
 
 export type CardDescriptionState = RenderMixinState & MilestoneCardDetails;
 
-type CardDescriptionOptions = RenderMixinOptions<CardDescriptionState>;
+export type CardDescriptionOptions = RenderMixinOptions<CardDescriptionState>;
 
-type CardDescription = RenderMixin<CardDescriptionState>;
-
-export type CardDescriptionItem = RenderMixin<CardDescriptionState>;
-
-const favouriteHref = '/api/favourite/';
+export type CardDescription = RenderMixin<CardDescriptionState>;
 
 type ChildWidgetNames =
 	'cardImage' |
@@ -35,11 +31,9 @@ type ChildWidgetNames =
 	'twitterLink' |
 	'facebookLink';
 
-type ChildrenMap = Map<ChildWidgetNames, RenderMixin<any>>;
+const instanceWeakMap = new WeakMap<CardDescription, Map<ChildWidgetNames, RenderMixin<any>>>();
 
-const instanceWeakMap = new WeakMap<CardDescription, ChildrenMap>();
-
-function manageChildren(this: CardDescriptionItem) {
+function manageChildren(this: CardDescription) {
 	const childrenMap = instanceWeakMap.get(this);
 	childrenMap.get('favouriteCount').setState({
 		label: this.state.favouriteCount
@@ -51,8 +45,8 @@ const createCardDescription = createRenderMixin
 	.mixin({
 		mixin: createRenderableChildrenMixin,
 		initialize(instance: CardDescription, options: CardDescriptionOptions) {
-			const childrenMap = new Map();
-			instanceWeakMap.set(instance, <ChildrenMap> childrenMap);
+			const childrenMap = new Map<ChildWidgetNames, RenderMixin<any>>();
+			instanceWeakMap.set(instance, childrenMap);
 			childrenMap.set('cardImage', createWidget({
 				tagName: 'div',
 				state: {
@@ -88,7 +82,6 @@ const createCardDescription = createRenderMixin
 			childrenMap.set('addToFavouritesLink', createIconLink({
 				state: {
 					classes: [ 'button' ],
-					href: favouriteHref + options.state.id,
 					iconClass: [ 'fa', 'fa-heart-o'],
 					text: 'Add to favourites'
 				}
@@ -109,12 +102,11 @@ const createCardDescription = createRenderMixin
 			}));
 
 			instance.on('statechange', manageChildren);
-			instance.invalidate();
 		}
 	})
 	.extend({
 		tagName: 'card-details-description',
-		getChildrenNodes(this: CardDescriptionItem): VNode[] {
+		getChildrenNodes(this: CardDescription): VNode[] {
 			const childrenMap = instanceWeakMap.get(this);
 			return [
 				childrenMap.get('cardImage').render(),

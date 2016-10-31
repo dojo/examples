@@ -28,7 +28,7 @@ const createCard = createRenderMixin
 				}
 			});
 
-			instance.append([ image ]);
+			instance.append(image);
 		}
 	})
 	.extend({
