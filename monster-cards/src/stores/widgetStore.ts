@@ -40,6 +40,19 @@ export default createMemoryStore<any>({
 		{
 			id: 'cardsJumbotron',
 			classes: [ 'jumbotron', 'cardsJumbotron' ]
+		},
+		{
+			id: 'home',
+			children: [ 'homeJumbotron' ]
+		},
+		{
+			id: 'homeJumbotron',
+			classes: [ 'jumbotron', 'homeJumbotron' ],
+			children: [ 'homePageLogo' ]
+		},
+		{
+			id: 'homePageLogo',
+			src: './images/mm_logo.png'
 		}
 	]
 });
