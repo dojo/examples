@@ -18,17 +18,12 @@ cache:
   directories:
   - $PROJECT_DIR/node_modules
 install:
-- cd $PROJECT_DIR
-- travis_retry npm install grunt-cli
-- travis_retry npm install
+- ./scripts/install.sh
 script:
-- grunt
-- grunt ci --combined
-- grunt remapIstanbul:ci
-- cd ..
+- ./scripts/build.sh
 deploy:
   provider: script
-  script: auto-deploy/gh-pages-publish.sh
+  script: scripts/test-deploy.sh
   on:
     branch: master
 notifications:
