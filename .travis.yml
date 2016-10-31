@@ -23,7 +23,7 @@ script:
 - ./scripts/build.sh
 deploy:
   provider: script
-  script: scripts/test-deploy.sh
+  script: scripts/gh-pages-publish.sh
   on:
     branch: master
 notifications:
