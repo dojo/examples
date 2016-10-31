@@ -1,3 +1,6 @@
+import { RootRequire } from 'dojo-interfaces/loader';
+declare const require: RootRequire;
+
 require.config({
 	baseUrl: '../../',
 	packages: [
