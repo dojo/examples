@@ -7,6 +7,7 @@ import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription from './widgets/card-details/createCardDescription';
 import createContainer from './widgets/common/createContainer';
 import createCard from './widgets/card/createCard';
+import createImage from './widgets/common/createImage';
 import createCardSummary from './widgets/card/createCardSummary';
 import defaultWidgetStore from './stores/widgetStore';
 
@@ -68,6 +69,18 @@ app.loadDefinition({
 		{
 			id: 'cardsList',
 			factory: createContainer
+		},
+		{
+			id: 'home',
+			factory: createContainer
+		},
+		{
+			id: 'homeJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'homePageLogo',
+			factory: createImage
 		}
 	]
 });

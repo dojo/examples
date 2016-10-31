@@ -15,3 +15,9 @@ export const gotoCards = createAction({
 		return widgetStore.patch({ id: 'container', children: [ 'cards' ] });
 	}
 });
+
+export const gotoHome = createAction({
+	do() {
+		return widgetStore.patch({ id: 'container', children: [ 'home' ] });
+	}
+});
