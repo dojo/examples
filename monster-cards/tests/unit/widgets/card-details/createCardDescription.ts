@@ -3,7 +3,7 @@ import * as assert from 'intern/chai!assert';
 import createCardDescription from '../../../../src/widgets/card-details/createCardDescription';
 
 const state = {
-	cardImage: 'imagePath',
+	imageClass: 'imageClass',
 	cardId: 'test-card-1',
 	tagline: 'test-tagline',
 	description: 'test-description',
@@ -22,8 +22,8 @@ registerSuite({
 	renderCardImage() {
 		const cardDescription = createCardDescription({ state });
 		const vnode = cardDescription.render();
-		assert.strictEqual(vnode.children[0].vnodeSelector, 'img');
-		assert.strictEqual(vnode.children[0].properties['src'], state.cardImage);
+		assert.strictEqual(vnode.children[0].vnodeSelector, 'div');
+		assert.isTrue(vnode.children[0].properties.classes[state.imageClass]);
 	},
 	renderDescriptionArticle() {
 		const cardDescription = createCardDescription({ state });
