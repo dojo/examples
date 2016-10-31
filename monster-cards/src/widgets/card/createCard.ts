@@ -1,12 +1,12 @@
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
 import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
-import createImage from '../common/createImage';
+import createWidget from 'dojo-widgets/createWidget';
 import { VNodeProperties } from 'maquette';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
 export type CardState = RenderMixinState & {
-	cardImage: string;
+	imageClass: string;
 	cardId: string;
 	large?: boolean;
 }
@@ -20,9 +20,11 @@ const createCard = createRenderMixin
 	.mixin({
 		mixin: createParentListMixin,
 		initialize(instance: Card, options: CardOptions) {
-			const image = createImage({
+			const baseImageClass = options.state.large ? 'cardImageLarge' : 'cardImageSmall';
+			const image = createWidget({
+				tagName: 'div',
 				state: {
-					src: options.state.cardImage
+					classes: [ baseImageClass, options.state.imageClass ]
 				}
 			});
 

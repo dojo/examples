@@ -53,10 +53,10 @@ const createCardDescription = createRenderMixin
 		initialize(instance: CardDescription, options: CardDescriptionOptions) {
 			const childrenMap = new Map();
 			instanceWeakMap.set(instance, <ChildrenMap> childrenMap);
-			childrenMap.set('cardImage', createImage({
+			childrenMap.set('cardImage', createWidget({
+				tagName: 'div',
 				state: {
-					src: options.state.cardImage,
-					classes: [ 'cardImage' ]
+					classes: [ 'cardImage', 'cardImageLarge', options.state.imageClass ]
 				}
 			}));
 			childrenMap.set('name', createWidget({

@@ -24,7 +24,8 @@ const createCardSummary = createRenderMixin
 			const card = createCard({
 				state: {
 					cardId: options.state.cardId,
-					cardImage: options.state.cardImage
+					imageClass: options.state.imageClass,
+					large: true
 				}
 			});
 			const name = createWidget({
