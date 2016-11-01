@@ -23,12 +23,14 @@ then
 	cp -r monster-cards/dist/* samples/monster-cards/
 	cp -r todo-mvc/dist/* samples/todo-mvc/
 
+	git remote add pages "https://$GH_TOKEN@github.com/dojo/examples.git"
+
 	git add -f samples
 	git commit -am "built example"
 
 	git filter-branch -f --prune-empty --subdirectory-filter samples
 
-	git push -f origin gh-pages
+	git push -f pages gh-pages
 
 	git checkout -
 fi
