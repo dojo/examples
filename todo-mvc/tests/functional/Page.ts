@@ -1,6 +1,6 @@
 import * as keys from 'leadfoot/keys';
-import { RootRequire } from 'dojo-interfaces/loader';
-declare const require: RootRequire;
+import { Require } from 'dojo-interfaces/loader';
+declare const require: Require;
 
 class Selectors {
 	public main = '.main';

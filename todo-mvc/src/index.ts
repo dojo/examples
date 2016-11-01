@@ -1,7 +1,4 @@
-import { RootRequire } from 'dojo-interfaces/loader';
-declare const require: RootRequire;
-
-require.config({
+(<any> require).config({
 	baseUrl: '../../',
 	packages: [
 		{ name: 'src', location: '_build/src' },
@@ -21,4 +18,4 @@ require.config({
 	]
 });
 
-require([ 'src/main' ], function () {});
+(<any> require)([ 'src/main' ], function () {});
