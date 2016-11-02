@@ -18,10 +18,10 @@ function createWidgetsRecords(item: Card) {
 		})),
 		widgetStore.put(assign({}, <any> item, {
 			type: 'card-description',
-			classes: [ 'animated' ],
+			classes: [ 'animated', 'cardDetailsDescription' ],
 			id: `description-${item.id}`,
-			enterAnimation: 'fadeInRightBig',
-			exitAnimation: 'fadeOutLeftBig'
+			enterAnimation: 'fadeInRight',
+			exitAnimation: 'fadeOutLeft'
 		}))
 	]);
 }
