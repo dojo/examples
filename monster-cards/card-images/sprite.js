@@ -12,7 +12,7 @@ const defaultOptions = {
 	out: spriteOutputDir,
 	format: 'jpg',
 	margin: 0,
-	template: './stylus-template.hbs'
+	template: './card-sprite-template.hbs'
 };
 
 const largeOptions = {
