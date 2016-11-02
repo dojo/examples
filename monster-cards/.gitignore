@@ -1,6 +1,7 @@
 *.js
 *.js.map
 !/*.js
+!/card-images/sprite.js
 !/tasks/*.js
 /_build
 /bower_components
