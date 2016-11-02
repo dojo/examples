@@ -47,7 +47,6 @@
     "intern": "^3.2.3",
     "remap-istanbul": "^0.6.4",
     "sprity": "^1.0.8",
-    "sprity-lwip": "git+https://github.com/chadwatson/sprity-lwip.git",
     "tslint": "^3.15.1",
     "typescript": "~2.0.3"
   }
