@@ -20,7 +20,7 @@ const createCard = createRenderMixin
 	.mixin({
 		mixin: createParentListMixin,
 		initialize(instance: Card, options: CardOptions) {
-			const baseImageClass = options.state.large ? 'cardImageLarge' : 'cardImageSmall';
+			const baseImageClass = options.state.large ? 'card-sprite-large' : 'card-sprite-small';
 			const image = createWidget({
 				tagName: 'div',
 				state: {

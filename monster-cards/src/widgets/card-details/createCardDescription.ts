@@ -50,7 +50,7 @@ const createCardDescription = createRenderMixin
 			childrenMap.set('cardImage', createWidget({
 				tagName: 'div',
 				state: {
-					classes: [ 'cardImage', 'cardImageLarge', options.state.imageClass ]
+					classes: [ 'cardImage', 'card-sprite-large', options.state.imageClass ]
 				}
 			}));
 			childrenMap.set('name', createWidget({

@@ -1,0 +1,15 @@
+{{#each layouts}}
+.{{classname}} {
+	background-image: url('./widgets/card/{{classname}}.jpg');
+
+	{{#each layout.items}}
+	&.{{meta.name}} {
+		background-position: -{{baseDim x}}px -{{baseDim y}}px;
+		width: {{baseDim width}}px;
+		height: {{baseDim height}}px;
+	}
+	{{/each}}
+{{/each}}
+}
+
+
