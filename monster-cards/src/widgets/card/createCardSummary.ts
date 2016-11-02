@@ -1,62 +1,47 @@
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
+import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
 import createCard from './createCard';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-export type CardSummaryState = RenderMixinState & StatefulChildrenState & {
+export type CardSummaryState = RenderMixinState & {
 	name: string;
 	imageClass: string;
 	score: number;
-	id: string;
 	cardId: string;
 }
 
-type CardSummaryOptions = RenderMixinOptions<CardSummaryState>;
+type CardSummaryOptions = RenderMixinOptions<CardSummaryState> & ParentListMixinOptions<Child>;
 
-export type CardSummary = RenderMixin<CardSummaryState> & StatefulChildren<Child>;
+export type CardSummary = RenderMixin<CardSummaryState> & ParentListMixin<Child>;
 
 const createCardSummary = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
-		mixin: createStatefulChildrenMixin,
+		mixin: createParentListMixin,
 		initialize(instance: CardSummary, options: CardSummaryOptions) {
-			instance
-				.createChildren({
-					card: {
-						factory: createCard,
-						options: {
-							state: {
-								cardId: options.state.cardId,
-								imageClass: options.state.imageClass,
-								large: true
-							}
-						}
-					},
-					name: {
-						factory: createWidget,
-						options: {
-							state: {
-								label: options.state.name
-							},
-							tagName: 'h2'
-						}
-					},
-					score: {
-						factory: createWidget,
-						options: {
-							state: {
-								classes: [ 'points' ],
-								label: `milestone points: ${options.state.score}`
-							},
-							tagName: 'p'
-						}
-					}
-				})
-				.then(() => {
-					instance.invalidate();
-				});
+			const card = createCard({
+				state: {
+					cardId: options.state.cardId,
+					imageClass: options.state.imageClass,
+					large: true
+				}
+			});
+			const name = createWidget({
+				state: {
+					label: options.state.name
+				},
+				tagName: 'h2'
+			});
+			const score = createWidget({
+				state: {
+					classes: [ 'points' ],
+					label: `milestone points: ${options.state.score}`
+				},
+				tagName: 'p'
+			});
+			instance.append([ card, name, score ]);
 		}
 	}).extend({
 		classes: [ 'cardSummary' ]

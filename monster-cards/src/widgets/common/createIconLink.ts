@@ -1,57 +1,47 @@
 import { ComposeFactory } from 'dojo-compose/compose';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import { VNodeProperties } from 'maquette';
+import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildren } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
 import createIcon from './createIcon';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-export type LinkState = RenderMixinState & StatefulChildrenState & {
+export type IconLinkState = RenderMixinState & {
 	href?: string;
-	iconClass?: string;
+	iconClass?: string[];
 	text?: string;
 }
 
-type LinkOptions = RenderMixinOptions<LinkState>;
+type IconLinkOptions = RenderMixinOptions<IconLinkState> & ParentListMixinOptions<Child>;
 
-export type Link = RenderMixin<LinkState> & StatefulChildren<Child>;
+export type IconLink = RenderMixin<IconLinkState> & ParentListMixin<Child>;
 
-type LinkFactory = ComposeFactory<Link, LinkOptions>;
+type IconLinkFactory = ComposeFactory<IconLink, IconLinkOptions>;
 
-const createIconLink: LinkFactory = createRenderMixin
+const createIconLink: IconLinkFactory = createRenderMixin
 	.mixin(createRenderableChildrenMixin)
 	.mixin({
-		mixin: createStatefulChildrenMixin,
-		initialize(instance: Link, options: LinkOptions) {
-			instance
-				.createChildren({
-					icon: {
-						factory: createIcon,
-						options: {
-							state: {
-								classes: options.state.iconClass
-							}
-						}
-					},
-					text: {
-						factory: createWidget,
-						options: {
-							tagName: 'span',
-							state: {
-								label: options.state.text
-							}
-						}
-					}
-				})
-				.then(() => {
-					instance.invalidate();
-				});
+		mixin: createParentListMixin,
+		initialize(instance: IconLink, options: IconLinkOptions) {
+			const icon = createIcon({
+				state: {
+					classes: options.state.iconClass
+				}
+			});
+			const text = createWidget({
+				tagName: 'span',
+				state: {
+					label: options.state.text
+				}
+			});
+
+			instance.append([ icon, text ]);
 		}
 	})
 	.extend({
 		nodeAttributes: [
-			function (this: Link): VNodeProperties {
+			function (this: IconLink): VNodeProperties {
 				const { href } = this.state;
 				return href ? { href } : {};
 			}
