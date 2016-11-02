@@ -41,6 +41,11 @@ dojo build -w
 
 The resources by default are served at [http://localhost:9999](http://localhost:9999)
 
+## Generating Sprites
+
+To generate the card-image sprites there is a script under `/card-images` called `sprite.js`. This uses `sprity`. To generate the sprites, place the card images in the large and small folders and run `./card-images/sprite.js`, the output goes into `/src/widgets/card`.
+
+There is an incompatibility between `sprity-lwip` (the image processing library that sprity uses) and the latest version of node. The work around for now is to run `npm i https://github.com/chadwatson/sprity-lwip` locally before generating the sprites.
 
 ## Testing
 
