@@ -53,6 +53,32 @@ export default createMemoryStore<any>({
 		{
 			id: 'homePageLogo',
 			src: './images/mm_logo.png'
+		},
+		{
+			id: 'about',
+			children: [ 'aboutJumbotron' ]
+		},
+		{
+			id: 'aboutJumbotron',
+			classes: [ 'jumbotron', 'aboutJumbotron' ],
+			children: [ 'aboutHeading' ]
+		},
+		{
+			id: 'aboutHeading',
+			label: 'About'
+		},
+		{
+			id: 'gameplay',
+			children: [ 'gameplayJumbotron' ]
+		},
+		{
+			id: 'gameplayJumbotron',
+			classes: [ 'jumbotron', 'gameplayJumbotron' ],
+			children: [ 'gameplayHeading' ]
+		},
+		{
+			id: 'gameplayHeading',
+			label: 'Gameplay'
 		}
 	]
 });

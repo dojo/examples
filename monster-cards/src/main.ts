@@ -11,6 +11,8 @@ import createImage from './widgets/common/createImage';
 import createCardSummary from './widgets/card/createCardSummary';
 import defaultWidgetStore from './stores/widgetStore';
 
+import createWidget from 'dojo-widgets/createWidget';
+
 import 'maquette/src/css-transitions';
 
 const app = createApp({ defaultWidgetStore });
@@ -81,6 +83,36 @@ app.loadDefinition({
 		{
 			id: 'homePageLogo',
 			factory: createImage
+		},
+		{
+			id: 'gameplay',
+			factory: createContainer
+		},
+		{
+			id: 'gameplayJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'gameplayHeading',
+			factory: createWidget,
+			options: {
+				tagName: 'h1'
+			}
+		},
+		{
+			id: 'about',
+			factory: createContainer
+		},
+		{
+			id: 'aboutJumbotron',
+			factory: createContainer
+		},
+		{
+			id: 'aboutHeading',
+			factory: createWidget,
+			options: {
+				tagName: 'h1'
+			}
 		}
 	]
 });

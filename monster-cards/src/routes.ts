@@ -5,7 +5,9 @@ import createHashHistory from 'dojo-routing/history/createHashHistory';
 import {
 	gotoCardDetails as gotoCardDetailsAction,
 	gotoCards as gotoCardsAction,
-	gotoHome as gotoHomeAction
+	gotoHome as gotoHomeAction,
+	gotoAbout as gotoAboutAction,
+	gotoGameplay as gotoGameplayAction
 } from './actions/routeActions';
 
 const cardDetailRoute = createRoute({
@@ -30,6 +32,20 @@ const homeRoute = createRoute({
 	}
 });
 
+const aboutRoute = createRoute({
+	path: 'about',
+	exec (request: any) {
+		return gotoAboutAction.do();
+	}
+});
+
+const gameplayRoute = createRoute({
+	path: 'gameplay',
+	exec (request: any) {
+		return gotoGameplayAction.do();
+	}
+});
+
 export const history = createHashHistory();
 
 const router = createRouter({ history });
@@ -39,5 +55,7 @@ export default router;
 router.append([
 	cardsRoute,
 	cardDetailRoute,
-	homeRoute
+	homeRoute,
+	aboutRoute,
+	gameplayRoute
 ]);

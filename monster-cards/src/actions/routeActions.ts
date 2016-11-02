@@ -21,3 +21,15 @@ export const gotoHome = createAction({
 		return widgetStore.patch({ id: 'container', children: [ 'home' ] });
 	}
 });
+
+export const gotoAbout = createAction({
+	do() {
+		return widgetStore.patch({ id: 'container', children: [ 'about' ] });
+	}
+});
+
+export const gotoGameplay = createAction({
+	do() {
+		return widgetStore.patch({ id: 'container', children: [ 'gameplay' ] });
+	}
+});
