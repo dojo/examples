@@ -1,4 +1,4 @@
-require.config({
+(<any> require).config({
 	baseUrl: '../../',
 	packages: [
 		{ name: 'src', location: '_build/src' },
@@ -18,4 +18,4 @@ require.config({
 	]
 });
 
-require([ 'src/main' ], function () {});
+(<any> require)([ 'src/main' ], function () {});
