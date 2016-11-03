@@ -20,12 +20,12 @@
     "dojo-actions": ">=2.0.0-alpha.9",
     "dojo-app": "2.0.0-alpha.8",
     "dojo-compose": ">=2.0.0-beta.13",
-    "dojo-core": ">=2.0.0-alpha.15",
+    "dojo-core": ">=2.0.0-alpha.16",
     "dojo-dom": ">=2.0.0-alpha.5",
     "dojo-has": ">=2.0.0-alpha.5",
     "dojo-loader": ">=2.0.0-beta.7",
     "dojo-routing": ">=2.0.0-alpha.5",
-    "dojo-shim": ">=2.0.0-beta.2",
+    "dojo-shim": ">=2.0.0-beta.3",
     "dojo-stores": ">=2.0.0-alpha.3",
     "dojo-widgets": "2.0.0-alpha.10",
     "font-awesome": "^4.6.3",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "dojo-cli-build-webpack": "^2.0.0-alpha.2",
+    "dojo-interfaces": ">=2.0.0-alpha.4",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
@@ -44,10 +45,14 @@
     "grunt-text-replace": "^0.4.0",
     "grunt-ts": "^5.5.1",
     "grunt-tslint": "^3.1.0",
-    "intern": "^3.2.3",
+    "intern": "^3.3.2",
     "remap-istanbul": "^0.6.4",
-    "sprity": "^1.0.8",
     "tslint": "^3.15.1",
-    "typescript": "~2.0.3"
+    "typescript": "~2.0.3",
+    "@types/node": "^6.0.46",
+    "@types/es6-shim": "~0.31.0",
+    "@types/grunt": "~0.4.0",
+    "@types/glob": "~5.0.0",
+    "@types/chai": "~3.4.0"
   }
 }
