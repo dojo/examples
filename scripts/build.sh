@@ -7,5 +7,6 @@ else
 	./node_modules/.bin/grunt
 	./node_modules/.bin/grunt ci --combined
 	./node_modules/.bin/grunt remapIstanbul:ci
+	./node_modules/.bin/dojo build webpack
 	cd ..
 fi

@@ -1,18 +1,6 @@
 #!/bin/bash
 if [ "$PROJECT_DIR" = "auto-deploy" ]
 then
-	cd todo-mvc
-
-	dojo build webpack
-
-	cd ..
-
-	cd monster-cards
-
-	dojo build webpack
-
-	cd ..
-
 	git checkout -B gh-pages
 
 	mkdir samples
