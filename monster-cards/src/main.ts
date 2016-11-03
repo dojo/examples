@@ -11,6 +11,7 @@ import createImage from './widgets/common/createImage';
 import createCardSummary from './widgets/card/createCardSummary';
 import defaultWidgetStore from './stores/widgetStore';
 
+import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createWidget from 'dojo-widgets/createWidget';
 
 import 'maquette/src/css-transitions';
@@ -62,7 +63,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'cards',
-			factory: createContainer
+			factory: createContainer.mixin(createCssTransitionMixin)
 		},
 		{
 			id: 'cardsJumbotron',

@@ -27,11 +27,13 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cards',
-			classes: [ 'cards' ],
+			classes: [ 'animated', 'cards' ],
 			children: [
 				'cardsJumbotron',
 				'cardsList'
-			]
+			],
+			enterAnimation: 'fadeIn',
+			exitAnimation: 'fadeOut'
 		},
 		{
 			id: 'cardsList',
