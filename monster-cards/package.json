@@ -33,7 +33,7 @@
     "maquette": "^2.3.2"
   },
   "devDependencies": {
-    "dojo-cli-build-webpack": "^2.0.0-alpha.2",
+    "dojo-cli-build-webpack": "^2.0.0-alpha.5",
     "dojo-interfaces": ">=2.0.0-alpha.4",
     "grunt": "^1.0.1",
     "grunt-contrib-stylus": "^1.2.0",
