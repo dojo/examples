@@ -24,6 +24,7 @@ install:
 script:
 - ./scripts/build.sh
 deploy:
+  skip_cleanup: true
   provider: script
   script: scripts/gh-pages-publish.sh
   on:
