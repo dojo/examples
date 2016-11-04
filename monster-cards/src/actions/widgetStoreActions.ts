@@ -1,6 +1,5 @@
 import createAction from 'dojo-actions/createAction';
 import { assign } from 'dojo-core/lang';
-
 import { ChangeRecord, Card } from '../stores/cardStore';
 import widgetStore from '../stores/widgetStore';
 
@@ -21,7 +20,8 @@ function createWidgetsRecords(item: Card) {
 			classes: [ 'animated', 'cardDetailsDescription' ],
 			id: `description-${item.id}`,
 			enterAnimation: 'fadeInRight',
-			exitAnimation: 'fadeOutLeft'
+			exitAnimation: 'fadeOutLeft',
+			cardId
 		}))
 	]);
 }
@@ -42,6 +42,33 @@ export const putCard = createAction({
 					widgetStore.patch({ id: 'cardDetailsNavbar', children: cardIds });
 					widgetStore.patch({ id: 'cardsList', children: summaryIds });
 				});
+		}
+	}
+});
+
+export const transformFavoriteCardToWidgets = createAction({
+	do({ afterAll, puts, deletes }: ChangeRecord) {
+		if (puts.length) {
+			const item = puts[0];
+			widgetStore.put(assign({}, <any> item, {
+				type: 'fav-card',
+				classes: [ 'animated' ],
+				id: `fav-${item.id}`,
+				cardId: item.id
+			}))
+			.then(() => {
+				const children = afterAll.map((item) => `fav-${item.id}`);
+				return widgetStore.patch({ id: 'navbar-fav-cards', children });
+			});
+		}
+		if (deletes.length) {
+			const id = deletes[0];
+
+			widgetStore.delete(`fav-${id}`)
+			.then(() => {
+				const children = afterAll.map((item) => `fav-${item.id}`);
+				return widgetStore.patch({ id: 'navbar-fav-cards', children });
+			});
 		}
 	}
 });

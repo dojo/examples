@@ -7,6 +7,31 @@ export default createMemoryStore<any>({
 			classes: [ 'navbar' ]
 		},
 		{
+			id: 'navbar-menu',
+			classes: [ 'inline-list' ]
+		},
+		{
+			id: 'navbar-actions',
+			classes: [ 'inline-list', 'pull-right' ]
+		},
+		{
+			id: 'navbar-search',
+			classes: [ 'search' ]
+		},
+		{
+			id: 'navbar-favorites'
+		},
+		{
+			id: 'navbar-fav-icon',
+			classes: [ 'fa', 'fa-2x', 'fa-heart-o' ]
+		},
+		{
+			id: 'navbar-fav-cards',
+			classes: [ 'cardFavoriteContainer', 'animated' ],
+			enterAnimation: 'fadeInDownBig',
+			exitAnimation: 'fadeOutUpBig'
+		},
+		{
 			id: 'container',
 			children: []
 		},

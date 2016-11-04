@@ -3,6 +3,7 @@ import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } 
 import { VNodeProperties } from 'maquette';
 import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
 import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
+import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import createIcon from './createIcon';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
@@ -39,6 +40,7 @@ const createIconLink: IconLinkFactory = createRenderMixin
 			instance.append([ icon, text ]);
 		}
 	})
+	.mixin(createVNodeEvented)
 	.extend({
 		nodeAttributes: [
 			function (this: IconLink): VNodeProperties {

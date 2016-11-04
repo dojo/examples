@@ -1,0 +1,63 @@
+.cardFavoriteContainer {
+	position: absolute;
+	background: #ccc;
+	margin: 0;
+	padding: 0;
+	right: 0;
+	display: block;
+	overflow: hidden;
+	li {
+		display: block;
+	}
+}
+
+.cardFavorite {
+	font-weight: bold;
+	height: 100px;
+	line-height: 100px;
+	width: 300px;
+	position: relative;
+	p {
+		font-size: 13px;
+	}
+	.milestoneCard {
+		margin: 0;
+		padding: 0;
+		width: 100px;
+		height: 100px;
+		img {
+			padding: 0;
+		}
+	}
+	h2 {
+		display: inline-block;
+		text-align: center;
+		vertical-align: top;
+		line-height: 100px;
+	}
+
+	.destroy {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 10px;
+		width: 30px;
+		height: 30px;
+		margin: auto 0;
+		font-size: 20px;
+		border: 0;
+		background: none;
+	}
+
+	.destroy:hover {
+		color: #af5b5e;
+	}
+
+	.destroy:focus {
+		outline:0;
+	}
+
+	.destroy:after {
+		content: '×';
+	}
+}

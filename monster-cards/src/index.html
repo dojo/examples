@@ -6,7 +6,15 @@
 	</head>
 	<body>
 		<app-projector data-css-transitions="true">
-			<header is="app-widget" data-uid="navbar"></header>
+			<header is="app-widget" data-uid="navbar">
+				<ul is="app-widget" data-uid="navbar-menu"></ul>
+				<ul is="app-widget" data-uid="navbar-actions">
+					<li is="app-widget" data-uid="navbar-search"></li>
+					<li is="app-widget" data-uid="navbar-favorites">
+						<i is="app-widget" data-uid="navbar-fav-icon"></i>
+					</li>
+				</ul>
+			</header>
 			<main>
 				<div is="app-widget" data-uid="container"></div>
 			</main>
