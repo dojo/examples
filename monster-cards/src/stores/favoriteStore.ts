@@ -15,8 +15,7 @@ export interface Card {
 export type Store = MemoryStore<Card>;
 
 const favCardStore: Store = createMemoryStore<Card>({
-	data: [
-	]
+	data: []
 });
 
 export interface ChangeRecord {
@@ -28,9 +27,7 @@ export interface ChangeRecord {
 
 export function bindActions() {
 	return favCardStore.observe().subscribe((options: any) => {
-			const changeRecord = <ChangeRecord> options;
-
-			return favCard.do(changeRecord);
+			return favCard.do(<ChangeRecord> options);
 	});
 }
 

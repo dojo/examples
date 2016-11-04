@@ -56,7 +56,8 @@ export const favCard = createAction({
 				classes: [ 'animated' ],
 				id: `fav-${item.id}`,
 				cardId: item.id
-			})).then(() => {
+			}))
+			.then(() => {
 				const children = afterAll.map((item) => `fav-${item.id}`);
 				return widgetStore.patch({ id: 'navbar-fav-cards', children });
 			});
@@ -64,7 +65,8 @@ export const favCard = createAction({
 		if (deletes.length) {
 			const id = deletes[0];
 
-			widgetStore.delete(`fav-${id}`).then(() => {
+			widgetStore.delete(`fav-${id}`)
+			.then(() => {
 				const children = afterAll.map((item) => `fav-${item.id}`);
 				return widgetStore.patch({ id: 'navbar-fav-cards', children });
 			});
