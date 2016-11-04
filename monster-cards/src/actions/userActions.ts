@@ -1,12 +1,20 @@
 import createAction from 'dojo-actions/createAction';
 
-import { addFav, removeFav } from './favStoreActions';
+import { addFavoriteCard, removeFavoriteCard } from './favoriteCardActions';
 
 import widgetStore from './../stores/widgetStore';
 
-export const cardFav = createAction({
+export const favoriteCard = createAction({
 	do(card: any) {
-		addFav.do({ id: card.cardId });
+		const { cardId } = card;
+		return addFavoriteCard.do({ cardId });
+	}
+});
+
+export const unfavoriteCard = createAction({
+	do(card: any) {
+		const { cardId } = card;
+		return removeFavoriteCard.do({ cardId });
 	}
 });
 
@@ -25,11 +33,5 @@ export const hideFavorites = createAction({
 			id: 'navbar-favorites',
 			children: [ 'navbar-fav-icon' ]
 		});
-	}
-});
-
-export const cardUnfav = createAction({
-	do(card: any) {
-		removeFav.do({ id: card.cardId });
 	}
 });

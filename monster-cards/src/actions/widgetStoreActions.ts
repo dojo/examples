@@ -1,6 +1,5 @@
 import createAction from 'dojo-actions/createAction';
 import { assign } from 'dojo-core/lang';
-
 import { ChangeRecord, Card } from '../stores/cardStore';
 import widgetStore from '../stores/widgetStore';
 
@@ -47,7 +46,7 @@ export const putCard = createAction({
 	}
 });
 
-export const favCard = createAction({
+export const transformFavoriteCardToWidgets = createAction({
 	do({ afterAll, puts, deletes }: ChangeRecord) {
 		if (puts.length) {
 			const item = puts[0];

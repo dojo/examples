@@ -6,7 +6,7 @@ import createWidget from 'dojo-widgets/createWidget';
 import createButton from 'dojo-widgets/createButton';
 import { Child } from 'dojo-widgets/mixins/interfaces';
 
-import { cardUnfav } from './../../actions/userActions';
+import { unfavoriteCard } from './../../actions/userActions';
 
 export type CardFavoriteState = RenderMixinState & StatefulChildrenState & {
 	name: string;
@@ -49,7 +49,7 @@ const createCardFavorite = createRenderMixin
 						factory: createButton,
 						options: {
 							listeners: {
-								click: () => { cardUnfav.do(options.state); }
+								click: () => { unfavoriteCard.do(options.state); }
 							},
 							state: {
 								classes: [ 'destroy' ]

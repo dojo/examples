@@ -6,14 +6,14 @@ import createIconLink from '../common/createIconLink';
 import { h, VNode } from 'maquette';
 import Map from 'dojo-shim/Map';
 
-import { cardFav } from './../../actions/userActions';
+import { favoriteCard } from './../../actions/userActions';
 
 export type MilestoneCardDetails = {
 	name: string;
 	tagline: string;
 	description: string;
 	imageClass: string;
-	favouriteCount: number;
+	favoriteCount: number;
 	cardId: string;
 }
 
@@ -28,8 +28,8 @@ type ChildWidgetNames =
 	'name' |
 	'tagline' |
 	'description' |
-	'favouriteCount' |
-	'addToFavouritesLink' |
+	'favoriteCount' |
+	'addTofavoritesLink' |
 	'twitterLink' |
 	'facebookLink';
 
@@ -37,8 +37,8 @@ const instanceWeakMap = new WeakMap<CardDescription, Map<ChildWidgetNames, Rende
 
 function manageChildren(this: CardDescription) {
 	const childrenMap = instanceWeakMap.get(this);
-	childrenMap.get('favouriteCount').setState({
-		label: this.state.favouriteCount
+	childrenMap.get('favoriteCount').setState({
+		label: this.state.favoriteCount
 	});
 }
 
@@ -74,21 +74,21 @@ const createCardDescription = createRenderMixin
 				},
 				tagName: 'p'
 			}));
-			childrenMap.set('favouriteCount', createWidget({
+			childrenMap.set('favoriteCount', createWidget({
 				state: {
-					label: options.state.favouriteCount.toString(),
-					classes: [ 'favouriteCount' ]
+					label: options.state.favoriteCount.toString(),
+					classes: [ 'favoriteCount' ]
 				},
 				tagName: 'span'
 			}));
-			childrenMap.set('addToFavouritesLink', createIconLink({
+			childrenMap.set('addTofavoritesLink', createIconLink({
 				listeners: {
-					click: () => { cardFav.do(instance.state); }
+					click: () => { favoriteCard.do(instance.state); }
 				},
 				state: {
 					classes: [ 'button' ],
 					iconClass: [ 'fa', 'fa-heart-o'],
-					text: 'Add to favourites'
+					text: 'Add to favorites'
 				}
 			})),
 			childrenMap.set('twitterLink', createIconLink({
@@ -119,10 +119,10 @@ const createCardDescription = createRenderMixin
 					childrenMap.get('name').render(),
 					childrenMap.get('tagline').render(),
 					childrenMap.get('description').render(),
-					h('span', 'Favourited: '),
-					childrenMap.get('favouriteCount').render(),
+					h('span', 'favorited: '),
+					childrenMap.get('favoriteCount').render(),
 					h('div.buttonHolder', [
-						childrenMap.get('addToFavouritesLink').render(),
+						childrenMap.get('addTofavoritesLink').render(),
 						childrenMap.get('twitterLink').render(),
 						childrenMap.get('facebookLink').render()
 					])

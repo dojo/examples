@@ -2,7 +2,7 @@ import createApp from 'dojo-app/createApp';
 
 import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
-import favStore, { bindActions as bindFavStoreActions } from './stores/favoriteStore';
+import favStore, { bindActions as bindFavStoreActions } from './stores/favoriteCardStore';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 
