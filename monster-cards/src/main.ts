@@ -17,6 +17,7 @@ import createWidget from 'dojo-widgets/createWidget';
 import 'maquette/src/css-transitions';
 
 const app = createApp({ defaultWidgetStore });
+const createAnimatedContainer = createContainer.mixin(createCssTransitionMixin);
 
 app.registerStore('cards-store', cardStore);
 app.loadDefinition({
@@ -41,18 +42,21 @@ app.loadDefinition({
 		},
 		{
 			id: 'container',
-			factory: createContainer
+			factory: createContainer,
+			options: {
+				tagName: 'main'
+			}
 		},
 		{
 			id: 'cardDetails',
-			factory: createContainer,
+			factory: createAnimatedContainer,
 			options: {
 				tagName: 'card-details'
 			}
 		},
 		{
 			id: 'cardDetailsNavbar',
-			factory: createContainer,
+			factory: createAnimatedContainer,
 			options: {
 				tagName: 'card-details-nav-bar'
 			}
@@ -63,7 +67,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'cards',
-			factory: createContainer.mixin(createCssTransitionMixin)
+			factory: createAnimatedContainer
 		},
 		{
 			id: 'cardsJumbotron',
@@ -75,7 +79,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'home',
-			factory: createContainer
+			factory: createAnimatedContainer
 		},
 		{
 			id: 'homeJumbotron',
@@ -87,7 +91,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'gameplay',
-			factory: createContainer
+			factory: createAnimatedContainer
 		},
 		{
 			id: 'gameplayJumbotron',
@@ -102,7 +106,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'about',
-			factory: createContainer
+			factory: createAnimatedContainer
 		},
 		{
 			id: 'aboutJumbotron',

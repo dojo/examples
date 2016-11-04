@@ -1,7 +1,85 @@
 card-details {
-	slide-animation-duration = 0.5s;
 	.cardDetailsDescription {
-		-webkit-animation-duration: slide-animation-duration;
-		animation-duration: slide-animation-duration;
+		-webkit-animation-duration: interaction-animation-duration;
+		animation-duration: interaction-animation-duration;
 	}
+}
+
+
+@-webkit-keyframes fadeInSlideDown {
+	0% {
+		opacity: 0;
+	-webkit-transform: translate3d(0, -68px, 0);
+		transform: translate3d(0, -68px, 0);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+	-webkit-transform: none;
+		transform: none;
+	}
+}
+
+@keyframes fadeInSlideDown {
+	0% {
+		opacity: 0;
+	-webkit-transform: translate3d(0, -68px, 0);
+		transform: translate3d(0, -68px, 0);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+	-webkit-transform: none;
+		transform: none;
+	}
+}
+
+.fadeInSlideDown {
+	-webkit-animation-name: fadeInSlideDown;
+	animation-name: fadeInSlideDown;
+}
+
+@-webkit-keyframes fadeOutSlideUp {
+	0% {
+		-webkit-transform: none;
+		transform: none;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+	opacity: 0;
+	-webkit-transform: translate3d(0, -68px, 0);
+		transform: translate3d(0, -68px, 0);
+	}
+}
+
+@keyframes fadeOutSlideUp {
+	0% {
+		-webkit-transform: none;
+		transform: none;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+	opacity: 0;
+	-webkit-transform: translate3d(0, -68px, 0);
+		transform: translate3d(0, -68px, 0);
+	}
+}
+
+.fadeOutSlideUp {
+	-webkit-animation-name: fadeOutSlideUp;
+	animation-name: fadeOutSlideUp;
 }
