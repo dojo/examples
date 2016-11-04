@@ -18,6 +18,8 @@ then
 		buildProject "todo-mvc"
 		buildProject "monster-cards"
 
+		export PROJECT_DIR="auto-deploy"
+
 		git checkout -B gh-pages
 
 		mkdir samples
