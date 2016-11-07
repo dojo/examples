@@ -19,6 +19,11 @@ else
 	runCommandAndCheckStatus ./node_modules/.bin/grunt
 	runCommandAndCheckStatus ./node_modules/.bin/grunt ci --combined
 	runCommandAndCheckStatus ./node_modules/.bin/grunt remapIstanbul:ci
-	runCommandAndCheckStatus ./node_modules/.bin/dojo build webpack
+	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
+	then
+		runCommandAndCheckStatus ./node_modules/.bin/dojo build webpack
+	else
+		echo "Doesn't support webpack build"
+	fi
 	cd ..
 fi
