@@ -1,5 +1,5 @@
 import * as registerSuite from 'intern/lib/interfaces/object';
-import * as assert from 'intern/chai!assert';
+import { assert } from 'chai';
 
 import createLink from '../../../../src/widgets/common/createLink';
 

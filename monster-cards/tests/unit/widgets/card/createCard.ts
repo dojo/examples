@@ -1,5 +1,5 @@
 import * as registerSuite from 'intern/lib/interfaces/object';
-import * as assert from 'intern/chai!assert';
+import { assert } from 'chai';
 import createCard from '../../../../src/widgets/card/createCard';
 
 const imageClass = 'imageClass';
