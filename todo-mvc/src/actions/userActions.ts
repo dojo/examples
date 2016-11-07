@@ -82,7 +82,7 @@ export const todoToggleComplete = createAction({
 
 export const filter = createAction({
 	do({ filter: activeFilter }: {filter: string}) {
-		return widgetStore.patch({ id: 'todo-footer', activeFilter }, { id: 'todo-list', activeFilter });
+		return widgetStore.patch([{ id: 'todo-footer', activeFilter }, { id: 'todo-list', activeFilter }]);
 	}
 });
 
