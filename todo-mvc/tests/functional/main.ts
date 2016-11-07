@@ -1,4 +1,4 @@
-import * as test from 'intern!bdd';
+import * as test from 'intern/lib/interfaces/bdd';
 import * as assert from 'intern/chai!assert';
 import Page from './Page';
 

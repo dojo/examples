@@ -1,4 +1,4 @@
-import * as registerSuite from 'intern!object';
+import * as registerSuite from 'intern/lib/interfaces/object';
 import * as assert from 'intern/chai!assert';
 
 import createLink from '../../../../src/widgets/common/createLink';
