@@ -12,14 +12,20 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cardDetails',
+			classes: [ 'animated', 'cardDetails', 'pageHolder' ],
 			children: [
 				'cardDetailsNavbar',
 				'cardDetailsJumbotron'
-			]
+			],
+			enterAnimation: 'fadeInSlideDown',
+			exitAnimation: 'fadeOutSlideUp'
 		},
 		{
 			id: 'cardDetailsNavbar',
-			children: []
+			classes: [ 'animated' ],
+			children: [],
+			enterAnimation: 'slideInDown',
+			exitAnimation: 'slideOutUp'
 		},
 		{
 			id: 'cardDetailsJumbotron',
@@ -27,11 +33,12 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cards',
-			classes: [ 'cards' ],
+			classes: [ 'animated', 'cards', 'pageHolder' ],
 			children: [
 				'cardsJumbotron',
 				'cardsList'
-			]
+			],
+			enterAnimation: 'fadeIn'
 		},
 		{
 			id: 'cardsList',
@@ -43,7 +50,9 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'home',
-			children: [ 'homeJumbotron' ]
+			classes: [ 'animated', 'pageHolder' ],
+			children: [ 'homeJumbotron' ],
+			enterAnimation: 'fadeIn'
 		},
 		{
 			id: 'homeJumbotron',
@@ -56,7 +65,9 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'about',
-			children: [ 'aboutJumbotron' ]
+			classes: [ 'animated', 'pageHolder' ],
+			children: [ 'aboutJumbotron' ],
+			enterAnimation: 'fadeIn'
 		},
 		{
 			id: 'aboutJumbotron',
@@ -69,7 +80,9 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'gameplay',
-			children: [ 'gameplayJumbotron' ]
+			classes: [ 'animated', 'pageHolder' ],
+			children: [ 'gameplayJumbotron' ],
+			enterAnimation: 'fadeIn'
 		},
 		{
 			id: 'gameplayJumbotron',
