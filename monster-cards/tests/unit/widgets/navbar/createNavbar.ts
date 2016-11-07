@@ -1,5 +1,5 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
+import * as registerSuite from 'intern/lib/interfaces/object';
+import { assert } from 'chai';
 import Map from 'dojo-shim/Map';
 
 import createNavbar from './../../../../src/widgets/navbar/createNavbar';

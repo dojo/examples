@@ -53,6 +53,7 @@ export const loaderOptions = {
 	packages: [
 		{ name: 'src', location: '_build/src' },
 		{ name: 'tests', location: '_build/tests' },
+		{ name: 'chai', location: 'node_modules/chai', main: 'chai' },
 		{ name: 'dojo', location: 'node_modules/intern/node_modules/dojo' },
 		{ name: 'dojo-actions', location: 'node_modules/dojo-actions' },
 		{ name: 'dojo-app', location: 'node_modules/dojo-app' },

@@ -1,5 +1,5 @@
-import * as test from 'intern!bdd';
-import * as assert from 'intern/chai!assert';
+import * as test from 'intern/lib/interfaces/bdd';
+import { assert } from 'chai';
 import Page from './Page';
 
 test.describe('TodoMVC - Dojo 2', function () {
