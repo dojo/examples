@@ -8,6 +8,7 @@ import createFocusableTextInput from './createFocusableTextInput';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import { TextInputOptions } from 'dojo-widgets/createTextInput';
+import createTodoLabel from './createTodoLabel';
 
 export type TodoItemState = WidgetState & {
 	label: string;
@@ -25,7 +26,11 @@ const createLabel = createWidgetBase
 		tagName: 'label',
 		nodeAttributes: [
 			function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
-				return { innerHTML: this.state.label };
+				return {
+					innerHTML: this.state.label,
+					'aria-describedby': 'edit-instructions',
+					tabindex: '0'
+				};
 			}
 		]
 	});
@@ -62,7 +67,14 @@ const createTodoItem = createWidgetBase.mixin({
 								state: { classes: [ 'toggle' ], checked }
 							}),
 							d(createLabel, {
-								listeners: { dblclick: () => { todoEdit.do(state); } },
+								listeners: {
+									dblclick: () => { todoEdit.do(state); },
+									keypress: (event: KeyboardEvent) => {
+										if (event.which === 13) {
+											todoEdit.do(state);
+										}
+									}
+								},
 								state: { label }
 							}),
 							d(createButton, {
