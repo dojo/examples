@@ -16,7 +16,6 @@ function getCardSummaryDetails(card: Card): CardSummaryState {
 
 export const gotoCardDetails = createAction({
 	do({ id }) {
-		debugger;
 		return Promise.all([
 			widgetStore.patch({ id: 'cardDetailsJumbotron', children: [ `description-${id}` ] }),
 			widgetStore.patch({ id: 'container', children: [ 'cardDetails' ] }),
