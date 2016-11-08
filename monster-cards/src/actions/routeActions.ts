@@ -2,8 +2,9 @@ import createAction from 'dojo-actions/createAction';
 import widgetStore from '../stores/widgetStore';
 import { pickRandomCards, Card } from '../stores/cardStore';
 import { assign } from 'dojo-core/lang';
+import { CardSummaryState } from '../widgets/card/createCardSummary';
 
-function getCardSummaryDetails(card: Card) {
+function getCardSummaryDetails(card: Card): CardSummaryState {
 	const { id, name, score, imageClass } = card;
 	return {
 		cardId: id,
