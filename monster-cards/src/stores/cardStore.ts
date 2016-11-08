@@ -1,5 +1,6 @@
 import createMemoryStore, { MemoryStore } from 'dojo-stores/createMemoryStore';
 import { putCard } from './../actions/widgetStoreActions';
+import { from as arrayFrom } from 'dojo-shim/array';
 
 export interface Card {
 	id: string;
@@ -82,43 +83,27 @@ export function bindActions() {
 	});
 }
 
-function shuffle (array: any[]): any[] {
+function shuffle<T>(array: T[]): T[] {
+	const shuffledArray = [...array];
 	let i = 0;
 	let	j = 0;
 	let	temp: any;
 
-	for (i = array.length - 1; i > 0; i -= 1) {
+	for (i = shuffledArray.length - 1; i > 0; i -= 1) {
 		j = Math.floor(Math.random() * (i + 1));
-		temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
+		temp = shuffledArray[i];
+		shuffledArray[i] = shuffledArray[j];
+		shuffledArray[j] = temp;
 	}
 
-	return array;
+	return shuffledArray;
 }
 
 export function pickRandomCards(numberToPick: number, exclude: string[] = []): Promise<Card[]> {
 	return cardStore.get().then((cards: any) => {
-		const cardsArray: Card[] = shuffle(<Card[]> [...cards]);
-		const totalNumberOfCards: number = cardsArray.length;
-
-		if (totalNumberOfCards < numberToPick + exclude.length) {
-			throw new Error('Not enough cards to pick with given arguments');
-		}
-
-		const pickedCards: Card[] = [];
-
-		for (let i = 0; i < numberToPick; i += 1) {
-			let randomCard: Card;
-
-			do {
-				randomCard = cardsArray.shift();
-			}
-			while (exclude.indexOf(randomCard.id) > -1);
-
-			pickedCards.push(randomCard);
-		}
-
+		const filteredCards = <Card[]> arrayFrom(cards).filter((card: Card) => exclude.indexOf(card.id) < 0);
+		const shuffledCards = shuffle(filteredCards);
+		const pickedCards = shuffledCards.slice(0, Math.min(shuffledCards.length, numberToPick));
 		return pickedCards;
 	});
 }
