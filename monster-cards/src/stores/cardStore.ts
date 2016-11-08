@@ -103,8 +103,7 @@ export function pickRandomCards(numberToPick: number, exclude: string[] = []): P
 	return cardStore.get().then((cards: any) => {
 		const filteredCards = <Card[]> arrayFrom(cards).filter((card: Card) => exclude.indexOf(card.id) < 0);
 		const shuffledCards = shuffle(filteredCards);
-		const pickedCards = shuffledCards.slice(0, Math.min(shuffledCards.length, numberToPick));
-		return pickedCards;
+		return shuffledCards.slice(0, Math.min(shuffledCards.length, numberToPick));
 	});
 }
 
