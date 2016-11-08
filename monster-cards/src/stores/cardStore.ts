@@ -99,14 +99,14 @@ function shuffle (array: any[]): any[] {
 
 export function pickRandomCards(numberToPick: number, exclude: string[] = []): Promise<Card[]> {
 	return cardStore.get().then((cards: any) => {
-		const cardsArray: Card[] = shuffle(<Card[]> Array.from(cards));
+		const cardsArray: Card[] = shuffle(<Card[]> [...cards]);
 		const totalNumberOfCards: number = cardsArray.length;
 
 		if (totalNumberOfCards < numberToPick + exclude.length) {
 			throw new Error('Not enough cards to pick with given arguments');
 		}
 
-		const pickedCards = new Set<Card>();
+		const pickedCards: Card[] = [];
 
 		for (let i = 0; i < numberToPick; i += 1) {
 			let randomCard: Card;
@@ -114,12 +114,12 @@ export function pickRandomCards(numberToPick: number, exclude: string[] = []): P
 			do {
 				randomCard = cardsArray.shift();
 			}
-			while (exclude.indexOf(randomCard.id) > -1 || pickedCards.has(randomCard));
+			while (exclude.indexOf(randomCard.id) > -1);
 
-			pickedCards.add(randomCard);
+			pickedCards.push(randomCard);
 		}
 
-		return Array.from(pickedCards.values());
+		return pickedCards;
 	});
 }
 
