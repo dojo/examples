@@ -35,9 +35,9 @@ registerSuite({
 		const cardDescription = createCardDescription({ state });
 		const vnode = cardDescription.render();
 		const article = vnode.children[1];
-		assert.strictEqual(article.children[0].text, state.name);
-		assert.strictEqual(article.children[1].text, state.tagline);
-		assert.strictEqual(article.children[2].text, state.description);
-		assert.strictEqual(article.children[4].text, state.favouriteCount.toString());
+		assert.strictEqual(article.children[0].properties.innerHTML, state.name);
+		assert.strictEqual(article.children[1].properties.innerHTML, state.tagline);
+		assert.strictEqual(article.children[2].properties.innerHTML, state.description);
+		assert.strictEqual(article.children[4].properties.innerHTML, state.favouriteCount.toString());
 	}
 });

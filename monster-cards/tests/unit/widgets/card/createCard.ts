@@ -2,7 +2,7 @@ import * as registerSuite from 'intern/lib/interfaces/object';
 import { assert } from 'chai';
 import createCard from '../../../../src/widgets/card/createCard';
 
-const imageClass = 'imageClass';
+const imageClass = 'testImageClass';
 const cardId = 'test-card-1';
 
 registerSuite({
@@ -10,22 +10,23 @@ registerSuite({
 	render() {
 		const card = createCard({ state: { imageClass, cardId }});
 		const vnode = card.render();
-		assert.strictEqual(vnode.vnodeSelector, 'a');
+		assert.strictEqual(vnode.vnodeSelector, 'a.milestoneCard');
 	},
 	generateCardLink() {
 		const card = createCard({ state: { imageClass, cardId }});
 		const vnode = card.render();
 		assert.strictEqual(vnode.properties['href'], `#/cards/${cardId}`);
 	},
-	createCardImage() {
+	createSmallCardImage() {
 		const card = createCard({ state: { imageClass, cardId }});
 		const vnode = card.render();
 		assert.strictEqual(vnode.children.length, 1);
-		assert.strictEqual(vnode.children[0].vnodeSelector, 'div');
+		assert.strictEqual(vnode.children[0].vnodeSelector, `div.card-sprite-small.${imageClass}`);
 	},
-	setImageSrc() {
-		const card = createCard({ state: { imageClass, cardId }});
+	createLargeCardImage() {
+		const card = createCard({ state: { imageClass, cardId, large: true }});
 		const vnode = card.render();
-		assert.isTrue(vnode.children[0].properties.classes[imageClass]);
+		assert.strictEqual(vnode.children.length, 1);
+		assert.strictEqual(vnode.children[0].vnodeSelector, `div.card-sprite-large.${imageClass}`);
 	}
 });
