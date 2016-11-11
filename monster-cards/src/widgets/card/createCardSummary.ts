@@ -24,6 +24,6 @@ const createCardSummary = createWidgetBase.extend({
 			];
 		}
 	]
-})
+});
 
 export default createCardSummary;

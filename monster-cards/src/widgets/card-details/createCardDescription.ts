@@ -19,7 +19,7 @@ const createCardDescription = createWidgetBase
 	.extend({
 		tagName: 'card-details-description',
 		childNodeRenderers: [
-			function(this: CardDescription): any[] {
+			function(this: CardDescription): DNode[] {
 				return [
 					d(createWidgetBase, { state: { classes: [ 'cardImage', 'card-sprite-large', this.state.imageClass ] }}),
 					d('article', {}, [
