@@ -6,8 +6,8 @@ import cardStore, { bindActions as bindCardStoreActions } from './stores/cardSto
 import createNavbar from './widgets/navbar/createNavbar';
 import createCardDescription from './widgets/card-details/createCardDescription';
 import createContainer from './widgets/common/createContainer';
-import createCard from './widgets/card/createCard';
 import createImage from './widgets/common/createImage';
+import createCard from './widgets/card/createCard';
 import createCardSummary from './widgets/card/createCardSummary';
 import defaultWidgetStore from './stores/widgetStore';
 
