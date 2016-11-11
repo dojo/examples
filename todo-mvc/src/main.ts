@@ -1,4 +1,4 @@
-import createApp from 'dojo-app/createApp';
+import createApp, { ContainerListWidgetDefinition } from 'dojo-app/createApp';
 import global from 'dojo-core/global';
 import ShimPromise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
@@ -26,23 +26,25 @@ app.loadDefinition({
 				keypress: todoInput
 			}
 		},
-		{
+		<ContainerListWidgetDefinition> {
 			id: 'main-section',
 			factory: createPanel,
 			options: {
 				tagName: 'section'
-			}
-		},
-		{
-			id: 'todo-list',
-			factory: createTodoList
-		},
-		{
-			id: 'todo-toggle',
-			factory: createCheckboxInput,
-			listeners: {
-				change: todoToggleAll
-			}
+			},
+			children: [
+				{
+					id: 'todo-list',
+					factory: createTodoList
+				},
+				{
+					id: 'todo-toggle',
+					factory: createCheckboxInput,
+					listeners: {
+						change: todoToggleAll
+					}
+				}
+			]
 		},
 		{
 			id: 'todo-footer',
