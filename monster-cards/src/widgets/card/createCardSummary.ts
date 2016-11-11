@@ -4,6 +4,7 @@ import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from '
 import createCard from './createCard';
 import createWidget from 'dojo-widgets/createWidget';
 import { Child } from 'dojo-widgets/mixins/interfaces';
+import { assign } from 'dojo-core/lang';
 
 export type CardSummaryState = RenderMixinState & {
 	name: string;
@@ -23,25 +24,35 @@ const createCardSummary = createRenderMixin
 		initialize(instance: CardSummary, options: CardSummaryOptions) {
 			const card = createCard({
 				state: {
-					cardId: options.state.cardId,
-					imageClass: options.state.imageClass,
 					large: true
 				}
 			});
 			const name = createWidget({
-				state: {
-					label: options.state.name
-				},
 				tagName: 'h2'
 			});
 			const score = createWidget({
 				state: {
-					classes: [ 'points' ],
-					label: `milestone points: ${options.state.score}`
+					classes: [ 'points' ]
 				},
 				tagName: 'p'
 			});
+
 			instance.append([ card, name, score ]);
+
+			instance.on('statechange', () => {
+				card.setState({
+					cardId: instance.state.cardId,
+					imageClass: instance.state.imageClass
+				});
+
+				name.setState({
+					label: instance.state.name
+				});
+
+				score.setState(assign(score.state, {
+					label: `milestone points: ${instance.state.score}`
+				}));
+			});
 		}
 	}).extend({
 		classes: [ 'cardSummary' ]

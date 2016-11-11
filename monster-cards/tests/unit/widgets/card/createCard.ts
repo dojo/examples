@@ -24,8 +24,13 @@ registerSuite({
 		assert.strictEqual(vnode.children[0].vnodeSelector, 'div');
 	},
 	setImageSrc() {
-		const card = createCard({ state: { imageClass, cardId }});
-		const vnode = card.render();
-		assert.isTrue(vnode.children[0].properties.classes[imageClass]);
+		const card = createCard({ state: { cardId }});
+		card.setState({ imageClass });
+		const promise = new Promise((resolve) => setTimeout(resolve, 50));
+
+		return promise.then(function () {
+			const vnode = card.render();
+			assert.isTrue(vnode.children[0].properties.classes[imageClass]);
+		});
 	}
 });

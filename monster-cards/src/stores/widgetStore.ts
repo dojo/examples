@@ -15,7 +15,8 @@ export default createMemoryStore<any>({
 			classes: [ 'animated', 'cardDetails', 'pageHolder' ],
 			children: [
 				'cardDetailsNavbar',
-				'cardDetailsJumbotron'
+				'cardDetailsJumbotron',
+				'cardDetailsSeenWith'
 			],
 			enterAnimation: 'fadeInSlideDown',
 			exitAnimation: 'fadeOutSlideUp'
@@ -30,6 +31,22 @@ export default createMemoryStore<any>({
 		{
 			id: 'cardDetailsJumbotron',
 			classes: [ 'jumbotron', 'cardDetailsJumbotron' ]
+		},
+		{
+			id: 'cardDetailsSeenWith',
+			classes: [ 'cardDetailsSeenWith' ],
+			children: [
+				'cardDetailsSeenWithCard1',
+				'cardDetailsSeenWithCard2'
+			]
+		},
+		{
+			id: 'cardDetailsSeenWithCard1',
+			classes: [ 'cardDetailsSeenWithCard' ]
+		},
+		{
+			id: 'cardDetailsSeenWithCard2',
+			classes: [ 'cardDetailsSeenWithCard' ]
 		},
 		{
 			id: 'cards',

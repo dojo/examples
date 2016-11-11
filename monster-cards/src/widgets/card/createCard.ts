@@ -22,13 +22,16 @@ const createCard = createRenderMixin
 		initialize(instance: Card, options: CardOptions) {
 			const baseImageClass = options.state.large ? 'card-sprite-large' : 'card-sprite-small';
 			const image = createWidget({
-				tagName: 'div',
-				state: {
-					classes: [ baseImageClass, options.state.imageClass ]
-				}
+				tagName: 'div'
 			});
 
 			instance.append(image);
+
+			instance.on('statechange', () => {
+				image.setState({
+					classes: [ baseImageClass, instance.state.imageClass ]
+				});
+			});
 		}
 	})
 	.extend({

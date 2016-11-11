@@ -66,6 +66,18 @@ app.loadDefinition({
 			factory: createContainer
 		},
 		{
+			id: 'cardDetailsSeenWith',
+			factory: createContainer
+		},
+		{
+			id: 'cardDetailsSeenWithCard1',
+			factory: createCardSummary
+		},
+		{
+			id: 'cardDetailsSeenWithCard2',
+			factory: createCardSummary
+		},
+		{
 			id: 'cards',
 			factory: createAnimatedContainer
 		},
