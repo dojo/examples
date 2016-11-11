@@ -1,1 +1,86 @@
 @import '../node_modules/todomvc-app-css/index.css';
+
+/* colors, for reference */
+$red = rgba(175,47,47,.2);
+$lightRed = rgba(175,47,47,.1);
+$textColor = #4d4d4d;
+$textLight = #777777;
+$darkGrey = #999999;
+$lightGrey = #ededed;
+$green = #bddad5;
+
+/* Recommended way to make hidden content accessible to screenreaders */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* Override TodoMVC styles that target all labels in .todo-list li */
+.todo-list li .simple-label {
+  margin: 0;
+  padding: 0;
+}
+
+/* Focus styles */
+.new-todo {
+  border: 1px solid transparent;
+  &:focus {
+    border: 1px solid $darkGrey;
+    box-shadow: inset 0 -1px 5px 0 rgba(0,0,0,.2);
+  }
+}
+
+/* All the repeated inline svgs don't seem ideal, but it maintains consistency with todomvc-app-css */
+@css {
+  .todo-list li .toggle:focus:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="#e9f5f3" stroke="#bddad5" stroke-width="3"/></svg>');
+  }
+  .todo-list li .toggle:checked:focus:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="#e9f5f3" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+  }
+}
+
+.toggle-all:focus:before {
+  color: $green;
+}
+
+.todo-list li label:focus {
+  box-shadow: inset 0 0 0 1px $green;
+}
+
+.todo-list li .destroy {
+  display: block;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.todo-list li:hover .destroy, .todo-list li .destroy:focus {
+  opacity: 1;
+}
+
+.todo-list li .destroy:hover {
+  cursor: pointer;
+}
+
+.filters li a:focus {
+  background-color: $lightRed;
+}
+
+.info a:focus, .clear-completed:focus {
+  text-decoration: underline;
+}
+
+/* Move the border-top from .main to prevent it from showing up before items are added */
+.main {
+  border-top: none;
+}
+
+.todo-list li:first-child {
+  border-top: 1px solid $lightGrey;
+}
