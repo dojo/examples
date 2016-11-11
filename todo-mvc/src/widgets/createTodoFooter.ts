@@ -1,4 +1,6 @@
+import { Messages } from 'dojo-i18n/i18n';
 import createButton from 'dojo-widgets/createButton';
+import createI18nMixin, { I18nMixin, I18nOptions, I18nState } from 'dojo-widgets/mixins/createI18nMixin';
 import createParentMapMixin, { ParentMap, ParentMapMixinOptions } from 'dojo-widgets/mixins/createParentMapMixin';
 import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
 import createStatefulChildrenMixin, { StatefulChildrenState, StatefulChildrenOptions } from 'dojo-widgets/mixins/createStatefulChildrenMixin';
@@ -7,6 +9,7 @@ import { Child } from 'dojo-widgets/mixins/interfaces';
 import { h, VNode } from 'maquette';
 
 import { clearCompleted } from '../actions/userActions';
+import bundle from '../nls/main';
 import createTodoFilter from './createTodoFilter';
 
 export type TodoFooterState = RenderMixinState & StatefulChildrenState & {
@@ -15,9 +18,9 @@ export type TodoFooterState = RenderMixinState & StatefulChildrenState & {
 	completedCount?: number;
 };
 
-export type TodoFooterOptions = RenderMixinOptions<TodoFooterState> & ParentMapMixinOptions<Child> & StatefulChildrenOptions<Child, TodoFooterState>;
+export type TodoFooterOptions = I18nOptions & RenderMixinOptions<TodoFooterState> & ParentMapMixinOptions<Child> & StatefulChildrenOptions<Child, TodoFooterState>;
 
-export type TodoFooter = RenderMixin<TodoFooterState> & ParentMap<RenderMixin<TodoFooterState>>;
+export type TodoFooter = RenderMixin<TodoFooterState> & ParentMap<RenderMixin<TodoFooterState>> & I18nMixin<Messages, I18nState>;
 
 function manageChildren(this: TodoFooter) {
 	const filterWidget = this.children.get('filter');
@@ -39,6 +42,7 @@ function manageChildren(this: TodoFooter) {
 
 const createTodoFooter = createRenderMixin
 	.mixin(createStatefulChildrenMixin)
+	.mixin(createI18nMixin)
 	.mixin({
 		mixin: createParentMapMixin,
 		initialize(instance, options) {
@@ -49,10 +53,13 @@ const createTodoFooter = createRenderMixin
 				}
 			});
 			const clearCompletedButton = createButton({
+				bundles: [ bundle ],
 				state: {
 					id: 'button',
-					label: 'Clear completed',
-					classes: ['clear-completed']
+					classes: ['clear-completed'],
+					labels: {
+						label: 'nls/main:clearCompleted'
+					}
 				},
 				listeners: {
 					click: clearCompleted
@@ -65,18 +72,20 @@ const createTodoFooter = createRenderMixin
 	.extend({
 		getChildrenNodes(this: TodoFooter): VNode[] {
 			const activeCount = this.state.activeCount;
-			const countLabel = activeCount === 1 ? 'item' : 'items';
+			const messages = this.localizeBundle(bundle);
+			const countLabel = activeCount === 1 ? 'itemLeft' : 'itemsLeft';
 
 			return [
 				h('span', {'class': 'todo-count'}, [
 					h('strong', [activeCount + ' ']),
-					h('span', [countLabel + ' left'])
+					h('span', [ messages[countLabel] ])
 				]),
 				this.children.get('filter').render(),
 				this.children.get('button').render()
 			];
 		},
 
+		bundles: [ bundle ],
 		tagName: 'footer'
 	});
 
