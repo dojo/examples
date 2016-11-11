@@ -1,6 +1,12 @@
-import createMemoryStore, { MemoryStore } from 'dojo-stores/createMemoryStore';
-
+import createStore, { CrudOptions, UpdateResults } from 'dojo-stores/store/createStore';
+import createObservableStoreMixin, {
+	ObservableStore, ObservableStoreOptions
+} from 'dojo-stores/store/mixins/createObservableStoreMixin';
 import { updateHeaderAndFooter, deleteTodo, putTodo } from '../actions/widgetStoreActions';
+
+type TodoStore = ObservableStore<Item, CrudOptions, UpdateResults<Item>>;
+type TodoStoreFactory =
+	<T, O extends CrudOptions, U extends UpdateResults<T>>(options?: ObservableStoreOptions<T, O>) => ObservableStore<T, O, U>
 
 export interface Item {
 	id: string;
@@ -8,18 +14,11 @@ export interface Item {
 	completed?: boolean;
 }
 
-export type Store = MemoryStore<Item>;
+const todoStoreFactory: TodoStoreFactory = createStore.mixin(createObservableStoreMixin());
 
-// FIXME: The ChangeRecord from createMemoryStore should define these properties.
-export interface ChangeRecord {
-	beforeAll: Item[];
-	afterAll: Item[];
-	deletes: string[];
-	puts: Item[];
-}
-
-const todoStore: Store = createMemoryStore<Item>({
-	data: []
+const todoStore: TodoStore = todoStoreFactory({
+	fetchAroundUpdates: true,
+	data: <Item[]> []
 });
 
 export default todoStore;
@@ -28,16 +27,15 @@ export default todoStore;
 export function bindActions() {
 	return todoStore
 		.observe()
-		.subscribe((options: any) => {
-			const changeRecord = <ChangeRecord> options;
-			updateHeaderAndFooter.do(changeRecord);
+		.subscribe((options) => {
+			updateHeaderAndFooter.do(options);
 
-			const { puts, deletes } = changeRecord;
+			const { adds, updates, deletes } = options;
 			if (deletes.length) {
-				deleteTodo.do(changeRecord);
+				deleteTodo.do(options);
 			}
-			if (puts.length) {
-				putTodo.do(changeRecord);
+			if (adds.length || updates.length) {
+				putTodo.do(options);
 			}
 		});
 }
