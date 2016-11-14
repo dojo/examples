@@ -23,7 +23,7 @@ const createTodoFooter = createWidgetBase
 				const countLabel = activeCount === 1 ? 'item' : 'items';
 
 				return [
-					d('span', {'class': 'todo-count'}, [
+					d('span', { 'class': 'todo-count' }, [
 						d('strong', [activeCount + ' ']),
 						d('span', [countLabel + ' left'])
 					]),
