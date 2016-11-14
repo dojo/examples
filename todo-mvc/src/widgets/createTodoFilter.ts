@@ -10,40 +10,28 @@ type TodoFilterOptions = WidgetOptions<TodoFilterState>;
 
 type TodoFilter = Widget<TodoFilterState>;
 
+function createFilterItems(activeFilter: string): DNode[] {
+	const filters = [ 'all', 'active', 'completed' ];
+	return filters.map((filterItem) => {
+		const label = filterItem[0].toUpperCase() + filterItem.substring(1);
+		return d('li', {}, [
+			d('a', {
+				innerHTML: label,
+				href: `#${filterItem}`,
+				classes: {
+					selected: activeFilter === filterItem
+				}
+			})
+		]);
+	});
+}
+
 const createTodoFilter = createWidgetBase
 	.extend({
 		childNodeRenderers: [
 			function(this: TodoFilter): DNode[] {
 				const { activeFilter } = this.state;
-				return [
-					d('li', {}, [
-						d('a', {
-							innerHTML: 'All',
-							href: '#all',
-							classes: {
-								selected: activeFilter === 'all'
-							}
-						})
-					]),
-					d('li', {}, [
-						d('a', {
-							innerHTML: 'Active',
-							href: '#active',
-							classes: {
-								selected: activeFilter === 'active'
-							}
-						})
-					]),
-					d('li', {}, [
-						d('a', {
-							innerHTML: 'Completed',
-							href: '#completed',
-							classes: {
-								selected: activeFilter === 'completed'
-							}
-						})
-					])
-				];
+				return createFilterItems(activeFilter);
 			}
 		],
 
