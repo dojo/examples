@@ -23,7 +23,7 @@ const createLabel = createWidgetBase
 	.extend({
 		tagName: 'label',
 		nodeAttributes: [
-			function (this: any): any {
+			function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
 				return { innerHTML: this.state.label };
 			}
 		]
