@@ -53,49 +53,13 @@ export default createMemoryStore<any>({
 			classes: [ 'jumbotron', 'cardsJumbotron' ]
 		},
 		{
-			id: 'home',
-			classes: [ 'animated', 'pageHolder' ],
-			children: [ 'homeJumbotron' ],
-			enterAnimation: 'fadeIn'
+			id: 'home'
 		},
 		{
-			id: 'homeJumbotron',
-			classes: [ 'jumbotron', 'homeJumbotron' ],
-			children: [ 'homePageLogo' ]
+			id: 'about'
 		},
 		{
-			id: 'homePageLogo',
-			src: './images/mm_logo.png'
-		},
-		{
-			id: 'about',
-			classes: [ 'animated', 'pageHolder' ],
-			children: [ 'aboutJumbotron' ],
-			enterAnimation: 'fadeIn'
-		},
-		{
-			id: 'aboutJumbotron',
-			classes: [ 'jumbotron', 'aboutJumbotron' ],
-			children: [ 'aboutHeading' ]
-		},
-		{
-			id: 'aboutHeading',
-			label: 'About'
-		},
-		{
-			id: 'gameplay',
-			classes: [ 'animated', 'pageHolder' ],
-			children: [ 'gameplayJumbotron' ],
-			enterAnimation: 'fadeIn'
-		},
-		{
-			id: 'gameplayJumbotron',
-			classes: [ 'jumbotron', 'gameplayJumbotron' ],
-			children: [ 'gameplayHeading' ]
-		},
-		{
-			id: 'gameplayHeading',
-			label: 'Gameplay'
+			id: 'gameplay'
 		}
 	]
 });

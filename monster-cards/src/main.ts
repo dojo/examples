@@ -8,13 +8,12 @@ import createCardList from './widgets/card/createCardList';
 import createCardDescription from './widgets/card-details/createCardDescription';
 import createCardNavBar from './widgets/card-details/createCardNavBar';
 import createContainer from './widgets/common/createContainer';
-import createImage from './widgets/common/createImage';
-import createCard from './widgets/card/createCard';
-import createCardSummary from './widgets/card/createCardSummary';
+import createHomePage from './widgets/home/createHomePage';
+import createGameplayPage from './widgets/gameplay/createGameplayPage';
+import createAboutPage from './widgets/about/createAboutPage';
 import defaultWidgetStore from './stores/widgetStore';
 
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
-import createWidget from 'dojo-widgets/createWidget';
 
 import 'maquette/src/css-transitions';
 
@@ -25,16 +24,8 @@ app.registerStore('cards-store', cardStore);
 app.loadDefinition({
 	customElements: [
 		{
-			name: 'milestone-card',
-			factory: createCard
-		},
-		{
 			name: 'card-description',
 			factory: createCardDescription
-		},
-		{
-			name: 'milestone-card-summary',
-			factory: createCardSummary
 		}
 	],
 	widgets: [
@@ -78,45 +69,15 @@ app.loadDefinition({
 		},
 		{
 			id: 'home',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'homeJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'homePageLogo',
-			factory: createImage
+			factory: createHomePage
 		},
 		{
 			id: 'gameplay',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'gameplayJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'gameplayHeading',
-			factory: createWidget,
-			options: {
-				tagName: 'h1'
-			}
+			factory: createGameplayPage
 		},
 		{
 			id: 'about',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'aboutJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'aboutHeading',
-			factory: createWidget,
-			options: {
-				tagName: 'h1'
-			}
+			factory: createAboutPage
 		}
 	]
 });
