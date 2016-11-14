@@ -4,7 +4,9 @@ import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
+import createCardList from './widgets/card/createCardList';
 import createCardDescription from './widgets/card-details/createCardDescription';
+import createCardNavBar from './widgets/card-details/createCardNavBar';
 import createContainer from './widgets/common/createContainer';
 import createImage from './widgets/common/createImage';
 import createCard from './widgets/card/createCard';
@@ -56,10 +58,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'cardDetailsNavbar',
-			factory: createAnimatedContainer,
-			options: {
-				tagName: 'card-details-nav-bar'
-			}
+			factory: createCardNavBar
 		},
 		{
 			id: 'cardDetailsJumbotron',
@@ -75,7 +74,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'cardsList',
-			factory: createContainer
+			factory: createCardList
 		},
 		{
 			id: 'home',

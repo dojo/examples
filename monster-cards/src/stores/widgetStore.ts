@@ -46,8 +46,7 @@ export default createMemoryStore<any>({
 			enterAnimation: 'fadeIn'
 		},
 		{
-			id: 'cardsList',
-			classes: [ 'cardsList' ]
+			id: 'cardsList'
 		},
 		{
 			id: 'cardsJumbotron',
