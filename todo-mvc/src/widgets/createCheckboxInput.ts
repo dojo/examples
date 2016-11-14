@@ -1,27 +1,23 @@
-import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
+import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import { Widget, WidgetOptions, WidgetState } from 'dojo-interfaces/widgetBases';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
-import createVNodeEvented, { VNodeEvented } from 'dojo-widgets/mixins/createVNodeEvented';
+import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import { VNodeProperties } from 'maquette';
 
-/* I suspect this needs to go somewhere else */
-export interface TypedTargetEvent<T extends EventTarget> extends Event {
-	target: T;
-}
-
-export type CheckboxInputState = RenderMixinState & FormFieldMixinState<string> & {
+export type CheckboxInputState = WidgetState & FormFieldMixinState<string> & {
 	checked?: boolean;
 };
 
-export type CheckboxInputOptions = RenderMixinOptions<CheckboxInputState> & FormFieldMixinOptions<string, CheckboxInputState>;
+export type CheckboxInputOptions = WidgetOptions<CheckboxInputState> & FormFieldMixinOptions<string, CheckboxInputState>;
 
-export type CheckboxInput = RenderMixin<CheckboxInputState> & FormFieldMixin<string, CheckboxInputState> & VNodeEvented;
+export type CheckboxInput = Widget<CheckboxInputState> & FormFieldMixin<string, CheckboxInputState>;
 
-const createCheckboxInput = createRenderMixin
+const createCheckboxInput = createWidgetBase
 	.mixin(createFormFieldMixin)
 	.mixin({
 		mixin: createVNodeEvented,
 		initialize(instance) {
-			instance.own(instance.on('input', (event: TypedTargetEvent<HTMLInputElement>) => {
+			instance.own(instance.on('input', (event: any) => {
 				instance.value = event.target.value;
 			}));
 		}

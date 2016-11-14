@@ -1,6 +1,6 @@
 import createMemoryStore, { MemoryStore } from 'dojo-stores/createMemoryStore';
 
-import { updateHeaderAndFooter, deleteTodo, putTodo } from '../actions/widgetStoreActions';
+import { updateHeaderAndFooter, putTodo } from '../actions/widgetStoreActions';
 
 export interface Item {
 	id: string;
@@ -31,13 +31,6 @@ export function bindActions() {
 		.subscribe((options: any) => {
 			const changeRecord = <ChangeRecord> options;
 			updateHeaderAndFooter.do(changeRecord);
-
-			const { puts, deletes } = changeRecord;
-			if (deletes.length) {
-				deleteTodo.do(changeRecord);
-			}
-			if (puts.length) {
-				putTodo.do(changeRecord);
-			}
+			putTodo.do(changeRecord);
 		});
 }

@@ -1,50 +1,53 @@
-import createRenderMixin, { RenderMixin, RenderMixinState, RenderMixinOptions } from 'dojo-widgets/mixins/createRenderMixin';
-import { h, VNode } from 'maquette';
+import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
+import d from 'dojo-widgets/util/d';
 
-type TodoFilterState = RenderMixinState & {
+type TodoFilterState = WidgetState & {
 	activeFilter?: string;
 };
 
-type TodoFilterOptions = RenderMixinOptions<TodoFilterState>;
+type TodoFilterOptions = WidgetOptions<TodoFilterState>;
 
-type TodoFilter = RenderMixin<TodoFilterState>;
+type TodoFilter = Widget<TodoFilterState>;
 
-const createTodoFilter = createRenderMixin
+const createTodoFilter = createWidgetBase
 	.extend({
-		getChildrenNodes(this: TodoFilter): VNode[] {
-			const { activeFilter } = this.state;
-			return [
-				h('li', {}, [
-					h('a', {
-						innerHTML: 'All',
-						href: '#all',
-						classes: {
-							selected: activeFilter === 'all'
-						}
-					})
-				]),
-				h('li', {}, [
-					h('a', {
-						innerHTML: 'Active',
-						href: '#active',
-						classes: {
-							selected: activeFilter === 'active'
-						}
-					})
-				]),
-				h('li', {}, [
-					h('a', {
-						innerHTML: 'Completed',
-						href: '#completed',
-						classes: {
-							selected: activeFilter === 'completed'
-						}
-					})
-				])
-			];
-		},
+		childNodeRenderers: [
+			function(this: TodoFilter): DNode[] {
+				const { activeFilter } = this.state;
+				return [
+					d('li', {}, [
+						d('a', {
+							innerHTML: 'All',
+							href: '#all',
+							classes: {
+								selected: activeFilter === 'all'
+							}
+						})
+					]),
+					d('li', {}, [
+						d('a', {
+							innerHTML: 'Active',
+							href: '#active',
+							classes: {
+								selected: activeFilter === 'active'
+							}
+						})
+					]),
+					d('li', {}, [
+						d('a', {
+							innerHTML: 'Completed',
+							href: '#completed',
+							classes: {
+								selected: activeFilter === 'completed'
+							}
+						})
+					])
+				];
+			}
+		],
 
-		tagName: 'ul'
+		tagName: 'ul.filters'
 	});
 
 export default createTodoFilter;
