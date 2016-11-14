@@ -1,7 +1,7 @@
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
 import d from 'dojo-widgets/util/d';
-/*import { clearCompleted } from '../actions/userActions';*/
+import { clearCompleted } from '../actions/userActions';
 import createTodoFilter from './createTodoFilter';
 import createButton from 'dojo-widgets/createButton';
 
@@ -19,7 +19,7 @@ const createTodoFooter = createWidgetBase
 	.extend({
 		childNodeRenderers: [
 			function(this: TodoFooter): DNode[] {
-				const activeCount = this.state.activeCount;
+				const { activeCount, completedCount } = this.state;
 				const countLabel = activeCount === 1 ? 'item' : 'items';
 
 				return [
@@ -27,8 +27,18 @@ const createTodoFooter = createWidgetBase
 						d('strong', [activeCount + ' ']),
 						d('span', [countLabel + ' left'])
 					]),
-					d(createTodoFilter, { classes: [ 'filters' ] }),
-					d(createButton, { classes: [ 'clear-completed' ] })
+					d(createTodoFilter, {
+						state: { classes: [ 'filters' ] }
+					}),
+					completedCount ? d(createButton, {
+						listeners: {
+							click: clearCompleted
+						},
+						state: {
+							label: 'Clear completed',
+							classes: [ 'clear-completed' ]
+						}
+					}) : null
 				];
 			}
 		],
