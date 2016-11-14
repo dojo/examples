@@ -6,6 +6,7 @@ import createButton from 'dojo-widgets/createButton';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
+import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 
 export type TodoItemState = WidgetState & {
 	label: string;
@@ -17,14 +18,16 @@ export type TodoItemOptions = WidgetOptions<TodoItemState>;
 
 export type TodoItem = Widget<TodoItemState>;
 
-const createLabel = createWidgetBase.extend({
-	tagName: 'label',
-	nodeAttributes: [
-		function (this: any): any {
-			return { innerHTML: this.state.label };
-		}
-	]
-});
+const createLabel = createWidgetBase
+	.mixin(createVNodeEvented)
+	.extend({
+		tagName: 'label',
+		nodeAttributes: [
+			function (this: any): any {
+				return { innerHTML: this.state.label };
+			}
+		]
+	});
 
 const createTodoItem = createWidgetBase
 	.extend({
@@ -57,13 +60,14 @@ const createTodoItem = createWidgetBase
 							state: { classes: [ 'destroy' ] }
 						})
 					]),
+					state.editing ?
 					d(createFocusableTextInput, {
 						listeners: {
 							blur: (evt: Event) => { todoSave.do({ state, evt }); },
 							keyup: (evt: Event) => { todoEditInput.do({ state, evt }); }
 						},
 						state: { value: label, focused, classes: [ 'edit' ] }
-					})
+					}) : null
 				];
 			}
 		],
