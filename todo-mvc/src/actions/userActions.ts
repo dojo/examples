@@ -1,15 +1,8 @@
 import createAction from 'dojo-actions/createAction';
 import { assign } from 'dojo-core/lang';
-
 import { Item } from '../stores/todoStore';
 import widgetStore from '../stores/widgetStore';
-import {
-	addTodo,
-	deleteCompleted,
-	deleteTodo,
-	toggleAll,
-	updateTodo
-} from './todoStoreActions';
+import { addTodo, deleteCompleted, deleteTodo, toggleAll, updateTodo } from './todoStoreActions';
 
 interface FormEvent extends Event {
 	target: HTMLInputElement;
@@ -35,7 +28,13 @@ export const todoInput = createAction({
 
 export const todoEdit = createAction({
 	do(options: any) {
-		return widgetStore.patch(assign(options, { editing: true }));
+		widgetStore.get('todo-list').then((todoList: any) => {
+			const { todos } = todoList;
+			todos
+				.filter((todo: any) => todo.id === options.id)
+				.forEach((todo: any) => todo.editing = true);
+			return widgetStore.patch('todo-list', todoList);
+		});
 	}
 });
 

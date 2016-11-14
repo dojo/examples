@@ -2,7 +2,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState } from 'dojo-interfaces/widgetBases';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
-import { VNodeProperties } from 'maquette';
+import { VNodeProperties } from 'dojo-interfaces/vdom';
 
 export type CheckboxInputState = WidgetState & FormFieldMixinState<string> & {
 	checked?: boolean;

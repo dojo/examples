@@ -63,10 +63,10 @@ const createTodoItem = createWidgetBase
 					state.editing ?
 					d(createFocusableTextInput, {
 						listeners: {
-							blur: (evt: Event) => { todoSave.do({ state, evt }); },
-							keyup: (evt: Event) => { todoEditInput.do({ state, evt }); }
+							blur: (evt: Event) => { todoSave.do({ state, event }); },
+							keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
 						},
-						state: { value: label, focused, classes: [ 'edit' ] }
+						state: { initialValue: label, focused, classes: [ 'edit' ] }
 					}) : null
 				];
 			}

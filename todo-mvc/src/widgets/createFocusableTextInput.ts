@@ -3,7 +3,7 @@ import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldM
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState } from 'dojo-interfaces/widgetBases';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
-import { VNodeProperties } from 'maquette';
+import { VNodeProperties } from 'dojo-interfaces/vdom';
 
 export type FocusableTextInputState = WidgetState & FormFieldMixinState<string> & {
 	focused?: boolean;
@@ -17,7 +17,7 @@ export type FocusableTextInput = Widget<FocusableTextInputState> & FormFieldMixi
 const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: HTMLInputElement): void}>();
 
 function afterUpdate(instance: FocusableTextInput, element: HTMLInputElement) {
-	const focused: boolean = instance.state.focused;
+	const focused = instance.state.focused;
 	if (focused) {
 		setTimeout(() => element.focus(), 0);
 	}
@@ -41,8 +41,14 @@ const createFocusableTextInput = createWidgetBase
 		nodeAttributes: [
 			function (this: FocusableTextInput): VNodeProperties {
 				const afterUpdate = afterUpdateFunctions.get(this);
-				const { placeholder } = this.state;
-				return { afterUpdate, placeholder };
+				const { placeholder, initialValue, value } = this.state;
+				const hasValue = ({}).hasOwnProperty.call(this.state, 'value');
+				return {
+					afterUpdate,
+					placeholder,
+					afterCreate: afterUpdate,
+					value: hasValue ? value : initialValue
+				};
 			}
 		],
 
