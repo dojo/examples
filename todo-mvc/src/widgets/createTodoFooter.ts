@@ -19,7 +19,7 @@ const createTodoFooter = createWidgetBase
 	.extend({
 		childNodeRenderers: [
 			function(this: TodoFooter): DNode[] {
-				const { activeCount, completedCount } = this.state;
+				const { activeCount, activeFilter, completedCount } = this.state;
 				const countLabel = activeCount === 1 ? 'item' : 'items';
 
 				return [
@@ -28,7 +28,10 @@ const createTodoFooter = createWidgetBase
 						d('span', [countLabel + ' left'])
 					]),
 					d(createTodoFilter, {
-						state: { classes: [ 'filters' ] }
+						state: {
+							classes: [ 'filters' ],
+							activeFilter
+						}
 					}),
 					completedCount ? d(createButton, {
 						listeners: {
