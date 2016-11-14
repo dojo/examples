@@ -20,9 +20,9 @@ export type ShareButtonConfig = {
 	text?: string;
 }
 
-function createButtonLink({ iconClass, href, text }: ShareButtonConfig): DNode {
+function createButtonLink({ iconClass, href, text: innerHTML }: ShareButtonConfig): DNode {
 	const icon = d(`i.fa.${iconClass}`);
-	const buttonText = text ? d('span', { innerHTML: text }) : null;
+	const buttonText = innerHTML ? d('span', { innerHTML }) : null;
 
 	return d('a.button', { href }, [ icon, buttonText ]);
 }
