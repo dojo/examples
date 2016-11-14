@@ -16,7 +16,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-beta.6",
-    "animate.css": "^3.5.2",
+    "animate.css": "~3.5.2",
     "dojo-actions": ">=2.0.0-alpha.9",
     "dojo-app": "2.0.0-alpha.9",
     "dojo-compose": ">=2.0.0-beta.16",
@@ -27,25 +27,25 @@
     "dojo-routing": ">=2.0.0-alpha.5",
     "dojo-shim": ">=2.0.0-beta.3",
     "dojo-stores": ">=2.0.0-alpha.4",
-    "dojo-widgets": ">=2.0.0-alpha.11",
-    "font-awesome": "^4.6.3",
-    "immutable": "^3.8.1",
-    "maquette": "^2.3.2"
+    "dojo-widgets": "2.0.0-alpha.12",
+    "font-awesome": "~4.6.3",
+    "immutable": "~3.8.1",
+    "maquette": "~2.3.2"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/es6-shim": "~0.31.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
-    "@types/node": "^6.0.46",
-    "chai": "^3.5.0",
-    "dojo-cli-build-webpack": "^2.0.0-alpha.5",
+    "@types/node": "~6.0.46",
+    "chai": "~3.5.0",
+    "dojo-cli-build-webpack": ">=2.0.0-alpha.5",
     "dojo-interfaces": ">=2.0.0-alpha.6",
-    "grunt": "^1.0.1",
-    "grunt-contrib-stylus": "^1.2.0",
+    "grunt": "~1.0.1",
+    "grunt-contrib-stylus": "~1.2.0",
     "grunt-dojo2": ">=2.0.0-beta.18",
-    "intern": "^3.3.2",
-    "tslint": "^3.15.1",
+    "intern": "~3.3.2",
+    "tslint": "~3.15.1",
     "typescript": "~2.0.3"
   }
 }
