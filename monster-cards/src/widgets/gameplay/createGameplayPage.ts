@@ -10,8 +10,6 @@ const createGameplay = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		classes: [ 'animated', 'pageHolder', 'gameplay' ],
-		enterAnimation: 'fadeIn',
-		exitAnimation: 'fadeOut',
 		childNodeRenderers: [
 			function(this: Gameplay): DNode[] {
 				const heading = d('h1', { innerHTML: 'Gameplay' });

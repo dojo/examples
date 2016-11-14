@@ -10,8 +10,6 @@ const createAbout = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		classes: [ 'animated', 'pageHolder', 'about' ],
-		enterAnimation: 'fadeIn',
-		exitAnimation: 'fadeOut',
 		childNodeRenderers: [
 			function(this: About): DNode[] {
 				const heading = d('h1', { innerHTML: 'About' });

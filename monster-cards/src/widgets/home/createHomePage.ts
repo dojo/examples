@@ -10,8 +10,6 @@ const createHomePage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		classes: [ 'animated', 'pageHolder', 'home' ],
-		enterAnimation: 'fadeIn',
-		exitAnimation: 'fadeOut',
 		childNodeRenderers: [
 			function(this: HomePage): DNode[] {
 				const mmLogo = d('img', { src: './images/mm_logo.png' });

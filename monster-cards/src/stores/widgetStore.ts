@@ -53,13 +53,19 @@ export default createMemoryStore<any>({
 			classes: [ 'jumbotron', 'cardsJumbotron' ]
 		},
 		{
-			id: 'home'
+			id: 'home',
+			enterAnimation: 'fadeIn',
+			exitAnimation: 'fadeOut'
 		},
 		{
-			id: 'about'
+			id: 'about',
+			enterAnimation: 'fadeIn',
+			exitAnimation: 'fadeOut'
 		},
 		{
-			id: 'gameplay'
+			id: 'gameplay',
+			enterAnimation: 'fadeIn',
+			exitAnimation: 'fadeOut'
 		}
 	]
 });
