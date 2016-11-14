@@ -3,40 +3,40 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createSearchInput from '../common/createSearchInput';
 
-export type NavBarState = {}
+export type NavBarState = {
+	sections: NavBarLinkDefinition[];
+}
 
 export type NavBar = Widget<NavBarState>
+
+export type NavBarLinkDefinition = {
+	text: string;
+	href: string;
+}
+
+function listItem(childNode: DNode): DNode {
+	return d('li', {}, [ childNode ]);
+}
+
+function createNavBarLink({ text: innerHTML, href }: NavBarLinkDefinition): DNode {
+	return listItem(d('a', { href, innerHTML }));
+}
 
 const createNavbar = createWidgetBase.extend({
 	tagName: 'header',
 	childNodeRenderers: [
 		function(this: NavBar): DNode[] {
-			return [
-				d('ul.inline-list', {}, [
-					d('li', {}, [
-						d('a', { href: '#' }, [
-							d('img', { src: 'images/navbar-app-icon.png' })
-						])
-					]),
-					d('li', {}, [
-						d('a', { href: '#cards', innerHTML: 'the cards'})
-					]),
-					d('li', {}, [
-						d('a', { href: '#gameplay', innerHTML: 'gameplay'})
-					]),
-					d('li', {}, [
-						d('a', { href: '#about', innerHTML: 'about'})
-					])
-				]),
-				d('ul.inline-list.pull-right', {}, [
-					d('li.search', {}, [
-						d(createSearchInput, {})
-					]),
-					d('li', {}, [
-						d('i.fa.fa-2x.fa-heart-o')
-					])
-				])
-			];
+			const homeLink = listItem(d('a', { href: '#' }, [
+				d('img', { src: 'images/navbar-app-icon.png' })
+			]));
+			const sectionLinks = this.state.sections.map(createNavBarLink);
+			const searchAction = listItem(d(createSearchInput, {}));
+			const favouriteAction = listItem(d('i.fa.fa-2x.fa-heart-o'));
+
+			const pageLinks = d('ul.inline-list', {}, [ homeLink, ...sectionLinks ]);
+			const actionLinks = d('ul.inline-list.pull-right', {}, [ searchAction, favouriteAction ]);
+
+			return [ pageLinks, actionLinks ];
 		}
 	]
 });

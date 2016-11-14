@@ -4,7 +4,12 @@ export default createMemoryStore<any>({
 	data: [
 		{
 			id: 'navbar',
-			classes: [ 'navbar' ]
+			classes: [ 'navbar' ],
+			sections: [
+				{ text: 'the cards', href: '#cards' },
+				{ text: 'gameplay', href: '#gameplay' },
+				{ text: 'about', href: '#about' }
+			]
 		},
 		{
 			id: 'container',

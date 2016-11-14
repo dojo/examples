@@ -23,9 +23,9 @@ const createCard = createWidgetBase.extend({
 	childNodeRenderers: [
 		function(this: Card): DNode[] {
 			const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
-			return [
-				d(`div.${baseImageClass}.${this.state.imageClass}`)
-			];
+			const cardImage = d(`div.${baseImageClass}.${this.state.imageClass}`);
+
+			return [ cardImage ];
 		}
 	]
 });

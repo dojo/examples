@@ -17,10 +17,15 @@ const createCardSummary = createWidgetBase.extend({
 	childNodeRenderers: [
 		function(this: CardSummary): DNode[] {
 			const { cardId, imageClass, name, score } = this.state;
+
+			const cardImage = d(createCard, { state: { cardId, imageClass, large: true } });
+			const cardName = d('h2', { innerHTML: name });
+			const cardPoints = d('p.points', { innerHTML: `milestone points: ${score}` });
+
 			return [
-				d(createCard, { state: { cardId, imageClass, large: true } }),
-				d('h2', { innerHTML: name }),
-				d('p.points', { innerHTML: `milestone points: ${score}` })
+				cardImage,
+				cardName,
+				cardPoints
 			];
 		}
 	]

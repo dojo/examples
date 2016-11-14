@@ -14,32 +14,48 @@ export type MilestoneCardDetails = {
 
 export type CardDescription = Widget<MilestoneCardDetails>;
 
+export type ShareButtonConfig = {
+	iconClass: string;
+	href?: string;
+	text?: string;
+}
+
+function createButtonLink({ iconClass, href, text }: ShareButtonConfig): DNode {
+	const icon = d(`i.fa.${iconClass}`);
+	const buttonText = text ? d('span', { innerHTML: text }) : null;
+
+	return d('a.button', { href }, [ icon, buttonText ]);
+}
+
+const shareButtonConfig: ShareButtonConfig[] = [
+	{ href: null, iconClass: 'fa-heart-o', text: 'Add to favourites' },
+	{ href: 'http://www.twitter.com', iconClass: 'fa-twitter' },
+	{ href: 'https://facebook.com', iconClass: 'fa-facebook' }
+];
+
 const createCardDescription = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		tagName: 'card-details-description',
 		childNodeRenderers: [
 			function(this: CardDescription): DNode[] {
+				const { imageClass, name, tagline, description, favouriteCount } = this.state;
+
+				const cardImage = d(`div.cardImage.card-sprite-large.${imageClass}`);
+				const cardName = d('h1', { innerHTML: name });
+				const cardTagline = d('strong.tagline', { innerHTML: tagline });
+				const cardDescription = d('p', { innerHTML: description });
+				const cardFavouriteCount = d('span', { innerHTML: `Favourited: ${favouriteCount}` });
+				const shareButtons = d('div.buttonHolder', {}, shareButtonConfig.map(createButtonLink));
+
 				return [
-					d(createWidgetBase, { state: { classes: [ 'cardImage', 'card-sprite-large', this.state.imageClass ] }}),
+					cardImage,
 					d('article', {}, [
-						d('h1', { innerHTML: this.state.name }),
-						d('strong.tagline', { innerHTML: this.state.tagline }),
-						d('p', { innerHTML: this.state.description }),
-						d('span', { innerHTML: `Favourited: ` }),
-						d('span.favouriteCount', { innerHTML: this.state.favouriteCount.toString() }),
-						d('div.buttonHolder', {}, [
-							d('a.button', {}, [
-								d('i.fa.fa-heart-o'),
-								d('span', { innerHTML: 'Add to favourites' })
-							]),
-							d('a.button', { href: 'http://www.twitter.com' }, [
-								d('i.fa.fa-twitter')
-							]),
-							d('a.button', { href: 'https://facebook.com' }, [
-								d('i.fa.fa-facebook')
-							])
-						])
+						cardName,
+						cardDescription,
+						cardTagline,
+						cardFavouriteCount,
+						shareButtons
 					])
 				];
 			}

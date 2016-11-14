@@ -8,10 +8,10 @@ export type SearchInput = Widget<SearchInputState>
 const createSearchInput = createWidgetBase.extend({
 	childNodeRenderers: [
 		function(this: SearchInput): DNode[] {
-			return [
-				d('input', { type: 'search' }),
-				d('i.fa.fa-2x.fa-search')
-			];
+			const input = d('input', { type: 'search' });
+			const icon = d('i.fa.fa-2x.fa-search');
+
+			return [ input, icon ];
 		}
 	]
 });
