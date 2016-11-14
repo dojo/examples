@@ -38,19 +38,8 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cards',
-			classes: [ 'animated', 'cards', 'pageHolder' ],
-			children: [
-				'cardsJumbotron',
-				'cardsList'
-			],
-			enterAnimation: 'fadeIn'
-		},
-		{
-			id: 'cardsList'
-		},
-		{
-			id: 'cardsJumbotron',
-			classes: [ 'jumbotron', 'cardsJumbotron' ]
+			enterAnimation: 'fadeIn',
+			exitAnimation: 'fadeOut'
 		},
 		{
 			id: 'home',

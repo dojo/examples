@@ -3,15 +3,15 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import d from 'dojo-widgets/util/d';
 
-export type AboutState = {}
-export type About = Widget<AboutState>
+export type AboutPageState = {}
+export type AboutPage = Widget<AboutPageState>
 
-const createAbout = createWidgetBase
+const createAboutPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		classes: [ 'animated', 'pageHolder', 'about' ],
 		childNodeRenderers: [
-			function(this: About): DNode[] {
+			function(this: AboutPage): DNode[] {
 				const heading = d('h1', { innerHTML: 'About' });
 				const jumbotron = d('div.jumbotron', {}, [ heading ]);
 
@@ -20,4 +20,4 @@ const createAbout = createWidgetBase
 		]
 	});
 
-export default createAbout;
+export default createAboutPage;

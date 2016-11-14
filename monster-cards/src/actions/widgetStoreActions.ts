@@ -38,7 +38,7 @@ export const putCard = createAction({
 		if (puts.length) {
 
 			widgetStore.patch({ id: 'cardDetailsNavbar', cards: afterAll.map(getCardState) });
-			widgetStore.patch({ id: 'cardsList', cards: afterAll.map(getCardSummaryState) });
+			widgetStore.patch({ id: 'cards', cards: afterAll.map(getCardSummaryState) });
 
 			return Promise.all(puts.map(createWidgetsRecords));
 		}

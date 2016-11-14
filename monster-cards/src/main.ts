@@ -4,13 +4,13 @@ import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
-import createCardList from './widgets/card/createCardList';
 import createCardDescription from './widgets/card-details/createCardDescription';
 import createCardNavBar from './widgets/card-details/createCardNavBar';
 import createContainer from './widgets/common/createContainer';
 import createHomePage from './widgets/home/createHomePage';
 import createGameplayPage from './widgets/gameplay/createGameplayPage';
 import createAboutPage from './widgets/about/createAboutPage';
+import createCardsPage from './widgets/cards/createCardsPage';
 import defaultWidgetStore from './stores/widgetStore';
 
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
@@ -57,15 +57,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'cards',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'cardsJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'cardsList',
-			factory: createCardList
+			factory: createCardsPage
 		},
 		{
 			id: 'home',

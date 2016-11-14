@@ -3,15 +3,15 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import d from 'dojo-widgets/util/d';
 
-export type GameplayState = {}
-export type Gameplay = Widget<GameplayState>
+export type GameplayPageState = {}
+export type GameplayPage = Widget<GameplayPageState>
 
-const createGameplay = createWidgetBase
+const createGameplayPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		classes: [ 'animated', 'pageHolder', 'gameplay' ],
 		childNodeRenderers: [
-			function(this: Gameplay): DNode[] {
+			function(this: GameplayPage): DNode[] {
 				const heading = d('h1', { innerHTML: 'Gameplay' });
 				const jumbotron = d('div.jumbotron', {}, [ heading ]);
 
@@ -20,4 +20,4 @@ const createGameplay = createWidgetBase
 		]
 	});
 
-export default createGameplay;
+export default createGameplayPage;
