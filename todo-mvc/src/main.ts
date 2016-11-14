@@ -11,13 +11,14 @@ import createTodoFooter from './widgets/createTodoFooter';
 import createTodoItem from './widgets/createTodoItem';
 import createTodoList from './widgets/createTodoList';
 import { Widget, WidgetState } from 'dojo-interfaces/widgetBases';
+import { VNodeProperties } from 'dojo-interfaces/vdom';
 
 const app = createApp({ defaultWidgetStore: widgetStore });
 
 const createTitle = createWidgetBase.extend({
 	tagName: 'h1',
 	nodeAttributes: [
-		function (this: Widget<WidgetState & { label: string }>): any {
+		function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
 			return { innerHTML: this.state.label };
 		}
 	]

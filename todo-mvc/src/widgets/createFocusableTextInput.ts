@@ -4,6 +4,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState } from 'dojo-interfaces/widgetBases';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
+import { EventTargettedObject } from 'dojo-interfaces/core';
 
 export type FocusableTextInputState = WidgetState & FormFieldMixinState<string> & {
 	focused?: boolean;
@@ -31,7 +32,7 @@ const createFocusableTextInput = createWidgetBase
 	.mixin({
 		mixin: createVNodeEvented,
 		initialize(instance) {
-			instance.own(instance.on('input', (event: any) => {
+			instance.own(instance.on('input', (event: EventTargettedObject<HTMLInputElement>) => {
 				instance.value = event.target.value;
 			}));
 			afterUpdateFunctions.set(instance, (element: HTMLInputElement) => afterUpdate(instance, element));
