@@ -1,7 +1,6 @@
 import createApp from 'dojo-app/createApp';
 import createPanel from 'dojo-widgets/createPanel';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-
 import { todoToggleAll, todoInput } from './actions/userActions';
 import router from './routes';
 import todoStore, { bindActions as bindTodoStoreActions } from './stores/todoStore';
@@ -11,13 +10,14 @@ import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter from './widgets/createTodoFooter';
 import createTodoItem from './widgets/createTodoItem';
 import createTodoList from './widgets/createTodoList';
+import { Widget, WidgetState } from 'dojo-interfaces/widgetBases';
 
 const app = createApp({ defaultWidgetStore: widgetStore });
 
 const createTitle = createWidgetBase.extend({
 	tagName: 'h1',
 	nodeAttributes: [
-		function (this: any): any {
+		function (this: Widget<WidgetState & { label: string }>): any {
 			return { innerHTML: this.state.label };
 		}
 	]
