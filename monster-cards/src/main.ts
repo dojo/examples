@@ -4,30 +4,20 @@ import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
-import createCardDescription from './widgets/card-details/createCardDescription';
-import createCardNavBar from './widgets/card-details/createCardNavBar';
 import createContainer from './widgets/common/createContainer';
 import createHomePage from './widgets/home/createHomePage';
 import createGameplayPage from './widgets/gameplay/createGameplayPage';
 import createAboutPage from './widgets/about/createAboutPage';
 import createCardsPage from './widgets/cards/createCardsPage';
+import createCardDetailsPage from './widgets/card-details/createCardDetailsPage';
 import defaultWidgetStore from './stores/widgetStore';
-
-import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 
 import 'maquette/src/css-transitions';
 
 const app = createApp({ defaultWidgetStore });
-const createAnimatedContainer = createContainer.mixin(createCssTransitionMixin);
 
 app.registerStore('cards-store', cardStore);
 app.loadDefinition({
-	customElements: [
-		{
-			name: 'card-description',
-			factory: createCardDescription
-		}
-	],
 	widgets: [
 		{
 			id: 'navbar',
@@ -42,18 +32,7 @@ app.loadDefinition({
 		},
 		{
 			id: 'cardDetails',
-			factory: createAnimatedContainer,
-			options: {
-				tagName: 'card-details'
-			}
-		},
-		{
-			id: 'cardDetailsNavbar',
-			factory: createCardNavBar
-		},
-		{
-			id: 'cardDetailsJumbotron',
-			factory: createContainer
+			factory: createCardDetailsPage
 		},
 		{
 			id: 'cards',

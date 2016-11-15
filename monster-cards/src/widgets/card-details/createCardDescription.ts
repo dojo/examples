@@ -3,7 +3,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 
-export type MilestoneCardDetails = {
+export type CardDescriptionState = {
 	name: string;
 	tagline: string;
 	description: string;
@@ -12,7 +12,7 @@ export type MilestoneCardDetails = {
 	cardId: string;
 }
 
-export type CardDescription = Widget<MilestoneCardDetails>;
+export type CardDescription = Widget<CardDescriptionState>;
 
 export type ShareButtonConfig = {
 	iconClass: string;
@@ -37,6 +37,7 @@ const createCardDescription = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
 		tagName: 'card-details-description',
+		classes: [ 'animated', 'cardDescription' ],
 		childNodeRenderers: [
 			function(this: CardDescription): DNode[] {
 				const { imageClass, name, tagline, description, favouriteCount } = this.state;

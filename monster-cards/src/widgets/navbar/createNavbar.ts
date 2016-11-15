@@ -24,6 +24,7 @@ function createNavBarLink({ text: innerHTML, href }: NavBarLinkDefinition): DNod
 
 const createNavbar = createWidgetBase.extend({
 	tagName: 'header',
+	classes: [ 'navbar' ],
 	childNodeRenderers: [
 		function(this: NavBar): DNode[] {
 			const homeLink = listItem(d('a', { href: '#' }, [

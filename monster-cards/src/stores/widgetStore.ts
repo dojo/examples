@@ -4,7 +4,6 @@ export default createMemoryStore<any>({
 	data: [
 		{
 			id: 'navbar',
-			classes: [ 'navbar' ],
 			sections: [
 				{ text: 'the cards', href: '#cards' },
 				{ text: 'gameplay', href: '#gameplay' },
@@ -17,24 +16,8 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cardDetails',
-			classes: [ 'animated', 'cardDetails', 'pageHolder' ],
-			children: [
-				'cardDetailsNavbar',
-				'cardDetailsJumbotron'
-			],
 			enterAnimation: 'fadeInSlideDown',
 			exitAnimation: 'fadeOutSlideUp'
-		},
-		{
-			id: 'cardDetailsNavbar',
-			classes: [ 'animated' ],
-			children: [],
-			enterAnimation: 'slideInDown',
-			exitAnimation: 'slideOutUp'
-		},
-		{
-			id: 'cardDetailsJumbotron',
-			classes: [ 'jumbotron', 'cardDetailsJumbotron' ]
 		},
 		{
 			id: 'cards',
