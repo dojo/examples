@@ -42,13 +42,12 @@ const createFocusableTextInput = createWidgetBase
 		nodeAttributes: [
 			function (this: FocusableTextInput): VNodeProperties {
 				const afterUpdate = afterUpdateFunctions.get(this);
-				const { placeholder, initialValue, value } = this.state;
-				const hasValue = ({}).hasOwnProperty.call(this.state, 'value');
+				const { placeholder, value } = this.state;
 				return {
 					afterUpdate,
 					placeholder,
-					afterCreate: afterUpdate,
-					value: hasValue ? value : initialValue
+					value,
+					afterCreate: afterUpdate
 				};
 			}
 		],

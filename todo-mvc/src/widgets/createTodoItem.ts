@@ -7,6 +7,7 @@ import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
+import { TextInputOptions } from 'dojo-widgets/createTextInput';
 
 export type TodoItemState = WidgetState & {
 	label: string;
@@ -45,6 +46,14 @@ const createTodoItem = createWidgetBase
 				const checked = state.completed;
 				const label = state.label;
 				const focused = state.editing;
+				const inputOptions: TextInputOptions = {
+					value: label,
+					listeners: {
+						blur: (evt: Event) => { todoSave.do({ state, event }); },
+						keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
+					},
+					state: { focused, classes: [ 'edit' ] }
+				};
 				return [
 					d('div.view', {}, [
 						d(createCheckboxInput, {
@@ -61,13 +70,7 @@ const createTodoItem = createWidgetBase
 						})
 					]),
 					state.editing ?
-					d(createFocusableTextInput, {
-						listeners: {
-							blur: (evt: Event) => { todoSave.do({ state, event }); },
-							keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
-						},
-						state: { initialValue: label, focused, classes: [ 'edit' ] }
-					}) : null
+					d(createFocusableTextInput, inputOptions) : null
 				];
 			}
 		],
