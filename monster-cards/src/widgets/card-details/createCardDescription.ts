@@ -36,8 +36,7 @@ const shareButtonConfig: ShareButtonConfig[] = [
 const createCardDescription = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		tagName: 'card-details-description',
-		classes: [ 'animated', 'cardDescription' ],
+		tagName: 'div.animated.cardDescription',
 		childNodeRenderers: [
 			function(this: CardDescription): DNode[] {
 				const { imageClass, name, tagline, description, favouriteCount } = this.state;

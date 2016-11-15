@@ -15,7 +15,7 @@ export type CardDetailsPage = Widget<CardDetailsPageState>
 const createCardDetailsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		classes: [ 'animated', 'pageHolder', 'cardDetails' ],
+		tagName: 'div.animated.pageHolder.cardDetails',
 		childNodeRenderers: [
 			function(this: CardDetailsPage): DNode[] {
 				const { cards, cardDescription } = this.state;

@@ -9,7 +9,7 @@ export type AboutPage = Widget<AboutPageState>
 const createAboutPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		classes: [ 'animated', 'pageHolder', 'about' ],
+		tagName: 'div.animated.pageHolder.about',
 		childNodeRenderers: [
 			function(this: AboutPage): DNode[] {
 				const heading = d('h1', { innerHTML: 'About' });

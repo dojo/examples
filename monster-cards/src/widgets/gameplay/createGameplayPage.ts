@@ -9,7 +9,7 @@ export type GameplayPage = Widget<GameplayPageState>
 const createGameplayPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		classes: [ 'animated', 'pageHolder', 'gameplay' ],
+		tagName: 'div.animated.pageHolder.gameplay',
 		childNodeRenderers: [
 			function(this: GameplayPage): DNode[] {
 				const heading = d('h1', { innerHTML: 'Gameplay' });

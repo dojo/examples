@@ -11,7 +11,7 @@ export type CardList = Widget<CardListState>;
 
 const createCardList = createWidgetBase
 	.extend({
-		classes: [ 'cardList' ],
+		tagName: 'div.cardList',
 		childNodeRenderers: [
 			function(this: CardList): DNode[] {
 				const { cards } = this.state;
