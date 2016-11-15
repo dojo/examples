@@ -21,14 +21,17 @@ export const todoInput = createAction({
 	}
 });
 
+function toggleEditing(todos: any[], todoId: string, editing: boolean): any[] {
+	return todos
+		.filter((todo: any) => todo.id === todoId)
+		.map((todo: any) => todo.editing = true);
+}
+
 export const todoEdit = createAction({
 	do(options: any) {
 		widgetStore.get('todo-list').then((todoListState: any) => {
 			const { todos } = todoListState;
-			todos
-				.filter((todo: any) => todo.id === options.id)
-				.forEach((todo: any) => todo.editing = true);
-			return widgetStore.patch('todo-list', todoListState);
+			return widgetStore.patch('todo-list', toggleEditing(todos, options.id, true));
 		});
 	}
 });
@@ -42,10 +45,7 @@ export const todoEditInput = createAction({
 		else if (keyCode === 27) {
 			return widgetStore.get('todo-list').then((todoListState: any) => {
 				const { todos } = todoListState;
-				todos
-				.filter((todo: any) => todo.id === options.state.id)
-				.forEach((todo: any) => todo.editing = false);
-				return widgetStore.patch('todo-list', todoListState);
+				return widgetStore.patch('todo-list', toggleEditing(todos, options.state.id, false));
 			});
 		}
 	}
@@ -85,11 +85,7 @@ export const filter = createAction({
 });
 
 export const todoToggleAll = createAction({
-	do({
-		event: {
-			target: { checked }
-		}
-	}: { event: FormEvent }) {
+	do({ event: { target: { checked } } }: { event: FormEvent }) {
 		toggleAll.do({ checked });
 	}
 });
