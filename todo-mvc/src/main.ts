@@ -1,9 +1,6 @@
 import createApp from 'dojo-app/createApp';
-import global from 'dojo-core/global';
-import ShimPromise from 'dojo-shim/Promise';
 import createPanel from 'dojo-widgets/createPanel';
-import createWidget from 'dojo-widgets/createWidget';
-
+import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { todoToggleAll, todoInput } from './actions/userActions';
 import router from './routes';
 import todoStore, { bindActions as bindTodoStoreActions } from './stores/todoStore';
@@ -13,8 +10,19 @@ import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter from './widgets/createTodoFooter';
 import createTodoItem from './widgets/createTodoItem';
 import createTodoList from './widgets/createTodoList';
+import { Widget, WidgetState } from 'dojo-interfaces/widgetBases';
+import { VNodeProperties } from 'dojo-interfaces/vdom';
 
 const app = createApp({ defaultWidgetStore: widgetStore });
+
+const createTitle = createWidgetBase.extend({
+	tagName: 'h1',
+	nodeAttributes: [
+		function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
+			return { innerHTML: this.state.label };
+		}
+	]
+});
 
 app.registerStore('todo-store', todoStore);
 app.loadDefinition({
@@ -51,8 +59,8 @@ app.loadDefinition({
 	],
 	customElements: [
 		{
-			name: 'dojo-widget',
-			factory: createWidget
+			name: 'todo-title',
+			factory: createTitle
 		},
 		{
 			name: 'todo-item',
@@ -60,9 +68,6 @@ app.loadDefinition({
 		}
 	]
 });
-
-// Try to use the native promise so the browser can report unhandled rejections.
-const { /* tslint:disable */Promise/* tslint:enable */ = ShimPromise } = global;
 Promise.resolve(app.realize(document.body))
 	.then(() => bindTodoStoreActions())
 	.then(() => router.start());

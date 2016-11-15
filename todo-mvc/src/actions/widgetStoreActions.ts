@@ -1,6 +1,4 @@
 import createAction from 'dojo-actions/createAction';
-import { assign } from 'dojo-core/lang';
-import { includes } from 'dojo-shim/array';
 
 import { ChangeRecord } from '../stores/todoStore';
 import widgetStore from '../stores/widgetStore';
@@ -29,36 +27,8 @@ export const updateHeaderAndFooter = createAction({
 	}
 });
 
-export const deleteTodo = createAction({
-	do({ afterAll, deletes }: ChangeRecord) {
-		if (deletes.length) {
-			const [ deletedId ] = deletes;
-			const children = afterAll
-				.filter(({ id }) => id !== deletedId)
-				.map(({ id }) => id);
-
-			return widgetStore
-				.delete(deletedId)
-				.patch({ id: 'todo-list', children });
-		}
-	}
-});
-
 export const putTodo = createAction({
-	do({ beforeAll, puts }: ChangeRecord) {
-		if (puts.length) {
-			const [ item ] = puts;
-			const children = beforeAll.map(({ id }) => id);
-
-			if (includes(children, item.id)) {
-				return widgetStore
-					.patch(item)
-					.patch({ id: 'todo-list', children });
-			}
-
-			return widgetStore
-				.put(assign({}, <any> item, { type: 'todo-item' }))
-				.patch({id: 'todo-list', children: [...children, item.id]});
-		}
+	do({ afterAll }: ChangeRecord) {
+		return widgetStore.patch({ id: 'todo-list', todos: afterAll });
 	}
 });

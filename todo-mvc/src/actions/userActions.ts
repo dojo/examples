@@ -1,15 +1,9 @@
 import createAction from 'dojo-actions/createAction';
 import { assign } from 'dojo-core/lang';
-
 import { Item } from '../stores/todoStore';
 import widgetStore from '../stores/widgetStore';
-import {
-	addTodo,
-	deleteCompleted,
-	deleteTodo,
-	toggleAll,
-	updateTodo
-} from './todoStoreActions';
+import { addTodo, deleteCompleted, deleteTodo, toggleAll, updateTodo } from './todoStoreActions';
+import { TodoItemState } from '../widgets/createTodoItem';
 
 interface FormEvent extends Event {
 	target: HTMLInputElement;
@@ -20,12 +14,7 @@ interface FormInputEvent extends KeyboardEvent {
 }
 
 export const todoInput = createAction({
-	do({
-		event: {
-			keyCode,
-			target: { value: label }
-		}
-	}: { event: FormInputEvent }) {
+	do({ event: { keyCode, target: { value: label } } }: { event: FormInputEvent }) {
 		if (keyCode === 13 && label) {
 			addTodo.do({ label, completed: false });
 			return widgetStore.patch({ id: 'new-todo', value: '' });
@@ -33,9 +22,21 @@ export const todoInput = createAction({
 	}
 });
 
+function toggleEditing(todos: TodoItemState[], todoId: string, editing: boolean): TodoItemState[] {
+	return todos
+		.filter((todo) => todo.id === todoId)
+		.map((todo) => {
+			todo.editing = true;
+			return todo;
+		});
+}
+
 export const todoEdit = createAction({
 	do(options: any) {
-		return widgetStore.patch(assign(options, { editing: true }));
+		widgetStore.get('todo-list').then((todoListState: any) => {
+			const { todos } = todoListState;
+			return widgetStore.patch('todo-list', toggleEditing(todos, options.id, true));
+		});
 	}
 });
 
@@ -46,18 +47,16 @@ export const todoEditInput = createAction({
 			return todoSave.do(options);
 		}
 		else if (keyCode === 27) {
-			return widgetStore.patch(assign(options.state, { editing: false }));
+			return widgetStore.get('todo-list').then((todoListState: any) => {
+				const { todos } = todoListState;
+				return widgetStore.patch('todo-list', toggleEditing(todos, options.state.id, false));
+			});
 		}
 	}
 });
 
 export const todoSave = createAction({
-	do({
-		event: {
-			target: { value: label }
-		},
-		state
-	}: { event: FormInputEvent, state: any }) {
+	do({ event: { target: { value: label } }, state }: { event: FormInputEvent, state: any }) {
 		if (!label) {
 			return deleteTodo.do(state);
 		}
@@ -90,11 +89,7 @@ export const filter = createAction({
 });
 
 export const todoToggleAll = createAction({
-	do({
-		event: {
-			target: { checked }
-		}
-	}: { event: FormEvent }) {
+	do({ event: { target: { checked } } }: { event: FormEvent }) {
 		toggleAll.do({ checked });
 	}
 });
