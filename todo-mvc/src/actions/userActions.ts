@@ -40,7 +40,13 @@ export const todoEditInput = createAction({
 			return todoSave.do(options);
 		}
 		else if (keyCode === 27) {
-			return widgetStore.patch(assign(options.state, { editing: false }));
+			return widgetStore.get('todo-list').then((todoListState: any) => {
+				const { todos } = todoListState;
+				todos
+				.filter((todo: any) => todo.id === options.state.id)
+				.forEach((todo: any) => todo.editing = false);
+				return widgetStore.patch('todo-list', todoListState);
+			});
 		}
 	}
 });
