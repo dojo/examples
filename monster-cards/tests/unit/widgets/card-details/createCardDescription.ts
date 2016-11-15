@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import createCardDescription from '../../../../src/widgets/card-details/createCardDescription';
 
 const state = {
-	imageClass: 'imageClass',
+	imageClass: 'testImageClass',
 	cardId: 'test-card-1',
 	tagline: 'test-tagline',
 	description: 'test-description',
@@ -16,28 +16,33 @@ registerSuite({
 	render() {
 		const cardDescription = createCardDescription({ state });
 		const vnode = cardDescription.render();
-		assert.strictEqual(vnode.vnodeSelector, 'card-details-description');
+		assert.strictEqual(vnode.vnodeSelector, 'div.animated.cardDescription');
 		assert.strictEqual(vnode.children.length, 2);
 	},
 	renderCardImage() {
 		const cardDescription = createCardDescription({ state });
 		const vnode = cardDescription.render();
-		assert.strictEqual(vnode.children[0].vnodeSelector, 'div');
-		assert.isTrue(vnode.children[0].properties.classes[state.imageClass]);
+		assert.strictEqual(vnode.children[0].vnodeSelector,
+			`div.cardImage.card-sprite-large.${state.imageClass}`);
 	},
 	renderDescriptionArticle() {
 		const cardDescription = createCardDescription({ state });
 		const vnode = cardDescription.render();
 		assert.strictEqual(vnode.children[1].vnodeSelector, 'article');
-		assert.strictEqual(vnode.children[1].children.length, 6);
+		assert.strictEqual(vnode.children[1].children.length, 5);
 	},
 	rendersCardDescriptions() {
 		const cardDescription = createCardDescription({ state });
 		const vnode = cardDescription.render();
 		const article = vnode.children[1];
-		assert.strictEqual(article.children[0].properties.innerHTML, state.name);
-		assert.strictEqual(article.children[1].properties.innerHTML, state.tagline);
-		assert.strictEqual(article.children[2].properties.innerHTML, state.description);
-		assert.strictEqual(article.children[4].properties.innerHTML, state.favouriteCount.toString());
+
+		function getInnerHTML(index: number): string {
+			return article.children[index].properties.innerHTML;
+		}
+
+		assert.strictEqual(getInnerHTML(0), state.name);
+		assert.strictEqual(getInnerHTML(1), state.tagline);
+		assert.strictEqual(getInnerHTML(2), state.description);
+		assert.include(getInnerHTML(3), state.favouriteCount.toString());
 	}
 });

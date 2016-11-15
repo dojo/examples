@@ -52,8 +52,8 @@ const createCardDescription = createWidgetBase
 					cardImage,
 					d('article', {}, [
 						cardName,
-						cardDescription,
 						cardTagline,
+						cardDescription,
 						cardFavouriteCount,
 						shareButtons
 					])
