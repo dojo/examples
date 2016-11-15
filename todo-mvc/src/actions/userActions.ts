@@ -13,12 +13,7 @@ interface FormInputEvent extends KeyboardEvent {
 }
 
 export const todoInput = createAction({
-	do({
-		event: {
-			keyCode,
-			target: { value: label }
-		}
-	}: { event: FormInputEvent }) {
+	do({ event: { keyCode, target: { value: label } } }: { event: FormInputEvent }) {
 		if (keyCode === 13 && label) {
 			addTodo.do({ label, completed: false });
 			return widgetStore.patch({ id: 'new-todo', value: '' });
@@ -28,12 +23,12 @@ export const todoInput = createAction({
 
 export const todoEdit = createAction({
 	do(options: any) {
-		widgetStore.get('todo-list').then((todoList: any) => {
-			const { todos } = todoList;
+		widgetStore.get('todo-list').then((todoListState: any) => {
+			const { todos } = todoListState;
 			todos
 				.filter((todo: any) => todo.id === options.id)
 				.forEach((todo: any) => todo.editing = true);
-			return widgetStore.patch('todo-list', todoList);
+			return widgetStore.patch('todo-list', todoListState);
 		});
 	}
 });
@@ -51,12 +46,7 @@ export const todoEditInput = createAction({
 });
 
 export const todoSave = createAction({
-	do({
-		event: {
-			target: { value: label }
-		},
-		state
-	}: { event: FormInputEvent, state: any }) {
+	do({ event: { target: { value: label } }, state }: { event: FormInputEvent, state: any }) {
 		if (!label) {
 			return deleteTodo.do(state);
 		}
