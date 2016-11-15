@@ -3,6 +3,7 @@ import { assign } from 'dojo-core/lang';
 import { Item } from '../stores/todoStore';
 import widgetStore from '../stores/widgetStore';
 import { addTodo, deleteCompleted, deleteTodo, toggleAll, updateTodo } from './todoStoreActions';
+import { TodoItemState } from '../widgets/createTodoItem';
 
 interface FormEvent extends Event {
 	target: HTMLInputElement;
@@ -21,10 +22,13 @@ export const todoInput = createAction({
 	}
 });
 
-function toggleEditing(todos: any[], todoId: string, editing: boolean): any[] {
+function toggleEditing(todos: TodoItemState[], todoId: string, editing: boolean): TodoItemState[] {
 	return todos
-		.filter((todo: any) => todo.id === todoId)
-		.map((todo: any) => todo.editing = true);
+		.filter((todo) => todo.id === todoId)
+		.map((todo) => {
+			todo.editing = true;
+			return todo;
+		});
 }
 
 export const todoEdit = createAction({
