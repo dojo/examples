@@ -9,7 +9,7 @@ export type HomePage = Widget<HomePageState>
 const createHomePage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		tagName: 'div.animated.pageHolder.home',
+		classes: [ 'animated', 'pageHolder', 'home' ],
 		childNodeRenderers: [
 			function(this: HomePage): DNode[] {
 				const mmLogo = d('img', { src: './images/mm_logo.png' });

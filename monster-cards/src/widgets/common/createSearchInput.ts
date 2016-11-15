@@ -1,9 +1,8 @@
-import { Widget, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 
-export type SearchInputState = {}
-export type SearchInput = Widget<SearchInputState>
+export type SearchInput = Widget<WidgetState>
 
 const createSearchInput = createWidgetBase.extend({
 	childNodeRenderers: [

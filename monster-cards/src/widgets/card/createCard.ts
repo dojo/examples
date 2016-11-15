@@ -1,9 +1,9 @@
-import { Widget, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import { VNodeProperties } from 'maquette';
 
-export type CardState = {
+export type CardState = WidgetState & {
 	imageClass: string;
 	cardId: string;
 	large?: boolean;
@@ -12,7 +12,8 @@ export type CardState = {
 export type Card = Widget<CardState>;
 
 const createCard = createWidgetBase.extend({
-	tagName: 'a.milestoneCard',
+	tagName: 'a',
+	classes: [ 'milestoneCard' ],
 	nodeAttributes: [
 		function (this: Card): VNodeProperties {
 			return {

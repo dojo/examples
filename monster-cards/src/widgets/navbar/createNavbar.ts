@@ -1,9 +1,9 @@
-import { Widget, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createSearchInput from '../common/createSearchInput';
 
-export type NavBarState = {
+export type NavBarState = WidgetState & {
 	sections: NavBarLinkDefinition[];
 }
 
@@ -23,7 +23,8 @@ function createNavBarLink({ text: innerHTML, href }: NavBarLinkDefinition): DNod
 }
 
 const createNavbar = createWidgetBase.extend({
-	tagName: 'header.navbar',
+	tagName: 'header',
+	classes: [ 'navbar' ],
 	childNodeRenderers: [
 		function(this: NavBar): DNode[] {
 			const homeLink = listItem(d('a', { href: '#' }, [

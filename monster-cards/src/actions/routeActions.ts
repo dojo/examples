@@ -4,12 +4,12 @@ import cardStore from '../stores/cardStore';
 
 export const gotoCardDetails = createAction({
 	do({ id }) {
-		return Promise.all([
-			cardStore.get(id).then(function (cardDescription) {
-				return widgetStore.patch({ id: 'cardDetails', cardDescription });
-			}),
-			widgetStore.patch({ id: 'container', children: [ 'cardDetails' ] })
-		]);
+		return cardStore.get(id).then(function (cardDescription) {
+			return Promise.all([
+				widgetStore.patch({ id: 'cardDetails', cardDescription }),
+				widgetStore.patch({ id: 'container', children: [ 'cardDetails' ] })
+			]);
+		});
 	}
 });
 

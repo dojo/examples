@@ -42,7 +42,6 @@
     "dojo-cli-build-webpack": ">=2.0.0-alpha.5",
     "dojo-interfaces": ">=2.0.0-alpha.6",
     "grunt": "~1.0.1",
-    "grunt-contrib-stylus": "~1.2.0",
     "grunt-dojo2": ">=2.0.0-beta.18",
     "intern": "~3.3.2",
     "tslint": "~3.15.1",

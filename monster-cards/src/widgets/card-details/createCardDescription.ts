@@ -1,9 +1,9 @@
-import { Widget, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 
-export type CardDescriptionState = {
+export type CardDescriptionState = WidgetState & {
 	name: string;
 	tagline: string;
 	description: string;
@@ -36,7 +36,7 @@ const shareButtonConfig: ShareButtonConfig[] = [
 const createCardDescription = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		tagName: 'div.animated.cardDescription',
+		classes: [ 'animated', 'cardDescription' ],
 		childNodeRenderers: [
 			function(this: CardDescription): DNode[] {
 				const { imageClass, name, tagline, description, favouriteCount } = this.state;

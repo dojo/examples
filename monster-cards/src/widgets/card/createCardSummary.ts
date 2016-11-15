@@ -1,9 +1,9 @@
-import { Widget, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCard from './createCard';
 
-export type CardSummaryState = {
+export type CardSummaryState = WidgetState & {
 	name: string;
 	imageClass: string;
 	score: number;
@@ -13,7 +13,7 @@ export type CardSummaryState = {
 export type CardSummary = Widget<CardSummaryState>
 
 const createCardSummary = createWidgetBase.extend({
-	tagName: 'div.cardSummary',
+	classes: [ 'cardSummary' ],
 	childNodeRenderers: [
 		function(this: CardSummary): DNode[] {
 			const { cardId, imageClass, name, score } = this.state;

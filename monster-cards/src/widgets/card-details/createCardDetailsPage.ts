@@ -1,4 +1,4 @@
-import { Widget, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import { CardState } from '../card/createCard';
@@ -7,7 +7,7 @@ import createCardNavBar from './createCardNavBar';
 import d from 'dojo-widgets/util/d';
 import { assign } from 'dojo-core/lang';
 
-export type CardDetailsPageState = {
+export type CardDetailsPageState = WidgetState & {
 	cards: CardState[];
 	cardDescription: CardDescriptionState;
 }
@@ -16,7 +16,7 @@ export type CardDetailsPage = Widget<CardDetailsPageState>
 const createCardDetailsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.extend({
-		tagName: 'div.animated.pageHolder.cardDetails',
+		classes: [ 'animated', 'pageHolder', 'cardDetails' ],
 		childNodeRenderers: [
 			function(this: CardDetailsPage): DNode[] {
 				const { cards, cardDescription } = this.state;
