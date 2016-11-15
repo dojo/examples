@@ -35,7 +35,8 @@ export const todoEdit = createAction({
 	do(options: any) {
 		widgetStore.get('todo-list').then((todoListState: any) => {
 			const { todos } = todoListState;
-			return widgetStore.patch('todo-list', toggleEditing(todos, options.id, true));
+			todoListState.todos = toggleEditing(todos, options.id, true);
+			return widgetStore.patch('todo-list', todoListState);
 		});
 	}
 });
@@ -49,7 +50,8 @@ export const todoEditInput = createAction({
 		else if (keyCode === 27) {
 			return widgetStore.get('todo-list').then((todoListState: any) => {
 				const { todos } = todoListState;
-				return widgetStore.patch('todo-list', toggleEditing(todos, options.state.id, false));
+				todoListState.todos = toggleEditing(todos, options.state.id, false);
+				return widgetStore.patch('todo-list', todoListState);
 			});
 		}
 	}
