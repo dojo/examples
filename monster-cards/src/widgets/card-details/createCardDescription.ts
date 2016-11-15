@@ -9,7 +9,7 @@ export type CardDescriptionState = {
 	description: string;
 	imageClass: string;
 	favouriteCount: number;
-	cardId: string;
+	id: string;
 }
 
 export type CardDescription = Widget<CardDescriptionState>;

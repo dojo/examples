@@ -5,6 +5,7 @@ import { CardState } from '../card/createCard';
 import createCardDescription, { CardDescriptionState } from './createCardDescription';
 import createCardNavBar from './createCardNavBar';
 import d from 'dojo-widgets/util/d';
+import { assign } from 'dojo-core/lang';
 
 export type CardDetailsPageState = {
 	cards: CardState[];
@@ -21,7 +22,17 @@ const createCardDetailsPage = createWidgetBase
 				const { cards, cardDescription } = this.state;
 
 				const cardNavBar = d(createCardNavBar, { state: { cards }});
-				const cardDescriptionView = d(createCardDescription, { state: cardDescription });
+
+				const descriptionState = assign({
+					enterAnimation: 'slideInRight',
+					exitAnimation: 'slideOutLeft'
+				}, cardDescription);
+
+				const cardDescriptionView = d(createCardDescription, {
+					id: cardDescription.id,
+					state: descriptionState
+				});
+
 				const jumbotron = d('div.jumbotron', {} , [ cardDescriptionView ]);
 
 				return [ cardNavBar, jumbotron ];
