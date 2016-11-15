@@ -35,7 +35,8 @@ const createTodoFilter = createWidgetBase
 			}
 		],
 
-		tagName: 'ul.filters'
+		tagName: 'ul',
+		classes: [ 'filters' ]
 	});
 
 export default createTodoFilter;

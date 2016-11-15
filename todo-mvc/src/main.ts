@@ -59,7 +59,7 @@ app.loadDefinition({
 	],
 	customElements: [
 		{
-			name: 'dojo-widget',
+			name: 'todo-title',
 			factory: createTitle
 		},
 		{
