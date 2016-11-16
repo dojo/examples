@@ -28,6 +28,8 @@ registerSuite({
 
 		const sectionList = vnode.children[0];
 		assert.strictEqual(sectionList.children.length, 1);
+		assert.strictEqual(sectionList.children[0].children[0].vnodeSelector, 'a');
+		assert.strictEqual(sectionList.children[0].children[0].properties['href'], '#');
 	},
 	'Should render a link for each section passed in state'() {
 		const numSections = 2;
