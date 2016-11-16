@@ -1,60 +1,55 @@
-// import * as registerSuite from 'intern/lib/interfaces/object';
-// import { assert } from 'chai';
-// import Map from 'dojo-shim/Map';
+import * as registerSuite from 'intern/lib/interfaces/object';
+import { assert } from 'chai';
+import createNavbar, { NavBarLinkDefinition } from './../../../../src/widgets/navbar/createNavbar';
 
-// import createNavbar from './../../../../src/widgets/navbar/createNavbar';
+function getSections(length: number): NavBarLinkDefinition[] {
+	const sections: NavBarLinkDefinition[] = [];
+	for (let i = 0; i < length; i += 1) {
+		sections.push({ text: `text${i}`, href: `href${i}`});
+	}
+	return sections;
+};
 
-// let widgetMap = new Map<string, any>();
-// let idx = 0;
+registerSuite({
+	name: 'createNavbar',
+	'Should render with two sub lists'() {
+		const navbar = createNavbar({ state: { sections: [] } });
+		const vnode = navbar.render();
 
-// const widgetRegistry = {
-// 	stack: <any[]> [],
-// 	get(id: any): Promise<any> {
-// 		widgetRegistry.stack.push(id);
-// 		return Promise.resolve(widgetMap.get(id));
-// 	},
-// 	identify(value: any): any {
-// 		return '';
-// 	},
-// 	create<T>(factory: any, options?: any): Promise<any> {
-// 		const widget = createWidget(factory, options);
-// 		const id = options && options.id || `widget${idx++}`;
+		assert.strictEqual(vnode.vnodeSelector, 'header.navbar');
+		assert.strictEqual(vnode.children.length, 2);
+		assert.include(vnode.children[0].vnodeSelector, 'ul');
+		assert.include(vnode.children[1].vnodeSelector, 'ul');
+	},
+	'Should render a home link'() {
+		const sections = getSections(0);
+		const navbar = createNavbar({ state: { sections } });
+		const vnode = navbar.render();
 
-// 		widgetMap.set(id, widget);
-// 		return Promise.resolve([id, widget]);
-// 	},
-// 	has() {
-// 		return Promise.resolve(true);
-// 	}
-// };
+		const sectionList = vnode.children[0];
+		assert.strictEqual(sectionList.children.length, 1);
+	},
+	'Should render a link for each section passed in state'() {
+		const numSections = 2;
+		const sections = getSections(numSections);
+		const navbar = createNavbar({ state: { sections } });
+		const vnode = navbar.render();
 
-// const registryProvider: any = {
-// 	get(type: string) {
-// 		return type === 'widgets' ? widgetRegistry : null;
-// 	}
-// };
+		const sectionList = vnode.children[0];
+		assert.strictEqual(sectionList.children.length, numSections + 1);
+	},
+	'Should render text and a href for each section'() {
+		const sections = getSections(1);
+		const navbar = createNavbar({ state: { sections } });
+		const vnode = navbar.render();
 
-// function createWidget(factory: any, options: any) {
-// 	if (!options.registryProvider) {
-// 		options.registryProvider = registryProvider;
-// 	}
-// 	return factory(options);
-// }
+		const sectionList = vnode.children[0];
+		const sectionItem = sectionList.children[1];
+		const sectionLink = sectionItem.children[0];
 
-// registerSuite({
-// 	name: 'createNavbar',
-// 	render() {
-// 		const navbar = createNavbar({
-// 			registryProvider
-// 		});
-
-// 		const promise = new Promise((resolve) => setTimeout(resolve, 10));
-
-// 		return promise.then(() => {
-// 			const vnode = navbar.render();
-
-// 			assert.strictEqual(vnode.vnodeSelector, 'header');
-// 			assert.strictEqual(vnode.children.length, 2);
-// 		});
-// 	}
-// });
+		assert.strictEqual(sectionItem.vnodeSelector, 'li');
+		assert.strictEqual(sectionLink.vnodeSelector, 'a');
+		assert.strictEqual(sectionLink.properties['href'], 'href0');
+		assert.strictEqual(sectionLink.properties['innerHTML'], 'text0');
+	}
+});
