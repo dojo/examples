@@ -18,7 +18,7 @@ export type TodoFooter = Widget<TodoFooterState>;
 const createTodoFooter = createWidgetBase
 	.extend({
 		childNodeRenderers: [
-			function(this: TodoFooter): DNode[] {
+			function(this: TodoFooter): (DNode | null)[] {
 				const { activeCount, activeFilter, completedCount } = this.state;
 				const countLabel = activeCount === 1 ? 'item' : 'items';
 
