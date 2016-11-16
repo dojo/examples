@@ -35,7 +35,7 @@ class Selectors {
 		return 'ul.todo-list' + (suffix || '');
 	}
 
-	getListItem(index: number, suffix?: string, excludeParentSelector?: boolean): string {
+	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
 		suffix = (index === undefined ? '' : ':nth-of-type(' + (index + 1) + ')') + (suffix || '');
 		return excludeParentSelector ? 'li' + suffix : this.getList(' li' + suffix);
 	}

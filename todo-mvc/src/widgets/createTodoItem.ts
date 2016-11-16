@@ -41,7 +41,7 @@ const createTodoItem = createWidgetBase
 			}
 		],
 		childNodeRenderers: [
-			function(this: TodoItem): DNode[] {
+			function(this: TodoItem): (DNode | null)[] {
 				const state = this.state;
 				const checked = state.completed;
 				const label = state.label;

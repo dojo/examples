@@ -15,7 +15,7 @@ export type TodoList = Widget<TodoListState>;
 function filter(filterName: string, todo: TodoItemState): boolean {
 	switch (filterName) {
 		case 'completed':
-			return todo.completed;
+			return !!todo.completed;
 		case 'active':
 			return !todo.completed;
 		default:
@@ -27,9 +27,10 @@ const createTodoList = createWidgetBase
 	.extend({
 		childNodeRenderers: [
 			function(this: TodoList): DNode[] {
+				const activeFilter = this.state.activeFilter || '';
 				const todos = this.state.todos || [];
 				return todos
-					.filter((todo) => filter(this.state.activeFilter, todo))
+					.filter((todo) => filter(activeFilter, todo))
 					.map((todo) => d(createTodoItem, { id: todo.id, state: todo }));
 				}
 		],

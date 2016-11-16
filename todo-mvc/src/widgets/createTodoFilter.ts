@@ -30,7 +30,7 @@ const createTodoFilter = createWidgetBase
 	.extend({
 		childNodeRenderers: [
 			function(this: TodoFilter): DNode[] {
-				const { activeFilter } = this.state;
+				const activeFilter = this.state.activeFilter || '';
 				return createFilterItems(activeFilter);
 			}
 		],
