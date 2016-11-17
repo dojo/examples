@@ -45,6 +45,7 @@
     "dojo-widgets": ">=2.0.0-alpha.13",
     "immutable": "^3.8.1",
     "maquette": ">=2.3.7 <=2.4.1",
+    "node-uuid": "^1.4.7",
     "todomvc-app-css": "^2.0.6",
     "todomvc-common": "^1.0.2"
   }
