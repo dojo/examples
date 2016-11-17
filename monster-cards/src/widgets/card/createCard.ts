@@ -1,46 +1,33 @@
-import createRenderMixin, { RenderMixin, RenderMixinOptions, RenderMixinState } from 'dojo-widgets/mixins/createRenderMixin';
-import createRenderableChildrenMixin from 'dojo-widgets/mixins/createRenderableChildrenMixin';
-import createParentListMixin, { ParentListMixin, ParentListMixinOptions } from 'dojo-widgets/mixins/createParentListMixin';
-import createWidget from 'dojo-widgets/createWidget';
+import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
+import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import d from 'dojo-widgets/util/d';
 import { VNodeProperties } from 'maquette';
-import { Child } from 'dojo-widgets/mixins/interfaces';
 
-export type CardState = RenderMixinState & {
+export type CardState = WidgetState & {
 	imageClass: string;
 	cardId: string;
 	large?: boolean;
 }
 
-type CardOptions = RenderMixinOptions<CardState> & ParentListMixinOptions<Child>;
+export type Card = Widget<CardState>;
 
-export type Card = RenderMixin<CardState> & ParentListMixin<Child>;
-
-const createCard = createRenderMixin
-	.mixin(createRenderableChildrenMixin)
-	.mixin({
-		mixin: createParentListMixin,
-		initialize(instance: Card, options: CardOptions) {
-			const baseImageClass = options.state.large ? 'card-sprite-large' : 'card-sprite-small';
-			const image = createWidget({
-				tagName: 'div',
-				state: {
-					classes: [ baseImageClass, options.state.imageClass ]
-				}
-			});
-
-			instance.append(image);
+const createCard = createWidgetBase.extend({
+	tagName: 'a',
+	classes: [ 'milestoneCard' ],
+	nodeAttributes: [
+		function (this: Card): VNodeProperties {
+			return {
+				href: `#/cards/${this.state.cardId}`
+			};
 		}
-	})
-	.extend({
-		nodeAttributes: [
-			function (this: Card): VNodeProperties {
-				return {
-					href: `#/cards/${this.state.cardId}`
-				};
-			}
-		],
-		classes: [ 'milestoneCard' ],
-		tagName: 'a'
-	});
+	],
+	childNodeRenderers: [
+		function(this: Card): DNode[] {
+			const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
+
+			return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
+		}
+	]
+});
 
 export default createCard;

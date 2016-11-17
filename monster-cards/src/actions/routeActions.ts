@@ -1,12 +1,15 @@
 import createAction from 'dojo-actions/createAction';
 import widgetStore from '../stores/widgetStore';
+import cardStore from '../stores/cardStore';
 
 export const gotoCardDetails = createAction({
 	do({ id }) {
-		return Promise.all([
-			widgetStore.patch({ id: 'cardDetailsJumbotron', children: [ `description-${id}` ] }),
-			widgetStore.patch({ id: 'container', children: [ 'cardDetails' ] })
-		]);
+		return cardStore.get(id).then(function (cardDescription) {
+			return Promise.all([
+				widgetStore.patch({ id: 'cardDetails', cardDescription }),
+				widgetStore.patch({ id: 'container', children: [ 'cardDetails' ] })
+			]);
+		});
 	}
 });
 

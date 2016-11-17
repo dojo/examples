@@ -4,37 +4,20 @@ import router from './routes';
 import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
 
 import createNavbar from './widgets/navbar/createNavbar';
-import createCardDescription from './widgets/card-details/createCardDescription';
 import createContainer from './widgets/common/createContainer';
-import createCard from './widgets/card/createCard';
-import createImage from './widgets/common/createImage';
-import createCardSummary from './widgets/card/createCardSummary';
+import createHomePage from './widgets/home/createHomePage';
+import createGameplayPage from './widgets/gameplay/createGameplayPage';
+import createAboutPage from './widgets/about/createAboutPage';
+import createCardsPage from './widgets/cards/createCardsPage';
+import createCardDetailsPage from './widgets/card-details/createCardDetailsPage';
 import defaultWidgetStore from './stores/widgetStore';
-
-import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
-import createWidget from 'dojo-widgets/createWidget';
 
 import 'maquette/src/css-transitions';
 
 const app = createApp({ defaultWidgetStore });
-const createAnimatedContainer = createContainer.mixin(createCssTransitionMixin);
 
 app.registerStore('cards-store', cardStore);
 app.loadDefinition({
-	customElements: [
-		{
-			name: 'milestone-card',
-			factory: createCard
-		},
-		{
-			name: 'card-description',
-			factory: createCardDescription
-		},
-		{
-			name: 'milestone-card-summary',
-			factory: createCardSummary
-		}
-	],
 	widgets: [
 		{
 			id: 'navbar',
@@ -49,75 +32,23 @@ app.loadDefinition({
 		},
 		{
 			id: 'cardDetails',
-			factory: createAnimatedContainer,
-			options: {
-				tagName: 'card-details'
-			}
-		},
-		{
-			id: 'cardDetailsNavbar',
-			factory: createAnimatedContainer,
-			options: {
-				tagName: 'card-details-nav-bar'
-			}
-		},
-		{
-			id: 'cardDetailsJumbotron',
-			factory: createContainer
+			factory: createCardDetailsPage
 		},
 		{
 			id: 'cards',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'cardsJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'cardsList',
-			factory: createContainer
+			factory: createCardsPage
 		},
 		{
 			id: 'home',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'homeJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'homePageLogo',
-			factory: createImage
+			factory: createHomePage
 		},
 		{
 			id: 'gameplay',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'gameplayJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'gameplayHeading',
-			factory: createWidget,
-			options: {
-				tagName: 'h1'
-			}
+			factory: createGameplayPage
 		},
 		{
 			id: 'about',
-			factory: createAnimatedContainer
-		},
-		{
-			id: 'aboutJumbotron',
-			factory: createContainer
-		},
-		{
-			id: 'aboutHeading',
-			factory: createWidget,
-			options: {
-				tagName: 'h1'
-			}
+			factory: createAboutPage
 		}
 	]
 });
