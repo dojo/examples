@@ -3,9 +3,11 @@ import Promise from 'dojo-shim/Promise';
 
 import todoStore, { Item } from '../stores/todoStore';
 
+let id = 0;
+
 export const addTodo = createAction({
 	do({ label }: { label: string }) {
-		return todoStore.add({ id: `${Date.now()}`, label });
+		return todoStore.add({ id: `${id++}`, label });
 	}
 });
 
