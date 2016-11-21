@@ -2,6 +2,10 @@ import createRoute from 'dojo-routing/createRoute';
 import createRouter from 'dojo-routing/createRouter';
 import createHashHistory from 'dojo-routing/history/createHashHistory';
 
+export type CardDetailsRouteOptions = {
+	id: string;
+}
+
 import {
 	gotoCardDetails as gotoCardDetailsAction,
 	gotoCards as gotoCardsAction,
@@ -14,7 +18,7 @@ const cardDetailRoute = createRoute({
 	path: 'cards/{id}',
 	exec (request: any) {
 		const { id } = request.params;
-		return gotoCardDetailsAction.do({ id });
+		return gotoCardDetailsAction.do(<CardDetailsRouteOptions> { id });
 	}
 });
 

@@ -9,6 +9,6 @@ registerSuite({
 		const searchInput = createSearchInput();
 		const vnode = searchInput.render();
 		assert.strictEqual(vnode.vnodeSelector, 'div');
-		assert.strictEqual(vnode.children.length, 2);
+		assert.strictEqual(vnode.children!.length, 2);
 	}
 });

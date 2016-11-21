@@ -28,7 +28,7 @@ function createButtonLink({ iconClass, href, text: innerHTML }: ShareButtonConfi
 }
 
 const shareButtonConfig: ShareButtonConfig[] = [
-	{ href: null, iconClass: 'fa-heart-o', text: 'Add to favourites' },
+	{ href: '', iconClass: 'fa-heart-o', text: 'Add to favourites' },
 	{ href: 'http://www.twitter.com', iconClass: 'fa-twitter' },
 	{ href: 'https://facebook.com', iconClass: 'fa-facebook' }
 ];
