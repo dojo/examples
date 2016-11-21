@@ -2,11 +2,17 @@ import createAction from 'dojo-actions/createAction';
 import widgetStore from '../stores/widgetStore';
 import { CardDetailsRouteParameters } from '../routes';
 import cardStore, { pickRandomCards } from '../stores/cardStore';
+import { assign } from 'dojo-core/lang';
 
 export const gotoCardDetails = createAction({
 	do({ id }: CardDetailsRouteParameters) {
 		return cardStore.get(id).then(function (cardDescription) {
-			return pickRandomCards(2, [ 'id' ]).then((seenWith) => {
+			return pickRandomCards(2, [ 'id' ]).then((pickedCards) => {
+				return pickedCards.map((card) => {
+					return assign({ cardId: card.id }, card);
+				});
+			})
+			.then((seenWith) => {
 				return Promise.all([
 					widgetStore.patch({ id: 'cardDetails', cardDescription, seenWith }),
 					widgetStore.patch({ id: 'container', children: [ 'cardDetails' ] })

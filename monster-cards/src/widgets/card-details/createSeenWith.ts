@@ -22,7 +22,10 @@ const createSeenWith = createWidgetBase
 					return d(createCard, { id: card.cardId, state });
 				});
 
-				return cardNodes;
+				return [
+					d('h2', { innerHTML: 'Seen With'}),
+					...cardNodes
+				];
 			}
 		]
 	});
