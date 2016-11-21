@@ -1,5 +1,6 @@
 import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import WeakMap from 'dojo-shim/WeakMap';
 import { todoInput } from './actions/userActions';
 import d from 'dojo-widgets/util/d';
 

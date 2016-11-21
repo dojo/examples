@@ -1,4 +1,5 @@
 import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-interfaces/widgetBases';
+import WeakMap from 'dojo-shim/WeakMap';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 
@@ -29,8 +30,8 @@ const createMainSection = createWidgetBase.mixin({
 				};
 
 				return [
-					d(createTodoList, <any> todoListOptions),
-					d(createCheckboxInput, <any> checkBoxOptions)
+					d(createTodoList, <WidgetOptions<WidgetState>> todoListOptions),
+					d(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions)
 				];
 			}
 		]
