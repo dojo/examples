@@ -16,10 +16,10 @@ const createCardsPage = createWidgetBase
 		classes: [ 'animated', 'pageHolder', 'cards' ],
 		childNodeRenderers: [
 			function(this: CardsPage): DNode[] {
-				const { cards: state } = this.state;
+				const { cards } = this.state;
 
 				const jumbotron = d('div.jumbotron');
-				const cardsList = d(createCardsList, { state });
+				const cardsList = d(createCardsList, { state: { cards } });
 
 				return [ jumbotron, cardsList ];
 			}
