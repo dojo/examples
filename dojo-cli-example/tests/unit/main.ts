@@ -1,8 +1,8 @@
 import * as registerSuite from 'intern!object';
 import * as assert from 'intern/chai!assert';
 import { stub, SinonStub } from 'sinon';
-import command, { MyContext, MyArgv } from 'src/main';
-import { Helper } from 'src/interfaces';
+import command, { MyContext, MyArgv } from './../../src/main';
+import { Helper } from './../../src/interfaces';
 import { getHelperStub } from '../support/testHelper';
 
 let optionStub: SinonStub;

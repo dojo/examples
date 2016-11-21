@@ -1,6 +1,6 @@
 import { stub } from 'sinon';
 import * as yargs from 'yargs';
-import { Helper } from 'src/interfaces';
+import { Helper } from './../../src/interfaces';
 
 export function getHelperStub<T>(): Helper {
 	return {
