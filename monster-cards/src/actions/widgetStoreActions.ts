@@ -10,9 +10,9 @@ function getStates(cards: Card[]): [ CardState[], CardSummaryState[] ] {
 	const cardStates: CardState[] = [];
 	const cardSummaryStates: CardSummaryState[] = [];
 
-	cards.forEach(function ({ id: cardId, name, imageClass, score }) {
-		cardStates.push({ cardId, imageClass });
-		cardSummaryStates.push({ name, imageClass, score, cardId });
+	cards.forEach(function ({ id, name, imageClass, score }) {
+		cardStates.push({ id, imageClass });
+		cardSummaryStates.push({ name, imageClass, score, id });
 	});
 
 	return [ cardStates, cardSummaryStates ];
