@@ -7,7 +7,7 @@ import { assign } from 'dojo-core/lang';
 export const gotoCardDetails = createAction({
 	do({ id }: CardDetailsRouteParameters) {
 		return cardStore.get(id).then(function (cardDescription) {
-			return pickRandomCards(2, [ 'id' ]).then((pickedCards) => {
+			return pickRandomCards(2, [ id ]).then((pickedCards) => {
 				return pickedCards.map((card) => {
 					return assign({ cardId: card.id }, card);
 				});
