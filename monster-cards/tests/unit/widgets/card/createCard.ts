@@ -15,18 +15,18 @@ registerSuite({
 	generateCardLink() {
 		const card = createCard({ state: { imageClass, cardId }});
 		const vnode = card.render();
-		assert.strictEqual(vnode.properties['href'], `#/cards/${cardId}`);
+		assert.strictEqual(vnode.properties!['href'], `#/cards/${cardId}`);
 	},
 	createSmallCardImage() {
 		const card = createCard({ state: { imageClass, cardId }});
 		const vnode = card.render();
-		assert.strictEqual(vnode.children.length, 1);
-		assert.strictEqual(vnode.children[0].vnodeSelector, `div.card-sprite-small.${imageClass}`);
+		assert.strictEqual(vnode.children!.length, 1);
+		assert.strictEqual(vnode.children![0].vnodeSelector, `div.card-sprite-small.${imageClass}`);
 	},
 	createLargeCardImage() {
 		const card = createCard({ state: { imageClass, cardId, large: true }});
 		const vnode = card.render();
-		assert.strictEqual(vnode.children.length, 1);
-		assert.strictEqual(vnode.children[0].vnodeSelector, `div.card-sprite-large.${imageClass}`);
+		assert.strictEqual(vnode.children!.length, 1);
+		assert.strictEqual(vnode.children![0].vnodeSelector, `div.card-sprite-large.${imageClass}`);
 	}
 });

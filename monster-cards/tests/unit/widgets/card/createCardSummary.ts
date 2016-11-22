@@ -15,24 +15,24 @@ registerSuite({
 		const cardSummary = createCardSummary({ state });
 		const vnode = cardSummary.render();
 		assert.strictEqual(vnode.vnodeSelector, 'div.cardSummary');
-		assert.strictEqual(vnode.children.length, 3);
+		assert.strictEqual(vnode.children!.length, 3);
 	},
 	renderCard() {
 		const cardSummary = createCardSummary({ state });
 		const vnode = cardSummary.render();
-		assert.strictEqual(vnode.children[0].vnodeSelector, 'a.milestoneCard');
-		assert.strictEqual(vnode.children[0].properties['href'], `#/cards/${state.cardId}`);
+		assert.strictEqual(vnode.children![0].vnodeSelector, 'a.milestoneCard');
+		assert.strictEqual(vnode.children![0].properties!['href'], `#/cards/${state.cardId}`);
 	},
 	renderCardName() {
 		const cardSummary = createCardSummary({ state });
 		const vnode = cardSummary.render();
-		assert.strictEqual(vnode.children[1].vnodeSelector, 'h2');
-		assert.strictEqual(vnode.children[1].properties.innerHTML, state.name);
+		assert.strictEqual(vnode.children![1].vnodeSelector, 'h2');
+		assert.strictEqual(vnode.children![1].properties!.innerHTML, state.name);
 	},
 	renderCardScore() {
 		const cardSummary = createCardSummary({ state });
 		const vnode = cardSummary.render();
-		assert.strictEqual(vnode.children[2].vnodeSelector, 'p.points');
-		assert.strictEqual(vnode.children[2].properties.innerHTML, `milestone points: ${state.score}`);
+		assert.strictEqual(vnode.children![2].vnodeSelector, 'p.points');
+		assert.strictEqual(vnode.children![2].properties!.innerHTML, `milestone points: ${state.score}`);
 	}
 });

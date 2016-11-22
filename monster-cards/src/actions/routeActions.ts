@@ -1,9 +1,10 @@
 import createAction from 'dojo-actions/createAction';
 import widgetStore from '../stores/widgetStore';
 import cardStore from '../stores/cardStore';
+import { CardDetailsRouteParameters } from '../routes';
 
 export const gotoCardDetails = createAction({
-	do({ id }) {
+	do({ id }: CardDetailsRouteParameters) {
 		return cardStore.get(id).then(function (cardDescription) {
 			return Promise.all([
 				widgetStore.patch({ id: 'cardDetails', cardDescription }),
