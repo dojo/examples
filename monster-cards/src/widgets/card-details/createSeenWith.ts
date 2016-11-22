@@ -23,7 +23,7 @@ const createSeenWith = createWidgetBase
 				});
 
 				return [
-					d('h2', { innerHTML: 'Seen With'}),
+					d('h2', { innerHTML: 'last seen with'}),
 					...cardNodes
 				];
 			}
