@@ -78,32 +78,33 @@ export interface ChangeRecord {
 
 export function bindActions() {
 	return cardStore.observe().subscribe((options: any) => {
-			const changeRecord = <ChangeRecord> options;
-			return putCard.do(changeRecord);
+		const changeRecord = <ChangeRecord> options;
+		return putCard.do(changeRecord);
 	});
 }
 
-function shuffle<T>(array: T[]): T[] {
-	const shuffledArray = [...array];
-	let i = 0;
-	let	j = 0;
-	let	temp: any;
+export function getShuffledCards(): Promise<Card[]> {
+	return cardStore.get().then((cards: any) => {
+		const shuffledArray = <Card[]> arrayFrom(cards);
+		let i = 0;
+		let	j = 0;
+		let	temp: Card;
 
-	for (i = shuffledArray.length - 1; i > 0; i -= 1) {
-		j = Math.floor(Math.random() * (i + 1));
-		temp = shuffledArray[i];
-		shuffledArray[i] = shuffledArray[j];
-		shuffledArray[j] = temp;
-	}
+		for (i = shuffledArray.length - 1; i > 0; i -= 1) {
+			j = Math.floor(Math.random() * (i + 1));
+			temp = shuffledArray[i];
+			shuffledArray[i] = shuffledArray[j];
+			shuffledArray[j] = temp;
+		}
 
-	return shuffledArray;
+		return shuffledArray;
+	});
 }
 
 export function pickRandomCards(numberToPick: number, exclude: string[] = []): Promise<Card[]> {
-	return cardStore.get().then((cards: any) => {
-		const filteredCards = <Card[]> arrayFrom(cards).filter((card: Card) => exclude.indexOf(card.id) < 0);
-		const shuffledCards = shuffle(filteredCards);
-		return shuffledCards.slice(0, Math.min(shuffledCards.length, numberToPick));
+	return getShuffledCards().then((cards) => {
+		const filteredCards = cards.filter((card: Card) => exclude.indexOf(card.id) < 0);
+		return filteredCards.slice(0, Math.min(filteredCards.length, numberToPick));
 	});
 }
 
