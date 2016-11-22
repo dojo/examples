@@ -17,10 +17,16 @@ const createApp = createWidgetBase.mixin({
 			function(this: Widget<WidgetState>): DNode[] {
 				const stateFrom = stateFromMap.get(this);
 
+				const inputOptions: WidgetOptions<WidgetState> = {
+					id: 'new-todo',
+					stateFrom,
+					listeners: { keypress: todoInput }
+				};
+
 				return [
 					d('header', {}, [
 						d(createTitle, <WidgetOptions<WidgetState>> { id: 'title', stateFrom }),
-						d(createFocusableTextInput, <WidgetOptions<WidgetState>> { id: 'new-todo', stateFrom, listeners: { keypress: todoInput } })
+						d(createFocusableTextInput, inputOptions)
 					]),
 					d(createMainSection, <WidgetOptions<WidgetState>>  { id: 'main-section', stateFrom }),
 					d(createTodoFooter, <WidgetOptions<WidgetState>> { id: 'todo-footer', stateFrom })
