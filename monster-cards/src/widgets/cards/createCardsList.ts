@@ -17,7 +17,7 @@ const createCardList = createWidgetBase
 				const { cards } = this.state;
 
 				return cards.map((card) => {
-					return d(createCardSummary, { id: card.cardId, state: card });
+					return d(createCardSummary, { id: card.id, state: card });
 				});
 			}
 		]

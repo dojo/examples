@@ -5,7 +5,7 @@ import { VNodeProperties } from 'maquette';
 
 export type CardState = WidgetState & {
 	imageClass: string;
-	cardId: string;
+	id: string;
 	large?: boolean;
 }
 
@@ -17,7 +17,7 @@ const createCard = createWidgetBase.extend({
 	nodeAttributes: [
 		function (this: Card): VNodeProperties {
 			return {
-				href: `#/cards/${this.state.cardId}`
+				href: `#/cards/${this.state.id}`
 			};
 		}
 	],

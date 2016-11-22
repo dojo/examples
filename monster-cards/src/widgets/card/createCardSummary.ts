@@ -7,7 +7,7 @@ export type CardSummaryState = WidgetState & {
 	name: string;
 	imageClass: string;
 	score: number;
-	cardId: string;
+	id: string;
 }
 
 export type CardSummary = Widget<CardSummaryState>
@@ -16,9 +16,9 @@ const createCardSummary = createWidgetBase.extend({
 	classes: [ 'cardSummary' ],
 	childNodeRenderers: [
 		function(this: CardSummary): DNode[] {
-			const { cardId, imageClass, name, score } = this.state;
+			const { id, imageClass, name, score } = this.state;
 
-			const cardImage = d(createCard, { state: { cardId, imageClass, large: true } });
+			const cardImage = d(createCard, { state: { id, imageClass, large: true } });
 			const cardName = d('h2', { innerHTML: name });
 			const cardPoints = d('p.points', { innerHTML: `milestone points: ${score}` });
 

@@ -4,7 +4,7 @@ import createCardSummary from '../../../../src/widgets/card/createCardSummary';
 
 const state = {
 	cardImage: 'imagePath',
-	cardId: 'test-card-1',
+	id: 'test-card-1',
 	score: 1,
 	name: 'test-name'
 };
@@ -21,7 +21,7 @@ registerSuite({
 		const cardSummary = createCardSummary({ state });
 		const vnode = cardSummary.render();
 		assert.strictEqual(vnode.children![0].vnodeSelector, 'a.milestoneCard');
-		assert.strictEqual(vnode.children![0].properties!['href'], `#/cards/${state.cardId}`);
+		assert.strictEqual(vnode.children![0].properties!['href'], `#/cards/${state.id}`);
 	},
 	renderCardName() {
 		const cardSummary = createCardSummary({ state });
