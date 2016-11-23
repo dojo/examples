@@ -1,7 +1,7 @@
 import createObservableStore from './createObservableStore';
 
 export default createObservableStore({
-	data: <any[]> [
+	data: [
 		{
 			id: 'title',
 			label: 'todos'
