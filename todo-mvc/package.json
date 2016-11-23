@@ -26,17 +26,15 @@
     "dojo-interfaces": ">=2.0.0-alpha.4",
     "grunt": "^1.0.1",
     "grunt-dojo2": "^2.0.0-beta.16",
-    "intern": "~3.3.2",
+    "intern": "^3.3.2",
     "tslint": "^3.15.1",
     "typescript": "~2.0.3"
   },
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-beta.6",
     "dojo-actions": ">=2.0.0-alpha.9",
-    "dojo-app": ">=2.0.0-alpha.8",
     "dojo-compose": ">=2.0.0-beta.13",
     "dojo-core": ">=2.0.0-alpha.16",
-    "dojo-dom": ">=2.0.0-alpha.5",
     "dojo-has": ">=2.0.0-alpha.5",
     "dojo-loader": ">=2.0.0-beta.7",
     "dojo-routing": ">=2.0.0-alpha.5",
