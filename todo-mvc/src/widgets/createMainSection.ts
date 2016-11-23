@@ -2,12 +2,13 @@ import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-interfaces/widge
 import WeakMap from 'dojo-shim/WeakMap';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
+import { StoreObservablePatchable } from 'dojo-interfaces/abilities';
 
 import { todoToggleAll } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createTodoList from './createTodoList';
 
-const stateFromMap = new WeakMap<Widget<WidgetState>, any>();
+const stateFromMap = new WeakMap<Widget<WidgetState>, StoreObservablePatchable<WidgetState>>();
 
 const createMainSection = createWidgetBase.mixin({
 	mixin: {
@@ -15,12 +16,6 @@ const createMainSection = createWidgetBase.mixin({
 		childNodeRenderers: [
 			function (this: Widget<WidgetState>): DNode[] {
 				const stateFrom = stateFromMap.get(this);
-
-				const todoListOptions = {
-					id: 'todo-list',
-					stateFrom
-				};
-
 				const checkBoxOptions = {
 					id: 'todo-toggle',
 					stateFrom,
@@ -30,7 +25,7 @@ const createMainSection = createWidgetBase.mixin({
 				};
 
 				return [
-					d(createTodoList, <WidgetOptions<WidgetState>> todoListOptions),
+					d(createTodoList, { id: 'todo-list', stateFrom }),
 					d(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions)
 				];
 			}

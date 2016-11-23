@@ -3,13 +3,14 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import WeakMap from 'dojo-shim/WeakMap';
 import { todoInput } from './actions/userActions';
 import d from 'dojo-widgets/util/d';
+import { StoreObservablePatchable } from 'dojo-interfaces/abilities';
 
 import createTitle from './widgets/createTitle';
 import createMainSection from './widgets/createMainSection';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter from './widgets/createTodoFooter';
 
-const stateFromMap = new WeakMap<Widget<WidgetState>, any>();
+const stateFromMap = new WeakMap<Widget<WidgetState>, StoreObservablePatchable<WidgetState>>();
 
 const createApp = createWidgetBase.mixin({
 	mixin: {
@@ -25,11 +26,11 @@ const createApp = createWidgetBase.mixin({
 
 				return [
 					d('header', {}, [
-						d(createTitle, <WidgetOptions<WidgetState>> { id: 'title', stateFrom }),
+						d(createTitle, { id: 'title', stateFrom }),
 						d(createFocusableTextInput, inputOptions)
 					]),
-					d(createMainSection, <WidgetOptions<WidgetState>>  { id: 'main-section', stateFrom }),
-					d(createTodoFooter, <WidgetOptions<WidgetState>> { id: 'todo-footer', stateFrom })
+					d(createMainSection, { id: 'main-section', stateFrom }),
+					d(createTodoFooter, { id: 'todo-footer', stateFrom })
 				];
 			}
 		],
