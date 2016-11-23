@@ -1,7 +1,7 @@
-import createMemoryStore from 'dojo-stores/createMemoryStore';
+import createObservableStore from './createObservableStore';
 
-export default createMemoryStore({
-	data: [
+export default createObservableStore({
+	data: <any[]> [
 		{
 			id: 'title',
 			label: 'todos'

@@ -32,11 +32,11 @@ function toggleEditing(todos: TodoItemState[], todoId: string, editing: boolean)
 }
 
 export const todoEdit = createAction({
-	do(options: any) {
+	do(options: { id: string }) {
 		widgetStore.get('todo-list').then((todoListState: any) => {
 			const { todos } = todoListState;
 			todoListState.todos = toggleEditing(todos, options.id, true);
-			return widgetStore.patch('todo-list', todoListState);
+			return widgetStore.patch({ id: 'todo-list', todoListState });
 		});
 	}
 });
@@ -51,7 +51,7 @@ export const todoEditInput = createAction({
 			return widgetStore.get('todo-list').then((todoListState: any) => {
 				const { todos } = todoListState;
 				todoListState.todos = toggleEditing(todos, options.state.id, false);
-				return widgetStore.patch('todo-list', todoListState);
+				return widgetStore.patch({ id: 'todo-list', todoListState });
 			});
 		}
 	}

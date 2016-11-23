@@ -1,34 +1,31 @@
 import createAction from 'dojo-actions/createAction';
 
-import { ChangeRecord } from '../stores/todoStore';
+import { StoreDelta } from 'dojo-stores/store/mixins/createObservableStoreMixin';
 import widgetStore from '../stores/widgetStore';
 
 export const updateHeaderAndFooter = createAction({
-	do({ afterAll }: ChangeRecord) {
+	do({ afterAll = [] }: StoreDelta<any>) {
 		const completedCount = afterAll.filter(({ completed }) => completed).length;
 		const activeCount = afterAll.length - completedCount;
 		const hidden = afterAll.length ? [] : ['hidden'];
 		const allCompleted = afterAll.length === completedCount;
 
-		return Promise.all([
-			widgetStore.patch({
-				id: 'todo-footer',
-				completedCount,
-				activeCount,
-				classes: ['footer', ...hidden]
-			}),
+		return widgetStore.patch([{
+			id: 'todo-footer',
+			completedCount,
+			activeCount,
+			classes: ['footer', ...hidden]
+		}, {
+			id: 'todo-toggle',
+			checked: allCompleted,
+			classes: ['toggle-all', ...hidden]
+		}]);
 
-			widgetStore.patch({
-				id: 'todo-toggle',
-				checked: allCompleted,
-				classes: ['toggle-all', ...hidden]
-			})
-		]);
 	}
 });
 
 export const putTodo = createAction({
-	do({ afterAll }: ChangeRecord) {
+	do({ afterAll = [] }: StoreDelta<any>) {
 		return widgetStore.patch({ id: 'todo-list', todos: afterAll });
 	}
 });
