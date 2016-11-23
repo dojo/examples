@@ -4,12 +4,14 @@ import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMix
 import { CardState } from '../card/createCard';
 import createCardDescription, { CardDescriptionState } from './createCardDescription';
 import createCardNavBar from './createCardNavBar';
+import createSeenWith from './createSeenWith';
 import d from 'dojo-widgets/util/d';
 import { assign } from 'dojo-core/lang';
 
 export type CardDetailsPageState = WidgetState & {
 	cards: CardState[];
 	cardDescription: CardDescriptionState;
+	seenWith: CardState[];
 }
 export type CardDetailsPage = Widget<CardDetailsPageState>
 
@@ -19,7 +21,7 @@ const createCardDetailsPage = createWidgetBase
 		classes: [ 'animated', 'pageHolder', 'cardDetails' ],
 		childNodeRenderers: [
 			function(this: CardDetailsPage): DNode[] {
-				const { cards, cardDescription } = this.state;
+				const { cards, cardDescription, seenWith } = this.state;
 
 				const cardNavBar = d(createCardNavBar, { state: { cards }});
 
@@ -35,7 +37,9 @@ const createCardDetailsPage = createWidgetBase
 
 				const jumbotron = d('div.jumbotron', {} , [ cardDescriptionView ]);
 
-				return [ cardNavBar, jumbotron ];
+				const seenWithView = d(createSeenWith, { state: { cards: seenWith }});
+
+				return [ cardNavBar, jumbotron, seenWithView ];
 			}
 		]
 	});
