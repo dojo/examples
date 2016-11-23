@@ -18,8 +18,10 @@ export const deleteTodo = createAction({
 
 export const deleteCompleted = createAction({
 	do() {
-		return todoStore.fetch(createFilter().contains('completed', true))
-		.then((items: Item[]) => todoStore.identify(items))
+		return todoStore.fetch(createFilter().equalTo('completed', true))
+		.then((items: Item[]) => {
+			return todoStore.identify(items);
+		})
 		.then((ids: string[]) => todoStore.delete(ids));
 	}
 });
