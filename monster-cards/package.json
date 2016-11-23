@@ -26,7 +26,7 @@
     "dojo-loader": ">=2.0.0-beta.7",
     "dojo-routing": ">=2.0.0-alpha.5",
     "dojo-shim": ">=2.0.0-beta.3",
-    "dojo-stores": ">=2.0.0-alpha.4",
+    "dojo-stores": "2.0.0-alpha.4",
     "dojo-widgets": "2.0.0-alpha.12",
     "font-awesome": "~4.6.3",
     "immutable": "~3.8.1",
