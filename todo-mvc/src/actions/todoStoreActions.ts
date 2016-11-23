@@ -31,10 +31,7 @@ export const toggleAll = createAction({
 		.then((items) => {
 			return todoStore.patch(
 				todoStore.identify(items).map((id) => {
-					return {
-						id: id,
-						completed
-					};
+					return { id, completed };
 				})
 			);
 		});
