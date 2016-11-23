@@ -17,7 +17,7 @@ test.describe('TodoMVC - Dojo 2', function () {
 
 	test.describe('When page is initially opened', function () {
 
-		test.it('should focus on the todo input field', function () {
+		test.it('should focus on the todo input field', function (this: any) {
 			this.skip();
 			return page.isNewItemInputFocused()
 				.then((isNewItemInputFocused: boolean) => {
@@ -29,7 +29,7 @@ test.describe('TodoMVC - Dojo 2', function () {
 
 	test.describe('No Todos', function () {
 
-		test.it('should hide #main and #footer', function () {
+		test.it('should hide #main and #footer', function (this: any) {
 			this.skip();
 			return Promise.all([ page.isMainVisible(), page.isFooterVisible() ])
 				.then(([ isMainVisible, isFooterVisible ]) => {
@@ -73,7 +73,7 @@ test.describe('TodoMVC - Dojo 2', function () {
 				}));
 		});
 
-		test.it('should trim text input', function () {
+		test.it('should trim text input', function (this: any) {
 			this.skip();
 			return page.enterItem(`   ${TODO_ITEM_ONE}  `)
 				.then(() => page.getItem(0))
@@ -188,31 +188,31 @@ test.describe('TodoMVC - Dojo 2', function () {
 		test.beforeEach(function () {
 		});
 
-		test.it('should focus the input', function () {
+		test.it('should focus the input', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should hide other controls when editing', function () {
+		test.it('should hide other controls when editing', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should save edits on enter', function () {
+		test.it('should save edits on enter', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should save edits on blur', function () {
+		test.it('should save edits on blur', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should trim entered text', function () {
+		test.it('should trim entered text', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should remove the item if an empty text string was entered', function () {
+		test.it('should remove the item if an empty text string was entered', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should cancel edits on escape', function () {
+		test.it('should cancel edits on escape', function (this: any) {
 			this.skip();
 		});
 
@@ -250,11 +250,11 @@ test.describe('TodoMVC - Dojo 2', function () {
 
 		});
 
-		test.it('should remove completed items when clicked', function () {
+		test.it('should remove completed items when clicked', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should be hidden when there are no items that are completed', function () {
+		test.it('should be hidden when there are no items that are completed', function (this: any) {
 			this.skip();
 		});
 
@@ -262,7 +262,7 @@ test.describe('TodoMVC - Dojo 2', function () {
 
 	test.describe('Persistence', function () {
 
-		test.it('should persist its data', function () {
+		test.it('should persist its data', function (this: any) {
 			this.skip();
 		});
 
@@ -270,23 +270,23 @@ test.describe('TodoMVC - Dojo 2', function () {
 
 	test.describe('Routing', function () {
 
-		test.it('should allow me to display active items', function () {
+		test.it('should allow me to display active items', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should respect the back button', function () {
+		test.it('should respect the back button', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should allow me to display completed items', function () {
+		test.it('should allow me to display completed items', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should allow me to display all items', function () {
+		test.it('should allow me to display all items', function (this: any) {
 			this.skip();
 		});
 
-		test.it('should highlight the currently applied filter', function () {
+		test.it('should highlight the currently applied filter', function (this: any) {
 			this.skip();
 		});
 
