@@ -19,7 +19,7 @@ const createCardNavBar = createWidgetBase
 				const { cards } = this.state;
 
 				const cardNodes = cards.map((state) => {
-					return d(createCard, { state });
+					return d(createCard, { id: `card-details-nav-bar-${state.id}`, state });
 				});
 
 				return cardNodes;
