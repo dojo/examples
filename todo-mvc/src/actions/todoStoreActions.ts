@@ -1,6 +1,7 @@
 import createAction from 'dojo-actions/createAction';
 import todoStore, { Item } from '../stores/todoStore';
 import createFilter from 'dojo-stores/query/createFilter';
+import { assign } from 'dojo-core/lang';
 
 let id = 0;
 
@@ -28,13 +29,12 @@ export const toggleAll = createAction({
 	do({ checked: completed }: { checked: boolean }) {
 
 		return todoStore.fetch()
-			.then((items) => {
-				return todoStore.patch(
-					todoStore.identify(items).map((id) => {
-						return { id, completed };
-					})
-				);
-			});
+			.then((items: Item[]) => {
+				return items.map((item) => {
+					return assign({}, item, <any> { completed });
+				});
+			})
+			.then(todoStore.patch);
 	}
 });
 
