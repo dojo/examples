@@ -19,7 +19,7 @@ const createSeenWith = createWidgetBase
 
 				const cardNodes = cards.map((card) => {
 					const state = assign({ large: true }, card);
-					return d(createCard, { id: card.cardId, state });
+					return d(createCard, { id: `card-details-seen-with-${state.id}`, state });
 				});
 
 				return [

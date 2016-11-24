@@ -4,7 +4,7 @@ import createCardDescription from '../../../../src/widgets/card-details/createCa
 
 const state = {
 	imageClass: 'testImageClass',
-	cardId: 'test-card-1',
+	id: 'test-card-1',
 	tagline: 'test-tagline',
 	description: 'test-description',
 	favouriteCount: 1,
