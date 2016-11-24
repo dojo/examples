@@ -12,7 +12,7 @@ export type CardNavBar = Widget<CardNavBarState>;
 
 const createCardNavBar = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
+	.override({
 		classes: [ 'animated', 'cardNavBar' ],
 		childNodeRenderers: [
 			function(this: CardNavBar): DNode[] {

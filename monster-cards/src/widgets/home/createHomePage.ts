@@ -8,7 +8,7 @@ export type HomePage = Widget<HomePageState>
 
 const createHomePage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
+	.override({
 		classes: [ 'animated', 'pageHolder', 'home' ],
 		childNodeRenderers: [
 			function(this: HomePage): DNode[] {

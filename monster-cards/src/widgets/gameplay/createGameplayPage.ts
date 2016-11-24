@@ -7,7 +7,7 @@ export type GameplayPage = Widget<WidgetState>
 
 const createGameplayPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
+	.override({
 		classes: [ 'animated', 'pageHolder', 'gameplay' ],
 		childNodeRenderers: [
 			function(this: GameplayPage): DNode[] {

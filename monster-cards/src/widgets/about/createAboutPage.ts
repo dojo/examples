@@ -7,7 +7,7 @@ export type AboutPage = Widget<WidgetState>
 
 const createAboutPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
+	.override({
 		classes: [ 'animated', 'pageHolder', 'about' ],
 		childNodeRenderers: [
 			function(this: AboutPage): DNode[] {

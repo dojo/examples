@@ -35,7 +35,7 @@ const shareButtonConfig: ShareButtonConfig[] = [
 
 const createCardDescription = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
+	.override({
 		classes: [ 'animated', 'cardDescription' ],
 		childNodeRenderers: [
 			function(this: CardDescription): DNode[] {

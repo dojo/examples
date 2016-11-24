@@ -10,7 +10,7 @@ export type CardListState = WidgetState & {
 export type CardList = Widget<CardListState>;
 
 const createCardList = createWidgetBase
-	.extend({
+	.override({
 		classes: [ 'cardList' ],
 		childNodeRenderers: [
 			function(this: CardList): DNode[] {

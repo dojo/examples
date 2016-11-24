@@ -12,7 +12,7 @@ export type CardSummaryState = WidgetState & {
 
 export type CardSummary = Widget<CardSummaryState>
 
-const createCardSummary = createWidgetBase.extend({
+const createCardSummary = createWidgetBase.override({
 	classes: [ 'cardSummary' ],
 	childNodeRenderers: [
 		function(this: CardSummary): DNode[] {

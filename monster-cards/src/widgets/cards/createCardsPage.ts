@@ -12,7 +12,7 @@ export type CardsPage = Widget<CardsPageState>
 
 const createCardsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
+	.override({
 		classes: [ 'animated', 'pageHolder', 'cards' ],
 		childNodeRenderers: [
 			function(this: CardsPage): DNode[] {

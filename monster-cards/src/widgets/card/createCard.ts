@@ -11,7 +11,7 @@ export type CardState = WidgetState & {
 
 export type Card = Widget<CardState>;
 
-const createCard = createWidgetBase.extend({
+const createCard = createWidgetBase.override({
 	tagName: 'a',
 	classes: [ 'milestoneCard' ],
 	nodeAttributes: [

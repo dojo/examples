@@ -11,7 +11,7 @@ export type SeenWithState = WidgetState & {
 export type SeenWith = Widget<SeenWithState>;
 
 const createSeenWith = createWidgetBase
-	.extend({
+	.override({
 		classes: [ 'seenWith' ],
 		childNodeRenderers: [
 			function(this: SeenWith): DNode[] {

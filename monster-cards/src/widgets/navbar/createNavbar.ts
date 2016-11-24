@@ -22,7 +22,7 @@ function createNavBarLink({ text: innerHTML, href }: NavBarLinkDefinition): DNod
 	return listItem(d('a', { href, innerHTML }));
 }
 
-const createNavbar = createWidgetBase.extend({
+const createNavbar = createWidgetBase.override({
 	tagName: 'header',
 	classes: [ 'navbar' ],
 	childNodeRenderers: [

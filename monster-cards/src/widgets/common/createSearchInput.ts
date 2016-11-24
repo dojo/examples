@@ -4,7 +4,7 @@ import d from 'dojo-widgets/util/d';
 
 export type SearchInput = Widget<WidgetState>
 
-const createSearchInput = createWidgetBase.extend({
+const createSearchInput = createWidgetBase.override({
 	childNodeRenderers: [
 		function(this: SearchInput): DNode[] {
 			const input = d('input', { type: 'search' });
