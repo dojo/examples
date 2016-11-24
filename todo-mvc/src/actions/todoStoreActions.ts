@@ -34,7 +34,7 @@ export const toggleAll = createAction({
 					return assign({}, item, <any> { completed });
 				});
 			})
-			.then(todoStore.patch);
+			.then((items) => todoStore.patch(items));
 	}
 });
 
