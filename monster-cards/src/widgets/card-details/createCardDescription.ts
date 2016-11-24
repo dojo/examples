@@ -35,31 +35,33 @@ const shareButtonConfig: ShareButtonConfig[] = [
 
 const createCardDescription = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.override({
-		classes: [ 'animated', 'cardDescription' ],
-		childNodeRenderers: [
-			function(this: CardDescription): DNode[] {
-				const { imageClass, name, tagline, description, favouriteCount } = this.state;
+	.mixin({
+		mixin: {
+			classes: [ 'animated', 'cardDescription' ],
+			childNodeRenderers: [
+				function(this: CardDescription): DNode[] {
+					const { imageClass, name, tagline, description, favouriteCount } = this.state;
 
-				const cardImage = d(`div.cardImage.card-sprite-large.${imageClass}`);
-				const cardName = d('h1', { innerHTML: name });
-				const cardTagline = d('strong.tagline', { innerHTML: tagline });
-				const cardDescription = d('p', { innerHTML: description });
-				const cardFavouriteCount = d('span', { innerHTML: `Favourited: ${favouriteCount}` });
-				const shareButtons = d('div.buttonHolder', {}, shareButtonConfig.map(createButtonLink));
+					const cardImage = d(`div.cardImage.card-sprite-large.${imageClass}`);
+					const cardName = d('h1', { innerHTML: name });
+					const cardTagline = d('strong.tagline', { innerHTML: tagline });
+					const cardDescription = d('p', { innerHTML: description });
+					const cardFavouriteCount = d('span', { innerHTML: `Favourited: ${favouriteCount}` });
+					const shareButtons = d('div.buttonHolder', {}, shareButtonConfig.map(createButtonLink));
 
-				return [
-					cardImage,
-					d('article', {}, [
-						cardName,
-						cardTagline,
-						cardDescription,
-						cardFavouriteCount,
-						shareButtons
-					])
-				];
-			}
-		]
+					return [
+						cardImage,
+						d('article', {}, [
+							cardName,
+							cardTagline,
+							cardDescription,
+							cardFavouriteCount,
+							shareButtons
+						])
+					];
+				}
+			]
+		}
 	});
 
 export default createCardDescription;

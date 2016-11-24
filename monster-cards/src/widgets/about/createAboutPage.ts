@@ -7,16 +7,18 @@ export type AboutPage = Widget<WidgetState>
 
 const createAboutPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.override({
-		classes: [ 'animated', 'pageHolder', 'about' ],
-		childNodeRenderers: [
-			function(this: AboutPage): DNode[] {
-				const heading = d('h1', { innerHTML: 'About' });
-				const jumbotron = d('div.jumbotron', {}, [ heading ]);
+	.mixin({
+		mixin: {
+			classes: [ 'animated', 'pageHolder', 'about' ],
+			childNodeRenderers: [
+				function(this: AboutPage): DNode[] {
+					const heading = d('h1', { innerHTML: 'About' });
+					const jumbotron = d('div.jumbotron', {}, [ heading ]);
 
-				return [ jumbotron ];
-			}
-		]
+					return [ jumbotron ];
+				}
+			]
+		}
 	});
 
 export default createAboutPage;

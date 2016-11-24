@@ -8,16 +8,18 @@ export type HomePage = Widget<HomePageState>
 
 const createHomePage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.override({
-		classes: [ 'animated', 'pageHolder', 'home' ],
-		childNodeRenderers: [
-			function(this: HomePage): DNode[] {
-				const mmLogo = d('img', { src: './images/mm_logo.png' });
-				const jumbotron = d('div.jumbotron', {}, [ mmLogo ]);
+	.mixin({
+		mixin: {
+			classes: [ 'animated', 'pageHolder', 'home' ],
+			childNodeRenderers: [
+				function(this: HomePage): DNode[] {
+					const mmLogo = d('img', { src: './images/mm_logo.png' });
+					const jumbotron = d('div.jumbotron', {}, [ mmLogo ]);
 
-				return [ jumbotron ];
-			}
-		]
+					return [ jumbotron ];
+				}
+			]
+		}
 	});
 
 export default createHomePage;

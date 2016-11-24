@@ -12,16 +12,18 @@ export type CardsPage = Widget<CardsPageState>
 
 const createCardsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.override({
-		classes: [ 'animated', 'pageHolder', 'cards' ],
-		childNodeRenderers: [
-			function(this: CardsPage): DNode[] {
-				const jumbotron = d('div.jumbotron');
-				const cardsList = d(createCardsList, { state: this.state });
+	.mixin({
+		mixin: {
+			classes: [ 'animated', 'pageHolder', 'cards' ],
+			childNodeRenderers: [
+				function(this: CardsPage): DNode[] {
+					const jumbotron = d('div.jumbotron');
+					const cardsList = d(createCardsList, { state: this.state });
 
-				return [ jumbotron, cardsList ];
-			}
-		]
+					return [ jumbotron, cardsList ];
+				}
+			]
+		}
 	});
 
 export default createCardsPage;
