@@ -19,10 +19,8 @@ export const deleteTodo = createAction({
 export const deleteCompleted = createAction({
 	do() {
 		return todoStore.fetch(createFilter().equalTo('completed', true))
-		.then((items: Item[]) => {
-			return todoStore.identify(items);
-		})
-		.then((ids: string[]) => todoStore.delete(ids));
+			.then((items: Item[]) => todoStore.identify(items))
+			.then((ids: string[]) => todoStore.delete(ids));
 	}
 });
 
@@ -30,13 +28,13 @@ export const toggleAll = createAction({
 	do({ checked: completed }: { checked: boolean }) {
 
 		return todoStore.fetch()
-		.then((items) => {
-			return todoStore.patch(
-				todoStore.identify(items).map((id) => {
-					return { id, completed };
-				})
-			);
-		});
+			.then((items) => {
+				return todoStore.patch(
+					todoStore.identify(items).map((id) => {
+						return { id, completed };
+					})
+				);
+			});
 	}
 });
 
