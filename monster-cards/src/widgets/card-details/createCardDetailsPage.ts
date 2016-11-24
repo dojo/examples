@@ -31,7 +31,7 @@ const createCardDetailsPage = createWidgetBase
 				}, cardDescription);
 
 				const cardDescriptionView = d(createCardDescription, {
-					id: cardDescription.id,
+					id: `card-details-description-${cardDescription.id}`,
 					state: descriptionState
 				});
 
