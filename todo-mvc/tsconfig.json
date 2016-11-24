@@ -4,6 +4,7 @@
 		"declaration": false,
 		"module": "umd",
 		"noImplicitAny": true,
+		"noImplicitThis": true,
 		"strictNullChecks": true,
 		"outDir": "_build/",
 		"removeComments": false,
