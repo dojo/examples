@@ -30,12 +30,10 @@ const createTodoFilter = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'ul',
 		classes: [ 'filters' ],
-		childNodeRenderers: [
-			function(this: TodoFilter): DNode[] {
-				const activeFilter = this.state.activeFilter || '';
-				return createFilterItems(activeFilter);
-			}
-		]
+		getChildrenNodes: function(this: TodoFilter): DNode[] {
+			const activeFilter = this.state.activeFilter || '';
+			return createFilterItems(activeFilter);
+		}
 	}
 });
 

@@ -45,44 +45,42 @@ const createTodoItem = createWidgetBase.mixin({
 					};
 				}
 			],
-			childNodeRenderers: [
-				function(this: TodoItem): (DNode | null)[] {
-					const state = this.state;
-					const checked = state.completed;
-					const label = state.label;
-					const focused = state.editing;
-					const inputOptions: TextInputOptions = {
-						value: label,
-						listeners: {
-							blur: (evt: Event) => { todoSave.do({ state, event }); },
+			getChildrenNodes: function(this: TodoItem): (DNode | null)[] {
+				const state = this.state;
+				const checked = state.completed;
+				const label = state.label;
+				const focused = state.editing;
+				const inputOptions: TextInputOptions = {
+					value: label,
+					listeners: {
+						blur: (evt: Event) => { todoSave.do({ state, event }); },
 							keypress: (evt: Event) => { todoEditInput.do({ state, event }); }
-						},
-						state: { focused, classes: [ 'edit' ] }
-					};
-					return [
-						d('div.view', {}, [
-							d(createCheckboxInput, {
-								listeners: { change: () => { todoToggleComplete.do(state); } },
+					},
+					state: { focused, classes: [ 'edit' ] }
+				};
+				return [
+					d('div.view', {}, [
+						d(createCheckboxInput, {
+							listeners: { change: () => { todoToggleComplete.do(state); } },
 								state: { classes: [ 'toggle' ], checked }
-							}),
-							d(createLabel, {
-								listeners: {
-									dblclick: (event: Event) => { todoEdit.do({ state, event }); },
+						}),
+						d(createLabel, {
+							listeners: {
+								dblclick: (event: Event) => { todoEdit.do({ state, event }); },
 									keypress: (event: KeyboardEvent) => { todoEdit.do({ state, event }); }
-								},
-								state: { label }
-							}),
-							d(createButton, {
-								listeners: { click: () => { todoRemove.do(state); } },
+							},
+							state: { label }
+						}),
+						d(createButton, {
+							listeners: { click: () => { todoRemove.do(state); } },
 								state: { classes: [ 'destroy' ] }
-							})
-						]),
-						state.editing ?
+						})
+					]),
+					state.editing ?
 						d(createFocusableTextInput, inputOptions) : null
-					];
-				}
-			]
+				];
+			}
 		}
-	});
+});
 
 export default createTodoItem;

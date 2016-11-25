@@ -23,7 +23,7 @@
     "@types/node": "^6.0.46",
     "chai": "^3.5.0",
     "dojo-cli-build-webpack": ">=2.0.0-alpha.5",
-    "dojo-interfaces": ">=2.0.0-alpha.6",
+    "dojo-interfaces": ">=2.0.0-alpha.8",
     "grunt": "^1.0.1",
     "grunt-dojo2": "^2.0.0-beta.16",
     "intern": "~3.4.1",
