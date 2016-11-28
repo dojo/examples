@@ -15,21 +15,19 @@ export type CardSummary = Widget<CardSummaryState>
 const createCardSummary = createWidgetBase.mixin({
 	mixin: {
 		classes: [ 'cardSummary' ],
-		childNodeRenderers: [
-			function(this: CardSummary): DNode[] {
-				const { id, imageClass, name, score } = this.state;
+		getChildrenNodes: function(this: CardSummary): DNode[] {
+			const { id, imageClass, name, score } = this.state;
 
-				const cardImage = d(createCard, { state: { id, imageClass, large: true } });
-				const cardName = d('h2', { innerHTML: name });
-				const cardPoints = d('p.points', { innerHTML: `milestone points: ${score}` });
+			const cardImage = d(createCard, { state: { id, imageClass, large: true } });
+			const cardName = d('h2', { innerHTML: name });
+			const cardPoints = d('p.points', { innerHTML: `milestone points: ${score}` });
 
-				return [
-					cardImage,
-					cardName,
-					cardPoints
-				];
-			}
-		]
+			return [
+				cardImage,
+				cardName,
+				cardPoints
+			];
+		}
 	}
 });
 

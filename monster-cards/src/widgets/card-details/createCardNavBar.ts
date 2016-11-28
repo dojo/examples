@@ -15,17 +15,15 @@ const createCardNavBar = createWidgetBase
 	.mixin({
 		mixin: {
 			classes: [ 'animated', 'cardNavBar' ],
-			childNodeRenderers: [
-				function(this: CardNavBar): DNode[] {
-					const { cards } = this.state;
+			getChildrenNodes: function(this: CardNavBar): DNode[] {
+				const { cards } = this.state;
 
-					const cardNodes = cards.map((state) => {
-						return d(createCard, { id: `card-details-nav-bar-${state.id}`, state });
-					});
+				const cardNodes = cards.map((state) => {
+					return d(createCard, { id: `card-details-nav-bar-${state.id}`, state });
+				});
 
-					return cardNodes;
-				}
-			]
+				return cardNodes;
+			}
 		}
 	});
 

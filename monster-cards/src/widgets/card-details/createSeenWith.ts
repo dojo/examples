@@ -13,21 +13,19 @@ export type SeenWith = Widget<SeenWithState>;
 const createSeenWith = createWidgetBase.mixin({
 	mixin: {
 		classes: [ 'seenWith' ],
-		childNodeRenderers: [
-			function(this: SeenWith): DNode[] {
-				const { cards } = this.state;
+		getChildrenNodes: function(this: SeenWith): DNode[] {
+			const { cards } = this.state;
 
-				const cardNodes = cards.map((card) => {
-					const state = assign({ large: true }, card);
-					return d(createCard, { id: `card-details-seen-with-${state.id}`, state });
-				});
+			const cardNodes = cards.map((card) => {
+				const state = assign({ large: true }, card);
+				return d(createCard, { id: `card-details-seen-with-${state.id}`, state });
+			});
 
-				return [
-					d('h2', { innerHTML: 'last seen with'}),
-					...cardNodes
-				];
-			}
-		]
+			return [
+				d('h2', { innerHTML: 'last seen with'}),
+				...cardNodes
+			];
+		}
 	}
 });
 

@@ -10,14 +10,12 @@ const createAboutPage = createWidgetBase
 	.mixin({
 		mixin: {
 			classes: [ 'animated', 'pageHolder', 'about' ],
-			childNodeRenderers: [
-				function(this: AboutPage): DNode[] {
-					const heading = d('h1', { innerHTML: 'About' });
-					const jumbotron = d('div.jumbotron', {}, [ heading ]);
+			getChildrenNodes: function(this: AboutPage): DNode[] {
+				const heading = d('h1', { innerHTML: 'About' });
+				const jumbotron = d('div.jumbotron', {}, [ heading ]);
 
-					return [ jumbotron ];
-				}
-			]
+				return [ jumbotron ];
+			}
 		}
 	});
 

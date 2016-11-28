@@ -15,14 +15,12 @@ const createCardsPage = createWidgetBase
 	.mixin({
 		mixin: {
 			classes: [ 'animated', 'pageHolder', 'cards' ],
-			childNodeRenderers: [
-				function(this: CardsPage): DNode[] {
-					const jumbotron = d('div.jumbotron');
-					const cardsList = d(createCardsList, { state: this.state });
+			getChildrenNodes: function(this: CardsPage): DNode[] {
+				const jumbotron = d('div.jumbotron');
+				const cardsList = d(createCardsList, { state: this.state });
 
-					return [ jumbotron, cardsList ];
-				}
-			]
+				return [ jumbotron, cardsList ];
+			}
 		}
 	});
 

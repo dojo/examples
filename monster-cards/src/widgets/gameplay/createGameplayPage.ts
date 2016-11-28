@@ -10,14 +10,12 @@ const createGameplayPage = createWidgetBase
 	.mixin({
 		mixin: {
 			classes: [ 'animated', 'pageHolder', 'gameplay' ],
-			childNodeRenderers: [
-				function(this: GameplayPage): DNode[] {
-					const heading = d('h1', { innerHTML: 'Gameplay' });
-					const jumbotron = d('div.jumbotron', {}, [ heading ]);
+			getChildrenNodes: function(this: GameplayPage): DNode[] {
+				const heading = d('h1', { innerHTML: 'Gameplay' });
+				const jumbotron = d('div.jumbotron', {}, [ heading ]);
 
-					return [ jumbotron ];
-				}
-			]
+				return [ jumbotron ];
+			}
 		}
 	});
 

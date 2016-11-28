@@ -6,14 +6,12 @@ export type SearchInput = Widget<WidgetState>
 
 const createSearchInput = createWidgetBase.mixin({
 	mixin: {
-		childNodeRenderers: [
-			function(this: SearchInput): DNode[] {
-				const input = d('input', { type: 'search' });
-				const icon = d('i.fa.fa-2x.fa-search');
+		getChildrenNodes: function(this: SearchInput): DNode[] {
+			const input = d('input', { type: 'search' });
+			const icon = d('i.fa.fa-2x.fa-search');
 
-				return [ input, icon ];
-			}
-		]
+			return [ input, icon ];
+		}
 	}
 });
 

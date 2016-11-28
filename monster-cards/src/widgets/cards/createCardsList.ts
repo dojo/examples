@@ -13,15 +13,16 @@ const createCardList = createWidgetBase
 	.mixin({
 		mixin: {
 			classes: [ 'cardList' ],
-			childNodeRenderers: [
-				function(this: CardList): DNode[] {
-					const { cards } = this.state;
+			getChildrenNodes: function(this: CardList): DNode[] {
+				const { cards } = this.state;
 
+				if (cards) {
 					return cards.map((state) => {
 						return d(createCardSummary, { id: `card-list-summary-${state.id}`, state });
 					});
 				}
-			]
+				return [];
+			}
 		}
 	});
 

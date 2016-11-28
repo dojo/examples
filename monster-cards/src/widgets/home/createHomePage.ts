@@ -11,14 +11,12 @@ const createHomePage = createWidgetBase
 	.mixin({
 		mixin: {
 			classes: [ 'animated', 'pageHolder', 'home' ],
-			childNodeRenderers: [
-				function(this: HomePage): DNode[] {
-					const mmLogo = d('img', { src: './images/mm_logo.png' });
-					const jumbotron = d('div.jumbotron', {}, [ mmLogo ]);
+			getChildrenNodes: function(this: HomePage): DNode[] {
+				const mmLogo = d('img', { src: './images/mm_logo.png' });
+				const jumbotron = d('div.jumbotron', {}, [ mmLogo ]);
 
-					return [ jumbotron ];
-				}
-			]
+				return [ jumbotron ];
+			}
 		}
 	});
 

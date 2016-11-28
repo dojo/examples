@@ -22,13 +22,11 @@ const createCard = createWidgetBase.mixin({
 				};
 			}
 		],
-		childNodeRenderers: [
-			function(this: Card): DNode[] {
-				const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
+		getChildrenNodes: function(this: Card): DNode[] {
+			const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
 
-				return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
-			}
-		]
+			return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
+		}
 	}
 });
 
