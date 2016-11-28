@@ -31,7 +31,10 @@ const filterRoute = createRoute<FilterParameters>({
 	}
 });
 
-const router = createRouter({ history: createHashHistory() });
-router.append(filterRoute);
+export const history = createHashHistory();
+
+const router = createRouter({ history });
 
 export default router;
+
+router.append(filterRoute);
