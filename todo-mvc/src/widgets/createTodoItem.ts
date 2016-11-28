@@ -30,51 +30,52 @@ const createLabel = createWidgetBase
 		]
 	});
 
-const createTodoItem = createWidgetBase
-	.extend({
-		nodeAttributes: [
-			function(this: TodoItem): VNodeProperties {
-				const { completed, editing } = this.state;
-				return {
-					classes: { completed, editing }
-				};
-			}
-		],
-		childNodeRenderers: [
-			function(this: TodoItem): (DNode | null)[] {
-				const state = this.state;
-				const checked = state.completed;
-				const label = state.label;
-				const focused = state.editing;
-				const inputOptions: TextInputOptions = {
-					value: label,
-					listeners: {
-						blur: (evt: Event) => { todoSave.do({ state, event }); },
-						keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
-					},
-					state: { focused, classes: [ 'edit' ] }
-				};
-				return [
-					d('div.view', {}, [
-						d(createCheckboxInput, {
-							listeners: { change: () => { todoToggleComplete.do(state); } },
-							state: { classes: [ 'toggle' ], checked }
-						}),
-						d(createLabel, {
-							listeners: { dblclick: () => { todoEdit.do(state); } },
-							state: { label }
-						}),
-						d(createButton, {
-							listeners: { click: () => { todoRemove.do(state); } },
-							state: { classes: [ 'destroy' ] }
-						})
-					]),
-					state.editing ?
-					d(createFocusableTextInput, inputOptions) : null
-				];
-			}
-		],
-		tagName: 'li'
+const createTodoItem = createWidgetBase.mixin({
+		mixin: {
+			tagName: 'li',
+			nodeAttributes: [
+				function(this: TodoItem): VNodeProperties {
+					const { completed, editing } = this.state;
+					return {
+						classes: { completed, editing }
+					};
+				}
+			],
+			childNodeRenderers: [
+				function(this: TodoItem): (DNode | null)[] {
+					const state = this.state;
+					const checked = state.completed;
+					const label = state.label;
+					const focused = state.editing;
+					const inputOptions: TextInputOptions = {
+						value: label,
+						listeners: {
+							blur: (evt: Event) => { todoSave.do({ state, event }); },
+							keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
+						},
+						state: { focused, classes: [ 'edit' ] }
+					};
+					return [
+						d('div.view', {}, [
+							d(createCheckboxInput, {
+								listeners: { change: () => { todoToggleComplete.do(state); } },
+								state: { classes: [ 'toggle' ], checked }
+							}),
+							d(createLabel, {
+								listeners: { dblclick: () => { todoEdit.do(state); } },
+								state: { label }
+							}),
+							d(createButton, {
+								listeners: { click: () => { todoRemove.do(state); } },
+								state: { classes: [ 'destroy' ] }
+							})
+						]),
+						state.editing ?
+						d(createFocusableTextInput, inputOptions) : null
+					];
+				}
+			]
+		}
 	});
 
 export default createTodoItem;

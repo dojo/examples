@@ -26,17 +26,17 @@ function createFilterItems(activeFilter: string): DNode[] {
 	});
 }
 
-const createTodoFilter = createWidgetBase
-	.extend({
+const createTodoFilter = createWidgetBase.mixin({
+	mixin: {
+		tagName: 'ul',
+		classes: [ 'filters' ],
 		childNodeRenderers: [
 			function(this: TodoFilter): DNode[] {
 				const activeFilter = this.state.activeFilter || '';
 				return createFilterItems(activeFilter);
 			}
-		],
-
-		tagName: 'ul',
-		classes: [ 'filters' ]
-	});
+		]
+	}
+});
 
 export default createTodoFilter;
