@@ -56,7 +56,7 @@ const createTodoItem = createWidgetBase.mixin({
 						value: label,
 						listeners: {
 							blur: (evt: Event) => { todoSave.do({ state, event }); },
-							keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
+							keypress: (evt: Event) => { todoEditInput.do({ state, event }); }
 						},
 						state: { focused, classes: [ 'edit' ] }
 					};
