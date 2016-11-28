@@ -8,7 +8,6 @@ import createFocusableTextInput from './createFocusableTextInput';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import { TextInputOptions } from 'dojo-widgets/createTextInput';
-import createTodoLabel from './createTodoLabel';
 
 export type TodoItemState = WidgetState & {
 	label: string;
@@ -68,12 +67,8 @@ const createTodoItem = createWidgetBase.mixin({
 							}),
 							d(createLabel, {
 								listeners: {
-									dblclick: () => { todoEdit.do(state); },
-									keypress: (event: KeyboardEvent) => {
-										if (event.which === 13) {
-											todoEdit.do(state);
-										}
-									}
+									dblclick: (event: Event) => { todoEdit.do({ state, event }); },
+									keypress: (event: KeyboardEvent) => { todoEdit.do({ state, event }); }
 								},
 								state: { label }
 							}),

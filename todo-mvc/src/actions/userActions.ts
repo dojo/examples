@@ -14,8 +14,8 @@ interface FormInputEvent extends KeyboardEvent {
 }
 
 export const todoInput = createAction({
-	do({ event: { keyCode, target: { value: label } } }: { event: FormInputEvent }) {
-		if (keyCode === 13 && label) {
+	do({ event: { which, target: { value: label } } }: { event: FormInputEvent }) {
+		if (which === 13 && label) {
 			addTodo.do({ label, completed: false });
 			return widgetStore.patch({ id: 'new-todo', value: '' });
 		}
@@ -32,10 +32,14 @@ function toggleEditing(todos: TodoItemState[], todoId: string, editing: boolean)
 }
 
 export const todoEdit = createAction({
-	do(options: { id: string }) {
+	do(options: { event: KeyboardEvent, state: any }) {
+		const { event, state: { id } } = options;
+		if (event.type === 'keypress' && event.which !== 13 && event.which !== 32) {
+			return;
+		}
 		widgetStore.get('todo-list').then((todoListState: any) => {
 			const { todos } = todoListState;
-			todoListState.todos = toggleEditing(todos, options.id, true);
+			todoListState.todos = toggleEditing(todos, id, true);
 			return widgetStore.patch({ id: 'todo-list', todoListState });
 		});
 	}
@@ -43,11 +47,11 @@ export const todoEdit = createAction({
 
 export const todoEditInput = createAction({
 	do(options: { event: FormInputEvent, state: any }) {
-		const { event: { keyCode } } = options;
-		if (keyCode === 13) {
+		const { event: { which } } = options;
+		if (which === 13) {
 			return todoSave.do(options);
 		}
-		else if (keyCode === 27) {
+		else if (which === 27) {
 			return widgetStore.get('todo-list').then((todoListState: any) => {
 				const { todos } = todoListState;
 				todoListState.todos = toggleEditing(todos, options.state.id, false);
