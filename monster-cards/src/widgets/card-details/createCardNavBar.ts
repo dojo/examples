@@ -12,19 +12,21 @@ export type CardNavBar = Widget<CardNavBarState>;
 
 const createCardNavBar = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
-		classes: [ 'animated', 'cardNavBar' ],
-		childNodeRenderers: [
-			function(this: CardNavBar): DNode[] {
-				const { cards } = this.state;
+	.mixin({
+		mixin: {
+			classes: [ 'animated', 'cardNavBar' ],
+			childNodeRenderers: [
+				function(this: CardNavBar): DNode[] {
+					const { cards } = this.state;
 
-				const cardNodes = cards.map((state) => {
-					return d(createCard, { id: `card-details-nav-bar-${state.id}`, state });
-				});
+					const cardNodes = cards.map((state) => {
+						return d(createCard, { id: `card-details-nav-bar-${state.id}`, state });
+					});
 
-				return cardNodes;
-			}
-		]
+					return cardNodes;
+				}
+			]
+		}
 	});
 
 export default createCardNavBar;

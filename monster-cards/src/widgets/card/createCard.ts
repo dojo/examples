@@ -11,23 +11,25 @@ export type CardState = WidgetState & {
 
 export type Card = Widget<CardState>;
 
-const createCard = createWidgetBase.extend({
-	tagName: 'a',
-	classes: [ 'milestoneCard' ],
-	nodeAttributes: [
-		function (this: Card): VNodeProperties {
-			return {
-				href: `#/cards/${this.state.id}`
-			};
-		}
-	],
-	childNodeRenderers: [
-		function(this: Card): DNode[] {
-			const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
+const createCard = createWidgetBase.mixin({
+	mixin: {
+		tagName: 'a',
+		classes: [ 'milestoneCard' ],
+		nodeAttributes: [
+			function (this: Card): VNodeProperties {
+				return {
+					href: `#/cards/${this.state.id}`
+				};
+			}
+		],
+		childNodeRenderers: [
+			function(this: Card): DNode[] {
+				const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
 
-			return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
-		}
-	]
+				return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
+			}
+		]
+	}
 });
 
 export default createCard;

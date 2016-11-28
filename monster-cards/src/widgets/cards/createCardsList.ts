@@ -10,17 +10,19 @@ export type CardListState = WidgetState & {
 export type CardList = Widget<CardListState>;
 
 const createCardList = createWidgetBase
-	.extend({
-		classes: [ 'cardList' ],
-		childNodeRenderers: [
-			function(this: CardList): DNode[] {
-				const { cards } = this.state;
+	.mixin({
+		mixin: {
+			classes: [ 'cardList' ],
+			childNodeRenderers: [
+				function(this: CardList): DNode[] {
+					const { cards } = this.state;
 
-				return cards.map((state) => {
-					return d(createCardSummary, { id: `card-list-summary-${state.id}`, state });
-				});
-			}
-		]
+					return cards.map((state) => {
+						return d(createCardSummary, { id: `card-list-summary-${state.id}`, state });
+					});
+				}
+			]
+		}
 	});
 
 export default createCardList;

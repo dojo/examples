@@ -17,31 +17,33 @@ export type CardDetailsPage = Widget<CardDetailsPageState>
 
 const createCardDetailsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
-	.extend({
-		classes: [ 'animated', 'pageHolder', 'cardDetails' ],
-		childNodeRenderers: [
-			function(this: CardDetailsPage): DNode[] {
-				const { cards, cardDescription, seenWith } = this.state;
+	.mixin({
+		mixin: {
+			classes: [ 'animated', 'pageHolder', 'cardDetails' ],
+			childNodeRenderers: [
+				function(this: CardDetailsPage): DNode[] {
+					const { cards, cardDescription, seenWith } = this.state;
 
-				const cardNavBar = d(createCardNavBar, { state: { cards }});
+					const cardNavBar = d(createCardNavBar, { state: { cards }});
 
-				const descriptionState = assign({
-					enterAnimation: 'slideInRight',
-					exitAnimation: 'slideOutLeft'
-				}, cardDescription);
+					const descriptionState = assign({
+						enterAnimation: 'slideInRight',
+						exitAnimation: 'slideOutLeft'
+					}, cardDescription);
 
-				const cardDescriptionView = d(createCardDescription, {
-					id: `card-details-description-${cardDescription.id}`,
-					state: descriptionState
-				});
+					const cardDescriptionView = d(createCardDescription, {
+						id: `card-details-description-${cardDescription.id}`,
+						state: descriptionState
+					});
 
-				const jumbotron = d('div.jumbotron', {} , [ cardDescriptionView ]);
+					const jumbotron = d('div.jumbotron', {} , [ cardDescriptionView ]);
 
-				const seenWithView = d(createSeenWith, { state: { cards: seenWith }});
+					const seenWithView = d(createSeenWith, { state: { cards: seenWith }});
 
-				return [ cardNavBar, jumbotron, seenWithView ];
-			}
-		]
+					return [ cardNavBar, jumbotron, seenWithView ];
+				}
+			]
+		}
 	});
 
 export default createCardDetailsPage;

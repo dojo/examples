@@ -22,24 +22,26 @@ function createNavBarLink({ text: innerHTML, href }: NavBarLinkDefinition): DNod
 	return listItem(d('a', { href, innerHTML }));
 }
 
-const createNavbar = createWidgetBase.extend({
-	tagName: 'header',
-	classes: [ 'navbar' ],
-	childNodeRenderers: [
-		function(this: NavBar): DNode[] {
-			const homeLink = listItem(d('a', { href: '#' }, [
-				d('img', { src: 'images/navbar-app-icon.png' })
-			]));
-			const sectionLinks = this.state.sections.map(createNavBarLink);
-			const searchAction = listItem(d(createSearchInput, {}));
-			const favouriteAction = listItem(d('i.fa.fa-2x.fa-heart-o'));
+const createNavbar = createWidgetBase.mixin({
+	mixin: {
+		tagName: 'header',
+		classes: [ 'navbar' ],
+		childNodeRenderers: [
+			function(this: NavBar): DNode[] {
+				const homeLink = listItem(d('a', { href: '#' }, [
+					d('img', { src: 'images/navbar-app-icon.png' })
+				]));
+				const sectionLinks = this.state.sections.map(createNavBarLink);
+				const searchAction = listItem(d(createSearchInput, {}));
+				const favouriteAction = listItem(d('i.fa.fa-2x.fa-heart-o'));
 
-			const pageLinks = d('ul.inline-list', {}, [ homeLink, ...sectionLinks ]);
-			const actionLinks = d('ul.inline-list.pull-right', {}, [ searchAction, favouriteAction ]);
+				const pageLinks = d('ul.inline-list', {}, [ homeLink, ...sectionLinks ]);
+				const actionLinks = d('ul.inline-list.pull-right', {}, [ searchAction, favouriteAction ]);
 
-			return [ pageLinks, actionLinks ];
-		}
-	]
+				return [ pageLinks, actionLinks ];
+			}
+		]
+	}
 });
 
 export default createNavbar;

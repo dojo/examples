@@ -10,8 +10,8 @@ export type SeenWithState = WidgetState & {
 
 export type SeenWith = Widget<SeenWithState>;
 
-const createSeenWith = createWidgetBase
-	.extend({
+const createSeenWith = createWidgetBase.mixin({
+	mixin: {
 		classes: [ 'seenWith' ],
 		childNodeRenderers: [
 			function(this: SeenWith): DNode[] {
@@ -28,6 +28,7 @@ const createSeenWith = createWidgetBase
 				];
 			}
 		]
-	});
+	}
+});
 
 export default createSeenWith;
