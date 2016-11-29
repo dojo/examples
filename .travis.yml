@@ -16,9 +16,6 @@ matrix:
   fast_finish: true
   allow_failures:
   - env: PROJECT_DIR=auto-deploy
-cache:
-  directories:
-  - $PROJECT_DIR/node_modules
 install:
 - ./scripts/install.sh
 script:
