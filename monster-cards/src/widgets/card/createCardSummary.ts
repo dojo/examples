@@ -2,6 +2,9 @@ import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCard from './createCard';
+import * as css from './card-summary.module.styl';
+
+console.log(css);
 
 export type CardSummaryState = WidgetState & {
 	name: string;
@@ -14,7 +17,7 @@ export type CardSummary = Widget<CardSummaryState>
 
 const createCardSummary = createWidgetBase.mixin({
 	mixin: {
-		classes: [ 'cardSummary' ],
+		classes: [ css.cardSummary ],
 		childNodeRenderers: [
 			function(this: CardSummary): DNode[] {
 				const { id, imageClass, name, score } = this.state;

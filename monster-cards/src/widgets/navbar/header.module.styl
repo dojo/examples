@@ -1,4 +1,6 @@
-header {
+@import './../../variables';
+
+.header {
 	background-color: header-background;
 	height: header-height;
 	padding: 0 side-padding;
@@ -31,10 +33,7 @@ header {
 			font-weight: 700;
 			font-style: normal;
 			font-size: 20px;
-
-			&:hover:not(.active) {
-				background-color: darken(header-background, 10%);
-			}
+			
 			&:visited, &:active, &:link {
 				text-decoration: none;
 				color: inherit;
