@@ -1,13 +1,13 @@
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
-import d from 'dojo-widgets/util/d';
+import { VNodeProperties } from 'dojo-interfaces/vdom';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
+import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
+import { TextInputOptions } from 'dojo-widgets/components/textinput/createTextInput';
+import createButton from 'dojo-widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
-import createButton from 'dojo-widgets/createButton';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
-import { TextInputOptions } from 'dojo-widgets/createTextInput';
 
 export type TodoItemState = WidgetState & {
 	label: string;

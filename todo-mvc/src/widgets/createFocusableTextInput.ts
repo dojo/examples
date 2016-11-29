@@ -1,6 +1,6 @@
 import WeakMap from 'dojo-shim/WeakMap';
 import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState } from 'dojo-interfaces/widgetBases';
 import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import { VNodeProperties } from 'dojo-interfaces/vdom';

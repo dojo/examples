@@ -1,6 +1,6 @@
 import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-import d from 'dojo-widgets/util/d';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 
 import { todoToggleAll } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';

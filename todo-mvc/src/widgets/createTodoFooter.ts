@@ -1,9 +1,9 @@
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
-import d from 'dojo-widgets/util/d';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
+import createButton from 'dojo-widgets/components/button/createButton';
 import { clearCompleted } from '../actions/userActions';
 import createTodoFilter from './createTodoFilter';
-import createButton from 'dojo-widgets/createButton';
 
 export type TodoFooterState = WidgetState & {
 	activeFilter?: string;

@@ -1,6 +1,6 @@
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetState } from 'dojo-interfaces/widgetBases';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
 
 const createTitle = createWidgetBase.mixin({
 	mixin: {

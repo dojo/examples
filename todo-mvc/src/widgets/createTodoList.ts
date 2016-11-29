@@ -1,6 +1,6 @@
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
-import d from 'dojo-widgets/util/d';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 import createTodoItem, { TodoItemState } from './createTodoItem';
 
 type TodoListState = WidgetState & {

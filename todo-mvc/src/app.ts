@@ -1,7 +1,7 @@
 import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-interfaces/widgetBases';
 import createProjector from 'dojo-widgets/createProjector';
 import { todoInput } from './actions/userActions';
-import d from 'dojo-widgets/util/d';
+import d from 'dojo-widgets/d';
 
 import createTitle from './widgets/createTitle';
 import createMainSection from './widgets/createMainSection';
