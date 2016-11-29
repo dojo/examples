@@ -21,17 +21,19 @@ export type TodoItem = Widget<TodoItemState>;
 
 const createLabel = createWidgetBase
 	.mixin(createVNodeEvented)
-	.extend({
-		tagName: 'label',
-		nodeAttributes: [
-			function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
-				return {
-					innerHTML: this.state.label,
-					'aria-describedby': 'edit-instructions',
-					tabindex: '0'
-				};
-			}
-		]
+	.mixin({
+		mixin: {
+			tagName: 'label',
+			nodeAttributes: [
+				function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
+					return {
+						innerHTML: this.state.label,
+						'aria-describedby': 'edit-instructions',
+						tabindex: '0'
+					};
+				}
+			]
+		}
 	});
 
 const createTodoItem = createWidgetBase.mixin({
