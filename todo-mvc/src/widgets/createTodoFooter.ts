@@ -15,8 +15,9 @@ export type TodoFooterOptions = WidgetOptions<TodoFooterState>;
 
 export type TodoFooter = Widget<TodoFooterState>;
 
-const createTodoFooter = createWidgetBase
-	.extend({
+const createTodoFooter = createWidgetBase.mixin({
+	mixin: {
+		tagName: 'footer',
 		childNodeRenderers: [
 			function(this: TodoFooter): (DNode | null)[] {
 				const { activeCount, activeFilter, completedCount } = this.state;
@@ -44,9 +45,8 @@ const createTodoFooter = createWidgetBase
 					}) : null
 				];
 			}
-		],
-
-		tagName: 'footer'
-	});
+		]
+	}
+});
 
 export default createTodoFooter;

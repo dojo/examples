@@ -23,17 +23,17 @@ const createCheckboxInput = createWidgetBase
 			}));
 		}
 	})
-	.extend({
-		nodeAttributes: [
-			function (this: CheckboxInput): VNodeProperties {
-				const { checked } = this.state;
-				return checked !== undefined ? { checked } : {};
-			}
-		],
-
-		tagName: 'input',
-
-		type: 'checkbox'
+	.mixin({
+		mixin: {
+			tagName: 'input',
+			type: 'checkbox',
+			nodeAttributes: [
+				function (this: CheckboxInput): VNodeProperties {
+					const { checked } = this.state;
+					return checked !== undefined ? { checked } : {};
+				}
+			]
+		}
 	});
 
 export default createCheckboxInput;

@@ -38,23 +38,23 @@ const createFocusableTextInput = createWidgetBase
 			afterUpdateFunctions.set(instance, (element: HTMLInputElement) => afterUpdate(instance, element));
 		}
 	})
-	.extend({
-		nodeAttributes: [
-			function (this: FocusableTextInput): VNodeProperties {
-				const afterUpdate = afterUpdateFunctions.get(this);
-				const { placeholder, value } = this.state;
-				return {
-					afterUpdate,
-					placeholder,
-					value,
-					afterCreate: afterUpdate
-				};
-			}
-		],
-
-		tagName: 'input',
-
-		type: 'text'
+	.mixin({
+		mixin: {
+			tagName: 'input',
+			type: 'text',
+			nodeAttributes: [
+				function (this: FocusableTextInput): VNodeProperties {
+					const afterUpdate = afterUpdateFunctions.get(this);
+					const { placeholder, value } = this.state;
+					return {
+						afterUpdate,
+						placeholder,
+						value,
+						afterCreate: afterUpdate
+					};
+				}
+			]
+		}
 	});
 
 export default createFocusableTextInput;

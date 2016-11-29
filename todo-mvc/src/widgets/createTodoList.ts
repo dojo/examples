@@ -23,18 +23,19 @@ function filter(filterName: string, todo: TodoItemState): boolean {
 	}
 }
 
-const createTodoList = createWidgetBase
-	.extend({
-		childNodeRenderers: [
-			function(this: TodoList): DNode[] {
-				const activeFilter = this.state.activeFilter || '';
-				const todos = this.state.todos || [];
-				return todos
-					.filter((todo) => filter(activeFilter, todo))
-					.map((todo) => d(createTodoItem, { id: todo.id, state: todo }));
-				}
-		],
-		tagName: 'ul'
+const createTodoList = createWidgetBase.mixin({
+		mixin: {
+			tagName: 'ul',
+			childNodeRenderers: [
+				function(this: TodoList): DNode[] {
+					const activeFilter = this.state.activeFilter || '';
+					const todos = this.state.todos || [];
+					return todos
+						.filter((todo) => filter(activeFilter, todo))
+						.map((todo) => d(createTodoItem, { id: todo.id, state: todo }));
+					}
+			]
+		}
 	});
 
 export default createTodoList;
