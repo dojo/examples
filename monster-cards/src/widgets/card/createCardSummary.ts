@@ -4,8 +4,6 @@ import d from 'dojo-widgets/util/d';
 import createCard from './createCard';
 import * as css from './card-summary.module.styl';
 
-console.log(css);
-
 export type CardSummaryState = WidgetState & {
 	name: string;
 	imageClass: string;
