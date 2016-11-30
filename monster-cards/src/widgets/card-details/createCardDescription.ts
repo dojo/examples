@@ -3,6 +3,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import * as css from './description.module.styl';
+import * as generalCss from '../common/general.module.styl';
 
 export type CardDescriptionState = WidgetState & {
 	name: string;
@@ -22,10 +23,10 @@ export type ShareButtonConfig = {
 }
 
 function createButtonLink({ iconClass, href, text: innerHTML }: ShareButtonConfig): DNode {
-	const icon = d(`i.fa.${iconClass}`);
+	const icon = d(`i.fa.${ iconClass }`);
 	const buttonText = innerHTML ? d('span', { innerHTML }) : null;
 
-	return d(`a.button`, { href }, [ icon, buttonText ]);
+	return d(`a.${ generalCss.button }`, { href }, [ icon, buttonText ]);
 }
 
 const shareButtonConfig: ShareButtonConfig[] = [

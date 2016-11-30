@@ -1,0 +1,57 @@
+@import './../../variables';
+
+.page {
+	width: 100%;
+	height: 100%;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 300;
+}
+
+.app {
+	top: header-height;
+	left: 0;
+	right: 0;
+	position: relative;
+
+	.pageHolder {
+		-webkit-animation-duration: page-animation-duration;
+		animation-duration: page-animation-duration;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+}
+
+.pullRight {
+	float: right;
+}
+
+.inlineList {
+	height: 100%;
+	display: inline-block;
+	overflow: hidden;
+	li {
+		list-style: none;
+		display: inline-block;
+	}
+}
+
+.button {
+	padding: 5px;
+	background: button-background;
+	border-radius: 4px;
+	color: button-color;
+}
+
+strong {
+	font-weight: bold;
+}
+
+@media (max-width: size-portrait-tablet) {
+	.app {
+		top: 0;
+		bottom: header-height;
+	}
+}

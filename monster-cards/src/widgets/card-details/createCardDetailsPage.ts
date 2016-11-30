@@ -9,6 +9,7 @@ import d from 'dojo-widgets/util/d';
 import { assign } from 'dojo-core/lang';
 import * as jumbotronCss from '../common/jumbotron.module.styl';
 import * as detailsCss from './card-details.module.styl';
+import * as generalCss from './../common/general.module.styl';
 
 export type CardDetailsPageState = WidgetState & {
 	cards: CardState[];
@@ -21,7 +22,7 @@ const createCardDetailsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.mixin({
 		mixin: {
-			classes: [ 'animated', 'pageHolder', detailsCss.cardDetails ],
+			classes: [ 'animated', generalCss.pageHolder, detailsCss.cardDetails ],
 			childNodeRenderers: [
 				function(this: CardDetailsPage): DNode[] {
 					const { cards, cardDescription, seenWith } = this.state;

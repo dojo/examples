@@ -13,6 +13,7 @@ import createCardDetailsPage from './widgets/card-details/createCardDetailsPage'
 import defaultWidgetStore from './stores/widgetStore';
 
 import 'maquette/src/css-transitions';
+import * as css from './widgets/common/general.module.styl';
 
 const app = createApp({ defaultWidgetStore });
 
@@ -52,6 +53,9 @@ app.loadDefinition({
 		}
 	]
 });
+
+document.querySelector('html').classList.add(css.page);
+document.body.classList.add(css.page);
 
 Promise.resolve(app.realize(document.body))
 	.then(() => bindCardStoreActions())

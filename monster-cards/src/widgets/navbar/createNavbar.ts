@@ -3,6 +3,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createSearchInput from '../common/createSearchInput';
 import * as css from './header.module.styl';
+import * as generalCss from '../common/general.module.styl';
 
 export type NavBarState = WidgetState & {
 	sections: NavBarLinkDefinition[];
@@ -40,8 +41,8 @@ const createNavbar = createWidgetBase.mixin({
 				}));
 				const favouriteAction = listItem(d('i.fa.fa-2x.fa-heart-o'));
 
-				const pageLinks = d(`ul.inline-list`, {}, [ homeLink, ...sectionLinks ]);
-				const actionLinks = d(`ul.inline-list.pull-right`, {}, [ searchAction, favouriteAction ]);
+				const pageLinks = d(`ul.${ generalCss.inlineList }`, {}, [ homeLink, ...sectionLinks ]);
+				const actionLinks = d(`ul.${ generalCss.inlineList }.${ generalCss.pullRight }`, {}, [ searchAction, favouriteAction ]);
 
 				return [ pageLinks, actionLinks ];
 			}
