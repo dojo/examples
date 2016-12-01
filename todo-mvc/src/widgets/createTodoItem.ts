@@ -25,7 +25,11 @@ const createLabel = createWidgetBase
 		tagName: 'label',
 		nodeAttributes: [
 			function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
-				return { innerHTML: this.state.label };
+				return {
+					innerHTML: this.state.label,
+					'aria-describedby': 'edit-instructions',
+					tabindex: '0'
+				};
 			}
 		]
 	});
@@ -51,7 +55,7 @@ const createTodoItem = createWidgetBase.mixin({
 						value: label,
 						listeners: {
 							blur: (evt: Event) => { todoSave.do({ state, event }); },
-							keyup: (evt: Event) => { todoEditInput.do({ state, event }); }
+							keypress: (evt: Event) => { todoEditInput.do({ state, event }); }
 						},
 						state: { focused, classes: [ 'edit' ] }
 					};
@@ -62,7 +66,10 @@ const createTodoItem = createWidgetBase.mixin({
 								state: { classes: [ 'toggle' ], checked }
 							}),
 							d(createLabel, {
-								listeners: { dblclick: () => { todoEdit.do(state); } },
+								listeners: {
+									dblclick: (event: Event) => { todoEdit.do({ state, event }); },
+									keypress: (event: KeyboardEvent) => { todoEdit.do({ state, event }); }
+								},
 								state: { label }
 							}),
 							d(createButton, {

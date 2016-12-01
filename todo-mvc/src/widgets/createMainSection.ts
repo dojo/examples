@@ -25,8 +25,8 @@ const createMainSection = createWidgetBase.mixin({
 				};
 
 				return [
-					d(createTodoList, { id: 'todo-list', stateFrom }),
-					d(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions)
+					d(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions),
+					d(createTodoList, { id: 'todo-list', stateFrom })
 				];
 			}
 		]
