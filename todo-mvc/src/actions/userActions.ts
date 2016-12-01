@@ -52,7 +52,7 @@ export const todoEditInput = createAction({
 			return todoSave.do(options);
 		}
 		else if (which === 27) {
-			return widgetStore.get('todo-app').then((todoListState: any) => {
+			return widgetStore.get('todo-app').then(([ todoListState ]: [ any ]) => {
 				const { todos } = todoListState;
 				todoListState.todos = toggleEditing(todos, options.state.id, false);
 				return widgetStore.patch({ id: 'todo-app', todoListState });
