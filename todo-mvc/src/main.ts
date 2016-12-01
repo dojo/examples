@@ -3,7 +3,7 @@ import { bindActions as bindTodoStoreActions } from './stores/todoStore';
 import widgetStore from './stores/widgetStore';
 import createApp from './app';
 
-const root = document.getElementsByTagName('my-app')[0];
+const root = document.querySelector('my-app');
 
 const app = createApp({
 	id: 'app',
@@ -11,6 +11,6 @@ const app = createApp({
 	stateFrom: widgetStore
 });
 
-app.attach()
+app.append()
 	.then(() => bindTodoStoreActions())
 	.then(() => router.start());

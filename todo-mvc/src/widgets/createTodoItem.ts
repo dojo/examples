@@ -1,8 +1,7 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
+import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import d from 'dojo-widgets/d';
-import createVNodeEvented from 'dojo-widgets/mixins/createVNodeEvented';
 import { TextInputOptions } from 'dojo-widgets/components/textinput/createTextInput';
 import createButton from 'dojo-widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
@@ -20,7 +19,6 @@ export type TodoItemOptions = WidgetOptions<TodoItemState>;
 export type TodoItem = Widget<TodoItemState>;
 
 const createLabel = createWidgetBase
-	.mixin(createVNodeEvented)
 	.mixin({
 		mixin: {
 			tagName: 'label',
