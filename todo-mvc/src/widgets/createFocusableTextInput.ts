@@ -20,9 +20,7 @@ const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: HTMLInpu
 function afterUpdate(instance: FocusableTextInput, element: HTMLInputElement) {
 	const focused = instance.state.focused;
 	if (focused) {
-		if (focused) {
-			setTimeout(() => element.focus(), 0);
-		}
+		setTimeout(() => element.focus(), 0);
 	}
 	else if (!focused && document.activeElement === element) {
 		element.blur();
