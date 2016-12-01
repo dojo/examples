@@ -9,11 +9,15 @@ import createTodoList from './createTodoList';
 const createMainSection = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'section',
+		classes: [ 'main' ],
 		getChildrenNodes: function (this: Widget<WidgetState>): DNode[] {
-			const { stateFrom } = this;
+			const { state } = this;
 			const checkBoxOptions = {
 				id: 'todo-toggle',
-				stateFrom,
+				state: {
+					checked: (<any> state).allCompleted,
+					classes: [ 'toggle-all' ]
+				},
 				listeners: {
 					change: todoToggleAll
 				}
@@ -21,7 +25,7 @@ const createMainSection = createWidgetBase.mixin({
 
 			return [
 				d(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions),
-				d(createTodoList, { id: 'todo-list', stateFrom })
+				d(createTodoList, { id: 'todo-list', state })
 			];
 		}
 	}

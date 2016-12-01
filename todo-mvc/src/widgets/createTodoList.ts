@@ -26,6 +26,7 @@ function filter(filterName: string, todo: TodoItemState): boolean {
 const createTodoList = createWidgetBase.mixin({
 		mixin: {
 			tagName: 'ul',
+			classes: [ 'todo-list' ],
 			getChildrenNodes: function(this: TodoList): DNode[] {
 				const activeFilter = this.state.activeFilter || '';
 				const todos = this.state.todos || [];

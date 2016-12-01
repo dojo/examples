@@ -18,6 +18,7 @@ export type TodoFooter = Widget<TodoFooterState>;
 const createTodoFooter = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'footer',
+		classes: [ 'footer' ],
 		getChildrenNodes: function(this: TodoFooter): (DNode | null)[] {
 			const { activeCount, activeFilter, completedCount } = this.state;
 			const countLabel = activeCount === 1 ? 'item' : 'items';

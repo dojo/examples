@@ -6,7 +6,7 @@ import createApp from './app';
 const root = document.querySelector('my-app');
 
 const app = createApp({
-	id: 'app',
+	id: 'todo-app',
 	root,
 	stateFrom: widgetStore
 });

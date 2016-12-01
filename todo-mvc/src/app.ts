@@ -6,26 +6,34 @@ import d from 'dojo-widgets/d';
 import createTitle from './widgets/createTitle';
 import createMainSection from './widgets/createMainSection';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
-import createTodoFooter from './widgets/createTodoFooter';
+import createTodoFooter, { TodoFooterState } from './widgets/createTodoFooter';
 
 const createApp = createProjector.mixin({
 	mixin: {
 		getChildrenNodes: function(this: Widget<WidgetState>): DNode[] {
-			const { stateFrom } = this;
-
-			const inputOptions: WidgetOptions<WidgetState> = {
+			const { state } = this;
+			const { todo, todos } = <any> state;
+			const newTodoOptions: WidgetOptions<WidgetState> = {
 				id: 'new-todo',
-				stateFrom,
+				state: {
+					id: 'new-todo',
+					classes: ['new-todo'],
+					focused: true,
+					value: todo ? todo : '',
+					placeholder: 'What needs to be done?'
+				},
 				listeners: { keypress: todoInput }
 			};
+			const classes = todos && todos.length ? [] : [ 'hidden' ];
+			const todoFooterState: TodoFooterState = Object.assign({ classes }, state);
 
 			return [
 				d('header', {}, [
-					d(createTitle, { id: 'title', stateFrom }),
-					d(createFocusableTextInput, inputOptions)
+					d(createTitle, { id: 'title', state: { label: 'todos' } }),
+					d(createFocusableTextInput, newTodoOptions)
 				]),
-				d(createMainSection, { id: 'main-section', stateFrom }),
-				d(createTodoFooter, { id: 'todo-footer', stateFrom })
+				d(createMainSection, { id: 'main-section', state }),
+				d(createTodoFooter, { id: 'todo-footer', state: todoFooterState })
 			];
 		},
 		classes: [ 'todoapp' ],

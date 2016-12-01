@@ -26,6 +26,10 @@ export const updateHeaderAndFooter = createAction({
 
 export const putTodo = createAction({
 	do({ afterAll = [] }: StoreDelta<any>) {
-		return widgetStore.patch({ id: 'todo-list', todos: afterAll });
+		const completedCount = afterAll.filter(({ completed }) => completed).length;
+		const activeCount = afterAll.length - completedCount;
+		const allCompleted = afterAll.length === completedCount;
+
+		return widgetStore.patch({ id: 'todo-app', todos: afterAll, activeCount, completedCount, allCompleted });
 	}
 });
