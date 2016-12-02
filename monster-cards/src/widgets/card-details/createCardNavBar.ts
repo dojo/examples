@@ -1,6 +1,6 @@
-import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-import d from 'dojo-widgets/util/d';
+import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createCard, { CardState } from '../card/createCard';
 
@@ -16,7 +16,7 @@ const createCardNavBar = createWidgetBase
 		mixin: {
 			classes: [ 'animated', 'cardNavBar' ],
 			getChildrenNodes: function(this: CardNavBar): DNode[] {
-				const { cards } = this.state;
+				const { cards = [] } = this.state;
 
 				const cardNodes = cards.map((state) => {
 					return d(createCard, { id: `card-details-nav-bar-${state.id}`, state });

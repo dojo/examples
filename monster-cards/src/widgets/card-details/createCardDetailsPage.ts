@@ -1,11 +1,11 @@
-import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import { CardState } from '../card/createCard';
 import createCardDescription, { CardDescriptionState } from './createCardDescription';
 import createCardNavBar from './createCardNavBar';
 import createSeenWith from './createSeenWith';
-import d from 'dojo-widgets/util/d';
+import d from 'dojo-widgets/d';
 import { assign } from 'dojo-core/lang';
 
 export type CardDetailsPageState = WidgetState & {
@@ -30,10 +30,10 @@ const createCardDetailsPage = createWidgetBase
 					exitAnimation: 'slideOutLeft'
 				}, cardDescription);
 
-				const cardDescriptionView = d(createCardDescription, {
+				const cardDescriptionView = cardDescription ? d(createCardDescription, {
 					id: `card-details-description-${cardDescription.id}`,
 					state: descriptionState
-				});
+				}) : null;
 
 				const jumbotron = d('div.jumbotron', {} , [ cardDescriptionView ]);
 

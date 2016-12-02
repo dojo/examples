@@ -1,5 +1,5 @@
-import { DNode, WidgetOptions, WidgetState } from 'dojo-interfaces/widgetBases';
-import d from 'dojo-widgets/util/d';
+import { DNode, WidgetOptions, WidgetState } from 'dojo-widgets/interfaces';
+import d from 'dojo-widgets/d';
 import createProjector, { Projector } from 'dojo-widgets/createProjector';
 
 import createNavbar from './widgets/navbar/createNavbar';

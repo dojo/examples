@@ -1,6 +1,6 @@
-import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-import d from 'dojo-widgets/util/d';
+import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 
 export type CardDescriptionState = WidgetState & {

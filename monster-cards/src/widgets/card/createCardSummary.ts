@@ -1,6 +1,6 @@
-import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-import d from 'dojo-widgets/util/d';
+import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 import createCard from './createCard';
 
 export type CardSummaryState = WidgetState & {

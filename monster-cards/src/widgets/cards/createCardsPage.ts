@@ -1,9 +1,9 @@
-import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
+import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createCardsList from './createCardsList';
 import { CardSummaryState } from '../card/createCardSummary';
-import d from 'dojo-widgets/util/d';
+import d from 'dojo-widgets/d';
 
 export type CardsPageState = WidgetState & {
 	cards: CardSummaryState[];

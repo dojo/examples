@@ -13,6 +13,6 @@ const app = createApp({
 	cssTransitions: true
 });
 
-app.attach()
+app.append()
 	.then(() => bindCardStoreActions())
 	.then(() => router.start());
