@@ -1,6 +1,6 @@
-import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-import d from 'dojo-widgets/util/d';
+import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 import { VNodeProperties } from 'maquette';
 
 export type CardState = WidgetState & {
@@ -22,13 +22,11 @@ const createCard = createWidgetBase.mixin({
 				};
 			}
 		],
-		childNodeRenderers: [
-			function(this: Card): DNode[] {
-				const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
+		getChildrenNodes: function(this: Card): DNode[] {
+			const baseImageClass = this.state.large ? 'card-sprite-large' : 'card-sprite-small';
 
-				return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
-			}
-		]
+			return [ d(`div.${baseImageClass}.${this.state.imageClass}`) ];
+		}
 	}
 });
 

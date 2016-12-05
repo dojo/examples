@@ -1,5 +1,6 @@
 import * as registerSuite from 'intern/lib/interfaces/object';
 import { assert } from 'chai';
+import { VNode } from 'dojo-interfaces/vdom';
 import createCardDescription from '../../../../src/widgets/card-details/createCardDescription';
 
 const state = {
@@ -15,25 +16,25 @@ registerSuite({
 	name: 'createCardDescription',
 	render() {
 		const cardDescription = createCardDescription({ state });
-		const vnode = cardDescription.render();
+		const vnode = <VNode> cardDescription.render();
 		assert.strictEqual(vnode.vnodeSelector, 'div.animated.cardDescription');
 		assert.strictEqual(vnode.children!.length, 2);
 	},
 	renderCardImage() {
 		const cardDescription = createCardDescription({ state });
-		const vnode = cardDescription.render();
+		const vnode = <VNode> cardDescription.render();
 		assert.strictEqual(vnode.children![0].vnodeSelector,
 			`div.cardImage.card-sprite-large.${state.imageClass}`);
 	},
 	renderDescriptionArticle() {
 		const cardDescription = createCardDescription({ state });
-		const vnode = cardDescription.render();
+		const vnode = <VNode> cardDescription.render();
 		assert.strictEqual(vnode.children![1].vnodeSelector, 'article');
 		assert.strictEqual(vnode.children![1].children!.length, 5);
 	},
 	rendersCardDescriptions() {
 		const cardDescription = createCardDescription({ state });
-		const vnode = cardDescription.render();
+		const vnode = <VNode> cardDescription.render();
 		const article = vnode.children![1];
 
 		function getInnerHTML(index: number): string {

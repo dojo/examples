@@ -1,5 +1,6 @@
 import * as registerSuite from 'intern/lib/interfaces/object';
 import { assert } from 'chai';
+import { VNode } from 'dojo-interfaces/vdom';
 import createNavbar, { NavBarLinkDefinition } from './../../../../src/widgets/navbar/createNavbar';
 
 function getSections(length: number): NavBarLinkDefinition[] {
@@ -14,7 +15,7 @@ registerSuite({
 	name: 'createNavbar',
 	'Should render with two sub lists'() {
 		const navbar = createNavbar({ state: { sections: [] } });
-		const vnode = navbar.render();
+		const vnode = <VNode> navbar.render();
 
 		assert.strictEqual(vnode.vnodeSelector, 'header.navbar');
 		assert.strictEqual(vnode.children!.length, 2);
@@ -24,7 +25,7 @@ registerSuite({
 	'Should render a home link'() {
 		const sections = getSections(0);
 		const navbar = createNavbar({ state: { sections } });
-		const vnode = navbar.render();
+		const vnode = <VNode> navbar.render();
 
 		const sectionList = vnode.children![0];
 		assert.strictEqual(sectionList.children!.length, 1);
@@ -35,7 +36,7 @@ registerSuite({
 		const numSections = 2;
 		const sections = getSections(numSections);
 		const navbar = createNavbar({ state: { sections } });
-		const vnode = navbar.render();
+		const vnode = <VNode> navbar.render();
 
 		const sectionList = vnode.children![0];
 		assert.strictEqual(sectionList.children!.length, numSections + 1);
@@ -43,7 +44,7 @@ registerSuite({
 	'Should render text and a href for each section'() {
 		const sections = getSections(1);
 		const navbar = createNavbar({ state: { sections } });
-		const vnode = navbar.render();
+		const vnode = <VNode> navbar.render();
 
 		const sectionList = vnode.children![0];
 		const sectionItem = sectionList.children![1];

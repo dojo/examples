@@ -11,8 +11,8 @@ export default createMemoryStore<any>({
 			]
 		},
 		{
-			id: 'container',
-			children: []
+			id: 'app',
+			route: 'home'
 		},
 		{
 			id: 'cardDetails',

@@ -1,58 +1,18 @@
-import createApp from 'dojo-app/createApp';
-
 import router from './routes';
-import cardStore, { bindActions as bindCardStoreActions } from './stores/cardStore';
-
-import createNavbar from './widgets/navbar/createNavbar';
-import createContainer from './widgets/common/createContainer';
-import createHomePage from './widgets/home/createHomePage';
-import createGameplayPage from './widgets/gameplay/createGameplayPage';
-import createAboutPage from './widgets/about/createAboutPage';
-import createCardsPage from './widgets/cards/createCardsPage';
-import createCardDetailsPage from './widgets/card-details/createCardDetailsPage';
-import defaultWidgetStore from './stores/widgetStore';
-
+import { bindActions as bindCardStoreActions } from './stores/cardStore';
+import widgetStore from './stores/widgetStore';
+import createApp from './app';
 import 'maquette/src/css-transitions';
 
-const app = createApp({ defaultWidgetStore });
+const root = document.getElementsByTagName('my-app')[0];
 
-app.registerStore('cards-store', cardStore);
-app.loadDefinition({
-	widgets: [
-		{
-			id: 'navbar',
-			factory: createNavbar
-		},
-		{
-			id: 'container',
-			factory: createContainer,
-			options: {
-				tagName: 'main'
-			}
-		},
-		{
-			id: 'cardDetails',
-			factory: createCardDetailsPage
-		},
-		{
-			id: 'cards',
-			factory: createCardsPage
-		},
-		{
-			id: 'home',
-			factory: createHomePage
-		},
-		{
-			id: 'gameplay',
-			factory: createGameplayPage
-		},
-		{
-			id: 'about',
-			factory: createAboutPage
-		}
-	]
+const app = createApp({
+	id: 'app',
+	stateFrom: widgetStore,
+	root,
+	cssTransitions: true
 });
 
-Promise.resolve(app.realize(document.body))
+app.append()
 	.then(() => bindCardStoreActions())
 	.then(() => router.start());
