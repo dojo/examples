@@ -1,5 +1,5 @@
 import createObservableStore, { Store } from './createObservableStore';
-import { updateHeaderAndFooter, putTodo } from '../actions/widgetStoreActions';
+import { putTodo } from '../actions/widgetStoreActions';
 
 export interface Item {
 	id: string;
@@ -18,7 +18,6 @@ export function bindActions() {
 	return todoStore
 		.observe()
 		.subscribe((options) => {
-			updateHeaderAndFooter.do(options);
 			putTodo.do(options);
 		});
 }

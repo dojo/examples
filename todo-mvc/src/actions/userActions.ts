@@ -17,7 +17,7 @@ export const todoInput = createAction({
 	do({ event: { which, target: { value: label } } }: { event: FormInputEvent }) {
 		if (which === 13 && label) {
 			addTodo.do({ label, completed: false });
-			return widgetStore.patch({ id: 'new-todo', value: '' });
+			return widgetStore.patch({ id: 'todo-app', todo: '' });
 		}
 	}
 });
@@ -37,10 +37,10 @@ export const todoEdit = createAction({
 		if (event.type === 'keypress' && event.which !== 13 && event.which !== 32) {
 			return;
 		}
-		widgetStore.get('todo-list').then((todoListState: any) => {
+		widgetStore.get('todo-app').then(([ todoListState ]: [ any ]) => {
 			const { todos } = todoListState;
 			todoListState.todos = toggleEditing(todos, id, true);
-			return widgetStore.patch({ id: 'todo-list', todoListState });
+			return widgetStore.patch({ id: 'todo-app', todoListState });
 		});
 	}
 });
@@ -52,10 +52,10 @@ export const todoEditInput = createAction({
 			return todoSave.do(options);
 		}
 		else if (which === 27) {
-			return widgetStore.get('todo-list').then((todoListState: any) => {
+			return widgetStore.get('todo-app').then(([ todoListState ]: [ any ]) => {
 				const { todos } = todoListState;
 				todoListState.todos = toggleEditing(todos, options.state.id, false);
-				return widgetStore.patch({ id: 'todo-list', todoListState });
+				return widgetStore.patch({ id: 'todo-app', todoListState });
 			});
 		}
 	}
@@ -87,10 +87,7 @@ export const todoToggleComplete = createAction({
 
 export const filter = createAction({
 	do({ filter: activeFilter }: {filter: string}) {
-		return Promise.all([
-			widgetStore.patch({ id: 'todo-footer', activeFilter }),
-			widgetStore.patch({ id: 'todo-list', activeFilter })
-		]);
+		return widgetStore.patch({ id: 'todo-app', activeFilter });
 	}
 });
 

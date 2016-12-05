@@ -1,6 +1,6 @@
-import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-interfaces/widgetBases';
-import d from 'dojo-widgets/util/d';
+import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
+import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import d from 'dojo-widgets/d';
 
 type TodoFilterState = WidgetState & {
 	activeFilter?: string;
@@ -30,12 +30,10 @@ const createTodoFilter = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'ul',
 		classes: [ 'filters' ],
-		childNodeRenderers: [
-			function(this: TodoFilter): DNode[] {
-				const activeFilter = this.state.activeFilter || '';
-				return createFilterItems(activeFilter);
-			}
-		]
+		getChildrenNodes: function(this: TodoFilter): DNode[] {
+			const activeFilter = this.state.activeFilter || '';
+			return createFilterItems(activeFilter);
+		}
 	}
 });
 

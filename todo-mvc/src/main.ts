@@ -1,19 +1,16 @@
 import router from './routes';
 import { bindActions as bindTodoStoreActions } from './stores/todoStore';
 import widgetStore from './stores/widgetStore';
-import { createProjector } from 'dojo-widgets/projector';
-
 import createApp from './app';
 
+const root = document.getElementsByTagName('my-app')[0];
+
 const app = createApp({
-	id: 'app',
+	id: 'todo-app',
+	root,
 	stateFrom: widgetStore
 });
 
-const root = document.getElementsByTagName('my-app')[0];
-const projector = createProjector({ root });
-
-projector.append(app);
-projector.attach()
+app.append()
 	.then(() => bindTodoStoreActions())
 	.then(() => router.start());
