@@ -9,14 +9,17 @@ import createCardsPage from './widgets/cards/createCardsPage';
 import createGameplayPage from './widgets/gameplay/createGameplayPage';
 import createAboutPage from './widgets/about/createAboutPage';
 
-function getPageRoute(instance: any) {
-	let route: any;
+let previousRoute: DNode;
+
+function getPageFromRoute(instance: Projector) {
+	const { state }: { state: any } = instance;
+	let route: DNode;
 	const options: WidgetOptions<WidgetState> = {
-		id: instance.state.route,
+		id: state.route,
 		stateFrom: instance.stateFrom
 	};
 
-	switch (instance.state.route) {
+	switch (state.route) {
 		case 'home':
 			route = d(createHomePage, options);
 			break;
@@ -32,7 +35,15 @@ function getPageRoute(instance: any) {
 		case 'about':
 			route = d(createAboutPage, options);
 			break;
+		default:
+			if (previousRoute) {
+				route = previousRoute;
+			}
+			else {
+				route = d(createHomePage, options);
+			}
 	}
+	previousRoute = route;
 	return route;
 }
 
@@ -43,7 +54,7 @@ const createApp = createProjector.mixin({
 			if ((<any> this.state).route) {
 				return [
 					d(createNavbar, <any> { id: 'navbar', stateFrom }),
-					getPageRoute(this)
+					getPageFromRoute(this)
 				];
 			}
 			return [];
