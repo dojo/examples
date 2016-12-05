@@ -1,4 +1,5 @@
 import createMemoryStore from 'dojo-stores/createMemoryStore';
+import * as css from '../widgets/card-details/card-details.module.styl';
 
 export default createMemoryStore<any>({
 	data: [
@@ -16,8 +17,8 @@ export default createMemoryStore<any>({
 		},
 		{
 			id: 'cardDetails',
-			enterAnimation: 'fadeInSlideDown',
-			exitAnimation: 'fadeOutSlideUp'
+			enterAnimation: css.fadeInSlideDown,
+			exitAnimation: css.fadeOutSlideUp
 		},
 		{
 			id: 'cards',

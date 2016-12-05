@@ -2,6 +2,8 @@ import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createSearchInput from '../common/createSearchInput';
+import * as css from './header.module.styl';
+import * as generalCss from '../common/general.module.styl';
 
 export type NavBarState = WidgetState & {
 	sections: NavBarLinkDefinition[];
@@ -25,18 +27,22 @@ function createNavBarLink({ text: innerHTML, href }: NavBarLinkDefinition): DNod
 const createNavbar = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'header',
-		classes: [ 'navbar' ],
+		classes: [ css.header ],
 		childNodeRenderers: [
 			function(this: NavBar): DNode[] {
 				const homeLink = listItem(d('a', { href: '#' }, [
 					d('img', { src: 'images/navbar-app-icon.png' })
 				]));
 				const sectionLinks = this.state.sections.map(createNavBarLink);
-				const searchAction = listItem(d(createSearchInput, {}));
+				const searchAction = listItem(d(createSearchInput, {
+					state: {
+						classes: [ css.search ]
+					}
+				}));
 				const favouriteAction = listItem(d('i.fa.fa-2x.fa-heart-o'));
 
-				const pageLinks = d('ul.inline-list', {}, [ homeLink, ...sectionLinks ]);
-				const actionLinks = d('ul.inline-list.pull-right', {}, [ searchAction, favouriteAction ]);
+				const pageLinks = d(`ul.${ generalCss.inlineList }`, {}, [ homeLink, ...sectionLinks ]);
+				const actionLinks = d(`ul.${ generalCss.inlineList }.${ generalCss.pullRight }`, {}, [ searchAction, favouriteAction ]);
 
 				return [ pageLinks, actionLinks ];
 			}

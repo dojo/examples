@@ -3,6 +3,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createCard, { CardState } from '../card/createCard';
+import * as css from './navbar.module.styl';
 
 export type CardNavBarState = WidgetState & {
 	cards: CardState[];
@@ -14,7 +15,7 @@ const createCardNavBar = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.mixin({
 		mixin: {
-			classes: [ 'animated', 'cardNavBar' ],
+			classes: [ 'animated', css.cardNavBar ],
 			childNodeRenderers: [
 				function(this: CardNavBar): DNode[] {
 					const { cards } = this.state;

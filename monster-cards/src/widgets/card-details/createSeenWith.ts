@@ -3,6 +3,7 @@ import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import createCard, { CardState } from '../card/createCard';
 import { assign } from 'dojo-core/lang';
+import * as css from './seen-with.module.styl';
 
 export type SeenWithState = WidgetState & {
 	cards: CardState[];
@@ -12,7 +13,7 @@ export type SeenWith = Widget<SeenWithState>;
 
 const createSeenWith = createWidgetBase.mixin({
 	mixin: {
-		classes: [ 'seenWith' ],
+		classes: [ css.seenWith ],
 		childNodeRenderers: [
 			function(this: SeenWith): DNode[] {
 				const { cards } = this.state;

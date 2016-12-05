@@ -2,6 +2,7 @@ import { Widget, DNode, WidgetState } from 'dojo-interfaces/widgetBases';
 import createWidgetBase from 'dojo-widgets/bases/createWidgetBase';
 import d from 'dojo-widgets/util/d';
 import { VNodeProperties } from 'maquette';
+import * as css from './milestone-card.module.styl';
 
 export type CardState = WidgetState & {
 	imageClass: string;
@@ -14,7 +15,7 @@ export type Card = Widget<CardState>;
 const createCard = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'a',
-		classes: [ 'milestoneCard' ],
+		classes: [ css.milestoneCard ],
 		nodeAttributes: [
 			function (this: Card): VNodeProperties {
 				return {

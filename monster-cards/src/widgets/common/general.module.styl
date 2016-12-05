@@ -1,13 +1,13 @@
 @import './../../variables';
 
-body, html {
+.page {
 	width: 100%;
 	height: 100%;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
 }
 
-main {
+.app {
 	top: header-height;
 	left: 0;
 	right: 0;
@@ -24,11 +24,11 @@ main {
 	}
 }
 
-.pull-right {
+.pullRight {
 	float: right;
 }
 
-.inline-list {
+.inlineList {
 	height: 100%;
 	display: inline-block;
 	overflow: hidden;
@@ -50,7 +50,7 @@ strong {
 }
 
 @media (max-width: size-portrait-tablet) {
-	main {
+	.app {
 		top: 0;
 		bottom: header-height;
 	}

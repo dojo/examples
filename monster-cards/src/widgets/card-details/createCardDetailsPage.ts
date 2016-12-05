@@ -7,6 +7,9 @@ import createCardNavBar from './createCardNavBar';
 import createSeenWith from './createSeenWith';
 import d from 'dojo-widgets/util/d';
 import { assign } from 'dojo-core/lang';
+import * as jumbotronCss from '../common/jumbotron.module.styl';
+import * as detailsCss from './card-details.module.styl';
+import * as generalCss from './../common/general.module.styl';
 
 export type CardDetailsPageState = WidgetState & {
 	cards: CardState[];
@@ -19,7 +22,7 @@ const createCardDetailsPage = createWidgetBase
 	.mixin(createCssTransitionMixin)
 	.mixin({
 		mixin: {
-			classes: [ 'animated', 'pageHolder', 'cardDetails' ],
+			classes: [ 'animated', generalCss.pageHolder, detailsCss.cardDetails ],
 			childNodeRenderers: [
 				function(this: CardDetailsPage): DNode[] {
 					const { cards, cardDescription, seenWith } = this.state;
@@ -28,7 +31,8 @@ const createCardDetailsPage = createWidgetBase
 
 					const descriptionState = assign({
 						enterAnimation: 'slideInRight',
-						exitAnimation: 'slideOutLeft'
+						exitAnimation: 'slideOutLeft',
+						classes: [ detailsCss.cardDescription ]
 					}, cardDescription);
 
 					const cardDescriptionView = d(createCardDescription, {
@@ -36,9 +40,12 @@ const createCardDetailsPage = createWidgetBase
 						state: descriptionState
 					});
 
-					const jumbotron = d('div.jumbotron', {} , [ cardDescriptionView ]);
+					const jumbotron = d(`div.${ jumbotronCss.jumbotron }`, {} , [ cardDescriptionView ]);
 
-					const seenWithView = d(createSeenWith, { state: { cards: seenWith }});
+					const seenWithView = d(createSeenWith, { state: {
+						cards: seenWith,
+						classes: [ detailsCss.seenWith ]
+					}});
 
 					return [ cardNavBar, jumbotron, seenWithView ];
 				}

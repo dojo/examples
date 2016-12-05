@@ -1,0 +1,1 @@
+export const cardsList: string;
