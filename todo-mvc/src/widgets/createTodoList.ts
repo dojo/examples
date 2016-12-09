@@ -1,6 +1,6 @@
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { w } from 'dojo-widgets/d';
 import createTodoItem, { TodoItemState } from './createTodoItem';
 
 type TodoListState = WidgetState & {
@@ -32,7 +32,7 @@ const createTodoList = createWidgetBase.mixin({
 				const todos = this.state.todos || [];
 				return todos
 					.filter((todo) => filter(activeFilter, todo))
-					.map((todo) => d(createTodoItem, { id: todo.id, state: todo }));
+					.map((todo) => w(createTodoItem, { id: todo.id, state: todo }));
 			}
 		}
 	});

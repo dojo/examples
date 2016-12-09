@@ -3,7 +3,7 @@ import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import createCssTransitionMixin from 'dojo-widgets/mixins/createCssTransitionMixin';
 import createCardsList from './createCardsList';
 import { CardSummaryState } from '../card/createCardSummary';
-import d from 'dojo-widgets/d';
+import { v, w } from 'dojo-widgets/d';
 
 export type CardsPageState = WidgetState & {
 	cards: CardSummaryState[];
@@ -16,8 +16,8 @@ const createCardsPage = createWidgetBase
 		mixin: {
 			classes: [ 'animated', 'pageHolder', 'cards' ],
 			getChildrenNodes: function(this: CardsPage): DNode[] {
-				const jumbotron = d('div.jumbotron');
-				const cardsList = d(createCardsList, { state: this.state });
+				const jumbotron = v('div.jumbotron');
+				const cardsList = w(createCardsList, { state: this.state });
 
 				return [ jumbotron, cardsList ];
 			}

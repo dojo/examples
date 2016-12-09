@@ -1,6 +1,6 @@
 import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { w } from 'dojo-widgets/d';
 import createCardSummary, { CardSummaryState } from '../card/createCardSummary';
 
 export type CardListState = WidgetState & {
@@ -17,7 +17,7 @@ const createCardList = createWidgetBase
 				const { cards = [] } = this.state;
 
 				return cards.map((state) => {
-					return d(createCardSummary, { id: `card-list-summary-${state.id}`, state });
+					return w(createCardSummary, { id: `card-list-summary-${state.id}`, state });
 				});
 			}
 		}

@@ -1,7 +1,7 @@
 import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-widgets/interfaces';
 import createProjector from 'dojo-widgets/createProjector';
 import { todoInput } from './actions/userActions';
-import d from 'dojo-widgets/d';
+import { v, w } from 'dojo-widgets/d';
 
 import createTitle from './widgets/createTitle';
 import createMainSection from './widgets/createMainSection';
@@ -28,12 +28,12 @@ const createApp = createProjector.mixin({
 			const todoFooterState: TodoFooterState = Object.assign({ classes }, state);
 
 			return [
-				d('header', {}, [
-					d(createTitle, { id: 'title', state: { label: 'todos' } }),
-					d(createFocusableTextInput, newTodoOptions)
+				v('header', {}, [
+					w(createTitle, { id: 'title', state: { label: 'todos' } }),
+					w(createFocusableTextInput, newTodoOptions)
 				]),
-				d(createMainSection, { id: 'main-section', state }),
-				d(createTodoFooter, { id: 'todo-footer', state: todoFooterState })
+				w(createMainSection, { id: 'main-section', state }),
+				w(createTodoFooter, { id: 'todo-footer', state: todoFooterState })
 			];
 		},
 		classes: [ 'todoapp' ],

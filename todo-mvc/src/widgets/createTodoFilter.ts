@@ -1,6 +1,6 @@
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { v }  from 'dojo-widgets/d';
 
 type TodoFilterState = WidgetState & {
 	activeFilter?: string;
@@ -14,8 +14,8 @@ function createFilterItems(activeFilter: string): DNode[] {
 	const filters = [ 'all', 'active', 'completed' ];
 	return filters.map((filterItem) => {
 		const label = filterItem[0].toUpperCase() + filterItem.substring(1);
-		return d('li', {}, [
-			d('a', {
+		return v('li', {}, [
+			v('a', {
 				innerHTML: label,
 				href: `#${filterItem}`,
 				classes: {
