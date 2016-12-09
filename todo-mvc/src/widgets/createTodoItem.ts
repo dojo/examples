@@ -1,7 +1,7 @@
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { v, w } from 'dojo-widgets/d';
 import { TextInputOptions } from 'dojo-widgets/components/textinput/createTextInput';
 import createButton from 'dojo-widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
@@ -59,25 +59,25 @@ const createTodoItem = createWidgetBase.mixin({
 					state: { focused, classes: [ 'edit' ] }
 				};
 				return [
-					d('div.view', {}, [
-						d(createCheckboxInput, {
+					v('div.view', {}, [
+						w(createCheckboxInput, {
 							listeners: { change: () => { todoToggleComplete.do(state); } },
 								state: { classes: [ 'toggle' ], checked }
 						}),
-						d(createLabel, {
+						w(createLabel, {
 							listeners: {
 								dblclick: (event: Event) => { todoEdit.do({ state, event }); },
 									keypress: (event: KeyboardEvent) => { todoEdit.do({ state, event }); }
 							},
 							state: { label }
 						}),
-						d(createButton, {
+						w(createButton, {
 							listeners: { click: () => { todoRemove.do(state); } },
 								state: { classes: [ 'destroy' ] }
 						})
 					]),
 					state.editing ?
-						d(createFocusableTextInput, inputOptions) : null
+						w(createFocusableTextInput, inputOptions) : null
 				];
 			}
 		}

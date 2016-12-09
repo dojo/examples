@@ -1,6 +1,6 @@
 import { ComposeFactory } from 'dojo-compose/compose';
 import { DNode, Widget, WidgetOptions, WidgetState } from 'dojo-widgets/interfaces';
-import d from 'dojo-widgets/d';
+import { w } from 'dojo-widgets/d';
 import createProjector, { Projector, ProjectorOptions } from 'dojo-widgets/createProjector';
 
 import createNavbar from './widgets/navbar/createNavbar';
@@ -30,26 +30,26 @@ function getPageFromRoute(instance: App) {
 
 	switch (state.route) {
 		case 'home':
-			routeDNode = d(createHomePage, options);
+			routeDNode = w(createHomePage, options);
 			break;
 		case 'cards':
-			routeDNode = d(createCardsPage, options);
+			routeDNode = w(createCardsPage, options);
 			break;
 		case 'cardDetails':
-			routeDNode = d(createCardDetailsPage, options);
+			routeDNode = w(createCardDetailsPage, options);
 			break;
 		case 'gameplay':
-			routeDNode = d(createGameplayPage, options);
+			routeDNode = w(createGameplayPage, options);
 			break;
 		case 'about':
-			routeDNode = d(createAboutPage, options);
+			routeDNode = w(createAboutPage, options);
 			break;
 		default:
 			if (previousRouteDNode) {
 				routeDNode = previousRouteDNode;
 			}
 			else {
-				routeDNode = d(createHomePage, options);
+				routeDNode = w(createHomePage, options);
 			}
 	}
 	previousRouteDNode = routeDNode;
@@ -62,7 +62,7 @@ const createApp: AppFactory = createProjector.mixin({
 			const { stateFrom } = this;
 			if (this.state.route) {
 				return [
-					d(createNavbar, <WidgetOptions<WidgetState>> { id: 'navbar', stateFrom }),
+					w(createNavbar, <WidgetOptions<WidgetState>> { id: 'navbar', stateFrom }),
 					getPageFromRoute(this)
 				];
 			}

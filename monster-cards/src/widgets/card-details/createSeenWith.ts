@@ -1,6 +1,6 @@
 import { Widget, DNode, WidgetState } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { w, v } from 'dojo-widgets/d';
 import createCard, { CardState } from '../card/createCard';
 import { assign } from 'dojo-core/lang';
 
@@ -18,11 +18,11 @@ const createSeenWith = createWidgetBase.mixin({
 
 			const cardNodes = cards.map((card) => {
 				const state = assign({ large: true }, card);
-				return d(createCard, { id: `card-details-seen-with-${state.id}`, state });
+				return w(createCard, { id: `card-details-seen-with-${state.id}`, state });
 			});
 
 			return [
-				d('h2', { innerHTML: 'last seen with'}),
+				v('h2', { innerHTML: 'last seen with'}),
 				...cardNodes
 			];
 		}

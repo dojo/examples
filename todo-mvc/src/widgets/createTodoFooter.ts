@@ -1,6 +1,6 @@
 import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { v, w } from 'dojo-widgets/d';
 import createButton from 'dojo-widgets/components/button/createButton';
 import { clearCompleted } from '../actions/userActions';
 import createTodoFilter from './createTodoFilter';
@@ -24,17 +24,17 @@ const createTodoFooter = createWidgetBase.mixin({
 			const countLabel = activeCount === 1 ? 'item' : 'items';
 
 			return [
-				d('span', { 'class': 'todo-count' }, [
-					d('strong', [activeCount + ' ']),
-					d('span', [countLabel + ' left'])
+				v('span', { 'class': 'todo-count' }, [
+					v('strong', [activeCount + ' ']),
+					v('span', [countLabel + ' left'])
 				]),
-				d(createTodoFilter, {
+				w(createTodoFilter, {
 					state: {
 						classes: [ 'filters' ],
 						activeFilter
 					}
 				}),
-				completedCount ? d(createButton, {
+				completedCount ? w(createButton, {
 					listeners: {
 						click: clearCompleted
 					},

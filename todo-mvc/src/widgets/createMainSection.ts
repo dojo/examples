@@ -1,6 +1,6 @@
 import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import d from 'dojo-widgets/d';
+import { w } from 'dojo-widgets/d';
 
 import { todoToggleAll } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
@@ -24,8 +24,8 @@ const createMainSection = createWidgetBase.mixin({
 			};
 
 			return [
-				d(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions),
-				d(createTodoList, { id: 'todo-list', state })
+				w(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions),
+				w(createTodoList, { id: 'todo-list', state })
 			];
 		}
 	}
