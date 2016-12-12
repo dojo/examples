@@ -3,7 +3,7 @@ import { putTodo } from '../actions/widgetStoreActions';
 
 export interface Item {
 	id: string;
-	label: string;
+	label?: string;
 	completed?: boolean;
 }
 
@@ -18,6 +18,6 @@ export function bindActions() {
 	return todoStore
 		.observe()
 		.subscribe((options) => {
-			putTodo.do(options);
+			putTodo(options);
 		});
 }
