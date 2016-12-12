@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "@reactivex/rxjs": "5.0.0-beta.6",
-    "dojo-actions": ">=2.0.0-alpha.9",
     "dojo-compose": ">=2.0.0-beta.17",
     "dojo-core": ">=2.0.0-alpha.16",
     "dojo-has": ">=2.0.0-alpha.5",

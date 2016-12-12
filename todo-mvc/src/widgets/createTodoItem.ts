@@ -9,7 +9,7 @@ import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 
 export type TodoItemState = WidgetState & {
-	label: string;
+	label?: string;
 	editing?: boolean;
 	completed?: boolean;
 };
@@ -53,27 +53,27 @@ const createTodoItem = createWidgetBase.mixin({
 				const inputOptions: TextInputOptions = {
 					value: label,
 					listeners: {
-						blur: (evt: Event) => { todoSave.do({ state, event }); },
-							keypress: (evt: Event) => { todoEditInput.do({ state, event }); }
+						blur: todoSave,
+						keypress: todoEditInput
 					},
-					state: { focused, classes: [ 'edit' ] }
+					state: { id: state.id, focused, classes: [ 'edit' ] }
 				};
 				return [
 					v('div.view', {}, [
 						w(createCheckboxInput, {
-							listeners: { change: () => { todoToggleComplete.do(state); } },
-								state: { classes: [ 'toggle' ], checked }
+							listeners: { change: todoToggleComplete },
+							state: { id: state.id, classes: [ 'toggle' ], checked }
 						}),
 						w(createLabel, {
 							listeners: {
-								dblclick: (event: Event) => { todoEdit.do({ state, event }); },
-									keypress: (event: KeyboardEvent) => { todoEdit.do({ state, event }); }
+								dblclick: todoEdit,
+								keypress: todoEdit
 							},
-							state: { label }
+							state: { id: state.id, label }
 						}),
 						w(createButton, {
-							listeners: { click: () => { todoRemove.do(state); } },
-								state: { classes: [ 'destroy' ] }
+							listeners: { click: todoRemove },
+							state: { id: state.id, classes: [ 'destroy' ] }
 						})
 					]),
 					state.editing ?

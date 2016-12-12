@@ -27,7 +27,7 @@ const filterRoute = createRoute<FilterParameters>({
 
 	exec(request) {
 		const { filter } = request.params;
-		return filterAction.do({ filter });
+		return filterAction({ filter });
 	}
 });
 
