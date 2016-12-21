@@ -4,13 +4,18 @@ import { w } from 'dojo-widgets/d';
 import createTodoItem, { TodoItemState } from './createTodoItem';
 
 type TodoListState = WidgetState & {
-	activeFilter?: string;
+	activeFilter: string;
 	todos: TodoItemState[];
 };
 
-type TodoListOptions = WidgetOptions<TodoListState>;
+type TodoListProperties = {
+	activeFilter: string;
+	todos: TodoItemState[];
+}
 
-export type TodoList = Widget<TodoListState>;
+type TodoListOptions = WidgetOptions<TodoListState, TodoListProperties>;
+
+export type TodoList = Widget<TodoListState, TodoListProperties>;
 
 function filter(filterName: string, todo: TodoItemState): boolean {
 	switch (filterName) {
@@ -32,7 +37,7 @@ const createTodoList = createWidgetBase.mixin({
 				const todos = this.state.todos || [];
 				return todos
 					.filter((todo) => filter(activeFilter, todo))
-					.map((todo) => w(createTodoItem, { id: todo.id, state: todo }));
+					.map((todo) => w(createTodoItem, { id: todo.id, properties: todo }));
 			}
 		}
 	});

@@ -5,13 +5,18 @@ import { Widget, WidgetOptions, WidgetState } from 'dojo-widgets/interfaces';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 
 export type FocusableTextInputState = WidgetState & FormFieldMixinState<string> & {
-	focused?: boolean;
-	placeholder?: string;
+	focused: boolean;
+	placeholder: string;
 };
 
-export type FocusableTextInputOptions = WidgetOptions<FocusableTextInputState> & FormFieldMixinOptions<string, FocusableTextInputState>;
+export type FocusableTextProperties = {
+	focused: boolean;
+	placeholder: string;
+};
 
-export type FocusableTextInput = Widget<FocusableTextInputState> & FormFieldMixin<string, FocusableTextInputState>;
+export type FocusableTextInputOptions = WidgetOptions<FocusableTextInputState, FocusableTextProperties> & FormFieldMixinOptions<string, FocusableTextInputState>;
+
+export type FocusableTextInput = Widget<FocusableTextInputState, FocusableTextProperties> & FormFieldMixin<string, FocusableTextInputState>;
 
 const afterUpdateFunctions = new WeakMap<FocusableTextInput, {(element: HTMLInputElement): void}>();
 
@@ -34,7 +39,7 @@ const createFocusableTextInput = createWidgetBase
 			nodeAttributes: [
 				function (this: FocusableTextInput): VNodeProperties {
 					const afterUpdate = afterUpdateFunctions.get(this);
-					const { placeholder, value } = this.state;
+					const { placeholder, value = '' } = this.state;
 					return {
 						afterUpdate,
 						placeholder,

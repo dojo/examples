@@ -1,4 +1,4 @@
-import createObservableStore, { Store } from './createObservableStore';
+import { createObservableStore } from 'dojo-stores/store/mixins/createObservableStoreMixin';
 import { putTodo } from '../actions/widgetStoreActions';
 
 export interface Item {
@@ -7,7 +7,7 @@ export interface Item {
 	completed?: boolean;
 }
 
-const todoStore: Store<Item> = createObservableStore({
+const todoStore = createObservableStore({
 	data: <Item[]> [],
 	fetchAroundUpdates: true
 });

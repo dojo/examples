@@ -1,4 +1,4 @@
-import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-widgets/interfaces';
+import { DNode, Widget, WidgetState, WidgetProperties, WidgetOptions } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import { w } from 'dojo-widgets/d';
 
@@ -10,11 +10,11 @@ const createMainSection = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'section',
 		classes: [ 'main' ],
-		getChildrenNodes: function (this: Widget<WidgetState>): DNode[] {
+		getChildrenNodes: function (this: Widget<WidgetState, WidgetProperties>): DNode[] {
 			const { state } = this;
 			const checkBoxOptions = {
 				id: 'todo-toggle',
-				state: {
+				properties: {
 					checked: (<any> state).allCompleted,
 					classes: [ 'toggle-all' ]
 				},
@@ -24,8 +24,8 @@ const createMainSection = createWidgetBase.mixin({
 			};
 
 			return [
-				w(createCheckboxInput, <WidgetOptions<WidgetState> > checkBoxOptions),
-				w(createTodoList, { id: 'todo-list', state })
+				w(createCheckboxInput, <WidgetOptions<WidgetState, WidgetProperties>> checkBoxOptions),
+				w(createTodoList, { id: 'todo-list', properties: state })
 			];
 		}
 	}

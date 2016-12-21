@@ -9,11 +9,17 @@ export type TodoFooterState = WidgetState & {
 	activeFilter?: string;
 	activeCount?: number;
 	completedCount?: number;
-};
+}
 
-export type TodoFooterOptions = WidgetOptions<TodoFooterState>;
+export type TodoFooterProperties = {
+	activeFilter: string;
+	activeCount: number;
+	completedCount: number;
+}
 
-export type TodoFooter = Widget<TodoFooterState>;
+export type TodoFooterOptions = WidgetOptions<TodoFooterState, TodoFooterProperties>;
+
+export type TodoFooter = Widget<TodoFooterState, TodoFooterProperties>;
 
 const createTodoFooter = createWidgetBase.mixin({
 	mixin: {
@@ -29,7 +35,7 @@ const createTodoFooter = createWidgetBase.mixin({
 					v('span', [countLabel + ' left'])
 				]),
 				w(createTodoFilter, {
-					state: {
+					properties: {
 						classes: [ 'filters' ],
 						activeFilter
 					}
@@ -38,7 +44,7 @@ const createTodoFooter = createWidgetBase.mixin({
 					listeners: {
 						click: clearCompleted
 					},
-					state: {
+					properties: {
 						label: 'Clear completed',
 						classes: [ 'clear-completed' ]
 					}

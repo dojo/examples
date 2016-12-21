@@ -1,4 +1,4 @@
-import createObservableStore from './createObservableStore';
+import { createObservableStore } from 'dojo-stores/store/mixins/createObservableStoreMixin';
 
 export default createObservableStore({
 	data: [
@@ -8,7 +8,8 @@ export default createObservableStore({
 			todos: [],
 			completedCount: 0,
 			activeCount: 0,
-			activeFilter: 'all'
+			activeFilter: 'all',
+			allCompleted: false
 		}
 	]
 });

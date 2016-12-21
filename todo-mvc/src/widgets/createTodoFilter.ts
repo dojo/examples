@@ -6,9 +6,13 @@ type TodoFilterState = WidgetState & {
 	activeFilter?: string;
 };
 
-type TodoFilterOptions = WidgetOptions<TodoFilterState>;
+type TodoFilterProperties = {
+	activeFilter: string;
+};
 
-type TodoFilter = Widget<TodoFilterState>;
+type TodoFilterOptions = WidgetOptions<TodoFilterState, TodoFilterProperties>;
+
+type TodoFilter = Widget<TodoFilterState, TodoFilterProperties>;
 
 function createFilterItems(activeFilter: string): DNode[] {
 	const filters = [ 'all', 'active', 'completed' ];
