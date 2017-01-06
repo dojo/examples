@@ -1,0 +1,20 @@
+{
+	"version": "2.0.3",
+	"compilerOptions": {
+		"declaration": false,
+		"module": "umd",
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"strictNullChecks": true,
+		"outDir": "_build/",
+		"removeComments": false,
+		"sourceMap": true,
+		"target": "es5",
+		"moduleResolution": "node"
+	},
+	"include": [
+		"./typings/index.d.ts",
+		"./src/**/*.ts",
+		"./tests/**/*.ts"
+	]
+}
