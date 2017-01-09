@@ -1,2 +1,0 @@
-import './createCard';
-import './createCardSummary';
