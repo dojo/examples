@@ -16,7 +16,6 @@ then
 	then
 
 		buildProject "todo-mvc"
-		buildProject "monster-cards"
 
 		export PROJECT_DIR="auto-deploy"
 
@@ -24,10 +23,8 @@ then
 
 		mkdir samples
 		mkdir samples/todo-mvc
-		mkdir samples/monster-cards
 
 		cp index.html samples/index.html
-		cp -r monster-cards/dist/* samples/monster-cards/
 		cp -r todo-mvc/dist/* samples/todo-mvc/
 
 		git remote add pages "https://$GH_TOKEN@github.com/dojo/examples.git"
