@@ -7,7 +7,6 @@ import createCheckboxInput from './createCheckboxInput';
 import createTodoItemList from './createTodoItemList';
 import createSearchInput from './createSearchInput';
 import { CheckboxInputOptions } from './createCheckboxInput';
-import { FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
 
 interface MainSectionProperties {
 	allCompleted: boolean;
