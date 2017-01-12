@@ -1,23 +1,18 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
+import { Widget, WidgetFactory, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import { w } from 'dojo-widgets/d';
-import createTodoItem, { TodoItemState } from './createTodoItem';
+import createTodoItem, { TodoItemProperties } from './createTodoItem';
 
-type TodoListState = WidgetState & {
-	activeFilter: string;
-	todos: TodoItemState[];
-};
-
-type TodoListProperties = {
-	activeFilter: string;
-	todos: TodoItemState[];
+export interface TodoListProperties extends WidgetProperties {
+	activeFilter?: string;
+	todos?: TodoItemProperties[];
 }
 
-type TodoListOptions = WidgetOptions<TodoListState, TodoListProperties>;
+export type TodoList = Widget<TodoListProperties>;
 
-export type TodoList = Widget<TodoListState, TodoListProperties>;
+export interface TodoListFactory extends WidgetFactory<TodoList, TodoListProperties> {}
 
-function filter(filterName: string, todo: TodoItemState): boolean {
+function filter(filterName: string, todo: TodoItemProperties): boolean {
 	switch (filterName) {
 		case 'completed':
 			return !!todo.completed;
@@ -28,16 +23,16 @@ function filter(filterName: string, todo: TodoItemState): boolean {
 	}
 }
 
-const createTodoList = createWidgetBase.mixin({
+const createTodoList: TodoListFactory = createWidgetBase.mixin({
 		mixin: {
 			tagName: 'ul',
 			classes: [ 'todo-list' ],
 			getChildrenNodes: function(this: TodoList): DNode[] {
-				const activeFilter = this.state.activeFilter || '';
-				const todos = this.state.todos || [];
+				const activeFilter = this.properties.activeFilter || '';
+				const todos = this.properties.todos || [];
 				return todos
 					.filter((todo) => filter(activeFilter, todo))
-					.map((todo) => w(createTodoItem, { id: todo.id, properties: todo }));
+					.map((todo) => w(createTodoItem, todo));
 			}
 		}
 	});

@@ -1,30 +1,32 @@
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { Widget, WidgetOptions, WidgetState } from 'dojo-widgets/interfaces';
-import createFormFieldMixin, { FormFieldMixin, FormFieldMixinOptions, FormFieldMixinState } from 'dojo-widgets/mixins/createFormFieldMixin';
+import { Widget, WidgetFactory, WidgetState, WidgetProperties } from 'dojo-widgets/interfaces';
+import createFormFieldMixin, { FormFieldMixin } from 'dojo-widgets/mixins/createFormFieldMixin';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 
-export type CheckboxInputState = WidgetState & FormFieldMixinState<string> & {
-	checked: boolean;
+export interface CheckboxProperties extends WidgetProperties {
+	checked?: boolean;
+	onChange?: (event?: Event) => void;
 };
 
-export type CheckboxProperties = {
-	checked: boolean;
-};
+export type CheckboxInput = Widget<CheckboxProperties> & FormFieldMixin<string, WidgetState> & {
+	onChange: (event?: Event) => void;
+}
 
-export type CheckboxInputOptions = WidgetOptions<CheckboxInputState, CheckboxProperties> & FormFieldMixinOptions<string, CheckboxInputState>;
+export type CheckboxInputFactory = WidgetFactory<CheckboxInput, CheckboxProperties>
 
-export type CheckboxInput = Widget<CheckboxInputState, CheckboxProperties> & FormFieldMixin<string, CheckboxInputState>;
-
-const createCheckboxInput = createWidgetBase
+const createCheckboxInput: CheckboxInputFactory = createWidgetBase
 	.mixin(createFormFieldMixin)
 	.mixin({
 		mixin: {
 			tagName: 'input',
 			type: 'checkbox',
+			onChange(this: CheckboxInput, event?: Event) {
+				this.properties.onChange && this.properties.onChange(event);
+			},
 			nodeAttributes: [
 				function (this: CheckboxInput): VNodeProperties {
-					const { checked } = this.state;
-					return checked !== undefined ? { checked } : {};
+					const { checked } = this.properties;
+					return { checked, onchange: this.onChange };
 				}
 			]
 		}
