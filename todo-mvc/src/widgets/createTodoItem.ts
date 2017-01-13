@@ -2,11 +2,12 @@ import { Widget, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import { v, w } from 'dojo-widgets/d';
-import createButton, { ButtonProperties } from 'dojo-widgets/components/button/createButton';
+import createButton from 'dojo-widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
 import createLabel from './createLabel';
+import { bind } from './../utils';
 
 export interface TodoItemProperties extends WidgetProperties {
 	label: string;
@@ -36,24 +37,20 @@ const createTodoItem = createWidgetBase.mixin({
 
 				return [
 					v('div.view', [
-						w(createCheckboxInput, { classes: [ 'toggle' ], checked, onChange: bindMe(todoToggleComplete, this) }),
-						w(createLabel, { label, onDblclick: bindMe(todoEdit, this), onKeypress: bindMe(todoEdit, this) }),
-						w<Identifiable<ButtonProperties>>(createButton, { todoId, classes: [ 'destroy' ], onClick: bindMe(todoRemove, this) })
+						w(createCheckboxInput, { classes: [ 'toggle' ], checked, onChange: bind(todoToggleComplete, this) }),
+						w(createLabel, { label, onDblclick: bind(todoEdit, this), onKeypress: bind(todoEdit, this) }),
+						w(createButton, { classes: [ 'destroy' ], onClick: bind(todoRemove, this) })
 					]),
 					focused ? w(createFocusableTextInput, {
 						value: label,
 						id: todoId,
 						focused, classes: [ 'edit' ],
-						onBlur: bindMe(todoSave, this),
-						onKeyUp: bindMe(todoEditInput, this)
+						onBlur: bind(todoSave, this),
+						onKeyUp: bind(todoEditInput, this)
 					}) : null
 				];
 			}
 		}
 });
-
-function bindMe<T extends Function>(fn: T, instance: any): T {
-	return fn.bind(instance);
-}
 
 export default createTodoItem;

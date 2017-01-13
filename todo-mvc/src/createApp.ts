@@ -10,6 +10,7 @@ import createMainSection from './widgets/createMainSection';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter, { TodoFooterProperties } from './widgets/createTodoFooter';
 import externalStateMixin from 'dojo-widgets/mixins/externalState';
+import { bind } from './utils';
 
 export interface ApplicationState extends WidgetState {
 	id: string;
@@ -32,7 +33,7 @@ const createApp = createProjector
 			return [
 				v('header', {}, [
 					w(createTitle, { id: 'title', label: 'todos' }),
-					w(createFocusableTextInput, { id: 'new-todo', classes: ['new-todo'], focused: true, placeholder: 'What needs to be done?', onKeyUp: bindMe(todoInput, this) })
+					w(createFocusableTextInput, { id: 'new-todo', classes: ['new-todo'], focused: true, placeholder: 'What needs to be done?', onKeyUp: bind(todoInput, this) })
 				]),
 				w(createMainSection, assign(<WidgetProperties> {}, this.state, { id: 'main-section' })),
 				w(createTodoFooter, todoFooterProperties)
@@ -42,9 +43,5 @@ const createApp = createProjector
 		tagName: 'section'
 	}
 });
-
-function bindMe<T extends Function>(fn: T, instance: any): T {
-	return fn.bind(instance);
-}
 
 export default createApp;
