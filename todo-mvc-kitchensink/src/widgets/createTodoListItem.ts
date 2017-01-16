@@ -1,9 +1,9 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v, w } from 'dojo-widgets/d';
-import { TextInputOptions } from 'dojo-widgets/components/textinput/createTextInput';
-import createButton from 'dojo-widgets/components/button/createButton';
+import { Widget, DNode } from '@dojo/widgets/interfaces';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v, w } from '@dojo/widgets/d';
+import { TextInputProperties } from '@dojo/widgets/components/textinput/createTextInput';
+import createButton from '@dojo/widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
@@ -15,10 +15,7 @@ export interface TodoItemProperties {
 	completed: boolean;
 }
 
-export type TodoItemState = WidgetState & TodoItemProperties;
-export type TodoItemOptions = WidgetOptions<TodoItemState, TodoItemProperties>;
-
-export type TodoItem = Widget<TodoItemState, TodoItemProperties>;
+export type TodoItem = Widget<TodoItemProperties>;
 
 const createLabel = createWidgetBase
 	.mixin({
@@ -48,11 +45,11 @@ const createTodoListItem = createWidgetBase.mixin({
 				}
 			],
 			getChildrenNodes: function(this: TodoItem): (DNode | null)[] {
-				const state = this.state;
+				const state = this.properties;
 				const checked = state.completed;
 				const label = state.label;
 				const focused = state.editing;
-				const inputOptions: TextInputOptions = {
+				const inputOptions: TextInputProperties = {
 					value: label,
 					listeners: {
 						blur: todoSave,

@@ -1,18 +1,16 @@
-import { DNode, Widget, WidgetState, WidgetOptions, WidgetProperties } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { w, v } from 'dojo-widgets/d';
+import { DNode, Widget, WidgetProperties } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { w, v } from '@dojo/widgets/d';
 
 import { todoToggleAll, updateSearch } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createTodoItemList from './createTodoItemList';
 import createSearchInput from './createSearchInput';
-import { CheckboxInputOptions } from './createCheckboxInput';
+import { CheckboxInputProperties } from './createCheckboxInput';
 
 interface MainSectionProperties {
 	allCompleted: boolean;
 }
-
-type MainSectionState = WidgetState & MainSectionProperties;
 
 function searchHandler(event: any) {
 	updateSearch(event.target.value);
@@ -22,37 +20,36 @@ const createMainSection = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'section',
 		classes: [ 'main' ],
-		getChildrenNodes: function (this: Widget<MainSectionState, MainSectionProperties>): DNode[] {
-			const { state } = <any> this;
-			const checkBoxOptions = {
+		getChildrenNodes: function (this: Widget<MainSectionProperties>): DNode[] {
+			const { properties } = <any> this;
+			const { todos = [] } = properties;
+			const checkBoxOptions: CheckboxInputProperties = {
 				id: 'todo-toggle',
-				properties: {
-					checked: state.allCompleted,
-					classes: [ 'toggle-all' ]
-				},
+				checked: properties.allCompleted,
+				classes: [ 'toggle-all' ],
 				listeners: {
 					change: todoToggleAll
 				}
 			};
 
-			const { activeView } = state;
+			const { activeView } = properties;
 
 			return <DNode[]> [
-				w(createCheckboxInput, <CheckboxInputOptions> checkBoxOptions),
-				state.todos.length ? v('div.searchbar', {}, [
+				w(createCheckboxInput, checkBoxOptions),
+				todos.length ? v('div.searchbar', {}, [
 						v('span.icon', {}), w(createSearchInput, {
 							properties: {
 								placeholder: 'Quick Filter',
-								value: state.search
+								value: properties.search
 							},
 							listeners: {
 								input: searchHandler
 							}
 						})
 					]) : null,
-				w(createTodoItemList, <WidgetOptions<WidgetState, WidgetProperties>> {
+				w(createTodoItemList, <WidgetProperties> {
 					id: `todo-item-${activeView === 'cards' ? 'cards' : 'list'}`,
-					properties: state
+					properties: properties
 				})
 			];
 		}

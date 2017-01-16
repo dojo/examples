@@ -1,6 +1,6 @@
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { WidgetState, WidgetOptions, Widget, DNode } from 'dojo-widgets/interfaces';
-import { v } from 'dojo-widgets/d';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { Widget, DNode } from '@dojo/widgets/interfaces';
+import { v } from '@dojo/widgets/d';
 import router, { mainRoute } from '../routes';
 
 interface ViewChooserProperties {
@@ -8,9 +8,7 @@ interface ViewChooserProperties {
 	activeFilter: string;
 }
 
-type ViewChooserState = WidgetState & ViewChooserProperties;
-type TodoListOptions = WidgetOptions<ViewChooserState, ViewChooserProperties>;
-export type TodoList = Widget<ViewChooserState, ViewChooserProperties>;
+export type TodoList = Widget<ViewChooserProperties>;
 
 const createViewChooser = createWidgetBase.mixin({
 	mixin: {

@@ -1,6 +1,6 @@
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createFormFieldMixin from 'dojo-widgets/mixins/createFormFieldMixin';
-import createWidget from 'dojo-widgets/createWidgetBase';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
+import createFormFieldMixin from '@dojo/widgets/mixins/createFormFieldMixin';
+import createWidget from '@dojo/widgets/createWidgetBase';
 
 const createSearchInput = createWidget
 	.mixin(createFormFieldMixin)

@@ -1,17 +1,14 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v }  from 'dojo-widgets/d';
+import { Widget, DNode } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v }  from '@dojo/widgets/d';
 import router, { mainRoute } from '../routes';
 
 interface TodoFilterProperties {
 	activeFilter: string;
 	activeView: string;
-};
+}
 
-type TodoFilterState = WidgetState & TodoFilterProperties;
-type TodoFilterOptions = WidgetOptions<TodoFilterState, TodoFilterProperties>;
-
-type TodoFilter = Widget<TodoFilterState, TodoFilterOptions>;
+type TodoFilter = Widget<TodoFilterProperties>;
 
 function createFilterItems(activeFilter: string, activeView: string): DNode[] {
 	const filters = [ 'all', 'active', 'completed' ];
@@ -37,8 +34,8 @@ const createTodoFilter = createWidgetBase.mixin({
 		tagName: 'ul',
 		classes: [ 'filters' ],
 		getChildrenNodes: function(this: TodoFilter): DNode[] {
-			const activeFilter = this.state.activeFilter || '';
-			const activeView = this.state.activeView || '';
+			const activeFilter = this.properties.activeFilter || '';
+			const activeView = this.properties.activeView || '';
 
 			return createFilterItems(activeFilter, activeView);
 		}

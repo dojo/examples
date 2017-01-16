@@ -1,14 +1,13 @@
-import { Widget, WidgetState } from 'dojo-widgets/interfaces';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { padStart } from 'dojo-shim/string';
+import { Widget } from '@dojo/widgets/interfaces';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { padStart } from '@dojo/shim/string';
 
 interface FormattedDateProperties {
 	date: Date;
 }
 
-export type FormattedDateState = WidgetState & FormattedDateProperties;
-export type FormattedDate = Widget<FormattedDateState, FormattedDateProperties>;
+export type FormattedDate = Widget<FormattedDateProperties>;
 
 const createFormattedDate = createWidgetBase.mixin({
 	mixin: {

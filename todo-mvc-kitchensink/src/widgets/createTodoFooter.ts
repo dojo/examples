@@ -1,7 +1,7 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v, w } from 'dojo-widgets/d';
-import createButton from 'dojo-widgets/components/button/createButton';
+import { Widget, DNode } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v, w } from '@dojo/widgets/d';
+import createButton from '@dojo/widgets/components/button/createButton';
 import { clearCompleted } from '../actions/userActions';
 import createTodoFilter from './createTodoFilter';
 import createViewChooser from './createViewChooser';
@@ -13,16 +13,14 @@ interface TodoFooterProperties {
 	completedCount: number;
 }
 
-export type TodoFooterState = WidgetState & TodoFooterProperties;
-export type TodoFooterOptions = WidgetOptions<TodoFooterState, TodoFooterProperties>;
-export type TodoFooter = Widget<TodoFooterState, TodoFooterOptions>;
+export type TodoFooter = Widget<TodoFooterProperties>;
 
 const createTodoFooter = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'footer',
 		classes: [ 'footer' ],
 		getChildrenNodes: function(this: TodoFooter): (DNode | null)[] {
-			const { activeCount, activeFilter, completedCount, activeView } = this.state;
+			const { activeCount, activeFilter, completedCount, activeView } = this.properties;
 			const countLabel = activeCount === 1 ? 'item' : 'items';
 
 			return [

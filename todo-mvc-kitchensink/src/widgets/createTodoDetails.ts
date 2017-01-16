@@ -1,6 +1,6 @@
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { Widget, WidgetState, DNode } from 'dojo-widgets/interfaces';
-import { v, w } from 'dojo-widgets/d';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { Widget, WidgetState, DNode } from '@dojo/widgets/interfaces';
+import { v, w } from '@dojo/widgets/d';
 import router, { mainRoute } from '../routes';
 import { Item } from '../stores/todoStore';
 import createFocusableTextInput from './createFocusableTextInput';
@@ -16,7 +16,7 @@ interface TodoDetailsProperties {
 }
 
 export type TodoDetailsState = WidgetState & TodoDetailsProperties;
-export type TodoDetails = Widget<TodoDetailsState, TodoDetailsProperties>;
+export type TodoDetails = Widget<TodoDetailsProperties>;
 
 const createFocusableTextArea = createFocusableTextInput.mixin({
 	mixin: {
@@ -38,7 +38,7 @@ const createTodoDetails = createWidgetBase
 			tagName: 'div',
 			classes: [ 'todo-details' ],
 			getChildrenNodes(this: TodoDetails): DNode[] {
-				const { todoDetails } = this.state as TodoDetailsState;
+				const { todoDetails } = this.properties as TodoDetailsState;
 
 				const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
 
@@ -78,7 +78,8 @@ const createTodoDetails = createWidgetBase
 					])
 				];
 			}
-		},
+		}
+	}).mixin({
 		initialize(instance: TodoDetails) {
 			const { activeFilter: filter, activeView: view } = instance.state as TodoDetailsState;
 

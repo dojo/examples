@@ -1,7 +1,7 @@
-import createStore, { CrudOptions, UpdateResults } from 'dojo-stores/store/createStore';
+import createStore, { CrudOptions, UpdateResults } from '@dojo/stores/store/createStore';
 import createObservableStoreMixin, {
 	ObservableStore, ObservableStoreOptions
-} from 'dojo-stores/store/mixins/createObservableStoreMixin';
+} from '@dojo/stores/store/mixins/createObservableStoreMixin';
 
 export type Store<T> = ObservableStore<T, CrudOptions, UpdateResults<T>>;
 

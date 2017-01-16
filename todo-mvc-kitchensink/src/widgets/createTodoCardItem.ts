@@ -1,9 +1,9 @@
-import { Widget, WidgetState, DNode } from 'dojo-widgets/interfaces';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v, w } from 'dojo-widgets/d';
-import { TextInputOptions } from 'dojo-widgets/components/textinput/createTextInput';
-import createButton from 'dojo-widgets/components/button/createButton';
+import { Widget, DNode } from '@dojo/widgets/interfaces';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v, w } from '@dojo/widgets/d';
+import { TextInputProperties } from '@dojo/widgets/components/textinput/createTextInput';
+import createButton from '@dojo/widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';
@@ -13,16 +13,14 @@ interface CardItemProperties {
 	label: string;
 }
 
-type CardItemState = WidgetState & CardItemProperties;
-
 const createLabel = createWidgetBase
 	.mixin({
 		mixin: {
 			tagName: 'label',
 			nodeAttributes: [
-				function (this: Widget<CardItemState, CardItemProperties>): VNodeProperties {
+				function (this: Widget<CardItemProperties>): VNodeProperties {
 					return {
-						innerHTML: this.state.label,
+						innerHTML: this.properties.label,
 						'aria-describedby': 'edit-instructions',
 						tabindex: '0'
 					};
@@ -43,12 +41,12 @@ const createTodoCardItem = createWidgetBase.mixin({
 			}
 		],
 		getChildrenNodes: function(this: TodoItem): (DNode | null)[] {
-			const state = this.state;
+			const state = this.properties;
 			const checked = state.completed;
 			const label = state.label;
 			const focused = state.editing;
 
-			const inputOptions: TextInputOptions = {
+			const inputOptions: TextInputProperties = {
 				value: label,
 				listeners: {
 					blur: todoSave,

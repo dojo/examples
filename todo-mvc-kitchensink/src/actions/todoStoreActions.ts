@@ -1,6 +1,6 @@
 import todoStore, { Item } from '../stores/todoStore';
-import createFilter from 'dojo-stores/query/createFilter';
-import { assign } from 'dojo-core/lang';
+import createFilter from '@dojo/stores/query/createFilter';
+import { assign } from '@dojo/core/lang';
 
 let id = 0;
 

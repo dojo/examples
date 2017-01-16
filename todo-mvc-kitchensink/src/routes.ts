@@ -1,7 +1,7 @@
-import createRoute from 'dojo-routing/createRoute';
-import createRouter from 'dojo-routing/createRouter';
-import { Parameters } from 'dojo-routing/interfaces';
-import createHashHistory from 'dojo-routing/history/createHashHistory';
+import createRoute from '@dojo/routing/createRoute';
+import createRouter from '@dojo/routing/createRouter';
+import { Parameters } from '@dojo/routing/interfaces';
+import createHashHistory from '@dojo/routing/history/createHashHistory';
 import { filterAndView, setHierarchy, showTodoDetails } from './actions/widgetStoreActions';
 
 type FilterValue = 'active' | 'all' | 'completed';

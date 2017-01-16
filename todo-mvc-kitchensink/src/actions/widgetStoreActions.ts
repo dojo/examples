@@ -1,4 +1,4 @@
-import { StoreDelta } from 'dojo-stores/store/mixins/createObservableStoreMixin';
+import { StoreDelta } from '@dojo/stores/store/mixins/createObservableStoreMixin';
 import widgetStore from '../stores/widgetStore';
 import todoStore from '../stores/todoStore';
 import { Item } from '../stores/todoStore';

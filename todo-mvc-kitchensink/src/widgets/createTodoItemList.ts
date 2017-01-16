@@ -1,10 +1,10 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { w, v } from 'dojo-widgets/d';
+import { Widget, DNode } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { w, v } from '@dojo/widgets/d';
 import { Item } from '../stores/todoStore';
 import createTodoListItem from './createTodoListItem';
 import createTodoCardItem from './createTodoCardItem';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
 
 type TodoListProperties = {
 	activeFilter: string;
@@ -13,10 +13,7 @@ type TodoListProperties = {
 	search: string;
 };
 
-type TodoListState = WidgetState & TodoListProperties;
-type TodoListOptions = WidgetOptions<TodoListState, TodoListProperties>;
-
-export type TodoList = Widget<TodoListState, TodoListProperties>;
+export type TodoList = Widget<TodoListProperties>;
 
 function filter(filterName: string, todo: Item): boolean {
 	switch (filterName) {
@@ -50,10 +47,10 @@ const createTodoItemList = createWidgetBase.mixin({
 				}
 			],
 			getChildrenNodes: function(this: TodoList): DNode[] {
-				const activeFilter = this.state.activeFilter || '';
-				const todos = this.state.todos || [];
-				const search = this.state.search || '';
-				const activeView = this.state.activeView || 'list';
+				const activeFilter = this.properties.activeFilter || '';
+				const todos = this.properties.todos || [];
+				const search = this.properties.search || '';
+				const activeView = this.properties.activeView || 'list';
 
 				return todos
 					.filter((todo: Item) => filter(activeFilter, todo))
