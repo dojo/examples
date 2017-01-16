@@ -1,14 +1,14 @@
-import { Widget, WidgetOptions, WidgetState, DNode } from 'dojo-widgets/interfaces';
+import { Widget, WidgetFactory, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
 import { v }  from 'dojo-widgets/d';
 
-type TodoFilterState = WidgetState & {
+export interface TodoFilterProperties extends WidgetProperties {
 	activeFilter?: string;
 };
 
-type TodoFilterOptions = WidgetOptions<TodoFilterState>;
+export type TodoFilter = Widget<TodoFilterProperties>;
 
-type TodoFilter = Widget<TodoFilterState>;
+export type TodoFilterFactory = WidgetFactory<TodoFilter, TodoFilterProperties>
 
 function createFilterItems(activeFilter: string): DNode[] {
 	const filters = [ 'all', 'active', 'completed' ];
@@ -26,12 +26,12 @@ function createFilterItems(activeFilter: string): DNode[] {
 	});
 }
 
-const createTodoFilter = createWidgetBase.mixin({
+const createTodoFilter: TodoFilterFactory = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'ul',
 		classes: [ 'filters' ],
 		getChildrenNodes: function(this: TodoFilter): DNode[] {
-			const activeFilter = this.state.activeFilter || '';
+			const activeFilter = this.properties.activeFilter || '';
 			return createFilterItems(activeFilter);
 		}
 	}

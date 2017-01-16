@@ -1,39 +1,42 @@
-import { DNode, Widget, WidgetState, WidgetOptions } from 'dojo-widgets/interfaces';
+import { DNode, Widget, WidgetState, WidgetProperties } from 'dojo-widgets/interfaces';
 import createProjector from 'dojo-widgets/createProjector';
 import { todoInput } from './actions/userActions';
 import { v, w } from 'dojo-widgets/d';
+import { assign } from 'dojo-core/lang';
 
+import { Item } from './stores/todoStore';
 import createTitle from './widgets/createTitle';
 import createMainSection from './widgets/createMainSection';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
-import createTodoFooter, { TodoFooterState } from './widgets/createTodoFooter';
+import createTodoFooter, { TodoFooterProperties } from './widgets/createTodoFooter';
+import externalStateMixin from 'dojo-widgets/mixins/externalState';
+import { bind } from './utils';
 
-const createApp = createProjector.mixin({
+export interface ApplicationState extends WidgetState {
+	id: string;
+	todos: Item[];
+	completedCount: number;
+	activeCount: number;
+	activeFilter: string;
+	allCompleted: boolean;
+}
+
+const createApp = createProjector
+.mixin(externalStateMixin)
+.mixin({
 	mixin: {
-		getChildrenNodes: function(this: Widget<WidgetState>): DNode[] {
-			const { state } = this;
-			const { todo, todos } = <any> state;
-			const newTodoOptions: WidgetOptions<WidgetState> = {
-				id: 'new-todo',
-				state: {
-					id: 'new-todo',
-					classes: ['new-todo'],
-					focused: true,
-					value: todo ? todo : '',
-					placeholder: 'What needs to be done?'
-				},
-				listeners: { keypress: todoInput }
-			};
+		getChildrenNodes: function(this: Widget<WidgetProperties>): DNode[] {
+			const { todos = [], activeCount, completedCount, activeFilter } = <ApplicationState> this.state;
 			const classes = todos && todos.length ? [] : [ 'hidden' ];
-			const todoFooterState: TodoFooterState = Object.assign({ classes }, state);
+			const todoFooterProperties: TodoFooterProperties = { id: 'todo-footer', activeCount, completedCount, activeFilter, classes };
 
 			return [
 				v('header', {}, [
-					w(createTitle, { id: 'title', state: { label: 'todos' } }),
-					w(createFocusableTextInput, newTodoOptions)
+					w(createTitle, { id: 'title', label: 'todos' }),
+					w(createFocusableTextInput, { id: 'new-todo', classes: ['new-todo'], focused: true, placeholder: 'What needs to be done?', onKeyUp: bind(todoInput, this) })
 				]),
-				w(createMainSection, { id: 'main-section', state }),
-				w(createTodoFooter, { id: 'todo-footer', state: todoFooterState })
+				w(createMainSection, assign(<WidgetProperties> {}, this.state, { id: 'main-section' })),
+				w(createTodoFooter, todoFooterProperties)
 			];
 		},
 		classes: [ 'todoapp' ],

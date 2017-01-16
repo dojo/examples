@@ -1,13 +1,19 @@
-import { Widget, WidgetState } from 'dojo-widgets/interfaces';
+import { Widget, WidgetProperties, WidgetFactory } from 'dojo-widgets/interfaces';
 import { VNodeProperties } from 'dojo-interfaces/vdom';
 import createWidgetBase from 'dojo-widgets/createWidgetBase';
 
-const createTitle = createWidgetBase.mixin({
+export interface TitleProperties extends WidgetProperties {
+	label?: string;
+}
+
+export interface TitleFactory extends WidgetFactory<Widget<TitleProperties>, TitleProperties> { }
+
+const createTitle: TitleFactory = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'h1',
 		nodeAttributes: [
-			function (this: Widget<WidgetState & { label: string }>): VNodeProperties {
-				return { innerHTML: this.state.label };
+			function (this: Widget<TitleProperties>): VNodeProperties {
+				return { innerHTML: this.properties.label };
 			}
 		]
 	}

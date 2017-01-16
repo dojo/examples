@@ -13,7 +13,7 @@ export const deleteTodo = function({ id }: { id: string }) {
 };
 
 export const deleteCompleted = function() {
-	return todoStore.fetch(createFilter().equalTo('completed', true))
+	return todoStore.fetch(createFilter<Item>().equalTo('completed', true))
 		.then((items: Item[]) => todoStore.identify(items))
 		.then((ids: string[]) => todoStore.delete(ids));
 };
