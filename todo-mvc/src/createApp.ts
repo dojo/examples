@@ -1,15 +1,15 @@
-import { DNode, Widget, WidgetState, WidgetProperties } from 'dojo-widgets/interfaces';
-import createProjector from 'dojo-widgets/createProjector';
+import { DNode, Widget, WidgetState, WidgetProperties } from '@dojo/widgets/interfaces';
+import createProjector from '@dojo/widgets/createProjector';
 import { todoInput } from './actions/userActions';
-import { v, w } from 'dojo-widgets/d';
-import { assign } from 'dojo-core/lang';
+import { v, w } from '@dojo/widgets/d';
+import { assign } from '@dojo/core/lang';
 
 import { Item } from './stores/todoStore';
 import createTitle from './widgets/createTitle';
 import createMainSection from './widgets/createMainSection';
 import createFocusableTextInput from './widgets/createFocusableTextInput';
 import createTodoFooter, { TodoFooterProperties } from './widgets/createTodoFooter';
-import externalStateMixin from 'dojo-widgets/mixins/externalState';
+import externalStateMixin from '@dojo/widgets/mixins/externalState';
 import { bind } from './utils';
 
 export interface ApplicationState extends WidgetState {

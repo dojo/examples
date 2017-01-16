@@ -1,7 +1,7 @@
-import { Widget, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v, w } from 'dojo-widgets/d';
-import createButton from 'dojo-widgets/components/button/createButton';
+import { Widget, WidgetProperties, DNode } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v, w } from '@dojo/widgets/d';
+import createButton from '@dojo/widgets/components/button/createButton';
 import { clearCompleted } from '../actions/userActions';
 import createTodoFilter from './createTodoFilter';
 

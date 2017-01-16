@@ -1,6 +1,6 @@
-import { Widget, WidgetFactory, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { w } from 'dojo-widgets/d';
+import { Widget, WidgetFactory, WidgetProperties, DNode } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { w } from '@dojo/widgets/d';
 import createTodoItem, { TodoItemProperties } from './createTodoItem';
 
 export interface TodoListProperties extends WidgetProperties {

@@ -1,6 +1,6 @@
-import { Widget, WidgetProperties, WidgetFactory } from 'dojo-widgets/interfaces';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
+import { Widget, WidgetProperties, WidgetFactory } from '@dojo/widgets/interfaces';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
 
 export interface TitleProperties extends WidgetProperties {
 	label?: string;

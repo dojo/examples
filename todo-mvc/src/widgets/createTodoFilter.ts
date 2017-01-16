@@ -1,6 +1,6 @@
-import { Widget, WidgetFactory, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v }  from 'dojo-widgets/d';
+import { Widget, WidgetFactory, WidgetProperties, DNode } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v }  from '@dojo/widgets/d';
 
 export interface TodoFilterProperties extends WidgetProperties {
 	activeFilter?: string;

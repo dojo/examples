@@ -1,4 +1,4 @@
-import { assign } from 'dojo-core/lang';
+import { assign } from '@dojo/core/lang';
 import widgetStore from '../stores/widgetStore';
 import { addTodo, deleteCompleted, deleteTodo, toggleAll, updateTodo } from './todoStoreActions';
 import { TodoItemProperties } from '../widgets/createTodoItem';

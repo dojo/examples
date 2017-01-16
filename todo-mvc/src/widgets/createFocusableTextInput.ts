@@ -1,7 +1,7 @@
-import createFormFieldMixin, { FormFieldMixin } from 'dojo-widgets/mixins/createFormFieldMixin';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { Widget, WidgetState, WidgetProperties, WidgetFactory } from 'dojo-widgets/interfaces';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
+import createFormFieldMixin, { FormFieldMixin } from '@dojo/widgets/mixins/createFormFieldMixin';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { Widget, WidgetProperties, WidgetState, WidgetFactory } from '@dojo/widgets/interfaces';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
 
 export interface FocusableTextProperties extends WidgetProperties {
 	focused?: boolean;

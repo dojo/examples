@@ -1,4 +1,4 @@
-import { createObservableStore } from 'dojo-stores/store/mixins/createObservableStoreMixin';
+import { createObservableStore } from '@dojo/stores/store/mixins/createObservableStoreMixin';
 
 export default createObservableStore({
 	data: [
