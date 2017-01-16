@@ -1,7 +1,7 @@
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { Widget, WidgetFactory, WidgetState, WidgetProperties } from 'dojo-widgets/interfaces';
-import createFormFieldMixin, { FormFieldMixin } from 'dojo-widgets/mixins/createFormFieldMixin';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { Widget, WidgetFactory, WidgetState, WidgetProperties } from '@dojo/widgets/interfaces';
+import createFormFieldMixin, { FormFieldMixin } from '@dojo/widgets/mixins/createFormFieldMixin';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
 
 export interface CheckboxProperties extends WidgetProperties {
 	checked?: boolean;

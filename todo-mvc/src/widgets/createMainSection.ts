@@ -1,6 +1,6 @@
-import { DNode, Widget, WidgetProperties } from 'dojo-widgets/interfaces';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { w } from 'dojo-widgets/d';
+import { DNode, Widget, WidgetProperties } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { w } from '@dojo/widgets/d';
 import { todoToggleAll } from '../actions/userActions';
 import createCheckboxInput, { CheckboxProperties } from './createCheckboxInput';
 import createTodoList, { TodoListProperties } from './createTodoList';

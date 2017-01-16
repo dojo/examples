@@ -1,8 +1,8 @@
-import { Widget, WidgetProperties, DNode } from 'dojo-widgets/interfaces';
-import { VNodeProperties } from 'dojo-interfaces/vdom';
-import createWidgetBase from 'dojo-widgets/createWidgetBase';
-import { v, w } from 'dojo-widgets/d';
-import createButton from 'dojo-widgets/components/button/createButton';
+import { Widget, WidgetProperties, DNode } from '@dojo/widgets/interfaces';
+import { VNodeProperties } from '@dojo/interfaces/vdom';
+import createWidgetBase from '@dojo/widgets/createWidgetBase';
+import { v, w } from '@dojo/widgets/d';
+import createButton from '@dojo/widgets/components/button/createButton';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import createCheckboxInput from './createCheckboxInput';
 import createFocusableTextInput from './createFocusableTextInput';

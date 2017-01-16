@@ -8,11 +8,11 @@
 
 You need to be running node `v6+` and npm `v3+`.
 
-package `typings` and `dojo-cli` installed globally.
+package `typings` and `@dojo/cli` installed globally.
 
 ```shell
 npm install typings -g
-npm install dojo-cli -g
+npm install @dojo/cli -g
 ```
 
 ## Running
