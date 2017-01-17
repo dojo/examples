@@ -27,9 +27,7 @@ const createMainSection = createWidgetBase.mixin({
 				id: 'todo-toggle',
 				checked: properties.allCompleted,
 				classes: [ 'toggle-all' ],
-				listeners: {
-					change: todoToggleAll
-				}
+				onChange: todoToggleAll
 			};
 
 			const { activeView } = properties;

@@ -128,6 +128,7 @@ export default class Page {
 	enterItem(text: string): Promise<any> {
 		return this.remote
 			.findByCssSelector(this.selectors.newInput)
+			.sleep(100)
 			.type(text)
 			.type(keys.ENTER)
 			.end();
