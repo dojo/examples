@@ -5,6 +5,7 @@ node_js:
 env:
   matrix:
   - PROJECT_DIR=todo-mvc
+  - PROJECT_DIR=todo-mvc-kitchensink
   - PROJECT_DIR=dojo-cli-example
   - PROJECT_DIR=auto-deploy
   global:
