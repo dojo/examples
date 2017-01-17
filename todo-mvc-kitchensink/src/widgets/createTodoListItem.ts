@@ -18,7 +18,7 @@ export interface TodoItemProperties {
 export type TodoItem = Widget<TodoItemProperties>;
 
 export interface LabelType extends WidgetProperties {
-	label: string,
+	label: string;
 	onDoubleClick?: (event?: MouseEvent) => void;
 	onKeyPress?: (event?: KeyboardEvent) => void;
 }
