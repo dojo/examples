@@ -18,7 +18,7 @@ const createHome = createWidgetBase.mixin({
 				focused: true,
 				value: todo ? todo : '',
 				placeholder: 'What needs to be done?',
-				listeners: { keyup: todoInput }
+				onKeyUp: todoInput.bind(this)
 			};
 
 			return [
@@ -26,8 +26,8 @@ const createHome = createWidgetBase.mixin({
 					w(createTitle, { id: 'title', label: 'todos' }),
 					w(createFocusableTextInput, newTodoOptions)
 				]),
-				w(createMainSection, { id: 'main-section', ...properties }),
-				todos.length ? w(createTodoFooter, { id: 'todo-footer', ...properties }) : null
+				w(createMainSection, { ...properties, id: 'main-section' }),
+				todos.length ? w(createTodoFooter, { ...properties, id: 'todo-footer' }) : null
 			];
 		},
 		tagName: 'div'

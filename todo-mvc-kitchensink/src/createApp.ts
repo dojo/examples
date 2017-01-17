@@ -16,20 +16,20 @@ widgetRegistry.define('main', createHome);
 widgetRegistry.define('todo-details', createTodoDetails);
 
 const createApp = createProjector
+	.mixin(externalState)
 	.mixin({
 		mixin: {
 			registry: widgetRegistry,
 			getChildrenNodes: function (this: Widget<AppProperties>): DNode[] {
-				const { widgets = [ [ 'main', {} ] ] } = this.properties;
+				const { widgets = [ [ 'main', {} ] ] } = this.state;
 
 				return widgets.map((widget: any) => {
-					return w(<any> widget[ 0 ], <any> { ...this.properties, ...widget[ 1 ] });
+					return w(<any> widget[ 0 ], <any> { ...this.state, ...widget[ 1 ], id: <string> widget[ 0 ] });
 				});
 			},
 			classes: [ 'todoapp' ],
 			tagName: 'section'
 		}
-	})
-	.mixin(externalState);
+	});
 
 export default createApp;

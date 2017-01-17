@@ -8,6 +8,7 @@ import createCheckboxInput from './createCheckboxInput';
 import { updateTodo } from '../actions/todoStoreActions';
 import { FocusableTextInput } from './createFocusableTextInput';
 import createFormattedDate from './createFormattedDate';
+import externalStateMixin from '@dojo/widgets/mixins/externalState';
 
 interface TodoDetailsProperties {
 	todoDetails: Item;
@@ -33,12 +34,14 @@ const textUpdateHandlers = new WeakMap<TodoDetails, EventHandler>();
 const closeHandlers = new WeakMap<TodoDetails, EventHandler>();
 
 const createTodoDetails = createWidgetBase
+	.mixin(externalStateMixin)
 	.mixin({
 		mixin: {
 			tagName: 'div',
 			classes: [ 'todo-details' ],
+
 			getChildrenNodes(this: TodoDetails): DNode[] {
-				const { todoDetails } = this.properties as TodoDetailsState;
+				const { todoDetails } = this.state as TodoDetailsState;
 
 				const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
 
@@ -55,23 +58,21 @@ const createTodoDetails = createWidgetBase
 						]),
 						v('section', {}, [
 							w(createFocusableTextArea, {
-								listeners: {
-									input: textUpdateHandlers.get(this)
-								},
-								properties: { focused: true, value: label }
+								focused: true,
+								value: label,
+								onInput: textUpdateHandlers.get(this)
 							}),
 							v('div', {}, [
 								v('div.last-updated', [
 									'Created on ',
 									w(createFormattedDate, {
-										properties: {
-											date: createdOn
-										}
+										date: createdOn
 									})
 								]),
 								w(createCheckboxInput, {
-									listeners: { change: completedHandlers.get(this) },
-									properties: { classes: [ 'toggle' ], checked: completed }
+									classes: [ 'toggle' ],
+									checked: completed,
+									onChange: completedHandlers.get(this)
 								})
 							])
 						])

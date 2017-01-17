@@ -38,18 +38,14 @@ const createMainSection = createWidgetBase.mixin({
 				w(createCheckboxInput, checkBoxOptions),
 				todos.length ? v('div.searchbar', {}, [
 						v('span.icon', {}), w(createSearchInput, {
-							properties: {
-								placeholder: 'Quick Filter',
-								value: properties.search
-							},
-							listeners: {
-								input: searchHandler
-							}
+							placeholder: 'Quick Filter',
+							value: properties.search,
+							onKeyUp: searchHandler
 						})
 					]) : null,
 				w(createTodoItemList, <WidgetProperties> {
-					id: `todo-item-${activeView === 'cards' ? 'cards' : 'list'}`,
-					properties: properties
+					...properties,
+					id: `todo-item-${activeView === 'cards' ? 'cards' : 'list'}`
 				})
 			];
 		}

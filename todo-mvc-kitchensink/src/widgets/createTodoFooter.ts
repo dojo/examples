@@ -1,4 +1,4 @@
-import { Widget, DNode } from '@dojo/widgets/interfaces';
+import { Widget, DNode, WidgetProperties } from '@dojo/widgets/interfaces';
 import createWidgetBase from '@dojo/widgets/createWidgetBase';
 import { v, w } from '@dojo/widgets/d';
 import createButton from '@dojo/widgets/components/button/createButton';
@@ -19,37 +19,29 @@ const createTodoFooter = createWidgetBase.mixin({
 	mixin: {
 		tagName: 'footer',
 		classes: [ 'footer' ],
-		getChildrenNodes: function(this: TodoFooter): (DNode | null)[] {
+		getChildrenNodes: function (this: TodoFooter): (DNode | null)[] {
 			const { activeCount, activeFilter, completedCount, activeView } = this.properties;
 			const countLabel = activeCount === 1 ? 'item' : 'items';
 
 			return [
 				v('span', { 'class': 'todo-count' }, [
-					v('strong', [activeCount + ' ']),
-					v('span', [countLabel + ' left'])
+					v('strong', [ activeCount + ' ' ]),
+					v('span', [ countLabel + ' left' ])
 				]),
 				w(createTodoFilter, {
-					properties: {
-						classes: [ 'filters' ],
-						activeFilter,
-						activeView
-					}
+					classes: [ 'filters' ],
+					activeFilter,
+					activeView
 				}),
 				w(createViewChooser, {
-					properties: {
-						activeView,
-						activeFilter
-					}
+					activeView,
+					activeFilter
 				}),
-				completedCount ? w(createButton, {
-					listeners: {
-						click: clearCompleted
-					},
-					properties: {
+				completedCount ? w(createButton, <WidgetProperties> {
 						label: 'Clear completed',
-						classes: [ 'clear-completed' ]
-					}
-				}) : null
+						classes: [ 'clear-completed' ],
+						onClick: clearCompleted.bind(this)
+					}) : null
 			];
 		}
 	}

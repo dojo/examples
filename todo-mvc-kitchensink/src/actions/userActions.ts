@@ -12,12 +12,11 @@ interface FormInputEvent extends KeyboardEvent {
 	target: HTMLInputElement;
 }
 
-export const todoInput = function({ which, target: { value: label } }: FormInputEvent) {
+export const todoInput = function (this: any, { which, target: { value: label } }: FormInputEvent) {
 	if (which === 13 && label) {
 		addTodo({ label, completed: false });
 		widgetStore.patch({ id: 'todo-app', todo: '' });
-	} else {
-		widgetStore.patch({ id: 'todo-app', todo: label });
+		this.invalidate();
 	}
 };
 
@@ -30,7 +29,7 @@ function toggleEditing(todos: Item[], todoId: string, editing: boolean): Item[] 
 		});
 }
 
-export const todoEdit = function(this: any, event: KeyboardEvent) {
+export const todoEdit = function (this: any, event: KeyboardEvent) {
 	const { state: { id } } = this;
 	if (event.type === 'keypress' && event.which !== 13 && event.which !== 32) {
 		return;
@@ -45,13 +44,13 @@ export const todoEdit = function(this: any, event: KeyboardEvent) {
 	});
 };
 
-export const todoEditInput = function(this: any, event: FormInputEvent) {
+export const todoEditInput = function (this: any, event: FormInputEvent) {
 	const { state } = this;
 	if (event.which === 13) {
 		todoSave.call(this, event);
 	}
 	else if (event.which === 27) {
-		widgetStore.get('todo-app').then(( todoListState: any) => {
+		widgetStore.get('todo-app').then((todoListState: any) => {
 			const { todos } = todoListState;
 			todoListState.todos = toggleEditing(todos, state.id, false);
 			widgetStore.patch({ id: 'todo-app', todoListState });
@@ -59,7 +58,7 @@ export const todoEditInput = function(this: any, event: FormInputEvent) {
 	}
 };
 
-export const todoSave = function(this: any, event: FormInputEvent) {
+export const todoSave = function (this: any, event: FormInputEvent) {
 	const { state } = this;
 	if (!event.target.value) {
 		deleteTodo(state);
@@ -69,25 +68,25 @@ export const todoSave = function(this: any, event: FormInputEvent) {
 	}
 };
 
-export const todoRemove = function(this: any) {
+export const todoRemove = function (this: any) {
 	const { state } = this;
 	deleteTodo({ id: state.id });
 };
 
-export const todoToggleComplete = function(this: any) {
-	const { state } = this;
-	updateTodo({ id: state.id, completed: !state.checked, editing: false });
+export const todoToggleComplete = function (this: any) {
+	const { properties } = this;
+	updateTodo({ id: properties.todoId, completed: !properties.completed, editing: false });
 };
 
-export const todoToggleAll = function(event: FormEvent) {
+export const todoToggleAll = function (event: FormEvent) {
 	toggleAll({ checked: event.target.checked });
 };
 
-export const clearCompleted = function() {
+export const clearCompleted = function () {
 	deleteCompleted();
 };
 
-export const updateSearch = function(this: any, searchQuery: string) {
+export const updateSearch = function (this: any, searchQuery: string) {
 	widgetStore.get('todo-app').then((todoListState: any) => {
 		todoListState.search = searchQuery;
 

@@ -23,7 +23,7 @@ export const filterAndView = function (this: any, filter: 'active' | 'all' | 'co
 export const showTodoDetails = function(todoId: string) {
 	return todoStore.get(todoId).then(( todo: Item) => {
 		widgetStore.patch({ id: 'todo-details', todoDetails: todo }).then(() => {
-			setHierarchy([ [ 'main', {} ], [ 'todo-details', { id: 'todo-details', stateFrom: widgetStore } ] ]);
+			setHierarchy([ [ 'main', {} ], [ 'todo-details', { id: 'todo-details', externalState: widgetStore } ] ]);
 		});
 	});
 };
