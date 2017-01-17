@@ -76,7 +76,7 @@ export default class Page {
 
 	init(): Promise<any> {
 		return this.remote
-			.get(require.toUrl('../../src/index.html'))
+			.get(require.toUrl('src/index.html'))
 			.setFindTimeout(5000)
 			.findByCssSelector(this.selectors.newInput)
 			.setFindTimeout(100);
