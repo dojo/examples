@@ -1,8 +1,8 @@
-# Dojo2 TodoMVC Example
+# Dojo 2 TodoMVC Example
 
-> Dojo2 TodoMVC example.
+> Dojo 2 TodoMVC example.
 
-> Current progress of Dojo2 is available from the _[Meta](https://github.com/dojo/meta)_ repository.
+> Current progress of Dojo 2 is available from the _[Meta](https://github.com/dojo/meta)_ repository.
 
 ## Pre-requisites
 
