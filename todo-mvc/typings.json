@@ -1,7 +1,6 @@
 {
 	"name": "dojo2-todo-mvc",
 	"globalDependencies": {
-		"extra-rxjs": "github:dojo/typings/custom/dojo2-extras/rxjs.d.ts#103096ce945dd51a18cc47a9b7cf9191fdac0349",
 		"symbol-shim": "github:dojo/typings/custom/symbol-shim/symbol-shim.d.ts#003aa24b3448804a2c59e9a1d9740ca56e067e79"
 	},
 	"globalDevDependencies": {
