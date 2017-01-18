@@ -1,6 +1,4 @@
 import * as keys from 'leadfoot/keys';
-import { Require } from '@dojo/interfaces/loader';
-declare const require: Require;
 
 class Selectors {
 	public main = '.main';
@@ -76,7 +74,7 @@ export default class Page {
 
 	init(): Promise<any> {
 		return this.remote
-			.get(require.toUrl('src/index.html'))
+			.get('http://localhost:9000/_build/src/index.html')
 			.setFindTimeout(5000)
 			.findByCssSelector(this.selectors.newInput)
 			.setFindTimeout(100);
