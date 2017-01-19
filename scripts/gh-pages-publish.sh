@@ -16,6 +16,7 @@ then
 	then
 
 		buildProject "todo-mvc"
+		buildProject "todo-mvc-kitchensink"
 
 		export PROJECT_DIR="auto-deploy"
 
@@ -23,9 +24,11 @@ then
 
 		mkdir samples
 		mkdir samples/todo-mvc
+		mkdir samples/todo-mvc-kitchensink
 
 		cp index.html samples/index.html
 		cp -r todo-mvc/dist/* samples/todo-mvc/
+		cp -r todo-mvc-kitchensink/dist/* samples/todo-mvc-kitchensink
 
 		git remote add pages "https://$GH_TOKEN@github.com/dojo/examples.git"
 
