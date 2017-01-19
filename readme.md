@@ -8,8 +8,8 @@ For current progress on Dojo 2, contribution guidelines and other information, p
 
 There are currently three examples:
 
-- [todo-mvc](./todo-mvc) - A reference implementation of [Todo MVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
-- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of todo-mvc, built in current pre-release versions of Dojo 2 packages.
+- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
+- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built in current pre-release versions of Dojo 2 packages.
 - [dojo-cli-example](./dojo-cli-example) - An example of working with Dojo cli
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
@@ -60,4 +60,4 @@ This assumes that npm & typings & dojo-cli have been installed for the example a
 ./scripts/gh-pages-publish.sh
 ```
 
-The latest version(s) will now be available [here](https://dojo.github.io/examples).
+The latest version(s) will now be available [on github pages](https://dojo.github.io/examples).
