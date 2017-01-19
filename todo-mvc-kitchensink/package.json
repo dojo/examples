@@ -1,0 +1,47 @@
+{
+  "name": "dojo2-todo-mvc",
+  "version": "0.0.1",
+  "description": "TodoMVC using Dojo 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojo/examples.git"
+  },
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-webpack": "2.0.0-alpha.8",
+    "@dojo/interfaces": "^2.0.0-alpha.11",
+    "@types/chai": "^3.4.34",
+    "@types/es6-shim": "~0.31.0",
+    "@types/glob": "~5.0.0",
+    "@types/grunt": "~0.4.0",
+    "@types/node": "^6.0.46",
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-dojo2": "^2.0.0-beta.16",
+    "grunt-tslint": "^3.0.0",
+    "intern": "~3.4.1",
+    "tslint": "^3.15.1",
+    "typescript": "~2.1.4"
+  },
+  "dependencies": {
+    "@dojo/compose": "^2.0.0-beta.21",
+    "@dojo/core": "^2.0.0-alpha.20",
+    "@dojo/has": "^2.0.0-alpha.7",
+    "@dojo/loader": "^2.0.0-beta.9",
+    "@dojo/routing": "^2.0.0-alpha.8",
+    "@dojo/shim": "^2.0.0-beta.8",
+    "@dojo/stores": "^2.0.0-alpha.9",
+    "@dojo/widgets": "^2.0.0-alpha.19",
+    "maquette": ">=2.3.7 <=2.4.1",
+    "todomvc-app-css": "^2.0.6",
+    "todomvc-common": "^1.0.2"
+  }
+}
