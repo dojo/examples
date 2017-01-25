@@ -8,12 +8,14 @@ For current progress on Dojo 2, contribution guidelines and other information, p
 
 There are currently three examples:
 
-- [todo-mvc](./todo-mvc) - A reference implementation of [Todo MVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
+- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
+- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built in current pre-release versions of Dojo 2 packages.
 - [dojo-cli-example](./dojo-cli-example) - An example of working with Dojo cli
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
  - [todoMVC](https://dojo.github.io/examples/todo-mvc)
+ - [todoMVC Kitchen Sink](https://dojo.github.io/examples/todo-mvc-kitchensink)
 
 ## Usage
 
@@ -45,7 +47,8 @@ To build a version of a web application you can access, the *default* task for G
 ```
 
 Assuming that the root of this repository is available on your local web server under `/examples` then the
-application should be available on [`http://localhost/examples/todo-mvc/_build/src/`](http://localhost/examples/todo-mvc/_build/src/)
+application should be available on [`http://localhost/examples/todo-mvc/_build/src/`](http://localhost/examples/todo-mvc/_build/src/) or [`http://localhost/examples/todo-mvc-kitchensink/_build/src/`](http://localhost/examples/todo-mvc-kitchensink/_build/src/)
+
 
 ### Deploying to gh-pages
 
@@ -57,4 +60,4 @@ This assumes that npm & typings & dojo-cli have been installed for the example a
 ./scripts/gh-pages-publish.sh
 ```
 
-The latest version(s) will now be available [here](https://dojo.github.io/examples).
+The latest version(s) will now be available [on github pages](https://dojo.github.io/examples).
