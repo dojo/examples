@@ -31,8 +31,6 @@ registry.define('text-input', createFocusableTextInput);
 
 const root = document.getElementsByTagName('my-app')[0];
 
-(<any> window).myStore = widgetStore;
-
 const app = createApp.mixin(createProjectorMixin)({
 	properties: {
 		id: 'todo-app',
