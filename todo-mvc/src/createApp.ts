@@ -19,7 +19,7 @@ const createApp: AppFactory = createWidgetBase
 			classes: [ 'todoapp' ],
 			tagName: 'section',
 			getChildrenNodes: function(this: AppMixin): DNode[] {
-				const { todos = [], activeCount, completedCount, activeFilter } = this.state;
+				const { todos = [], activeCount, completedCount, allCompleted, activeFilter } = this.state;
 				const classes = todos && todos.length ? [] : [ 'hidden' ];
 				const todoFooterProperties = { id: 'todo-footer', activeCount, completedCount, activeFilter, classes };
 
@@ -28,7 +28,7 @@ const createApp: AppFactory = createWidgetBase
 						w('title', { label: 'todos' }),
 						w('text-input', { classes: ['new-todo'], focused: true, placeholder: 'What needs to be done?', onKeyUp: bind(todoInput, this) })
 					]),
-					w('main-section', { todos, activeFilter }),
+					w('main-section', { todos, activeFilter, allCompleted }),
 					w('todo-footer', todoFooterProperties)
 				];
 			}

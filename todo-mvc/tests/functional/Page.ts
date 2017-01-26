@@ -128,6 +128,7 @@ export default class Page {
 			.findByCssSelector(this.selectors.newInput)
 			.type(text)
 			.type(keys.ENTER)
+			.then(this.delay)
 			.end();
 	}
 
