@@ -16,14 +16,15 @@ then
 	echo "Skipping build for deployment matrix."
 else
 	cd $PROJECT_DIR
-	runCommandAndCheckStatus ./node_modules/.bin/grunt
-	runCommandAndCheckStatus ./node_modules/.bin/grunt ci --combined
-	runCommandAndCheckStatus ./node_modules/.bin/grunt remapIstanbul:ci
 	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
 	then
+		runCommandAndCheckStatus ./node_modules/.bin/typings install
+		runCommandAndCheckStatus ./node_modules/.bin/dojo test -f
 		runCommandAndCheckStatus ./node_modules/.bin/dojo build webpack
 	else
-		echo "Doesn't support webpack build"
+		runCommandAndCheckStatus ./node_modules/.bin/grunt
+		runCommandAndCheckStatus ./node_modules/.bin/grunt ci --combined
+		runCommandAndCheckStatus ./node_modules/.bin/grunt remapIstanbul:ci
 	fi
 	cd ..
 fi
