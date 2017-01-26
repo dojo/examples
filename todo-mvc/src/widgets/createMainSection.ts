@@ -1,12 +1,11 @@
-import { DNode, Widget, WidgetProperties } from '@dojo/widgets/interfaces';
-import createWidgetBase from '@dojo/widgets/createWidgetBase';
-import { w } from '@dojo/widgets/d';
+import { DNode, Widget, WidgetProperties } from '@dojo/widget-core/interfaces';
+import createWidgetBase from '@dojo/widget-core/createWidgetBase';
+import { w } from '@dojo/widget-core/d';
 import { todoToggleAll } from '../actions/userActions';
-import createCheckboxInput, { CheckboxProperties } from './createCheckboxInput';
-import createTodoList, { TodoListProperties } from './createTodoList';
 
-export interface MainSectionProperties extends WidgetProperties, TodoListProperties {
+export interface MainSectionProperties extends WidgetProperties {
 	allCompleted: boolean;
+	store: any;
 }
 
 const createMainSection = createWidgetBase.mixin({
@@ -14,17 +13,11 @@ const createMainSection = createWidgetBase.mixin({
 		tagName: 'section',
 		classes: [ 'main' ],
 		getChildrenNodes: function (this: Widget<MainSectionProperties>): DNode[] {
-			const { properties: { todos, allCompleted: checked, activeFilter } } = this;
-			const checkBoxProperties: CheckboxProperties = {
-				id: 'todo-toggle',
-				checked,
-				classes: [ 'toggle-all' ],
-				onChange: todoToggleAll
-			};
+			const { properties: { activeFilter, todos, allCompleted: checked } } = this;
 
 			return [
-				w(createCheckboxInput, checkBoxProperties),
-				w(createTodoList, { todos, activeFilter })
+				w('checkbox', { checked, onChange: todoToggleAll, classes: [ 'toggle-all' ]}),
+				w('todo-list', { todos, activeFilter })
 			];
 		}
 	}
