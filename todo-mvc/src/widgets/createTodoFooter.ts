@@ -1,9 +1,7 @@
-import { Widget, WidgetProperties, DNode } from '@dojo/widgets/interfaces';
-import createWidgetBase from '@dojo/widgets/createWidgetBase';
-import { v, w } from '@dojo/widgets/d';
-import createButton from '@dojo/widgets/components/button/createButton';
+import { Widget, WidgetProperties, DNode } from '@dojo/widget-core/interfaces';
+import createWidgetBase from '@dojo/widget-core/createWidgetBase';
+import { v, w } from '@dojo/widget-core/d';
 import { clearCompleted } from '../actions/userActions';
-import createTodoFilter from './createTodoFilter';
 
 export interface TodoFooterProperties extends WidgetProperties {
 	activeFilter: string;
@@ -26,11 +24,11 @@ const createTodoFooter = createWidgetBase.mixin({
 					v('strong', [activeCount + ' ']),
 					v('span', [countLabel + ' left'])
 				]),
-				w(createTodoFilter, {
+				w('todo-filter', {
 					classes: [ 'filters' ],
 					activeFilter
 				}),
-				completedCount ? w(createButton, {
+				completedCount ? w('button', {
 					onClick: clearCompleted,
 					label: 'Clear completed',
 					classes: [ 'clear-completed' ]

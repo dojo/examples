@@ -1,6 +1,5 @@
-import createWidgetBase from '@dojo/widgets/createWidgetBase';
-import { Widget, WidgetFactory, WidgetState, WidgetProperties } from '@dojo/widgets/interfaces';
-import createFormFieldMixin, { FormFieldMixin } from '@dojo/widgets/mixins/createFormFieldMixin';
+import createWidgetBase from '@dojo/widget-core/createWidgetBase';
+import { Widget, WidgetFactory, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { VNodeProperties } from '@dojo/interfaces/vdom';
 
 export interface CheckboxProperties extends WidgetProperties {
@@ -8,14 +7,13 @@ export interface CheckboxProperties extends WidgetProperties {
 	onChange?: (event?: Event) => void;
 };
 
-export type CheckboxInput = Widget<CheckboxProperties> & FormFieldMixin<string, WidgetState> & {
+export type CheckboxInput = Widget<CheckboxProperties> & {
 	onChange: (event?: Event) => void;
 }
 
 export type CheckboxInputFactory = WidgetFactory<CheckboxInput, CheckboxProperties>
 
 const createCheckboxInput: CheckboxInputFactory = createWidgetBase
-	.mixin(createFormFieldMixin)
 	.mixin({
 		mixin: {
 			tagName: 'input',
@@ -25,8 +23,8 @@ const createCheckboxInput: CheckboxInputFactory = createWidgetBase
 			},
 			nodeAttributes: [
 				function (this: CheckboxInput): VNodeProperties {
-					const { checked } = this.properties;
-					return { checked, onchange: this.onChange };
+					const { type, onChange: onchange, properties: { checked } } = this;
+					return { checked, onchange, type };
 				}
 			]
 		}

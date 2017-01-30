@@ -29,7 +29,7 @@ function toggleEditing(todos: TodoItemProperties[], todoId: string, editing: boo
 }
 
 export const todoEdit = function(this: any, event: KeyboardEvent | MouseEvent) {
-	const { state: { id } } = this;
+	const { properties: { id } } = this;
 	if (event.type === 'keypress' && event.which !== 13 && event.which !== 32) {
 		return;
 	}
@@ -41,36 +41,36 @@ export const todoEdit = function(this: any, event: KeyboardEvent | MouseEvent) {
 };
 
 export const todoEditInput = function(this: any, event: FormInputEvent) {
-	const { state } = this;
+	const { properties: { id } } = this;
 	if (event.which === 13) {
 		todoSave.call(this, event);
 	}
 	else if (event.which === 27) {
 		widgetStore.get('todo-app').then((todoListState: any) => {
-			todoListState.todos = toggleEditing(todoListState.todos, state.id, false);
+			todoListState.todos = toggleEditing(todoListState.todos, id, false);
 			widgetStore.patch({ id: 'todo-app', todoListState });
 		});
 	}
 };
 
 export const todoSave = function(this: any, event: FormInputEvent) {
-	const { state } = this;
+	const { properties } = this;
 	if (!event.target.value) {
-		deleteTodo(state);
+		deleteTodo(properties);
 	}
 	else {
-		updateTodo(assign(state, { label: event.target.value, editing: false }));
+		updateTodo(assign({}, properties, { label: event.target.value, editing: false }));
 	}
 };
 
 export const todoRemove = function(this: any) {
-	const { state } = this;
-	deleteTodo({ id: state.id });
+	const { properties } = this;
+	deleteTodo({ id: properties.id });
 };
 
 export const todoToggleComplete = function(this: any) {
-	const { state } = this;
-	updateTodo({ id: state.id, completed: !state.completed });
+	const { properties } = this;
+	updateTodo({ id: properties.id, completed: !properties.completed });
 };
 
 export const filter = function(this: any, { filter }: { filter: 'active' | 'all' | 'completed' }) {

@@ -1,6 +1,5 @@
-import createFormFieldMixin, { FormFieldMixin } from '@dojo/widgets/mixins/createFormFieldMixin';
-import createWidgetBase from '@dojo/widgets/createWidgetBase';
-import { Widget, WidgetProperties, WidgetState, WidgetFactory } from '@dojo/widgets/interfaces';
+import createWidgetBase from '@dojo/widget-core/createWidgetBase';
+import { Widget, WidgetProperties, WidgetFactory } from '@dojo/widget-core/interfaces';
 import { VNodeProperties } from '@dojo/interfaces/vdom';
 
 export interface FocusableTextProperties extends WidgetProperties {
@@ -11,7 +10,7 @@ export interface FocusableTextProperties extends WidgetProperties {
 	onBlur?: (event?: Event) => void;
 };
 
-export type FocusableTextInput = Widget<FocusableTextProperties> & FormFieldMixin<string, WidgetState> & {
+export type FocusableTextInput = Widget<FocusableTextProperties> & {
 	onKeyUp: (event?: KeyboardEvent) => void;
 	onBlur: (event?: Event) => void;
 	afterUpdate?: (element: HTMLInputElement) => void;
@@ -20,7 +19,6 @@ export type FocusableTextInput = Widget<FocusableTextProperties> & FormFieldMixi
 export interface FocusableTextInputFactory extends WidgetFactory<FocusableTextInput, FocusableTextProperties> { }
 
 const createFocusableTextInput: FocusableTextInputFactory = createWidgetBase
-	.mixin(createFormFieldMixin)
 	.mixin({
 		mixin: {
 			tagName: 'input',
