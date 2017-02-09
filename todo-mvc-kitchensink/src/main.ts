@@ -1,18 +1,4 @@
 import router from './routes';
-import { bindActions as bindTodoStoreActions } from './stores/todoStore';
-import widgetStore from './stores/widgetStore';
-import createApp from './createApp';
+import app from './App';
 
-const root = document.getElementsByTagName('my-app')[ 0 ];
-
-const app = createApp({
-	root,
-	properties: {
-		id: 'todo-app',
-		externalState: widgetStore
-	}
-});
-
-app.append()
-	.then(() => bindTodoStoreActions())
-	.then(() => router.start());
+app.append().then(() => router.start());

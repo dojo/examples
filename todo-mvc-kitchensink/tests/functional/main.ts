@@ -1,6 +1,7 @@
 import * as test from 'intern/lib/interfaces/bdd';
 import { assert } from 'chai';
 import Page from './Page';
+import '@dojo/shim/Promise';
 
 test.describe('TodoMVC - Dojo 2', function (this: any) {
 

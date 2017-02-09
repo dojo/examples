@@ -1,4 +1,5 @@
 import * as keys from 'leadfoot/keys';
+import '@dojo/shim/Promise';
 
 class Selectors {
 	public main = '.main';

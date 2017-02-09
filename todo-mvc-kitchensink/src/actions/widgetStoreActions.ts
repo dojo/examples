@@ -1,29 +1,34 @@
-import { StoreDelta } from '@dojo/stores/store/mixins/createObservableStoreMixin';
-import widgetStore from '../stores/widgetStore';
-import todoStore from '../stores/todoStore';
-import { Item } from '../stores/todoStore';
-
-export const putTodo = function({ afterAll = [] }: StoreDelta<any>) {
-	const completedCount = afterAll.filter(({ completed }) => completed).length;
-	const activeCount = afterAll.length - completedCount;
-	const allCompleted = afterAll.length === completedCount;
-
-	return widgetStore.patch({ id: 'todo-app', todos: afterAll, activeCount, completedCount, allCompleted });
-};
+import { assign } from '@dojo/core/lang';
+import app, { Item } from '../App';
 
 export const setHierarchy = function (this: any, widgets: [ string, any ][]) {
-	widgetStore.patch({ id: 'todo-app', widgets });
+	app.setProperties(assign({}, app.properties, {
+		widgets
+	}));
 };
 
 export const filterAndView = function (this: any, filter: 'active' | 'all' | 'completed', view: 'list' | 'cards') {
-	const { state: { activeView = view, activeFilter = filter } = { } } = this;
-	widgetStore.patch({ id: 'todo-app', activeView, activeFilter });
+	const { state: { activeView = view, activeFilter = filter } = {} } = this;
+
+	app.setProperties(assign({}, app.properties, {
+		activeView, activeFilter
+	}));
 };
 
-export const showTodoDetails = function(todoId: string) {
-	return todoStore.get(todoId).then(( todo: Item) => {
-		widgetStore.patch({ id: 'todo-details', todoDetails: todo }).then(() => {
-			setHierarchy([ [ 'main', {} ], [ 'todo-details', { id: 'todo-details', externalState: widgetStore } ] ]);
-		});
+export const showTodoDetails = function (todoId: string) {
+	let details: Item | null = null;
+
+	(app.properties.todos || []).forEach((todo) => {
+		if (todo.id === todoId) {
+			details = todo;
+		}
 	});
+
+	if (details !== null) {
+		app.setProperties(assign({}, app.properties, {
+			todoDetails: details
+		}));
+
+		setHierarchy([ [ 'main', {} ], [ 'todo-details', { id: 'todo-details' } ] ]);
+	}
 };
