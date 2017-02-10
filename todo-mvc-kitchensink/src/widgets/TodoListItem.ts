@@ -45,7 +45,7 @@ class Label extends WidgetBase<LabelProperties> {
 
 export default class TodoListItem extends WidgetBase<TodoItemProperties> {
 	render() {
-		const { completed, editing, checked, label, focused, id } = this.properties;
+		const { completed, editing, label, focused, id } = this.properties;
 		const inputOptions: FocusableTextProperties = <any> {
 			value: label,
 			onKeyPress: todoEditInput.bind(this),
@@ -61,7 +61,7 @@ export default class TodoListItem extends WidgetBase<TodoItemProperties> {
 			v('div.view', {}, [
 				w(createCheckboxInput, <any> {
 					className: 'toggle',
-					checked,
+					checked: completed,
 					onChange: todoToggleComplete.bind(this)
 				}),
 				w(Label, <any> {

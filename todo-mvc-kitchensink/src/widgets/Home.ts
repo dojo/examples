@@ -40,7 +40,7 @@ export default class Home extends WidgetBase<HomeProperties> {
 				w(Title, { label: 'todos' }),
 				w(FocusableTextInput, <any> newTodoOptions)
 			]),
-			w(MainSection, { ...properties }),
+			w(MainSection, { ...properties, allCompleted }),
 			todos.length ? w(TodoFooter, {
 					...properties, ...{
 						completedCount,
