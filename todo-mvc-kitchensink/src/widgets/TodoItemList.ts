@@ -1,5 +1,6 @@
 import { w, v } from '@dojo/widget-core/d';
-import { WidgetBase, DNode } from '@dojo/widget-core/WidgetBase';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { Item } from '../App';
 import TodoCardItem from './TodoCardItem';
 import TodoListItem from './TodoListItem';

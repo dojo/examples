@@ -1,5 +1,6 @@
 import { v } from '@dojo/widget-core/d';
-import { WidgetBase, DNode } from '@dojo/widget-core/WidgetBase';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { DNode } from '@dojo/widget-core/interfaces';
 import router, { mainRoute } from '../routes';
 
 interface TodoFilterProperties {

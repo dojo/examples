@@ -1,6 +1,7 @@
 import { v, w } from '@dojo/widget-core/d';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { WidgetBase, DNode } from '@dojo/widget-core/WidgetBase';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Home from './widgets/Home';
 import TodoDetails from './widgets/TodoDetails';
 
@@ -40,12 +41,16 @@ class App extends ProjectorMixin(WidgetBase)<AppProperties> {
 		const { widgets = [ [ 'main', {} ] ] } = this.properties;
 
 		return v('section', {
-			classes: {
-				todoapp: true
-			}
-		}, widgets.map((widget: any) => {
-			return createWidget(widget[ 0 ], <any> { ...this.properties, ...widget[ 1 ], id: <string> widget[ 0 ] });
-		}));
+				classes: {
+					todoapp: true
+				},
+			},
+			[
+				w(Home, <any> {})
+			]);
+		// }, widgets.map((widget: any) => {
+		// 	return createWidget(widget[ 0 ], <any> { ...this.properties, ...widget[ 1 ], id: <string> widget[ 0 ] });
+		// }));
 	}
 }
 
