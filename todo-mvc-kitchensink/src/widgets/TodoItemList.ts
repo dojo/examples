@@ -43,7 +43,7 @@ export default class TodoItemList extends WidgetBase<TodoListProperties> {
 			.map((todo: Item) => <DNode> w(activeView === 'cards' ? TodoCardItem : TodoListItem, <any> {
 				...todo,
 				todoId: todo.id,
-				id: todo.id
+				key: todo.id
 			}))
 			.concat((activeView === 'cards' && todos.length) ? [
 					v('li.empty-filler', {}),

@@ -1,8 +1,8 @@
-import { assign } from '@dojo/core/lang';
+import { deepAssign } from '@dojo/core/lang';
 import app, { Item } from '../App';
 
 export const setHierarchy = function (this: any, widgets: [ string, any ][]) {
-	app.setProperties(assign({}, app.properties, {
+	app().setProperties(deepAssign({}, app().properties, {
 		widgets
 	}));
 };
@@ -10,7 +10,7 @@ export const setHierarchy = function (this: any, widgets: [ string, any ][]) {
 export const filterAndView = function (this: any, filter: 'active' | 'all' | 'completed', view: 'list' | 'cards') {
 	const { state: { activeView = view, activeFilter = filter } = {} } = this;
 
-	app.setProperties(assign({}, app.properties, {
+	app().setProperties(deepAssign({}, app().properties, {
 		activeView, activeFilter
 	}));
 };
@@ -18,14 +18,14 @@ export const filterAndView = function (this: any, filter: 'active' | 'all' | 'co
 export const showTodoDetails = function (todoId: string) {
 	let details: Item | null = null;
 
-	(app.properties.todos || []).forEach((todo) => {
+	(app().properties.todos || []).forEach((todo) => {
 		if (todo.id === todoId) {
 			details = todo;
 		}
 	});
 
 	if (details !== null) {
-		app.setProperties(assign({}, app.properties, {
+		app().setProperties(deepAssign({}, app().properties, {
 			todoDetails: details
 		}));
 

@@ -1,4 +1,4 @@
-import { isHNode, v } from '@dojo/widget-core/d';
+import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
 export interface CheckboxInputProperties {
@@ -13,12 +13,6 @@ export default class CheckboxInput extends WidgetBase<CheckboxInputProperties> {
 	}
 
 	render() {
-		const dNode = super.render();
-
-		if (isHNode(dNode)) {
-			dNode.properties.onChange = this.onChange;
-		}
-
 		const { checked = false, className } = this.properties;
 
 		const classes = className ? { [className]: true } : {};

@@ -1,11 +1,11 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoInput } from '../actions/userActions';
+import { Item } from '../App';
 import FocusableTextInput from './FocusableTextInput';
 import MainSection from './MainSection';
 import Title from './Title';
 import TodoFooter from './TodoFooter';
-import { Item } from '../App';
 
 interface HomeProperties {
 	todos?: Item[];
@@ -24,12 +24,16 @@ export default class Home extends WidgetBase<HomeProperties> {
 		const { todo, todos = [] } = <any> properties;
 		const newTodoOptions = {
 			id: 'new-todo',
-			classes: [ 'new-todo' ],
+			className: 'new-todo',
 			focused: true,
 			value: todo ? todo : '',
 			placeholder: 'What needs to be done?',
 			onKeyUp: todoInput.bind(this)
 		};
+
+		const completedCount = todos.filter(({ completed }: { completed: boolean }) => completed).length;
+		const activeCount = todos.length - completedCount;
+		const allCompleted = todos.length === completedCount;
 
 		return v('div', {}, [
 			v('header', {}, [
@@ -37,7 +41,13 @@ export default class Home extends WidgetBase<HomeProperties> {
 				w(FocusableTextInput, <any> newTodoOptions)
 			]),
 			w(MainSection, { ...properties }),
-			todos.length ? w(TodoFooter, { ...properties }) : null
+			todos.length ? w(TodoFooter, {
+					...properties, ...{
+						completedCount,
+						activeCount,
+						allCompleted
+					}
+				}) : null
 		]);
 	}
 }

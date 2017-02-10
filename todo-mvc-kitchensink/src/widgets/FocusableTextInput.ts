@@ -12,7 +12,7 @@ export interface FocusableTextProperties {
 }
 
 export default class FocusableTextInput extends WidgetBase<FocusableTextProperties> {
-	tagName = 'text';
+	tagName = 'input';
 
 	afterCreate(element: HTMLInputElement) {
 		const focused = this.properties.focused;

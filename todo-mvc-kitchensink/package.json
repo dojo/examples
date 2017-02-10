@@ -29,17 +29,17 @@
     "grunt-tslint": "^3.0.0",
     "intern": "~3.4.1",
     "tslint": "^3.15.1",
-    "typescript": "~2.1.4"
+    "typescript": "^2.2.0"
   },
   "dependencies": {
-    "@dojo/compose": "^2.0.0-beta.21",
-    "@dojo/core": "^2.0.0-alpha.22",
+    "@dojo/compose": "2.0.0-beta.21",
+    "@dojo/core": "2.0.0-alpha.21",
     "@dojo/has": "^2.0.0-alpha.7",
     "@dojo/loader": "^2.0.0-beta.9",
     "@dojo/routing": "^2.0.0-alpha.8",
-    "@dojo/shim": "^2.0.0-beta.9",
+    "@dojo/shim": "2.0.0-beta.8",
     "@dojo/stores": "^2.0.0-alpha.9",
-    "@dojo/widgets": "^2.0.0-alpha.19",
+    "@dojo/widget-core": "git@github.com:dojo/widget-core.git",
     "maquette": ">=2.3.7 <=2.4.1",
     "todomvc-app-css": "^2.0.6",
     "todomvc-common": "^1.0.2"
