@@ -1,7 +1,7 @@
-import createRoute from '@dojo/routing/createRoute';
-import createRouter from '@dojo/routing/createRouter';
+import HashHistory from '@dojo/routing/history/HashHistory';
 import { Parameters } from '@dojo/routing/interfaces';
-import createHashHistory from '@dojo/routing/history/createHashHistory';
+import Route from '@dojo/routing/Route';
+import Router from '@dojo/routing/Router';
 import { filterAndView, setHierarchy, showTodoDetails } from './actions/widgetStoreActions';
 
 type FilterValue = 'active' | 'all' | 'completed';
@@ -16,9 +16,8 @@ interface TodoIdParameter extends Parameters {
 	todoId: string;
 }
 
-export const mainRoute = createRoute<AppParameters>({
+export const mainRoute = new Route({
 	path: '/{filter}?{view}',
-
 	params([ filter ], searchParams) {
 		let activeFilter: FilterValue;
 		let activeView: ViewValue;
@@ -48,7 +47,6 @@ export const mainRoute = createRoute<AppParameters>({
 			view: activeView
 		};
 	},
-
 	exec(request) {
 		const { filter, view = 'list' } = request.params as AppParameters;
 		setHierarchy([ [ 'main', {} ] ]);
@@ -56,7 +54,7 @@ export const mainRoute = createRoute<AppParameters>({
 	}
 });
 
-export const todoViewRoute = createRoute({
+export const todoViewRoute = new Route({
 	path: '/todos/{todoId}',
 
 	exec(request) {
@@ -66,8 +64,10 @@ export const todoViewRoute = createRoute({
 	}
 });
 
-const router = createRouter({
-	history: createHashHistory(), fallback() {
+const router = new Router({
+	history: new HashHistory(),
+
+	fallback() {
 		setHierarchy([ [ 'main', {} ] ]);
 		return filterAndView('all', 'list');
 	}

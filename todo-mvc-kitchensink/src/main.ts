@@ -3,7 +3,7 @@ import { App } from './App';
 import router from './routes';
 
 const appProjector = ProjectorMixin(App);
-const projector = new appProjector({});
+const projector = new appProjector();
 
 projector.root = document.getElementsByTagName('my-app')[ 0 ];
 

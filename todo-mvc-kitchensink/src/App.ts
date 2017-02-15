@@ -36,8 +36,8 @@ function createWidget(widgetName: string, widgetProperties: any): DNode {
 let app: App = <any> null;
 
 export class App extends WidgetBase<AppProperties> {
-	constructor(properties: AppProperties) {
-		super(properties);
+	constructor() {
+		super();
 
 		app = this;
 	}
