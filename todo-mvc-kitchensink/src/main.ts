@@ -7,6 +7,8 @@ const projector = new appProjector();
 
 projector.root = document.getElementsByTagName('my-app')[ 0 ];
 
-projector
-	.append()
-	.then(() => router.start());
+if (projector.root) {
+	projector
+		.append()
+		.then(() => router.start());
+}
