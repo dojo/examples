@@ -3,8 +3,8 @@ import { KeyPressEventHandler, DoubleClickEventHandler } from '@dojo/widget-core
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
-import Button from './Button';
 import createCheckboxInput from './CheckboxInput';
+import { DestroyButton } from './DestroyButton';
 import FocusableTextInput, { FocusableTextProperties } from './FocusableTextInput';
 import * as commonStyles from './styles/TodoItemList.css';
 import * as styles from './styles/TodoListItem.css';
@@ -87,8 +87,7 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 					onKeyPress: todoEdit.bind(this),
 					onDoubleClick: todoEdit.bind(this)
 				}),
-				w(Button, <any> {
-					overrideClasses: { button: commonStyles.destroy },
+				w(DestroyButton, <any> {
 					onClick: todoRemove.bind(this)
 				})
 			]),

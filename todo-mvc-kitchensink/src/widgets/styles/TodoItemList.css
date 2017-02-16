@@ -86,31 +86,6 @@
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
-
-.todoItemList li .destroy {
-	position: absolute;
-	top: 0;
-	right: 10px;
-	bottom: 0;
-	width: 40px;
-	height: 40px;
-	margin: auto 0;
-	font-size: 30px;
-	color: #cc9a9a;
-	margin-bottom: 11px;
-	display: block;
-	opacity: 0;
-	transition: all 0.2s ease-out;
-}
-
-.todoItemList li .destroy:hover {
-	color: #af5b5e;
-}
-
-.todoItemList li .destroy:after {
-	content: '×';
-}
-
 .todoItemList li:hover .destroy {
 	opacity: 1;
 }

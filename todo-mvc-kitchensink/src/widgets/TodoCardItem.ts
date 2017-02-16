@@ -2,8 +2,8 @@ import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
-import Button from './Button';
 import CheckboxInput from './CheckboxInput';
+import { DestroyButton } from './DestroyButton';
 import FocusableTextInput from './FocusableTextInput';
 import * as styles from './styles/TodoCardItem.css';
 import * as commonStyles from './styles/TodoItemList.css';
@@ -76,10 +76,9 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 						checked: completed,
 						onChange: todoToggleComplete.bind(this)
 					}),
-					w(Button, <any> {
+					w(DestroyButton, <any> {
 						overrideClasses: {
-							button: commonStyles.destroy,
-							button2: styles.cardDestroy
+							destroyButton: styles.cardDestroy
 						},
 						onClick: todoRemove.bind(this)
 					})
