@@ -2,11 +2,11 @@ import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
-import CheckboxInput from './CheckboxInput';
 import { DestroyButton } from './DestroyButton';
 import FocusableTextInput from './FocusableTextInput';
 import * as styles from './styles/TodoCardItem.css';
 import * as commonStyles from './styles/TodoItemList.css';
+import { Toggler } from './Toggler';
 
 interface TodoCardItemProperties {
 	label: string;
@@ -68,10 +68,9 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 				v('div', {
 					classes: this.classes(styles.cardHeader).get()
 				}, [
-					w(CheckboxInput, <any> {
+					w(Toggler, <any> {
 						overrideClasses: {
-							checkbox: commonStyles.toggle,
-							checkbox2: styles.cardToggle
+							toggle: styles.cardToggle
 						},
 						checked: completed,
 						onChange: todoToggleComplete.bind(this)

@@ -3,11 +3,11 @@ import { KeyPressEventHandler, DoubleClickEventHandler } from '@dojo/widget-core
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
-import createCheckboxInput from './CheckboxInput';
 import { DestroyButton } from './DestroyButton';
 import FocusableTextInput, { FocusableTextProperties } from './FocusableTextInput';
 import * as commonStyles from './styles/TodoItemList.css';
 import * as styles from './styles/TodoListItem.css';
+import { Toggler } from './Toggler';
 
 export interface TodoItemProperties {
 	id: string;
@@ -61,7 +61,9 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 			}
 		};
 
-		const classList = [];
+		const classList = [
+			styles.listItem
+		];
 
 		if (completed) {
 			classList.push(commonStyles.completed);
@@ -77,8 +79,7 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 			v('div', {
 				classes: this.classes(styles.view).get()
 			}, [
-				w(createCheckboxInput, <any> {
-					overrideClasses: { checkbox: commonStyles.toggle },
+				w(Toggler, <any> {
 					checked: completed,
 					onChange: todoToggleComplete.bind(this)
 				}),
@@ -87,9 +88,14 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 					onKeyPress: todoEdit.bind(this),
 					onDoubleClick: todoEdit.bind(this)
 				}),
-				w(DestroyButton, <any> {
-					onClick: todoRemove.bind(this)
-				})
+				v('span', {
+					classes: this.classes(styles.destroyContainer).get()
+				}, [
+					w(DestroyButton, <any> {
+						onClick: todoRemove.bind(this)
+					})
+				])
+
 			]),
 			editing ? w(FocusableTextInput, inputOptions) : null
 		]);

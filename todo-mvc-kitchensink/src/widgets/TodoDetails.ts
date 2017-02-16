@@ -8,6 +8,7 @@ import CheckboxInput from './CheckboxInput';
 import FocusableTextInput from './FocusableTextInput';
 import FormattedDate from './FormattedDate';
 import * as styles from './styles/TodoDetails.css';
+import { Toggler } from './Toggler';
 
 interface TodoDetailsProperties {
 	todoDetails: Item;
@@ -86,9 +87,9 @@ export default class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsP
 								date: createdOn
 							})
 						]),
-						w(CheckboxInput, <any> {
+						w(Toggler, <any> {
 							overrideClasses: {
-								checkbox: styles.toggle
+								toggle: styles.toggle
 							},
 							checked: completed,
 							onChange: this.onCompleted

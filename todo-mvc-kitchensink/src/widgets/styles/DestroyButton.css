@@ -10,8 +10,6 @@
 	color: #cc9a9a;
 	margin-bottom: 11px;
 	display: block;
-	opacity: 0;
-	transition: all 0.2s ease-out;
 }
 
 .destroyButton:hover {

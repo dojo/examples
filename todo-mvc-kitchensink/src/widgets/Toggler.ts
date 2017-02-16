@@ -1,15 +1,15 @@
 import { v } from '@dojo/widget-core/d';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/CheckboxInput.css';
+import * as styles from './styles/Toggler.css';
 
-export interface CheckboxInputProperties {
+export interface TogglerProperties {
 	checked?: boolean;
 	onChange?: (event?: Event) => void;
 }
 
 @theme(styles)
-export default class CheckboxInput extends ThemeableMixin(WidgetBase)<CheckboxInputProperties> {
+export class Toggler extends ThemeableMixin(WidgetBase)<TogglerProperties> {
 	onChange() {
 		this.properties.onChange && this.properties.onChange(event);
 	}
@@ -21,7 +21,9 @@ export default class CheckboxInput extends ThemeableMixin(WidgetBase)<CheckboxIn
 			type: 'checkbox',
 			onchange: this.onChange,
 			checked: checked,
-			classes: this.classes(styles.checkbox).get()
+			classes: this.classes(styles.toggle).get()
 		});
 	}
 }
+
+export default Toggler;
