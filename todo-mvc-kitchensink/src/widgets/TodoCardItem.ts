@@ -1,9 +1,12 @@
 import { v, w } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import Button from './Button';
 import CheckboxInput from './CheckboxInput';
 import FocusableTextInput from './FocusableTextInput';
+import * as styles from './styles/TodoCardItem.css';
+import * as commonStyles from './styles/TodoItemList.css';
 
 interface TodoCardItemProperties {
 	label: string;
@@ -41,22 +44,43 @@ class Label extends WidgetBase<LabelProperties> {
 	}
 }
 
-export default class TodoCardItem extends WidgetBase<TodoCardItemProperties> {
+@theme(styles)
+export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardItemProperties> {
 	render() {
-		const { completed = false, editing = false, checked = false, label, focused = false } = this.properties;
+		const { completed = false, editing = false, label, focused = false } = this.properties;
+
+		const classList = [
+			styles.card
+		];
+
+		if (completed) {
+			classList.push(commonStyles.completed)
+		}
+
+		if (editing) {
+			classList.push(commonStyles.editing);
+		}
 
 		return v('li', {
-			classes: { completed, editing, card: true }
+			classes: this.classes().fixed(...classList).get()
 		}, [
-			v('div.view', {}, [
-				v('div.header', {}, [
+			v('div', {}, [
+				v('div', {
+					classes: this.classes(styles.cardHeader).get()
+				}, [
 					w(CheckboxInput, <any> {
-						className: 'toggle',
-						checked,
+						overrideClasses: {
+							checkbox: commonStyles.toggle,
+							checkbox2: styles.cardToggle
+						},
+						checked: completed,
 						onChange: todoToggleComplete.bind(this)
 					}),
 					w(Button, <any> {
-						className: 'destroy',
+						overrideClasses: {
+							button: commonStyles.destroy,
+							button2: styles.cardDestroy
+						},
 						onClick: todoRemove.bind(this)
 					})
 				]),
@@ -70,7 +94,9 @@ export default class TodoCardItem extends WidgetBase<TodoCardItemProperties> {
 				w(FocusableTextInput, <any> {
 					value: label,
 					focused,
-					className: 'edit',
+					overrideClasses: {
+						base: commonStyles.edit
+					},
 					onBlur: todoSave.bind(this),
 					onKeyPress: todoEditInput.bind(this)
 				}) : null

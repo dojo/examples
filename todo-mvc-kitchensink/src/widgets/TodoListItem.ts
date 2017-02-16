@@ -6,7 +6,7 @@ import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } fro
 import Button from './Button';
 import createCheckboxInput from './CheckboxInput';
 import FocusableTextInput, { FocusableTextProperties } from './FocusableTextInput';
-import * as commonStyles from './styles/todoitemlist.css';
+import * as commonStyles from './styles/TodoItemList.css';
 import * as styles from './styles/TodoListItem.css';
 
 export interface TodoItemProperties {
@@ -72,7 +72,7 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 		}
 
 		return v('li', {
-			classes: this.classes(...classList).get()
+			classes: this.classes().fixed(...classList).get()
 		}, [
 			v('div', {
 				classes: this.classes(styles.view).get()

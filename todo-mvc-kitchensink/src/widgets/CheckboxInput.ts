@@ -1,6 +1,6 @@
 import { v } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as styles from './styles/CheckboxInput.css';
 
 export interface CheckboxInputProperties {
@@ -21,7 +21,7 @@ export default class CheckboxInput extends ThemeableMixin(WidgetBase)<CheckboxIn
 			type: 'checkbox',
 			onchange: this.onChange,
 			checked: checked,
-			classes: this.classes(styles.checkbox).get()
+			classes: this.classes(styles.checkbox, styles.checkbox2).get()
 		});
 	}
 }

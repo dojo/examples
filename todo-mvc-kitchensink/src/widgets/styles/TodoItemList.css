@@ -132,6 +132,13 @@
 	padding: 4px;
 }
 
+.cardList li {
+	width: 32%;
+	margin: 2px;
+	flex-grow: 1;
+	border: none;
+}
+
 .empty {
 	padding: 0;
 }

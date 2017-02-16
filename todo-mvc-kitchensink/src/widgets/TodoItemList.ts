@@ -4,7 +4,7 @@ import { DNode } from '@dojo/widget-core/interfaces';
 import { Item } from '../App';
 import TodoCardItem from './TodoCardItem';
 import TodoListItem from './TodoListItem';
-import * as styles from './styles/todoitemlist.css';
+import * as styles from './styles/TodoItemList.css';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
 interface TodoListProperties {

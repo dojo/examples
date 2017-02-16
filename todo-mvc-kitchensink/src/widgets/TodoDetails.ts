@@ -1,4 +1,5 @@
 import { v, w } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { updateTodo } from '../actions/todoStoreActions';
 import { Item } from '../App';
@@ -6,6 +7,7 @@ import router, { mainRoute } from '../routes';
 import CheckboxInput from './CheckboxInput';
 import FocusableTextInput from './FocusableTextInput';
 import FormattedDate from './FormattedDate';
+import * as styles from './styles/TodoDetails.css';
 
 interface TodoDetailsProperties {
 	todoDetails: Item;
@@ -17,7 +19,8 @@ class FocusableTextArea extends FocusableTextInput {
 	tagName = 'textarea';
 }
 
-export default class TodoDetails extends WidgetBase<TodoDetailsProperties> {
+@theme(styles)
+export default class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsProperties> {
 	onClose() {
 		const { activeFilter: filter, activeView: view } = this.properties;
 
@@ -44,34 +47,49 @@ export default class TodoDetails extends WidgetBase<TodoDetailsProperties> {
 		const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
 
 		return v('div', {
-			classes: {
-				'todo-details': true
-			}
+			classes: this.classes(styles.todoDetails).get()
 		}, [
-			v('div.backdrop', {}),
-			v('div.modal', {}, [
-				v('div.close', {
-					onclick: this.onClose
+			v('div', {
+				classes: this.classes(styles.backdrop).get()
+			}),
+			v('div', {
+				classes: this.classes(styles.modal).get()
+			}, [
+				v('div', {
+					onclick: this.onClose,
+					classes: this.classes(styles.close).get()
 				}),
-				v('header', {}, [
-					v('div.title', {}, [
+				v('header', {
+					classes: this.classes(styles.todoDetailsHeader).get()
+				}, [
+					v('div', {
+						classes: this.classes(styles.title).get()
+					}, [
 						'Details'
 					])
 				]),
 				v('section', {}, [
-					w(FocusableTextArea, {
+					w(FocusableTextArea, <any> {
+						overrideClasses: {
+							base: styles.todoDetailsTextArea
+						},
 						focused: true,
 						value: label,
 						onInput: this.onInput
 					}),
 					v('div', {}, [
-						v('div.last-updated', [
+						v('div', {
+							classes: this.classes(styles.lastUpdated).get()
+						}, [
 							'Created on ',
 							w(FormattedDate, {
 								date: createdOn
 							})
 						]),
-						w(CheckboxInput, {
+						w(CheckboxInput, <any> {
+							overrideClasses: {
+								checkbox: styles.toggle
+							},
 							checked: completed,
 							onChange: this.onCompleted
 						})
