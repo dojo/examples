@@ -1,10 +1,13 @@
 import { v, w } from '@dojo/widget-core/d';
 import { KeyPressEventHandler, DoubleClickEventHandler } from '@dojo/widget-core/interfaces';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import Button from './Button';
 import createCheckboxInput from './CheckboxInput';
 import FocusableTextInput, { FocusableTextProperties } from './FocusableTextInput';
+import * as commonStyles from './styles/todoitemlist.css';
+import * as styles from './styles/TodoListItem.css';
 
 export interface TodoItemProperties {
 	id: string;
@@ -43,7 +46,8 @@ class Label extends WidgetBase<LabelProperties> {
 	}
 }
 
-export default class TodoListItem extends WidgetBase<TodoItemProperties> {
+@theme(styles)
+export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemProperties> {
 	render() {
 		const { completed, editing, label, focused, id } = this.properties;
 		const inputOptions: FocusableTextProperties = <any> {
@@ -52,15 +56,29 @@ export default class TodoListItem extends WidgetBase<TodoItemProperties> {
 			onBlur: todoSave,
 			id,
 			focused,
-			className: 'edit'
+			overrideClasses: {
+				base: commonStyles.edit
+			}
 		};
 
+		const classList = [];
+
+		if (completed) {
+			classList.push(commonStyles.completed);
+		}
+
+		if (editing) {
+			classList.push(commonStyles.editing);
+		}
+
 		return v('li', {
-			classes: { completed, editing, card: false }
+			classes: this.classes(...classList).get()
 		}, [
-			v('div.view', {}, [
+			v('div', {
+				classes: this.classes(styles.view).get()
+			}, [
 				w(createCheckboxInput, <any> {
-					className: 'toggle',
+					overrideClasses: { checkbox: commonStyles.toggle },
 					checked: completed,
 					onChange: todoToggleComplete.bind(this)
 				}),
@@ -70,7 +88,7 @@ export default class TodoListItem extends WidgetBase<TodoItemProperties> {
 					onDoubleClick: todoEdit.bind(this)
 				}),
 				w(Button, <any> {
-					className: 'destroy',
+					overrideClasses: { button: commonStyles.destroy },
 					onClick: todoRemove.bind(this)
 				})
 			]),

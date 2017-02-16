@@ -74,8 +74,8 @@ export const todoSave = function (this: any, event: FormInputEvent) {
 };
 
 export const todoRemove = function (this: any) {
-	const { state } = this;
-	deleteTodo({ id: state.id });
+	const { properties } = this;
+	deleteTodo({ id: properties.todoId });
 };
 
 export const todoToggleComplete = function (this: any) {

@@ -25,16 +25,20 @@ export default class MainSection extends ThemeableMixin(WidgetBase)<MainSectionP
 		const { todos = [], allCompleted = false, activeView = 'list', search = '' } = this.properties;
 		const checkBoxOptions = {
 			checked: allCompleted,
-			overrideClasses: this.classes(styles.toggleAll).get(),
+			overrideClasses: { checkbox: styles.toggleAll },
 			onChange: todoToggleAll
 		};
 
 		return v('section', {
 			classes: this.classes(styles.main).get()
 		}, [
-			w(CheckboxInput, <any> checkBoxOptions),
-			todos.length ? v('div.searchbar', {}, [
-				v('span.icon', {}), w(SearchInput, {
+			w(CheckboxInput, checkBoxOptions),
+			todos.length ? v('div', {
+				classes: this.classes(styles.searchBar).get()
+			}, [
+				v('span', {
+					classes: this.classes(styles.searchIcon).get()
+				}), w(SearchInput, {
 					placeholder: 'Quick Filter',
 					value: search,
 					onKeyUp: this.searchHandler

@@ -1,7 +1,9 @@
 import { v } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode } from '@dojo/widget-core/interfaces';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import router, { mainRoute } from '../routes';
+import * as styles from './styles/TodoFilter.css';
 
 interface TodoFilterProperties {
 	activeFilter: string;
@@ -9,10 +11,16 @@ interface TodoFilterProperties {
 
 }
 
-function createFilterItems(activeFilter: string, activeView: string): DNode[] {
+function createFilterItems(instance: TodoFilter, activeFilter: string, activeView: string): DNode[] {
 	const filters = [ 'all', 'active', 'completed' ];
 	return filters.map((filterItem) => {
 		const label = filterItem[ 0 ].toUpperCase() + filterItem.substring(1);
+		const classes = [];
+
+		if (activeFilter === filterItem) {
+			classes.push(styles.selected);
+		}
+
 		return v('li', {}, [
 			v('a', {
 				innerHTML: label,
@@ -20,22 +28,19 @@ function createFilterItems(activeFilter: string, activeView: string): DNode[] {
 					filter: filterItem,
 					view: activeView
 				}),
-				classes: {
-					selected: activeFilter === filterItem
-				}
+				classes: instance.classes(...classes).get()
 			})
 		]);
 	});
 }
 
-export default class TodoFilter extends WidgetBase<TodoFilterProperties> {
+@theme(styles)
+export default class TodoFilter extends ThemeableMixin(WidgetBase)<TodoFilterProperties> {
 	render() {
 		const { activeFilter = '', activeView = '' } = this.properties;
 
 		return v('ul', {
-			classes: {
-				filters: true
-			}
-		}, createFilterItems(activeFilter, activeView));
+			classes: this.classes(styles.filters).get()
+		}, createFilterItems(this, activeFilter, activeView));
 	}
 }

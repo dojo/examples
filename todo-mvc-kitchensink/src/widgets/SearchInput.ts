@@ -1,5 +1,7 @@
 import { v } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import * as styles from './styles/SearchInput.css';
 
 export interface SearchInputProperties {
 	placeholder?: string;
@@ -7,20 +9,19 @@ export interface SearchInputProperties {
 	value?: string;
 }
 
-export default class SearchInput extends WidgetBase<SearchInputProperties> {
+@theme(styles)
+export default class SearchInput extends ThemeableMixin(WidgetBase)<SearchInputProperties> {
 	onKeyUp(this: SearchInput, event?: KeyboardEvent) {
 		this.properties.onKeyUp && this.properties.onKeyUp(event);
 	}
 
 	render() {
 		const { onKeyUp: onkeyup } = this;
-		const { placeholder = '', value = ''} = this.properties;
+		const { placeholder = '', value = '' } = this.properties;
 
 		return v('input', {
 			type: 'text',
-			classes: {
-				search: true
-			},
+			classes: this.classes(styles.search).get(),
 			placeholder,
 			value,
 			onkeyup

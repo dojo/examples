@@ -1,5 +1,7 @@
 import { v } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import * as styles from './styles/FocusableTextInput.css';
 
 export interface FocusableTextProperties {
 	focused?: boolean;
@@ -8,10 +10,10 @@ export interface FocusableTextProperties {
 	onKeyUp?: (event?: KeyboardEvent) => void;
 	onInput?: (event?: KeyboardEvent) => void;
 	onBlur?: (event?: Event) => void;
-	className?: string;
 }
 
-export default class FocusableTextInput extends WidgetBase<FocusableTextProperties> {
+@theme(styles)
+export default class FocusableTextInput extends ThemeableMixin(WidgetBase)<FocusableTextProperties> {
 	tagName = 'input';
 
 	afterCreate(element: HTMLInputElement) {
@@ -38,9 +40,7 @@ export default class FocusableTextInput extends WidgetBase<FocusableTextProperti
 
 	render() {
 		const { onKeyUp: onkeyup, onBlur: onblur, afterCreate, onInput: oninput } = this;
-		const { placeholder, value = '', className } = this.properties;
-
-		const classes = className ? { [className]: true } : {};
+		const { placeholder, value = '' } = this.properties;
 
 		return v(this.tagName, {
 			type: 'text',
@@ -51,7 +51,7 @@ export default class FocusableTextInput extends WidgetBase<FocusableTextProperti
 			onkeyup,
 			onblur,
 			oninput,
-			classes
+			classes: this.classes(styles.base).get()
 		});
 	}
 }

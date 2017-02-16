@@ -1,26 +1,26 @@
 import { v } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import * as styles from './styles/Button.css';
 
 export interface ButtonProperties {
 	label: string;
 	onClick?: () => void;
-	className?: string;
 }
 
-export default class Button extends WidgetBase<ButtonProperties> {
+@theme(styles)
+export default class Button extends ThemeableMixin(WidgetBase)<ButtonProperties> {
 	onClick() {
 		this.properties.onClick && this.properties.onClick();
 	}
 
 	render() {
-		const { label, className } = this.properties;
-
-		const classes = className ? { [className]: true } : {};
+		const { label } = this.properties;
 
 		return v('button', {
 			innerHTML: label,
 			onclick: this.onClick,
-			classes
+			classes: this.classes(styles.button).get()
 		});
 	}
 }

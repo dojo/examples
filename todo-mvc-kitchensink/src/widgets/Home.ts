@@ -27,7 +27,9 @@ export default class Home extends ThemeableMixin(WidgetBase)<HomeProperties> {
 		const { todo, todos = [] } = <any> properties;
 		const newTodoOptions = {
 			id: 'new-todo',
-			className: styles.newTodo,
+			overrideClasses: {
+				base: styles.newTodo
+			},
 			focused: true,
 			value: todo ? todo : '',
 			placeholder: 'What needs to be done?',

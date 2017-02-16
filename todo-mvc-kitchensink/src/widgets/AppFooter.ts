@@ -2,7 +2,7 @@ import { v } from '@dojo/widget-core/d';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/footer.css';
+import * as styles from './styles/AppFooter.css';
 
 @theme(styles)
 export class AppFooter extends ThemeableMixin(WidgetBase)<WidgetProperties> {

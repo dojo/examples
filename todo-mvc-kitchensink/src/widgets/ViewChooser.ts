@@ -1,20 +1,33 @@
 import { v } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import router, { mainRoute } from '../routes';
+import * as styles from './styles/ViewChooser.css';
 
 interface ViewChooserProperties {
 	activeView: 'list' | 'cards';
 	activeFilter: string;
 }
 
-export default class ViewChooser extends WidgetBase<ViewChooserProperties> {
+@theme(styles)
+export default class ViewChooser extends ThemeableMixin(WidgetBase)<ViewChooserProperties> {
 	render() {
 		const { activeView = 'list', activeFilter = 'all' } = this.properties;
 
+		const listClassList = [ styles.list ];
+
+		if (activeView === 'list') {
+			listClassList.push(styles.active);
+		}
+
+		const cardClassList = [ styles.cards ];
+
+		if (activeView === 'cards') {
+			cardClassList.push(styles.active);
+		}
+
 		return v('ul', {
-			classes: {
-				'view-chooser': true
-			}
+			classes: this.classes(styles.viewChooser).get()
 		}, [
 			v('li.view-mode', {}, [
 				v('a', {
@@ -22,10 +35,7 @@ export default class ViewChooser extends WidgetBase<ViewChooserProperties> {
 						filter: activeFilter,
 						view: 'list'
 					}),
-					classes: {
-						list: true,
-						active: activeView === 'list'
-					}
+					classes: this.classes(...listClassList).get()
 				})
 			]),
 			v('li.view-mode', {}, [
@@ -34,10 +44,7 @@ export default class ViewChooser extends WidgetBase<ViewChooserProperties> {
 						filter: activeFilter,
 						view: 'cards'
 					}),
-					classes: {
-						cards: true,
-						active: activeView === 'cards'
-					}
+					classes: this.classes(...cardClassList).get()
 				})
 			])
 		]);
