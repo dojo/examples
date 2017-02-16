@@ -1,6 +1,9 @@
 import { v, w } from '@dojo/widget-core/d';
 import { DNode } from '@dojo/widget-core/interfaces';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import * as styles from './main.css';
+import { AppFooter } from './widgets/AppFooter';
 import Home from './widgets/Home';
 import TodoDetails from './widgets/TodoDetails';
 
@@ -35,7 +38,8 @@ function createWidget(widgetName: string, widgetProperties: any): DNode {
 
 let app: App = <any> null;
 
-export class App extends WidgetBase<AppProperties> {
+@theme(styles)
+export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 	constructor() {
 		super();
 
@@ -45,13 +49,17 @@ export class App extends WidgetBase<AppProperties> {
 	render() {
 		const { widgets = [ [ 'main', {} ] ] } = this.properties;
 
-		return v('section', {
-			classes: {
-				todoapp: true
-			}
-		}, widgets.map((widget: any) => {
-			return createWidget(widget[ 0 ], <any> { ...this.properties, ...widget[ 1 ], id: <string> widget[ 0 ] });
-		}));
+		return v('div', {}, [
+			v('section', {
+				classes: this.classes(styles.todoapp).get()
+			}, widgets.map((widget: any) => {
+				return createWidget(widget[ 0 ], <any> {
+					...this.properties, ...widget[ 1 ],
+					id: <string> widget[ 0 ]
+				});
+			})),
+			w(AppFooter, {})
+		]);
 	}
 }
 

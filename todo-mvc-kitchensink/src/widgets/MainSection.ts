@@ -1,9 +1,11 @@
 import { v, w } from '@dojo/widget-core/d';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoToggleAll, updateSearch } from '../actions/userActions';
 import { Item } from '../App';
 import CheckboxInput from './CheckboxInput';
 import SearchInput from './SearchInput';
+import * as styles from './styles/mainsection.css';
 import TodoItemList from './TodoItemList';
 
 interface MainSectionProperties {
@@ -13,7 +15,8 @@ interface MainSectionProperties {
 	search?: string;
 }
 
-export default class MainSection extends WidgetBase<MainSectionProperties> {
+@theme(styles)
+export default class MainSection extends ThemeableMixin(WidgetBase)<MainSectionProperties> {
 	searchHandler(event: any) {
 		updateSearch(event.target.value);
 	}
@@ -22,23 +25,21 @@ export default class MainSection extends WidgetBase<MainSectionProperties> {
 		const { todos = [], allCompleted = false, activeView = 'list', search = '' } = this.properties;
 		const checkBoxOptions = {
 			checked: allCompleted,
-			className: 'toggle-all',
+			overrideClasses: this.classes(styles.toggleAll).get(),
 			onChange: todoToggleAll
 		};
 
 		return v('section', {
-			classes: {
-				main: true
-			}
+			classes: this.classes(styles.main).get()
 		}, [
-			w(CheckboxInput, checkBoxOptions),
+			w(CheckboxInput, <any> checkBoxOptions),
 			todos.length ? v('div.searchbar', {}, [
-					v('span.icon', {}), w(SearchInput, {
-						placeholder: 'Quick Filter',
-						value: search,
-						onKeyUp: this.searchHandler
-					})
-				]) : null,
+				v('span.icon', {}), w(SearchInput, {
+					placeholder: 'Quick Filter',
+					value: search,
+					onKeyUp: this.searchHandler
+				})
+			]) : null,
 			w(TodoItemList, <any> { ...this.properties, key: `todo-item-${activeView === 'cards' ? 'cards' : 'list'}` })
 		]);
 	}

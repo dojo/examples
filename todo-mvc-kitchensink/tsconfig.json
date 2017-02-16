@@ -10,7 +10,8 @@
 		"removeComments": false,
 		"sourceMap": true,
 		"target": "es5",
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"experimentalDecorators": true
 	},
 	"include": [
 		"./typings/index.d.ts",

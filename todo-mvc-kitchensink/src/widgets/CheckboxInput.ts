@@ -1,27 +1,27 @@
 import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import * as styles from './styles/checkbox.css';
 
 export interface CheckboxInputProperties {
 	checked?: boolean;
-	className?: string;
 	onChange?: (event?: Event) => void;
 }
 
-export default class CheckboxInput extends WidgetBase<CheckboxInputProperties> {
+@theme(styles)
+export default class CheckboxInput extends ThemeableMixin(WidgetBase)<CheckboxInputProperties> {
 	onChange() {
 		this.properties.onChange && this.properties.onChange(event);
 	}
 
 	render() {
-		const { checked = false, className } = this.properties;
-
-		const classes = className ? { [className]: true } : {};
+		const { checked = false } = this.properties;
 
 		return v('input', {
 			type: 'checkbox',
 			onchange: this.onChange,
 			checked: checked,
-			classes
+			classes: this.classes().get()
 		});
 	}
 }

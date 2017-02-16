@@ -72,7 +72,6 @@ export default class TodoDetails extends WidgetBase<TodoDetailsProperties> {
 							})
 						]),
 						w(CheckboxInput, {
-							className: 'toggle',
 							checked: completed,
 							onChange: this.onCompleted
 						})
