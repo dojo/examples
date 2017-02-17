@@ -7,7 +7,7 @@ import { AppFooter } from './widgets/AppFooter';
 import Home from './widgets/Home';
 import TodoDetails from './widgets/TodoDetails';
 
-interface AppProperties {
+interface AppProperties extends SharedWidgetProperties {
 	widgets?: any;
 	todos?: Item[];
 	todo?: string;
@@ -23,6 +23,11 @@ export interface Item {
 	completed?: boolean;
 	createdOn?: Date;
 	editing: boolean;
+}
+
+export interface SharedWidgetProperties {
+	theme?: string;
+	locale?: string;
 }
 
 function createWidget(widgetName: string, widgetProperties: any): DNode {

@@ -1,7 +1,9 @@
 import { v, w } from '@dojo/widget-core/d';
+import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { clearCompleted } from '../actions/userActions';
+import appBundle from '../nls/common';
 import Button from './Button';
 import * as styles from './styles/TodoFooter.css';
 import TodoFilter from './TodoFilter';
@@ -15,20 +17,21 @@ interface TodoFooterProperties {
 }
 
 @theme(styles)
-export default class TodoFooter extends ThemeableMixin(WidgetBase)<TodoFooterProperties> {
+export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<TodoFooterProperties> {
 	render() {
 		const { activeCount = 0, activeFilter = 'all', completedCount = 0, activeView = 'cards' } = this.properties;
-		const countLabel = activeCount === 1 ? 'item' : 'items';
+
+		const messages = this.localizeBundle(appBundle);
 
 		return v('footer', {
 			classes: this.classes(styles.footer).get()
 		}, [
 			v('span', {
-				classes: this.classes(styles.todoCount).get()
-			}, [
-				v('strong', [ activeCount + ' ' ]),
-				v('span', [ countLabel + ' left' ])
-			]),
+				classes: this.classes(styles.todoCount).get(),
+				innerHTML: messages.format('itemsLeft', {
+					count: activeCount
+				})
+			}),
 			w(TodoFilter, {
 				activeFilter,
 				activeView
@@ -38,7 +41,7 @@ export default class TodoFooter extends ThemeableMixin(WidgetBase)<TodoFooterPro
 				activeFilter
 			}),
 			completedCount ? w(Button, <any> {
-				label: 'Clear completed',
+				label: messages.clearButtonText,
 				overrideClasses: {
 					button: styles.clearCompleted
 				},

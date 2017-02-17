@@ -1,28 +1,31 @@
 import { v } from '@dojo/widget-core/d';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { SharedWidgetProperties } from '../App';
 import * as styles from './styles/AppFooter.css';
+import appBundle from '../nls/common';
+
+export interface AppFooterProperties extends SharedWidgetProperties {
+}
 
 @theme(styles)
-export class AppFooter extends ThemeableMixin(WidgetBase)<WidgetProperties> {
+export class AppFooter extends I18nMixin(ThemeableMixin(WidgetBase))<AppFooterProperties> {
 	render() {
+		const messages = this.localizeBundle(appBundle);
+
 		return v('footer', {
 			classes: this.classes(styles.footer).get()
 		}, [
 			v('p', {
 				id: 'edit-instructions',
-				innerHTML: 'Double-click or press Enter to edit a todo'
+				innerHTML: messages.footerInstructions
 			}),
 			v('p', {
-				innerHTML: `Credits: 
-<a href="https://github.com/matt-gadd">Matt Gadd</a>,
-<a href="https://github.com/agubler">Anthony Gubler</a>
-and
-<a href="https://github.com/Tomdye">Tom Dye</a>`
+				innerHTML: messages.footerCredits
 			}),
 			v('p', {
-				innerHTML: 'Part of <a href="http://todomvc.com">TodoMVC</a>'
+				innerHTML: messages.footerPartOf
 			})
 		]);
 	}

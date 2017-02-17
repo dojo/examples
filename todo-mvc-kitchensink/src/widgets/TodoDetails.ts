@@ -4,7 +4,6 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { updateTodo } from '../actions/todoStoreActions';
 import { Item } from '../App';
 import router, { mainRoute } from '../routes';
-import CheckboxInput from './CheckboxInput';
 import FocusableTextInput from './FocusableTextInput';
 import FormattedDate from './FormattedDate';
 import * as styles from './styles/TodoDetails.css';

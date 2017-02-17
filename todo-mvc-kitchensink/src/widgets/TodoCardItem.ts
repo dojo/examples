@@ -54,7 +54,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 		];
 
 		if (completed) {
-			classList.push(commonStyles.completed)
+			classList.push(commonStyles.completed);
 		}
 
 		if (editing) {

@@ -1,11 +1,11 @@
 import { w, v } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode } from '@dojo/widget-core/interfaces';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Item } from '../App';
+import * as styles from './styles/TodoItemList.css';
 import TodoCardItem from './TodoCardItem';
 import TodoListItem from './TodoListItem';
-import * as styles from './styles/TodoItemList.css';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
 interface TodoListProperties {
 	activeFilter: string;
@@ -34,13 +34,13 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 	render() {
 		const { activeView = 'list', todos = [], activeFilter = '', search = '' } = this.properties;
 
-		let classList = [styles.todoItemList];
+		let classList = [ styles.todoItemList ];
 
-		if(activeView === 'cards') {
+		if (activeView === 'cards') {
 			classList.push(styles.cardList);
 		}
 
-		if(todos.length === 0) {
+		if (todos.length === 0) {
 			classList.push(styles.empty);
 		}
 
@@ -55,12 +55,12 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 				key: todo.id
 			}))
 			.concat((activeView === 'cards' && todos.length) ? [
-					v('li', {
-						classes: this.classes(styles.emptyFiller).get()
-					}),
-					v('li', {
-						classes: this.classes(styles.emptyFiller).get()
-					})
-				] : []));
+				v('li', {
+					classes: this.classes(styles.emptyFiller).get()
+				}),
+				v('li', {
+					classes: this.classes(styles.emptyFiller).get()
+				})
+			] : []));
 	}
 }
