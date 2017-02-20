@@ -18,7 +18,6 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 	test.describe('When page is initially opened', function () {
 
 		test.it('should focus on the todo input field', function (this: any) {
-			this.skip();
 			return page.isNewItemInputFocused()
 				.then((isNewItemInputFocused: boolean) => {
 					assert.isTrue(isNewItemInputFocused);
@@ -30,7 +29,6 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 	test.describe('No Todos', function () {
 
 		test.it('should hide #main and #footer', function (this: any) {
-			this.skip();
 			return Promise.all([ page.isMainVisible(), page.isFooterVisible() ])
 				.then(([ isMainVisible, isFooterVisible ]) => {
 					assert.isFalse(isMainVisible);
@@ -74,7 +72,6 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 		});
 
 		test.it('should trim text input', function (this: any) {
-			this.skip();
 			return page.enterItem(`   ${TODO_ITEM_ONE}  `)
 				.then(() => page.getItem(0))
 				.then((itemText: string) => {
