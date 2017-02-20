@@ -1,8 +1,10 @@
 import { v, w } from '@dojo/widget-core/d';
+import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { updateTodo } from '../actions/todoStoreActions';
 import { Item } from '../App';
+import appBundle from '../nls/common';
 import router, { mainRoute } from '../routes';
 import FocusableTextInput from './FocusableTextInput';
 import FormattedDate from './FormattedDate';
@@ -20,7 +22,7 @@ class FocusableTextArea extends FocusableTextInput {
 }
 
 @theme(styles)
-export default class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsProperties> {
+export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
 	onClose() {
 		const { activeFilter: filter, activeView: view } = this.properties;
 
@@ -45,6 +47,7 @@ export default class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsP
 	render() {
 		const { todoDetails } = this.properties;
 		const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
+		const messages = this.localizeBundle(appBundle);
 
 		return v('div', {
 			classes: this.classes(styles.todoDetails).get()
@@ -65,7 +68,7 @@ export default class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsP
 					v('div', {
 						classes: this.classes(styles.title).get()
 					}, [
-						'Details'
+						messages.detailsTitle
 					])
 				]),
 				v('section', {}, [
@@ -81,7 +84,7 @@ export default class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsP
 						v('div', {
 							classes: this.classes(styles.lastUpdated).get()
 						}, [
-							'Created on ',
+							messages.createdTitle,
 							w(FormattedDate, {
 								date: createdOn
 							})
