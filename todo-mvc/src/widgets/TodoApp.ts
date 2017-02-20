@@ -28,10 +28,6 @@ export interface Todo {
 	editing?: boolean;
 }
 
-export type Todos = Map<string, Todo> & {
-	updated?: string;
-}
-
 export interface TodoAppProperties extends WidgetProperties {
 	filter?: string;
 }
@@ -41,7 +37,7 @@ export const TodoAppBase = ThemeableMixin(WidgetBase);
 @theme(css)
 export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 
-	private todos: Todos = new Map<string, Todo>();
+	private todos: Map<string, Todo> = new Map<string, Todo>();
 	private completedCount: number = 0;
 	private updated: string = uuid();
 

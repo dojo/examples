@@ -15,22 +15,6 @@ export const TodoHeaderBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
 export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
-
-	addTodo({ which, target: { value: label } }: any) {
-		if (which === 13 && label) {
-			this.properties.addTodo({ label, completed: false });
-			this.invalidate();
-		}
-	}
-
-	toggleAllTodos() {
-		this.properties.toggleAllTodos();
-	}
-
-	afterCreate(element: HTMLInputElement) {
-		setTimeout(() => element.focus(), 0);
-	}
-
 	render() {
 		const { allCompleted } = this.properties;
 
@@ -39,5 +23,20 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 			v('input', { id: 'new-todo', afterCreate: this.afterCreate, classes: this.classes(css.newTodo), value: '', onkeyup: this.addTodo, placeholder: 'What needs to be done?' }),
 			v('input', { onchange: this.toggleAllTodos, checked: allCompleted, type: 'checkbox', classes: this.classes(css.toggleAll) })
 		]);
+	}
+
+	private addTodo({ which, target: { value: label } }: any) {
+		if (which === 13 && label) {
+			this.properties.addTodo({ label, completed: false });
+			this.invalidate();
+		}
+	}
+
+	private toggleAllTodos() {
+		this.properties.toggleAllTodos();
+	}
+
+	private afterCreate(element: HTMLInputElement) {
+		setTimeout(() => element.focus(), 0);
 	}
 }

@@ -4,7 +4,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
-import { Todo } from './todoApp';
+import { Todo } from './TodoApp';
 
 import * as css from './styles/todoList.css';
 
