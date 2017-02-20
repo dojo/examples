@@ -40,6 +40,7 @@
     "@dojo/stores": "^2.0.0-alpha.9",
     "@dojo/widget-core": "2.0.0-alpha.25",
     "@dojo/i18n": "2.0.0-alpha.6",
+    "@webcomponents/custom-elements": "^1.0.0-alpha.3",
     "maquette": ">=2.3.7 <=2.4.1",
     "todomvc-app-css": "^2.0.6",
     "todomvc-common": "^1.0.2"

@@ -27,7 +27,7 @@ export class IssuesWidget extends ThemeableMixin(WidgetBase)<IssuesWidgetPropert
 		}
 
 		if (!this._issues.length) {
-			return null;
+			return v('section');
 		}
 		else {
 			return v('section', {}, [
