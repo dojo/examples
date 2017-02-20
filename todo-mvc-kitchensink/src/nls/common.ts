@@ -1,4 +1,4 @@
-const bundlePath = `src/nls/greetings`;
+const bundlePath = `nls/common`;
 const locales: string[] = [ 'en-PR' ];
 
 const messages = {
@@ -10,7 +10,7 @@ const messages = {
 	filterAll: 'All',
 	filterCompleted: 'Completed',
 	footerInstructions: 'Double-click or press Enter to edit a todo',
-	footerCredits: `Credits: 
+	footerCredits: `Credits:
 <a href="https://github.com/matt-gadd">Matt Gadd</a>,
 <a href="https://github.com/agubler">Anthony Gubler</a>
 and
