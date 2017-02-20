@@ -1,44 +1,25 @@
-import createProjectorMixin from '@dojo/widget-core/mixins/createProjectorMixin';
-import { registry } from '@dojo/widget-core/d';
-
+import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import createRoute from '@dojo/routing/createRoute';
+import TodoApp from './widgets/TodoApp';
 import router from './routes';
-import { bindActions as bindTodoStoreActions } from './stores/todoStore';
-import widgetStore from './stores/widgetStore';
-import createApp from './createApp';
-import createLabel from './widgets/createLabel';
-import createTitle from './widgets/createTitle';
-import createButton from './widgets/createButton';
-import createTodoItem from './widgets/createTodoItem';
-import createTodoList from './widgets/createTodoList';
-import createTodoFilter from './widgets/createTodoFilter';
-import createTodoFooter from './widgets/createTodoFooter';
-import createMainSection from './widgets/createMainSection';
-import createCheckboxInput from './widgets/createCheckboxInput';
-import createFocusableTextInput from './widgets/createFocusableTextInput';
 
-import 'todomvc-app-css/index.css';
+const root = document.querySelector('my-app') || undefined;
 
-registry.define('label', createLabel);
-registry.define('title', createTitle);
-registry.define('button', createButton);
-registry.define('todo-item', createTodoItem);
-registry.define('todo-list', createTodoList);
-registry.define('todo-filter', createTodoFilter);
-registry.define('todo-footer', createTodoFooter);
-registry.define('main-section', createMainSection);
-registry.define('checkbox', createCheckboxInput);
-registry.define('text-input', createFocusableTextInput);
+const Projector = ProjectorMixin(TodoApp);
+const projector = new Projector();
 
-const root = document.getElementsByTagName('my-app')[0];
+// TODO find a better place for this
+const filterRoute = createRoute<any>({
+	path: '/{filter}',
 
-const app = createApp.mixin(createProjectorMixin)({
-	properties: {
-		id: 'todo-app',
-		store: widgetStore
-	},
-	root
+	exec(request) {
+		const { filter } = request.params;
+		projector.setProperties({ filter });
+	}
 });
+router.append(filterRoute);
 
-app.append()
-	.then(() => bindTodoStoreActions())
-	.then(() => router.start());
+projector.append(root).then(() => {
+	router.start();
+	console.log('Attached!');
+});

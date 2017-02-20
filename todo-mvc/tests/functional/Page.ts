@@ -1,20 +1,27 @@
 import * as keys from 'leadfoot/keys';
 
+import * as todoAppCss from './../../src/widgets/styles/todoApp.css';
+import * as todoFilterCss from './../../src/widgets/styles/todoFilter.css';
+import * as todoItemCss from './../../src/widgets/styles/todoItem.css';
+import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.css';
+import * as todoFooterCss from './../../src/widgets/styles/todoFooter.css';
+import * as todoListCss from './../../src/widgets/styles/todoList.css';
+
 class Selectors {
-	public main = '.main';
-	public footer = 'footer.footer';
-	public clearCompletedButton = 'button.clear-completed';
-	public newInput = 'input.new-todo';
-	public toggleAllButton = 'input.toggle-all';
-	public itemCount = 'span.todo-count';
-	public list = 'ul.todo-list';
+	public main = `.${todoAppCss.main}`;
+	public footer = `.${todoFooterCss.footer}`;
+	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
+	public newInput = `.${todoHeaderCss.newTodo}`;
+	public toggleAllButton = `.${todoHeaderCss.toggleAll}`;
+	public itemCount = `.${todoFooterCss.todoCount}`;
+	public list = `.${todoListCss.todoList}`;
 
 	getFilter(index: number): string {
-		return `.filters li:nth-of-type(${index + 1}) a'`;
+		return `.${todoFilterCss.filters} li:nth-of-type(${index + 1}) a'`;
 	}
 
 	getSelectedFilter(index: number): string {
-		return this.getFilter(index) + '.selected';
+		return this.getFilter(index) + `.${todoFilterCss.selected}`;
 	}
 
 	getFilterAll(): string  {
@@ -30,7 +37,7 @@ class Selectors {
 	}
 
 	getList(suffix: string): string {
-		return 'ul.todo-list' + (suffix || '');
+		return this.list + (suffix || '');
 	}
 
 	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
@@ -39,11 +46,11 @@ class Selectors {
 	}
 
 	getListItemToggle(index: number): string {
-		return this.getListItem(index, ' input.toggle');
+		return this.getListItem(index, ` .${todoItemCss.toggle}`);
 	}
 
 	getListItemLabel(index: number) {
-		return this.getListItem(index, ' label');
+		return this.getListItem(index, ` .${todoItemCss.todoLabel}`);
 	}
 
 	getLastListItemLabel(index: number) {
@@ -51,11 +58,11 @@ class Selectors {
 	}
 
 	getListItemInput(index: number) {
-		return this.getListItem(index, ' input.edit');
+		return this.getListItem(index, ` .${todoItemCss.edit}`);
 	}
 
 	getEditingListItemInput() {
-		return this.getListItem(undefined, '.editing input.edit');
+		return this.getListItem(undefined, ` .${todoItemCss.editing} .${todoItemCss.edit}`);
 	}
 }
 
@@ -68,8 +75,8 @@ export default class Page {
 		this.selectors = new Selectors();
 	}
 
-	delay(): Promise<any> {
-		return new Promise((resolve) => setTimeout(resolve, 60));
+	delay(time: number = 60): Promise<any> {
+		return new Promise((resolve) => setTimeout(resolve, time));
 	}
 
 	init(): Promise<any> {
@@ -90,7 +97,7 @@ export default class Page {
 	isFooterVisible(): Promise<boolean> {
 		return this.remote
 			.findByCssSelector(this.selectors.footer)
-			.isDisplayed();
+			.then(() => true, () => false);
 	}
 
 	isCompleteAllChecked(): Promise<boolean> {
@@ -141,7 +148,7 @@ export default class Page {
 	getCompletedCount(): Promise<number> {
 		return this.remote
 			.then(this.delay)
-			.findAllByCssSelector(this.selectors.getListItem(undefined, '.completed'))
+			.findAllByCssSelector(this.selectors.getListItem(undefined, `.${todoItemCss.completed}`))
 			.then((elements: any[]) => elements.length);
 	}
 
@@ -155,7 +162,7 @@ export default class Page {
 	getClearCompletedText(): Promise<string> {
 		return this.remote
 			.then(this.delay)
-			.findAllByCssSelector(this.selectors.clearCompletedButton)
+			.findByCssSelector(this.selectors.clearCompletedButton)
 			.getVisibleText();
 	}
 
