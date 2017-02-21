@@ -1,10 +1,10 @@
-import createRouter from '@dojo/routing/createRouter';
+import Router from '@dojo/routing/Router';
 import { Parameters } from '@dojo/routing/interfaces';
-import createHashHistory from '@dojo/routing/history/createHashHistory';
+import HashHistory from '@dojo/routing/history/HashHistory';
 
 interface FilterParameters extends Parameters {
 	filter: 'active' | 'all' | 'completed';
 }
 
-const router = createRouter({ history: createHashHistory() });
+const router = new Router({ history: new HashHistory() });
 export default router;
