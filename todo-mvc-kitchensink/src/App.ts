@@ -4,7 +4,7 @@ import { DNode } from '@dojo/widget-core/interfaces';
 import { I18nProperties, I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './main.css';
+import * as styles from './widgets/styles/App.css';
 import pirateThemeStyles from './themes/pirate';
 import { AppFooter } from './widgets/AppFooter';
 import Home from './widgets/Home';

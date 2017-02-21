@@ -1,9 +1,7 @@
-import * as appStyles from './pirate/main.css';
-
-export {
-	appStyles
-};
+import * as App from './pirate/App.css';
+import * as AppFooter from './pirate/AppFooter.css';
 
 export default {
-	...appStyles
+	App,
+	AppFooter
 }

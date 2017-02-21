@@ -21,7 +21,7 @@ and
 	one {item}
 	other {items} } left</span>`,
 	searchPlaceholder: 'Quick Filter',
-	themeSwitchTitle: 'Pirate Theme'
+	themeSwitchTitle: 'Pirate Mode'
 };
 
 export default { bundlePath, locales, messages };
