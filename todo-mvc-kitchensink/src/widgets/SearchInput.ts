@@ -1,9 +1,9 @@
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as styles from './styles/SearchInput.css';
 
-export interface SearchInputProperties {
+export interface SearchInputProperties extends ThemeableProperties {
 	placeholder?: string;
 	onKeyUp?: (event?: KeyboardEvent) => void;
 	value?: string;

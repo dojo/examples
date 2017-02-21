@@ -74,6 +74,7 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 				classes: this.classes(styles.todoapp).get()
 			}, [
 				w(ThemeSwitcher, {
+					theme: this.properties.theme,
 					wantsPirate: pirateTheme,
 					onChange: this.changeTheme
 				})
@@ -83,7 +84,9 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 					id: <string> widget[ 0 ]
 				});
 			}))),
-			w(AppFooter, {})
+			w(AppFooter, {
+				theme: this.properties.theme
+			})
 		]);
 	}
 }

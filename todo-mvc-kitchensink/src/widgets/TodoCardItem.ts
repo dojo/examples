@@ -1,14 +1,13 @@
 import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
 import { DestroyButton } from './DestroyButton';
 import FocusableTextInput from './FocusableTextInput';
 import * as styles from './styles/TodoCardItem.css';
-import * as commonStyles from './styles/TodoItemList.css';
 import { Toggler } from './Toggler';
 
-interface TodoCardItemProperties {
+interface TodoCardItemProperties extends ThemeableProperties {
 	label: string;
 	completed?: boolean;
 	editing?: boolean;
@@ -47,28 +46,25 @@ class Label extends WidgetBase<LabelProperties> {
 @theme(styles)
 export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardItemProperties> {
 	render() {
-		const { completed = false, editing = false, label, focused = false } = this.properties;
+		const { completed = false, label, theme } = this.properties;
 
 		const classList = [
 			styles.card
 		];
 
 		if (completed) {
-			classList.push(commonStyles.completed);
-		}
-
-		if (editing) {
-			classList.push(commonStyles.editing);
+			classList.push(styles.completed);
 		}
 
 		return v('li', {
-			classes: this.classes().fixed(...classList).get()
+			classes: this.classes(...classList).get()
 		}, [
 			v('div', {}, [
 				v('div', {
 					classes: this.classes(styles.cardHeader).get()
 				}, [
 					w(Toggler, <any> {
+						theme,
 						overrideClasses: {
 							toggle: styles.cardToggle
 						},
@@ -76,6 +72,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 						onChange: todoToggleComplete.bind(this)
 					}),
 					w(DestroyButton, <any> {
+						theme,
 						overrideClasses: {
 							destroyButton: styles.cardDestroy
 						},
@@ -83,21 +80,12 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 					})
 				]),
 				w(Label, <any> {
+					theme,
 					label,
 					onDoubleClick: todoEdit.bind(this),
 					onKeyPress: todoEdit.bind(this)
 				})
-			]),
-			editing ?
-				w(FocusableTextInput, <any> {
-					value: label,
-					focused,
-					overrideClasses: {
-						base: commonStyles.edit
-					},
-					onBlur: todoSave.bind(this),
-					onKeyPress: todoEditInput.bind(this)
-				}) : null
+			])
 		]);
 	}
 }

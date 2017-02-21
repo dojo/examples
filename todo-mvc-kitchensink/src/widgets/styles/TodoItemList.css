@@ -47,15 +47,6 @@
 	box-shadow: inset 0 0 0 1px #bddad5;
 }
 
-.completed label {
-	color: #d9d9d9;
-	text-decoration: line-through;
-}
-
-.todoItemList li:hover .destroy {
-	opacity: 1;
-}
-
 .edit {
 	display: none;
 }

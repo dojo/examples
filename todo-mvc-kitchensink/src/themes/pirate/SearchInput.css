@@ -8,3 +8,15 @@
 	font-size: 18px;
 	padding-left: 60px;
 }
+
+.search::-webkit-input-placeholder {
+	color: #666666 !important;
+}
+
+.search::-moz-placeholder {
+	color: #666666 !important;
+}
+
+.search::input-placeholder {
+	color: #666666 !important;
+}

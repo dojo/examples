@@ -1,13 +1,13 @@
 import { w, v } from '@dojo/widget-core/d';
 import { DNode } from '@dojo/widget-core/interfaces';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Item } from '../App';
 import * as styles from './styles/TodoItemList.css';
 import TodoCardItem from './TodoCardItem';
 import TodoListItem from './TodoListItem';
 
-interface TodoListProperties {
+interface TodoListProperties extends ThemeableProperties {
 	activeFilter: string;
 	activeView: string;
 	todos: Item[];
@@ -32,7 +32,7 @@ function applySearch(searchQuery: string, todo: Item): boolean {
 @theme(styles)
 export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListProperties> {
 	render() {
-		const { activeView = 'list', todos = [], activeFilter = '', search = '' } = this.properties;
+		const { activeView = 'list', todos = [], activeFilter = '', search = '', theme } = this.properties;
 
 		let classList = [ styles.todoItemList ];
 
@@ -52,7 +52,8 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 			.map((todo: Item) => <DNode> w(activeView === 'cards' ? TodoCardItem : TodoListItem, <any> {
 				...todo,
 				todoId: todo.id,
-				key: todo.id
+				key: todo.id,
+				theme
 			}))
 			.concat((activeView === 'cards' && todos.length) ? [
 				v('li', {

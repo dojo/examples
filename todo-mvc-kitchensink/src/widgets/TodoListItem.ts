@@ -1,15 +1,13 @@
 import { v, w } from '@dojo/widget-core/d';
 import { KeyPressEventHandler, DoubleClickEventHandler } from '@dojo/widget-core/interfaces';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
+import { todoEdit, todoRemove, todoToggleComplete } from '../actions/userActions';
 import { DestroyButton } from './DestroyButton';
-import FocusableTextInput, { FocusableTextProperties } from './FocusableTextInput';
-import * as commonStyles from './styles/TodoItemList.css';
 import * as styles from './styles/TodoListItem.css';
 import { Toggler } from './Toggler';
 
-export interface TodoItemProperties {
+export interface TodoItemProperties extends ThemeableProperties {
 	id: string;
 	label: string;
 	editing: boolean;
@@ -49,42 +47,30 @@ class Label extends WidgetBase<LabelProperties> {
 @theme(styles)
 export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemProperties> {
 	render() {
-		const { completed, editing, label, focused, id } = this.properties;
-		const inputOptions: FocusableTextProperties = <any> {
-			value: label,
-			onKeyPress: todoEditInput.bind(this),
-			onBlur: todoSave,
-			id,
-			focused,
-			overrideClasses: {
-				base: commonStyles.edit
-			}
-		};
+		const { completed, label, theme } = this.properties;
 
 		const classList = [
 			styles.listItem
 		];
 
 		if (completed) {
-			classList.push(commonStyles.completed);
-		}
-
-		if (editing) {
-			classList.push(commonStyles.editing);
+			classList.push(styles.completed);
 		}
 
 		return v('li', {
-			classes: this.classes().fixed(...classList).get()
+			classes: this.classes(...classList).get()
 		}, [
 			v('div', {
 				classes: this.classes(styles.view).get()
 			}, [
 				w(Toggler, <any> {
+					theme,
 					checked: completed,
 					onChange: todoToggleComplete.bind(this)
 				}),
 				w(Label, <any> {
 					label,
+					theme,
 					onKeyPress: todoEdit.bind(this),
 					onDoubleClick: todoEdit.bind(this)
 				}),
@@ -92,12 +78,12 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 					classes: this.classes(styles.destroyContainer).get()
 				}, [
 					w(DestroyButton, <any> {
+						theme,
 						onClick: todoRemove.bind(this)
 					})
 				])
 
-			]),
-			editing ? w(FocusableTextInput, inputOptions) : null
+			])
 		]);
 	}
 }

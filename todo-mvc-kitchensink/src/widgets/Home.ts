@@ -5,10 +5,10 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoInput } from '../actions/userActions';
 import { Item } from '../App';
 import appBundle from '../nls/common';
-import FocusableTextInput from './FocusableTextInput';
 import MainSection from './MainSection';
 import * as styles from './styles/home.css';
 import Title from './Title';
+import TodoEditInput from './TodoEditInput';
 import TodoFooter from './TodoFooter';
 
 interface HomeProperties extends ThemeableProperties, I18nProperties {
@@ -30,14 +30,11 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 		const { properties } = this;
 		const { todo, todos = [] } = <any> properties;
 		const newTodoOptions = {
-			id: 'new-todo',
-			overrideClasses: {
-				base: styles.newTodo
-			},
 			focused: true,
 			value: todo ? todo : '',
 			placeholder: messages.editPlaceholder,
-			onKeyUp: todoInput.bind(this)
+			onKeyUp: todoInput.bind(this),
+			theme: this.properties.theme
 		};
 
 		const completedCount = todos.filter(({ completed }: { completed: boolean }) => completed).length;
@@ -47,7 +44,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 		return v('div', {}, [
 			v('header', {}, [
 				w(Title, { label: messages.appTitle }),
-				w(FocusableTextInput, <any> newTodoOptions)
+				w(TodoEditInput, <any> newTodoOptions)
 			]),
 			w(MainSection, { ...properties, allCompleted }),
 			todos.length ? w(TodoFooter, {

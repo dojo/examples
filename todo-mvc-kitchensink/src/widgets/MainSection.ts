@@ -7,7 +7,7 @@ import { Item } from '../App';
 import appBundle from '../nls/common';
 import CheckboxInput from './CheckboxInput';
 import SearchInput from './SearchInput';
-import * as styles from './styles/mainsection.css';
+import * as styles from './styles/MainSection.css';
 import TodoItemList from './TodoItemList';
 
 interface MainSectionProperties extends ThemeableProperties, I18nProperties {
@@ -26,11 +26,11 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 	render() {
 		const messages = this.localizeBundle(appBundle);
 
-		const { todos = [], allCompleted = false, activeView = 'list', search = '' } = this.properties;
+		const { todos = [], allCompleted = false, activeView = 'list', search = '', theme } = this.properties;
 		const checkBoxOptions = {
 			checked: allCompleted,
-			overrideClasses: { checkbox: styles.toggleAll },
-			onChange: todoToggleAll
+			onChange: todoToggleAll,
+			theme
 		};
 
 		return v('section', {
@@ -45,7 +45,8 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 				}), w(SearchInput, {
 					placeholder: messages.searchPlaceholder,
 					value: search,
-					onKeyUp: this.searchHandler
+					onKeyUp: this.searchHandler,
+					theme
 				})
 			]) : null,
 			w(TodoItemList, <any> { ...this.properties, key: `todo-item-${activeView === 'cards' ? 'cards' : 'list'}` })

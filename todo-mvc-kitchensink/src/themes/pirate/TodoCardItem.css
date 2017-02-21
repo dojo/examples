@@ -1,12 +1,12 @@
 .card {
 	border: 1px solid #ededed;
-	background-color: white;
+	background-color: #fdf4cb;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
 }
 
 .cardHeader {
 	height: 40px;
-	border-bottom: 1px solid #ededed;
 }
 
 .cardToggle {
@@ -26,4 +26,12 @@
 	padding: 15px !important;
 	word-break: break-word !important;
 	margin: 0 !important;
+}
+
+.completed {
+}
+
+.completed label {
+	color:black;
+	text-decoration: line-through;
 }

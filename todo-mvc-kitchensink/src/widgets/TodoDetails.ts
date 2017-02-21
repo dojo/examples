@@ -1,6 +1,6 @@
 import { v, w } from '@dojo/widget-core/d';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { updateTodo } from '../actions/todoStoreActions';
 import { Item } from '../App';
@@ -11,7 +11,7 @@ import FormattedDate from './FormattedDate';
 import * as styles from './styles/TodoDetails.css';
 import { Toggler } from './Toggler';
 
-interface TodoDetailsProperties {
+interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
 	todoDetails: Item;
 	activeFilter: string;
 	activeView: string;
@@ -45,7 +45,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 	}
 
 	render() {
-		const { todoDetails } = this.properties;
+		const { todoDetails, theme } = this.properties;
 		const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
 		const messages = this.localizeBundle(appBundle);
 
@@ -78,7 +78,8 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 						},
 						focused: true,
 						value: label,
-						onInput: this.onInput
+						onInput: this.onInput,
+						theme
 					}),
 					v('div', {}, [
 						v('div', {
@@ -94,7 +95,8 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 								toggle: styles.toggle
 							},
 							checked: completed,
-							onChange: this.onCompleted
+							onChange: this.onCompleted,
+							theme
 						})
 					])
 				])

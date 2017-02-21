@@ -1,2 +1,30 @@
 .checkbox {
+	position: absolute;
+	top: -55px;
+	left: -12px;
+	width: 60px;
+	height: 34px;
+	text-align: center;
+	border: none; /* Mobile Safari */
+}
+
+.checkbox:before {
+	content: '❯';
+	font-size: 22px;
+	color: #737373;
+	padding: 10px 27px 10px 27px;
+}
+
+.checkbox:checked:before {
+	color: black;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.checkbox {
+		background: none;
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+		-webkit-appearance: none;
+		appearance: none;
+	}
 }
