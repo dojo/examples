@@ -1,12 +1,11 @@
 import { v } from '@dojo/widget-core/d';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { SharedWidgetProperties } from '../App';
 import appBundle from '../nls/common';
 import * as styles from './styles/AppFooter.css';
 
-export interface AppFooterProperties extends SharedWidgetProperties {
+export interface AppFooterProperties extends ThemeableProperties, I18nProperties {
 }
 
 @theme(styles)

@@ -1,16 +1,16 @@
 import { v, w } from '@dojo/widget-core/d';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoToggleAll, updateSearch } from '../actions/userActions';
-import { Item, SharedWidgetProperties } from '../App';
+import { Item } from '../App';
 import appBundle from '../nls/common';
 import CheckboxInput from './CheckboxInput';
 import SearchInput from './SearchInput';
 import * as styles from './styles/mainsection.css';
 import TodoItemList from './TodoItemList';
 
-interface MainSectionProperties extends SharedWidgetProperties {
+interface MainSectionProperties extends ThemeableProperties, I18nProperties {
 	allCompleted?: boolean;
 	todos?: Item[];
 	activeView?: string;

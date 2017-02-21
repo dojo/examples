@@ -3,6 +3,7 @@ const locales: string[] = [ 'en-PR' ];
 
 const messages = {
 	appTitle: 'todos',
+	clearButtonText: 'Clear Completed',
 	createdTitle: 'Created on ',
 	detailsTitle: 'Details',
 	editPlaceholder: 'What needs to be done?',
@@ -16,11 +17,11 @@ const messages = {
 and
 <a href="https://github.com/Tomdye">Tom Dye</a>`,
 	footerPartOf: 'Part of <a href="http://todomvc.com">TodoMVC</a>',
-	searchPlaceholder: 'Quick Filter',
-	clearButtonText: 'Clear Completed',
 	itemsLeft: `<strong>{count}</strong><span>{count plural,
 	one {item}
-	other {items} } left</span>`
+	other {items} } left</span>`,
+	searchPlaceholder: 'Quick Filter',
+	themeSwitchTitle: 'Pirate Theme'
 };
 
 export default { bundlePath, locales, messages };

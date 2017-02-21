@@ -1,9 +1,9 @@
 import { v, w } from '@dojo/widget-core/d';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { todoInput } from '../actions/userActions';
-import { Item, SharedWidgetProperties } from '../App';
+import { Item } from '../App';
 import appBundle from '../nls/common';
 import FocusableTextInput from './FocusableTextInput';
 import MainSection from './MainSection';
@@ -11,7 +11,7 @@ import * as styles from './styles/home.css';
 import Title from './Title';
 import TodoFooter from './TodoFooter';
 
-interface HomeProperties extends SharedWidgetProperties {
+interface HomeProperties extends ThemeableProperties, I18nProperties {
 	todos?: Item[];
 	todo?: string;
 	activeView?: string;
