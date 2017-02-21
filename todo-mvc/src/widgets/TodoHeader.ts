@@ -16,10 +16,10 @@ export const TodoHeaderBase = ThemeableMixin(WidgetBase);
 @theme(css)
 export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
-	private initialised: boolean = false;
+	private initialized: boolean = false;
 
 	render() {
-		const { initialised, properties: { allCompleted } } = this;
+		const { initialized, properties: { allCompleted } } = this;
 		const newTodoProperties: any = {
 			id: 'new-todo',
 			afterCreate: this.afterCreate,
@@ -28,9 +28,9 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 			placeholder: 'What needs to be done?'
 		};
 
-		if (!this.initialised) {
+		if (!this.initialized) {
 			newTodoProperties.value = '';
-			this.initialised = true;
+			this.initialized = true;
 		}
 
 		return v('header', [
@@ -43,7 +43,7 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 	private addTodo({ which, target: { value: label } }: any) {
 		if (which === 13 && label) {
 			this.properties.addTodo({ label, completed: false });
-			this.initialised = false;
+			this.initialized = false;
 			this.invalidate();
 		}
 	}
