@@ -15,12 +15,27 @@ export const TodoHeaderBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
 export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
+
+	private initialised: boolean = false;
+
 	render() {
-		const { allCompleted } = this.properties;
+		const { initialised, properties: { allCompleted } } = this;
+		const newTodoProperties: any = {
+			id: 'new-todo',
+			afterCreate: this.afterCreate,
+			classes: this.classes(css.newTodo),
+			onkeyup: this.addTodo,
+			placeholder: 'What needs to be done?'
+		};
+
+		if (!this.initialised) {
+			newTodoProperties.value = '';
+			this.initialised = true;
+		}
 
 		return v('header', [
 			v('h1', { classes: this.classes(css.title) }, [ 'todos' ]),
-			v('input', { id: 'new-todo', afterCreate: this.afterCreate, classes: this.classes(css.newTodo), value: '', onkeyup: this.addTodo, placeholder: 'What needs to be done?' }),
+			v('input', newTodoProperties),
 			v('input', { onchange: this.toggleAllTodos, checked: allCompleted, type: 'checkbox', classes: this.classes(css.toggleAll) })
 		]);
 	}
@@ -28,6 +43,7 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 	private addTodo({ which, target: { value: label } }: any) {
 		if (which === 13 && label) {
 			this.properties.addTodo({ label, completed: false });
+			this.initialised = false;
 			this.invalidate();
 		}
 	}
