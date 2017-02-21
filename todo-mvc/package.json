@@ -33,10 +33,9 @@
     "typescript": "rc"
   },
   "dependencies": {
-    "@dojo/compose": "2.0.0-beta.21",
-    "@dojo/core": "2.0.0-alpha.22",
+    "@dojo/core": "2.0.0-alpha.24",
     "@dojo/has": "2.0.0-alpha.7",
-    "@dojo/routing": "2.0.0-alpha.8",
+    "@dojo/routing": "2.0.0-alpha.9",
     "@dojo/shim": "2.0.0-beta.9",
     "@dojo/widget-core": "^2.0.0-alpha.25",
     "maquette": "~2.4.3"
