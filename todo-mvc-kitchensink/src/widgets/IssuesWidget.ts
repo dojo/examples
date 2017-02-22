@@ -24,6 +24,7 @@ export class IssuesWidget extends ThemeableMixin(WidgetBase)<IssuesWidgetPropert
 	render() {
 		if (!this._loaded) {
 			this._loadIssues();
+			this._loaded = true;
 		}
 
 		if (!this._issues.length) {
