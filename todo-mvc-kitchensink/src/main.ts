@@ -7,7 +7,7 @@ import likelySubtags from './nls/likelySubtags';
 import router from './routes';
 import createGithubIssuesElement from './widgets/custom/createGithubIssuesElement';
 
-registerCustomElement(createGithubIssuesElement);
+// registerCustomElement(createGithubIssuesElement);
 
 Promise.all([
 	loadCldrData({
