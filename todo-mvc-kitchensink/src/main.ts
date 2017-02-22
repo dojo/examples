@@ -1,4 +1,3 @@
-import '@webcomponents/custom-elements/custom-elements.min';
 import loadCldrData from '@dojo/i18n/cldr/load';
 import { systemLocale, switchLocale, invalidate } from '@dojo/i18n/i18n';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
