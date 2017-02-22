@@ -10,7 +10,7 @@ export interface TogglerProperties {
 
 @theme(styles)
 export class Toggler extends ThemeableMixin(WidgetBase)<TogglerProperties> {
-	onChange() {
+	onChange(event: Event) {
 		this.properties.onChange && this.properties.onChange(event);
 	}
 
