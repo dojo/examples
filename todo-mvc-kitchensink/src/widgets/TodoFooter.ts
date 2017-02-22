@@ -24,10 +24,10 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 		const messages = this.localizeBundle(appBundle);
 
 		return v('footer', {
-			classes: this.classes(styles.footer).get()
+			classes: this.classes(styles.footer)
 		}, [
 			v('span', {
-				classes: this.classes(styles.todoCount).get(),
+				classes: this.classes(styles.todoCount),
 				innerHTML: `${activeCount} item${activeCount === 1 ? '' : 's'} left`
 			}),
 			w(TodoFilter, {

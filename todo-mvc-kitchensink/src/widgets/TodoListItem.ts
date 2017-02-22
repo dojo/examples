@@ -49,19 +49,14 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 	render() {
 		const { completed, label, theme } = this.properties;
 
-		const classList = [
-			styles.listItem
-		];
-
-		if (completed) {
-			classList.push(styles.completed);
-		}
-
 		return v('li', {
-			classes: this.classes(...classList).get()
+			classes: this.classes(
+				styles.listItem,
+				completed ? styles.completed : null
+			)
 		}, [
 			v('div', {
-				classes: this.classes(styles.view).get()
+				classes: this.classes(styles.view)
 			}, [
 				w(Toggler, <any> {
 					theme,
@@ -75,7 +70,7 @@ export default class TodoListItem extends ThemeableMixin(WidgetBase)<TodoItemPro
 					onDoubleClick: todoEdit.bind(this)
 				}),
 				v('span', {
-					classes: this.classes(styles.destroyContainer).get()
+					classes: this.classes(styles.destroyContainer)
 				}, [
 					w(DestroyButton, <any> {
 						theme,

@@ -34,18 +34,12 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 	render() {
 		const { activeView = 'list', todos = [], activeFilter = '', search = '', theme } = this.properties;
 
-		let classList = [ styles.todoItemList ];
-
-		if (activeView === 'cards') {
-			classList.push(styles.cardList);
-		}
-
-		if (todos.length === 0) {
-			classList.push(styles.empty);
-		}
-
 		return v('ul', {
-			classes: this.classes(...classList).get()
+			classes: this.classes(
+				styles.todoItemList,
+				todos.length === 0 ? styles.empty : null,
+				activeView === 'cards' ? styles.cardList : null
+			)
 		}, todos
 			.filter((todo: Item) => filter(activeFilter, todo))
 			.filter((todo: Item) => applySearch(search.toLowerCase(), todo))
@@ -57,10 +51,10 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 			}))
 			.concat((activeView === 'cards' && todos.length) ? [
 				v('li', {
-					classes: this.classes(styles.emptyFiller).get()
+					classes: this.classes(styles.emptyFiller)
 				}),
 				v('li', {
-					classes: this.classes(styles.emptyFiller).get()
+					classes: this.classes(styles.emptyFiller)
 				})
 			] : []));
 	}

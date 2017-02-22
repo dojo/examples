@@ -13,9 +13,9 @@ export class AppFooter extends I18nMixin(ThemeableMixin(WidgetBase))<AppFooterPr
 	render() {
 		const messages = this.localizeBundle(appBundle);
 
-		return v('div', {}, [
+		return v('div', [
 			v('footer', {
-				classes: this.classes(styles.footer).get()
+				classes: this.classes(styles.footer)
 			}, [
 				v('p', {
 					id: 'edit-instructions',

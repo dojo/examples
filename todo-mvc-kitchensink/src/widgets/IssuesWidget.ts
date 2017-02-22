@@ -31,23 +31,23 @@ export class IssuesWidget extends ThemeableMixin(WidgetBase)<IssuesWidgetPropert
 			return v('section');
 		}
 		else {
-			return v('section', {}, [
+			return v('section', [
 				v('h6', {
-					classes: this.classes(styles.widgetTitle).get(),
+					classes: this.classes(styles.widgetTitle),
 					innerHTML: 'Open GitHub Issues'
 				}),
 				v('ul', {
-					classes: this.classes(styles.issuesWidget).get()
+					classes: this.classes(styles.issuesWidget)
 				}, this._issues.map(issue => {
 					return v('li', {
-						classes: this.classes(styles.issue).get()
+						classes: this.classes(styles.issue)
 					}, [
 						v('span', {
-							classes: this.classes(styles.issueNumber).get(),
+							classes: this.classes(styles.issueNumber),
 							innerHTML: String(issue.number)
 						}),
 						v('a', {
-							classes: this.classes(styles.issueTitle).get(),
+							classes: this.classes(styles.issueTitle),
 							href: issue.link,
 							innerHTML: issue.title,
 							target: '_blank'

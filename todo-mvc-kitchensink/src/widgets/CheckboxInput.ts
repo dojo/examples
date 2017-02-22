@@ -21,7 +21,7 @@ export default class CheckboxInput extends ThemeableMixin(WidgetBase)<CheckboxIn
 			type: 'checkbox',
 			onchange: this.onChange,
 			checked: checked,
-			classes: this.classes(styles.checkbox).get()
+			classes: this.classes(styles.checkbox)
 		});
 	}
 }

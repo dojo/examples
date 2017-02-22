@@ -69,9 +69,9 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 	render() {
 		const { widgets = [ [ 'main', {} ] ], pirateTheme = false } = this.properties;
 
-		return v('div', {}, [
+		return v('div', [
 			v('section', {
-				classes: this.classes(styles.todoapp).get()
+				classes: this.classes(styles.todoapp)
 			}, [
 				w(ThemeSwitcher, {
 					theme: this.properties.theme,

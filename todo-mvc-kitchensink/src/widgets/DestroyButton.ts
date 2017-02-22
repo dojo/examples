@@ -20,7 +20,7 @@ export class DestroyButton extends ThemeableMixin(WidgetBase)<ButtonProperties> 
 		return v('button', {
 			innerHTML: label,
 			onclick: this.onClick,
-			classes: this.classes(styles.destroyButton).get()
+			classes: this.classes(styles.destroyButton)
 		});
 	}
 }

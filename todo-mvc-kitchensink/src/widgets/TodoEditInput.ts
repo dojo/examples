@@ -51,7 +51,7 @@ export default class TodoEditInput extends ThemeableMixin(WidgetBase)<TodoEditIn
 			onkeyup,
 			onblur,
 			oninput,
-			classes: this.classes(styles.todoEditInput).get()
+			classes: this.classes(styles.todoEditInput)
 		});
 	}
 }

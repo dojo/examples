@@ -12,7 +12,7 @@ export default class Title extends ThemeableMixin(WidgetBase)<TitleProperties> {
 	render() {
 		return v('h1', {
 			innerHTML: this.properties.label,
-			classes: this.classes(styles.title).get()
+			classes: this.classes(styles.title)
 		});
 	}
 }

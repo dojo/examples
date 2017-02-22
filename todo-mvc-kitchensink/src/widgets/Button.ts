@@ -20,7 +20,7 @@ export default class Button extends ThemeableMixin(WidgetBase)<ButtonProperties>
 		return v('button', {
 			innerHTML: label,
 			onclick: this.onClick,
-			classes: this.classes(styles.button, styles.button2).get()
+			classes: this.classes(styles.button, styles.button2)
 		});
 	}
 }

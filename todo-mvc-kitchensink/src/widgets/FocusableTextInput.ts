@@ -51,7 +51,7 @@ export default class FocusableTextInput extends ThemeableMixin(WidgetBase)<Focus
 			onkeyup,
 			onblur,
 			oninput,
-			classes: this.classes(styles.base).get()
+			classes: this.classes(styles.base)
 		});
 	}
 }

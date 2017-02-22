@@ -21,7 +21,7 @@ export default class SearchInput extends ThemeableMixin(WidgetBase)<SearchInputP
 
 		return v('input', {
 			type: 'text',
-			classes: this.classes(styles.search).get(),
+			classes: this.classes(styles.search),
 			placeholder,
 			value,
 			onkeyup

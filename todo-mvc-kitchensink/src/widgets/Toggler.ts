@@ -21,7 +21,7 @@ export class Toggler extends ThemeableMixin(WidgetBase)<TogglerProperties> {
 			type: 'checkbox',
 			onchange: this.onChange,
 			checked: checked,
-			classes: this.classes(styles.toggle).get()
+			classes: this.classes(styles.toggle)
 		});
 	}
 }

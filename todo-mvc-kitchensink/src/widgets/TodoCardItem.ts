@@ -47,20 +47,15 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 	render() {
 		const { completed = false, label, theme } = this.properties;
 
-		const classList = [
-			styles.card
-		];
-
-		if (completed) {
-			classList.push(styles.completed);
-		}
-
 		return v('li', {
-			classes: this.classes(...classList).get()
+			classes: this.classes(
+				styles.card,
+				completed ? styles.completed : null
+			)
 		}, [
-			v('div', {}, [
+			v('div', [
 				v('div', {
-					classes: this.classes(styles.cardHeader).get()
+					classes: this.classes(styles.cardHeader)
 				}, [
 					w(Toggler, <any> {
 						theme,

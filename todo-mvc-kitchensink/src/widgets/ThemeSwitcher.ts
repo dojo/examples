@@ -22,14 +22,14 @@ export class ThemeSwitcher extends I18nMixin(ThemeableMixin(WidgetBase))<ThemeSw
 		const messages = this.localizeBundle(appBundle);
 
 		return v('label', {
-			classes: this.classes(styles.themeSwitcher).get()
+			classes: this.classes(styles.themeSwitcher)
 		}, [
 			v('span', { innerHTML: messages.themeSwitchTitle }),
 			v('input', {
 				type: 'checkbox',
 				checked: wantsPirate,
 				onclick: this.onClick,
-				classes: this.classes(styles.themeSwitcherCheckbox).get()
+				classes: this.classes(styles.themeSwitcherCheckbox)
 			})
 		]);
 	}

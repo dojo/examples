@@ -41,8 +41,8 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 		const activeCount = todos.length - completedCount;
 		const allCompleted = todos.length === completedCount;
 
-		return v('div', {}, [
-			v('header', {}, [
+		return v('div', [
+			v('header', [
 				w(Title, { label: messages.appTitle }),
 				w(TodoEditInput, <any> newTodoOptions)
 			]),

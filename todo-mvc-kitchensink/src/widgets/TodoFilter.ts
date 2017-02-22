@@ -29,14 +29,14 @@ function createFilterItems(instance: TodoFilter, activeFilter: string, activeVie
 			classes.push(styles.selected);
 		}
 
-		return v('li', {}, [
+		return v('li', [
 			v('a', {
 				innerHTML: label,
 				href: router.link(mainRoute, {
 					filter: filterItem,
 					view: activeView
 				}),
-				classes: instance.classes(...classes).get()
+				classes: instance.classes(...classes)
 			})
 		]);
 	});
@@ -49,7 +49,7 @@ export default class TodoFilter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 		const messages = this.localizeBundle(appBundle);
 
 		return v('ul', {
-			classes: this.classes(styles.filters).get()
+			classes: this.classes(styles.filters)
 		}, createFilterItems(this, activeFilter, activeView, messages));
 	}
 }

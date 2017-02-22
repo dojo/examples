@@ -11,12 +11,6 @@ interface FormInputEvent extends KeyboardEvent {
 	target: HTMLInputElement;
 }
 
-/*
- const completedCount = afterAll.filter(({ completed }) => completed).length;
- const activeCount = afterAll.length - completedCount;
- const allCompleted = afterAll.length === completedCount;
- */
-
 export const todoInput = function (this: any, { which, target: { value: label } }: FormInputEvent) {
 	if (which === 13 && label) {
 		addTodo({ label, completed: false });

@@ -34,14 +34,14 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 		};
 
 		return v('section', {
-			classes: this.classes(styles.main).get()
+			classes: this.classes(styles.main)
 		}, [
 			w(CheckboxInput, checkBoxOptions),
 			todos.length ? v('div', {
-				classes: this.classes(styles.searchBar).get()
+				classes: this.classes(styles.searchBar)
 			}, [
 				v('span', {
-					classes: this.classes(styles.searchIcon).get()
+					classes: this.classes(styles.searchIcon)
 				}), w(SearchInput, {
 					placeholder: messages.searchPlaceholder,
 					value: search,
