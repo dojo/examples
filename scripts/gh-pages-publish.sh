@@ -30,7 +30,7 @@ then
 		cp -r todo-mvc/dist/* samples/todo-mvc/
 		cp -r todo-mvc-kitchensink/dist/* samples/todo-mvc-kitchensink
 
-		git remote add pages "https://$GH_TOKEN@github.com/dojo/examples.git"
+		git remote add pages "https://$GH_TOKEN@github.com/dojo/examples.git" &>/dev/null
 
 		git add -f samples
 		git commit -am "built example"
