@@ -6,7 +6,7 @@ import { todoInput } from '../actions/userActions';
 import { Item } from '../App';
 import appBundle from '../nls/common';
 import MainSection from './MainSection';
-import * as styles from './styles/home.css';
+import * as styles from './styles/Home.css';
 import Title from './Title';
 import TodoEditInput from './TodoEditInput';
 import TodoFooter from './TodoFooter';
