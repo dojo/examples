@@ -38,18 +38,19 @@ export const TodoAppBase = ThemeableMixin(WidgetBase);
 export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 
 	private todos: Map<string, Todo> = new Map<string, Todo>();
+	private todoItem: string = '';
 	private completedCount: number = 0;
 	private updated: string = uuid();
 
 	render() {
-		const { updated, todos, completedCount, clearCompleted, editTodo, removeTodo, toggleTodo, toggleAllTodos } = this;
+		const { todoItem, updateTodo, updated, todos, completedCount, clearCompleted, editTodo, removeTodo, toggleTodo, toggleAllTodos } = this;
 		const { filter: activeFilter = 'all' } = this.properties;
 		const allCompleted = todos.size !== 0 && completedCount === todos.size;
 		const activeCount = todos.size - completedCount;
 		const completedItems = completedCount > 0;
 
 		return v('section', { classes: this.classes(css.todoapp) }, [
-			w('todo-header', { allCompleted, addTodo: this.setTodo, toggleAllTodos }),
+			w('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
 			v('section', {}, [
 				w('todo-list', { updated, activeFilter, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
 			]),
@@ -102,7 +103,16 @@ export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 		this.onUpdate();
 	}
 
-	private setTodo(todo: Partial<Todo>, id: string = uuid()) {
+	private updateTodo(todo: string) {
+		this.todoItem = todo;
+		this.invalidate();
+	}
+
+	private setTodo(todo: Partial<Todo>, id?: string) {
+		if (!id) {
+			id = uuid();
+			this.todoItem = '';
+		}
 		if (todo.label) {
 			todo.label = todo.label.trim();
 			if (!todo.label) {
