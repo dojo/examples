@@ -28,4 +28,4 @@ export default {
 	TodoFooter,
 	TodoListItem,
 	Toggler
-}
+};

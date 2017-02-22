@@ -1,9 +1,8 @@
 import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { todoEdit, todoEditInput, todoRemove, todoSave, todoToggleComplete } from '../actions/userActions';
+import { todoEdit, todoRemove, todoToggleComplete } from '../actions/userActions';
 import { DestroyButton } from './DestroyButton';
-import FocusableTextInput from './FocusableTextInput';
 import * as styles from './styles/TodoCardItem.css';
 import { Toggler } from './Toggler';
 

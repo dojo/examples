@@ -28,7 +28,7 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 		}, [
 			v('span', {
 				classes: this.classes(styles.todoCount).get(),
-				innerHTML: `${activeCount} item${activeCount === 1 ? "": "s"} left`
+				innerHTML: `${activeCount} item${activeCount === 1 ? '' : 's'} left`
 			}),
 			w(TodoFilter, {
 				activeFilter,
