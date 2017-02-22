@@ -3,7 +3,7 @@ const locales: string[] = [ 'en-PR' ];
 
 const messages = {
 	appTitle: 'todos',
-	clearButtonText: 'Clear Completed',
+	clearButtonText: 'Clear completed',
 	createdTitle: 'Created on ',
 	detailsTitle: 'Details',
 	editPlaceholder: 'What needs to be done?',
