@@ -10,7 +10,7 @@ export interface CheckboxInputProperties {
 
 @theme(styles)
 export default class CheckboxInput extends ThemeableMixin(WidgetBase)<CheckboxInputProperties> {
-	onChange() {
+	onChange(event: Event) {
 		this.properties.onChange && this.properties.onChange(event);
 	}
 

@@ -1,3 +1,4 @@
+import global from '@dojo/core/global';
 import loadCldrData from '@dojo/i18n/cldr/load';
 import { systemLocale, switchLocale, invalidate } from '@dojo/i18n/i18n';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
@@ -7,7 +8,9 @@ import likelySubtags from './nls/likelySubtags';
 import router from './routes';
 import createGithubIssuesElement from './widgets/custom/createGithubIssuesElement';
 
-// registerCustomElement(createGithubIssuesElement);
+if (global.customElements) {
+	registerCustomElement(createGithubIssuesElement);
+}
 
 Promise.all([
 	loadCldrData({
