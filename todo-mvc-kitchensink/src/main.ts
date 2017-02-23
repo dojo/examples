@@ -5,7 +5,7 @@ import { systemLocale } from '@dojo/i18n/i18n';
 import { HashHistory } from '@dojo/routing/history/HashHistory';
 import { Parameters } from '@dojo/routing/interfaces';
 import { Route } from '@dojo/routing/Route';
-import { Router } from '@dojo/routing/router';
+import { Router } from '@dojo/routing/Router';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import registerCustomElement from '@dojo/widget-core/registerCustomElement';
 import likelySubtags from './nls/likelySubtags';
