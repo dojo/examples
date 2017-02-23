@@ -1,0 +1,10 @@
+.search {
+	width: calc(100% - 16px);
+	color: inherit;
+	padding: 12px;
+	border: none;
+	background-color: transparent;
+	font: inherit;
+	font-size: 18px;
+	padding-left: 60px;
+}

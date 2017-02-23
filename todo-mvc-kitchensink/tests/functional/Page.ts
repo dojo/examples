@@ -1,23 +1,34 @@
+import '@dojo/shim/Promise';
 import * as keys from 'leadfoot/keys';
 
+import * as appCss from './../../src/widgets/styles/App.css';
+import * as checkbox from './../../src/widgets/styles/CheckboxInput.css';
+import * as home from './../../src/widgets/styles/Home.css';
+import * as todoFooterCss from './../../src/widgets/styles/TodoFooter.css';
+import * as todoListCss from './../../src/widgets/styles/TodoItemList.css';
+import * as toggler from './../../src/widgets/styles/Toggler.css';
+import * as TodoFilterCss from './../../src/widgets/styles/TodoFilter.css';
+import * as todoListItem from './../../src/widgets/styles/TodoListItem.css';
+import * as todoEditInputCss from './../../src/widgets/styles/TodoEditInput.css';
+
 class Selectors {
-	public main = '.main';
-	public footer = 'footer.footer';
-	public clearCompletedButton = 'button.clear-completed';
-	public newInput = 'input.new-todo';
-	public toggleAllButton = 'input.toggle-all';
-	public itemCount = 'span.todo-count';
-	public list = 'ul.todo-list';
+	public main = `.${appCss.todoapp}`;
+	public footer = `.${todoFooterCss.footer}`;
+	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
+	public newInput = `.${todoEditInputCss.todoEditInput}`;
+	public toggleAllButton = `.${checkbox.checkbox}`;
+	public itemCount = `.${todoFooterCss.todoCount}`;
+	public list = `.${todoListCss.todoItemList}`;
 
 	getFilter(index: number): string {
-		return `.filters li:nth-of-type(${index + 1}) a'`;
+		return `.${TodoFilterCss.filters} li:nth-of-type(${index + 1}) a'`;
 	}
 
 	getSelectedFilter(index: number): string {
 		return this.getFilter(index) + '.selected';
 	}
 
-	getFilterAll(): string  {
+	getFilterAll(): string {
 		return this.getFilter(0);
 	}
 
@@ -30,7 +41,7 @@ class Selectors {
 	}
 
 	getList(suffix: string): string {
-		return 'ul.todo-list' + (suffix || '');
+		return '.' + todoListCss.todoItemList + suffix;
 	}
 
 	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
@@ -39,7 +50,7 @@ class Selectors {
 	}
 
 	getListItemToggle(index: number): string {
-		return this.getListItem(index, ' input.toggle');
+		return this.getListItem(index, ' .' + toggler.toggle);
 	}
 
 	getListItemLabel(index: number) {
@@ -49,14 +60,6 @@ class Selectors {
 	getLastListItemLabel(index: number) {
 		return this.getListItem(index, ':last-of-type label');
 	}
-
-	getListItemInput(index: number) {
-		return this.getListItem(index, ' input.edit');
-	}
-
-	getEditingListItemInput() {
-		return this.getListItem(undefined, '.editing input.edit');
-	}
 }
 
 export default class Page {
@@ -64,7 +67,7 @@ export default class Page {
 	private selectors: Selectors;
 
 	constructor(remote: any) {
-		this.remote  = remote;
+		this.remote = remote;
 		this.selectors = new Selectors();
 	}
 
@@ -141,7 +144,7 @@ export default class Page {
 	getCompletedCount(): Promise<number> {
 		return this.remote
 			.then(this.delay)
-			.findAllByCssSelector(this.selectors.getListItem(undefined, '.completed'))
+			.findAllByCssSelector(this.selectors.getListItem(undefined, '.' + todoListItem.completed))
 			.then((elements: any[]) => elements.length);
 	}
 

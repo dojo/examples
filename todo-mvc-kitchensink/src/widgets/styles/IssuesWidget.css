@@ -1,0 +1,31 @@
+.issuesWidget {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.widgetTitle {
+	margin: 100px 0 0 0;
+}
+
+.issue {
+}
+
+.issueTitle {
+	display: inline-block;
+	margin: 0;
+	font-size: 10px;
+	color: black;
+	text-decoration: none;
+}
+
+.issueTitle:hover {
+	text-decoration: underline;
+}
+
+.issueNumber {
+	font-size: 10px;
+	font-weight: bold;
+	display: inline-block;
+	width: 25px;
+}
