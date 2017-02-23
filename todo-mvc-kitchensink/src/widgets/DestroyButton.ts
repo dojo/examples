@@ -1,10 +1,10 @@
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as styles from './styles/DestroyButton.css';
 
-export interface ButtonProperties {
-	label: string;
+export interface ButtonProperties extends ThemeableProperties {
+	label?: string;
 	onClick?: () => void;
 }
 
@@ -15,7 +15,7 @@ export class DestroyButton extends ThemeableMixin(WidgetBase)<ButtonProperties> 
 	}
 
 	render() {
-		const { label } = this.properties;
+		const { label = '' } = this.properties;
 
 		return v('button', {
 			innerHTML: label,

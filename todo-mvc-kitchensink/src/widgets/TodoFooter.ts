@@ -1,19 +1,19 @@
 import { v, w } from '@dojo/widget-core/d';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { clearCompleted } from '../actions/userActions';
 import appBundle from '../nls/common';
 import Button from './Button';
 import * as styles from './styles/TodoFooter.css';
 import TodoFilter from './TodoFilter';
 import ViewChooser from './ViewChooser';
 
-interface TodoFooterProperties {
+interface TodoFooterProperties extends ThemeableProperties, I18nProperties {
 	activeView?: string;
 	activeFilter?: string;
 	activeCount?: number;
 	completedCount?: number;
+	clearCompleted: Function;
 }
 
 @theme(styles)
@@ -43,8 +43,12 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 				overrideClasses: {
 					button: styles.clearCompleted
 				},
-				onClick: clearCompleted.bind(this)
+				onClick: this._clearCompleted()
 			}) : null
 		]);
+	}
+
+	private _clearCompleted() {
+		this.properties.clearCompleted();
 	}
 }

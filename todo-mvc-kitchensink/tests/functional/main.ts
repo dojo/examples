@@ -150,7 +150,7 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 
 	});
 
-	test.describe('Item', function () {
+	test.describe('Todo', function () {
 
 		test.it('should allow me to mark items as complete', function () {
 			return page.enterItem(TODO_ITEM_ONE)

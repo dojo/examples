@@ -2,19 +2,19 @@ import { v, w } from '@dojo/widget-core/d';
 import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { updateTodo } from '../actions/todoStoreActions';
-import { Item } from '../App';
 import appBundle from '../nls/common';
-import router, { mainRoute } from '../routes';
+import { Todo } from './App';
 import FocusableTextInput from './FocusableTextInput';
 import FormattedDate from './FormattedDate';
 import * as styles from './styles/TodoDetails.css';
 import { Toggler } from './Toggler';
 
-interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
-	todoDetails: Item;
+export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
+	todo: Todo;
 	activeFilter: string;
 	activeView: string;
+	updateTodo: Function;
+	showTodoDetails: Function;
 }
 
 class FocusableTextArea extends FocusableTextInput {
@@ -24,29 +24,21 @@ class FocusableTextArea extends FocusableTextInput {
 @theme(styles)
 export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
 	onClose() {
-		const { activeFilter: filter, activeView: view } = this.properties;
-
-		const closeLink = router.link(mainRoute, {
-			filter,
-			view
-		});
-
-		updateTodo(this.properties.todoDetails);
-		document.location.href = closeLink;
+		this.properties.showTodoDetails();
 	}
 
 	onInput(event: KeyboardEvent) {
-		this.properties.todoDetails.label = (<any> event.target).value;
+		this.properties.todo.label = (<any> event.target).value;
 	}
 
 	onCompleted() {
-		this.properties.todoDetails.completed = !this.properties.todoDetails.completed;
+		this.properties.todo.completed = !this.properties.todo.completed;
 		this.invalidate();
 	}
 
 	render() {
-		const { todoDetails, theme } = this.properties;
-		const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
+		const { todo, theme } = this.properties;
+		const { label = '', completed = false, createdOn = new Date() } = todo || {};
 		const messages = this.localizeBundle(appBundle);
 
 		return v('div', {

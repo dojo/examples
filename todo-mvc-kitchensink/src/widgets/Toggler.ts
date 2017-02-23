@@ -1,9 +1,9 @@
 import { v } from '@dojo/widget-core/d';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemeableMixin, theme, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as styles from './styles/Toggler.css';
 
-export interface TogglerProperties {
+export interface TogglerProperties extends ThemeableProperties {
 	checked?: boolean;
 	onChange?: (event?: Event) => void;
 }
