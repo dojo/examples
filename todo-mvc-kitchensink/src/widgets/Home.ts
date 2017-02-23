@@ -35,7 +35,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 	render() {
 		const messages = this.localizeBundle(appBundle);
 
-		const { todo, todos, completedCount, theme, search } = this.properties;
+		const { todo, todos, completedCount, theme, search, activeView, activeFilter } = this.properties;
 
 		const activeCount = todos.size - completedCount;
 
@@ -44,29 +44,34 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 				w(Title, { label: messages.appTitle }),
 				w(TodoEditInput, {
 					focused: true,
-					value: todo,
-					placeholder: messages.editPlaceholder,
-					onKeyUp: this._addTodo,
 					onInput: this._updateTodo,
-					theme: theme
+					onKeyUp: this._addTodo,
+					placeholder: messages.editPlaceholder,
+					theme: theme,
+					value: todo
 				})
 			]),
 			w(MainSection, {
-				updated: this.properties.updated,
-				todos: todos,
-				search: search,
+				theme,
+				activeFilter,
+				activeView,
 				completedCount,
-				showTodoDetails: this._showTodoDetails,
 				removeTodo: this._removeTodo,
+				search: search,
+				showTodoDetails: this._showTodoDetails,
+				todos: todos,
+				toggleAllTodos: this._toggleAllTodos,
 				toggleTodo: this._toggleTodo,
-				updateSearch: this._updateSearch,
-				toggleAllTodos: this._toggleAllTodos
+				updated: this.properties.updated,
+				updateSearch: this._updateSearch
 			}),
 			todos.size ? w(TodoFooter, {
-				theme,
-				completedCount,
 				activeCount,
-				clearCompleted: this._clearCompleted
+				activeFilter,
+				activeView,
+				clearCompleted: this._clearCompleted,
+				completedCount,
+				theme
 			}) : null
 		]);
 	}

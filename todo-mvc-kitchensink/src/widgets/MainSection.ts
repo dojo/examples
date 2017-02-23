@@ -14,8 +14,8 @@ interface MainSectionProperties extends ThemeableProperties, I18nProperties {
 	updated: string;
 	completedCount: number;
 	todos: Map<string, Todo>;
-	activeFilter?: string;
-	activeView?: string;
+	activeFilter: string;
+	activeView: string;
 	search: string;
 	updateSearch: Function;
 	toggleAllTodos: Function;
@@ -30,12 +30,12 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 		const messages = this.localizeBundle(appBundle);
 
 		const {
-			todos,
+			activeFilter,
+			activeView,
 			completedCount,
-			activeFilter = 'all',
-			activeView = 'list',
-			search = '',
+			search,
 			theme,
+			todos,
 			updated
 		} = this.properties;
 
@@ -53,23 +53,22 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 				v('span', {
 					classes: this.classes(styles.searchIcon)
 				}), w(SearchInput, {
-					placeholder: messages.searchPlaceholder,
-					value: search,
 					onKeyUp: this._searchHandler,
-					theme
+					placeholder: messages.searchPlaceholder,
+					theme,
+					value: search
 				})
 			]) : null,
 			w(TodoItemList, {
-				updated,
-				theme,
-				todos,
 				activeFilter,
 				activeView,
-				search,
-				key: `todo-item-${activeView === 'cards' ? 'cards' : 'list'}`,
-				showTodoDetails: this._showTodoDetails,
 				removeTodo: this._removeTodo,
-				toggleTodo: this._toggleTodo
+				search,
+				showTodoDetails: this._showTodoDetails,
+				theme,
+				todos,
+				toggleTodo: this._toggleTodo,
+				updated
 			})
 		]);
 	}

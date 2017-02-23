@@ -183,10 +183,10 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 
 	private _showTodoDetails(id: string) {
 		if (id) {
-			document.location.href = `/${this.properties.activeFilter || 'list'}/todos/${id}/?view=${this.properties.activeView || 'list'}`;
+			document.location.href = `#/${this.properties.activeFilter || 'all'}/todos/${id}?view=${this.properties.activeView || 'list'}`;
 		}
 		else {
-			document.location.href = `/${this.properties.activeFilter || 'list'}/?view=${this.properties.activeView || 'list'}`;
+			document.location.href = `#/${this.properties.activeFilter || 'all'}?view=${this.properties.activeView || 'list'}`;
 		}
 	}
 }

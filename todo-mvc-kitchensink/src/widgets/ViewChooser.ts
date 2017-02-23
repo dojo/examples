@@ -11,14 +11,14 @@ interface ViewChooserProperties {
 @theme(styles)
 export default class ViewChooser extends ThemeableMixin(WidgetBase)<ViewChooserProperties> {
 	render() {
-		const { activeView = 'list', activeFilter = 'all' } = this.properties;
+		const { activeView, activeFilter } = this.properties;
 
 		return v('ul', {
 			classes: this.classes(styles.viewChooser)
 		}, [
 			v('li.view-mode', [
 				v('a', {
-					href: `/${activeFilter}/?view=list`,
+					href: `#/${activeFilter}?view=list`,
 					classes: this.classes(
 						styles.list,
 						activeView === 'list' ? styles.active : null
@@ -27,7 +27,7 @@ export default class ViewChooser extends ThemeableMixin(WidgetBase)<ViewChooserP
 			]),
 			v('li.view-mode', [
 				v('a', {
-					href: `/${activeFilter}/?view=cards`,
+					href: `#/${activeFilter}?view=cards`,
 					classes: this.classes(
 						styles.cards,
 						activeView === 'cards' ? styles.active : null

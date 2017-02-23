@@ -35,3 +35,23 @@
 	color:black;
 	text-decoration: line-through;
 }
+
+.listItem {
+}
+
+.listItem .destroyContainer {
+	opacity: 0;
+	transition: all 0.2s ease-out;
+}
+
+.listItem:hover .destroyContainer {
+	opacity: 1;
+}
+
+.completed {
+}
+
+.completed label {
+	color:black;
+	text-decoration: line-through;
+}

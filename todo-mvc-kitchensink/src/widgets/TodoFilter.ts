@@ -30,7 +30,7 @@ function createFilterItems(instance: TodoFilter, activeFilter: string, activeVie
 		return v('li', [
 			v('a', {
 				innerHTML: label,
-				href: `/${filterItem}/?view=${activeView}`,
+				href: `#/${filterItem}?view=${activeView}`,
 				classes: instance.classes(...classes)
 			})
 		]);

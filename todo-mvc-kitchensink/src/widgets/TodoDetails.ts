@@ -24,6 +24,7 @@ class FocusableTextArea extends FocusableTextInput {
 @theme(styles)
 export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
 	onClose() {
+		this.properties.updateTodo(this.properties.todo, this.properties.todo.id);
 		this.properties.showTodoDetails();
 	}
 

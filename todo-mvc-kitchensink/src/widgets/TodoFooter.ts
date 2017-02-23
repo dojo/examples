@@ -9,17 +9,17 @@ import TodoFilter from './TodoFilter';
 import ViewChooser from './ViewChooser';
 
 interface TodoFooterProperties extends ThemeableProperties, I18nProperties {
-	activeView?: string;
-	activeFilter?: string;
-	activeCount?: number;
-	completedCount?: number;
+	activeView: string;
+	activeFilter: string;
+	activeCount: number;
+	completedCount: number;
 	clearCompleted: Function;
 }
 
 @theme(styles)
 export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<TodoFooterProperties> {
 	render() {
-		const { activeCount = 0, activeFilter = 'all', completedCount = 0, activeView = 'cards' } = this.properties;
+		const { activeCount, activeFilter, completedCount, activeView } = this.properties;
 
 		const messages = this.localizeBundle(appBundle);
 
@@ -43,7 +43,7 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 				overrideClasses: {
 					button: styles.clearCompleted
 				},
-				onClick: this._clearCompleted()
+				onClick: this._clearCompleted
 			}) : null
 		]);
 	}
