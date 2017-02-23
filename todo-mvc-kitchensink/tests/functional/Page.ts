@@ -114,8 +114,13 @@ export default class Page {
 
 	isNewItemInputEmpty(): Promise<boolean> {
 		return this.remote
-			.findByCssSelector(this.selectors.newInput)
-			.getVisibleText()
+			.sleep(1000)
+			.execute(function (selector: string) {
+				return (<any> document.querySelector(selector)!).value;
+			}, [ this.selectors.newInput ])
+			.then((value: string) => {
+				return value;
+			})
 			.then((value: string) => !value);
 	}
 

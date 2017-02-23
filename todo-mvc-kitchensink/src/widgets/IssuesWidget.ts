@@ -34,7 +34,7 @@ export class IssuesWidget extends ThemeableMixin(WidgetBase)<IssuesWidgetPropert
 			return v('section', [
 				v('h6', {
 					classes: this.classes(styles.widgetTitle),
-					innerHTML: 'Open GitHub Issues'
+					innerHTML: 'This GitHub issues widget is a custom element!'
 				}),
 				v('ul', {
 					classes: this.classes(styles.issuesWidget)
