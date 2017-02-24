@@ -18,14 +18,14 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 		const { type } = this.properties;
 
 		if (type === 'list') {
-			return this._returnListItem();
+			return this._renderListItem();
 		}
 		else {
-			return this._returnCardItem();
+			return this._renderCardItem();
 		}
 	}
 
-	private _returnListItem() {
+	private _renderListItem() {
 		const { todo, theme } = this.properties;
 
 		return v('li', {
@@ -58,7 +58,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 		]);
 	}
 
-	private _returnCardItem() {
+	private _renderCardItem() {
 		const { todo, theme } = this.properties;
 
 		return v('li', {

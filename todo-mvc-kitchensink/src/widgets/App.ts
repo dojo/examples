@@ -12,7 +12,6 @@ interface AppProperties extends ThemeableProperties, I18nProperties {
 	activeFilter?: string;
 	activeView?: string;
 	showDetails?: string;
-	pirateTheme?: boolean;
 }
 
 export interface Todo {
@@ -29,6 +28,7 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 	private _completedCount: number = 0;
 	private _search: string = '';
 	private _updated: string = uuid();
+	private _usePirateTheme: boolean = false;
 
 	constructor() {
 		super();
@@ -38,21 +38,18 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 
 	applyTheme() {
 		this.setProperties(deepAssign({}, this.properties, {
-			theme: this.properties.pirateTheme ? pirateThemeStyles : undefined
+			theme: this._usePirateTheme ? pirateThemeStyles : undefined
 		}));
 	}
 
 	changeTheme(wantsPirate: boolean) {
-		this.setProperties(deepAssign({}, this.properties, {
-			pirateTheme: wantsPirate
-		}));
+		this._usePirateTheme = wantsPirate;
 
 		this.applyTheme();
 	}
 
 	render() {
 		const {
-			pirateTheme = false,
 			theme,
 			activeView = 'list',
 			activeFilter = 'all',
@@ -62,7 +59,7 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 		const widgets = [
 			w('theme-switcher', {
 				theme: this.properties.theme,
-				wantsPirate: pirateTheme,
+				wantsPirate: this._usePirateTheme,
 				onChange: this.changeTheme
 			}),
 			w('home', {
@@ -88,7 +85,7 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 		if (showDetails && this._todos.get(showDetails)) {
 			widgets.push(w('details', {
 				theme,
-				todo: this._todos.get(showDetails)!,
+				todo: this._todos.get(showDetails),
 				updateTodo: this._setTodo,
 				showTodoDetails: this._showTodoDetails,
 				activeView,
