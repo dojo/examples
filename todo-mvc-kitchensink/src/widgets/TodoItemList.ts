@@ -1,20 +1,25 @@
+import { from as arrayFrom } from '@dojo/shim/array';
+import Map from '@dojo/shim/Map';
 import { w, v } from '@dojo/widget-core/d';
 import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { Item } from '../App';
+import { Todo } from './App';
 import * as styles from './styles/TodoItemList.css';
-import TodoCardItem from './TodoCardItem';
-import TodoListItem from './TodoListItem';
+import TodoItem from './TodoItem';
 
 interface TodoListProperties extends ThemeableProperties {
+	updated: string;
 	activeFilter: string;
 	activeView: string;
-	todos: Item[];
+	todos: Map<string, Todo>;
 	search: string;
+	showTodoDetails: Function;
+	removeTodo: Function;
+	toggleTodo: Function;
 }
 
-function filter(filterName: string, todo: Item): boolean {
+function filter(filterName: string, todo: Todo): boolean {
 	switch (filterName) {
 		case 'completed':
 			return !!todo.completed;
@@ -25,31 +30,34 @@ function filter(filterName: string, todo: Item): boolean {
 	}
 }
 
-function applySearch(searchQuery: string, todo: Item): boolean {
+function applySearch(searchQuery: string, todo: Todo): boolean {
 	return searchQuery === '' || (todo.label || '').toLowerCase().indexOf(searchQuery) >= 0;
 }
 
 @theme(styles)
 export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListProperties> {
 	render() {
-		const { activeView = 'list', todos = [], activeFilter = '', search = '', theme } = this.properties;
+		const { activeView = 'list', todos, activeFilter = '', search = '', theme } = this.properties;
 
 		return v('ul', {
 			classes: this.classes(
 				styles.todoItemList,
-				todos.length === 0 ? styles.empty : null,
+				todos.size === 0 ? styles.empty : null,
 				activeView === 'cards' ? styles.cardList : null
 			)
-		}, todos
-			.filter((todo: Item) => filter(activeFilter, todo))
-			.filter((todo: Item) => applySearch(search.toLowerCase(), todo))
-			.map((todo: Item) => <DNode> w(activeView === 'cards' ? TodoCardItem : TodoListItem, <any> {
-				...todo,
-				todoId: todo.id,
-				key: todo.id,
-				theme
+		}, arrayFrom(todos.values())
+			.filter((todo: Todo) => filter(activeFilter, todo))
+			.filter((todo: Todo) => applySearch(search.toLowerCase(), todo))
+			.map((todo: Todo) => <DNode> w('todo-item', {
+				todo,
+				key: `${activeView}-${todo.id}`,
+				type: <'card' | 'list'> (activeView === 'cards' ? 'card' : 'list'),
+				theme,
+				editTodo: this._showTodoDetails,
+				removeTodo: this._removeTodo,
+				toggleTodo: this._toggleTodo
 			}))
-			.concat((activeView === 'cards' && todos.length) ? [
+			.concat((activeView === 'cards' && todos.size) ? [
 				v('li', {
 					classes: this.classes(styles.emptyFiller)
 				}),
@@ -57,5 +65,17 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 					classes: this.classes(styles.emptyFiller)
 				})
 			] : []));
+	}
+
+	private _showTodoDetails(id: string) {
+		this.properties.showTodoDetails(id);
+	}
+
+	private _removeTodo(id: string) {
+		this.properties.removeTodo(id);
+	}
+
+	private _toggleTodo(id: string) {
+		this.properties.toggleTodo(id);
 	}
 }

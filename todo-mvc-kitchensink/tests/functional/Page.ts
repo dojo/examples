@@ -3,13 +3,12 @@ import * as keys from 'leadfoot/keys';
 
 import * as appCss from './../../src/widgets/styles/App.css';
 import * as checkbox from './../../src/widgets/styles/CheckboxInput.css';
-import * as home from './../../src/widgets/styles/Home.css';
+import * as todoEditInputCss from './../../src/widgets/styles/TodoEditInput.css';
+import * as TodoFilterCss from './../../src/widgets/styles/TodoFilter.css';
 import * as todoFooterCss from './../../src/widgets/styles/TodoFooter.css';
+import * as todoListItem from './../../src/widgets/styles/TodoItem.css';
 import * as todoListCss from './../../src/widgets/styles/TodoItemList.css';
 import * as toggler from './../../src/widgets/styles/Toggler.css';
-import * as TodoFilterCss from './../../src/widgets/styles/TodoFilter.css';
-import * as todoListItem from './../../src/widgets/styles/TodoListItem.css';
-import * as todoEditInputCss from './../../src/widgets/styles/TodoEditInput.css';
 
 class Selectors {
 	public main = `.${appCss.todoapp}`;
@@ -115,8 +114,13 @@ export default class Page {
 
 	isNewItemInputEmpty(): Promise<boolean> {
 		return this.remote
-			.findByCssSelector(this.selectors.newInput)
-			.getVisibleText()
+			.sleep(1000)
+			.execute(function (selector: string) {
+				return (<any> document.querySelector(selector)!).value;
+			}, [ this.selectors.newInput ])
+			.then((value: string) => {
+				return value;
+			})
 			.then((value: string) => !value);
 	}
 

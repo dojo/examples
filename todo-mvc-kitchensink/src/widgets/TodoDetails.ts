@@ -1,20 +1,19 @@
+import { assign } from '@dojo/core/lang';
 import { v, w } from '@dojo/widget-core/d';
 import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { updateTodo } from '../actions/todoStoreActions';
-import { Item } from '../App';
 import appBundle from '../nls/common';
-import router, { mainRoute } from '../routes';
+import { Todo } from './App';
 import FocusableTextInput from './FocusableTextInput';
-import FormattedDate from './FormattedDate';
 import * as styles from './styles/TodoDetails.css';
-import { Toggler } from './Toggler';
 
-interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
-	todoDetails: Item;
+export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
+	todo: Todo;
 	activeFilter: string;
 	activeView: string;
+	updateTodo: Function;
+	showTodoDetails: Function;
 }
 
 class FocusableTextArea extends FocusableTextInput {
@@ -23,31 +22,41 @@ class FocusableTextArea extends FocusableTextInput {
 
 @theme(styles)
 export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
+	private _label: string = '';
+	private _completed: boolean = false;
+	private _lastTodoId: string = '';
+
 	onClose() {
-		const { activeFilter: filter, activeView: view } = this.properties;
-
-		const closeLink = router.link(mainRoute, {
-			filter,
-			view
-		});
-
-		updateTodo(this.properties.todoDetails);
-		document.location.href = closeLink;
+		this.properties.updateTodo(assign({}, this.properties.todo, <any> {
+			label: this._label,
+			completed: this._completed
+		}), this.properties.todo.id);
+		this.properties.showTodoDetails();
 	}
 
 	onInput(event: KeyboardEvent) {
-		this.properties.todoDetails.label = (<any> event.target).value;
+		this._label = (<any> event.target).value;
 	}
 
 	onCompleted() {
-		this.properties.todoDetails.completed = !this.properties.todoDetails.completed;
+		this._completed = !this._completed;
 		this.invalidate();
 	}
 
+	private _updateState() {
+		if (this.properties.todo.id !== this._lastTodoId) {
+			this._label = this.properties.todo.label || '';
+			this._completed = this.properties.todo.completed || false;
+			this._lastTodoId = this.properties.todo.id;
+		}
+	}
+
 	render() {
-		const { todoDetails, theme } = this.properties;
-		const { label = '', completed = false, createdOn = new Date() } = todoDetails || {};
+		const { todo, theme } = this.properties;
+		const { createdOn = new Date() } = todo || {};
 		const messages = this.localizeBundle(appBundle);
+
+		this._updateState();
 
 		return v('div', {
 			classes: this.classes(styles.todoDetails)
@@ -77,7 +86,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 							base: styles.todoDetailsTextArea
 						},
 						focused: true,
-						value: label,
+						value: this._label,
 						onInput: this.onInput,
 						theme
 					}),
@@ -86,15 +95,15 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 							classes: this.classes(styles.lastUpdated)
 						}, [
 							messages.createdTitle,
-							w(FormattedDate, {
+							w('formatteddate', {
 								date: createdOn
 							})
 						]),
-						w(Toggler, <any> {
+						w('toggler', <any> {
 							overrideClasses: {
 								toggle: styles.toggle
 							},
-							checked: completed,
+							checked: this._completed,
 							onChange: this.onCompleted,
 							theme
 						})

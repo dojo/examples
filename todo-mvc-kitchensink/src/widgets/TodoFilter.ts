@@ -4,13 +4,11 @@ import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
-import router, { mainRoute } from '../routes';
 import * as styles from './styles/TodoFilter.css';
 
 interface TodoFilterProperties {
 	activeFilter: string;
 	activeView: string;
-
 }
 
 function createFilterItems(instance: TodoFilter, activeFilter: string, activeView: string, messages: typeof appBundle.messages): DNode[] {
@@ -32,10 +30,7 @@ function createFilterItems(instance: TodoFilter, activeFilter: string, activeVie
 		return v('li', [
 			v('a', {
 				innerHTML: label,
-				href: router.link(mainRoute, {
-					filter: filterItem,
-					view: activeView
-				}),
+				href: `#/${filterItem}?view=${activeView}`,
 				classes: instance.classes(...classes)
 			})
 		]);
