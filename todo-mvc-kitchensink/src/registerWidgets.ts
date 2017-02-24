@@ -1,13 +1,13 @@
 import { registry } from '@dojo/widget-core/d';
-import AppFooter from './widgets/appfooter';
-import Button from './widgets/button';
+import AppFooter from './widgets/AppFooter';
+import Button from './widgets/Button';
 import CheckboxInput from './widgets/CheckboxInput';
 import DestroyButton from './widgets/DestroyButton';
 import FocusableTextInput from './widgets/FocusableTextInput';
 import FormattedDate from './widgets/FormattedDate';
 import Home from './widgets/Home';
 import Label from './widgets/Label';
-import MainSection from './widgets/mainsection';
+import MainSection from './widgets/MainSection';
 import SearchInput from './widgets/SearchInput';
 import ThemeSwitcher from './widgets/ThemeSwitcher';
 import Title from './widgets/Title';
