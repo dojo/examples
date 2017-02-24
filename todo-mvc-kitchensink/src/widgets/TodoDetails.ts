@@ -1,3 +1,4 @@
+import { assign } from '@dojo/core/lang';
 import { v, w } from '@dojo/widget-core/d';
 import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
@@ -21,24 +22,41 @@ class FocusableTextArea extends FocusableTextInput {
 
 @theme(styles)
 export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
+	private _label: string = '';
+	private _completed: boolean = false;
+	private _lastTodoId: string = '';
+
 	onClose() {
-		this.properties.updateTodo(this.properties.todo, this.properties.todo.id);
+		this.properties.updateTodo(assign({}, this.properties.todo, <any> {
+			label: this._label,
+			completed: this._completed
+		}), this.properties.todo.id);
 		this.properties.showTodoDetails();
 	}
 
 	onInput(event: KeyboardEvent) {
-		this.properties.todo.label = (<any> event.target).value;
+		this._label = (<any> event.target).value;
 	}
 
 	onCompleted() {
-		this.properties.todo.completed = !this.properties.todo.completed;
+		this._completed = !this._completed;
 		this.invalidate();
+	}
+
+	private _updateState() {
+		if (this.properties.todo.id !== this._lastTodoId) {
+			this._label = this.properties.todo.label || '';
+			this._completed = this.properties.todo.completed || false;
+			this._lastTodoId = this.properties.todo.id;
+		}
 	}
 
 	render() {
 		const { todo, theme } = this.properties;
-		const { label = '', completed = false, createdOn = new Date() } = todo || {};
+		const { createdOn = new Date() } = todo || {};
 		const messages = this.localizeBundle(appBundle);
+
+		this._updateState();
 
 		return v('div', {
 			classes: this.classes(styles.todoDetails)
@@ -68,7 +86,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 							base: styles.todoDetailsTextArea
 						},
 						focused: true,
-						value: label,
+						value: this._label,
 						onInput: this.onInput,
 						theme
 					}),
@@ -85,7 +103,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 							overrideClasses: {
 								toggle: styles.toggle
 							},
-							checked: completed,
+							checked: this._completed,
 							onChange: this.onCompleted,
 							theme
 						})
