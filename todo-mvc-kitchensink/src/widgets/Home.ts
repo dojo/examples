@@ -6,11 +6,7 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
-import MainSection from './MainSection';
 import * as styles from './styles/Home.css';
-import Title from './Title';
-import TodoEditInput from './TodoEditInput';
-import TodoFooter from './TodoFooter';
 
 export interface HomeProperties extends WidgetProperties, ThemeableProperties, I18nProperties {
 	updated: string;
@@ -41,8 +37,8 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 
 		return v('div', [
 			v('header', [
-				w(Title, { label: messages.appTitle }),
-				w(TodoEditInput, {
+				w('title', { label: messages.appTitle }),
+				w('todo-edit', {
 					focused: true,
 					onInput: this._updateTodo,
 					onKeyUp: this._addTodo,
@@ -51,7 +47,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 					value: todo
 				})
 			]),
-			w(MainSection, {
+			w('main-section', {
 				theme,
 				activeFilter,
 				activeView,
@@ -65,7 +61,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 				updated: this.properties.updated,
 				updateSearch: this._updateSearch
 			}),
-			todos.size ? w(TodoFooter, {
+			todos.size ? w('todo-footer', {
 				activeCount,
 				activeFilter,
 				activeView,

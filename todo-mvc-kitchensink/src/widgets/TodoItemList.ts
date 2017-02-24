@@ -48,9 +48,9 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 		}, arrayFrom(todos.values())
 			.filter((todo: Todo) => filter(activeFilter, todo))
 			.filter((todo: Todo) => applySearch(search.toLowerCase(), todo))
-			.map((todo: Todo) => <DNode> w(TodoItem, {
+			.map((todo: Todo) => <DNode> w('todo-item', {
 				todo,
-				key: todo.id,
+				key: `${activeView}-${todo.id}`,
 				type: <'card' | 'list'> (activeView === 'cards' ? 'card' : 'list'),
 				theme,
 				editTodo: this._showTodoDetails,

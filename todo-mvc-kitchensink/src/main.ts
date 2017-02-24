@@ -1,3 +1,4 @@
+import './registerWidgets';
 import global from '@dojo/core/global';
 import { assign } from '@dojo/core/lang';
 import loadCldrData from '@dojo/i18n/cldr/load';

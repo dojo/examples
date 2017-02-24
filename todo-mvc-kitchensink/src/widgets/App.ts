@@ -6,11 +6,7 @@ import { I18nProperties, I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import pirateThemeStyles from '../themes/pirate';
-import { AppFooter } from './AppFooter';
-import Home from './Home';
 import * as styles from './styles/App.css';
-import { ThemeSwitcher } from './ThemeSwitcher';
-import TodoDetails from './TodoDetails';
 
 interface AppProperties extends ThemeableProperties, I18nProperties {
 	activeFilter?: string;
@@ -64,12 +60,12 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 		} = this.properties;
 
 		const widgets = [
-			w(ThemeSwitcher, {
+			w('theme-switcher', {
 				theme: this.properties.theme,
 				wantsPirate: pirateTheme,
 				onChange: this.changeTheme
 			}),
-			w(Home, {
+			w('home', {
 				theme,
 				updated: this._updated,
 				todos: this._todos,
@@ -90,7 +86,7 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 		];
 
 		if (showDetails && this._todos.get(showDetails)) {
-			widgets.push(w(TodoDetails, {
+			widgets.push(w('details', {
 				theme,
 				todo: this._todos.get(showDetails)!,
 				updateTodo: this._setTodo,
@@ -104,7 +100,7 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 			v('section', {
 				classes: this.classes(styles.todoapp)
 			}, widgets),
-			w(AppFooter, {
+			w('footer', {
 				theme: this.properties.theme
 			})
 		]);

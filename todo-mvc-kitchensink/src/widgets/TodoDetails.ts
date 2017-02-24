@@ -5,9 +5,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
 import FocusableTextInput from './FocusableTextInput';
-import FormattedDate from './FormattedDate';
 import * as styles from './styles/TodoDetails.css';
-import { Toggler } from './Toggler';
 
 export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
 	todo: Todo;
@@ -79,11 +77,11 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 							classes: this.classes(styles.lastUpdated)
 						}, [
 							messages.createdTitle,
-							w(FormattedDate, {
+							w('formatteddate', {
 								date: createdOn
 							})
 						]),
-						w(Toggler, <any> {
+						w('toggler', <any> {
 							overrideClasses: {
 								toggle: styles.toggle
 							},

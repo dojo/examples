@@ -5,10 +5,7 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
-import CheckboxInput from './CheckboxInput';
-import SearchInput from './SearchInput';
 import * as styles from './styles/MainSection.css';
-import TodoItemList from './TodoItemList';
 
 interface MainSectionProperties extends ThemeableProperties, I18nProperties {
 	updated: string;
@@ -42,7 +39,7 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 		return v('section', {
 			classes: this.classes(styles.main)
 		}, [
-			w(CheckboxInput, {
+			w('checkbox', {
 				checked: completedCount === todos.size,
 				onChange: this._todoToggleAll,
 				theme
@@ -52,14 +49,14 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 			}, [
 				v('span', {
 					classes: this.classes(styles.searchIcon)
-				}), w(SearchInput, {
+				}), w('search', {
 					onKeyUp: this._searchHandler,
 					placeholder: messages.searchPlaceholder,
 					theme,
 					value: search
 				})
 			]) : null,
-			w(TodoItemList, {
+			w('todo-list', {
 				activeFilter,
 				activeView,
 				removeTodo: this._removeTodo,

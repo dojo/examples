@@ -2,10 +2,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Todo } from './App';
-import { DestroyButton } from './DestroyButton';
-import { Label } from './Label';
 import * as styles from './styles/TodoItem.css';
-import { Toggler } from './Toggler';
 
 interface TodoCardItemProperties extends ThemeableProperties {
 	type: 'list' | 'card';
@@ -38,12 +35,12 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 			)
 		}, [
 			v('div', [
-				w(Toggler, {
+				w('toggler', {
 					theme,
 					checked: todo.completed,
 					onChange: this._todoToggleComplete
 				}),
-				w(Label, {
+				w('label', {
 					label: todo.label || '',
 					onKeyPress: this._editTodo,
 					onDoubleClick: this._editTodo
@@ -51,7 +48,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 				v('span', {
 					classes: this.classes(styles.destroyContainer)
 				}, [
-					w(DestroyButton, {
+					w('destroy-button', {
 						theme,
 						onClick: this._removeTodo
 					})
@@ -74,7 +71,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 				v('div', {
 					classes: this.classes(styles.cardHeader)
 				}, [
-					w(Toggler, <any> {
+					w('toggler', <any> {
 						theme,
 						overrideClasses: {
 							toggle: styles.cardToggle
@@ -82,7 +79,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 						checked: todo.completed,
 						onChange: this._todoToggleComplete
 					}),
-					w(DestroyButton, <any> {
+					w('destroy-button', <any> {
 						theme,
 						overrideClasses: {
 							destroyButton: styles.cardDestroy
@@ -90,7 +87,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 						onClick: this._removeTodo
 					})
 				]),
-				w(Label, <any> {
+				w('label', <any> {
 					theme,
 					label: todo.label,
 					onDoubleClick: this._editTodo,

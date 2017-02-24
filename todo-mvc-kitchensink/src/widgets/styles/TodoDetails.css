@@ -61,5 +61,5 @@
 
 .toggle {
 	float: right;
-	position: relative;
+	position: relative !important;
 }
