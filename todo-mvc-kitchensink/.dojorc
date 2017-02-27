@@ -1,0 +1,5 @@
+module.exports = {
+	"locale": "en",
+	"supportedLocales": [ "en-PR" ],
+	"messageBundles": [ "src/nls/common" ]
+}

@@ -1,15 +1,13 @@
 import './registerWidgets';
 import global from '@dojo/core/global';
 import { assign } from '@dojo/core/lang';
-import loadCldrData from '@dojo/i18n/cldr/load';
-import { systemLocale } from '@dojo/i18n/i18n';
 import { HashHistory } from '@dojo/routing/history/HashHistory';
 import { Parameters } from '@dojo/routing/interfaces';
 import { Route } from '@dojo/routing/Route';
 import { Router } from '@dojo/routing/Router';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import registerCustomElement from '@dojo/widget-core/registerCustomElement';
-import likelySubtags from './nls/likelySubtags';
+import setLocaleData from './setLocaleData';
 import App from './widgets/App';
 import createGithubIssuesElement from './widgets/custom/createGithubIssuesElement';
 
@@ -105,14 +103,7 @@ const router = new Router({
 mainRoute.append(todoViewRoute);
 router.append(mainRoute);
 
-Promise.all([
-	loadCldrData({
-		main: {
-			[systemLocale]: {}
-		}
-	}),
-	loadCldrData(likelySubtags)
-]).then(() => {
+setLocaleData().then(() => {
 	if (projector.root) {
 		projector
 			.append()
