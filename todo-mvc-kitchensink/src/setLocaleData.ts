@@ -6,13 +6,5 @@ export type AppLocale = 'en' | 'en-PR';
 
 export default function (locale: AppLocale = 'en') {
 	switchLocale(locale);
-
-	return Promise.all([
-		loadCldrData({
-			main: {
-				[locale]: {}
-			}
-		}),
-		loadCldrData([ './nls/cldr/likelySubtags.json' ])
-	]);
+	return loadCldrData([ './nls/cldr/likelySubtags.json' ]);
 }
