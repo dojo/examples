@@ -11,7 +11,14 @@
 		"sourceMap": true,
 		"target": "es5",
 		"moduleResolution": "node",
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"lib": [
+			"dom",
+			"es5",
+			"es2015.iterable",
+			"es2015.symbol",
+			"es2015.symbol.wellknown"
+		]
 	},
 	"include": [
 		"./typings/index.d.ts",
