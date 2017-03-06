@@ -18,10 +18,12 @@
 			"es2015.iterable",
 			"es2015.symbol",
 			"es2015.symbol.wellknown"
+		],
+		"types": [
+			"intern"
 		]
 	},
 	"include": [
-		"./typings/index.d.ts",
 		"./src/**/*.ts",
 		"./tests/**/*.ts"
 	]
