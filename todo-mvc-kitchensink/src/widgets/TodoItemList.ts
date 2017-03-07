@@ -6,7 +6,6 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Todo } from './App';
 import * as styles from './styles/TodoItemList.css';
-import TodoItem from './TodoItem';
 
 interface TodoListProperties extends ThemeableProperties {
 	updated: string;
