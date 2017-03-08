@@ -1,5 +1,7 @@
-module.exports = {
-	"locale": "en",
-	"supportedLocales": [ "en-PR" ],
-	"messageBundles": [ "src/nls/common" ]
+{
+	"build-webpack": {
+		"locale": "en",
+		"supportedLocales": [ "en-PR" ],
+		"messageBundles": [ "src/nls/common" ]
+	}
 }
