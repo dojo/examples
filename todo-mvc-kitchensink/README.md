@@ -61,7 +61,7 @@ Contributing Guidelines and Style Guide.
 
 To start working with this package, clone the repository and run `npm install`.
 
-In order to build the project run `grunt dev` or `grunt dist`.
+In order to build the project run `dojo build`.
 
 ### Testing
 
