@@ -6,16 +6,13 @@ This repository contains example applications built using Dojo 2.
 
 For current progress on Dojo 2, contribution guidelines and other information, please visit [`dojo/meta`](https://github.com/dojo/meta).
 
-There are currently three examples:
-
-- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
-- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built in current pre-release versions of Dojo 2 packages.
-- [dojo-cli-example](./dojo-cli-example) - An example of working with Dojo cli
-
-Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
-
- - [todoMVC](https://dojo.github.io/examples/todo-mvc)
- - [todoMVC Kitchen Sink](https://dojo.github.io/examples/todo-mvc-kitchensink)
+- [Usage](#usage)
+  - [Deploying to gh-pages](#deploying-to-gh-pages)
+- [Features](#features)
+- [How do I contribute?](#how-do-i-contribute)
+  - [Installation](#installation)
+  - [Testing](#testing)
+- [Licensing information](#licensing-information)
 
 ## Usage
 
@@ -61,3 +58,41 @@ This assumes that npm & typings & dojo-cli have been installed for the example a
 ```
 
 The latest version(s) will now be available [on github pages](https://dojo.github.io/examples).
+
+## Features
+
+There are currently three examples:
+
+- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built with current pre-release versions of Dojo 2 packages.
+- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built with current pre-release versions of Dojo 2 packages.
+- [dojo-cli-example](./dojo-cli-example) - An example of working with `@dojo/cli`. 
+
+Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
+
+ - [todoMVC](https://dojo.github.io/examples/todo-mvc)
+ - [todoMVC Kitchen Sink](https://dojo.github.io/examples/todo-mvc-kitchensink)
+
+## How Do I Contribute?
+
+We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
+Contributing Guidelines and Style Guide.
+
+### Installation
+
+Refer to each `README.md` for details on installing the example.
+
+* [todo-mvc](./todo-mvc/README.md)
+* [todo-mvc-kitchensink](./todo-mvc-kitchensink/README.md)
+* [dojo-cli-example](./dojo-cli-example/README.md)
+
+### Testing
+
+Refer to each `README.md` for details on testing the example.
+
+* [todo-mvc](./todo-mvc/README.md)
+* [todo-mvc-kitchensink](./todo-mvc-kitchensink/README.md)
+* [dojo-cli-example](./dojo-cli-example/README.md)
+
+## Licensing Information
+
+© 2017 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
