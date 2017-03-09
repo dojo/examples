@@ -1,31 +1,28 @@
 # Dojo2 TodoMVC Example
 
-> Dojo2 TodoMVC example.
-
-> Current progress of Dojo2 is available from the _[Meta](https://github.com/dojo/meta)_ repository.
+A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
 
 ## Pre-requisites
 
 You need to be running node `v6+` and npm `v3+`.
 
-package `typings` and `@dojo/cli` installed globally.
+`@dojo/cli` must be installed globally:
 
 ```shell
-npm install typings -g
 npm install @dojo/cli -g
 ```
 
-## Running
+## Usage
 
-Install the required dependencies and typings
+To use `todo-mvc`, clone the `examples` repository and install the npm dependencies:
 
-```
-cd /path/to/todomvc
+```shell
+git clone https://github.com/dojo/examples
+cd examples/todo-mvc
 npm install
-typings install
 ```
 
-To run the application simply install the dependencies and run the dojo build.
+To run the application simply run the dojo build.
 
 ```
 dojo build
@@ -37,20 +34,37 @@ To watch and serve the application source, then run the build with the `-w` comm
 dojo build -w
 ```
 
-## Testing
+## Features
 
-You can test TodoMVC locally. First make sure you have a WebDriver client running, e.g. install [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/home). Start it like this:
+This package demonstrates how to build a simple application using Dojo2 widgets.
+
+It is an example of:
+
+* Custom widgets using `@dojo/widget-core`
+* Applying CSS to widgets 
+* Using `@dojo/router`
+
+## How Do I Contribute?
+
+We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
+Contributing Guidelines and Style Guide.
+
+### Installation
+
+To start working with this package, clone the repository and run `npm install`.
+
+In order to build the project run `grunt dev` or `grunt dist`.
+
+### Testing
+
+Test cases MUST be written using [Intern](https://theintern.github.io) using the Object test interface and Assert assertion interface.
+
+You can test TodoMVC locally using the [`@dojo/cli-test-intern`](https://github.com/dojo/cli-test-intern) command:
 
 ```shell
-grunt dev
+dojo test -a
 ```
 
-```shell
-chromedriver --port=4444 --url-base=wd/hub
-```
+## Licensing Information
 
-Then run the tests:
-
-```shell
-grunt test:local
-```
+© 2017 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
