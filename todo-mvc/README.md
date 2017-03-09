@@ -2,6 +2,14 @@
 
 A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
 
+- [Pre-requisites](#pre-requisites)
+- [Usage](#usage)
+- [Features](#features)
+- [How do I contribute?](#how-do-i-contribute)
+  - [Installation](#installation)
+  - [Testing](#testing)
+- [Licensing information](#licensing-information)
+
 ## Pre-requisites
 
 You need to be running node `v6+` and npm `v3+`.
