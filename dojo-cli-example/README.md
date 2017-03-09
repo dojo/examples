@@ -1,6 +1,6 @@
 # dojo-cli-example
 
-An example of working with Dojo cli.
+An example of working with `@dojo/cli`.
 
 - [Usage](#usage)
 - [Features](#features)
@@ -33,7 +33,7 @@ This project serves as an example on creating a custom command to use with `@doj
 * Accepting arguments
 * Performing a simple task when the command is run
 
-## How Do I Contribute?
+## How do I contribute?
 
 We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
 Contributing Guidelines and Style Guide.

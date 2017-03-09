@@ -1,6 +1,6 @@
 # Dojo2 TodoMVC Example
 
-A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
+A reference implementation of [TodoMVC](http://todomvc.com/) built with current pre-release versions of Dojo 2 packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -11,8 +11,6 @@ A reference implementation of [TodoMVC](http://todomvc.com/) built in current pr
 - [Licensing information](#licensing-information)
 
 ## Pre-requisites
-
-You need to be running node `v6+` and npm `v3+`.
 
 `@dojo/cli` must be installed globally:
 
@@ -44,7 +42,7 @@ dojo build -w
 
 ## Features
 
-This package demonstrates how to build a simple application using Dojo2 widgets.
+This package demonstrates how to build a simple application using Dojo 2 widgets.
 
 It is an example of:
 
@@ -52,7 +50,7 @@ It is an example of:
 * Applying CSS to widgets 
 * Using `@dojo/router`
 
-## How Do I Contribute?
+## How do I contribute?
 
 We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
 Contributing Guidelines and Style Guide.

@@ -63,9 +63,9 @@ The latest version(s) will now be available [on github pages](https://dojo.githu
 
 There are currently three examples:
 
-- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built in current pre-release versions of Dojo 2 packages.
-- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built in current pre-release versions of Dojo 2 packages.
-- [dojo-cli-example](./dojo-cli-example) - An example of working with Dojo cli
+- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built with current pre-release versions of Dojo 2 packages.
+- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built with current pre-release versions of Dojo 2 packages.
+- [dojo-cli-example](./dojo-cli-example) - An example of working with `@dojo/cli`. 
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
