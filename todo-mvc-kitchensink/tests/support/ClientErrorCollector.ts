@@ -1,3 +1,7 @@
+const CLIENT_ERROR_STACK_KEY = '__intern_error_stack';
+const CLIENT_OLD_ONERROR_KEY = '__intern_old_onerror';
+const CLIENT_FINISH_FUNCTION_KEY = '__intern_error_helper_finish';
+
 export interface ClientError {
 	message: string;
 	type: string;
@@ -50,7 +54,7 @@ export default class ClientErrorCollector {
 		}
 
 		return this._remote
-			.execute(`return window.__intern_error_helper_finish();`)
+			.execute(`return window.${CLIENT_FINISH_FUNCTION_KEY}();`)
 			.then((results: string | undefined) => {
 				if (results) {
 					return JSON.parse(results);
@@ -65,10 +69,10 @@ export default class ClientErrorCollector {
 
 		return this._remote
 			.execute(`
-				var errorStack = window.__intern_error_stack = [];
+				var errorStack = window.${CLIENT_ERROR_STACK_KEY} = [];
 				var oldonerror;
 				if (window.onerror) {
-					oldonerror = window.__intern_old_onerror = window.onerror;
+					oldonerror = window.${CLIENT_OLD_ONERROR_KEY} = window.onerror;
 				}
 				window.onerror = function (message, source, lineno, colno, error) {
 					var errorObj = {
@@ -92,15 +96,15 @@ export default class ClientErrorCollector {
 						oldonerror.call(this, messageOrEvent, source, lineno, colno, error);
 					}
 				}
-				window.__intern_error_helper_finish = function () {
-					if (typeof window.__intern_old_onerror !== 'undefined') {
-						window.onerror = window.__intern_old_onerror;
+				window.${CLIENT_FINISH_FUNCTION_KEY} = function () {
+					if (typeof window.${CLIENT_OLD_ONERROR_KEY} !== 'undefined') {
+						window.onerror = window.${CLIENT_OLD_ONERROR_KEY};
 					}
 					else {
 						delete window.onerror;
 					}
-					var errorStack = window.__intern_error_stack;
-					delete window.__intern_error_stack;
+					var errorStack = window.${CLIENT_ERROR_STACK_KEY};
+					delete window.${CLIENT_ERROR_STACK_KEY};
 					return JSON.stringify(errorStack);
 				};
 			`)
