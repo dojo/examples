@@ -50,7 +50,7 @@ export default class ClientErrorCollector {
 
 	finish(): Promise<ClientError[] | undefined> {
 		if (!this._inited) {
-			throw new Error('ErrorHelper not initialised.');
+			throw new Error('ClientErrorCollector not initialised.');
 		}
 
 		return this._remote
@@ -64,7 +64,7 @@ export default class ClientErrorCollector {
 
 		init(): Promise<void> {
 		if (this._inited) {
-			throw new Error('ErrorHelper already initialised.');
+			throw new Error('ClientErrorCollector already initialised.');
 		}
 
 		return this._remote
