@@ -85,7 +85,7 @@ export default class Page {
 			.findByCssSelector(this.selectors.newInput)
 			.setFindTimeout(100)
 			.then(() => {
-				return this.errorCollector.init()
+				return this.errorCollector.init();
 			});
 	}
 

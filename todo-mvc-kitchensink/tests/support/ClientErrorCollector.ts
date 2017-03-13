@@ -1,14 +1,9 @@
-const CLIENT_ERROR_STACK_KEY = '__intern_error_stack';
-const CLIENT_OLD_ONERROR_KEY = '__intern_old_onerror';
-const CLIENT_FINISH_FUNCTION_KEY = '__intern_error_helper_finish';
-
 export interface ClientError {
 	message: string;
-	type: string;
-	source: string;
-	lineno: number;
-	colno: number;
-	error: {
+	source?: string;
+	lineno?: number;
+	colno?: number;
+	error?: {
 		message: string;
 		name: string;
 		stack?: string;
@@ -29,17 +24,22 @@ export default class ClientErrorCollector {
 				if (results && results.length) {
 					const result = results[0];
 					let e: Error;
-					switch (result.type) {
-					case 'TypeError':
-						e = new TypeError(result.message);
-						break;
-					case 'SyntaxError':
-						e = new SyntaxError(result.message);
-						break;
-					default:
+					if (result.error) {
+					switch (result.error.name) {
+						case 'TypeError':
+							e = new TypeError(result.message);
+							break;
+						case 'SyntaxError':
+							e = new SyntaxError(result.message);
+							break;
+						default:
+							e = new Error(result.message);
+						}
+						e.stack = result.error.stack;
+					}
+					else {
 						e = new Error(result.message);
 					}
-					e.stack = result.error.stack;
 					(<any> e).fileName = result.source;
 					(<any> e).lineNumber = result.lineno;
 					(<any> e).columnNumber = result.colno;
@@ -54,7 +54,7 @@ export default class ClientErrorCollector {
 		}
 
 		return this._remote
-			.execute(`return window.${CLIENT_FINISH_FUNCTION_KEY}();`)
+			.execute(() => (<any> window)['__intern_error_helper_finish']())
 			.then((results: string | undefined) => {
 				if (results) {
 					return JSON.parse(results);
@@ -62,54 +62,57 @@ export default class ClientErrorCollector {
 			});
 	}
 
-		init(): Promise<void> {
-		if (this._inited) {
-			throw new Error('ClientErrorCollector already initialised.');
-		}
+	init(): Promise<void> {
+	if (this._inited) {
+		throw new Error('ClientErrorCollector already initialised.');
+	}
 
-		return this._remote
-			.execute(`
-				var errorStack = window.${CLIENT_ERROR_STACK_KEY} = [];
-				var oldonerror;
-				if (window.onerror) {
-					oldonerror = window.${CLIENT_OLD_ONERROR_KEY} = window.onerror;
-				}
-				window.onerror = function (message, source, lineno, colno, error) {
-					var errorObj = {
-						message: message,
-						source: source,
-						lineno: lineno,
-						colno: colno
-					};
+	return this._remote
+		.execute(() => {
+			const CLIENT_ERROR_STACK_KEY = '__intern_error_stack';
+			const CLIENT_OLD_ONERROR_KEY = '__intern_old_onerror';
 
-					if (error) {
-						errorObj.error = {
-							message: error.message,
-							name: error.name,
-							stack: error.stack
-						}
-					}
-
-					errorStack.push(errorObj);
-
-					if (oldonerror) {
-						oldonerror.call(this, messageOrEvent, source, lineno, colno, error);
-					}
-				}
-				window.${CLIENT_FINISH_FUNCTION_KEY} = function () {
-					if (typeof window.${CLIENT_OLD_ONERROR_KEY} !== 'undefined') {
-						window.onerror = window.${CLIENT_OLD_ONERROR_KEY};
-					}
-					else {
-						delete window.onerror;
-					}
-					var errorStack = window.${CLIENT_ERROR_STACK_KEY};
-					delete window.${CLIENT_ERROR_STACK_KEY};
-					return JSON.stringify(errorStack);
+			const errorStack: ClientError[] = (<any> window)[CLIENT_ERROR_STACK_KEY] = [];
+			let oldonerror: any;
+			if (window.onerror) {
+				oldonerror = (<any> window)[CLIENT_OLD_ONERROR_KEY] = window.onerror;
+			}
+			window.onerror = function (message, source, lineno, colno, error) {
+				const errorObj: ClientError = {
+					message: message,
+					source: source,
+					lineno: lineno,
+					colno: colno
 				};
-			`)
-			.then(() => {
-				this._inited = true;
-			});
+
+				if (error) {
+					errorObj.error = {
+						message: error.message,
+						name: error.name,
+						stack: error.stack
+					};
+				}
+
+				errorStack.push(errorObj);
+
+				if (oldonerror) {
+					oldonerror.call(undefined, message, source, lineno, colno, error);
+				}
+			};
+			(<any> window)['__intern_error_helper_finish'] = function () {
+				if (typeof (<any> window)[CLIENT_OLD_ONERROR_KEY] !== 'undefined') {
+					window.onerror = (<any> window)[CLIENT_OLD_ONERROR_KEY];
+				}
+				else {
+					delete window.onerror;
+				}
+				const errorStack = (<any> window)[CLIENT_ERROR_STACK_KEY];
+				delete (<any> window)[CLIENT_ERROR_STACK_KEY];
+				return JSON.stringify(errorStack);
+			};
+		})
+		.then(() => {
+			this._inited = true;
+		});
 	}
 }
