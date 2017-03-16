@@ -16,7 +16,7 @@
     "npm": ">=3"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "^2.0.0-alpha.13",
+    "@dojo/cli-build-webpack": "^2.0.0-alpha.15",
     "@dojo/cli-test-intern": "^2.0.0-alpha.3",
     "@dojo/interfaces": "^2.0.0-alpha.11",
     "@types/chai": "^3.4.34",
@@ -33,13 +33,13 @@
     "typescript": "rc"
   },
   "dependencies": {
-    "@dojo/core": "2.0.0-alpha.25",
+    "@dojo/core": "2.0.0-alpha.26",
     "@dojo/has": "^2.0.0-alpha.8",
     "@dojo/loader": "^2.0.0-beta.9",
-    "@dojo/routing": "^2.0.0-alpha.10",
+    "@dojo/routing": "^2.0.0-alpha.11",
     "@dojo/shim": "2.0.0-beta.10",
-    "@dojo/widget-core": "2.0.0-alpha.26",
-    "@dojo/i18n": "2.0.0-alpha.7",
+    "@dojo/widget-core": "2.0.0-alpha.28",
+    "@dojo/i18n": "2.0.0-alpha.8",
     "@webcomponents/custom-elements": "^1.0.0-alpha.3",
     "maquette": "2.4.3"
   }
