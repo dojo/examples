@@ -16,7 +16,7 @@
     "npm": ">=3"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "^2.0.0-alpha.15",
+    "@dojo/cli-build-webpack": "^2.0.0-alpha.16",
     "@dojo/cli-test-intern": "^2.0.0-alpha.5",
     "@dojo/interfaces": "^2.0.0-alpha.11",
     "@types/chai": "^3.4.34",
