@@ -19,7 +19,7 @@ else
 	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
 	then
 		runCommandAndCheckStatus ./node_modules/.bin/typings install
-		runCommandAndCheckStatus ./node_modules/.bin/dojo test -f -c "saucelabs"
+		runCommandAndCheckStatus ./node_modules/.bin/dojo test -a -c "saucelabs"
 		runCommandAndCheckStatus ./node_modules/.bin/dojo build webpack
 	else
 		runCommandAndCheckStatus ./node_modules/.bin/grunt
