@@ -12,37 +12,36 @@ function buildProject {
 
 if [ "$PROJECT_DIR" = "auto-deploy" ]
 then
-	if [ ! -z "$GH_TOKEN" ]
-	then
 
-		buildProject "todo-mvc"
-		buildProject "todo-mvc-kitchensink"
+	declare -r SSH_FILE="$(mktemp -u $HOME/.ssh/XXXXX)"
+	openssl aes-256-cbc -K $encrypted_5db33ae36efe_key -iv $encrypted_5db33ae36efe_iv -in "id_rsa.enc" -out "$SSH_FILE" -d
+	chmod 600 "$SSH_FILE" && printf "%s\n" "Host github.com"  "  IdentityFile $SSH_FILE" "  LogLevel ERROR" >> ~/.ssh/config
 
-		export PROJECT_DIR="auto-deploy"
+	buildProject "todo-mvc"
+	buildProject "todo-mvc-kitchensink"
 
-		git checkout -B gh-pages
+	export PROJECT_DIR="auto-deploy"
 
-		mkdir samples
-		mkdir samples/todo-mvc
-		mkdir samples/todo-mvc-kitchensink
+	git checkout -B gh-pages
 
-		cp index.html samples/index.html
-		cp -r todo-mvc/dist/* samples/todo-mvc/
-		cp -r todo-mvc-kitchensink/dist/* samples/todo-mvc-kitchensink
+	mkdir samples
+	mkdir samples/todo-mvc
+	mkdir samples/todo-mvc-kitchensink
 
-		git remote add pages "https://$GH_TOKEN@github.com/dojo/examples.git" &>/dev/null
+	cp index.html samples/index.html
+	cp -r todo-mvc/dist/* samples/todo-mvc/
+	cp -r todo-mvc-kitchensink/dist/* samples/todo-mvc-kitchensink
 
-		git add -f samples
-		git commit -am "built example"
+	git remote add ssh-remote git@github.com:dojo/examples.git
 
-		git filter-branch -f --prune-empty --subdirectory-filter samples
+	git add -f samples
+	git commit -am "built example"
 
-		git push -f pages gh-pages
+	git filter-branch -f --prune-empty --subdirectory-filter samples
 
-		git checkout -
-	else
-		echo "No GH_TOKEN detected"
-	fi
+	git push -f ssh-remote gh-pages
+
+	git checkout -
 else
 	echo "only deploy during auto deploy matrix"
 fi
