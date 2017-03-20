@@ -1,4 +1,4 @@
-const bundlePath = `nls/common`;
+const bundlePath = 'src/nls/common';
 const locales: string[] = [ 'en-PR' ];
 
 const messages = {

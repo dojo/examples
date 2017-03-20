@@ -1,14 +1,14 @@
 import { deepAssign, assign } from '@dojo/core/lang';
 import uuid from '@dojo/core/uuid';
+import { switchLocale } from '@dojo/i18n/i18n';
 import Map from '@dojo/shim/Map';
 import { v, w } from '@dojo/widget-core/d';
-import { I18nProperties, I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import pirateThemeStyles from '../themes/pirate';
 import * as styles from './styles/App.css';
 
-interface AppProperties extends ThemeableProperties, I18nProperties {
+interface AppProperties extends ThemeableProperties {
 	activeFilter?: string;
 	activeView?: string;
 	showDetails?: string;
@@ -22,7 +22,7 @@ export interface Todo {
 }
 
 @theme(styles)
-export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
+export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 	private _todos: Map<string, Todo> = new Map<string, Todo>();
 	private _todoItem: string = '';
 	private _completedCount: number = 0;
@@ -45,6 +45,10 @@ export class App extends I18nMixin(ThemeableMixin(WidgetBase))<AppProperties> {
 	changeTheme(wantsPirate: boolean) {
 		this._usePirateTheme = wantsPirate;
 
+		// Normally `observeLocale` from `@dojo/i18n/i18n` would be needed to update
+		// the widget messages, but since `this.changeTheme` already invalidates the
+		// application, we can get away with not including it.
+		switchLocale(wantsPirate ? 'en-PR' : 'en');
 		this.applyTheme();
 	}
 
