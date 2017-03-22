@@ -6,7 +6,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
 import FocusableTextInput from './FocusableTextInput';
-import * as styles from './styles/TodoDetails.css';
+import * as styles from './styles/TodoDetails.m.css';
 
 export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
 	todo: Todo;
@@ -22,9 +22,9 @@ class FocusableTextArea extends FocusableTextInput {
 
 @theme(styles)
 export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
-	private _label: string = '';
-	private _completed: boolean = false;
-	private _lastTodoId: string = '';
+	private _label = '';
+	private _completed = false;
+	private _lastTodoId = '';
 
 	onClose() {
 		this.properties.updateTodo(assign({}, this.properties.todo, <any> {

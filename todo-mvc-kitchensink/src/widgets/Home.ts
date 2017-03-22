@@ -6,7 +6,7 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
-import * as styles from './styles/Home.css';
+import * as styles from './styles/Home.m.css';
 
 export interface HomeProperties extends WidgetProperties, ThemeableProperties, I18nProperties {
 	updated: string;

@@ -3,7 +3,7 @@ import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
-import * as styles from './styles/TodoFooter.css';
+import * as styles from './styles/TodoFooter.m.css';
 
 interface TodoFooterProperties extends ThemeableProperties, I18nProperties {
 	activeView: string;

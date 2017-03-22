@@ -1,7 +1,7 @@
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/TodoEditInput.css';
+import * as styles from './styles/TodoEditInput.m.css';
 
 export interface TodoEditInputProperties extends ThemeableProperties {
 	focused?: boolean;

@@ -1,7 +1,7 @@
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/SearchInput.css';
+import * as styles from './styles/SearchInput.m.css';
 
 export interface SearchInputProperties extends ThemeableProperties {
 	placeholder?: string;

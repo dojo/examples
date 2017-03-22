@@ -6,7 +6,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import pirateThemeStyles from '../themes/pirate';
-import * as styles from './styles/App.css';
+import * as styles from './styles/App.m.css';
 
 interface AppProperties extends ThemeableProperties {
 	activeFilter?: string;
@@ -23,12 +23,12 @@ export interface Todo {
 
 @theme(styles)
 export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
-	private _todos: Map<string, Todo> = new Map<string, Todo>();
-	private _todoItem: string = '';
-	private _completedCount: number = 0;
-	private _search: string = '';
-	private _updated: string = uuid();
-	private _usePirateTheme: boolean = false;
+	private _todos = new Map<string, Todo>();
+	private _todoItem= '';
+	private _completedCount = 0;
+	private _search = '';
+	private _updated = uuid();
+	private _usePirateTheme = false;
 
 	constructor() {
 		super();

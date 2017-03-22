@@ -2,7 +2,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Todo } from './App';
-import * as styles from './styles/TodoItem.css';
+import * as styles from './styles/TodoItem.m.css';
 
 interface TodoCardItemProperties extends ThemeableProperties {
 	type: 'list' | 'card';

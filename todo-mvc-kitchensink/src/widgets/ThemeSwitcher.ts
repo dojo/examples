@@ -3,7 +3,7 @@ import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/ThemeSwitcher.css';
+import * as styles from './styles/ThemeSwitcher.m.css';
 import appBundle from '../nls/common';
 
 interface ThemeSwitcherProperties extends WidgetProperties, ThemeableProperties, I18nProperties {
