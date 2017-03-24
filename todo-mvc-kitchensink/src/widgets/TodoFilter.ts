@@ -4,7 +4,7 @@ import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
-import * as styles from './styles/TodoFilter.css';
+import * as styles from './styles/TodoFilter.m.css';
 
 interface TodoFilterProperties {
 	activeFilter: string;

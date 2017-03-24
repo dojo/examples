@@ -5,7 +5,7 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
-import * as styles from './styles/MainSection.css';
+import * as styles from './styles/MainSection.m.css';
 
 interface MainSectionProperties extends ThemeableProperties, I18nProperties {
 	updated: string;

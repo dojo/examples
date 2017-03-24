@@ -1,7 +1,7 @@
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/DestroyButton.css';
+import * as styles from './styles/DestroyButton.m.css';
 
 export interface ButtonProperties extends ThemeableProperties {
 	label?: string;

@@ -1,7 +1,7 @@
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/Title.css';
+import * as styles from './styles/Title.m.css';
 
 interface TitleProperties {
 	label: string;

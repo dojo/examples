@@ -1,7 +1,7 @@
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import * as styles from './styles/ViewChooser.css';
+import * as styles from './styles/ViewChooser.m.css';
 
 interface ViewChooserProperties {
 	activeView: 'list' | 'cards';
