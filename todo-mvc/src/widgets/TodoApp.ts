@@ -38,8 +38,8 @@ export const TodoAppBase = ThemeableMixin(WidgetBase);
 export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 
 	private todos: Map<string, Todo> = new Map<string, Todo>();
-	private todoItem: string = '';
-	private completedCount: number = 0;
+	private todoItem = '';
+	private completedCount = 0;
 	private updated: string = uuid();
 
 	render() {
