@@ -105,8 +105,7 @@ router.append(mainRoute);
 
 setLocaleData().then(() => {
 	if (projector.root) {
-		projector
-			.append()
-			.then(() => router.start());
+		projector.append();
+		router.start();
 	}
 });
