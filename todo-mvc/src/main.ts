@@ -19,7 +19,5 @@ const filterRoute = new Route<any, any>({
 });
 router.append(filterRoute);
 
-projector.append(root).then(() => {
-	router.start();
-	console.log('Attached!');
-});
+projector.append(root);
+router.start();
