@@ -1,5 +1,5 @@
 {
-  "name": "dojo2-todo-mvc",
+  "name": "dojo2-todo-mvc-kitchensink",
   "version": "0.0.1",
   "description": "TodoMVC using Dojo 2",
   "main": "index.js",
