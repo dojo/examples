@@ -29,7 +29,7 @@ export interface Todo {
 }
 
 export interface TodoAppProperties extends WidgetProperties {
-	filter?: string;
+	filter?: 'all' | 'active' | 'completed';
 }
 
 export const TodoAppBase = ThemeableMixin(WidgetBase);
@@ -44,17 +44,17 @@ export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 
 	render() {
 		const { todoItem, updateTodo, updated, todos, completedCount, clearCompleted, editTodo, removeTodo, toggleTodo, toggleAllTodos } = this;
-		const { filter: activeFilter = 'all' } = this.properties;
+		const activeFilter = this.properties.filter || 'all';
 		const allCompleted = todos.size !== 0 && completedCount === todos.size;
 		const activeCount = todos.size - completedCount;
 		const completedItems = completedCount > 0;
 
 		return v('section', { classes: this.classes(css.todoapp) }, [
-			w('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
+			w<TodoHeader>('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
 			v('section', {}, [
-				w('todo-list', { updated, activeFilter, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
+				w<TodoList>('todo-list', { updated, activeFilter, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
 			]),
-			todos.size ? w('todo-footer', { activeFilter, clearCompleted, activeCount, completedItems }) : null
+			todos.size ? w<TodoFooter>('todo-footer', { activeFilter, clearCompleted, activeCount, completedItems }) : null
 		]);
 	}
 

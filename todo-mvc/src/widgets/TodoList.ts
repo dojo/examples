@@ -5,11 +5,13 @@ import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { Todo } from './TodoApp';
+import TodoItem from './TodoItem';
 
 import * as css from './styles/todoList.css';
 
 export interface TodoListProperties extends WidgetProperties {
 	todos: Map<string, Todo>;
+	updated: string;
 	activeFilter: 'all' | 'active' | 'completed';
 	toggleTodo: Function;
 	removeTodo: Function;
@@ -37,7 +39,7 @@ export default class TodoList extends TodoListBase<TodoListProperties> {
 		const todoItems = arrayFrom(todos.entries()).filter(([ , value ]) => filter(activeFilter, value));
 
 		return v('ul', { id: 'todo-list', classes: this.classes(css.todoList) }, todoItems.map(([ key, todo ]) => {
-			return w('todo-item', { key, todo, toggleTodo, editTodo, removeTodo, updateTodo });
+			return w<TodoItem>('todo-item', { key, todo, toggleTodo, editTodo, removeTodo, updateTodo });
 		}));
 	}
 }

@@ -8,7 +8,6 @@ import * as css from './styles/todoItem.css';
 
 export interface TodoItemProperties extends WidgetProperties {
 	todo: Todo;
-	editing: boolean;
 	editTodo: Function;
 	toggleTodo: Function;
 	removeTodo: Function;
