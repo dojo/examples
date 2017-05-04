@@ -92,7 +92,7 @@ const router = new Router({
 	history: new HashHistory(),
 
 	fallback() {
-		projector.setProperties(assign({}, projector.properties, {
+		projector.setProperties(assign({}, projector.properties, <any> {
 			showDetails: '',
 			activeFilter: 'all',
 			activeView: 'list'

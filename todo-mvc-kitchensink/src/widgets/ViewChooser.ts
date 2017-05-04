@@ -5,7 +5,7 @@ import * as styles from './styles/ViewChooser.m.css';
 
 interface ViewChooserProperties {
 	activeView: 'list' | 'cards';
-	activeFilter: string;
+	activeFilter: 'all' | 'active' | 'completed';
 }
 
 @theme(styles)

@@ -6,6 +6,7 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Todo } from './App';
 import * as styles from './styles/TodoItemList.m.css';
+import TodoItem from './TodoItem';
 
 interface TodoListProperties extends ThemeableProperties {
 	updated: string;
@@ -47,7 +48,7 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 		}, arrayFrom(todos.values())
 			.filter((todo: Todo) => filter(activeFilter, todo))
 			.filter((todo: Todo) => applySearch(search.toLowerCase(), todo))
-			.map((todo: Todo) => <DNode> w('todo-item', {
+			.map((todo: Todo) => <DNode> w<TodoItem>('todo-item', {
 				todo,
 				key: `${activeView}-${todo.id}`,
 				type: <'card' | 'list'> (activeView === 'cards' ? 'card' : 'list'),

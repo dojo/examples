@@ -4,19 +4,21 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import * as styles from './styles/TodoFooter.m.css';
+import TodoFilter from './TodoFilter';
+import ViewChooser from './ViewChooser';
 
 interface TodoFooterProperties extends ThemeableProperties, I18nProperties {
-	activeView: string;
-	activeFilter: string;
-	activeCount: number;
-	completedCount: number;
-	clearCompleted: Function;
+	activeView?: 'list' | 'cards';
+	activeFilter?: 'all' | 'active' | 'completed';
+	activeCount?: number;
+	completedCount?: number;
+	clearCompleted?: Function;
 }
 
 @theme(styles)
 export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<TodoFooterProperties> {
 	render() {
-		const { activeCount, activeFilter, completedCount, activeView } = this.properties;
+		const { activeCount, activeFilter = 'all', completedCount, activeView = 'list' } = this.properties;
 
 		const messages = this.localizeBundle(appBundle);
 
@@ -27,11 +29,11 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 				classes: this.classes(styles.todoCount),
 				innerHTML: `${activeCount} item${activeCount === 1 ? '' : 's'} left`
 			}),
-			w('filters', {
+			w<TodoFilter>('filters', {
 				activeFilter,
 				activeView
 			}),
-			w('view-chooser', {
+			w<ViewChooser>('view-chooser', {
 				activeView,
 				activeFilter
 			}),
@@ -46,6 +48,6 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 	}
 
 	private _clearCompleted() {
-		this.properties.clearCompleted();
+		this.properties.clearCompleted && this.properties.clearCompleted();
 	}
 }

@@ -7,13 +7,17 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
 import * as styles from './styles/Home.m.css';
+import TodoFooter from './TodoFooter';
+import Title from './Title';
+import TodoEditInput from './TodoEditInput';
+import MainSection from './MainSection';
 
 export interface HomeProperties extends WidgetProperties, ThemeableProperties, I18nProperties {
 	updated: string;
 	todos: Map<string, Todo>;
 	todo: string;
-	activeView: string;
-	activeFilter: string;
+	activeView: 'list' | 'cards';
+	activeFilter: 'all' | 'active' | 'completed';
 	completedCount: number;
 	search: string;
 	addTodo: Function;
@@ -37,8 +41,8 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 
 		return v('div', [
 			v('header', [
-				w('title', { label: messages.appTitle }),
-				w('todo-edit', {
+				w<Title>('title', { label: messages.appTitle }),
+				w<TodoEditInput>('todo-edit', {
 					focused: true,
 					onInput: this._updateTodo,
 					onKeyUp: this._addTodo,
@@ -47,7 +51,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 					value: todo
 				})
 			]),
-			w('main-section', {
+			w<MainSection>('main-section', {
 				theme,
 				activeFilter,
 				activeView,
@@ -61,7 +65,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 				updated: this.properties.updated,
 				updateSearch: this._updateSearch
 			}),
-			todos.size ? w('todo-footer', {
+			todos.size ? w<TodoFooter>('todo-footer', {
 				activeCount,
 				activeFilter,
 				activeView,

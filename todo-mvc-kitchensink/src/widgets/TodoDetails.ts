@@ -7,10 +7,11 @@ import appBundle from '../nls/common';
 import { Todo } from './App';
 import FocusableTextInput from './FocusableTextInput';
 import * as styles from './styles/TodoDetails.m.css';
+import FormattedDate from './FormattedDate';
 
 export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
-	todo: Todo;
-	activeFilter: string;
+	todo: Todo | undefined;
+	activeFilter: 'all' | 'active' | 'completed';
 	activeView: string;
 	updateTodo: Function;
 	showTodoDetails: Function;
@@ -27,10 +28,11 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 	private _lastTodoId = '';
 
 	onClose() {
+		const { todo = { id: undefined } } = this.properties;
 		this.properties.updateTodo(assign({}, this.properties.todo, <any> {
 			label: this._label,
 			completed: this._completed
-		}), this.properties.todo.id);
+		}), todo.id);
 		this.properties.showTodoDetails();
 	}
 
@@ -44,10 +46,11 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 	}
 
 	private _updateState() {
-		if (this.properties.todo.id !== this._lastTodoId) {
-			this._label = this.properties.todo.label || '';
-			this._completed = this.properties.todo.completed || false;
-			this._lastTodoId = this.properties.todo.id;
+		const { todo = { id: undefined, completed: undefined, label: undefined } } = this.properties;
+		if (todo.id !== this._lastTodoId) {
+			this._label = todo.label || '';
+			this._completed = todo.completed || false;
+			this._lastTodoId = todo.id || '';
 		}
 	}
 
@@ -95,7 +98,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 							classes: this.classes(styles.lastUpdated)
 						}, [
 							messages.createdTitle,
-							w('formatteddate', {
+							w<FormattedDate>('formatteddate', {
 								date: createdOn
 							})
 						]),

@@ -3,6 +3,9 @@ import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mi
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Todo } from './App';
 import * as styles from './styles/TodoItem.m.css';
+import Toggler from './Toggler';
+import Label from './Label';
+import DestroyButton from './DestroyButton';
 
 interface TodoCardItemProperties extends ThemeableProperties {
 	type: 'list' | 'card';
@@ -35,12 +38,12 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 			)
 		}, [
 			v('div', [
-				w('toggler', {
+				w<Toggler>('toggler', {
 					theme,
 					checked: todo.completed,
 					onChange: this._todoToggleComplete
 				}),
-				w('label', {
+				w<Label>('label', {
 					label: todo.label || '',
 					onKeyPress: this._editTodo,
 					onDoubleClick: this._editTodo
@@ -48,7 +51,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 				v('span', {
 					classes: this.classes(styles.destroyContainer)
 				}, [
-					w('destroy-button', {
+					w<DestroyButton>('destroy-button', {
 						theme,
 						onClick: this._removeTodo
 					})
