@@ -3,14 +3,19 @@ import uuid from '@dojo/core/uuid';
 import { switchLocale } from '@dojo/i18n/i18n';
 import Map from '@dojo/shim/Map';
 import { v, w } from '@dojo/widget-core/d';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import pirateThemeStyles from '../themes/pirate';
 import * as styles from './styles/App.m.css';
+import Home from './Home';
+import ThemeSwitcher from './ThemeSwitcher';
+import TodoDetails from './TodoDetails';
+import TodoFooter from './TodoFooter';
 
 interface AppProperties extends ThemeableProperties {
-	activeFilter?: string;
-	activeView?: string;
+	activeFilter?: 'all' | 'active' | 'completed';
+	activeView?: 'list' | 'cards';
 	showDetails?: string;
 }
 
@@ -37,7 +42,7 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 	}
 
 	applyTheme() {
-		this.setProperties(deepAssign({}, this.properties, {
+		this.__setProperties__(deepAssign({}, this.properties, {
 			theme: this._usePirateTheme ? pirateThemeStyles : undefined
 		}));
 	}
@@ -60,13 +65,13 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 			showDetails = ''
 		} = this.properties;
 
-		const widgets = [
-			w('theme-switcher', {
+		const widgets: DNode[] = [
+			w<ThemeSwitcher>('theme-switcher', {
 				theme: this.properties.theme,
 				wantsPirate: this._usePirateTheme,
 				onChange: this.changeTheme
 			}),
-			w('home', {
+			w<Home>('home', {
 				theme,
 				updated: this._updated,
 				todos: this._todos,
@@ -87,7 +92,7 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 		];
 
 		if (showDetails && this._todos.get(showDetails)) {
-			widgets.push(w('details', {
+			widgets.push(w<TodoDetails>('details', {
 				theme,
 				todo: this._todos.get(showDetails),
 				updateTodo: this._setTodo,
@@ -101,7 +106,7 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 			v('section', {
 				classes: this.classes(styles.todoapp)
 			}, widgets),
-			w('footer', {
+			w<TodoFooter>('footer', {
 				theme: this.properties.theme
 			})
 		]);
