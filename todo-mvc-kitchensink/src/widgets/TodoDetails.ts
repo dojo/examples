@@ -8,6 +8,7 @@ import { Todo } from './App';
 import FocusableTextInput from './FocusableTextInput';
 import * as styles from './styles/TodoDetails.m.css';
 import FormattedDate from './FormattedDate';
+import Toggler from './Toggler';
 
 export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
 	todo: Todo | undefined;
@@ -102,7 +103,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 								date: createdOn
 							})
 						]),
-						w('toggler', {
+						w<Toggler>('toggler', {
 							extraClasses: {
 								toggle: styles.toggle
 							},

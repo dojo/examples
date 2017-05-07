@@ -1,9 +1,9 @@
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as styles from './styles/Button.m.css';
 
-export interface ButtonProperties {
+export interface ButtonProperties extends ThemeableProperties {
 	label: string;
 	onClick?: () => void;
 }

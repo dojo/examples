@@ -1,14 +1,15 @@
 import { v } from '@dojo/widget-core/d';
 import { DoubleClickEventHandler, KeyPressEventHandler } from '@dojo/widget-core/interfaces';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 
-interface LabelProperties {
-	label: string;
+interface LabelProperties extends ThemeableProperties {
+	label?: string;
 	onDoubleClick?: DoubleClickEventHandler;
 	onKeyPress?: KeyPressEventHandler;
 }
 
-export class Label extends WidgetBase<LabelProperties> {
+export class Label extends ThemeableMixin(WidgetBase)<LabelProperties> {
 	onDoubleClick(event?: MouseEvent) {
 		this.properties.onDoubleClick && this.properties.onDoubleClick(event);
 	}

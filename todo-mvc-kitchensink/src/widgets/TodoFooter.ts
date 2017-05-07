@@ -6,6 +6,7 @@ import appBundle from '../nls/common';
 import * as styles from './styles/TodoFooter.m.css';
 import TodoFilter from './TodoFilter';
 import ViewChooser from './ViewChooser';
+import Button from './Button';
 
 interface TodoFooterProperties extends ThemeableProperties, I18nProperties {
 	activeView?: 'list' | 'cards';
@@ -37,7 +38,7 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 				activeView,
 				activeFilter
 			}),
-			completedCount ? w('button', {
+			completedCount ? w<Button>('button', {
 				label: messages.clearButtonText,
 				extraClasses: {
 					button: styles.clearCompleted
