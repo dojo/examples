@@ -76,7 +76,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 				}, [
 					w('toggler', {
 						theme,
-						overrideClasses: {
+						extraClasses: {
 							toggle: styles.cardToggle
 						},
 						checked: todo.completed,
@@ -84,7 +84,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 					}),
 					w('destroy-button', {
 						theme,
-						overrideClasses: {
+						extraClasses: {
 							destroyButton: styles.cardDestroy
 						},
 						onClick: this._removeTodo
