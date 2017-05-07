@@ -37,7 +37,7 @@ export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<To
 				activeView,
 				activeFilter
 			}),
-			completedCount ? w('button', <any> {
+			completedCount ? w('button', {
 				label: messages.clearButtonText,
 				overrideClasses: {
 					button: styles.clearCompleted

@@ -84,7 +84,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 					])
 				]),
 				v('section', [
-					w(FocusableTextArea, <any> {
+					w(FocusableTextArea, {
 						overrideClasses: {
 							base: styles.todoDetailsTextArea
 						},
@@ -102,7 +102,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 								date: createdOn
 							})
 						]),
-						w('toggler', <any> {
+						w('toggler', {
 							overrideClasses: {
 								toggle: styles.toggle
 							},
