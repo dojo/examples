@@ -42,11 +42,12 @@ dojo build -w
 
 ## Features
 
-This package demonstrates how to build a simple application using Dojo 2 widgets.
+This package demonstrates how to build a simple application using Dojo 2 widgets with the alternative tsx syntax, a TypeScript version of jsx.
 
 It is an example of:
 
 * Custom widgets using `@dojo/widget-core`
+* Using the optional `tsx` syntax
 * Applying CSS to widgets 
 * Using `@dojo/router`
 

@@ -6,6 +6,7 @@
 *.js text
 *.json text
 *.ts text
+*.tsx text
 *.md text
 *.yml text
 LICENSE text
