@@ -1,12 +1,10 @@
-import { deepAssign, assign } from '@dojo/core/lang';
+import { assign } from '@dojo/core/lang';
 import uuid from '@dojo/core/uuid';
-import { switchLocale } from '@dojo/i18n/i18n';
 import Map from '@dojo/shim/Map';
 import { v, w } from '@dojo/widget-core/d';
 import { DNode } from '@dojo/widget-core/interfaces';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
+import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import pirateThemeStyles from '../themes/pirate';
 import * as styles from './styles/App.m.css';
 import Home from './Home';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -17,6 +15,7 @@ interface AppProperties extends ThemeableProperties {
 	activeFilter?: 'all' | 'active' | 'completed';
 	activeView?: 'list' | 'cards';
 	showDetails?: string;
+	changeTheme: (wantsPirate: boolean) => void;
 }
 
 export interface Todo {
@@ -35,31 +34,9 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 	private _updated = uuid();
 	private _usePirateTheme = false;
 
-	constructor() {
-		super();
-
-		this.applyTheme();
-	}
-
-	applyTheme() {
-		this.__setProperties__(deepAssign({}, this.properties, {
-			theme: this._usePirateTheme ? pirateThemeStyles : undefined
-		}));
-	}
-
-	changeTheme(wantsPirate: boolean) {
-		this._usePirateTheme = wantsPirate;
-
-		// Normally `observeLocale` from `@dojo/i18n/i18n` would be needed to update
-		// the widget messages, but since `this.changeTheme` already invalidates the
-		// application, we can get away with not including it.
-		switchLocale(wantsPirate ? 'en-PR' : 'en');
-		this.applyTheme();
-	}
-
 	render() {
 		const {
-			theme,
+
 			activeView = 'list',
 			activeFilter = 'all',
 			showDetails = ''
@@ -67,12 +44,11 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 
 		const widgets: DNode[] = [
 			w<ThemeSwitcher>('theme-switcher', {
-				theme: this.properties.theme,
 				wantsPirate: this._usePirateTheme,
-				onChange: this.changeTheme
+				onChange: this.properties.changeTheme
 			}),
 			w<Home>('home', {
-				theme,
+
 				updated: this._updated,
 				todos: this._todos,
 				todo: this._todoItem,
@@ -93,7 +69,6 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 
 		if (showDetails && this._todos.get(showDetails)) {
 			widgets.push(w<TodoDetails>('details', {
-				theme,
 				todo: this._todos.get(showDetails),
 				updateTodo: this._setTodo,
 				showTodoDetails: this._showTodoDetails,
@@ -106,9 +81,7 @@ export class App extends ThemeableMixin(WidgetBase)<AppProperties> {
 			v('section', {
 				classes: this.classes(styles.todoapp)
 			}, widgets),
-			w<TodoFooter>('footer', {
-				theme: this.properties.theme
-			})
+			w<TodoFooter>('footer', {})
 		]);
 	}
 

@@ -34,7 +34,6 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 			activeView,
 			completedCount,
 			search,
-			theme,
 			todos,
 			updated
 		} = this.properties;
@@ -44,8 +43,7 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 		}, [
 			w<CheckboxInput>('checkbox', {
 				checked: completedCount === todos.size,
-				onChange: this._todoToggleAll,
-				theme
+				onChange: this._todoToggleAll
 			}),
 			todos.size ? v('div', {
 				classes: this.classes(styles.searchBar)
@@ -55,7 +53,7 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 				}), w<SearchInput>('search', {
 					onKeyUp: this._searchHandler,
 					placeholder: messages.searchPlaceholder,
-					theme,
+
 					value: search
 				})
 			]) : null,
@@ -65,7 +63,7 @@ export default class MainSection extends I18nMixin(ThemeableMixin(WidgetBase))<M
 				removeTodo: this._removeTodo,
 				search,
 				showTodoDetails: this._showTodoDetails,
-				theme,
+
 				todos,
 				toggleTodo: this._toggleTodo,
 				updated

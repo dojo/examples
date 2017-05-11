@@ -56,7 +56,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 	}
 
 	render() {
-		const { todo, theme } = this.properties;
+		const { todo } = this.properties;
 		const { createdOn = new Date() } = todo || {};
 		const messages = this.localizeBundle(appBundle);
 
@@ -91,8 +91,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 						},
 						focused: true,
 						value: this._label,
-						onInput: this.onInput,
-						theme
+						onInput: this.onInput
 					}),
 					v('div', [
 						v('div', {
@@ -108,8 +107,7 @@ export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<T
 								toggle: styles.toggle
 							},
 							checked: this._completed,
-							onChange: this.onCompleted,
-							theme
+							onChange: this.onCompleted
 						})
 					])
 				])

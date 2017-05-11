@@ -37,7 +37,7 @@ function applySearch(searchQuery: string, todo: Todo): boolean {
 @theme(styles)
 export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListProperties> {
 	render() {
-		const { activeView = 'list', todos, activeFilter = '', search = '', theme } = this.properties;
+		const { activeView = 'list', todos, activeFilter = '', search = '' } = this.properties;
 
 		return v('ul', {
 			classes: this.classes(
@@ -52,7 +52,6 @@ export default class TodoItemList extends ThemeableMixin(WidgetBase)<TodoListPro
 				todo,
 				key: `${activeView}-${todo.id}`,
 				type: <'card' | 'list'> (activeView === 'cards' ? 'card' : 'list'),
-				theme,
 				editTodo: this._showTodoDetails,
 				removeTodo: this._removeTodo,
 				toggleTodo: this._toggleTodo
