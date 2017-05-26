@@ -1,0 +1,39 @@
+{
+  "name": "dojo2-todo-mvc-tsx",
+  "version": "0.0.1",
+  "description": "TodoMVC using Dojo2",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojo/examples.git"
+  },
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-webpack": "beta1",
+    "@dojo/cli-test-intern": "beta1",
+    "@dojo/interfaces": "beta1",
+    "@dojo/loader": "beta1",
+    "@types/chai": "^3.4.34",
+    "@types/glob": "~5.0.0",
+    "@types/node": "^6.0.46",
+    "chai": "^3.5.0",
+    "intern": "~3.4.1",
+    "typescript": "~2.3.2"
+  },
+  "dependencies": {
+    "@dojo/core": "beta1",
+    "@dojo/has": "beta1",
+    "@dojo/i18n": "beta1",
+    "@dojo/routing": "beta1",
+    "@dojo/shim": "beta1",
+    "@dojo/widget-core": "beta1",
+    "maquette": "2.4.3"
+  }
+}

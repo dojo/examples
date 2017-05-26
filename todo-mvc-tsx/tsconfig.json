@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"declaration": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"module": "umd",
+		"moduleResolution": "node",
+		"jsx": "react",
+		"jsxFactory": "tsx",
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"outDir": "_build/",
+		"removeComments": false,
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"target": "es5",
+		"types": [ "intern" ],
+		"lib": [
+			"dom",
+			"es5",
+			"es2015.iterable",
+			"es2015.symbol",
+			"es2015.symbol.wellknown"
+		]
+	},
+	"include": [
+		"./typings/index.d.ts",
+		"./src/**/*.ts",
+		"./tests/**/*.ts"
+	]
+}

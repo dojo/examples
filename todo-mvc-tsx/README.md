@@ -1,6 +1,6 @@
-# Dojo2 TodoMVC - tsx Example
+# Dojo2 TodoMVC Example
 
-A reference implementation of [TodoMVC](http://todomvc.com/) built with `tsx` using the current beta1 versions of Dojo 2 packages.
+A reference implementation of [TodoMVC](http://todomvc.com/) built with current pre-release versions of Dojo 2 packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -24,7 +24,7 @@ To use `todo-mvc`, clone the `examples` repository and install the npm dependenc
 
 ```shell
 git clone https://github.com/dojo/examples
-cd examples/todo-mvc-tsx
+cd examples/todo-mvc
 npm install
 ```
 
@@ -42,11 +42,12 @@ dojo build -w
 
 ## Features
 
-This package demonstrates how to build a simple application using Dojo 2 widgets.
+This package demonstrates how to build a simple application using Dojo 2 widgets with the alternative tsx syntax, a TypeScript version of jsx.
 
 It is an example of:
 
 * Custom widgets using `@dojo/widget-core`
+* Using the optional `tsx` syntax
 * Applying CSS to widgets 
 * Using `@dojo/router`
 
