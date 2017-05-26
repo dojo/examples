@@ -30,8 +30,8 @@ export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 		return (
 			<footer classes={this.classes(css.footer)}>
 				<span classes={this.classes(css.todoCount)}>
-					<strong>{`${activeCount}`}</strong>
-					<span>{`${countLabel}`}</span>
+					<strong>{`${activeCount} `}</strong>
+					<span>{`${countLabel} left`}</span>
 				</span>
 				<TodoFilter activeFilter={activeFilter} />
 				{ completedItems ? (
