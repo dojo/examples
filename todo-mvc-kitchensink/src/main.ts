@@ -1,15 +1,18 @@
 import './registerWidgets';
 import global from '@dojo/core/global';
+import { switchLocale } from '@dojo/i18n/i18n';
 import { assign } from '@dojo/core/lang';
 import { HashHistory } from '@dojo/routing/history/HashHistory';
 import { Parameters } from '@dojo/routing/interfaces';
 import { Route } from '@dojo/routing/Route';
 import { Router } from '@dojo/routing/Router';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
 import registerCustomElement from '@dojo/widget-core/registerCustomElement';
 import setLocaleData from './setLocaleData';
 import App from './widgets/App';
 import createGithubIssuesElement from './widgets/custom/createGithubIssuesElement';
+import pirateThemeStyles from './themes/pirate';
 
 type FilterValue = 'active' | 'all' | 'completed';
 type ViewValue = 'list' | 'cards';
@@ -27,8 +30,22 @@ if (global.customElements) {
 	registerCustomElement(createGithubIssuesElement);
 }
 
+const themeContext = registerThemeInjector(undefined);
+
+function changeTheme(wantsPirate: boolean) {
+	if (wantsPirate) {
+		switchLocale('en-PR');
+		themeContext.set(pirateThemeStyles);
+	}
+	else {
+		switchLocale('en');
+		themeContext.set(undefined);
+	}
+}
+
 const appProjector = ProjectorMixin(App);
 const projector = new appProjector();
+projector.setProperties({ changeTheme });
 
 global.projector = projector;
 

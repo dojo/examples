@@ -2,7 +2,7 @@ import Map from '@dojo/shim/Map';
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
+import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import appBundle from '../nls/common';
 import { Todo } from './App';
@@ -35,7 +35,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 	render() {
 		const messages = this.localizeBundle(appBundle);
 
-		const { todo, todos, completedCount, theme, search, activeView, activeFilter } = this.properties;
+		const { todo, todos, completedCount, search, activeView, activeFilter } = this.properties;
 
 		const activeCount = todos.size - completedCount;
 
@@ -47,12 +47,11 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 					onInput: this._updateTodo,
 					onKeyUp: this._addTodo,
 					placeholder: messages.editPlaceholder,
-					theme: theme,
 					value: todo
 				})
 			]),
 			w<MainSection>('main-section', {
-				theme,
+
 				activeFilter,
 				activeView,
 				completedCount,
@@ -70,8 +69,7 @@ export default class Home extends I18nMixin(ThemeableMixin(WidgetBase))<HomeProp
 				activeFilter,
 				activeView,
 				clearCompleted: this._clearCompleted,
-				completedCount,
-				theme
+				completedCount
 			}) : null
 		]);
 	}

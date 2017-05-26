@@ -29,7 +29,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 	}
 
 	private _renderListItem() {
-		const { todo, theme } = this.properties;
+		const { todo } = this.properties;
 
 		return v('li', {
 			classes: this.classes(
@@ -39,7 +39,6 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 		}, [
 			v('div', [
 				w<Toggler>('toggler', {
-					theme,
 					checked: todo.completed,
 					onChange: this._todoToggleComplete
 				}),
@@ -52,7 +51,6 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 					classes: this.classes(styles.destroyContainer)
 				}, [
 					w<DestroyButton>('destroy-button', {
-						theme,
 						onClick: this._removeTodo
 					})
 				])
@@ -62,7 +60,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 	}
 
 	private _renderCardItem() {
-		const { todo, theme } = this.properties;
+		const { todo } = this.properties;
 
 		return v('li', {
 			classes: this.classes(
@@ -75,7 +73,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 					classes: this.classes(styles.cardHeader)
 				}, [
 					w<Toggler>('toggler', {
-						theme,
+
 						extraClasses: {
 							toggle: styles.cardToggle
 						},
@@ -83,7 +81,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 						onChange: this._todoToggleComplete
 					}),
 					w<DestroyButton>('destroy-button', {
-						theme,
+
 						extraClasses: {
 							destroyButton: styles.cardDestroy
 						},
@@ -91,7 +89,7 @@ export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardIte
 					})
 				]),
 				w<Label>('label', {
-					theme,
+
 					label: todo.label,
 					onDoubleClick: this._editTodo,
 					onKeyPress: this._editTodo

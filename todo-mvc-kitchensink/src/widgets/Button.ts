@@ -1,5 +1,5 @@
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
+import { ThemeableMixin, ThemeableProperties, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as styles from './styles/Button.m.css';
 
