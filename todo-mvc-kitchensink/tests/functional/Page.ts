@@ -10,6 +10,8 @@ import * as todoListItem from './../../src/widgets/styles/TodoItem.m.css';
 import * as todoListCss from './../../src/widgets/styles/TodoItemList.m.css';
 import * as toggler from './../../src/widgets/styles/Toggler.m.css';
 
+import ClientErrorCollector from '../support/ClientErrorCollector';
+
 class Selectors {
 	public main = `.${appCss.todoapp}`;
 	public footer = `.${todoFooterCss.footer}`;
@@ -64,10 +66,12 @@ class Selectors {
 export default class Page {
 	private remote: any;
 	private selectors: Selectors;
+	private errorCollector: ClientErrorCollector;
 
 	constructor(remote: any) {
 		this.remote = remote;
 		this.selectors = new Selectors();
+		this.errorCollector = new ClientErrorCollector(remote);
 	}
 
 	delay(): Promise<any> {
@@ -79,7 +83,10 @@ export default class Page {
 			.get('http://localhost:9000/_build/src/index.html')
 			.setFindTimeout(5000)
 			.findByCssSelector(this.selectors.newInput)
-			.setFindTimeout(100);
+			.setFindTimeout(100)
+			.then(() => {
+				return this.errorCollector.init();
+			});
 	}
 
 	isMainVisible(): Promise<boolean> {
@@ -143,6 +150,10 @@ export default class Page {
 		return texts.reduce((promise, text) => {
 			return promise.then(() => this.enterItem(text));
 		}, Promise.resolve());
+	}
+
+	finish(): Promise<undefined> {
+		return this.errorCollector.assertNoErrors();
 	}
 
 	getCompletedCount(): Promise<number> {

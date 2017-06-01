@@ -5,7 +5,7 @@ import '@dojo/shim/Promise';
 
 test.describe('TodoMVC - Dojo 2', function (this: any) {
 
-	let page: any;
+	let page: Page;
 
 	const TODO_ITEM_ONE = 'buy some cheese';
 	const TODO_ITEM_TWO = 'feed the cat';
@@ -14,6 +14,10 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 	test.beforeEach(() => {
 		page = new Page(this.remote);
 		return page.init();
+	});
+
+	test.afterEach(() => {
+		return page.finish();
 	});
 
 	test.describe('When page is initially opened', function () {
