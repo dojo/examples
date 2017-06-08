@@ -2,10 +2,10 @@ import Map from '@dojo/shim/Map';
 import uuid from '@dojo/core/uuid';
 import { assign } from '@dojo/core/lang';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { w, v } from '@dojo/widget-core/d';
 import { registry } from '@dojo/widget-core/d';
+import { Outlet } from '@dojo/routing/Outlet';
 
 import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
@@ -15,11 +15,15 @@ import TodoFilter from './TodoFilter';
 
 import * as css from './styles/todoApp.css';
 
+function mapFilterRouteParam(params: any) {
+	return { activeFilter: params.filter };
+}
+
 registry.define('todo-header', TodoHeader);
-registry.define('todo-list', TodoList);
+registry.define('todo-list', Outlet(TodoList, 'filter', mapFilterRouteParam));
 registry.define('todo-item', TodoItem);
 registry.define('todo-footer', TodoFooter);
-registry.define('todo-filter', TodoFilter);
+registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
 
 export interface Todo {
 	id: string;
@@ -28,14 +32,10 @@ export interface Todo {
 	editing?: boolean;
 }
 
-export interface TodoAppProperties extends WidgetProperties {
-	filter?: 'all' | 'active' | 'completed';
-}
-
 export const TodoAppBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoApp extends TodoAppBase<TodoAppProperties> {
+export default class TodoApp extends TodoAppBase {
 
 	private todos: Map<string, Todo> = new Map<string, Todo>();
 	private todoItem = '';
@@ -44,7 +44,6 @@ export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 
 	render() {
 		const { todoItem, updateTodo, updated, todos, completedCount, clearCompleted, editTodo, removeTodo, toggleTodo, toggleAllTodos } = this;
-		const activeFilter = this.properties.filter || 'all';
 		const allCompleted = todos.size !== 0 && completedCount === todos.size;
 		const activeCount = todos.size - completedCount;
 		const completedItems = completedCount > 0;
@@ -52,9 +51,9 @@ export default class TodoApp extends TodoAppBase<TodoAppProperties> {
 		return v('section', { classes: this.classes(css.todoapp) }, [
 			w<TodoHeader>('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
 			v('section', {}, [
-				w<TodoList>('todo-list', { updated, activeFilter, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
+				w<TodoList>('todo-list', { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
 			]),
-			todos.size ? w<TodoFooter>('todo-footer', { activeFilter, clearCompleted, activeCount, completedItems }) : null
+			todos.size ? w<TodoFooter>('todo-footer', { clearCompleted, activeCount, completedItems }) : null
 		]);
 	}
 
