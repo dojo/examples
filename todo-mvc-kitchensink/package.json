@@ -35,6 +35,7 @@
     "@dojo/shim": "next",
     "@dojo/widget-core": "next",
     "@dojo/i18n": "next",
+    "cldr-data": "~30.0.2",
     "@webcomponents/custom-elements": "^1.0.0-alpha.3"
   }
 }

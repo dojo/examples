@@ -2,7 +2,9 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import  { v } from '@dojo/widget-core/d';
 import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 
+import appBundle from '../nls/common';
 import * as css from './styles/todoHeader.m.css';
 
 export interface TodoHeaderProperties {
@@ -14,7 +16,7 @@ export interface TodoHeaderProperties {
 	todoInput: (todo: string) => void;
 }
 
-export const TodoHeaderBase = ThemeableMixin(WidgetBase);
+export const TodoHeaderBase = I18nMixin(ThemeableMixin(WidgetBase));
 
 @theme(css)
 export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
@@ -41,16 +43,17 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
 	protected render(): DNode {
 		const { allCompleted, todo, todoCount } = this.properties;
+		const messages = this.localizeBundle(appBundle);
 
 		return v('header', [
-			v('h1', { classes: this.classes(css.title) }, [ 'todos' ]),
+			v('h1', { classes: this.classes(css.title) }, [ messages.appTitle ]),
 			v('input', {
 				key: 'todo-input',
 				classes: this.classes(css.newTodo),
 				onkeydown: this.addTodo,
 				oninput: this.todoInput,
 				value: todo,
-				placeholder: 'What to do?'
+				placeholder: messages.editPlaceholder
 			}),
 			v('input', {
 				classes: this.classes(css.toggleAll),

@@ -9,16 +9,16 @@
 	padding-left: 60px;
 }
 
+.search::placeholder {
+	color: #e6e6e6;
+}
+
 .searchIcon {
 	width: 32px;
 	height: 32px;
 	position: absolute;
 	top: 74px;
 	left: 16px;
-}
-
-.search::placeholder {
-	color: #e6e6e6;
 }
 
 .searchIcon:before {

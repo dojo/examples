@@ -2,6 +2,9 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
 import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
+
+import appBundle from '../nls/common';
 
 import { TodoViewSwitch } from './TodoViewSwitch';
 import { TodoFilter } from './TodoFilter';
@@ -16,7 +19,7 @@ export interface TodoFooterInterface {
 	clearCompleted: () => void;
 }
 
-export const TodoFooterBase = ThemeableMixin(WidgetBase);
+export const TodoFooterBase = I18nMixin(ThemeableMixin(WidgetBase));
 
 @theme(css)
 export class TodoFooter extends TodoFooterBase<TodoFooterInterface> {
@@ -27,23 +30,22 @@ export class TodoFooter extends TodoFooterBase<TodoFooterInterface> {
 
 	protected render(): DNode {
 		const { filter, view, activeCount, todoCount } = this.properties;
-		const countLabel = activeCount === 1 ? 'item' : 'items';
 		const completedItems = (todoCount - activeCount) > 0;
+		const messages = this.localizeBundle(appBundle);
 
 		return v('footer', {
 			classes: this.classes(css.footer)
 		}, [
 			v('span', { classes: this.classes(css.todoCount) }, [
 				v('strong', [activeCount + ' ']),
-				v('span', [countLabel + ' left'])
+				v('span', [ messages.format('itemsLeft', { count: activeCount }) ])
 			]),
 			w(TodoFilter, { filter }),
 			w(TodoViewSwitch, { view }),
 			completedItems ? v('button', {
 				onclick: this.clearCompleted,
-				innerHTML: 'Clear completed',
 				classes: this.classes(css.clearCompleted)
-			}) : null
+			}, [ messages.clearButtonText ]) : null
 		]);
 	}
 }

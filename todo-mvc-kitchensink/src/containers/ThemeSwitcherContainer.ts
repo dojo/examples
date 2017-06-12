@@ -1,5 +1,5 @@
 import { Container } from '@dojo/widget-core/Container';
-// import { switchLocale } from '@dojo/i18n/i18n';
+import { switchLocale } from '@dojo/i18n/i18n';
 import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
 
 import { TodoAppContext } from './../TodoAppContext';
@@ -10,11 +10,11 @@ const themeContext = registerThemeInjector(undefined);
 
 function changeTheme(wantsPirate: boolean) {
 	if (wantsPirate) {
-		// switchLocale('en-PR');
+		switchLocale('en-PR');
 		themeContext.set(pirateThemeStyles);
 	}
 	else {
-		// switchLocale('en');
+		switchLocale('en');
 		themeContext.set(undefined);
 	}
 }

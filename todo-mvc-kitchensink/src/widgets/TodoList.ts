@@ -12,7 +12,7 @@ import * as css from './styles/todoList.m.css';
 
 export interface TodoListProperties extends WidgetProperties {
 	view: string;
-	filter?: string;
+	filter: string;
 	todos: Todo[];
 	searchValue: string;
 	toggleTodo: (id: string) => void;
@@ -32,7 +32,7 @@ function filterTodos(todos: Todo[], quickFilter: string, filter: string): Todo[]
 @theme(css)
 export class TodoList extends TodoListBase<TodoListProperties> {
 	protected render(): DNode[] {
-		const { todos, searchValue, view, filter = 'all', toggleTodo, removeTodo, editTodo } = this.properties;
+		const { todos, searchValue, view, filter, toggleTodo, removeTodo, editTodo } = this.properties;
 
 		return [
 			v('ul', { classes: this.classes(css.todoList, view === 'card' && todos.length > 0 ? css.cardList : null) }, filterTodos(todos, searchValue, filter).map((todo) => {

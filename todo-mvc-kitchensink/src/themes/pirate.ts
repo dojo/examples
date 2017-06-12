@@ -6,6 +6,7 @@ import * as todoFooter from './pirate/todoFooter.m.css';
 import * as todoItem from './pirate/todoItem.m.css';
 import * as todoCard from './pirate/todoCard.m.css';
 import * as themeSwitcher from './pirate/themeSwitcher.m.css';
+import * as credits from './pirate/credits.m.css';
 
 export default {
 	todoApp,
@@ -15,5 +16,6 @@ export default {
 	todoFooter,
 	todoItem,
 	todoCard,
-	themeSwitcher
+	themeSwitcher,
+	credits
 };

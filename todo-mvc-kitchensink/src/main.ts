@@ -3,6 +3,7 @@ import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 import { BaseInjector, Injector } from '@dojo/widget-core/Injector';
 import { registry } from '@dojo/widget-core/d';
 
+import setLocaleData from './setLocaleData';
 import { TodoAppContext } from './TodoAppContext';
 import { TodoAppContainer } from './containers/TodoAppContainer';
 
@@ -31,5 +32,9 @@ const config = [
 ];
 const router = registerRouterInjector(config);
 
-projector.append();
-router.start();
+setLocaleData().then(() => {
+	if (projector.root) {
+		projector.append();
+		router.start();
+	}
+});
