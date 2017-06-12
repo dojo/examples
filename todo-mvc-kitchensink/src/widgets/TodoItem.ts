@@ -23,7 +23,7 @@ export class TodoItem extends TodoItemBase<TodoItemProperties> {
 		const { properties: { todo } } = this;
 
 		return v('li', { id: 'todo-item', classes: this.classes(css.todoItem, Boolean(todo.completed && !todo.editing) ? css.completed : null) }, [
-			v('div', { classes: this.classes(css.view) }, [
+			v('div', [
 				v('input', { id: 'toggle', classes: this.classes(css.toggle), type: 'checkbox', checked: todo.completed, onchange: this.toggleTodo }),
 				v('label', { classes: this.classes(css.todoLabel), ondblclick: this.editTodo }, [ todo.label ]),
 				v('button', { id: 'destroy', onclick: this.removeTodo, classes: this.classes(css.destroy) })

@@ -3,6 +3,7 @@ import  { v, w } from '@dojo/widget-core/d';
 import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
+import { ThemeSwitcherContainer } from './../containers/ThemeSwitcherContainer';
 import { TodoListOutlet } from './../outlets/TodoListOutlet';
 import { TodoFooterOutlet } from './../outlets/TodoFooterOutlet';
 import { TodoHeader } from './TodoHeader';
@@ -51,6 +52,7 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 		} = this.properties;
 
 		return v('section', { classes: this.classes(css.todoapp) }, [
+			w(ThemeSwitcherContainer, {}),
 			w(TodoHeader, {
 				allCompleted,
 				todoCount,

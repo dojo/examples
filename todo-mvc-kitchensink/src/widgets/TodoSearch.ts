@@ -19,15 +19,18 @@ export class TodoSearch extends TodoSearchBase<TodoSearchProperties> {
 		this.properties.searchInput(value);
 	}
 
-	protected render(): DNode {
+	protected render(): DNode[] {
 		const { searchValue: value } = this.properties;
 
-		return v('input', {
-			type: 'text',
-			classes: this.classes(css.search),
-			placeholder: 'Quick Filter',
-			value,
-			oninput: this.onInput
-		});
+		return [
+			v('span', { classes: this.classes(css.searchIcon) }),
+			v('input', {
+				type: 'text',
+				classes: this.classes(css.search),
+				placeholder: 'Quick Filter',
+				value,
+				oninput: this.onInput
+			})
+		];
 	}
 }

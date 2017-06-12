@@ -49,7 +49,8 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 				classes: this.classes(css.newTodo),
 				onkeydown: this.addTodo,
 				oninput: this.todoInput,
-				value: todo
+				value: todo,
+				placeholder: 'What to do?'
 			}),
 			v('input', {
 				classes: this.classes(css.toggleAll),

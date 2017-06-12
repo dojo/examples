@@ -1,14 +1,3 @@
-.title {
-	position: absolute;
-	top: -155px;
-	width: 100%;
-	font-size: 100px;
-	font-weight: 100;
-	text-align: center;
-	color: rgba(175, 47, 47, 0.15);
-	text-rendering: optimizeLegibility;
-}
-
 .newTodo {
 	padding: 16px 16px 16px 60px;
 	border: none;
@@ -30,10 +19,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.newTodo::placeholder {
-	color: #e6e6e6;
-}
-
 .toggleAll {
 	position: absolute;
 	top: 10px;
@@ -47,12 +32,22 @@
 .toggleAll:before {
 	content: '❯';
 	font-size: 22px;
-	color: #e6e6e6;
+	color: #737373;
 	padding: 10px 27px 10px 27px;
 }
 
 .toggleAll:checked:before {
-	color: #737373;
+	color: black;
+}
+
+.toggleAll {
+	position: absolute;
+	top: 10px;
+	left: -12px;
+	width: 60px;
+	height: 34px;
+	text-align: center;
+	border: none;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -64,4 +59,3 @@
 		background: none;
 	}
 }
-

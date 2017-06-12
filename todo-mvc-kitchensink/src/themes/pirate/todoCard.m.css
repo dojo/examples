@@ -1,0 +1,92 @@
+.card {
+	background-color: #fdf4cb;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	border-radius: 10px;
+	width: 33.33%;
+	padding: 4px;
+}
+
+.cardHeader {
+	height: 40px;
+}
+
+.cardToggle {
+	text-align: center;
+	width: 40px;
+	height: auto;
+	bottom: 0;
+	border: none;
+	appearance: none;
+	left: 0;
+	top: 0;
+	margin: 0;
+}
+
+.cardToggle:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/></svg>')
+}
+.cardToggle:checked:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+.cardToggle:focus:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/></svg>');
+}
+.cardToggle:checked:focus:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+.cardDestroy {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+	right: 0;
+	top: -3px;
+	margin: 0;
+}
+
+.cardDestroy:hover {
+	color: #af5b5e;
+}
+
+.cardDestroy:after {
+	content: '×';
+}
+
+.card:hover .cardDestroy {
+	display: block;
+}
+
+.todoLabel {
+	word-break: break-all;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+	font-size: 17px;
+	padding: 15px ;
+	word-break: break-word;
+	margin: 0;
+}
+
+.listItem .destroyContainer {
+	opacity: 0;
+	transition: all 0.2s ease-out;
+}
+
+.listItem:hover .destroyContainer {
+	opacity: 1;
+}
+
+.completed label {
+	color:black;
+	text-decoration: line-through;
+}
+
+.todoItemList li:hover .destroy {
+	opacity: 1;
+}
