@@ -1,112 +1,45 @@
-import { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { Todo } from './App';
-import * as styles from './styles/TodoItem.m.css';
-import Toggler from './Toggler';
-import Label from './Label';
-import DestroyButton from './DestroyButton';
+import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { v } from '@dojo/widget-core/d';
 
-interface TodoCardItemProperties extends ThemeableProperties {
-	type: 'list' | 'card';
+import { Todo } from './../TodoAppContext';
+
+import * as css from './styles/todoItem.m.css';
+
+export interface TodoItemProperties extends WidgetProperties {
 	todo: Todo;
-	editTodo: Function;
-	removeTodo: Function;
-	toggleTodo: Function;
+	toggleTodo: (id: string) => void;
+	removeTodo: (id: string) => void;
+	editTodo: (id: string) => void;
 }
 
-@theme(styles)
-export default class TodoCardItem extends ThemeableMixin(WidgetBase)<TodoCardItemProperties> {
+export const TodoItemBase = ThemeableMixin(WidgetBase);
+
+@theme(css)
+export class TodoItem extends TodoItemBase<TodoItemProperties> {
+
 	render() {
-		const { type } = this.properties;
+		const { properties: { todo } } = this;
 
-		if (type === 'list') {
-			return this._renderListItem();
-		}
-		else {
-			return this._renderCardItem();
-		}
-	}
-
-	private _renderListItem() {
-		const { todo } = this.properties;
-
-		return v('li', {
-			classes: this.classes(
-				styles.listItem,
-				todo.completed ? styles.completed : null
-			)
-		}, [
-			v('div', [
-				w<Toggler>('toggler', {
-					checked: todo.completed,
-					onChange: this._todoToggleComplete
-				}),
-				w<Label>('label', {
-					label: todo.label || '',
-					onKeyPress: this._editTodo,
-					onDoubleClick: this._editTodo
-				}),
-				v('span', {
-					classes: this.classes(styles.destroyContainer)
-				}, [
-					w<DestroyButton>('destroy-button', {
-						onClick: this._removeTodo
-					})
-				])
-
+		return v('li', { id: 'todo-item', classes: this.classes(css.todoItem, Boolean(todo.completed && !todo.editing) ? css.completed : null) }, [
+			v('div', { classes: this.classes(css.view) }, [
+				v('input', { id: 'toggle', classes: this.classes(css.toggle), type: 'checkbox', checked: todo.completed, onchange: this.toggleTodo }),
+				v('label', { classes: this.classes(css.todoLabel), ondblclick: this.editTodo }, [ todo.label ]),
+				v('button', { id: 'destroy', onclick: this.removeTodo, classes: this.classes(css.destroy) })
 			])
 		]);
 	}
 
-	private _renderCardItem() {
-		const { todo } = this.properties;
-
-		return v('li', {
-			classes: this.classes(
-				styles.card,
-				todo.completed ? styles.completed : null
-			)
-		}, [
-			v('div', [
-				v('div', {
-					classes: this.classes(styles.cardHeader)
-				}, [
-					w<Toggler>('toggler', {
-
-						extraClasses: {
-							toggle: styles.cardToggle
-						},
-						checked: todo.completed,
-						onChange: this._todoToggleComplete
-					}),
-					w<DestroyButton>('destroy-button', {
-
-						extraClasses: {
-							destroyButton: styles.cardDestroy
-						},
-						onClick: this._removeTodo
-					})
-				]),
-				w<Label>('label', {
-
-					label: todo.label,
-					onDoubleClick: this._editTodo,
-					onKeyPress: this._editTodo
-				})
-			])
-		]);
-	}
-
-	private _todoToggleComplete() {
+	private toggleTodo() {
 		this.properties.toggleTodo(this.properties.todo.id);
 	}
 
-	private _removeTodo() {
-		this.properties.removeTodo(this.properties.todo.id);
+	private editTodo() {
+		this.properties.editTodo(this.properties.todo.id);
 	}
 
-	private _editTodo() {
-		this.properties.editTodo(this.properties.todo.id);
+	private removeTodo() {
+		this.properties.removeTodo(this.properties.todo.id);
 	}
 }

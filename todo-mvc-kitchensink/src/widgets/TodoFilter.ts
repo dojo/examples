@@ -1,50 +1,47 @@
-import { v } from '@dojo/widget-core/d';
-import { DNode } from '@dojo/widget-core/interfaces';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import appBundle from '../nls/common';
-import * as styles from './styles/TodoFilter.m.css';
+import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { v, w } from '@dojo/widget-core/d';
+import { Link } from '@dojo/routing/Link';
 
-interface TodoFilterProperties {
-	activeFilter: string;
-	activeView: string;
+import * as css from './styles/todoFilter.m.css';
+
+export interface TodoFilterProperties extends WidgetProperties {
+	filter?: string;
 }
 
-function createFilterItems(instance: TodoFilter, activeFilter: string, activeView: string, messages: typeof appBundle.messages): DNode[] {
-	const filters = [ 'all', 'active', 'completed' ];
-	const labels: { [key: string]: string } = {
-		'all': messages.filterAll,
-		'active': messages.filterActive,
-		'completed': messages.filterCompleted
-	};
+export const TodoFilterBase = ThemeableMixin(WidgetBase);
 
-	return filters.map((filterItem) => {
-		const label = labels[ filterItem ];
-		const classes = [];
+@theme(css)
+export class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
 
-		if (activeFilter === filterItem) {
-			classes.push(styles.selected);
-		}
-
-		return v('li', [
-			v('a', {
-				innerHTML: label,
-				href: `#/${filterItem}?view=${activeView}`,
-				classes: instance.classes(...classes)
-			})
-		]);
-	});
-}
-
-@theme(styles)
-export default class TodoFilter extends I18nMixin(ThemeableMixin(WidgetBase))<TodoFilterProperties> {
 	render() {
-		const { activeFilter = '', activeView = '' } = this.properties;
-		const messages = this.localizeBundle(appBundle);
+		const { filter } = this.properties;
 
-		return v('ul', {
-			classes: this.classes(styles.filters)
-		}, createFilterItems(this, activeFilter, activeView, messages));
+		return v('ul', { classes: this.classes(css.filters) }, [
+			v('li', [
+				w(Link, {
+					key: 'all',
+					classes: this.classes(filter === 'all' ? css.selected : null),
+					to: 'view',
+					isOutlet: true,
+					params: { filter: 'all' }
+				}, [ 'all' ]),
+				w(Link, {
+					key: 'active',
+					classes: this.classes(filter === 'active' ? css.selected : null),
+					to: 'view',
+					isOutlet: true,
+					params: { filter: 'active' }
+				}, [ 'active' ]),
+				w(Link, {
+					key: 'completed',
+					classes: this.classes(filter === 'completed' ? css.selected : null),
+					to: 'view',
+					isOutlet: true,
+					params: { filter: 'completed' }
+				}, [ 'completed' ])
+			])
+		]);
 	}
 }

@@ -1,23 +1,18 @@
 import '@dojo/shim/Promise';
 import * as keys from 'leadfoot/keys';
 
-import * as appCss from './../../src/widgets/styles/App.m.css';
-import * as checkbox from './../../src/widgets/styles/CheckboxInput.m.css';
-import * as todoEditInputCss from './../../src/widgets/styles/TodoEditInput.m.css';
-import * as TodoFilterCss from './../../src/widgets/styles/TodoFilter.m.css';
-import * as todoFooterCss from './../../src/widgets/styles/TodoFooter.m.css';
-import * as todoListItem from './../../src/widgets/styles/TodoItem.m.css';
-import * as todoListCss from './../../src/widgets/styles/TodoItemList.m.css';
-import * as toggler from './../../src/widgets/styles/Toggler.m.css';
+import * as appCss from './../../src/widgets/styles/todoApp.m.css';
+import * as TodoFilterCss from './../../src/widgets/styles/todoFilter.m.css';
+import * as todoFooterCss from './../../src/widgets/styles/todoFooter.m.css';
+import * as todoListItem from './../../src/widgets/styles/todoItem.m.css';
+import * as todoListCss from './../../src/widgets/styles/todoList.m.css';
 
 class Selectors {
 	public main = `.${appCss.todoapp}`;
 	public footer = `.${todoFooterCss.footer}`;
 	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
-	public newInput = `.${todoEditInputCss.todoEditInput}`;
-	public toggleAllButton = `.${checkbox.checkbox}`;
 	public itemCount = `.${todoFooterCss.todoCount}`;
-	public list = `.${todoListCss.todoItemList}`;
+	public list = `.${todoListCss.todoList}`;
 
 	getFilter(index: number): string {
 		return `.${TodoFilterCss.filters} li:nth-of-type(${index + 1}) a'`;
@@ -40,7 +35,7 @@ class Selectors {
 	}
 
 	getList(suffix: string): string {
-		return '.' + todoListCss.todoItemList + suffix;
+		return '.';
 	}
 
 	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
@@ -49,7 +44,7 @@ class Selectors {
 	}
 
 	getListItemToggle(index: number): string {
-		return this.getListItem(index, ' .' + toggler.toggle);
+		return this.getListItem(index);
 	}
 
 	getListItemLabel(index: number) {
@@ -78,7 +73,7 @@ export default class Page {
 		return this.remote
 			.get('http://localhost:9000/_build/src/index.html')
 			.setFindTimeout(5000)
-			.findByCssSelector(this.selectors.newInput)
+			.findByCssSelector('')
 			.setFindTimeout(100);
 	}
 
@@ -98,7 +93,7 @@ export default class Page {
 	isCompleteAllChecked(): Promise<boolean> {
 		return this.remote
 			.then(this.delay)
-			.findByCssSelector(this.selectors.toggleAllButton + ':checked')
+			.findByCssSelector(':checked')
 			.then(() => true, () => false);
 	}
 
@@ -108,7 +103,7 @@ export default class Page {
 			.getActiveElement()
 			.then((element: any) => activeElement = element)
 			.end()
-			.findByCssSelector(this.selectors.newInput)
+			.findByCssSelector('')
 			.then((inputElement: any) => inputElement.equals(activeElement));
 	}
 
@@ -117,7 +112,7 @@ export default class Page {
 			.sleep(1000)
 			.execute(function (selector: string) {
 				return (<any> document.querySelector(selector)!).value;
-			}, [ this.selectors.newInput ])
+			}, [ '' ])
 			.then((value: string) => {
 				return value;
 			})
@@ -132,7 +127,7 @@ export default class Page {
 
 	enterItem(text: string): Promise<any> {
 		return this.remote
-			.findByCssSelector(this.selectors.newInput)
+			.findByCssSelector()
 			.sleep(100)
 			.type(text)
 			.type(keys.ENTER)
@@ -175,7 +170,7 @@ export default class Page {
 
 	toggleAll(): Promise<any> {
 		return this.remote
-			.findByCssSelector(this.selectors.toggleAllButton)
+			.findByCssSelector('')
 			.click()
 			.end();
 	}
