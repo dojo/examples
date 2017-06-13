@@ -1,9 +1,9 @@
 import { Outlet } from '@dojo/routing/Outlet';
-import { Router } from '@dojo/routing/Router';
+import { MapParamsOptions } from '@dojo/routing/interfaces';
 
 import { TodoDetailsContainer } from './../containers/TodoDetailsContainer';
 
-export const TodoDetailsOutlet = Outlet(TodoDetailsContainer, 'edit', (params: any, type: string, location: string, router: Router<any>) => {
+export const TodoDetailsOutlet = Outlet(TodoDetailsContainer, 'edit', ({ params, router }: MapParamsOptions) => {
 	return {
 		id: params.id,
 		onRequestExit() {

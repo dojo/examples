@@ -28,8 +28,8 @@ const config = [
 			}
 		]
 	}
-
 ];
+
 const router = registerRouterInjector(config);
 
 setLocaleData().then(() => {

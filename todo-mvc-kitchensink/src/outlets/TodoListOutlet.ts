@@ -1,9 +1,9 @@
 import { Outlet } from '@dojo/routing/Outlet';
-import { Router } from '@dojo/routing/Router';
+import { MapParamsOptions } from '@dojo/routing/interfaces';
 
 import { TodoList } from './../widgets/TodoList';
 
-export const TodoListOutlet = Outlet(TodoList, 'view', (params: any, type: string, location: string, router: Router<any>) => {
+export const TodoListOutlet = Outlet(TodoList, 'view', ({ params, router }: MapParamsOptions) => {
 	return {
 		view: params.view,
 		filter: params.filter,
