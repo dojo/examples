@@ -12,10 +12,10 @@ import { TodoFilter } from './TodoFilter';
 import * as css from './styles/todoFooter.m.css';
 
 export interface TodoFooterInterface {
-	view: string;
-	filter: string;
 	activeCount: number;
+	filter: string;
 	todoCount: number;
+	view: string;
 	clearCompleted: () => void;
 }
 
@@ -24,7 +24,7 @@ export const TodoFooterBase = I18nMixin(ThemeableMixin(WidgetBase));
 @theme(css)
 export class TodoFooter extends TodoFooterBase<TodoFooterInterface> {
 
-	protected clearCompleted() {
+	protected clearCompleted(): void {
 		this.properties.clearCompleted();
 	}
 

@@ -15,7 +15,7 @@ const ThemeSwitherBase = I18nMixin(ThemeableMixin(WidgetBase));
 
 @theme(css)
 export class ThemeSwitcher extends ThemeSwitherBase<ThemeSwitcherProperties> {
-	onClick(event: MouseEvent) {
+	onClick(event: MouseEvent): void {
 		this.properties.changeTheme((<HTMLInputElement> event.target!).checked);
 	}
 

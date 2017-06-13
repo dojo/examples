@@ -31,11 +31,11 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		}
 	}
 
-	protected todoInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>) {
+	protected todoInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
 		this.properties.todoInput(value);
 	}
 
-	protected onElementCreated(element: HTMLElement, key: string) {
+	protected onElementCreated(element: HTMLElement, key: string): void {
 		if (key === 'todo-input') {
 			element.focus();
 		}

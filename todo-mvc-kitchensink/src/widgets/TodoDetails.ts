@@ -17,12 +17,12 @@ export interface TodoDetailsProperties {
 @theme(css)
 export class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsProperties> {
 
-	protected onClose() {
+	protected onClose(): void {
 		this.properties.saveTodo();
 		this.properties.onRequestExit();
 	}
 
-	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>) {
+	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
 		this.properties.editTodoInput({ ...this.properties.todo, ...{ label: value } });
 	}
 
