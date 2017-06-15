@@ -16,7 +16,7 @@
     "npm": ">=3"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "next",
+    "@dojo/cli-build-webpack": "beta1",
     "@dojo/cli-test-intern": "beta1",
     "@dojo/interfaces": "beta1",
     "@dojo/loader": "beta1",
@@ -29,13 +29,12 @@
     "typescript": "~2.3.2"
   },
   "dependencies": {
-    "@dojo/core": "beta1",
-    "@dojo/has": "beta1",
-    "@dojo/routing": "beta1",
-    "@dojo/shim": "beta1",
-    "@dojo/widget-core": "beta1",
-    "@dojo/i18n": "beta1",
-    "@webcomponents/custom-elements": "^1.0.0-alpha.3",
-    "maquette": "2.4.3"
+    "@dojo/core": "next",
+    "@dojo/has": "next",
+    "@dojo/routing": "next",
+    "@dojo/shim": "next",
+    "@dojo/widget-core": "next",
+    "@dojo/i18n": "next",
+    "@webcomponents/custom-elements": "^1.0.0-alpha.3"
   }
 }
