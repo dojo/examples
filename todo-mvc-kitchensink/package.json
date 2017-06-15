@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "next",
-    "@dojo/cli-test-intern": "next",
+    "@dojo/cli-test-intern": "beta1",
     "@dojo/interfaces": "beta1",
     "@dojo/loader": "beta1",
     "@types/chai": "^3.4.34",
