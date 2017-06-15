@@ -17,7 +17,7 @@ then
 else
 	cd $PROJECT_DIR
 	runCommandAndCheckStatus npm install typings
-	runCommandAndCheckStatus npm install @dojo/cli
+	runCommandAndCheckStatus npm install @dojo/cli@next
 	runCommandAndCheckStatus npm install grunt-cli
 	runCommandAndCheckStatus npm install
 fi
