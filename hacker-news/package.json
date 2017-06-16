@@ -1,0 +1,28 @@
+{
+  "name": "hacker-news",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dojo/core": "beta1",
+    "@dojo/has": "beta1",
+    "@dojo/routing": "beta1",
+    "@dojo/shim": "beta1",
+    "@dojo/widget-core": "beta1",
+    "@dojo/i18n": "beta1",
+    "maquette": "2.4.3"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-webpack": "beta1",
+    "@dojo/cli-test-intern": "beta1",
+    "@dojo/interfaces": "beta1",
+    "@dojo/loader": "beta1",
+    "@types/chai": "~3.4.0",
+    "@types/glob": "~5.0.0",
+    "@types/grunt": "~0.4.0",
+    "@types/node": "^6.0.46",
+    "@types/sinon": "^1.16.35",
+    "chai": "^3.5.0",
+    "intern": "~3.4.1",
+    "sinon": "^2.0.0",
+    "typescript": "~2.3.2"
+  }
+}
