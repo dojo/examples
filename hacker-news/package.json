@@ -4,11 +4,15 @@
   "dependencies": {
     "@dojo/core": "beta1",
     "@dojo/has": "beta1",
+    "@dojo/i18n": "beta1",
     "@dojo/routing": "beta1",
     "@dojo/shim": "beta1",
+    "@dojo/stores": "^2.0.0-alpha.12",
     "@dojo/widget-core": "beta1",
-    "@dojo/i18n": "beta1",
-    "maquette": "2.4.3"
+    "firebase": "^4.1.2",
+    "maquette": "2.4.3",
+    "promise-polyfill": "^6.0.2",
+    "serviceworker-webpack-plugin": "^0.2.2"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "beta1",

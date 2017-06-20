@@ -1,9 +1,28 @@
 .header {
     background: #222127;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    height: 30px;
+    padding: 6px;
+}
+
+.nav {
+    padding: 6px;
+}
+
+.logo {
+    margin-right: 6px;
+    float: left;
+    height: 30px;
 }
 
 .link {
+    color: gray;
+    text-decoration: none;
+    margin-right: 6px;
+}
+
+.activeLink {
     color: white;
     text-decoration: none;
+    margin-right: 6px;
 }
