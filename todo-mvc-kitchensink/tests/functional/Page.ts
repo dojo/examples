@@ -4,12 +4,15 @@ import * as keys from 'leadfoot/keys';
 import * as appCss from './../../src/widgets/styles/todoApp.m.css';
 import * as TodoFilterCss from './../../src/widgets/styles/todoFilter.m.css';
 import * as todoFooterCss from './../../src/widgets/styles/todoFooter.m.css';
+import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.m.css';
 import * as todoListItem from './../../src/widgets/styles/todoItem.m.css';
 import * as todoListCss from './../../src/widgets/styles/todoList.m.css';
 
 class Selectors {
 	public main = `.${appCss.todoapp}`;
 	public footer = `.${todoFooterCss.footer}`;
+	public newInput = `.${todoHeaderCss.newTodo}`;
+	public toggleAllButton = `.${todoHeaderCss.toggleAll}`;
 	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
 	public itemCount = `.${todoFooterCss.todoCount}`;
 	public list = `.${todoListCss.todoList}`;
@@ -35,7 +38,7 @@ class Selectors {
 	}
 
 	getList(suffix: string): string {
-		return '.';
+		return '.' + todoListCss.todoList + suffix;
 	}
 
 	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
@@ -44,7 +47,7 @@ class Selectors {
 	}
 
 	getListItemToggle(index: number): string {
-		return this.getListItem(index);
+		return this.getListItem(index, ' .' + todoListItem.toggle);
 	}
 
 	getListItemLabel(index: number) {
@@ -73,7 +76,7 @@ export default class Page {
 		return this.remote
 			.get('http://localhost:9000/_build/src/index.html')
 			.setFindTimeout(5000)
-			.findByCssSelector('')
+			.findByCssSelector(this.selectors.newInput)
 			.setFindTimeout(100);
 	}
 
@@ -93,7 +96,7 @@ export default class Page {
 	isCompleteAllChecked(): Promise<boolean> {
 		return this.remote
 			.then(this.delay)
-			.findByCssSelector(':checked')
+			.findByCssSelector(this.selectors.toggleAllButton + ':checked')
 			.then(() => true, () => false);
 	}
 
@@ -103,7 +106,7 @@ export default class Page {
 			.getActiveElement()
 			.then((element: any) => activeElement = element)
 			.end()
-			.findByCssSelector('')
+			.findByCssSelector(this.selectors.newInput)
 			.then((inputElement: any) => inputElement.equals(activeElement));
 	}
 
@@ -112,7 +115,7 @@ export default class Page {
 			.sleep(1000)
 			.execute(function (selector: string) {
 				return (<any> document.querySelector(selector)!).value;
-			}, [ '' ])
+			}, [ this.selectors.newInput ])
 			.then((value: string) => {
 				return value;
 			})
@@ -127,7 +130,7 @@ export default class Page {
 
 	enterItem(text: string): Promise<any> {
 		return this.remote
-			.findByCssSelector()
+			.findByCssSelector(this.selectors.newInput)
 			.sleep(100)
 			.type(text)
 			.type(keys.ENTER)
@@ -170,7 +173,7 @@ export default class Page {
 
 	toggleAll(): Promise<any> {
 		return this.remote
-			.findByCssSelector('')
+			.findByCssSelector(this.selectors.toggleAllButton)
 			.click()
 			.end();
 	}
