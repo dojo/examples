@@ -12,7 +12,7 @@ import * as css from './styles/todoList.css';
 export interface TodoListProperties extends WidgetProperties {
 	todos: Map<string, Todo>;
 	updated: string;
-	activeFilter: 'all' | 'active' | 'completed';
+	activeFilter?: 'all' | 'active' | 'completed';
 	toggleTodo: Function;
 	removeTodo: Function;
 	editTodo: Function;
@@ -21,7 +21,7 @@ export interface TodoListProperties extends WidgetProperties {
 
 export const TodoListBase = ThemeableMixin(WidgetBase);
 
-function filter(filterName: string, todo: Todo): boolean {
+function filter(filterName: string = 'all', todo: Todo): boolean {
 	switch (filterName) {
 		case 'completed':
 			return !!todo.completed;

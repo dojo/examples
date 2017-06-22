@@ -1,23 +1,15 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import Route from '@dojo/routing/Route';
+import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 import TodoApp from './widgets/TodoApp';
-import router from './routes';
 
 const root = document.querySelector('my-app') || undefined;
 
 const Projector = ProjectorMixin(TodoApp);
 const projector = new Projector();
 
-// TODO find a better place for this
-const filterRoute = new Route<any, any>({
-	path: '/{filter}',
-
-	exec(request) {
-		const { filter } = request.params;
-		projector.setProperties({ filter });
-	}
-});
-router.append(filterRoute);
+const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter'}]);
+// could include this in the registration
+router.setPath('all');
 
 projector.append(root);
 router.start();

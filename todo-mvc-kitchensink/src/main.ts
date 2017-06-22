@@ -1,124 +1,36 @@
-import './registerWidgets';
-import global from '@dojo/core/global';
-import { switchLocale } from '@dojo/i18n/i18n';
-import { assign } from '@dojo/core/lang';
-import { HashHistory } from '@dojo/routing/history/HashHistory';
-import { Parameters } from '@dojo/routing/interfaces';
-import { Route } from '@dojo/routing/Route';
-import { Router } from '@dojo/routing/Router';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
-import registerCustomElement from '@dojo/widget-core/registerCustomElement';
+import { registerRouterInjector } from '@dojo/routing/RouterInjector';
+import { BaseInjector, Injector } from '@dojo/widget-core/Injector';
+import { registry } from '@dojo/widget-core/d';
+
 import setLocaleData from './setLocaleData';
-import App from './widgets/App';
-import createGithubIssuesElement from './widgets/custom/createGithubIssuesElement';
-import pirateThemeStyles from './themes/pirate';
+import { TodoAppContext } from './TodoAppContext';
+import { TodoAppContainer } from './containers/TodoAppContainer';
 
-type FilterValue = 'active' | 'all' | 'completed';
-type ViewValue = 'list' | 'cards';
+registry.define('state', Injector(BaseInjector, new TodoAppContext()));
 
-interface AppParameters extends Parameters {
-	filter: FilterValue;
-	view: ViewValue;
-}
+const Projector = ProjectorMixin(TodoAppContainer);
+const projector = new Projector();
 
-interface TodoIdParameter extends Parameters {
-	todoId: string;
-}
-
-if (global.customElements) {
-	registerCustomElement(createGithubIssuesElement);
-}
-
-const themeContext = registerThemeInjector(undefined);
-
-function changeTheme(wantsPirate: boolean) {
-	if (wantsPirate) {
-		switchLocale('en-PR');
-		themeContext.set(pirateThemeStyles);
+const config = [
+	{
+		path: 'view/{view}?{filter}',
+		outlet: 'view',
+		defaultParams: {
+			filter: 'all',
+			view: 'list'
+		},
+		defaultRoute: true,
+		children: [
+			{
+				path: 'todo/{id}',
+				outlet: 'edit'
+			}
+		]
 	}
-	else {
-		switchLocale('en');
-		themeContext.set(undefined);
-	}
-}
+];
 
-const appProjector = ProjectorMixin(App);
-const projector = new appProjector();
-projector.setProperties({ changeTheme });
-
-global.projector = projector;
-
-projector.root = document.getElementsByTagName('my-app')[ 0 ];
-
-export const mainRoute = new Route({
-	path: '/{filter}?{view}',
-	params([ filter ], searchParams) {
-		let activeFilter: FilterValue;
-		let activeView: ViewValue;
-		const view = searchParams.get('view');
-
-		switch (filter) {
-			case 'active':
-			case 'all':
-			case 'completed':
-				activeFilter = filter;
-				break;
-			default:
-				activeFilter = 'all';
-		}
-
-		switch (view) {
-			case 'cards':
-			case 'list':
-				activeView = view;
-				break;
-			default:
-				activeView = 'list';
-		}
-
-		return {
-			filter: activeFilter,
-			view: activeView
-		};
-	},
-	exec(request) {
-		const { filter, view = 'list' } = request.params as AppParameters;
-
-		projector.setProperties(assign({}, projector.properties, {
-			showDetails: '',
-			activeFilter: filter,
-			activeView: view
-		}));
-	}
-});
-
-export const todoViewRoute = new Route({
-	path: '/todos/{todoId}',
-
-	exec(request) {
-		const { todoId } = request.params as TodoIdParameter;
-
-		projector.setProperties(assign({}, projector.properties, {
-			showDetails: todoId
-		}));
-	}
-});
-
-const router = new Router({
-	history: new HashHistory(),
-
-	fallback() {
-		projector.setProperties(assign({}, projector.properties, <any> {
-			showDetails: '',
-			activeFilter: 'all',
-			activeView: 'list'
-		}));
-	}
-});
-
-mainRoute.append(todoViewRoute);
-router.append(mainRoute);
+const router = registerRouterInjector(config);
 
 setLocaleData().then(() => {
 	if (projector.root) {

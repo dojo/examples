@@ -1,54 +1,51 @@
-import { v, w } from '@dojo/widget-core/d';
-import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import appBundle from '../nls/common';
-import * as styles from './styles/TodoFooter.m.css';
-import TodoFilter from './TodoFilter';
-import ViewChooser from './ViewChooser';
-import Button from './Button';
+import { v, w } from '@dojo/widget-core/d';
+import { DNode } from '@dojo/widget-core/interfaces';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 
-interface TodoFooterProperties extends ThemeableProperties, I18nProperties {
-	activeView?: 'list' | 'cards';
-	activeFilter?: 'all' | 'active' | 'completed';
-	activeCount?: number;
-	completedCount?: number;
-	clearCompleted?: Function;
+import appBundle from '../nls/common';
+
+import { TodoViewSwitch } from './TodoViewSwitch';
+import { TodoFilter } from './TodoFilter';
+
+import * as css from './styles/todoFooter.m.css';
+
+export interface TodoFooterInterface {
+	activeCount: number;
+	filter: string;
+	todoCount: number;
+	view: string;
+	clearCompleted: () => void;
 }
 
-@theme(styles)
-export default class TodoFooter extends I18nMixin(ThemeableMixin(WidgetBase))<TodoFooterProperties> {
-	render() {
-		const { activeCount, activeFilter = 'all', completedCount, activeView = 'list' } = this.properties;
+export const TodoFooterBase = I18nMixin(ThemeableMixin(WidgetBase));
 
+@theme(css)
+export class TodoFooter extends TodoFooterBase<TodoFooterInterface> {
+
+	protected clearCompleted(): void {
+		this.properties.clearCompleted();
+	}
+
+	protected render(): DNode {
+		const { filter, view, activeCount, todoCount } = this.properties;
+		const completedItems = (todoCount - activeCount) > 0;
 		const messages = this.localizeBundle(appBundle);
 
 		return v('footer', {
-			classes: this.classes(styles.footer)
+			classes: this.classes(css.footer)
 		}, [
-			v('span', {
-				classes: this.classes(styles.todoCount),
-				innerHTML: `${activeCount} item${activeCount === 1 ? '' : 's'} left`
-			}),
-			w<TodoFilter>('filters', {
-				activeFilter,
-				activeView
-			}),
-			w<ViewChooser>('view-chooser', {
-				activeView,
-				activeFilter
-			}),
-			completedCount ? w<Button>('button', {
-				label: messages.clearButtonText,
-				extraClasses: {
-					button: styles.clearCompleted
-				},
-				onClick: this._clearCompleted
-			}) : null
+			v('span', { classes: this.classes(css.todoCount) }, [
+				v('strong', [activeCount + ' ']),
+				v('span', [ messages.format('itemsLeft', { count: activeCount }) ])
+			]),
+			w(TodoFilter, { filter }),
+			w(TodoViewSwitch, { view }),
+			completedItems ? v('button', {
+				onclick: this.clearCompleted,
+				classes: this.classes(css.clearCompleted)
+			}, [ messages.clearButtonText ]) : null
 		]);
-	}
-
-	private _clearCompleted() {
-		this.properties.clearCompleted && this.properties.clearCompleted();
 	}
 }

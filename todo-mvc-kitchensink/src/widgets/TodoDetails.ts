@@ -1,117 +1,59 @@
-import { assign } from '@dojo/core/lang';
-import { v, w } from '@dojo/widget-core/d';
-import { I18nMixin, I18nProperties } from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemeableMixin, ThemeableProperties } from '@dojo/widget-core/mixins/Themeable';
+import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import appBundle from '../nls/common';
-import { Todo } from './App';
-import FocusableTextInput from './FocusableTextInput';
-import * as styles from './styles/TodoDetails.m.css';
-import FormattedDate from './FormattedDate';
-import Toggler from './Toggler';
+import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
-export interface TodoDetailsProperties extends ThemeableProperties, I18nProperties {
-	todo: Todo | undefined;
-	activeFilter: 'all' | 'active' | 'completed';
-	activeView: string;
-	updateTodo: Function;
-	showTodoDetails: Function;
+import { Todo } from './../TodoAppContext';
+
+import * as css from './styles/todoDetails.m.css';
+
+export interface TodoDetailsProperties {
+	todo?: Todo;
+	onRequestExit: () => void;
+	saveTodo: () => void;
+	editTodoInput: (todo: Todo) => void;
 }
 
-class FocusableTextArea extends FocusableTextInput {
-	tagName = 'textarea';
-}
+@theme(css)
+export class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsProperties> {
 
-@theme(styles)
-export default class TodoDetails extends I18nMixin(ThemeableMixin(WidgetBase))<TodoDetailsProperties> {
-	private _label = '';
-	private _completed = false;
-	private _lastTodoId = '';
-
-	onClose() {
-		const { todo = { id: undefined } } = this.properties;
-		this.properties.updateTodo(assign({}, this.properties.todo, <any> {
-			label: this._label,
-			completed: this._completed
-		}), todo.id);
-		this.properties.showTodoDetails();
+	protected onClose(): void {
+		this.properties.saveTodo();
+		this.properties.onRequestExit();
 	}
 
-	onInput(event: KeyboardEvent) {
-		this._label = (<any> event.target).value;
+	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
+		this.properties.editTodoInput({ ...this.properties.todo, ...{ label: value } });
 	}
 
-	onCompleted() {
-		this._completed = !this._completed;
-		this.invalidate();
-	}
-
-	private _updateState() {
-		const { todo = { id: undefined, completed: undefined, label: undefined } } = this.properties;
-		if (todo.id !== this._lastTodoId) {
-			this._label = todo.label || '';
-			this._completed = todo.completed || false;
-			this._lastTodoId = todo.id || '';
+	protected onElementCreated(element: HTMLElement, key: string) {
+		if (key === 'edit-todo') {
+			element.focus();
 		}
 	}
 
-	render() {
+	protected render(): DNode {
 		const { todo } = this.properties;
-		const { createdOn = new Date() } = todo || {};
-		const messages = this.localizeBundle(appBundle);
 
-		this._updateState();
-
-		return v('div', {
-			classes: this.classes(styles.todoDetails)
-		}, [
-			v('div', {
-				classes: this.classes(styles.backdrop)
-			}),
-			v('div', {
-				classes: this.classes(styles.modal)
-			}, [
-				v('div', {
-					onclick: this.onClose,
-					classes: this.classes(styles.close)
-				}),
-				v('header', {
-					classes: this.classes(styles.todoDetailsHeader)
-				}, [
-					v('div', {
-						classes: this.classes(styles.title)
+		return todo ?
+			v('div', { classes: this.classes(css.todoDetails) }, [
+				v('div', { classes: this.classes(css.backdrop) }),
+				v('div', { classes: this.classes(css.modal) }, [
+					v('div', { onclick: this.onClose, classes: this.classes(css.close) }),
+					v('header', {
+						classes: this.classes(css.todoDetailsHeader)
 					}, [
-						messages.detailsTitle
-					])
-				]),
-				v('section', [
-					w(FocusableTextArea, {
-						extraClasses: {
-							base: styles.todoDetailsTextArea
-						},
-						focused: true,
-						value: this._label,
-						onInput: this.onInput
-					}),
-					v('div', [
-						v('div', {
-							classes: this.classes(styles.lastUpdated)
-						}, [
-							messages.createdTitle,
-							w<FormattedDate>('formatteddate', {
-								date: createdOn
-							})
-						]),
-						w<Toggler>('toggler', {
-							extraClasses: {
-								toggle: styles.toggle
-							},
-							checked: this._completed,
-							onChange: this.onCompleted
+						v('div', { classes: this.classes(css.title) }, [ 'Details' ])
+					]),
+					v('section', [
+						v('textarea', {
+							key: 'edit-todo',
+							classes: this.classes(css.todoDetailsTextArea),
+							value: todo.label,
+							oninput: this.onInput
 						})
 					])
 				])
-			])
-		]);
+			]) : null;
 	}
 }

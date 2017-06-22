@@ -12,9 +12,9 @@ const messages = {
 and
 <a href="https://github.com/Tomdye">Tom Dye</a>`,
 	footerPartOf: 'Part of <a href="http://todomvc.com">TodoMVC</a>',
-	itemsLeft: `<strong>{count}</strong><span>{count plural,
-	one {item}
-	other {items} } left</span>`,
+	itemsLeft: `{count, plural,
+		=1 {thin' left}
+		other {thin's left}}`,
 	searchPlaceholder: 'be searchin\'',
 	themeSwitchTitle: 'Pirate Mode'
 

@@ -1,0 +1,28 @@
+.todoList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+
+.todoList li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+}
+
+.todoList li:first-child {
+	border-top: 1px solid #ededed;
+}
+
+.todoList li:last-child {
+	border-bottom: none;
+}
+
+.cardList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	background-color: #f6f6f6;
+}

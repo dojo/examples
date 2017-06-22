@@ -17,9 +17,9 @@ const messages = {
 and
 <a href="https://github.com/Tomdye">Tom Dye</a>`,
 	footerPartOf: 'Part of <a href="http://todomvc.com">TodoMVC</a>',
-	itemsLeft: `<strong>{count}</strong><span>{count plural,
-	one {item}
-	other {items} } left</span>`,
+	itemsLeft: `{count, plural,
+		=1 {item left}
+		other {items left}}`,
 	searchPlaceholder: 'Quick Filter',
 	themeSwitchTitle: 'Pirate Mode'
 };

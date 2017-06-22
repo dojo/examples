@@ -1,29 +1,21 @@
-import * as App from './pirate/App.m.css';
-import * as AppFooter from './pirate/AppFooter.m.css';
-import * as CheckboxInput from './pirate/CheckboxInput.m.css';
-import * as Home from './pirate/Home.m.css';
-import * as MainSection from './pirate/MainSection.m.css';
-import * as SearchInput from './pirate/SearchInput.m.css';
-import * as ThemeSwitcher from './pirate/ThemeSwitcher.m.css';
-import * as TodoDetails from './pirate/TodoDetails.m.css';
-import * as TodoEditInput from './pirate/TodoEditInput.m.css';
-import * as TodoFooter from './pirate/TodoFooter.m.css';
-import * as TodoItem from './pirate/TodoItem.m.css';
-import * as TodoItemList from './pirate/TodoItemList.m.css';
-import * as Toggler from './pirate/Toggler.m.css';
+import * as todoApp from './pirate/todoApp.m.css';
+import * as todoSearch from './pirate/todoSearch.m.css';
+import * as todoHeader from './pirate/todoHeader.m.css';
+import * as todoList from './pirate/todoList.m.css';
+import * as todoFooter from './pirate/todoFooter.m.css';
+import * as todoItem from './pirate/todoItem.m.css';
+import * as todoCard from './pirate/todoCard.m.css';
+import * as themeSwitcher from './pirate/themeSwitcher.m.css';
+import * as credits from './pirate/credits.m.css';
 
 export default {
-	App,
-	AppFooter,
-	CheckboxInput,
-	Home,
-	MainSection,
-	SearchInput,
-	ThemeSwitcher,
-	TodoDetails,
-	TodoEditInput,
-	TodoItem,
-	TodoItemList,
-	TodoFooter,
-	Toggler
+	todoApp,
+	todoSearch,
+	todoHeader,
+	todoList,
+	todoFooter,
+	todoItem,
+	todoCard,
+	themeSwitcher,
+	credits
 };

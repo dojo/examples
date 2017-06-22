@@ -1,23 +1,21 @@
 import '@dojo/shim/Promise';
 import * as keys from 'leadfoot/keys';
 
-import * as appCss from './../../src/widgets/styles/App.m.css';
-import * as checkbox from './../../src/widgets/styles/CheckboxInput.m.css';
-import * as todoEditInputCss from './../../src/widgets/styles/TodoEditInput.m.css';
-import * as TodoFilterCss from './../../src/widgets/styles/TodoFilter.m.css';
-import * as todoFooterCss from './../../src/widgets/styles/TodoFooter.m.css';
-import * as todoListItem from './../../src/widgets/styles/TodoItem.m.css';
-import * as todoListCss from './../../src/widgets/styles/TodoItemList.m.css';
-import * as toggler from './../../src/widgets/styles/Toggler.m.css';
+import * as appCss from './../../src/widgets/styles/todoApp.m.css';
+import * as TodoFilterCss from './../../src/widgets/styles/todoFilter.m.css';
+import * as todoFooterCss from './../../src/widgets/styles/todoFooter.m.css';
+import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.m.css';
+import * as todoListItem from './../../src/widgets/styles/todoItem.m.css';
+import * as todoListCss from './../../src/widgets/styles/todoList.m.css';
 
 class Selectors {
 	public main = `.${appCss.todoapp}`;
 	public footer = `.${todoFooterCss.footer}`;
+	public newInput = `.${todoHeaderCss.newTodo}`;
+	public toggleAllButton = `.${todoHeaderCss.toggleAll}`;
 	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
-	public newInput = `.${todoEditInputCss.todoEditInput}`;
-	public toggleAllButton = `.${checkbox.checkbox}`;
 	public itemCount = `.${todoFooterCss.todoCount}`;
-	public list = `.${todoListCss.todoItemList}`;
+	public list = `.${todoListCss.todoList}`;
 
 	getFilter(index: number): string {
 		return `.${TodoFilterCss.filters} li:nth-of-type(${index + 1}) a'`;
@@ -40,7 +38,7 @@ class Selectors {
 	}
 
 	getList(suffix: string): string {
-		return '.' + todoListCss.todoItemList + suffix;
+		return '.' + todoListCss.todoList + suffix;
 	}
 
 	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
@@ -49,7 +47,7 @@ class Selectors {
 	}
 
 	getListItemToggle(index: number): string {
-		return this.getListItem(index, ' .' + toggler.toggle);
+		return this.getListItem(index, ' .' + todoListItem.toggle);
 	}
 
 	getListItemLabel(index: number) {
