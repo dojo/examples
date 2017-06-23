@@ -17,12 +17,12 @@
 
 .link {
     color: gray;
-    text-decoration: none;
+    cursor: pointer;
     margin-right: 6px;
 }
 
 .activeLink {
     color: white;
-    text-decoration: none;
+    cursor: pointer;
     margin-right: 6px;
 }

@@ -2,13 +2,13 @@ import * as registerSuite from 'intern/lib/interfaces/object';
 import { assert } from 'chai';
 import { VNode } from '@dojo/interfaces/vdom';
 
-import Header from '../../../src/widgets/Header';
-import * as css from '../../../src/widgets/styles/Header.m.css';
+import Header from '../../../src/widgets/HackerNewsHeader';
+import * as css from '../../../src/widgets/styles/hackerNewsHeader.m.css';
 
 registerSuite({
-	name: 'Header',
+	name: 'HackerNewsHeader',
 	'render'() {
-		// const header = new Header();
+		// const header = new HackerNewsHeader();
 		//
 		// const vnode = <VNode> header.__render__();
 		// assert.strictEqual(vnode.vnodeSelector, 'div');
@@ -16,7 +16,7 @@ registerSuite({
 		// assert.deepEqual(vnode.properties!.classes, { [css.hello]: true });
 	},
 	'render with stranger'() {
-		// const helloWorld = new Header();
+		// const helloWorld = new HackerNewsHeader();
 		// helloWorld.__setProperties__({
 		// 	stranger: true,
 		// 	toggleStranger: () => {}

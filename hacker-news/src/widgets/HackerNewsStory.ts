@@ -3,15 +3,15 @@ import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
-import * as css from './styles/Story.m.css';
-import { Item } from "../App";
+import * as css from './styles/hackerNewsStory.m.css';
+import { Item } from '../HackerNewsAppContext';
 
-export const StoryBase = ThemeableMixin(WidgetBase);
+export const HackerNewsStoryBase = ThemeableMixin(WidgetBase);
 
-export interface StoryWidgetProperties extends WidgetProperties, Item {}
+export interface HackerNewsStoryProperties extends WidgetProperties, Item {}
 
 @theme(css)
-export default class Story extends StoryBase<StoryWidgetProperties> {
+export default class HackerNewsStory extends HackerNewsStoryBase<HackerNewsStoryProperties> {
 	private _getDomain(url?: string) {
 		const withoutProtocol = url && (url.split('https://')[1] || url.split('http://')[1]);
 		const domain = withoutProtocol && withoutProtocol.split('/')[0];

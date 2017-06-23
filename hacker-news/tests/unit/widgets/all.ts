@@ -1,1 +1,1 @@
-import './Header';
+import './HackerNewsHeader';

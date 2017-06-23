@@ -3,10 +3,10 @@ import { assert } from 'chai';
 import { VNode } from '@dojo/interfaces/vdom';
 import { spy, SinonSpy } from 'sinon';
 
-import App from './../../src/App';
+import App from '../../src/widgets/HackerNewsApp';
 
 registerSuite({
-	name: 'App',
+	name: 'HackerNewsApp',
 	render() {
 		const app = new App();
 		const vnode = <VNode> app.__render__();
