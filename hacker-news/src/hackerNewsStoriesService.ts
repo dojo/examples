@@ -122,7 +122,7 @@ export function getStoriesForView(view: story_type, page: number, pageSize: numb
 	const end = start + pageSize;
 
 	return stores[view].fetch(
-			createFilter<Item>().greaterThanOrEqualTo('order', start).lessThanOrEqualTo('order', end)
+			createFilter<Item>().greaterThanOrEqualTo('order', start).lessThan('order', end)
 		).then((data) => {
 			if (data.length) {
 				return data;

@@ -1,13 +1,13 @@
 import { v, w } from '@dojo/widget-core/d';
+import { Link } from '@dojo/routing/Link';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemeableMixin, theme, ClassesFunctionChain } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
 import * as css from './styles/hackerNewsNavigation.m.css';
 import { story_type } from "../hackerNewsStoriesService";
 
 export interface HackerNewsNavigationProperties extends WidgetProperties {
-	showStories(view: story_type, page: number, pageSize: number): void;
 	view: story_type;
 	page: number;
 	pages: number;
@@ -18,18 +18,27 @@ export const HackerNewsNavigationBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
 export default class HackerNewsNavigation extends HackerNewsNavigationBase<HackerNewsNavigationProperties> {
-	protected _navigate(page: number) {
-		this.properties.showStories(this.properties.view, page, this.properties.pageSize)
-	}
-
-	protected _onClickNext() {
-		const page = this.properties.page + 1;
-		this._navigate(page);
-	}
-
-	protected _onClickPrevious() {
-		const page = this.properties.page - 1;
-		this._navigate(page);
+	private _createLink(prev: boolean, page: number) {
+		const text = prev ? '< prev' : 'next >';
+		const newPage = prev ? Math.max(1, page - 1) : Math.min(page + 1, this.properties.pages);
+		if (page && (prev ? (page > 1) : (page < this.properties.pages))) {
+			return w(Link, {
+				key: text,
+				classes: this.classes(css.link),
+				to: 'stories',
+				params: { view: this.properties.view, page: String(newPage) },
+				isOutlet: true
+			}, [ text ]);
+		}
+		else {
+			return v('a', {
+				key: text,
+				href: 'javascript:void(0)',
+				disabled: true,
+				'aria-disabled': true,
+				classes: this.classes(css.disabled)
+			}, [ text ]);
+		}
 	}
 
 	protected render(): DNode {
@@ -40,13 +49,13 @@ export default class HackerNewsNavigation extends HackerNewsNavigationBase<Hacke
 		const page = Math.min(this.properties.page, this.properties.pages);
 
 		if (!this.properties.pages || this.properties.pages === 1) {
-			return null;
+			return v('div', { classes });
 		}
 
 		return v('div', { classes }, [
-			v('span', { classes: this.classes(css.link), onclick: this._onClickPrevious }, [ '< prev' ]),
+			this._createLink(true, page),
 			v('span', { classes: this.classes(css.pageNumber) }, [ `${page}/${this.properties.pages}` ]),
-			v('span', { classes: this.classes(css.link), onclick: this._onClickNext }, [ 'next >' ])
+			this._createLink(false, page),
 		]);
 	}
 }

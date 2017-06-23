@@ -13,7 +13,6 @@ import { Item } from "../HackerNewsAppContext";
 export const HackerNewsStoryPageBase = ThemeableMixin(WidgetBase);
 
 export interface HackerNewsStoryPageProperties extends WidgetProperties {
-	showStories(view: story_type, page: number, pageSize: number): void;
 	stories: Item[];
 	pageSize: number;
 	page: number;
@@ -24,11 +23,11 @@ export interface HackerNewsStoryPageProperties extends WidgetProperties {
 @theme(css)
 export default class HackerNewsStoryPage extends HackerNewsStoryPageBase<HackerNewsStoryPageProperties> {
 	protected render(): DNode {
-		const { page, pages, view, showStories, pageSize } = this.properties;
+		const { page, pages, view, pageSize } = this.properties;
 
 		return v('div', { classes: this.classes(css.storyPage)}, [
-			w<Header>(Header, { view, showStories, pageSize }),
-			w<HackerNewsNavigation>(HackerNewsNavigation, { page, pages, view, showStories, pageSize }),
+			w<Header>(Header, { view, pageSize }),
+			w<HackerNewsNavigation>(HackerNewsNavigation, { page, pages, view, pageSize }),
 			v(
 				'ol',
 				{ start: 1 + (this.properties.pageSize * (page - 1)), classes: this.classes(css.list) },

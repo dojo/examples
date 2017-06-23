@@ -1,9 +1,9 @@
 import { Outlet } from '@dojo/routing/Outlet';
 import { MapParamsOptions } from '@dojo/routing/interfaces';
 
-import HackerNewsStoryPage from '../widgets/HackerNewsStoryPage';
+import HackerNewsStoryPageContainer from '../containers/HackerNewsStoryPageContainer';
 
-const HackerNewsStoryPageOutlet = Outlet(HackerNewsStoryPage, 'stories', ({ params }: MapParamsOptions) => {
+const HackerNewsStoryPageOutlet = Outlet(HackerNewsStoryPageContainer, 'stories', ({ params }: MapParamsOptions) => {
 	return {
 		view: params.view,
 		page: Number(params.page)

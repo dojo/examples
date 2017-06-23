@@ -9,11 +9,12 @@
 }
 
 .link {
-    cursor: pointer;
+    text-decoration: none;
+    color: #4d4d4d;
 }
 
 .disabled {
-    color: gray;
     text-decoration: none;
+    color: gray;
 }
 

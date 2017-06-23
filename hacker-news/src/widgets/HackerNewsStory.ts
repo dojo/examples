@@ -30,7 +30,7 @@ export default class HackerNewsStory extends HackerNewsStoryBase<HackerNewsStory
 
 		const pointText = pluralize('point', this.properties.score || 0);
 		const authorText = `by ${this.properties.by}`;
-		const seconds = Date.now()/1000  - (this.properties.time || (Date.now()/1000));
+		const seconds = Math.floor(Date.now()/1000  - (this.properties.time || (Date.now()/1000)));
 		const minutes = seconds && Math.floor(seconds/60);
 		const hours = minutes && Math.floor(minutes/60);
 		const days = hours && Math.floor(hours/24);
