@@ -7,9 +7,7 @@ const root = document.querySelector('my-app') || undefined;
 const Projector = ProjectorMixin(TodoApp);
 const projector = new Projector();
 
-const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter'}]);
-// could include this in the registration
-router.setPath('all');
+const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter', defaultParams: { filter: 'all' }, defaultRoute: true }]);
 
 projector.append(root);
 router.start();

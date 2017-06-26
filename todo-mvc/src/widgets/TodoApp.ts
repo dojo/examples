@@ -15,7 +15,7 @@ import TodoFilter from './TodoFilter';
 
 import * as css from './styles/todoApp.css';
 
-function mapFilterRouteParam(params: any) {
+function mapFilterRouteParam({ params }: any) {
 	return { activeFilter: params.filter };
 }
 
