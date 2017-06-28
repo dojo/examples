@@ -4,7 +4,7 @@ import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
 import * as css from './styles/hackerNewsStory.m.css';
-import { Item } from '../HackerNewsAppContext';
+import { Item } from "../interfaces";
 
 export const HackerNewsStoryBase = ThemeableMixin(WidgetBase);
 

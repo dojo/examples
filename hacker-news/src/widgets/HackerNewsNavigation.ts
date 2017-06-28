@@ -5,7 +5,7 @@ import { ThemeableMixin, theme, ClassesFunctionChain } from '@dojo/widget-core/m
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 
 import * as css from './styles/hackerNewsNavigation.m.css';
-import { story_type } from "../hackerNewsStoriesService";
+import { story_type } from "../interfaces";
 
 export interface HackerNewsNavigationProperties extends WidgetProperties {
 	view: story_type;

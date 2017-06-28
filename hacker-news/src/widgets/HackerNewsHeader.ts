@@ -3,9 +3,9 @@ import { v, w } from '@dojo/widget-core/d';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme, ClassesFunctionChain } from '@dojo/widget-core/mixins/Themeable';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { story_type } from '../hackerNewsStoriesService';
 
 import * as css from './styles/hackerNewsHeader.m.css';
+import { story_type } from "../interfaces";
 
 interface HeaderProperties extends WidgetProperties {
 	view?: story_type;

@@ -2,7 +2,7 @@ import { Container } from '@dojo/widget-core/Container';
 
 import { HackerNewsAppContext } from '../HackerNewsAppContext';
 import HackerNewsStoryPage from './../widgets/HackerNewsStoryPage';
-import { story_type } from "../hackerNewsStoriesService";
+import { story_type } from "../interfaces";
 
 function getProperties(hackerNewsAppContext: HackerNewsAppContext, properties: any) {
 	const { view, page }: { view: story_type, page: number } = properties

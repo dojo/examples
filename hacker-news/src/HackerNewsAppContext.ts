@@ -1,30 +1,9 @@
 import { Evented, EventedOptions } from '@dojo/core/Evented';
 import { Router } from '@dojo/routing/Router'
-import { story_type, getStoriesForView, getNumberOfStoriesForView } from './hackerNewsStoriesService';
 import { PAGE_SIZE } from "./main";
+import { Item, story_type } from "./interfaces";
+import { getNumberOfStoriesForView, getStoriesForView } from "./hackerNewsStoriesService";
 
-export interface Item {
-	// Hacker News data
-	id: string;
-	deleted?: boolean;
-	type?: string;
-	by?: string;
-	time?: number;
-	text?: string;
-	dead?: boolean;
-	parent?: string;
-	poll?: string;
-	kids?: string[];
-	url?: string;
-	score?: number;
-	title?: string;
-	parts?: string[];
-	descendants?: number;
-
-	// Local data
-	order: number;
-	updated: number;
-}
 
 export class HackerNewsAppContext extends Evented {
 	private _view: story_type;

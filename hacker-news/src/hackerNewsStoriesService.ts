@@ -1,22 +1,15 @@
-import { throttle } from '@dojo/core/util';
 import StoreBase from '@dojo/stores/store/StoreBase';
 import IndexedDBStorage, { IndexedDBOptions } from '@dojo/stores/storage/IndexedDBStorage';
 import createFilter from '@dojo/stores/query/createFilter';
 import Promise from '@dojo/shim/Promise';
 import * as firebase from 'firebase';
-import { Item } from "./HackerNewsAppContext";
+import { Item, story_type, TypeCount } from "./interfaces";
 
-interface TypeCount {
-	type: story_type;
-	count: number;
-}
-
-export type story_type = 'top' | 'new' | 'best' | 'ask' | 'show' | 'jobs';
+const worker: Worker = new (<any> require('worker-loader?name=hackerNewsWebWorker.js!./hackerNewsWebWorker'));
 
 const DB_NAME = 'dojo2HackerNewsPWA';
 const STORY_TYPES: story_type[] = [ 'top', 'new', 'best', 'ask', 'show', 'jobs' ];
 const HACKER_NEWS_API_BASE = 'https://hacker-news.firebaseio.com/';
-const ONE_DAY = 1000 * 60 * 60 * 24;
 const MAX_COUNTS: { [ key in story_type ]: number } = {
 	top: 500,
 	new: 500,
@@ -122,8 +115,8 @@ export function getStoriesForView(view: story_type, page: number, pageSize: numb
 	const end = start + pageSize;
 
 	return stores[view].fetch(
-			createFilter<Item>().greaterThanOrEqualTo('order', start).lessThan('order', end)
-		).then((data) => {
+		createFilter<Item>().greaterThanOrEqualTo('order', start).lessThan('order', end)
+	).then((data) => {
 			if (data.length) {
 				return data;
 			}
@@ -140,57 +133,7 @@ export function getStoriesForView(view: story_type, page: number, pageSize: numb
 		});
 }
 
-const queuedUpdates = STORY_TYPES.reduce((queues, view) => {
-	queues[view] = [];
-	return queues;
-}, {} as { [ key in story_type ]: Item [] });
-
-const triggerUpdate =  throttle(() => {
-	STORY_TYPES.forEach((view) => {
-		const updates = queuedUpdates[view];
-		if (updates.length) {
-			stores[view].put(updates.splice(0))
-		}
-	});
-}, 10);
-
-function update(item: Item, view: story_type) {
-	queuedUpdates[view].push(item);
-	triggerUpdate();
-}
-
 export function startUpdates() {
-	STORY_TYPES.forEach((type) => {
-		stores[type].fetch(createFilter<Item>().lessThan('updated', Date.now() - ONE_DAY)).then((oldItems) => {
-			oldItems.forEach((oldItem) => {
-				const { order, id } = oldItem;
-				getItem(order, id).then(
-					(item) => {
-						if (!item || item.deleted) {
-							stores[type].delete(String(order));
-						}
-						else {
-							update(item, type);
-						}
-					}
-				);
-			});
-		});
-	});
-
-	STORY_TYPES.forEach((type) => {
-		getStoryRef(type).on('value', (snapshot) => {
-			const ids: string[] = snapshot && snapshot.val() || [];
-			countsStore.put({ type, count: ids.length });
-			console.log(`${type} stories were just updated`);
-			ids.forEach((id, index) => {
-				getItem(index, id).then((item) => {
-					if (item) {
-						update(item, type);
-					}
-				});
-			});
-		});
-	});
+	worker.postMessage('');
 }
 

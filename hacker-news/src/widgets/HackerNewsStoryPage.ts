@@ -6,9 +6,8 @@ import Story from './HackerNewsStory';
 
 import * as css from './styles/hackerNewsStoryPage.m.css';
 import Header from "./HackerNewsHeader";
-import { story_type } from "../hackerNewsStoriesService";
 import HackerNewsNavigation from './HackerNewsNavigation';
-import { Item } from "../HackerNewsAppContext";
+import { Item, story_type } from "../interfaces";
 
 export const HackerNewsStoryPageBase = ThemeableMixin(WidgetBase);
 
