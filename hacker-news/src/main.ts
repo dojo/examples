@@ -4,7 +4,8 @@ import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 import HackerNewsApp from './widgets/HackerNewsApp';
 import { HackerNewsAppContext } from "./HackerNewsAppContext";
-import { startUpdates } from "./hackerNewsStoriesService";
+import { startUpdates } from './hackerNewsStoriesService';
+import registerServiceWorker from './registerServiceWorker';
 
 const root = document.querySelector('my-app') || undefined;
 
@@ -31,5 +32,6 @@ registry.define('state', Injector(BaseInjector, appContext));
 
 projector.append(root);
 router.start();
+registerServiceWorker();
 startUpdates();
 
