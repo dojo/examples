@@ -1,5 +1,4 @@
 import { throttle } from '@dojo/core/util';
-import StoreBase from '@dojo/stores/store/StoreBase';
 import IndexedDBStorage from '@dojo/stores/storage/IndexedDBStorage';
 import * as firebase from 'firebase';
 import { story_type, TypeCount, Item } from "./interfaces";
@@ -15,15 +14,13 @@ function getStoryRef(type: story_type) {
 }
 
 function createStoryStore(view: story_type) {
-	return new StoreBase<Item>({
-		storage: new IndexedDBStorage<Item>({
-			idProperty: 'order',
-			dbName: DB_NAME,
-			objectStoreName: view,
-			indices: {
-				order: true
-			}
-		})
+	return new IndexedDBStorage<Item>({
+		idProperty: 'order',
+		dbName: DB_NAME,
+		objectStoreName: view,
+		indices: {
+			order: true
+		}
 	});
 }
 
@@ -46,18 +43,16 @@ const stores = STORY_TYPES.reduce(
 
 		return stores;
 	},
-	{} as { [ key in story_type ]: StoreBase<Item> }
+	{} as { [ key in story_type ]: IndexedDBStorage<Item> }
 );
 
-export const countsStore = new StoreBase<TypeCount>({
-	storage: new IndexedDBStorage<TypeCount>({
-		dbName: DB_NAME,
-		objectStoreName: 'counts',
-		idProperty: 'type',
-		indices: {
-			type: true
-		}
-	})
+export const countsStore = new IndexedDBStorage<TypeCount>({
+	dbName: DB_NAME,
+	objectStoreName: 'counts',
+	idProperty: 'type',
+	indices: {
+		type: true
+	}
 });
 
 const queuedUpdates = STORY_TYPES.reduce((queues, view) => {
@@ -90,7 +85,7 @@ onmessage = () => {
 			return promise.then(() => {
 				getStoryRef(type).once('value', (snapshot) => {
 					const ids: string[] = snapshot && snapshot.val() || [];
-					countsStore.put({ type, count: ids.length });
+					countsStore.put([ { type, count: ids.length } ]);
 					console.log(`${type} stories were just updated`);
 					ids.forEach((id, index) => {
 						getItem(index, id).then((item) => {

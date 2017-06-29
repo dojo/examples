@@ -5,7 +5,7 @@ import Promise from '@dojo/shim/Promise';
 import * as firebase from 'firebase';
 import { Item, story_type, TypeCount } from "./interfaces";
 
-const worker: Worker = new (<any> require('worker-loader?name=hackerNewsWebWorker.js!./hackerNewsWebWorker'));
+const worker: Worker = new (require('worker-loader?name=hackerNewsWebWorker.js!./hackerNewsWebWorker'));
 
 const DB_NAME = 'dojo2HackerNewsPWA';
 const STORY_TYPES: story_type[] = [ 'top', 'new', 'best', 'ask', 'show', 'jobs' ];

@@ -5,7 +5,6 @@
 		"experimentalDecorators": true,
 		"lib": [
 			"dom",
-			"webworker",
 			"es5",
 			"es2015.iterable",
 			"es2015.symbol",
