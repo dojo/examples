@@ -12,7 +12,7 @@
     "firebase": "^4.1.2",
     "maquette": "2.4.3",
     "promise-polyfill": "^6.0.2",
-    "serviceworker-webpack-plugin": "^0.2.2"
+    "worker-loader": "^0.8.0"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "beta1",
