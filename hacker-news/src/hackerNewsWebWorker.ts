@@ -83,7 +83,7 @@ onmessage = () => {
 	setTimeout(() => {
 		STORY_TYPES.reduce((promise, type) => {
 			return promise.then(() => {
-				getStoryRef(type).once('value', (snapshot) => {
+				getStoryRef(type).on('value', (snapshot) => {
 					const ids: string[] = snapshot && snapshot.val() || [];
 					countsStore.put([ { type, count: ids.length } ]);
 					console.log(`${type} stories were just updated`);
