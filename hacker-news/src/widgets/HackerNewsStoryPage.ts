@@ -25,7 +25,7 @@ export default class HackerNewsStoryPage extends HackerNewsStoryPageBase<HackerN
 		const { page, pages, view, pageSize } = this.properties;
 
 		return v('div', { classes: this.classes(css.storyPage)}, [
-			w<Header>(Header, { view, pageSize }),
+			w<Header>(Header, { view }),
 			w<HackerNewsNavigation>(HackerNewsNavigation, { page, pages, view, pageSize }),
 			v(
 				'ol',

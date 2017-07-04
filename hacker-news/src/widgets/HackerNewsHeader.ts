@@ -7,15 +7,14 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import * as css from './styles/hackerNewsHeader.m.css';
 import { story_type } from "../interfaces";
 
-interface HeaderProperties extends WidgetProperties {
+export interface HackerNewsHeaderProperties extends WidgetProperties {
 	view?: story_type;
-	pageSize: number;
 }
 
 export const HackerNewsHeaderBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class HackerNewsHeader extends HackerNewsHeaderBase<HeaderProperties> {
+export default class HackerNewsHeader extends HackerNewsHeaderBase<HackerNewsHeaderProperties> {
 	protected _navigation(to: story_type, linkClasses: ClassesFunctionChain, activeLinkClasses: ClassesFunctionChain) {
 		const classes = to === this.properties.view ? activeLinkClasses : linkClasses;
 		return w(Link, {
