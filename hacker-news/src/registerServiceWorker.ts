@@ -1,5 +1,5 @@
 export default function registerServiceWorker() {
-	if (process.env.DOJO_SERVICE_WORKERS && 'serviceWorker' in navigator) {
+	if (process.env.DOJO.SERVICE_WORKERS && 'serviceWorker' in navigator) {
 		window.addEventListener('load', () => {
 			// TODO This assumes we're serving from the root. We could provide the public URL as an environment variable
 			const serviceWorkerUrl = `/service-worker.js`;
