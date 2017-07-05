@@ -18,6 +18,7 @@ const MAX_COUNTS: { [ key in story_type ]: number } = {
 	show: 200,
 	jobs: 200
 };
+let hasData = false;
 
 function createStoryStoreConfig(): IndexedDBOptions<Item, any> {
 	return {
@@ -114,23 +115,50 @@ export function getStoriesForView(view: story_type, page: number, pageSize: numb
 	const start = (page - 1) * pageSize;
 	const end = start + pageSize;
 
-	return stores[view].fetch(
+	const fetchPromise = stores[view].fetch(
 		createFilter<Item>().greaterThanOrEqualTo('order', start).lessThan('order', end)
-	).then((data) => {
-			if (data.length) {
-				return data;
+	);
+
+	const requestPromise = !hasData ? new Promise<Item[]>((resolve, reject) => {
+		getStoryRef(view).once(
+			'value',
+			(snapshot) => {
+				const ids: string[] = (snapshot.val() || []).slice(start, end);
+				Promise.all(ids.map((id, index) => getItem(index, id)))
+					.then<Item[]>((items) => items.filter((item) => item) as Item[], reject)
+					.then(resolve, reject);
+			},
+			reject
+		);
+	}) : Promise.resolve([]);
+
+	return new Promise((resolve, reject) => {
+		let resolved = false;
+		let noData = false;
+		requestPromise.then((data) => {
+			if (!resolved && (data.length || noData)) {
+				resolved = true;
+				resolve(data);
 			}
-			return new Promise<Array<Item | null>>((resolve, reject) => {
-				getStoryRef(view).once(
-					'value',
-					(snapshot) => {
-						const ids: string[] = (snapshot.val() || []).slice(start, end);
-						Promise.all(ids.map((id, index) => getItem(index, id))).then(resolve, reject);
-					},
-					reject
-				);
-			});
+		}, () => {
+			if (noData) {
+				resolve([]);
+			}
 		});
+
+		fetchPromise.then((data) => {
+			if (data.length) {
+				hasData = true;
+				if (!resolved) {
+					resolved = true;
+					resolve(data);
+				}
+			}
+			else {
+				noData = true;
+			}
+		}, reject);
+	});
 }
 
 export function startUpdates() {
