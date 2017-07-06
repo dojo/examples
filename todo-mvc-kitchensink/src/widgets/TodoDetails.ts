@@ -8,7 +8,7 @@ import { Todo } from './../TodoAppContext';
 import * as css from './styles/todoDetails.m.css';
 
 export interface TodoDetailsProperties {
-	todo?: Todo;
+	todo: Todo;
 	onRequestExit: () => void;
 	saveTodo: () => void;
 	editTodoInput: (todo: Todo) => void;
@@ -23,7 +23,7 @@ export class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsPropertie
 	}
 
 	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
-		this.properties.editTodoInput({ ...this.properties.todo, ...{ label: value } });
+		this.properties.editTodoInput({ ...this.properties.todo, label: value });
 	}
 
 	protected onElementCreated(element: HTMLElement, key: string) {

@@ -1,3 +1,4 @@
+import Promise from '@dojo/shim/Promise';
 import * as keys from 'leadfoot/keys';
 
 import * as todoAppCss from './../../src/widgets/styles/todoApp.css';
