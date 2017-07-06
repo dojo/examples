@@ -1,4 +1,4 @@
-import '@dojo/shim/Promise';
+import Promise from '@dojo/shim/Promise';
 import * as keys from 'leadfoot/keys';
 
 import * as appCss from './../../src/widgets/styles/todoApp.m.css';
@@ -69,7 +69,7 @@ export default class Page {
 	}
 
 	delay(): Promise<any> {
-		return new Promise((resolve) => setTimeout(resolve, 60));
+		return new Promise<any>((resolve) => setTimeout(resolve, 60));
 	}
 
 	init(): Promise<any> {
