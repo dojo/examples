@@ -11,6 +11,12 @@
     color: #bfbfbf;
 }
 
+.infoLink {
+    text-decoration: underline;
+    color: #4d4d4d;
+}
+
 .story {
-    margin: 5px 0;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid #bfbfbf;
 }

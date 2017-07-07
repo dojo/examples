@@ -42,17 +42,13 @@ export default class HackerNewsNavigation extends HackerNewsNavigationBase<Hacke
 	}
 
 	protected render(): DNode {
-		const classes = this.classes(
-			css.navigation,
-		);
-
 		const page = Math.min(this.properties.page, this.properties.pages);
 
 		if (!this.properties.pages || this.properties.pages === 1) {
-			return v('div', { classes });
+			return v('div', { classes: this.classes(css.emptyNavigation) });
 		}
 
-		return v('div', { classes }, [
+		return v('div', { classes: this.classes(css.navigation) }, [
 			this._createLink(true, page),
 			v('span', { classes: this.classes(css.pageNumber) }, [ `${page}/${this.properties.pages}` ]),
 			this._createLink(false, page),

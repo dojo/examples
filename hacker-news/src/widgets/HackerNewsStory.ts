@@ -29,7 +29,7 @@ export default class HackerNewsStory extends HackerNewsStoryBase<HackerNewsStory
 		}
 
 		const pointText = pluralize('point', this.properties.score || 0);
-		const authorText = `by ${this.properties.by}`;
+		const authorText = this.properties.by;
 		const seconds = Math.floor(Date.now()/1000  - (this.properties.time || (Date.now()/1000)));
 		const minutes = seconds && Math.floor(seconds/60);
 		const hours = minutes && Math.floor(minutes/60);
@@ -50,7 +50,10 @@ export default class HackerNewsStory extends HackerNewsStoryBase<HackerNewsStory
 				this._getDomain(this.properties.url)
 			]),
 			v('div', { classes: this.classes(css.info) }, [
-				`${pointText} ${authorText} ${timeText} | discuss`
+				`${pointText} by `,
+				v('span', { classes: this.classes(css.infoLink) }, [ `${authorText} ` ]),
+				`${timeText} | `,
+				v('span', { classes: this.classes(css.infoLink) }, [ 'discuss' ])
 			])
 		]);
 	}

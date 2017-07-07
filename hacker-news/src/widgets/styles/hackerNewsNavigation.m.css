@@ -4,6 +4,10 @@
     font-size: 20px;
 }
 
+.emptyNavigation {
+    height: 30px;
+}
+
 .pageNumber {
     margin: 0 10px;
 }
