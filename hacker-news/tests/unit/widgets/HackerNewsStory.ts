@@ -44,6 +44,15 @@ registerSuite({
 	'uses largest non-zero unit of time'() {
 		hackerNewsStory.setProperties(makeItem());
 
+		function createStoryVDom(timeText: string) {
+			return v('div', { classes: hackerNewsStory.classes(css.info) }, [
+				'10 points by ',
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
+				`${timeText} ago | `,
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
+			]);
+		}
+
 		const expectedRender = v('li', { classes: hackerNewsStory.classes(css.story) }, [
 			v('div', {}, [
 				v(
@@ -53,7 +62,7 @@ registerSuite({
 				),
 				v('span', { classes: hackerNewsStory.classes(css.domain) }, [ ' (website.com)' ])
 			]),
-			v('div', { classes: hackerNewsStory.classes(css.info) }, [ '10 points by The Author 1 second ago | discuss' ])
+			createStoryVDom('1 second')
 		]);
 
 		hackerNewsStory.expectRender(expectedRender);

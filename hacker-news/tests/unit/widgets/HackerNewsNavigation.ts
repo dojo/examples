@@ -28,7 +28,7 @@ registerSuite({
 			pageSize: 1
 		});
 
-		hackerNewsNavigation.expectRender(v('div', { classes: hackerNewsNavigation.classes(css.navigation) }));
+		hackerNewsNavigation.expectRender(v('div', { classes: hackerNewsNavigation.classes(css.emptyNavigation) }));
 	},
 
 	'first page'() {
