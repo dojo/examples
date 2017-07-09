@@ -2,22 +2,23 @@ import { throttle } from '@dojo/core/util';
 import StoreBase from '@dojo/stores/store/StoreBase';
 import IndexedDBStorage, { IndexedDBOptions } from '@dojo/stores/storage/IndexedDBStorage';
 import createFilter from '@dojo/stores/query/createFilter';
+import Map from '@dojo/shim/Map';
 import Promise from '@dojo/shim/Promise';
 import * as firebase from 'firebase';
 import { Item } from './interfaces';
 
 interface TypeCount {
-	type: story_type;
+	type: StoryType;
 	count: number;
 }
 
-export type story_type = 'top' | 'new' | 'best' | 'ask' | 'show' | 'jobs';
+export type StoryType = 'top' | 'new' | 'best' | 'ask' | 'show' | 'jobs';
 
 const DB_NAME = 'dojo2HackerNewsPWA';
-const STORY_TYPES: story_type[] = [ 'top', 'new', 'best', 'ask', 'show', 'jobs' ];
+const STORY_TYPES: StoryType[] = [ 'top', 'new', 'best', 'ask', 'show', 'jobs' ];
 const HACKER_NEWS_API_BASE = 'https://hacker-news.firebaseio.com/';
 const ONE_DAY = 1000 * 60 * 60 * 24;
-const MAX_COUNTS: { [ key in story_type ]: number } = {
+const MAX_COUNTS: { [ key in StoryType ]: number } = {
 	top: 500,
 	new: 500,
 	best: 500,
@@ -36,7 +37,7 @@ function createStoryStoreConfig(): IndexedDBOptions<Item, any> {
 	}
 }
 
-function createStoryStore(view: story_type) {
+function createStoryStore(view: StoryType) {
 	return new StoreBase<Item>({
 		storage: new IndexedDBStorage<Item>({
 			idProperty: 'order',
@@ -80,7 +81,7 @@ const stores = STORY_TYPES.reduce(
 
 		return stores;
 	},
-	{} as { [ key in story_type ]: StoreBase<Item> }
+	{} as { [ key in StoryType ]: StoreBase<Item> }
 );
 
 export const countsStore = new StoreBase<TypeCount>({
@@ -96,7 +97,7 @@ export const countsStore = new StoreBase<TypeCount>({
 
 const database = firebase.initializeApp({ databaseURL: HACKER_NEWS_API_BASE }).database();
 
-function getStoryRef(type: story_type) {
+function getStoryRef(type: StoryType) {
 	return database.ref(`/v0/${type === 'jobs' ? type.slice(0, -1) : type}stories`);
 }
 
@@ -114,11 +115,11 @@ function getItem(index: number, id: string): Promise<Item | null> {
 	});
 }
 
-export function getNumberOfStoriesForView(view: story_type): Promise<number> {
+export function getNumberOfStoriesForView(view: StoryType): Promise<number> {
 	return countsStore.get(view).then((count: TypeCount) => count && count.count || MAX_COUNTS[view]);
 }
 
-export function getStoriesForView(view: story_type, page: number, pageSize: number): Promise<Item[]> {
+export function getStoriesForView(view: StoryType, page: number, pageSize: number): Promise<Item[]> {
 	const start = (page - 1) * pageSize;
 	const end = start + pageSize;
 
@@ -171,7 +172,7 @@ export function getStoriesForView(view: story_type, page: number, pageSize: numb
 const queuedUpdates = STORY_TYPES.reduce((queues, view) => {
 	queues[view] = [];
 	return queues;
-}, {} as { [ key in story_type ]: Item [] });
+}, {} as { [ key in StoryType ]: Item [] });
 
 const triggerUpdate =  throttle(() => {
 	STORY_TYPES.forEach((view) => {
@@ -182,7 +183,7 @@ const triggerUpdate =  throttle(() => {
 	});
 }, 10);
 
-function update(item: Item, view: story_type) {
+function update(item: Item, view: StoryType) {
 	queuedUpdates[view].push(item);
 	triggerUpdate();
 }
