@@ -130,6 +130,50 @@ registerSuite({
 
 		hackerNewsStory.setProperties(makeItem({ url: 'https://website.com'}));
 		hackerNewsStory.expectRender(expectedRender('https://website.com'));
+	},
+
+	'proper pluralization for points'() {
+		const expectedRender = v('li', { classes: hackerNewsStory.classes(css.story) }, [
+			v('div', {}, [
+				v(
+					'a',
+					{ href: 'http://www.website.com', classes: hackerNewsStory.classes(css.title) },
+					[ defaultItem.title ]
+				),
+				v('span', { classes: hackerNewsStory.classes(css.domain) }, [ ' (website.com)' ])
+			]),
+			v('div', { classes: hackerNewsStory.classes(css.info) }, [
+				'1 point by ',
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
+				`1 second ago | `,
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
+			])
+		]);
+
+		hackerNewsStory.setProperties(makeItem({ score: 1 }));
+		hackerNewsStory.expectRender(expectedRender)
+	},
+
+	'with no title'() {
+		const expectedRender = v('li', { classes: hackerNewsStory.classes(css.story) }, [
+			v('div', {}, [
+				v(
+					'a',
+					{ href: 'http://www.website.com', classes: hackerNewsStory.classes(css.title) },
+					[ `Couldn't retrieve title` ]
+				),
+				v('span', { classes: hackerNewsStory.classes(css.domain) }, [ ' (website.com)' ])
+			]),
+			v('div', { classes: hackerNewsStory.classes(css.info) }, [
+				'10 points by ',
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
+				`1 second ago | `,
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
+			])
+		]);
+
+		hackerNewsStory.setProperties(makeItem({ title: '' }));
+		hackerNewsStory.expectRender(expectedRender);
 	}
 });
 
