@@ -51,8 +51,8 @@ export default class HackerNewsStory extends HackerNewsStoryBase<HackerNewsStory
 			]),
 			v('div', { classes: this.classes(css.info) }, [
 				`${pointText} by `,
-				v('span', { classes: this.classes(css.infoLink) }, [ `${authorText} ` ]),
-				`${timeText} | `,
+				v('span', { classes: this.classes(css.infoLink) }, [ `${authorText}` ]),
+				` ${timeText} | `,
 				v('span', { classes: this.classes(css.infoLink) }, [ 'discuss' ])
 			])
 		]);

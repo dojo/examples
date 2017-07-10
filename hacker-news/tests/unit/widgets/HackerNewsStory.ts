@@ -27,8 +27,7 @@ const defaultItem: Item  = {
 	title: 'Important News',
 	url: 'http://www.website.com',
 
-	order: 0,
-	updated: 0
+	order: 0
 };
 
 function makeItem(customProperties: Partial<Item> = {}) {
@@ -61,8 +60,8 @@ registerSuite({
 				]),
 				v('div', { classes: hackerNewsStory.classes(css.info) }, [
 					'10 points by ',
-					v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
-					`${timeText} ago | `,
+					v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author' ]),
+					` ${timeText} ago | `,
 					v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
 				])
 			]);
@@ -119,8 +118,8 @@ registerSuite({
 			]),
 			v('div', { classes: hackerNewsStory.classes(css.info) }, [
 				'10 points by ',
-				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
-				`1 second ago | `,
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author' ]),
+				` 1 second ago | `,
 				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
 			])
 		]);
@@ -144,8 +143,8 @@ registerSuite({
 			]),
 			v('div', { classes: hackerNewsStory.classes(css.info) }, [
 				'1 point by ',
-				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
-				`1 second ago | `,
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author' ]),
+				` 1 second ago | `,
 				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
 			])
 		]);
@@ -166,8 +165,8 @@ registerSuite({
 			]),
 			v('div', { classes: hackerNewsStory.classes(css.info) }, [
 				'10 points by ',
-				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author ' ]),
-				`1 second ago | `,
+				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'The Author' ]),
+				` 1 second ago | `,
 				v('span', { classes: hackerNewsStory.classes(css.infoLink) }, [ 'discuss' ])
 			])
 		]);

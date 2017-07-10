@@ -29,15 +29,14 @@ registerSuite({
 			view: 'new' as story_type,
 			pages: 10,
 			pageSize: 10,
-			stories: [ 1, 2, 3].map((id) => ({
+			stories: [ '1', '2', '3'].map((id) => ({
 				id,
 				by: 'The Author',
 				score: 10,
 				title: 'Important News',
 				url: 'http://www.website.com',
 
-				order: 0,
-				updated: 0
+				order: 0
 			}))
 		};
 		const { page, pages, view, pageSize } = properties;
@@ -51,7 +50,7 @@ registerSuite({
 				{ start: 1 + (properties.pageSize * (page - 1)), classes: hackerNewsStoryPage.classes(css.list) },
 				properties.stories.map((story) => w<HackerNewsStory>(HackerNewsStory, { ...story, key: String(story.order) }))
 			)
-		]);
+		]));
 	}
 });
 

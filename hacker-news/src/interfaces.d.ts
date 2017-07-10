@@ -25,5 +25,4 @@ export interface Item {
 
 	// Local data
 	order: number;
-	updated: number;
 }
