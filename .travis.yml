@@ -8,6 +8,7 @@ env:
   - PROJECT_DIR=todo-mvc-kitchensink
   - PROJECT_DIR=todo-mvc-tsx
   - PROJECT_DIR=dojo-cli-example
+  - PROJECT_DIR=hacker-news
   - PROJECT_DIR=auto-deploy
   global:
   - SAUCE_USERNAME=dojo2-ts-ci
