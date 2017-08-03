@@ -1,31 +1,31 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
-import { tsx, fromRegistry } from '@dojo/widget-core/tsx';
-import { TodoFilterProperties } from './TodoFilter';
+import { tsx } from '@dojo/widget-core/tsx';
 
+import { TodoFilter } from './TodoFilter';
 import * as css from './styles/todoFooter.css';
 
 export interface TodoFooterProperties extends WidgetProperties {
 	activeCount: number;
-	clearCompleted: Function;
-	activeFilter: 'all' | 'active' | 'completed';
-	completedItems: boolean;
+	filter: string;
+	todoCount: number;
+	clearCompleted: () => void;
 }
 
 export const TodoHeaderBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
+export class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 
 	clearCompleted() {
 		this.properties.clearCompleted();
 	}
 
 	render() {
-		const { activeFilter, activeCount, completedItems } = this.properties;
+		const { filter, activeCount, todoCount } = this.properties;
+		const completedItems = (todoCount - activeCount) > 0;
 		const countLabel = activeCount === 1 ? 'item' : 'items';
-		const TodoFilter = fromRegistry<TodoFilterProperties>('todo-filter');
 
 		return (
 			<footer classes={this.classes(css.footer)}>
@@ -33,11 +33,15 @@ export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 					<strong>{`${activeCount} `}</strong>
 					<span>{`${countLabel} left`}</span>
 				</span>
-				<TodoFilter activeFilter={activeFilter} />
+				<TodoFilter filter={filter} />
 				{ completedItems ? (
-					<button onclick={this.clearCompleted} innerHTML='Clear completed' classes={this.classes(css.clearCompleted)} />
+					<button onclick={this.clearCompleted} classes={this.classes(css.clearCompleted)}>
+						Clear completed
+					</button>
 				) : (null) }
 			</footer>
 		);
 	}
 }
+
+export default TodoFooter;

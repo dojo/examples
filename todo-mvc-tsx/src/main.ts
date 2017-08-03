@@ -1,23 +1,36 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import Route from '@dojo/routing/Route';
-import TodoApp from './widgets/TodoApp';
-import router from './routes';
+import { registry } from '@dojo/widget-core/d';
+import { BaseInjector, Injector } from '@dojo/widget-core/Injector';
+import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 
-const root = document.querySelector('my-app') || undefined;
+import { TodoAppContainer } from './containers/TodoAppContainer';
+import createStore from './store/store';
+import { todoReducer } from './reducers';
 
-const Projector = ProjectorMixin(TodoApp);
-const projector = new Projector();
+const defaultState = {
+	todos: [],
+	currentTodo: '',
+	activeCount: 0,
+	completedCount: 0
+};
 
-// TODO find a better place for this
-const filterRoute = new Route<any, any>({
-	path: '/{filter}',
+const store = createStore(defaultState);
+store.registerReducers(todoReducer);
+registry.define('application-state', Injector(BaseInjector, store));
 
-	exec(request) {
-		const { filter } = request.params;
-		projector.setProperties({ filter });
+const config = [
+	{
+		path: '{filter}',
+		outlet: 'filter',
+		defaultParams: {
+			filter: 'all'
+		},
+		defaultRoute: true
 	}
-});
-router.append(filterRoute);
+];
 
-projector.append(root);
+const router = registerRouterInjector(config);
+const Projector = ProjectorMixin(TodoAppContainer);
+const projector = new Projector();
+projector.append();
 router.start();

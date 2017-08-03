@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { Todo } from './TodoApp';
 import { tsx } from '@dojo/widget-core/tsx';
@@ -8,42 +8,55 @@ import * as css from './styles/todoItem.css';
 
 export interface TodoItemProperties extends WidgetProperties {
 	todo: Todo;
-	editTodo: Function;
-	toggleTodo: Function;
-	removeTodo: Function;
-	updateTodo: Function;
+	toggleTodo: (id: string) => void;
+	removeTodo: (id: string) => void;
+	editTodo: (id: string) => void;
 }
 
 export const TodoItemBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoItem extends TodoItemBase<TodoItemProperties> {
+export class TodoItem extends TodoItemBase<TodoItemProperties> {
 
-	render() {
+	private _toggleTodo() {
+		this.properties.toggleTodo(this.properties.todo.id);
+	}
+
+	private _editTodo() {
+		this.properties.editTodo(this.properties.todo.id);
+	}
+
+	private _removeTodo() {
+		this.properties.removeTodo(this.properties.todo.id);
+	}
+
+	protected render(): DNode {
 		const { properties: { todo } } = this;
+		const todoItemClasses = this.classes(
+			css.todoItem,
+			Boolean(todo.editing) ? css.editing : null,
+			Boolean(todo.completed && !todo.editing) ? css.completed : null
+		);
 
 		return (
-			<li id='todo-item' classes={this.classes(css.todoItem, Boolean(todo.editing) ? css.editing : null, Boolean(todo.completed && !todo.editing) ? css.completed : null)}>
+			<li id='todo-item' classes={todoItemClasses}>
 				<div classes={this.classes(css.view)}>
 					<input
 						id='toggle'
 						classes={this.classes(css.toggle)}
 						type='checkbox'
 						checked={todo.completed}
-						onchange={this.toggleTodo}
+						onchange={this._toggleTodo}
 					/>
 					<label
 						classes={this.classes(css.todoLabel)}
 						innerHTML={todo.label}
-						ondblclick={this.editTodo}
+						ondblclick={this._editTodo}
 					/>
-					<button id='destroy' onclick={this.removeTodo} classes={this.classes(css.destroy)}/>
+					<button id='destroy' onclick={this._removeTodo} classes={this.classes(css.destroy)}/>
 				</div>
 				{todo.editing ? (
 					<input
-						afterCreate={this.afterCreate}
-						onkeyup={this.updateTodo}
-						onblur={this.updateTodo}
 						value={todo.label}
 						classes={this.classes(css.edit)}
 					/>
@@ -51,32 +64,6 @@ export default class TodoItem extends TodoItemBase<TodoItemProperties> {
 			</li>
 		);
 	}
-
-	private toggleTodo() {
-		this.properties.toggleTodo(this.properties.key);
-	}
-
-	private editTodo() {
-		this.properties.editTodo(this.properties.key);
-	}
-
-	private updateTodo({ which, target: { value: label } }: any) {
-		const { properties: { todo, key } } = this;
-		const editing = false;
-
-		if (which === 13 || (!which && todo.editing)) {
-			label ? this.properties.updateTodo({ label, editing }, key) : this.removeTodo();
-		}
-		else if (which === 27) {
-			this.properties.updateTodo({ editing }, key);
-		}
-	}
-
-	private removeTodo() {
-		this.properties.removeTodo(this.properties.key);
-	}
-
-	private afterCreate(element: HTMLInputElement) {
-		setTimeout(() => element.focus(), 0);
-	}
 }
+
+export default TodoItem;
