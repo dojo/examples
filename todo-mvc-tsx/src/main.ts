@@ -1,3 +1,4 @@
+import global from '@dojo/shim/global';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registry } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
@@ -15,7 +16,7 @@ const defaultState = {
 	completedCount: 0
 };
 
-const store = createStore(todoReducer, defaultState);
+const store = createStore(todoReducer, defaultState, global.__REDUX_DEVTOOLS_EXTENSION__ && global.__REDUX_DEVTOOLS_EXTENSION__());
 
 export class ReduxInjector extends WidgetBase {
 
