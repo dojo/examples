@@ -1,7 +1,7 @@
 import uuid from '@dojo/core/uuid';
 import { Container } from '@dojo/widget-core/Container';
 import { TodoApp } from './../widgets/TodoApp';
-import { Store } from './../store/store';
+import { Store } from 'redux';
 
 function getProperties(store: Store<any>, properties: any) {
 	const state = store.getState();

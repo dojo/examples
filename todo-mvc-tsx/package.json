@@ -30,6 +30,7 @@
     "@dojo/i18n": "next",
     "@dojo/routing": "next",
     "@dojo/shim": "next",
-    "@dojo/widget-core": "next"
+    "@dojo/widget-core": "next",
+    "redux": "^3.7.2"
   }
 }

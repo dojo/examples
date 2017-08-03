@@ -1,6 +1,6 @@
-import { Action } from './../store/store';
+import { AnyAction } from 'redux';
 
-export function todoReducer(state: any = {}, { type, payload }: Action): any {
+export function todoReducer(state: any = {}, { type, payload }: AnyAction): any {
 	let { currentTodo, activeCount, completedCount } = state;
 	let todos;
 	switch (type) {

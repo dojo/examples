@@ -1,10 +1,11 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registry } from '@dojo/widget-core/d';
-import { BaseInjector, Injector } from '@dojo/widget-core/Injector';
+import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { Injector } from '@dojo/widget-core/Injector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 
 import { TodoAppContainer } from './containers/TodoAppContainer';
-import createStore from './store/store';
+import { createStore, Store } from 'redux';
 import { todoReducer } from './reducers';
 
 const defaultState = {
@@ -14,9 +15,24 @@ const defaultState = {
 	completedCount: 0
 };
 
-const store = createStore(defaultState);
-store.registerReducers(todoReducer);
-registry.define('application-state', Injector(BaseInjector, store));
+const store = createStore(todoReducer, defaultState);
+
+export class ReduxInjector extends WidgetBase {
+
+	protected store: Store<any>;
+
+	constructor(store: Store<any>) {
+		super();
+		this.store = store;
+		this.store.subscribe(this.invalidate.bind(this));
+	}
+
+	public toInject(): Store<any> {
+		return this.store;
+	}
+}
+
+registry.define('application-state', Injector(<any> ReduxInjector, <any> store));
 
 const config = [
 	{
