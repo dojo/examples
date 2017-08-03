@@ -11,6 +11,7 @@ export interface TodoItemProperties extends WidgetProperties {
 	toggleTodo: (id: string) => void;
 	removeTodo: (id: string) => void;
 	editTodo: (id: string) => void;
+	saveTodo: (id: string, label: string) => void;
 }
 
 export const TodoItemBase = ThemeableMixin(WidgetBase);
@@ -28,6 +29,24 @@ export class TodoItem extends TodoItemBase<TodoItemProperties> {
 
 	private _removeTodo() {
 		this.properties.removeTodo(this.properties.todo.id);
+	}
+
+	private _saveTodo({ which, target: { value: label } }: any) {
+		const { todo } = this.properties;
+
+		if (which === 13 || which === 27) {
+			this._saveOnLeave({ which, target: { value: label } });
+		}
+	}
+
+	private _saveOnLeave({ which, target: { value: label } }: any) {
+		const { todo } = this.properties;
+		if (label.trim()) {
+				this.properties.saveTodo(todo.id, label);
+		}
+		else {
+			this._removeTodo();
+		}
 	}
 
 	protected render(): DNode {
@@ -59,6 +78,8 @@ export class TodoItem extends TodoItemBase<TodoItemProperties> {
 					<input
 						value={todo.label}
 						classes={this.classes(css.edit)}
+						onblur={this._saveOnLeave}
+						onkeyup={this._saveTodo}
 					/>
 				) : (null)}
 			</li>

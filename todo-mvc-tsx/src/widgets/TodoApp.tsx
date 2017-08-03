@@ -23,6 +23,7 @@ export interface TodoAppProperties extends WidgetProperties {
 	completedCount: number;
 	addTodo: () => void;
 	editTodo: (id: string) => void;
+	saveTodo: (id: string, label: string) => void;
 	todoInput: (id: string) => void;
 	removeTodo: (id: string) => void;
 	toggleTodo: (id: string) => void;
@@ -36,7 +37,7 @@ export const TodoAppBase = ThemeableMixin(WidgetBase);
 export class TodoApp extends TodoAppBase<TodoAppProperties> {
 
 	protected render(): DNode {
-		const { activeCount, todos, currentTodo, completedCount, addTodo, editTodo, todoInput, removeTodo, toggleTodo, toggleTodos, clearCompleted } = this.properties;
+		const { activeCount, todos, currentTodo, completedCount, addTodo, editTodo, todoInput, removeTodo, toggleTodo, toggleTodos, clearCompleted, saveTodo } = this.properties;
 		const todoCount = todos.length;
 
 		return (
@@ -55,6 +56,7 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 						editTodo={editTodo}
 						removeTodo={removeTodo}
 						toggleTodo={toggleTodo}
+						saveTodo={saveTodo}
 					/>
 				</section>
 				{ todoCount ? (

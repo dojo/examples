@@ -41,7 +41,7 @@ export function todoReducer(state: any = {}, { type, payload }: Action): any {
 				}
 				return true;
 			});
-			return { ...state, todos, completedCount: Math.max(completedCount, 0), activeCount: Math.max(activeCount, 0) };
+			return { ...state, todos, completedCount, activeCount };
 		case 'TOGGLE_TODOS':
 			const todosCompleted = activeCount !== 0;
 			todos = state.todos.map((todo: any) => {
@@ -67,6 +67,14 @@ export function todoReducer(state: any = {}, { type, payload }: Action): any {
 			todos = state.todos.map((todo: any) => {
 				if (todo.id === payload.id) {
 					return { ...todo, editing: true};
+				}
+				return todo;
+			});
+			return { ...state, todos };
+		case 'SAVE_TODO':
+			todos = state.todos.map((todo: any) => {
+				if (todo.id === payload.id) {
+					return { ...todo, editing: false, label: payload.label };
 				}
 				return todo;
 			});

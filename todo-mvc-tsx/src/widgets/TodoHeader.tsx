@@ -48,7 +48,7 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 					todos
 				</h1>
 				<input
-					id='new-todo'
+					key='todo-input'
 					classes={this.classes(css.newTodo)}
 					onkeyup={this._addTodo}
 					oninput={this._todoInput}

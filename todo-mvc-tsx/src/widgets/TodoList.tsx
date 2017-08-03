@@ -13,7 +13,7 @@ export interface TodoListProperties extends WidgetProperties {
 	toggleTodo: (id: string) => void;
 	removeTodo: (id: string) => void;
 	editTodo: (id: string) => void;
-
+	saveTodo: (id: string, label: string) => void;
 }
 
 export const TodoListBase = ThemeableMixin(WidgetBase);
@@ -27,13 +27,14 @@ function filterTodos(todos: Todo[], filter: string): Todo[] {
 @theme(css)
 export class TodoList extends TodoListBase<TodoListProperties> {
 	protected render(): DNode {
-		const { filter, todos, toggleTodo, removeTodo, editTodo } = this.properties;
+		const { filter, todos, toggleTodo, removeTodo, saveTodo, editTodo } = this.properties;
 		const items = filterTodos(todos, filter).map((todo) => (
 			<TodoItem
 				key={todo.id}
 				todo={todo}
 				toggleTodo={toggleTodo}
 				editTodo={editTodo}
+				saveTodo={saveTodo}
 				removeTodo={removeTodo}
 			/>
 		));

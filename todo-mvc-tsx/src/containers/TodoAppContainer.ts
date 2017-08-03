@@ -34,6 +34,10 @@ function getProperties(store: Store<any>, properties: any) {
 		store.dispatch({ type: 'EDIT_TODO', payload: { id }});
 	}
 
+	function saveTodo(id: string, label: string) {
+		store.dispatch({ type: 'SAVE_TODO', payload: { id, label }});
+	}
+
 	return {
 		addTodo,
 		todoInput,
@@ -42,10 +46,11 @@ function getProperties(store: Store<any>, properties: any) {
 		toggleTodos,
 		clearCompleted,
 		editTodo,
+		saveTodo,
 		currentTodo: state.currentTodo,
 		completedCount: state.completedCount,
 		activeCount: state.activeCount,
-		todos: state.todos || []
+		todos: state.todos
 	};
 }
 
