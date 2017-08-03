@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { tsx } from '@dojo/widget-core/tsx';
 
@@ -22,7 +22,7 @@ export class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 		this.properties.clearCompleted();
 	}
 
-	render() {
+	protected render(): DNode {
 		const { filter, activeCount, todoCount } = this.properties;
 		const completedItems = (todoCount - activeCount) > 0;
 		const countLabel = activeCount === 1 ? 'item' : 'items';

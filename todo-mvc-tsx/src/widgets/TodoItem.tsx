@@ -76,6 +76,7 @@ export class TodoItem extends TodoItemBase<TodoItemProperties> {
 				</div>
 				{todo.editing ? (
 					<input
+						key='edit-input'
 						value={todo.label}
 						classes={this.classes(css.edit)}
 						onblur={this._saveOnLeave}

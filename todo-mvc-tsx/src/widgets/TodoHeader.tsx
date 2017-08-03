@@ -39,7 +39,7 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		}
 	}
 
-	render() {
+	protected render(): DNode {
 		const { properties: { todo, allCompleted } } = this;
 
 		return (
