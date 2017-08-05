@@ -1,6 +1,6 @@
-# Dojo2 TodoMVC Example
+# Dojo2 TodoMVC with tsx and redux
 
-A reference implementation of [TodoMVC](http://todomvc.com/) built with current pre-release versions of Dojo 2 packages.
+A reference implementation of [TodoMVC](http://todomvc.com/) built with latest pre-release versions of Dojo 2 packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -46,9 +46,10 @@ This package demonstrates how to build a simple application using Dojo 2 widgets
 
 It is an example of:
 
-* Custom widgets using `@dojo/widget-core`
+* Integrated with [Redux](https://github.com/reactjs/redux) library for application state management.
 * Using the optional `tsx` syntax
-* Applying CSS to widgets 
+* Custom widgets using `@dojo/widget-core`
+* Applying CSS to widgets
 * Using `@dojo/router`
 
 ## How do I contribute?
