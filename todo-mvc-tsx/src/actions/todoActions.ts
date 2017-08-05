@@ -28,6 +28,6 @@ export function editTodo(id: string) {
 	return { type: 'EDIT_TODO', payload: { id }};
 }
 
-export function saveTodo(id: string, label: string) {
+export function saveTodo(id: string, label?: string) {
 	return { type: 'SAVE_TODO', payload: { id, label }};
 }

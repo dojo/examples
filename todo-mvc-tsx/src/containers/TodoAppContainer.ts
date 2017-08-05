@@ -23,7 +23,7 @@ function getProperties(store: Store<any>, properties: any) {
 		toggleTodos: () => store.dispatch(toggleTodos()),
 		clearCompleted: () => store.dispatch(clearCompleted()),
 		editTodo: (id: string) => store.dispatch(editTodo(id)),
-		saveTodo: (id: string, label: string) => store.dispatch(saveTodo(id, label)),
+		saveTodo: (id: string, label?: string) => store.dispatch(saveTodo(id, label)),
 		currentTodo: state.currentTodo,
 		completedCount: state.completedCount,
 		activeCount: state.activeCount,

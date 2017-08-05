@@ -13,7 +13,7 @@ export interface TodoListProperties extends WidgetProperties {
 	toggleTodo: (id: string) => void;
 	removeTodo: (id: string) => void;
 	editTodo: (id: string) => void;
-	saveTodo: (id: string, label: string) => void;
+	saveTodo: (id: string, label?: string) => void;
 }
 
 export const TodoListBase = ThemeableMixin(WidgetBase);
@@ -40,7 +40,7 @@ export class TodoList extends TodoListBase<TodoListProperties> {
 		));
 
 		return (
-			<ul id='todo-list' classes={this.classes(css.todoList)}>
+			<ul classes={this.classes(css.todoList)}>
 				{items}
 			</ul>
 		);

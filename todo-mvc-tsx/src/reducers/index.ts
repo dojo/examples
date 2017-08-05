@@ -74,7 +74,7 @@ export function todoReducer(state: any = {}, { type, payload }: AnyAction): any 
 		case 'SAVE_TODO':
 			todos = state.todos.map((todo: any) => {
 				if (todo.id === payload.id) {
-					return { ...todo, editing: false, label: payload.label };
+					return { ...todo, editing: false, label: payload.label || todo.label };
 				}
 				return todo;
 			});
