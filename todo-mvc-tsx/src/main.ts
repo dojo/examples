@@ -1,23 +1,52 @@
+import global from '@dojo/shim/global';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import Route from '@dojo/routing/Route';
-import TodoApp from './widgets/TodoApp';
-import router from './routes';
+import { registry } from '@dojo/widget-core/d';
+import { Injector, Base as BaseInjector } from '@dojo/widget-core/Injector';
+import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 
-const root = document.querySelector('my-app') || undefined;
+import { TodoAppContainer } from './containers/TodoAppContainer';
+import { createStore, Store } from 'redux';
+import { todoReducer } from './reducers';
 
-const Projector = ProjectorMixin(TodoApp);
-const projector = new Projector();
+const defaultState = {
+	todos: [],
+	currentTodo: '',
+	activeCount: 0,
+	completedCount: 0
+};
 
-// TODO find a better place for this
-const filterRoute = new Route<any, any>({
-	path: '/{filter}',
+const store = createStore(todoReducer, defaultState, global.__REDUX_DEVTOOLS_EXTENSION__ && global.__REDUX_DEVTOOLS_EXTENSION__());
 
-	exec(request) {
-		const { filter } = request.params;
-		projector.setProperties({ filter });
+export class ReduxInjector extends BaseInjector<Store<any>> {
+
+	protected store: Store<any>;
+
+	constructor(store: Store<any>) {
+		super();
+		this.store = store;
+		this.store.subscribe(this.invalidate.bind(this));
 	}
-});
-router.append(filterRoute);
 
-projector.append(root);
+	public toInject(): Store<any> {
+		return this.store;
+	}
+}
+
+registry.define('application-state', Injector(ReduxInjector, store));
+
+const config = [
+	{
+		path: '{filter}',
+		outlet: 'filter',
+		defaultParams: {
+			filter: 'all'
+		},
+		defaultRoute: true
+	}
+];
+
+const router = registerRouterInjector(config);
+const Projector = ProjectorMixin(TodoAppContainer);
+const projector = new Projector();
+projector.append();
 router.start();
