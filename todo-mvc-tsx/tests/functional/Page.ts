@@ -42,7 +42,7 @@ class Selectors {
 	}
 
 	getListItem(index: number | undefined, suffix?: string, excludeParentSelector?: boolean): string {
-		suffix = (index === undefined ? '' : ':nth-of-type(' + (index + 1) + ')') + (suffix || '');
+		suffix = (index === undefined ? '' : ':nth-of-view(' + (index + 1) + ')') + (suffix || '');
 		return excludeParentSelector ? 'li' + suffix : this.getList(' li' + suffix);
 	}
 
@@ -55,7 +55,7 @@ class Selectors {
 	}
 
 	getLastListItemLabel(index: number) {
-		return this.getListItem(index, ':last-of-type label');
+		return this.getListItem(index, ':last-of-view label');
 	}
 
 	getListItemInput(index: number) {

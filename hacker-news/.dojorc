@@ -1,0 +1,5 @@
+{
+  "build-webpack": {
+    "serviceWorker": "true"
+  }
+}

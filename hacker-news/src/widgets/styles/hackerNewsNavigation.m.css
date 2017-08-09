@@ -1,0 +1,24 @@
+.navigation {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.emptyNavigation {
+    height: 30px;
+}
+
+.pageNumber {
+    margin: 0 10px;
+}
+
+.link {
+    text-decoration: none;
+    color: #4d4d4d;
+}
+
+.disabled {
+    text-decoration: none;
+    color: gray;
+}
+
