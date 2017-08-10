@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, TypedTargetEvent, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { v } from '@dojo/widget-core/d';
 
@@ -7,51 +7,56 @@ import * as css from './styles/todoHeader.css';
 
 export interface TodoHeaderProperties extends WidgetProperties {
 	allCompleted: boolean;
-	addTodo: Function;
-	toggleAllTodos: Function;
-	updateTodo: Function;
-	value: string;
+	todo: string;
+	todoCount: number;
+	toggleTodos: () => void;
+	addTodo: () => void;
+	todoInput: (todo: string) => void;
 }
 
 export const TodoHeaderBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
+export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
-	render() {
-		const { properties: { value, allCompleted } } = this;
-		const newTodoProperties: any = {
-			id: 'new-todo',
-			afterCreate: this.afterCreate,
+	private _toggleAllTodos(): void {
+		this.properties.toggleTodos();
+	}
+
+	private _addTodo(event: KeyboardEvent): void {
+		if (event.which === 13) {
+			this.properties.addTodo();
+		}
+	}
+
+	private _todoInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
+		this.properties.todoInput(value);
+	}
+
+	protected onElementCreated(element: HTMLElement, key: string): void {
+		if (key === 'todo-input') {
+			element.focus();
+		}
+	}
+
+	protected render(): DNode {
+		const { properties: { todo, allCompleted } } = this;
+
+		const newTodoProperties = {
+			key: 'todo-input',
 			classes: this.classes(css.newTodo),
-			onkeyup: this.addTodo,
-			oninput: this.updateTodo,
-			value,
+			onkeyup: this._addTodo,
+			oninput: this._todoInput,
+			value: todo,
 			placeholder: 'What needs to be done?'
 		};
 
 		return v('header', [
 			v('h1', { classes: this.classes(css.title) }, [ 'todos' ]),
 			v('input', newTodoProperties),
-			v('input', { onchange: this.toggleAllTodos, checked: allCompleted, type: 'checkbox', classes: this.classes(css.toggleAll) })
+			v('input', { onchange: this._toggleAllTodos, checked: allCompleted, type: 'checkbox', classes: this.classes(css.toggleAll) })
 		]);
 	}
-
-	private addTodo({ which, target: { value: label } }: any) {
-		if (which === 13 && label) {
-			this.properties.addTodo({ label, completed: false });
-		}
-	}
-
-	private updateTodo({ target: { value } }: any) {
-		this.properties.updateTodo(value);
-	}
-
-	private toggleAllTodos() {
-		this.properties.toggleAllTodos();
-	}
-
-	private afterCreate(element: HTMLInputElement) {
-		setTimeout(() => element.focus(), 0);
-	}
 }
+
+export default TodoHeader;
