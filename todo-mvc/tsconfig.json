@@ -3,6 +3,7 @@
 		"declaration": false,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
+		"importHelpers": true,
 		"module": "umd",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
@@ -20,6 +21,10 @@
 			"es2015.promise",
 			"es2015.symbol",
 			"es2015.symbol.wellknown"
+		],
+		"typeRoots": [
+			"./node_modules/@types",
+			"./node_modules/intern/types"
 		]
 	},
 	"include": [
