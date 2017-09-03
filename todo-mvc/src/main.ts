@@ -28,7 +28,7 @@ const Projector = ProjectorMixin(TodoApp);
 const projector = new Projector();
 
 const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter', defaultParams: { filter: 'all' }, defaultRoute: true }], registry);
-projector.__setProperties__({ registry });
+projector.setProperties({ registry });
 
 projector.append(root);
 router.start();
