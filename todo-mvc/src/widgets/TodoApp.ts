@@ -4,26 +4,12 @@ import { assign } from '@dojo/core/lang';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { w, v } from '@dojo/widget-core/d';
-import { registry } from '@dojo/widget-core/d';
-import { Outlet } from '@dojo/routing/Outlet';
 
 import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
-import TodoItem from './TodoItem';
 import TodoFooter from './TodoFooter';
-import TodoFilter from './TodoFilter';
 
 import * as css from './styles/todoApp.css';
-
-function mapFilterRouteParam({ params }: any) {
-	return { activeFilter: params.filter };
-}
-
-registry.define('todo-header', TodoHeader);
-registry.define('todo-list', Outlet(TodoList, 'filter', mapFilterRouteParam));
-registry.define('todo-item', TodoItem);
-registry.define('todo-footer', TodoFooter);
-registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
 
 export interface Todo {
 	id: string;
