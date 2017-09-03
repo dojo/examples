@@ -1,6 +1,8 @@
 import { Evented } from '@dojo/core/Evented';
 import uuid from '@dojo/core/uuid';
+import { switchLocale } from '@dojo/i18n/i18n';
 
+import pirateThemeStyles from './themes/pirate';
 export interface Todo {
 	id: string;
 	label: string;
@@ -27,6 +29,13 @@ export class TodoAppContext extends Evented {
 	private _currentSearch = '';
 
 	private _editedTodo: Todo | undefined;
+
+	private _themeContext: any;
+
+	public constructor(themeContext: any) {
+		super();
+		this._themeContext = themeContext;
+	}
 
 	public get todos(): Todo[] {
 		return Object.keys(this._todos).map((key) => {
@@ -154,6 +163,17 @@ export class TodoAppContext extends Evented {
 		this._todoCount = Object.keys(this._todos).length;
 		this._completed = false;
 		this._invalidate();
+	}
+
+	public changeTheme(wantsPirate: boolean) {
+		if (wantsPirate) {
+			switchLocale('en-PR');
+			this._themeContext.set(pirateThemeStyles);
+		}
+		else {
+			switchLocale('en');
+			this._themeContext.set(undefined);
+		}
 	}
 
 	private _toggleAllTodos() {
