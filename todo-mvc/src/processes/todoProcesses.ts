@@ -1,15 +1,10 @@
 import { find, findIndex } from '@dojo/shim/array';
 import { add, replace, remove } from 'le-store/state/operations';
-import { createClient } from 'service-mocker/client';
 import {
 	CommandRequest,
 	successResponse,
 	failureResponse
 } from 'le-store/command';
-
-// Load service worker for demo purposes
-const scriptURL = require('sw-loader!../util/server');
-const { ready } = createClient(scriptURL);
 
 function byId(id: string) {
 	return (todo: any) => id === todo.id;
@@ -92,8 +87,7 @@ function postTodoCommand({ get, payload }: CommandRequest) {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' }
 	};
-	return ready
-		.then(() => fetch('/todo', fetchOptions))
+	return fetch('/todo', fetchOptions)
 		.then(throwIfNotOk)
 		.then((response: Response) => response.json())
 		.then((data: any) => {
@@ -106,8 +100,7 @@ function postTodoCommand({ get, payload }: CommandRequest) {
 }
 
 function getTodosCommand() {
-	return ready
-		.then(() => fetch('/todos'))
+	return fetch('/todos')
 		.then((response: Response) => response.json())
 		.then((data: any) => {
 			return data.map(({ uuid, label, completed }: any) => {
@@ -120,13 +113,12 @@ function getTodosCommand() {
 }
 
 function deleteTodoCommand({ get, payload: [ id ] }: CommandRequest) {
+	const todo = find(get('/todos'), byId(id))
 	const fetchOptions = {
 		method: 'DELETE',
 		headers: { 'Content-Type': 'text/plain' }
 	};
-	return ready
-		.then(() => find(get('/todos'), byId(id)))
-		.then((todo: any) => fetch(`/todo/${todo.id}`, fetchOptions))
+	return fetch(`/todo/${todo.id}`, fetchOptions)
 		.then(throwIfNotOk)
 		.then(() => {
 			const index = findIndex(get('/todos'), byId(id));

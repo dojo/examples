@@ -8,6 +8,7 @@ import { getTodosProcess } from './processes/todoProcesses';
 import { successResponse } from 'le-store/command';
 import { add } from 'le-store/state/operations';
 
+import { createClient } from 'service-mocker/client';
 import { TodoHeader } from './widgets/TodoHeader';
 import { TodoListOutlet } from './outlets/TodoListOutlet';
 import { TodoItem } from './widgets/TodoItem';
@@ -36,19 +37,26 @@ function initialState() {
 	], { undoable: false });
 }
 
-const store = new Store([ initialState ], getTodosProcess);
-const registry = new WidgetRegistry();
+// load service worker
+const scriptURL = require('sw-loader!./util/server');
+const { ready } = createClient(scriptURL);
+ready.then(() => {
+	const store = new Store([ initialState ], getTodosProcess);
+	const registry = new WidgetRegistry();
 
-registry.define('todo-header', TodoHeader);
-registry.define('todo-list', TodoListOutlet);
-registry.define('todo-item', TodoItem);
-registry.define('todo-footer', TodoFooterOutlet);
-registry.define('todo-filter', TodoFilter);
-registry.define('application-state', Injector(BaseInjector, store));
+	registry.define('todo-header', TodoHeader);
+	registry.define('todo-list', TodoListOutlet);
+	registry.define('todo-item', TodoItem);
+	registry.define('todo-footer', TodoFooterOutlet);
+	registry.define('todo-filter', TodoFilter);
+	registry.define('application-state', Injector(BaseInjector, store));
 
-const router = registerRouterInjector(config, registry);
-const Projector = ProjectorMixin(TodoAppContainer);
-const projector = new Projector();
-projector.setProperties({ defaultRegistry: registry } as any);
-projector.append(root);
-router.start();
+	const router = registerRouterInjector(config, registry);
+	const Projector = ProjectorMixin(TodoAppContainer);
+	const projector = new Projector();
+	// default registry as there is an issue promoting registries
+	// when using containers.
+	projector.setProperties({ defaultRegistry: registry } as any);
+	projector.append(root);
+	router.start();
+});
