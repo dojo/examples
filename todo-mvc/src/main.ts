@@ -1,31 +1,20 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import TodoApp from './widgets/TodoApp';
-import { Outlet } from '@dojo/routing/Outlet';
 import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { BaseInjector, Injector } from '@dojo/widget-core/Injector';
+import { TodoAppContainer } from './containers/TodoAppContainer';
+import { Store } from 'le-store/store';
+import { getTodosProcess } from './processes/todoProcesses';
+import { successResponse } from 'le-store/command';
+import { add } from 'le-store/state/operations';
 
-import TodoHeader from './widgets/TodoHeader';
-import TodoList from './widgets/TodoList';
-import TodoItem from './widgets/TodoItem';
-import TodoFooter from './widgets/TodoFooter';
-import TodoFilter from './widgets/TodoFilter';
-
-const registry = new WidgetRegistry();
-
-function mapFilterRouteParam({ params }: any) {
-	return { activeFilter: params.filter };
-}
-
-registry.define('todo-header', TodoHeader);
-registry.define('todo-list', Outlet(TodoList, 'filter', mapFilterRouteParam));
-registry.define('todo-item', TodoItem);
-registry.define('todo-footer', TodoFooter);
-registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
+import { TodoHeader } from './widgets/TodoHeader';
+import { TodoListOutlet } from './outlets/TodoListOutlet';
+import { TodoItem } from './widgets/TodoItem';
+import { TodoFooterOutlet } from './outlets/TodoFooterOutlet';
+import { TodoFilter } from './widgets/TodoFilter';
 
 const root = document.querySelector('my-app') || undefined;
-
-const Projector = ProjectorMixin(TodoApp);
-const projector = new Projector();
 
 const config = [
 	{
@@ -38,8 +27,28 @@ const config = [
 	}
 ];
 
-const router = registerRouterInjector(config, registry);
-projector.setProperties({ registry });
+function initialState() {
+	return successResponse([
+		add('/todos', []),
+		add('/currentTodo', ''),
+		add('/activeCount', 0),
+		add('/completedCount', 0)
+	], { undoable: false });
+}
 
+const store = new Store([ initialState ], getTodosProcess);
+const registry = new WidgetRegistry();
+
+registry.define('todo-header', TodoHeader);
+registry.define('todo-list', TodoListOutlet);
+registry.define('todo-item', TodoItem);
+registry.define('todo-footer', TodoFooterOutlet);
+registry.define('todo-filter', TodoFilter);
+registry.define('application-state', Injector(BaseInjector, store));
+
+const router = registerRouterInjector(config, registry);
+const Projector = ProjectorMixin(TodoAppContainer);
+const projector = new Projector();
+projector.setProperties({ defaultRegistry: registry } as any);
 projector.append(root);
 router.start();

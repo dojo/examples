@@ -25,7 +25,8 @@
     "@types/node": "^6.0.46",
     "chai": "^3.5.0",
     "intern": "~3.4.1",
-    "typescript": "~2.4.1"
+    "sw-loader": "^0.1.1",
+    "typescript": "~2.5.2"
   },
   "dependencies": {
     "@dojo/core": "beta2",
@@ -33,6 +34,8 @@
     "@dojo/i18n": "beta2",
     "@dojo/routing": "beta2",
     "@dojo/shim": "beta2",
-    "@dojo/widget-core": "beta2"
+    "@dojo/widget-core": "beta2",
+    "le-store": "0.0.1",
+    "service-mocker": "^2.0.1"
   }
 }

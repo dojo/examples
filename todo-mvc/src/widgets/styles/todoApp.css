@@ -11,3 +11,28 @@
 	z-index: 2;
 	border-top: 1px solid #e6e6e6;
 }
+
+.growl {
+	font-size: 18px;
+	color: black;
+    position: absolute;
+    top: 10px;
+    left: 445px;
+    width: 550px;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+	background: #ea4335;
+}
+
+.growlShow {
+	visibility: visible;
+	transition: opacity 1s linear;
+	opacity: 1;
+}
+
+.growlHidden {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s 1s, opacity 1s linear;
+}

@@ -40,6 +40,31 @@
 	border: none;
 }
 
+.undo {
+	position: absolute;
+	top: 0;
+	left: 480px;
+	width: 60px;
+	height: 34px;
+	text-align: center;
+	border: none;
+}
+
+.undo:before {
+	content: '⎌';
+	font-size: 50px;
+	color: grey;
+	padding: 10px 27px 10px 27px;
+}
+
+.undo:active {
+  transform: translateY(4px);
+}
+
+.undo:disabled {
+  display: none;
+}
+
 .toggleAll:before {
 	content: '❯';
 	font-size: 22px;
