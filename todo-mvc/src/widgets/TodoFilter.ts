@@ -1,28 +1,32 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
-import { v } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/widget-core/d';
+import { Link } from '@dojo/routing/Link';
 
 import * as css from './styles/todoFilter.css';
 
 export interface TodoFilterProperties extends WidgetProperties {
-	activeFilter: 'all' | 'active' | 'completed';
+	filter?: string;
 }
 
 export const TodoFilterBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
+export class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
 
-	render() {
-		const { activeFilter } = this.properties;
+	protected render(): DNode {
+		const links = ['all', 'active', 'completed'].map(this._createLink.bind(this));
 
-		return v('ul', { classes: this.classes(css.filters) }, [
-			v('li', [
-				v('a', { href: '#all', innerHTML: 'all', classes: this.classes(activeFilter === 'all' ? css.selected : null) }),
-				v('a', { href: '#active', innerHTML: 'active', classes: this.classes(activeFilter === 'active' ? css.selected : null) }),
-				v('a', { href: '#completed', innerHTML: 'completed', classes: this.classes(activeFilter === 'completed' ? css.selected : null) })
-			])
-		]);
+		return v('ul', { classes: this.classes(css.filters) }, [ v('li', links) ]);
+	}
+
+	private _createLink(filter: string) {
+		const { filter: currentFilter } = this.properties;
+		const classes = this.classes(filter === currentFilter ? css.selected : null);
+
+		return w(Link, { key: filter, to: 'filter', params: { filter },  classes }, [ filter ]);
 	}
 }
+
+export default TodoFilter;

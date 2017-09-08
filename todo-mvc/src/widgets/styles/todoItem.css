@@ -8,6 +8,10 @@
 	border-bottom: none;
 }
 
+.loading {
+	background: lightblue;
+}
+
 .edit {
 	position: relative;
 	margin: 0;

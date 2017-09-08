@@ -1,13 +1,10 @@
-import Map from '@dojo/shim/Map';
-import uuid from '@dojo/core/uuid';
-import { assign } from '@dojo/core/lang';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { w, v } from '@dojo/widget-core/d';
-
-import TodoHeader from './TodoHeader';
-import TodoList from './TodoList';
-import TodoFooter from './TodoFooter';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
+import { TodoHeader } from './TodoHeader';
+import { TodoListOutlet } from './../outlets/TodoListOutlet';
+import { TodoFooterOutlet } from './../outlets/TodoFooterOutlet';
 
 import * as css from './styles/todoApp.css';
 
@@ -16,101 +13,73 @@ export interface Todo {
 	label: string;
 	completed: boolean;
 	editing?: boolean;
+	loading?: boolean;
+}
+
+export interface TodoAppProperties extends WidgetProperties {
+	clearFailed: () => void;
+	todos: Todo[];
+	currentTodo: string;
+	activeCount: number;
+	completedCount: number;
+	failed: boolean;
+	addTodo: (label: string) => void;
+	editTodo: (id: string) => void;
+	saveTodo: (id: string, label?: string) => void;
+	todoInput: (id: string) => void;
+	removeTodo: (id: string) => void;
+	toggleTodo: (id: string, completed: boolean) => void;
+	toggleTodos: () => void;
+	clearCompleted: () => void;
+	undo: () => void;
+	hasUndoOperations: boolean;
 }
 
 export const TodoAppBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoApp extends TodoAppBase {
+export class TodoApp extends TodoAppBase<TodoAppProperties> {
 
-	private todos: Map<string, Todo> = new Map<string, Todo>();
-	private todoItem = '';
-	private completedCount = 0;
-	private updated: string = uuid();
+	protected render(): DNode {
+		const {
+			clearFailed,
+			activeCount,
+			todos,
+			failed,
+			currentTodo,
+			completedCount,
+			addTodo,
+			editTodo,
+			todoInput,
+			removeTodo,
+			toggleTodo,
+			toggleTodos,
+			clearCompleted,
+			saveTodo,
+			undo,
+			hasUndoOperations
+		} = this.properties;
 
-	render() {
-		const { todoItem, updateTodo, updated, todos, completedCount, clearCompleted, editTodo, removeTodo, toggleTodo, toggleAllTodos } = this;
-		const allCompleted = todos.size !== 0 && completedCount === todos.size;
-		const activeCount = todos.size - completedCount;
-		const completedItems = completedCount > 0;
+		if (failed) {
+			setTimeout(() => clearFailed(), 3000);
+		}
 
-		return v('section', { classes: this.classes(css.todoapp) }, [
-			w<TodoHeader>('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
-			v('section', {}, [
-				w<TodoList>('todo-list', { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
-			]),
-			todos.size ? w<TodoFooter>('todo-footer', { clearCompleted, activeCount, completedItems }) : null
+		const todoCount = todos.length;
+		const allCompleted = todoCount > 0 && completedCount === todoCount;
+
+		const showOrHideGrowl = failed ? css.growlShow : css.growlHidden;
+
+		return  v('div', [
+			v('div', { classes: this.classes(css.growl, showOrHideGrowl) }, [ 'failed' ]),
+			v('section', { classes: this.classes(css.todoapp) }, [
+				w<TodoHeader>('todo-header', { todo: currentTodo, todoInput, allCompleted, addTodo, toggleTodos, todoCount, undo, hasUndoOperations }),
+				v('section', {}, [
+					w(TodoListOutlet, { todos, editTodo, removeTodo, toggleTodo, saveTodo })
+				]),
+				todoCount ? w(TodoFooterOutlet, { clearCompleted, activeCount, todoCount }) : null
+			])
 		]);
 	}
-
-	private removeTodo(id: string) {
-		const todo = this.todos.get(id);
-		if (todo) {
-			this.todos.delete(id);
-			todo.completed && --this.completedCount;
-			this.onUpdate();
-		}
-	}
-
-	private toggleTodo(id: string) {
-		const todo = this.todos.get(id);
-		if (todo) {
-			const completed = !todo.completed;
-			completed ? ++this.completedCount : --this.completedCount;
-			this.setTodo({ completed }, id);
-		}
-	}
-
-	private toggleAllTodos() {
-		const completed = this.completedCount !== this.todos.size;
-		this.todos.forEach((todo, key) => {
-			this.setTodo({ completed }, key);
-		});
-		this.completedCount = completed ? this.todos.size : 0;
-		this.onUpdate();
-	}
-
-	private editTodo(id: string) {
-		const todo = this.todos.get(id);
-		if (todo) {
-			this.setTodo({ editing: true}, id);
-			this.onUpdate();
-		}
-	}
-
-	private clearCompleted() {
-		this.todos.forEach((todo, key) => {
-			if (todo.completed) {
-				this.todos.delete(key);
-			}
-		});
-		this.completedCount = 0;
-		this.onUpdate();
-	}
-
-	private updateTodo(todo: string) {
-		this.todoItem = todo;
-		this.invalidate();
-	}
-
-	private setTodo(todo: Partial<Todo>, id?: string) {
-		if (!id) {
-			id = uuid();
-			this.todoItem = '';
-		}
-		if (todo.label) {
-			todo.label = todo.label.trim();
-			if (!todo.label) {
-				this.removeTodo(id);
-				return;
-			}
-		}
-		this.todos.set(id, assign(<any> { id }, this.todos.get(id) || {}, todo));
-		this.onUpdate();
-	}
-
-	private onUpdate() {
-		this.updated = uuid();
-		this.invalidate();
-	}
 }
+
+export default TodoApp;

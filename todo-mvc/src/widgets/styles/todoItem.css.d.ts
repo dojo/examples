@@ -1,4 +1,5 @@
 export const todoItem: string;
+export const loading: string;
 export const edit: string;
 export const editing: string;
 export const view: string;

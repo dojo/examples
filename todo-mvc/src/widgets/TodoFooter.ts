@@ -1,40 +1,44 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
 import { v, w } from '@dojo/widget-core/d';
+
+import { TodoFilter } from './TodoFilter';
 
 import * as css from './styles/todoFooter.css';
 
 export interface TodoFooterProperties extends WidgetProperties {
 	activeCount: number;
-	clearCompleted: Function;
-	completedItems: boolean;
+	filter: string;
+	todoCount: number;
+	clearCompleted: () => void;
 }
 
 export const TodoHeaderBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
-export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
+export class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 
-	clearCompleted() {
+	private _clearCompleted() {
 		this.properties.clearCompleted();
 	}
 
-	render() {
-		const { activeCount, completedItems } = this.properties;
+	protected render(): DNode {
+		const { filter, activeCount, todoCount } = this.properties;
+		const completedItems = (todoCount - activeCount) > 0;
 		const countLabel = activeCount === 1 ? 'item' : 'items';
 
 		return v('footer', { classes: this.classes(css.footer) }, [
 			v('span', { classes: this.classes(css.todoCount) }, [
-				v('strong', [activeCount + ' ']),
-				v('span', [countLabel + ' left'])
+				v('strong', [ `${activeCount} ` ]),
+				v('span', [ `${countLabel} left`])
 			]),
-			w('todo-filter', { }),
-			completedItems ? v('button', {
-				onclick: this.clearCompleted,
-				innerHTML: 'Clear completed',
-				classes: this.classes(css.clearCompleted)
-			}) : null
+			w<TodoFilter>('todo-filter', { filter }),
+			completedItems ? v('button', { onclick: this._clearCompleted, classes: this.classes(css.clearCompleted) }, [
+				'Clear Completed'
+			] ) : null
 		]);
 	}
 }
+
+export default TodoFooter;
