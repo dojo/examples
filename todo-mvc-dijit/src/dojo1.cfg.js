@@ -1,0 +1,3 @@
+var dojoConfig = {
+	async: true
+};

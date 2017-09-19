@@ -1,6 +1,7 @@
 *.js
 *.js.map
 !/*.js
+!/src/*.js
 !/tasks/*.js
 /_build
 /bower_components
