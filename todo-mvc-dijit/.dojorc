@@ -1,0 +1,12 @@
+{
+	"build-webpack": {
+		"externals": {
+			"dependencies": [
+				{ "from": "src/dojo1.cfg.js", "inject": true },
+				{ "name": "dojo", "from": "node_modules/dojo", "inject": [ "dojo.js" ] },
+				{ "name": "dijit", "from": "node_modules/dijit" },
+				{ "name": "dojo-themes", "from": "node_modules/dojo-themes", "inject": [ "flat/flat.css" ] }
+			]
+		}
+	}
+}
