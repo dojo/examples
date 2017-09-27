@@ -13,10 +13,10 @@
     "npm": ">=3"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "beta2",
-    "@dojo/cli-test-intern": "beta2",
-    "@dojo/interfaces": "beta2",
-    "@dojo/loader": "beta2",
+    "@dojo/cli-build-webpack": "next",
+    "@dojo/cli-test-intern": "next",
+    "@dojo/interfaces": "next",
+    "@dojo/loader": "next",
     "@types/chai": "^3.4.34",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
@@ -25,16 +25,16 @@
     "typescript": "~2.4.1"
   },
   "dependencies": {
-    "@dojo/core": "beta2",
-    "@dojo/has": "beta2",
-    "@dojo/i18n": "beta2",
-    "@dojo/interop": ">=2.0.0-alpha.2",
-    "@dojo/routing": "beta2",
-    "@dojo/shim": "beta2",
-    "@dojo/widget-core": "beta2",
-    "dijit": "^1.12.2",
-    "dojo": "^1.12.2",
-    "dojo-themes": "^1.12.2",
-    "dojo-typings": "^1.11.8"
+    "@dojo/core": "next",
+    "@dojo/has": "next",
+    "@dojo/i18n": "next",
+    "@dojo/interop": "next",
+    "@dojo/routing": "next",
+    "@dojo/shim": "next",
+    "@dojo/widget-core": "next",
+    "dijit": "^1.13.0",
+    "dojo": "^1.13.0",
+    "dojo-themes": "^1.13.0",
+    "dojo-typings": "^1.11.9"
   }
 }
