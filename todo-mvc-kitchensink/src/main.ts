@@ -1,16 +1,15 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import { BaseInjector, Injector } from '@dojo/widget-core/Injector';
-import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { Registry } from '@dojo/widget-core/Registry';
 
 import setLocaleData from './setLocaleData';
 import { TodoAppContext } from './TodoAppContext';
 import { TodoAppContainer } from './containers/TodoAppContainer';
 import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
 
-const registry = new WidgetRegistry();
+const registry = new Registry();
 const themeContext = registerThemeInjector(undefined, registry);
-registry.define('state', Injector(BaseInjector, new TodoAppContext(themeContext)));
+registry.defineInjector('state', new TodoAppContext(themeContext));
 
 const Projector = ProjectorMixin(TodoAppContainer);
 const projector = new Projector();
@@ -34,10 +33,7 @@ const config = [
 ];
 
 const router = registerRouterInjector(config, registry);
-
-// setting the registry should be promoted to defaultRegistry, however seems
-// there is an issue used with Containers/Injectors
-projector.setProperties({ defaultRegistry: registry } as any);
+projector.setProperties({ registry });
 
 setLocaleData().then(() => {
 	if (projector.root) {

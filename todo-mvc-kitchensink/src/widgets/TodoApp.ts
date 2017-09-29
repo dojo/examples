@@ -34,7 +34,7 @@ export const TodoAppBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
 export class TodoApp extends TodoAppBase<TodoAppProperties> {
-	protected render(): DNode[] {
+	protected render() {
 		const {
 			todos,
 			addTodo,
@@ -52,7 +52,7 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 			clearCompleted
 		} = this.properties;
 
-		return [
+		return v('div', {}, [
 				v('section', { classes: this.classes(css.todoapp) }, [
 				w(ThemeSwitcherContainer, {}),
 				w(TodoHeader, {
