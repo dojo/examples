@@ -1,6 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import  { v, w } from '@dojo/widget-core/d';
-import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
 import { ThemeSwitcherContainer } from './../containers/ThemeSwitcherContainer';
@@ -68,6 +67,6 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 				todoCount > 0 ? w(TodoFooterOutlet, { activeCount, todoCount, clearCompleted }) : null
 			]),
 			w(Credits, {})
-		];
+		]);
 	}
 }
