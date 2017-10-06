@@ -1,6 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import  { v, w } from '@dojo/widget-core/d';
-import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
 
 import { ThemeSwitcherContainer } from './../containers/ThemeSwitcherContainer';
@@ -34,7 +33,7 @@ export const TodoAppBase = ThemeableMixin(WidgetBase);
 
 @theme(css)
 export class TodoApp extends TodoAppBase<TodoAppProperties> {
-	protected render(): DNode[] {
+	protected render() {
 		const {
 			todos,
 			addTodo,
@@ -52,7 +51,7 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 			clearCompleted
 		} = this.properties;
 
-		return [
+		return v('div', {}, [
 				v('section', { classes: this.classes(css.todoapp) }, [
 				w(ThemeSwitcherContainer, {}),
 				w(TodoHeader, {
@@ -68,6 +67,6 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 				todoCount > 0 ? w(TodoFooterOutlet, { activeCount, todoCount, clearCompleted }) : null
 			]),
 			w(Credits, {})
-		];
+		]);
 	}
 }

@@ -2,7 +2,7 @@ import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 import TodoApp from './widgets/TodoApp';
 import { Outlet } from '@dojo/routing/Outlet';
-import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { Registry } from '@dojo/widget-core/Registry';
 
 import TodoHeader from './widgets/TodoHeader';
 import TodoList from './widgets/TodoList';
@@ -10,7 +10,7 @@ import TodoItem from './widgets/TodoItem';
 import TodoFooter from './widgets/TodoFooter';
 import TodoFilter from './widgets/TodoFilter';
 
-const registry = new WidgetRegistry();
+const registry = new Registry();
 
 function mapFilterRouteParam({ params }: any) {
 	return { activeFilter: params.filter };

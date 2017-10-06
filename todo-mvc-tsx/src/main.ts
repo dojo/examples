@@ -1,11 +1,11 @@
 import global from '@dojo/shim/global';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { Injector, Base as BaseInjector } from '@dojo/widget-core/Injector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import { WidgetRegistry } from '@dojo/widget-core/WidgetRegistry';
+import { ReduxInjector } from '@dojo/interop/redux/ReduxInjector';
+import { Registry } from '@dojo/widget-core/Registry';
 
 import { TodoAppContainer } from './containers/TodoAppContainer';
-import { createStore, Store } from 'redux';
+import { createStore } from 'redux';
 import { todoReducer } from './reducers';
 
 const defaultState = {
@@ -15,26 +15,9 @@ const defaultState = {
 	completedCount: 0
 };
 
-const registry = new WidgetRegistry();
-
+const registry = new Registry();
 const store = createStore(todoReducer, defaultState, global.__REDUX_DEVTOOLS_EXTENSION__ && global.__REDUX_DEVTOOLS_EXTENSION__());
-
-export class ReduxInjector extends BaseInjector<Store<any>> {
-
-	protected store: Store<any>;
-
-	constructor(store: Store<any>) {
-		super();
-		this.store = store;
-		this.store.subscribe(this.invalidate.bind(this));
-	}
-
-	public toInject(): Store<any> {
-		return this.store;
-	}
-}
-
-registry.define('application-state', Injector(ReduxInjector, store));
+registry.defineInjector('application-state', new ReduxInjector(store));
 
 const config = [
 	{
@@ -50,8 +33,6 @@ const config = [
 const router = registerRouterInjector(config, registry);
 const Projector = ProjectorMixin(TodoAppContainer);
 const projector = new Projector();
-// bug in widget-core that doesn't correctly promote registry
-// when using container with projector
-projector.setProperties({ defaultRegistry: registry } as any);
+projector.setProperties({ registry });
 projector.append();
 router.start();

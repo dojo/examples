@@ -1,6 +1,6 @@
-import { Evented } from '@dojo/core/Evented';
 import uuid from '@dojo/core/uuid';
 import { switchLocale } from '@dojo/i18n/i18n';
+import { Injector } from '@dojo/widget-core/Injector';
 
 import pirateThemeStyles from './themes/pirate';
 export interface Todo {
@@ -14,7 +14,7 @@ export interface Todos {
 	[key: string]: Todo;
 }
 
-export class TodoAppContext extends Evented {
+export class TodoAppContext extends Injector {
 
 	private _todos: Todos = Object.create(null);
 
@@ -33,7 +33,7 @@ export class TodoAppContext extends Evented {
 	private _themeContext: any;
 
 	public constructor(themeContext: any) {
-		super();
+		super({});
 		this._themeContext = themeContext;
 	}
 
@@ -184,5 +184,9 @@ export class TodoAppContext extends Evented {
 
 	private _invalidate() {
 		this.emit({ type: 'invalidate' });
+	}
+
+	get() {
+		return this;
 	}
 }
