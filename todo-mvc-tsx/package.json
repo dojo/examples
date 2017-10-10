@@ -21,7 +21,7 @@
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
     "chai": "^3.5.0",
-    "intern": "~3.4.1",
+    "intern": "4.0.0-alpha.13",
     "typescript": "~2.4.1"
   },
   "dependencies": {

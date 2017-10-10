@@ -19,7 +19,11 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-		"types": [ "intern" ]
+		"types": [ "intern" ],
+		"typeRoots": [
+			"./node_modules/@types",
+			"./node_modules/intern/types"
+		]
 	},
 	"include": [
 		"./src/**/*.ts",

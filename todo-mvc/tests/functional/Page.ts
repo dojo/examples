@@ -1,5 +1,5 @@
 import Promise from '@dojo/shim/Promise';
-import * as keys from 'leadfoot/keys';
+import keys from '@theintern/leadfoot/keys';
 
 import * as todoAppCss from './../../src/widgets/styles/todoApp.css';
 import * as todoFilterCss from './../../src/widgets/styles/todoFilter.css';

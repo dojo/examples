@@ -1,9 +1,10 @@
-import * as test from 'intern/lib/interfaces/bdd';
-import { assert } from 'chai';
+const { assert } = intern.getPlugin('chai');
+const test = intern.getInterface('bdd');
+
 import Page from './Page';
 import '@dojo/shim/Promise';
 
-test.describe('TodoMVC - Dojo 2', function (this: any) {
+test.describe('TodoMVC - Dojo 2', function () {
 
 	let page: any;
 
@@ -11,14 +12,14 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 	const TODO_ITEM_TWO = 'feed the cat';
 	const TODO_ITEM_THREE = 'book a doctors appointment';
 
-	test.beforeEach(() => {
+	test.beforeEach(function () {
 		page = new Page(this.remote);
 		return page.init();
 	});
 
 	test.describe('When page is initially opened', function () {
 
-		test.it('should focus on the todo input field', function (this: any) {
+		test.it('should focus on the todo input field', function () {
 			this.skip();
 			return page.isNewItemInputFocused()
 				.then((isNewItemInputFocused: boolean) => {
@@ -30,7 +31,7 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 
 	test.describe('No Todos', function () {
 
-		test.it('should hide #main and #footer', function (this: any) {
+		test.it('should hide #main and #footer', function () {
 			this.skip();
 			return Promise.all([ page.isMainVisible(), page.isFooterVisible() ])
 				.then(([ isMainVisible, isFooterVisible ]) => {
@@ -74,7 +75,7 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 				}));
 		});
 
-		test.it('should trim text input', function (this: any) {
+		test.it('should trim text input', function () {
 			this.skip();
 			return page.enterItem(`   ${TODO_ITEM_ONE}  `)
 				.then(() => page.getItem(0))
@@ -189,31 +190,31 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 		test.beforeEach(function () {
 		});
 
-		test.it('should focus the input', function (this: any) {
+		test.it('should focus the input', function () {
 			this.skip();
 		});
 
-		test.it('should hide other controls when editing', function (this: any) {
+		test.it('should hide other controls when editing', function () {
 			this.skip();
 		});
 
-		test.it('should save edits on enter', function (this: any) {
+		test.it('should save edits on enter', function () {
 			this.skip();
 		});
 
-		test.it('should save edits on blur', function (this: any) {
+		test.it('should save edits on blur', function () {
 			this.skip();
 		});
 
-		test.it('should trim entered text', function (this: any) {
+		test.it('should trim entered text', function () {
 			this.skip();
 		});
 
-		test.it('should remove the item if an empty text string was entered', function (this: any) {
+		test.it('should remove the item if an empty text string was entered', function () {
 			this.skip();
 		});
 
-		test.it('should cancel edits on escape', function (this: any) {
+		test.it('should cancel edits on escape', function () {
 			this.skip();
 		});
 
@@ -251,11 +252,11 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 
 		});
 
-		test.it('should remove completed items when clicked', function (this: any) {
+		test.it('should remove completed items when clicked', function () {
 			this.skip();
 		});
 
-		test.it('should be hidden when there are no items that are completed', function (this: any) {
+		test.it('should be hidden when there are no items that are completed', function () {
 			this.skip();
 		});
 
@@ -263,7 +264,7 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 
 	test.describe('Persistence', function () {
 
-		test.it('should persist its data', function (this: any) {
+		test.it('should persist its data', function () {
 			this.skip();
 		});
 
@@ -271,23 +272,23 @@ test.describe('TodoMVC - Dojo 2', function (this: any) {
 
 	test.describe('Routing', function () {
 
-		test.it('should allow me to display active items', function (this: any) {
+		test.it('should allow me to display active items', function () {
 			this.skip();
 		});
 
-		test.it('should respect the back button', function (this: any) {
+		test.it('should respect the back button', function () {
 			this.skip();
 		});
 
-		test.it('should allow me to display completed items', function (this: any) {
+		test.it('should allow me to display completed items', function () {
 			this.skip();
 		});
 
-		test.it('should allow me to display all items', function (this: any) {
+		test.it('should allow me to display all items', function () {
 			this.skip();
 		});
 
-		test.it('should highlight the currently applied filter', function (this: any) {
+		test.it('should highlight the currently applied filter', function () {
 			this.skip();
 		});
 
