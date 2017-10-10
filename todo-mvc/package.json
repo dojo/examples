@@ -16,10 +16,10 @@
     "npm": ">=3"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "next",
-    "@dojo/cli-test-intern": "next",
-    "@dojo/interfaces": "next",
-    "@dojo/loader": "next",
+    "@dojo/cli-build-webpack": "~0.1.0",
+    "@dojo/cli-test-intern": "~0.1.0",
+    "@dojo/interfaces": "~0.1.0",
+    "@dojo/loader": "~0.1.0",
     "@types/chai": "^3.4.34",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
@@ -28,11 +28,11 @@
     "typescript": "~2.4.1"
   },
   "dependencies": {
-    "@dojo/core": "next",
-    "@dojo/has": "next",
-    "@dojo/i18n": "next",
-    "@dojo/routing": "next",
-    "@dojo/shim": "next",
-    "@dojo/widget-core": "next"
+    "@dojo/core": "~0.1.0",
+    "@dojo/has": "~0.1.0",
+    "@dojo/i18n": "~0.1.0",
+    "@dojo/routing": "~0.1.0",
+    "@dojo/shim": "~0.1.0",
+    "@dojo/widget-core": "~0.1.0"
   }
 }
