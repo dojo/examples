@@ -1,5 +1,6 @@
 import Promise from '@dojo/shim/Promise';
-import * as keys from 'leadfoot/keys';
+import keys from '@theintern/leadfoot/keys';
+import { Remote } from 'intern/lib/executors/Node';
 
 import * as todoAppCss from './../../src/widgets/styles/todoApp.css';
 import * as todoFilterCss from './../../src/widgets/styles/todoFilter.css';
@@ -68,19 +69,19 @@ class Selectors {
 }
 
 export default class Page {
-	private remote: any;
+	private remote: Remote;
 	private selectors: Selectors;
 
-	constructor(remote: any) {
+	constructor(remote: Remote) {
 		this.remote  = remote;
 		this.selectors = new Selectors();
 	}
 
-	delay(time: number = 60): Promise<any> {
+	delay(time: number = 60) {
 		return new Promise<any>((resolve) => setTimeout(resolve, time));
 	}
 
-	init(): Promise<any> {
+	init() {
 		return this.remote
 			.get('http://localhost:9000/_build/src/index.html')
 			.setFindTimeout(5000)
@@ -88,93 +89,94 @@ export default class Page {
 			.setFindTimeout(100);
 	}
 
-	isMainVisible(): Promise<boolean> {
+	isMainVisible() {
 		return this.remote
 			.findByCssSelector(this.selectors.list)
 			.findAllByCssSelector('li')
 			.then((elems: any) => !!elems.length);
 	}
 
-	isFooterVisible(): Promise<boolean> {
+	isFooterVisible() {
 		return this.remote
 			.findByCssSelector(this.selectors.footer)
 			.then(() => true, () => false);
 	}
 
-	isCompleteAllChecked(): Promise<boolean> {
+	isCompleteAllChecked() {
 		return this.remote
 			.then(this.delay)
 			.findByCssSelector(this.selectors.toggleAllButton + ':checked')
 			.then(() => true, () => false);
 	}
 
-	isNewItemInputFocused(): Promise<boolean> {
+	isNewItemInputFocused() {
 		let activeElement: any;
 		return this.remote
 			.getActiveElement()
-			.then((element: any) => activeElement = element)
+			.then((element) => activeElement = element)
 			.end()
 			.findByCssSelector(this.selectors.newInput)
-			.then((inputElement: any) => inputElement.equals(activeElement));
+			.then((inputElement) => inputElement.equals(activeElement));
 	}
 
-	isNewItemInputEmpty(): Promise<boolean> {
+	isNewItemInputEmpty() {
 		return this.remote
 			.findByCssSelector(this.selectors.newInput)
 			.getVisibleText()
-			.then((value: string) => !value);
+			.then((value) => !value);
 	}
 
-	getItem(index: number): Promise<string> {
+	getItem(index: number) {
 		return this.remote
 			.findByCssSelector(this.selectors.getListItemLabel(index))
-			.getProperty('innerHTML');
+			.getProperty('innerHTML')
+			.then((value: string) => value);
 	}
 
-	enterItem(text: string): Promise<any> {
+	enterItem(text: string) {
 		return this.remote
 			.findByCssSelector(this.selectors.newInput)
 			.type(text)
 			.type(keys.ENTER)
-			.then(this.delay)
+			.then(() => this.delay())
 			.end();
 	}
 
-	enterItems(texts: string[]): Promise<any> {
+	enterItems(texts: string[]) {
 		return texts.reduce((promise, text) => {
 			return promise.then(() => this.enterItem(text));
 		}, Promise.resolve());
 	}
 
-	getCompletedCount(): Promise<number> {
+	getCompletedCount() {
 		return this.remote
 			.then(this.delay)
 			.findAllByCssSelector(this.selectors.getListItem(undefined, `.${todoItemCss.completed}`))
 			.then((elements: any[]) => elements.length);
 	}
 
-	getCounterText(): Promise<string> {
+	getCounterText() {
 		return this.remote
 			.then(this.delay)
 			.findAllByCssSelector(this.selectors.itemCount)
 			.getVisibleText();
 	}
 
-	getClearCompletedText(): Promise<string> {
+	getClearCompletedText() {
 		return this.remote
 			.then(this.delay)
 			.findByCssSelector(this.selectors.clearCompletedButton)
 			.getVisibleText();
 	}
 
-	toggleItem(index: number): Promise<any> {
+	toggleItem(index: number) {
 		return this.remote
 			.findAllByCssSelector(this.selectors.getListItemToggle(index))
 			.click()
 			.end();
 	}
 
-	toggleAll(): Promise<any> {
+	toggleAll() {
 		return this.remote
 			.findByCssSelector(this.selectors.toggleAllButton)
 			.click()
