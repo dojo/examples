@@ -18,7 +18,10 @@ else
 	cd $PROJECT_DIR
 	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
 	then
-		runCommandAndCheckStatus ./node_modules/.bin/dojo test -a -c "browserstack"
+		if [ "$PROJECT_DIR" != "widget-showcase" ]
+		then
+			runCommandAndCheckStatus ./node_modules/.bin/dojo test -a -c "browserstack"
+		fi
 		runCommandAndCheckStatus ./node_modules/.bin/dojo build webpack
 	else
 		runCommandAndCheckStatus ./node_modules/.bin/grunt
