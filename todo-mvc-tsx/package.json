@@ -17,11 +17,11 @@
     "@dojo/cli-test-intern": "~0.1.0",
     "@dojo/interfaces": "~0.1.0",
     "@dojo/loader": "~0.1.0",
+    "@dojo/test-extras": "~0.1.0",
     "@types/chai": "^3.4.34",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
-    "chai": "^3.5.0",
-    "intern": "~3.4.1",
+    "intern": "~4.0.2",
     "typescript": "~2.4.1"
   },
   "dependencies": {
