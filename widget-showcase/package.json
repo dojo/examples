@@ -1,5 +1,5 @@
 {
-  "name": "dojo2-widget-showcase"
+  "name": "dojo2-widget-showcase",
   "version": "1.0.0",
   "dependencies": {
     "@dojo/core": "~0.1.0",
