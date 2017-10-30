@@ -202,6 +202,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(TextInput, {
+					key: 'text-input',
 					placeholder: 'TextInput',
 					value: textinputValue,
 					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
@@ -212,6 +213,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(ComboBox, {
+					key: 'combo-box',
 					clearable: true,
 					onChange: (value: string) => this.setState({ comboboxValue: value }),
 					getResultLabel: (result: any) => result.value,
@@ -234,6 +236,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(TimePicker, {
+					key: 'time-picker',
 					inputProperties: {
 						placeholder: 'TimePicker'
 					},

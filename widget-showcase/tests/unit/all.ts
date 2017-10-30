@@ -1,6 +1,6 @@
 import * as registerSuite from 'intern!object';
 import harness from '@dojo/test-extras/harness';
-import { findKey } from '@dojo/test-extras/support/d';
+import { findKey, findIndex } from '@dojo/test-extras/support/d';
 import { v, w } from '@dojo/widget-core/d';
 import App from '../../src/App';
 import * as AppCSS from '../../src/styles/app.m.css';
@@ -21,13 +21,12 @@ import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import dojoTheme from '@dojo/widgets/themes/dojo/theme';
 import Tab from '@dojo/widgets/tabcontroller/Tab';
 import TabController from '@dojo/widgets/tabcontroller/TabController';
+import { assignChildProperties, assignProperties } from '@dojo/test-extras/support/d';
 import * as sinon from 'sinon';
 import { includes } from '@dojo/shim/array';
 
-function getTestData() {
-	const widget = harness(App);
-
-	const expected = v('div', {
+function expected(widget: any) {
+	return v('div', {
 		classes: widget.classes(AppCSS.content)
 	}, [
 		v('h1', [ 'Form components' ]),
@@ -102,6 +101,7 @@ function getTestData() {
 		]),
 		v('div', { classes: widget.classes(AppCSS.component) }, [
 			w(TextInput, {
+				key: 'text-input',
 				placeholder: 'TextInput',
 				value: '',
 				onChange: widget.listener,
@@ -110,6 +110,7 @@ function getTestData() {
 		]),
 		v('div', { classes: widget.classes(AppCSS.component) }, [
 			w(ComboBox, {
+				key: 'combo-box',
 				clearable: true,
 				onChange: widget.listener,
 				getResultLabel: (result: any) => result.value,
@@ -125,6 +126,7 @@ function getTestData() {
 		]),
 		v('div', { classes: widget.classes(AppCSS.component) }, [
 			w(TimePicker, {
+				key: 'time-picker',
 				inputProperties: {
 					placeholder: 'TimePicker'
 				},
@@ -287,39 +289,259 @@ function getTestData() {
 			])
 		])
 	]);
-
-	return {widget, expected};
 }
 
 registerSuite({
 	name: 'Widget Showcase',
 
 	'basic rendering'() {
-		const {widget, expected} = getTestData();
-		widget.expectRender(expected);
+		const widget = harness(App);
+		widget.expectRender(expected(widget), 'The DOM structure is correct');
 		widget.destroy();
-	}/*,
+	},
 
 	'can toggle the toggle button'() {
-		const {widget, expected} = getTestData();
-
-		const setStateMock = sinon.stub();
-
-		console.log({setStateMock});
+		const widget = harness(App);
 
 		widget.callListener('onClick', {
-			key: 'pressed-button',
-			thisArg: {
-				setState: setStateMock
-			}
+			key: 'pressed-button'
 		});
 
-		console.log({setStateMock});
+		expected(widget);
+		const expectedWidget = expected(widget);
 
+		assignProperties(findKey(expectedWidget, 'pressed-button')!, {
+			pressed: true
+		});
 
-		// widget.expectRender(mutated);
+		widget.expectRender(expectedWidget, 'The toggle button is toggled on');
+		widget.destroy();
+	},
+
+	'can check the basic checkbox'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'cb1',
+			args: [{
+				target: {
+					checked: true
+				}
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'cb1')!, {
+			checked: true
+		});
+
+		widget.expectRender(expectedWidget, 'The basic checkbox is checked');
+		widget.destroy();
+	},
+
+	'can toggle the toggle checkbox'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'cb2',
+			args: [{
+				target: {
+					checked: true
+				}
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'cb2')!, {
+			checked: true
+		});
+
+		widget.expectRender(expectedWidget, 'The toggle-checkbox is checked');
+		widget.destroy();
+	},
+
+	'can check the radio button'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'r1',
+			args: [{
+				target: {
+					value: 'first'
+				}
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'r1')!, {
+			checked: true
+		});
+
+		widget.expectRender(expectedWidget, 'The first radio button is checked');
+
+		widget.callListener('onChange', {
+			key: 'r3',
+			args: [{
+				target: {
+					value: 'third'
+				}
+			}]
+		});
+
+		assignProperties(findKey(expectedWidget, 'r1')!, {
+			checked: false
+		});
+
+		assignProperties(findKey(expectedWidget, 'r3')!, {
+			checked: true
+		});
+
+		widget.expectRender(expectedWidget, 'The third radio button is checked');
 
 		widget.destroy();
-	}
-	*/
+	},
+
+	'can input text in the text input'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'text-input',
+			args: [{
+				target: {
+					value: 'Some text...'
+				}
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'text-input')!, {
+			value: 'Some text...'
+		});
+
+		widget.expectRender(expectedWidget, 'The text input value is set');
+		widget.destroy();
+	},
+
+	'combo box on change'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'combo-box',
+			args: ['on change value']
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'combo-box')!, {
+			value: 'on change value'
+		});
+
+		widget.expectRender(expectedWidget, 'The combo box input value is set');
+		widget.destroy();
+	},
+
+	'combo box results'() {
+		const widget = harness(App);
+
+		widget.callListener('onRequestResults', {
+			key: 'combo-box',
+			args: ['new yor']
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'combo-box')!, {
+			results: [{
+				label: 'New York',
+				value: 'New York'
+			}]
+		});
+
+		widget.expectRender(expectedWidget, 'The combo box results are set');
+
+		widget.callListener('onRequestResults', {
+			key: 'combo-box',
+			args: ['o']
+		});
+
+		assignProperties(findKey(expectedWidget, 'combo-box')!, {
+			results: [{
+				label: 'Ohio',
+				value: 'Ohio'
+			}, {
+				label: 'Oklahoma',
+				value: 'Oklahoma'
+			}, {
+				label: 'Oregon',
+				value: 'Oregon'
+			}]
+		});
+
+		widget.expectRender(expectedWidget, 'The combo box results are set');
+
+		widget.destroy();
+	},
+
+	'can change the time picker'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'time-picker',
+			args: ['on change value']
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'time-picker')!, {
+			value: 'on change value'
+		});
+
+		widget.expectRender(expectedWidget, 'The value is updated');
+
+		widget.callListener('onRequestOptions', {
+			key: 'time-picker',
+			args: ['', [{hello: 'world'}]]
+		});
+
+		assignProperties(findKey(expectedWidget, 'time-picker')!, {
+			options: [{hello: 'world'}]
+		});
+
+		widget.expectRender(expectedWidget, 'The options are updated');
+
+		widget.destroy();
+	},
+
+	'can change the select box'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'select',
+			args: [{
+				value: 'Hello there'
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'select')!, {
+			value: 'Hello there'
+		});
+
+		widget.expectRender(expectedWidget, 'The select box is changed');
+		widget.destroy();
+	},
+
 });
