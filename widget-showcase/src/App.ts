@@ -307,9 +307,7 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				}, [
-					`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Quisque id purus ipsum. Aenean ac purus purus.
-					Nam sollicitudin varius augue, sed lacinia felis tempor in.`
+					`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.`
 				]),
 				w(Button, {
 					key: 'dialog-button',
@@ -328,9 +326,7 @@ export default class App extends AppBase<WidgetProperties> {
 					title: 'SlidePane',
 					underlay: true
 				}, [
-					`Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Quisque id purus ipsum. Aenean ac purus purus.
-					Nam sollicitudin varius augue, sed lacinia felis tempor in.`
+					`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.`
 				]),
 				w(Button, {
 					key: 'slidepane-button',
