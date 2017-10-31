@@ -160,6 +160,7 @@ function expected(widget: any) {
 		]),
 		v('div', { classes: widget.classes(AppCSS.component) }, [
 			w(Slider, {
+				key: 'slider',
 				value: undefined,
 				outputIsTooltip: true,
 				onInput: widget.listener,
@@ -168,6 +169,7 @@ function expected(widget: any) {
 		]),
 		v('div', { classes: widget.classes(AppCSS.component) }, [
 			w(Textarea, {
+				key: 'text-area',
 				columns: 40,
 				rows: 5,
 				placeholder: 'Hello, World',
@@ -179,6 +181,7 @@ function expected(widget: any) {
 		v('h1', [ 'Layout components' ]),
 		v('div', { classes: widget.classes(AppCSS.component) }, [
 			w(Dialog, {
+				key: 'dialog',
 				title: 'Dialog',
 				open: false,
 				underlay: true,
@@ -544,4 +547,93 @@ registerSuite({
 		widget.destroy();
 	},
 
+	'can change the multi select'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'multiselect',
+			args: [{
+				value: 'New option value'
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'multiselect')!, {
+			value: 'New option value'
+		});
+
+		widget.expectRender(expectedWidget, 'The multi select box is changed');
+		widget.destroy();
+	},
+
+	'can change the slider value'() {
+		const widget = harness(App);
+
+		widget.callListener('onInput', {
+			key: 'slider',
+			args: [{
+				target: {
+					value: '33.101'
+				}
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'slider')!, {
+			value: 1
+		});
+
+		widget.expectRender(expectedWidget, 'The slider value is set');
+		widget.destroy();
+	},
+
+
+	'can change the text area value'() {
+		const widget = harness(App);
+
+		widget.callListener('onChange', {
+			key: 'text-area',
+			args: [{
+				target: {
+					value: 'some textarea value'
+				}
+			}]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'text-area')!, {
+			value: 'some textarea value'
+		});
+
+		widget.expectRender(expectedWidget, 'The textarea value is set');
+		widget.destroy();
+	},
+
+	'can open and close a dialog'() {
+		const widget = harness(App);
+
+		widget.callListener('onClick', {
+			key: 'dialog-button'
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'dialog')!, {
+			open: true
+		});
+
+		// widget.callListener('onRequestClose', {
+		// 	key: 'dialog'
+		// });
+
+		widget.expectRender(expectedWidget, 'the dialog opens');
+		widget.destroy();
+	}
 });

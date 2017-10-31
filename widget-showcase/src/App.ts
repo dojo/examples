@@ -278,6 +278,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(Slider, {
+					key: 'slider',
 					value: sliderValue,
 					outputIsTooltip: true,
 					onInput: (event: TypedTargetEvent<HTMLInputElement>) => {
@@ -288,6 +289,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(Textarea, {
+					key: 'text-area',
 					columns: 40,
 					rows: 5,
 					placeholder: 'Hello, World',
@@ -301,6 +303,7 @@ export default class App extends AppBase<WidgetProperties> {
 			v('h1', [ 'Layout components' ]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(Dialog, {
+					key: 'dialog',
 					title: 'Dialog',
 					open: dialogOpen,
 					underlay: true,
