@@ -1,10 +1,10 @@
 import * as registerSuite from 'intern!object';
 import harness from '@dojo/test-extras/harness';
-import { findKey, findIndex } from '@dojo/test-extras/support/d';
+import { findKey, replaceChild } from '@dojo/test-extras/support/d';
 import { v, w } from '@dojo/widget-core/d';
-import App from '../../src/App';
-import * as AppCSS from '../../src/styles/app.m.css';
-import { dataLarge, dataSmall} from '../../src/data';
+import { assignProperties } from '@dojo/test-extras/support/d';
+
+import dojoTheme from '@dojo/widgets/themes/dojo/theme';
 import ComboBox from '@dojo/widgets/combobox/ComboBox';
 import Button from '@dojo/widgets/button/Button';
 import Slider from '@dojo/widgets/slider/Slider';
@@ -18,32 +18,39 @@ import Dialog from '@dojo/widgets/dialog/Dialog';
 import SplitPane, { Direction } from '@dojo/widgets/splitpane/SplitPane';
 import TitlePane from '@dojo/widgets/titlepane/TitlePane';
 import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
-import dojoTheme from '@dojo/widgets/themes/dojo/theme';
 import Tab from '@dojo/widgets/tabcontroller/Tab';
 import TabController from '@dojo/widgets/tabcontroller/TabController';
-import { assignChildProperties, assignProperties } from '@dojo/test-extras/support/d';
-import * as sinon from 'sinon';
-import { includes } from '@dojo/shim/array';
+
+import App from '../../src/App';
+import * as AppCSS from '../../src/styles/app.m.css';
+import { dataLarge, dataSmall} from '../../src/data';
 
 function expected(widget: any) {
-	return v('div', {
-		classes: widget.classes(AppCSS.content)
-	}, [
+	const children = [
 		v('h1', [ 'Form components' ]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Button, {
 				key: 'basic-button',
 				theme: dojoTheme
 			}, [ 'Basic' ])
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Button, {
 				key: 'popup-button',
 				theme: dojoTheme,
-				popup: { expanded: false, id: 'fakeId' }
+				popup: {
+					expanded: false,
+					id: 'fakeId'
+				}
 			}, [ 'Popup' ]),
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Button, {
 				key: 'pressed-button',
 				theme: dojoTheme,
@@ -51,7 +58,9 @@ function expected(widget: any) {
 				onClick: widget.listener
 			}, [ 'Toggle' ])
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Checkbox, {
 				key: 'cb1',
 				checked: false,
@@ -60,7 +69,9 @@ function expected(widget: any) {
 				theme: dojoTheme
 			}),
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Checkbox, {
 				key: 'cb2',
 				checked: false,
@@ -70,7 +81,9 @@ function expected(widget: any) {
 				mode: Mode.toggle
 			})
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Radio, {
 				key: 'r1',
 				checked: true,
@@ -99,7 +112,9 @@ function expected(widget: any) {
 				theme: dojoTheme
 			})
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(TextInput, {
 				key: 'text-input',
 				placeholder: 'TextInput',
@@ -108,7 +123,9 @@ function expected(widget: any) {
 				theme: dojoTheme
 			}),
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(ComboBox, {
 				key: 'combo-box',
 				clearable: true,
@@ -124,7 +141,9 @@ function expected(widget: any) {
 				theme: dojoTheme
 			})
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(TimePicker, {
 				key: 'time-picker',
 				inputProperties: {
@@ -139,7 +158,9 @@ function expected(widget: any) {
 				value: ''
 			}),
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Select, {
 				key: 'select',
 				options: dataSmall,
@@ -148,7 +169,9 @@ function expected(widget: any) {
 				onChange: widget.listener
 			})
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Select, {
 				key: 'multiselect',
 				options: dataSmall,
@@ -158,7 +181,9 @@ function expected(widget: any) {
 				onChange: widget.listener
 			})
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Slider, {
 				key: 'slider',
 				value: undefined,
@@ -167,7 +192,9 @@ function expected(widget: any) {
 				theme: dojoTheme
 			})
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Textarea, {
 				key: 'text-area',
 				columns: 40,
@@ -179,7 +206,9 @@ function expected(widget: any) {
 			}),
 		]),
 		v('h1', [ 'Layout components' ]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(Dialog, {
 				key: 'dialog',
 				title: 'Dialog',
@@ -197,8 +226,11 @@ function expected(widget: any) {
 				onClick: widget.listener
 			}, [ 'Open Dialog' ])
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(SlidePane, {
+				key: 'slide-pane',
 				align: Align.right,
 				onRequestClose: widget.listener,
 				open: false,
@@ -214,16 +246,20 @@ function expected(widget: any) {
 				onClick: widget.listener
 			}, [ 'Open SlidePane' ])
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			v('div', {
 				classes: widget.classes(AppCSS.splitContainer)
 			}, [
 				w(SplitPane, {
+					key: 'split-pane',
 					direction: Direction.row,
 					onResize: widget.listener,
 					size: undefined,
 					theme: dojoTheme,
 					trailing: w(SplitPane, {
+						key: 'split-pane-child',
 						direction: Direction.column,
 						onResize: widget.listener,
 						size: undefined,
@@ -232,8 +268,11 @@ function expected(widget: any) {
 				})
 			])
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(TitlePane, {
+				key: 'title-pane',
 				open: false,
 				theme: dojoTheme,
 				title: 'TitlePane',
@@ -245,8 +284,11 @@ function expected(widget: any) {
 				])
 			])
 		]),
-		v('div', { classes: widget.classes(AppCSS.component) }, [
+		v('div', {
+			classes: widget.classes(AppCSS.component)
+		}, [
 			w(TabController, {
+				key: 'tab-controller',
 				theme: dojoTheme,
 				activeIndex: 0,
 				onRequestTabClose: widget.listener,
@@ -272,16 +314,16 @@ function expected(widget: any) {
 					key: 'async',
 					label: 'Async'
 				}, [
-					false ? 'Loading...' : 'Curabitur id elit a tellus consequat maximus in non lorem. Donec sagittis porta aliquam. Nulla facilisi. Quisque sed mauris justo. Donec eu fringilla urna. Aenean vulputate ipsum imperdiet orci ornare tempor.'
+					'Curabitur id elit a tellus consequat maximus in non lorem. Donec sagittis porta aliquam. Nulla facilisi. Quisque sed mauris justo. Donec eu fringilla urna. Aenean vulputate ipsum imperdiet orci ornare tempor.'
 				]),
-				!includes([], 'closeable') ? w(Tab, {
+				w(Tab, {
 					theme: dojoTheme,
 					closeable: true,
 					key: 'closeable',
 					label: 'Closeable'
 				}, [
 					'Nullam congue, massa in egestas sagittis, diam neque rutrum tellus, nec egestas metus tellus vel odio. Vivamus tincidunt quam nisl, sit amet venenatis purus bibendum eget. Phasellus fringilla ex vitae odio hendrerit, non volutpat orci rhoncus.'
-				]) : null,
+				]),
 				w(Tab, {
 					theme: dojoTheme,
 					key: 'foo',
@@ -291,21 +333,31 @@ function expected(widget: any) {
 				])
 			])
 		])
-	]);
+	];
+
+	return v('div', {
+		classes: widget.classes(AppCSS.content)
+	}, children);
 }
+
+let widget: any;
 
 registerSuite({
 	name: 'Widget Showcase',
 
-	'basic rendering'() {
-		const widget = harness(App);
-		widget.expectRender(expected(widget), 'The DOM structure is correct');
+	beforeEach() {
+		widget = harness(App);
+	},
+
+	afterEach() {
 		widget.destroy();
 	},
 
-	'can toggle the toggle button'() {
-		const widget = harness(App);
+	'basic rendering'() {
+		widget.expectRender(expected(widget), 'The DOM structure is correct');
+	},
 
+	'can toggle the toggle button'() {
 		widget.callListener('onClick', {
 			key: 'pressed-button'
 		});
@@ -318,12 +370,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The toggle button is toggled on');
-		widget.destroy();
 	},
 
 	'can check the basic checkbox'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'cb1',
 			args: [{
@@ -341,12 +390,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The basic checkbox is checked');
-		widget.destroy();
 	},
 
 	'can toggle the toggle checkbox'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'cb2',
 			args: [{
@@ -364,12 +410,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The toggle-checkbox is checked');
-		widget.destroy();
 	},
 
 	'can check the radio button'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'r1',
 			args: [{
@@ -406,13 +449,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The third radio button is checked');
-
-		widget.destroy();
 	},
 
 	'can input text in the text input'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'text-input',
 			args: [{
@@ -430,12 +469,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The text input value is set');
-		widget.destroy();
 	},
 
 	'combo box on change'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'combo-box',
 			args: ['on change value']
@@ -449,12 +485,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The combo box input value is set');
-		widget.destroy();
 	},
 
 	'combo box results'() {
-		const widget = harness(App);
-
 		widget.callListener('onRequestResults', {
 			key: 'combo-box',
 			args: ['new yor']
@@ -491,13 +524,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The combo box results are set');
-
-		widget.destroy();
 	},
 
 	'can change the time picker'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'time-picker',
 			args: ['on change value']
@@ -514,21 +543,21 @@ registerSuite({
 
 		widget.callListener('onRequestOptions', {
 			key: 'time-picker',
-			args: ['', [{hello: 'world'}]]
+			args: ['', [{
+				hello: 'world'
+			}]]
 		});
 
 		assignProperties(findKey(expectedWidget, 'time-picker')!, {
-			options: [{hello: 'world'}]
+			options: [{
+				hello: 'world'
+			}]
 		});
 
 		widget.expectRender(expectedWidget, 'The options are updated');
-
-		widget.destroy();
 	},
 
 	'can change the select box'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'select',
 			args: [{
@@ -544,12 +573,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The select box is changed');
-		widget.destroy();
 	},
 
 	'can change the multi select'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'multiselect',
 			args: [{
@@ -565,17 +591,14 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The multi select box is changed');
-		widget.destroy();
 	},
 
 	'can change the slider value'() {
-		const widget = harness(App);
-
 		widget.callListener('onInput', {
 			key: 'slider',
 			args: [{
 				target: {
-					value: '33.101'
+					value: '2'
 				}
 			}]
 		});
@@ -583,18 +606,18 @@ registerSuite({
 		expected(widget);
 		const expectedWidget = expected(widget);
 
+		/*
+			A workaround - https://github.com/dojo/test-extras/blob/42a94c2b711d6d8abece5ccf54e8ddb2f0cc2993/src/support/d.ts#L20 - VirtualDomProperties have an interface of: readonly value?: string;
+		*/
+
 		assignProperties(findKey(expectedWidget, 'slider')!, {
-			value: 1
-		});
+			value: 2
+		} as any);
 
 		widget.expectRender(expectedWidget, 'The slider value is set');
-		widget.destroy();
 	},
 
-
 	'can change the text area value'() {
-		const widget = harness(App);
-
 		widget.callListener('onChange', {
 			key: 'text-area',
 			args: [{
@@ -612,12 +635,9 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The textarea value is set');
-		widget.destroy();
 	},
 
 	'can open and close a dialog'() {
-		const widget = harness(App);
-
 		widget.callListener('onClick', {
 			key: 'dialog-button'
 		});
@@ -629,11 +649,141 @@ registerSuite({
 			open: true
 		});
 
-		// widget.callListener('onRequestClose', {
-		// 	key: 'dialog'
-		// });
-
 		widget.expectRender(expectedWidget, 'the dialog opens');
-		widget.destroy();
+
+		widget.callListener('onRequestClose', {
+			key: 'dialog'
+		});
+
+		assignProperties(findKey(expectedWidget, 'dialog')!, {
+			open: false
+		});
+
+		widget.expectRender(expectedWidget, 'the dialog closes');
+	},
+
+	'can open and close a slide pane'() {
+		widget.callListener('onClick', {
+			key: 'slidepane-button'
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'slide-pane')!, {
+			open: true
+		});
+
+		widget.expectRender(expectedWidget, 'the slide pane opens');
+
+		widget.callListener('onRequestClose', {
+			key: 'slide-pane'
+		});
+
+		assignProperties(findKey(expectedWidget, 'slide-pane')!, {
+			open: false
+		});
+
+		widget.expectRender(expectedWidget, 'the slide pane closes');
+	},
+
+	'can resize a split pane'() {
+		widget.callListener('onResize', {
+			key: 'split-pane',
+			args: [5]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'split-pane')!, {
+			size: 5
+		});
+
+		widget.expectRender(expectedWidget, 'The split pane size is set');
+
+		/*
+
+		TODO: How to test a nested split pane?
+
+		widget.callListener('onResize', {
+			key: 'split-pane-child',
+			args: [9]
+		});
+
+		assignProperties(findKey(expectedWidget, 'split-pane-child')!, {
+			size: 9
+		});
+
+		widget.expectRender(expectedWidget, 'The nested split pane size is set');
+
+		*/
+	},
+
+	'can open and close a title pane'() {
+		widget.callListener('onRequestOpen', {
+			key: 'title-pane'
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'title-pane')!, {
+			open: true
+		});
+
+		widget.expectRender(expectedWidget, 'The title pane is open');
+
+		widget.callListener('onRequestClose', {
+			key: 'title-pane'
+		});
+
+		assignProperties(findKey(expectedWidget, 'title-pane')!, {
+			open: false
+		});
+
+		widget.expectRender(expectedWidget, 'The title pane is closed');
+	},
+
+	'can close tabs'() {
+		widget.callListener('onRequestTabClose', {
+			key: 'tab-controller',
+			args: [, 'closeable']
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		replaceChild(expectedWidget, '19,0,3', null);
+
+		widget.expectRender(expectedWidget, 'The tab is removed');
+	},
+
+	'can change tabs'() {
+		widget.callListener('onRequestTabChange', {
+			key: 'tab-controller',
+			args: [99]
+		});
+
+		expected(widget);
+		const expectedWidget = expected(widget);
+
+		assignProperties(findKey(expectedWidget, 'tab-controller')!, {
+			activeIndex: 99
+		});
+
+		widget.expectRender(expectedWidget, 'The active tab was changed');
+
+		widget.callListener('onRequestTabChange', {
+			key: 'tab-controller',
+			args: [55, 'async']
+		});
+
+		assignProperties(findKey(expectedWidget, 'tab-controller')!, {
+			activeIndex: 2
+		});
+
+		replaceChild(expectedWidget, '19,0,2,0', 'Loading...');
+		widget.expectRender(expectedWidget, 'The active tab was changed');
 	}
 });

@@ -323,6 +323,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(SlidePane, {
+					key: 'slide-pane',
 					align: Align.right,
 					onRequestClose: () => {
 						this.setState({ slidepaneOpen: false })
@@ -345,6 +346,7 @@ export default class App extends AppBase<WidgetProperties> {
 					classes: this.classes(css.splitContainer)
 				}, [
 					w(SplitPane, {
+						key: 'split-pane',
 						direction: Direction.row,
 						onResize: (size: number) => {
 							this.setState({ nestedSizeA: size });
@@ -352,6 +354,7 @@ export default class App extends AppBase<WidgetProperties> {
 						size: nestedSizeA,
 						theme: dojoTheme,
 						trailing: w(SplitPane, {
+							key: 'split-pane-child',
 							direction: Direction.column,
 							onResize: (size: number) => {
 								this.setState({ nestedSizeB: size });
@@ -364,6 +367,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(TitlePane, {
+					key: 'title-pane',
 					open: titlepaneOpen,
 					theme: dojoTheme,
 					title: 'TitlePane',
@@ -381,6 +385,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.classes(css.component) }, [
 				w(TabController, {
+					key: 'tab-controller',
 					theme: dojoTheme,
 					activeIndex: activeTabIndex,
 					onRequestTabClose: (index: number, key: string) => {
