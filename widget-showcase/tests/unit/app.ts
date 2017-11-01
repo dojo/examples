@@ -25,6 +25,8 @@ import App from '../../src/App';
 import * as AppCSS from '../../src/styles/app.m.css';
 import { dataLarge, dataSmall} from '../../src/data';
 
+import * as sinon from 'sinon';
+
 function expected(widget: any) {
 	const children = [
 		v('h1', [ 'Form components' ]),
@@ -759,7 +761,9 @@ registerSuite({
 		widget.expectRender(expectedWidget, 'The tab is removed');
 	},
 
-	'can change tabs'() {
+	async 'can change tabs'() {
+		const clock = sinon.useFakeTimers();
+
 		widget.callListener('onRequestTabChange', {
 			key: 'tab-controller',
 			args: [99]
@@ -784,6 +788,16 @@ registerSuite({
 		});
 
 		replaceChild(expectedWidget, '19,0,2,0', 'Loading...');
-		widget.expectRender(expectedWidget, 'The active tab was changed');
+		widget.expectRender(expectedWidget, 'The loading text displays');
+
+		clock.tick(2000);
+
+		// To clear the microtask queue
+		await Promise.resolve();
+
+		replaceChild(expectedWidget, '19,0,2,0', 'Curabitur id elit a tellus consequat maximus in non lorem. Donec sagittis porta aliquam. Nulla facilisi. Quisque sed mauris justo. Donec eu fringilla urna. Aenean vulputate ipsum imperdiet orci ornare tempor.');
+
+		widget.expectRender(expectedWidget, 'Async tab was updated');
+		clock.restore();
 	}
 });
