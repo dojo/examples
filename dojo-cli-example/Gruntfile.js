@@ -14,6 +14,6 @@ module.exports = function (grunt) {
 		/* any custom configuration goes here */
 	});
 
-	grunt.registerTask('ci', [ 'intern:node' ]);
+	grunt.registerTask('ci', [ 'test' ]);
 	grunt.registerTask('dist', grunt.config.get('distTasks').concat(['copy:staticDistFiles']));
 };
