@@ -26,21 +26,24 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "@dojo/loader": "beta1",
+    "@dojo/interfaces": "~0.1.0",
+    "@dojo/loader": "~0.1.0",
     "@types/chai": "^3.4.34",
+    "@types/chalk": "^0.4.31",
     "@types/glob": "^5.0.30",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
     "@types/sinon": "^1.16.36",
+    "@types/yargs": "^8.0.2",
     "codecov.io": "0.1.6",
     "glob": "^7.0.3",
     "grunt": "~1.0.1",
-    "grunt-dojo2": "beta1",
-    "intern": "^3.2.3",
+    "grunt-dojo2": "latest",
+    "intern": "~4.0.2",
     "istanbul": "^0.4.3",
     "remap-istanbul": "^0.6.4",
     "sinon": "^1.17.5",
-    "typescript": "~2.2.2",
+    "typescript": "~2.4.1",
     "yargs": "^5.0.0"
   }
 }

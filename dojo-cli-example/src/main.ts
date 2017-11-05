@@ -1,5 +1,6 @@
-import { Command, Helper } from './interfaces';
+import { Command, Helper, OptionsHelper } from '@dojo/interfaces/cli';
 import { Argv } from 'yargs';
+import { underline } from 'chalk';
 
 export interface MyContext {
 	message?: string;
@@ -11,17 +12,14 @@ export interface MyArgv extends Argv {
 
 const command: Command = {
 	description: 'This is an example dojo-cli command',
-	register(helper) {
-		// Put something in the context
-		helper.context.message = 'Hello World!';
-
-		// Return the yargs instance
-		helper.yargs.option('s', {
+	register(options: OptionsHelper, helper: Helper) {
+		options('s', {
 			alias: 'shout',
 			describe: 'SHOUT the response'
 		});
 
-		return helper.yargs;
+		// Put something in the context
+		helper.context.message = 'Hello World!';
 	},
 	run(helper: Helper, args: MyArgv) {
 		const message = (<MyContext> helper.context).message;
@@ -32,6 +30,19 @@ const command: Command = {
 		}
 
 		return new Promise((resolve) => setTimeout(resolve, 500));
+	},
+	eject() {
+		return {
+			copy: {
+				path: __dirname,
+				files: [
+					'./sayhello.js'
+				]
+			},
+			hints: [
+				'to run ' + underline('node ./config/example-command/sayhello.js [--shout]')
+			]
+		};
 	}
 };
 
