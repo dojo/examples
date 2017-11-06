@@ -1,0 +1,40 @@
+{
+  "name": "dojo2-todo-dijit",
+  "version": "0.0.1",
+  "description": "TodoMVC using Dojo2 and wrapping Dojo1 Dijits",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojo/examples.git"
+  },
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-webpack": "next",
+    "@dojo/cli-test-intern": "next",
+    "@dojo/interfaces": "next",
+    "@dojo/loader": "next",
+    "@types/chai": "^3.4.34",
+    "@types/glob": "~5.0.0",
+    "@types/node": "^6.0.46",
+    "chai": "^3.5.0",
+    "intern": "~3.4.1",
+    "typescript": "~2.4.1"
+  },
+  "dependencies": {
+    "@dojo/core": "next",
+    "@dojo/has": "next",
+    "@dojo/i18n": "next",
+    "@dojo/interop": "next",
+    "@dojo/routing": "next",
+    "@dojo/shim": "next",
+    "@dojo/widget-core": "next",
+    "dijit": "^1.13.0",
+    "dojo": "^1.13.0",
+    "dojo-themes": "^1.13.0",
+    "dojo-typings": "^1.11.9"
+  }
+}
