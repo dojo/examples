@@ -5,5 +5,5 @@ export type AppLocale = 'en' | 'en-PR';
 
 export default function (locale: AppLocale = 'en') {
 	switchLocale(locale);
-	return loadCldrData([ './nls/cldr/likelySubtags.json', 'cldr-data/supplemental/plurals.json' ]);
+	return loadCldrData([ 'cldr-data/supplemental/likelySubtags.json', 'cldr-data/supplemental/plurals.json' ]);
 }
