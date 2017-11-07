@@ -1,0 +1,29 @@
+{
+  "name": "dojo2-widget-showcase",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dojo/core": "~0.1.0",
+    "@dojo/has": "~0.1.0",
+    "@dojo/routing": "~0.1.0",
+    "@dojo/shim": "~0.1.0",
+    "@dojo/widget-core": "~0.1.0",
+    "@dojo/widgets": "~0.1.0",
+    "@dojo/i18n": "~0.1.0"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-webpack": "~0.1.0",
+    "@dojo/cli-test-intern": "~0.1.0",
+    "@dojo/interfaces": "~0.1.0",
+    "@dojo/loader": "~0.1.0",
+    "@dojo/test-extras": "~0.1.0",
+    "@types/chai": "~3.4.0",
+    "@types/glob": "~5.0.0",
+    "@types/grunt": "~0.4.0",
+    "@types/node": "^6.0.46",
+    "chai": "^3.5.0",
+    "intern": "~3.4.1",
+    "typescript": "~2.4.1",
+    "@types/sinon": "^1.16.36",
+    "sinon": "^2.4.1"
+  }
+}
