@@ -21,11 +21,11 @@ import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import Tab from '@dojo/widgets/tabcontroller/Tab';
 import TabController from '@dojo/widgets/tabcontroller/TabController';
 
+import * as sinon from 'sinon';
+
 import App from '../../src/App';
 import * as AppCSS from '../../src/styles/app.m.css';
 import { dataLarge, dataSmall} from '../../src/data';
-
-import * as sinon from 'sinon';
 
 function expected(widget: any) {
 	const children = [
@@ -703,23 +703,6 @@ registerSuite({
 		});
 
 		widget.expectRender(expectedWidget, 'The split pane size is set');
-
-		/*
-
-		TODO: How to test a nested split pane?
-
-		widget.callListener('onResize', {
-			key: 'split-pane-child',
-			args: [9]
-		});
-
-		assignProperties(findKey(expectedWidget, 'split-pane-child')!, {
-			size: 9
-		});
-
-		widget.expectRender(expectedWidget, 'The nested split pane size is set');
-
-		*/
 	},
 
 	'can open and close a title pane'() {
