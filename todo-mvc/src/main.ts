@@ -24,7 +24,7 @@ registry.define('todo-item', async () => {
 registry.define('todo-footer', TodoFooter);
 registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
 
-const root = document.getElementById('app') as Element;
+const root = document.querySelector('my-app') || undefined;
 
 const Projector = ProjectorMixin(TodoApp);
 const projector = new Projector();
@@ -32,5 +32,5 @@ const projector = new Projector();
 const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter', defaultParams: { filter: 'all' }, defaultRoute: true }], registry);
 projector.setProperties({ registry });
 
-projector.merge(root);
+projector.append(root);
 router.start();
