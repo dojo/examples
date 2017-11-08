@@ -25,6 +25,20 @@ To build the command, use:
 grunt dev
 ```
 
+To package the command for testing locally, use:
+
+```shell
+grunt dist
+grunt link
+```
+
+To run the command, go to a test project directory and use:
+```shell
+npm link dojo-cli-example-command
+dojo example
+dojo example -s
+```
+
 ## Features
 
 This project serves as an example on creating a custom command to use with `@dojo/cli`. The example shows:

@@ -1,75 +1,93 @@
-import * as registerSuite from 'intern!object';
-import * as assert from 'intern/chai!assert';
-import { stub, SinonStub } from 'sinon';
-import command, { MyContext, MyArgv } from './../../src/main';
-import { Helper } from './../../src/interfaces';
-import { getHelperStub } from '../support/testHelper';
+const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
+const { assert } = intern.getPlugin('chai');
+import * as sinon from 'sinon';
+import command, { MyArgv } from './../../src/main';
+import { Helper } from '@dojo/interfaces/cli';
 
-let optionStub: SinonStub;
-let helperStub: Helper;
-let consoleStub: SinonStub;
 const testContextMessage = 'test';
+let sandbox: sinon.SinonSandbox;
+let helper: Helper;
+let consoleStub: sinon.SinonStub;
 
-registerSuite({
-	name: 'main',
-	'Should contain a description'() {
+describe('main', () => {
+	it('should contain a description', () => {
 		assert.isTrue(command.description !== undefined);
 		assert.isTrue(typeof command.description === 'string');
-	},
-	'Should contain a register function'() {
+	});
+	it('should contain a register function', () => {
 		assert.isTrue(command.register !== undefined);
 		assert.isTrue(typeof command.register === 'function');
-	},
-	'Should contain a run function'() {
+	});
+	it('should contain a run function', () => {
 		assert.isTrue(command.run !== undefined);
 		assert.isTrue(typeof command.run === 'function');
-	},
-	'register': {
-		'beforeEach'() {
-			helperStub = getHelperStub<MyContext>();
-			helperStub.context = {};
-			optionStub = stub(helperStub.yargs, 'option');
-		},
-		'afterEach'() {
-			optionStub.restore();
-		},
-		'Should set context message'() {
-			command.register(helperStub);
-			assert.equal('Hello World!', helperStub.context.message);
-		},
-		'Should call yargs.option'() {
-			command.register(helperStub);
-			assert.isTrue(optionStub.calledOnce);
-		},
-		'Should return yargs'() {
-			const yargsResponse = command.register(helperStub);
-			assert.equal(helperStub.yargs, yargsResponse);
+	});
+});
+
+describe('register', () => {
+	beforeEach(() => {
+		sandbox = sinon.sandbox.create();
+		helper = <Helper> {
+			context: {}
+		};
+	});
+	afterEach(() => {
+		sandbox.restore();
+	});
+	it('should set context message', () => {
+		const options = sandbox.stub();
+		command.register(options, helper);
+		assert.equal('Hello World!', helper.context.message);
+	});
+	it('should call yargs.option', () => {
+		const options = sandbox.stub();
+		command.register(options, helper);
+		assert.isTrue(options.calledOnce);
+	});
+	it('should return yargs', () => {
+		const options = sandbox.stub();
+		command.register(options, helper);
+		assert.isTrue(options.firstCall.calledWithMatch('s', {
+			alias: 'shout',
+			describe: 'SHOUT the response'
+		}));
+	});
+});
+describe('run', () => {
+	beforeEach(() => {
+		sandbox = sinon.sandbox.create();
+		helper = <Helper> {
+			context: { message: testContextMessage }
+		};
+		consoleStub = sandbox.stub(console, 'log');
+	});
+	afterEach(() => {
+		sandbox.restore();
+	});
+	it('should log out context message', () => {
+		const args = {};
+		return command.run(helper, <MyArgv> args).then(() => {
+			assert.isTrue(consoleStub.calledWith(testContextMessage));
+		});
+	});
+	it('should shout out context message', () => {
+		const args = {
+			shout: true
+		};
+		return command.run(helper, <MyArgv> args).then(() => {
+			assert.isTrue(consoleStub.calledWith(testContextMessage.toUpperCase()));
+		});
+	});
+});
+describe('eject', () => {
+	it('should provide eject information', () => {
+		const result = command.eject && command.eject(<Helper> {});
+		if (result == null) {
+			assert.fail('eject is not supported');
+		} else {
+			assert.isTrue('copy' in result, 'copy data is missing');
+			assert.isTrue('hints' in result, 'hint data is missing');
+			assert.deepEqual(result.copy && result.copy.files, [ './sayhello.js' ]);
 		}
-	},
-	'run': {
-		'beforeEach'() {
-			helperStub = getHelperStub<MyContext>();
-			helperStub.context = {
-				message: testContextMessage
-			};
-			consoleStub = stub(console, 'log');
-		},
-		'afterEach'() {
-			consoleStub.restore();
-		},
-		'Should log out context message'() {
-			const args = {};
-			return command.run(helperStub, <MyArgv> args).then(() => {
-				assert.isTrue(consoleStub.calledWith(testContextMessage));
-			});
-		},
-		'Should shout out context message'() {
-			const args = {
-				shout: true
-			};
-			return command.run(helperStub, <MyArgv> args).then(() => {
-				assert.isTrue(consoleStub.calledWith(testContextMessage.toUpperCase()));
-			});
-		}
-	}
+	});
 });
