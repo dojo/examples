@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import  { v, w } from '@dojo/widget-core/d';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
 import { ThemeSwitcherContainer } from './../containers/ThemeSwitcherContainer';
 import { TodoListOutlet } from './../outlets/TodoListOutlet';
@@ -29,7 +29,7 @@ export interface TodoAppProperties {
 	clearCompleted: () => void;
 }
 
-export const TodoAppBase = ThemeableMixin(WidgetBase);
+export const TodoAppBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoApp extends TodoAppBase<TodoAppProperties> {
@@ -52,7 +52,7 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 		} = this.properties;
 
 		return v('div', {}, [
-				v('section', { classes: this.classes(css.todoapp) }, [
+				v('section', { classes: this.theme(css.todoapp) }, [
 				w(ThemeSwitcherContainer, {}),
 				w(TodoHeader, {
 					allCompleted,

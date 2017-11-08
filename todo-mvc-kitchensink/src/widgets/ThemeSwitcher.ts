@@ -1,6 +1,6 @@
 import { v } from '@dojo/widget-core/d';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 
@@ -11,7 +11,7 @@ interface ThemeSwitcherProperties extends WidgetProperties {
 	changeTheme: (wantsPirate: boolean) => void;
 }
 
-const ThemeSwitherBase = I18nMixin(ThemeableMixin(WidgetBase));
+const ThemeSwitherBase = I18nMixin(ThemedMixin(WidgetBase));
 
 @theme(css)
 export class ThemeSwitcher extends ThemeSwitherBase<ThemeSwitcherProperties> {
@@ -23,13 +23,13 @@ export class ThemeSwitcher extends ThemeSwitherBase<ThemeSwitcherProperties> {
 		const messages = this.localizeBundle(appBundle);
 
 		return v('label', {
-			classes: this.classes(css.themeSwitcher)
+			classes: this.theme(css.themeSwitcher)
 		}, [
 			v('span', [ messages.themeSwitchTitle ]),
 			v('input', {
 				type: 'checkbox',
 				onclick: this.onClick,
-				classes: this.classes(css.themeSwitcherCheckbox)
+				classes: this.theme(css.themeSwitcherCheckbox)
 			})
 		]);
 	}

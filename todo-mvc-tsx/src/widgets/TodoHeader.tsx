@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { DNode, TypedTargetEvent, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { tsx } from '@dojo/widget-core/tsx';
 
@@ -14,7 +14,7 @@ export interface TodoHeaderProperties extends WidgetProperties {
 	todoInput: (todo: string) => void;
 }
 
-export const TodoHeaderBase = ThemeableMixin(WidgetBase);
+export const TodoHeaderBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
@@ -44,12 +44,12 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
 		return (
 			<header>
-				<h1 classes={this.classes(css.title)}>
+				<h1 classes={this.theme(css.title)}>
 					todos
 				</h1>
 				<input
 					key='todo-input'
-					classes={this.classes(css.newTodo)}
+					classes={this.theme(css.newTodo)}
 					onkeyup={this._addTodo}
 					oninput={this._todoInput}
 					value={todo}
@@ -59,7 +59,7 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 					onchange={this._toggleAllTodos}
 					checked={allCompleted}
 					type='checkbox'
-					classes={this.classes(css.toggleAll)}
+					classes={this.theme(css.toggleAll)}
 				/>
 			</header>
 		);

@@ -33,7 +33,7 @@
     "@dojo/has": "~0.1.0",
     "@dojo/routing": "~0.1.0",
     "@dojo/shim": "~0.1.0",
-    "@dojo/widget-core": "~0.1.0",
+    "@dojo/widget-core": "~0.2.0",
     "@dojo/i18n": "~0.1.0",
     "cldr-data": "~30.0.2",
     "@webcomponents/custom-elements": "^1.0.0-alpha.3"

@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 
@@ -20,7 +20,7 @@ export interface TodoListProperties extends WidgetProperties {
 	editTodo: (id: string) => void;
 }
 
-export const TodoListBase = ThemeableMixin(WidgetBase);
+export const TodoListBase = ThemedMixin(WidgetBase);
 
 function filterTodos(todos: Todo[], quickFilter: string, filter: string): Todo[] {
 	return todos.filter((todo) => {
@@ -35,7 +35,7 @@ export class TodoList extends TodoListBase<TodoListProperties> {
 		const { todos, searchValue, view, filter, toggleTodo, removeTodo, editTodo } = this.properties;
 
 		return [
-			v('ul', { classes: this.classes(css.todoList, view === 'card' && todos.length > 0 ? css.cardList : null) }, filterTodos(todos, searchValue, filter).map((todo) => {
+			v('ul', { classes: this.theme([ css.todoList, view === 'card' && todos.length > 0 ? css.cardList : null ]) }, filterTodos(todos, searchValue, filter).map((todo) => {
 				return view === 'list' ?
 					w(TodoItem, { key: todo.id, todo, editTodo, toggleTodo, removeTodo }) :
 					w(TodoCard, { key: todo.id, todo, editTodo, toggleTodo, removeTodo });

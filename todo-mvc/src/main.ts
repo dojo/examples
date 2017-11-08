@@ -6,7 +6,6 @@ import { Registry } from '@dojo/widget-core/Registry';
 
 import TodoHeader from './widgets/TodoHeader';
 import TodoList from './widgets/TodoList';
-import TodoItem from './widgets/TodoItem';
 import TodoFooter from './widgets/TodoFooter';
 import TodoFilter from './widgets/TodoFilter';
 
@@ -18,11 +17,14 @@ function mapFilterRouteParam({ params }: any) {
 
 registry.define('todo-header', TodoHeader);
 registry.define('todo-list', Outlet(TodoList, 'filter', mapFilterRouteParam));
-registry.define('todo-item', TodoItem);
+registry.define('todo-item', async () => {
+	const TodoItem = await import ('./widgets/TodoItem');
+	return TodoItem.default;
+});
 registry.define('todo-footer', TodoFooter);
 registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
 
-const root = document.querySelector('my-app') || undefined;
+const root = document.getElementById('app') as Element;
 
 const Projector = ProjectorMixin(TodoApp);
 const projector = new Projector();
@@ -30,5 +32,5 @@ const projector = new Projector();
 const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter', defaultParams: { filter: 'all' }, defaultRoute: true }], registry);
 projector.setProperties({ registry });
 
-projector.append(root);
+projector.merge(root);
 router.start();

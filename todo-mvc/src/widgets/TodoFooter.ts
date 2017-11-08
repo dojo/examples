@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v, w } from '@dojo/widget-core/d';
 
 import * as css from './styles/todoFooter.css';
@@ -11,7 +11,7 @@ export interface TodoFooterProperties extends WidgetProperties {
 	completedItems: boolean;
 }
 
-export const TodoHeaderBase = ThemeableMixin(WidgetBase);
+export const TodoHeaderBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
@@ -24,8 +24,8 @@ export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 		const { activeCount, completedItems } = this.properties;
 		const countLabel = activeCount === 1 ? 'item' : 'items';
 
-		return v('footer', { classes: this.classes(css.footer) }, [
-			v('span', { classes: this.classes(css.todoCount) }, [
+		return v('footer', { classes: this.theme(css.footer) }, [
+			v('span', { classes: this.theme(css.todoCount) }, [
 				v('strong', [activeCount + ' ']),
 				v('span', [countLabel + ' left'])
 			]),
@@ -33,7 +33,7 @@ export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 			completedItems ? v('button', {
 				onclick: this.clearCompleted,
 				innerHTML: 'Clear completed',
-				classes: this.classes(css.clearCompleted)
+				classes: this.theme(css.clearCompleted)
 			}) : null
 		]);
 	}

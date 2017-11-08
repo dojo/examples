@@ -5,7 +5,7 @@ import { Registry } from '@dojo/widget-core/Registry';
 import setLocaleData from './setLocaleData';
 import { TodoAppContext } from './TodoAppContext';
 import { TodoAppContainer } from './containers/TodoAppContainer';
-import { registerThemeInjector } from '@dojo/widget-core/mixins/Themeable';
+import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
 
 const registry = new Registry();
 const themeContext = registerThemeInjector(undefined, registry);

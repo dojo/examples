@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v } from '@dojo/widget-core/d';
 
 import { Todo } from './../TodoAppContext';
@@ -14,7 +14,7 @@ export interface TodoCardProperties extends WidgetProperties {
 	toggleTodo: (id: string) => void;
 }
 
-export const TodoCardBase = ThemeableMixin(WidgetBase);
+export const TodoCardBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoCard extends TodoCardBase<TodoCardProperties> {
@@ -37,17 +37,17 @@ export class TodoCard extends TodoCardBase<TodoCardProperties> {
 	protected render(): DNode {
 		const { todo } = this.properties;
 
-		return v('li', { classes: this.classes(css.card, todo.completed ? css.completed : null)}, [
-			v('div', { classes: this.classes(css.cardHeader) }, [
+		return v('li', { classes: this.theme([ css.card, todo.completed ? css.completed : null ]) }, [
+			v('div', { classes: this.theme(css.cardHeader) }, [
 				v('input', {
-					classes: this.classes(css.cardToggle),
+					classes: this.theme(css.cardToggle),
 					type: 'checkbox',
 					checked: todo.completed,
 					onchange: this.toggleTodo
 				}),
-				v('button', { classes: this.classes(css.cardDestroy), onclick: this.removeTodo })
+				v('button', { classes: this.theme(css.cardDestroy), onclick: this.removeTodo })
 			]),
-			v('label', { classes: this.classes(css.todoLabel), ondblclick: this.editTodo }, [ todo.label ])
+			v('label', { classes: this.theme(css.todoLabel), ondblclick: this.editTodo }, [ todo.label ])
 		]);
 	}
 }

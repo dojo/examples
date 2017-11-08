@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { Link } from '@dojo/routing/Link';
 import { tsx } from '@dojo/widget-core/tsx';
 
@@ -10,7 +10,7 @@ export interface TodoFilterProperties extends WidgetProperties {
 	filter?: string;
 }
 
-export const TodoFilterBase = ThemeableMixin(WidgetBase);
+export const TodoFilterBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
@@ -19,7 +19,7 @@ export class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
 		const links = ['all', 'active', 'completed'].map(this._createLink.bind(this));
 
 		return (
-			<ul classes={this.classes(css.filters)}>
+			<ul classes={this.theme(css.filters)}>
 				<li>
 					{links}
 				</li>
@@ -29,7 +29,7 @@ export class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
 
 	private _createLink(filter: string) {
 		const { filter: currentFilter } = this.properties;
-		const classes = this.classes(filter === currentFilter ? css.selected : null);
+		const classes = this.theme(filter === currentFilter ? css.selected : null);
 
 		return (
 			<Link key={filter} to='filter' params={{ filter }} classes={classes}>

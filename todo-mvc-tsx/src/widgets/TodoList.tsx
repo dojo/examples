@@ -1,5 +1,5 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { Todo } from './TodoApp';
 import { tsx } from '@dojo/widget-core/tsx';
@@ -16,7 +16,7 @@ export interface TodoListProperties extends WidgetProperties {
 	saveTodo: (id: string, label?: string) => void;
 }
 
-export const TodoListBase = ThemeableMixin(WidgetBase);
+export const TodoListBase = ThemedMixin(WidgetBase);
 
 function filterTodos(todos: Todo[], filter: string): Todo[] {
 	return todos.filter((todo) => {
@@ -40,7 +40,7 @@ export class TodoList extends TodoListBase<TodoListProperties> {
 		));
 
 		return (
-			<ul classes={this.classes(css.todoList)}>
+			<ul classes={this.theme(css.todoList)}>
 				{items}
 			</ul>
 		);

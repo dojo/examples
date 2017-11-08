@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v } from '@dojo/widget-core/d';
 import { Todo } from './TodoApp';
 
@@ -14,7 +14,7 @@ export interface TodoItemProperties extends WidgetProperties {
 	updateTodo: Function;
 }
 
-export const TodoItemBase = ThemeableMixin(WidgetBase);
+export const TodoItemBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class TodoItem extends TodoItemBase<TodoItemProperties> {
@@ -22,13 +22,13 @@ export default class TodoItem extends TodoItemBase<TodoItemProperties> {
 	render() {
 		const { properties: { todo } } = this;
 
-		return v('li', { id: 'todo-item', classes: this.classes(css.todoItem, Boolean(todo.editing) ? css.editing : null, Boolean(todo.completed && !todo.editing) ? css.completed : null) }, [
-			v('div', { classes: this.classes(css.view) }, [
-				v('input', { id: 'toggle', classes: this.classes(css.toggle), type: 'checkbox', checked: todo.completed, onchange: this.toggleTodo }),
-				v('label', { classes: this.classes(css.todoLabel), innerHTML: todo.label, ondblclick: this.editTodo }),
-				v('button', { id: 'destroy', onclick: this.removeTodo, classes: this.classes(css.destroy) })
+		return v('li', { id: 'todo-item', classes: this.theme([css.todoItem, Boolean(todo.editing) ? css.editing : null, Boolean(todo.completed && !todo.editing) ? css.completed : null ]) }, [
+			v('div', { classes: this.theme(css.view) }, [
+				v('input', { id: 'toggle', classes: this.theme(css.toggle), type: 'checkbox', checked: todo.completed, onchange: this.toggleTodo }),
+				v('label', { classes: this.theme(css.todoLabel), innerHTML: todo.label, ondblclick: this.editTodo }),
+				v('button', { id: 'destroy', onclick: this.removeTodo, classes: this.theme(css.destroy) })
 			]),
-			todo.editing ? v('input', { afterCreate: this.afterCreate, onkeyup: this.updateTodo, onblur: this.updateTodo, value: todo.label, classes: this.classes(css.edit) }) : null
+			todo.editing ? v('input', { afterCreate: this.afterCreate, onkeyup: this.updateTodo, onblur: this.updateTodo, value: todo.label, classes: this.theme(css.edit) }) : null
 		]);
 	}
 
