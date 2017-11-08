@@ -8,6 +8,7 @@ import TodoHeader from './widgets/TodoHeader';
 import TodoList from './widgets/TodoList';
 import TodoFooter from './widgets/TodoFooter';
 import TodoFilter from './widgets/TodoFilter';
+import TodoItem from './widgets/TodoItem';
 
 const registry = new Registry();
 
@@ -17,10 +18,7 @@ function mapFilterRouteParam({ params }: any) {
 
 registry.define('todo-header', TodoHeader);
 registry.define('todo-list', Outlet(TodoList, 'filter', mapFilterRouteParam));
-registry.define('todo-item', async () => {
-	const TodoItem = await import ('./widgets/TodoItem');
-	return TodoItem.default;
-});
+registry.define('todo-item', TodoItem);
 registry.define('todo-footer', TodoFooter);
 registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
 

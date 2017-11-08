@@ -21,8 +21,7 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 	render() {
 		const { properties: { value, allCompleted } } = this;
 		const newTodoProperties: any = {
-			id: 'new-todo',
-			afterCreate: this.afterCreate,
+			key: 'new-todo',
 			classes: this.theme(css.newTodo),
 			onkeyup: this.addTodo,
 			oninput: this.updateTodo,
@@ -51,7 +50,9 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		this.properties.toggleAllTodos();
 	}
 
-	private afterCreate(element: HTMLInputElement) {
-		setTimeout(() => element.focus(), 0);
+	public onElementCreated(element: HTMLInputElement, key: string) {
+		if (key === 'new-todo') {
+			setTimeout(() => element.focus(), 0);
+		}
 	}
 }
