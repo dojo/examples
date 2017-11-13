@@ -6,9 +6,9 @@ import { Registry } from '@dojo/widget-core/Registry';
 
 import TodoHeader from './widgets/TodoHeader';
 import TodoList from './widgets/TodoList';
-import TodoItem from './widgets/TodoItem';
 import TodoFooter from './widgets/TodoFooter';
 import TodoFilter from './widgets/TodoFilter';
+import TodoItem from './widgets/TodoItem';
 
 const registry = new Registry();
 

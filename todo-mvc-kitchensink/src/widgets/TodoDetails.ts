@@ -1,7 +1,7 @@
 import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { theme, ThemeableMixin } from '@dojo/widget-core/mixins/Themeable';
+import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
 import { Todo } from './../TodoAppContext';
 
@@ -15,7 +15,7 @@ export interface TodoDetailsProperties {
 }
 
 @theme(css)
-export class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsProperties> {
+export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> {
 
 	protected onClose(): void {
 		this.properties.saveTodo();
@@ -36,19 +36,19 @@ export class TodoDetails extends ThemeableMixin(WidgetBase)<TodoDetailsPropertie
 		const { todo } = this.properties;
 
 		return todo ?
-			v('div', { classes: this.classes(css.todoDetails) }, [
-				v('div', { classes: this.classes(css.backdrop) }),
-				v('div', { classes: this.classes(css.modal) }, [
-					v('div', { onclick: this.onClose, classes: this.classes(css.close) }),
+			v('div', { classes: this.theme(css.todoDetails) }, [
+				v('div', { classes: this.theme(css.backdrop) }),
+				v('div', { classes: this.theme(css.modal) }, [
+					v('div', { onclick: this.onClose, classes: this.theme(css.close) }),
 					v('header', {
-						classes: this.classes(css.todoDetailsHeader)
+						classes: this.theme(css.todoDetailsHeader)
 					}, [
-						v('div', { classes: this.classes(css.title) }, [ 'Details' ])
+						v('div', { classes: this.theme(css.title) }, [ 'Details' ])
 					]),
 					v('section', [
 						v('textarea', {
 							key: 'edit-todo',
-							classes: this.classes(css.todoDetailsTextArea),
+							classes: this.theme(css.todoDetailsTextArea),
 							value: todo.label,
 							oninput: this.onInput
 						})

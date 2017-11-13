@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { tsx } from '@dojo/widget-core/tsx';
 
 import TodoHeader from './TodoHeader';
@@ -31,7 +31,7 @@ export interface TodoAppProperties extends WidgetProperties {
 	clearCompleted: () => void;
 }
 
-export const TodoAppBase = ThemeableMixin(WidgetBase);
+export const TodoAppBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoApp extends TodoAppBase<TodoAppProperties> {
@@ -54,7 +54,7 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 		const todoCount = todos.length;
 
 		return (
-			<section classes={this.classes(css.todoapp)}>
+			<section classes={this.theme(css.todoapp)}>
 				<TodoHeader
 					todo={currentTodo}
 					todoInput={todoInput}

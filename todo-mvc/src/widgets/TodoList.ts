@@ -1,7 +1,7 @@
 import Map from '@dojo/shim/Map';
 import { from as arrayFrom } from '@dojo/shim/array';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 import { Todo } from './TodoApp';
@@ -19,7 +19,7 @@ export interface TodoListProperties extends WidgetProperties {
 	updateTodo: Function;
 }
 
-export const TodoListBase = ThemeableMixin(WidgetBase);
+export const TodoListBase = ThemedMixin(WidgetBase);
 
 function filter(filterName: string = 'all', todo: Todo): boolean {
 	switch (filterName) {
@@ -38,7 +38,7 @@ export default class TodoList extends TodoListBase<TodoListProperties> {
 		const { properties: { activeFilter, todos, toggleTodo, editTodo, updateTodo, removeTodo } } = this;
 		const todoItems = arrayFrom(todos.entries()).filter(([ , value ]) => filter(activeFilter, value));
 
-		return v('ul', { id: 'todo-list', classes: this.classes(css.todoList) }, todoItems.map(([ key, todo ]) => {
+		return v('ul', { id: 'todo-list', classes: this.theme(css.todoList) }, todoItems.map(([ key, todo ]) => {
 			return w<TodoItem>('todo-item', { key, todo, toggleTodo, editTodo, removeTodo, updateTodo });
 		}));
 	}

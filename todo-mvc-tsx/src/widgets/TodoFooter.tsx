@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { tsx } from '@dojo/widget-core/tsx';
 
 import { TodoFilter } from './TodoFilter';
@@ -13,7 +13,7 @@ export interface TodoFooterProperties extends WidgetProperties {
 	clearCompleted: () => void;
 }
 
-export const TodoHeaderBase = ThemeableMixin(WidgetBase);
+export const TodoHeaderBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
@@ -28,14 +28,14 @@ export class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 		const countLabel = activeCount === 1 ? 'item' : 'items';
 
 		return (
-			<footer classes={this.classes(css.footer)}>
-				<span classes={this.classes(css.todoCount)}>
+			<footer classes={this.theme(css.footer)}>
+				<span classes={this.theme(css.todoCount)}>
 					<strong>{`${activeCount} `}</strong>
 					<span>{`${countLabel} left`}</span>
 				</span>
 				<TodoFilter filter={filter} />
 				{ completedItems ? (
-					<button onclick={this.clearCompleted} classes={this.classes(css.clearCompleted)}>
+					<button onclick={this.clearCompleted} classes={this.theme(css.clearCompleted)}>
 						Clear completed
 					</button>
 				) : (null) }

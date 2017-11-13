@@ -2,7 +2,7 @@ import Map from '@dojo/shim/Map';
 import uuid from '@dojo/core/uuid';
 import { assign } from '@dojo/core/lang';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { w, v } from '@dojo/widget-core/d';
 
 import TodoHeader from './TodoHeader';
@@ -18,7 +18,7 @@ export interface Todo {
 	editing?: boolean;
 }
 
-export const TodoAppBase = ThemeableMixin(WidgetBase);
+export const TodoAppBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class TodoApp extends TodoAppBase {
@@ -34,7 +34,7 @@ export default class TodoApp extends TodoAppBase {
 		const activeCount = todos.size - completedCount;
 		const completedItems = completedCount > 0;
 
-		return v('section', { classes: this.classes(css.todoapp) }, [
+		return v('section', { classes: this.theme(css.todoapp) }, [
 			w<TodoHeader>('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
 			v('section', {}, [
 				w<TodoList>('todo-list', { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })

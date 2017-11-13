@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v } from '@dojo/widget-core/d';
 
 import * as css from './styles/todoHeader.css';
@@ -13,7 +13,7 @@ export interface TodoHeaderProperties extends WidgetProperties {
 	value: string;
 }
 
-export const TodoHeaderBase = ThemeableMixin(WidgetBase);
+export const TodoHeaderBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
@@ -21,9 +21,8 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 	render() {
 		const { properties: { value, allCompleted } } = this;
 		const newTodoProperties: any = {
-			id: 'new-todo',
-			afterCreate: this.afterCreate,
-			classes: this.classes(css.newTodo),
+			key: 'new-todo',
+			classes: this.theme(css.newTodo),
 			onkeyup: this.addTodo,
 			oninput: this.updateTodo,
 			value,
@@ -31,9 +30,9 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		};
 
 		return v('header', [
-			v('h1', { classes: this.classes(css.title) }, [ 'todos' ]),
+			v('h1', { classes: this.theme(css.title) }, [ 'todos' ]),
 			v('input', newTodoProperties),
-			v('input', { onchange: this.toggleAllTodos, checked: allCompleted, type: 'checkbox', classes: this.classes(css.toggleAll) })
+			v('input', { onchange: this.toggleAllTodos, checked: allCompleted, type: 'checkbox', classes: this.theme(css.toggleAll) })
 		]);
 	}
 
@@ -51,7 +50,9 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		this.properties.toggleAllTodos();
 	}
 
-	private afterCreate(element: HTMLInputElement) {
-		setTimeout(() => element.focus(), 0);
+	public onElementCreated(element: HTMLInputElement, key: string) {
+		if (key === 'new-todo') {
+			setTimeout(() => element.focus(), 0);
+		}
 	}
 }

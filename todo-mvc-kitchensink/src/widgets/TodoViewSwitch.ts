@@ -1,5 +1,5 @@
 import { v, w } from '@dojo/widget-core/d';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Link } from '@dojo/routing/Link';
 
@@ -9,7 +9,7 @@ export interface TodoViewSwitchProperties {
 	view: string;
 }
 
-export const TodoViewSwitchBase = ThemeableMixin(WidgetBase);
+export const TodoViewSwitchBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export class TodoViewSwitch extends TodoViewSwitchBase<TodoViewSwitchProperties> {
@@ -17,7 +17,7 @@ export class TodoViewSwitch extends TodoViewSwitchBase<TodoViewSwitchProperties>
 		const { view } = this.properties;
 
 		return v('ul', {
-			classes: this.classes(css.viewChooser)
+			classes: this.theme(css.viewChooser)
 		}, [
 			v('li', [
 				w(Link, {
@@ -25,7 +25,7 @@ export class TodoViewSwitch extends TodoViewSwitchBase<TodoViewSwitchProperties>
 					to: 'view',
 					isOutlet: true,
 					params: { view: 'list' },
-					classes: this.classes(css.list, view === 'list' ? css.active : null)
+					classes: this.theme([ css.list, view === 'list' ? css.active : null ])
 				})
 			]),
 			v('li', [
@@ -34,7 +34,7 @@ export class TodoViewSwitch extends TodoViewSwitchBase<TodoViewSwitchProperties>
 					to: 'view',
 					isOutlet: true,
 					params: { view: 'card' },
-					classes: this.classes(css.cards, view === 'card' ? css.active : null)
+					classes: this.theme([ css.cards, view === 'card' ? css.active : null ])
 				})
 			])
 		]);
