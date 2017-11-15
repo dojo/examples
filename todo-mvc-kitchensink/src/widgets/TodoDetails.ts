@@ -3,7 +3,7 @@ import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 
-import { Todo } from './../TodoAppContext';
+import { Todo } from './../todoStore';
 
 import * as css from './styles/todoDetails.m.css';
 
@@ -11,7 +11,7 @@ export interface TodoDetailsProperties {
 	todo: Todo;
 	onRequestExit: () => void;
 	saveTodo: () => void;
-	editTodoInput: (todo: Todo) => void;
+	editTodo: (todo: Todo) => void;
 }
 
 @theme(css)
@@ -23,7 +23,7 @@ export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> 
 	}
 
 	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
-		this.properties.editTodoInput({ ...this.properties.todo, label: value });
+		this.properties.editTodo({ ...this.properties.todo, label: value });
 	}
 
 	protected onElementCreated(element: HTMLElement, key: string) {

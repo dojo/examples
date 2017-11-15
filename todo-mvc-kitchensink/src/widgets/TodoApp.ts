@@ -8,7 +8,7 @@ import { TodoFooterOutlet } from './../outlets/TodoFooterOutlet';
 import { TodoHeader } from './TodoHeader';
 import { TodoSearch } from './TodoSearch';
 import { Credits } from './Credits';
-import { Todo } from './../TodoAppContext';
+import { Todo } from './../todoStore';
 
 import * as css from './styles/todoApp.m.css';
 
@@ -37,12 +37,12 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 		const {
 			todos,
 			addTodo,
-			todoInput,
 			completed: allCompleted,
 			toggleTodos,
 			editTodo,
 			removeTodo,
 			toggleTodo,
+			currentTodo: todo,
 			setCurrentTodo,
 			search,
 			searchValue,
@@ -56,11 +56,11 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 				w(ThemeSwitcherContainer, {}),
 				w(TodoHeader, {
 					allCompleted,
+					todo,
 					todoCount,
 					toggleTodos,
 					addTodo,
-					setCurrentTodo,
-					todoInput
+					setCurrentTodo
 				}),
 				todoCount > 0 ? w(TodoSearch, { search, searchValue }) : null,
 				todoCount > 0 ? w(TodoListOutlet, { todos, searchValue, toggleTodo, removeTodo, editTodo }) : null,

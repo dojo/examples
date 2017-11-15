@@ -3,7 +3,7 @@ import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { v, w } from '@dojo/widget-core/d';
 
-import { Todo } from './../TodoAppContext';
+import { Todo } from './../todoStore';
 import { TodoItem } from './TodoItem';
 import { TodoCard } from './TodoCard';
 import { TodoDetailsOutlet } from './../outlets/TodoDetailsOutlet';

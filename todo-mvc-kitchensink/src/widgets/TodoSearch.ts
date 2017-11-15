@@ -8,7 +8,7 @@ import appBundle from '../nls/common';
 import * as css from './styles/todoSearch.m.css';
 
 export interface TodoSearchProperties {
-	searchInput: (id: string) => void;
+	search: (id: string) => void;
 	searchValue: string;
 }
 
@@ -18,7 +18,7 @@ export const TodoSearchBase = I18nMixin(ThemedMixin(WidgetBase));
 export class TodoSearch extends TodoSearchBase<TodoSearchProperties> {
 
 	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>) {
-		this.properties.searchInput(value);
+		this.properties.search(value);
 	}
 
 	protected render(): DNode[] {

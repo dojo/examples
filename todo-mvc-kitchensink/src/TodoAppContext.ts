@@ -43,7 +43,7 @@ export class TodoAppContext extends Injector {
 
 	public get todos(): Todo[] {
 		return Object.keys(todoStore.get<Todos>('/todos')).map((key) => {
-			return { ...todoStore.get(`/todos/${key}`) };
+			return { ...todoStore.get<Todo>(`/todos/${key}`) };
 		});
 	}
 
@@ -64,7 +64,7 @@ export class TodoAppContext extends Injector {
 	}
 
 	public get activeCount(): number {
-		return todoStore.get('/todoCount') - todoStore.get('/completedCount');
+		return todoStore.get<number>('/todoCount') - todoStore.get<number>('/completedCount');
 	}
 
 	public get completed(): boolean {

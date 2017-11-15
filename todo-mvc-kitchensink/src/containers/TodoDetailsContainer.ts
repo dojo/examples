@@ -6,7 +6,7 @@ import { TodoDetails } from './../widgets/TodoDetails';
 function getProperties(todoAppContext: TodoAppContext, properties: any) {
 	return {
 		todo: todoAppContext.editedTodo || todoAppContext.getTodo(properties.id),
-		editTodoInput: todoAppContext.editTodoInput,
+		editTodo: todoAppContext.editTodo,
 		saveTodo: todoAppContext.saveTodo
 	};
 }
