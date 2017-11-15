@@ -31,8 +31,8 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		}
 	}
 
-	protected todoInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
-		this.properties.todoInput(value);
+	protected setCurrentTodo({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
+		this.properties.setCurrentTodo(value);
 	}
 
 	protected onElementCreated(element: HTMLElement, key: string): void {
@@ -51,7 +51,7 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 				key: 'todo-input',
 				classes: this.theme(css.newTodo),
 				onkeydown: this.addTodo,
-				oninput: this.todoInput,
+				oninput: this.setCurrentTodo,
 				value: todo,
 				placeholder: messages.editPlaceholder
 			}),

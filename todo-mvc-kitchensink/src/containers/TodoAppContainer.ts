@@ -3,13 +3,13 @@ import { Container } from '@dojo/widget-core/Container';
 import { TodoAppContext } from './../TodoAppContext';
 import { TodoApp } from './../widgets/TodoApp';
 
-function getProperties(todoAppContext: TodoAppContext, properties: any) {
+function getProperties(todoAppContext: TodoAppContext) {
 	return {
 		todos: todoAppContext.todos,
 		currentTodo: todoAppContext.currentTodo,
 		addTodo: todoAppContext.addTodo,
-		todoInput: todoAppContext.todoInput,
-		searchInput: todoAppContext.searchInput,
+		setCurrentTodo: todoAppContext.setCurrentTodo,
+		search: todoAppContext.search,
 		searchValue: todoAppContext.currentSearch,
 		completed: todoAppContext.completed,
 		clearCompleted: todoAppContext.clearCompleted,

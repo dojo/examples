@@ -21,8 +21,8 @@ export interface TodoAppProperties {
 	completed: boolean;
 	addTodo: () => void;
 	editTodo: (id: string) => void;
-	todoInput: (id: string) => void;
-	searchInput: (id: string) => void;
+	setCurrentTodo: (id: string) => void;
+	search: (id: string) => void;
 	removeTodo: (id: string) => void;
 	toggleTodo: (id: string) => void;
 	toggleTodos: () => void;
@@ -43,8 +43,8 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 			editTodo,
 			removeTodo,
 			toggleTodo,
-			currentTodo: todo,
-			searchInput,
+			setCurrentTodo,
+			search,
 			searchValue,
 			todoCount,
 			activeCount,
@@ -59,10 +59,10 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 					todoCount,
 					toggleTodos,
 					addTodo,
-					todo,
+					setCurrentTodo,
 					todoInput
 				}),
-				todoCount > 0 ? w(TodoSearch, { searchInput, searchValue }) : null,
+				todoCount > 0 ? w(TodoSearch, { search, searchValue }) : null,
 				todoCount > 0 ? w(TodoListOutlet, { todos, searchValue, toggleTodo, removeTodo, editTodo }) : null,
 				todoCount > 0 ? w(TodoFooterOutlet, { activeCount, todoCount, clearCompleted }) : null
 			]),
