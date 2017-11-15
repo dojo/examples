@@ -19,7 +19,7 @@ else
 	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
 	then
 		runCommandAndCheckStatus ./node_modules/.bin/dojo test -a -c "browserstack"
-		runCommandAndCheckStatus ./node_modules/.bin/dojo build webpack
+		runCommandAndCheckStatus npm run build
 	else
 		runCommandAndCheckStatus ./node_modules/.bin/grunt
 		runCommandAndCheckStatus ./node_modules/.bin/grunt ci --combined

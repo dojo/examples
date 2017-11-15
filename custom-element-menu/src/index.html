@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>custom-element</title>
+	<meta name="theme-color" content="#222127">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" />
+	<link rel="import" href="./menu/menu.html" />
+	<link rel="import" href="./menu-item/menu-item.html" />
+	<style>
+
+		.menu-container {
+			padding: 10px;
+			margin-bottom: 20px;
+			background: white;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		}
+
+		code {
+			font-size: 14px;
+			height: 320px;
+		}
+
+		pre {
+			margin: 0;
+			background: white;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		}
+
+		.main-container {
+			margin: 16px;
+		}
+
+		.container {
+			width: 48%;
+			padding: 0 20px 20px 20px;
+			margin: 1%;
+			float: left;
+			background: #f3f3f3;
+			box-sizing: border-box;
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+		}
+
+	</style>
+</head>
+<body>
+	<div class="main-container">
+		<div class="container">
+			<h2>Dojo Widget Menu</h2>
+			<h3>Demo</h3>
+			<div class="menu-container" id="widget"></div>
+			<h3>Code</h3>
+			<pre>
+				<code class="typescript">
+class Example extends WidgetBase {
+
+  private _onSelected(data: any) {
+    console.log(data);
+  }
+
+  protected render() {
+    return w(Menu, { onSelected: this._onSelected }, [
+      w(MenuItem, { key: 'a', title: 'Menu Item A' }),
+      w(MenuItem, { key: 'b', title: 'Menu Item B', selected: true }),
+      w(MenuItem, { key: 'c', title: 'Menu Item C' })
+    ]);
+  }
+}
+				</code>
+			</pre>
+		</div>
+		<div class="container">
+			<h2>Custom Element Menu</h2>
+			<h3>Demo</h3>
+			<div class="menu-container">
+				<demo-menu id="menu">
+					<demo-menu-item id="a" title="Menu Item A"></demo-menu-item>
+					<demo-menu-item id="b" title="Menu Item B"></demo-menu-item>
+					<demo-menu-item id="c" title="Menu Item C" selected></demo-menu-item>
+				</demo-menu>
+			</div>
+			<script>
+				a.data = { foo: 'bar' };
+				menu.addEventListener('selected', function(event) {
+					const detail = event.detail;
+					console.log(detail);
+				});
+			</script>
+			<h3>Code</h3>
+			<pre>
+				<code class="html">
+&lt;demo-menu id=&quot;menu&quot;&gt;
+  &lt;demo-menu-item id=&quot;a&quot; title=&quot;Menu Item A&quot;&gt;&lt;/demo-menu-item&gt;
+  &lt;demo-menu-item id=&quot;b&quot; title=&quot;Menu Item B&quot;&gt;&lt;/demo-menu-item&gt;
+  &lt;demo-menu-item id=&quot;c&quot; title=&quot;Menu Item C&quot; selected&gt;&lt;/demo-menu-item&gt;
+&lt;/demo-menu&gt;
+&lt;script&gt;
+  a.data = { foo: 'bar' };
+  menu.addEventListener('selected', function(event) {
+    const detail = event.detail;
+    console.log(detail);
+  });
+&lt;/script&gt;
+				</code>
+			</pre>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
