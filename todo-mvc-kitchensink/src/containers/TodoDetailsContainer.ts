@@ -1,13 +1,14 @@
 import { Container } from '@dojo/widget-core/Container';
+import Store from '@dojo/stores/Store';
 
-import { TodoAppContext } from './../TodoAppContext';
 import { TodoDetails } from './../widgets/TodoDetails';
+import { editTodoProcess, saveTodoProcess } from './../todoProcesses';
 
-function getProperties(todoAppContext: TodoAppContext, properties: any) {
+function getProperties(store: Store, properties: any) {
 	return {
-		todo: todoAppContext.editedTodo || todoAppContext.getTodo(properties.id),
-		editTodo: todoAppContext.editTodo,
-		saveTodo: todoAppContext.saveTodo
+		todo: store.get('/editedTodo') || store.get(`/todos/${properties.id}`),
+		editTodo: editTodoProcess(store),
+		saveTodo: saveTodoProcess(store)
 	};
 }
 

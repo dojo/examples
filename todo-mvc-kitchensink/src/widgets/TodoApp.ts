@@ -8,7 +8,7 @@ import { TodoFooterOutlet } from './../outlets/TodoFooterOutlet';
 import { TodoHeader } from './TodoHeader';
 import { TodoSearch } from './TodoSearch';
 import { Credits } from './Credits';
-import { Todo } from './../todoStore';
+import { Todo } from './../todoProcesses';
 
 import * as css from './styles/todoApp.m.css';
 

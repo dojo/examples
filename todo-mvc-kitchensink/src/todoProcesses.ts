@@ -1,7 +1,6 @@
 import { CommandRequest, createProcess } from '@dojo/stores/process';
 import { PatchOperation } from '@dojo/stores/state/Patch';
 import { add, remove, replace } from '@dojo/stores/state/operations';
-import Store from '@dojo/stores/Store';
 import uuid from '@dojo/core/uuid';
 
 export interface Todo {
@@ -80,8 +79,10 @@ function editTodoCommand({ payload: [ todo ] }: CommandRequest): PatchOperation[
 function clearCompletedCommand({ get }: CommandRequest): PatchOperation[] {
 	const todos: Todos = get('/todos');
 	const keys = Object.keys(todos);
+	const todoCount = get<number>('/todoCount') - get<number>('/completedCount');
 
 	return [
+		replace('/todoCount', todoCount),
 		replace('/completedCount', 0),
 		replace('/completed', false),
 		...keys.filter(key => todos[key].completed).map(key => remove(`/todos/${key}`))
@@ -95,10 +96,6 @@ function saveTodoCommand({ get }: CommandRequest): PatchOperation[] {
 		replace(`/todos/${editedTodo.id}`, editedTodo),
 		replace('/editedTodo', undefined)
 	] : [];
-}
-
-function updateTodoItemCommand({ payload }: CommandRequest): PatchOperation[] {
-	return [ replace('/currentTodo', payload[0]) ];
 }
 
 function searchCommand({ payload: [ search ] }: CommandRequest): PatchOperation[] {
@@ -117,30 +114,22 @@ function initialStateCommand() {
 	];
 }
 
-const initialStateProcess = createProcess([ initialStateCommand ]);
+export const initialStateProcess = createProcess([ initialStateCommand ]);
 
-export const todoStore = new Store();
-// creates the store and initializes the state
-initialStateProcess(todoStore)();
+export const addTodoProcess = createProcess([ addTodoCommand ]);
 
-export const addTodo = createProcess([ addTodoCommand ])(todoStore);
+export const removeTodoProcess = createProcess([ removeTodoCommand ]);
 
-export const removeTodo = createProcess([ removeTodoCommand ])(todoStore);
+export const toggleTodoProcess = createProcess([ toggleTodoCommand ]);
 
-export const toggleTodo = createProcess([ toggleTodoCommand ])(todoStore);
+export const toggleTodosProcess = createProcess([ toggleTodosCommand ]);
 
-export const toggleTodos = createProcess([ toggleTodosCommand ])(todoStore);
+export const editTodoProcess = createProcess([ editTodoCommand ]);
 
-export const editTodo = createProcess([ editTodoCommand ])(todoStore);
+export const clearCompletedProcess = createProcess([ clearCompletedCommand ]);
 
-export const clearCompleted = createProcess([ clearCompletedCommand ])(todoStore);
+export const saveTodoProcess = createProcess([ saveTodoCommand ]);
 
-export const updateTodoItem = createProcess([ updateTodoItemCommand ])(todoStore);
+export const searchProcess = createProcess([ searchCommand ]);
 
-export const saveTodo = createProcess([ saveTodoCommand ])(todoStore);
-
-export const search = createProcess([ searchCommand ])(todoStore);
-
-export const setCurrentTodo = createProcess([ setCurrentTodoCommand ])(todoStore);
-
-export default todoStore;
+export const setCurrentTodoProcess = createProcess([ setCurrentTodoCommand ]);
