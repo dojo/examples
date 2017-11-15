@@ -3,7 +3,6 @@ import { PatchOperation } from '@dojo/stores/state/Patch';
 import { add, remove, replace } from '@dojo/stores/state/operations';
 import Store from '@dojo/stores/Store';
 import uuid from '@dojo/core/uuid';
-import { assign } from '@dojo/shim/object';
 
 export interface Todo {
 	id: string;
@@ -42,8 +41,8 @@ function removeTodoCommand({ get, payload: [ id ]  }: CommandRequest): PatchOper
 		const completedCount = todo.completed ? get('/completedCount') - 1 : get('/completedCount');
 		const todoCount = get('/todoCount') - 1;
 
-		operations.push(replace('/completedCount'), completedCount);
-		operations.push(replace('/todoCount'), todoCount);
+		operations.push(replace('/completedCount', completedCount));
+		operations.push(replace('/todoCount', todoCount));
 		operations.push(replace('/completed', completedCount === todoCount && todoCount > 0));
 		operations.push(remove(`/todos/${id}`));
 	}
@@ -114,7 +113,7 @@ function initialStateCommand() {
 		add('/currentTodo', ''),
 		add('/editedTodo', undefined),
 		add('/todoCount', 0),
-		add('/todos', {}),
+		add('/todos', {})
 	];
 }
 

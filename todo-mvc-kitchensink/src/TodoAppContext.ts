@@ -18,7 +18,6 @@ import {
 } from '../../todo-mvc-kitchensink/src/todoStore';
 import pirateThemeStyles from './themes/pirate';
 
-
 export class TodoAppContext extends Injector {
 	addTodo = addTodo;
 	clearCompleted = clearCompleted;
@@ -38,7 +37,7 @@ export class TodoAppContext extends Injector {
 		this._themeContext = themeContext;
 		todoStore.on('invalidate', () => {
 			this.emit({ type: 'invalidate' });
-		})
+		});
 	}
 
 	public get todos(): Todo[] {
