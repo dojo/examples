@@ -1,6 +1,6 @@
 # Dojo2 Custom Element Menu Demo
 
-A implementation of a basic menu widget that demonstrates using widgets as custom elements against standard Dojo 2 widgets.
+Implementation of a basic menu widget that demonstrates using as custom elements against standard Dojo 2 widgets.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
