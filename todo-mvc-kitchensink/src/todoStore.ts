@@ -20,11 +20,11 @@ function addTodoCommand({ get }: CommandRequest): PatchOperation[] {
 	const count = get('/todoCount');
 	const todo = { label: get('/currentTodo').trim(), id };
 
-	return [
+	return todo.label ? [
 		add(`/todos/${id}`, todo),
 		replace('/currentTodo', ''),
 		replace('/todoCount', count + 1)
-	];
+	] : [];
 }
 
 function setCurrentTodoCommand({ payload: [ currentTodo ] }: CommandRequest): PatchOperation[] {
@@ -52,13 +52,13 @@ function removeTodoCommand({ get, payload: [ id ]  }: CommandRequest): PatchOper
 
 function toggleTodoCommand({ get, payload: [ id ] }: CommandRequest): PatchOperation[] {
 	const completed = !get(`/todos/${id}/completed`);
-	const completedCount = completed ? get('/completedCount') + 1 : get('/completedCount') - 1;
+	const completedCount = (completed ? 1 : -1) + get('/completedCount');
 	const todoCount = get('/todoCount');
 
 	return [
 		replace('/completedCount', completedCount),
-		replace(`/todos/${id}/completed`, !completed),
-		replace('/complete', completedCount === todoCount)
+		replace(`/todos/${id}/completed`, completed),
+		replace('/completed', completedCount === todoCount)
 	];
 
 }
