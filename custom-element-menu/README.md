@@ -20,7 +20,7 @@ npm install @dojo/cli -g
 
 ## Usage
 
-To use `todo-mvc`, clone the `examples` repository and install the npm dependencies:
+To use the `custom-element-menu`, clone the `examples` repository and install the npm dependencies:
 
 ```shell
 git clone https://github.com/dojo/examples
@@ -55,7 +55,7 @@ In order to build the project run `dojo build`.
 
 Test cases MUST be written using [Intern](https://theintern.github.io) using the Object test interface and Assert assertion interface.
 
-You can test TodoMVC locally using the [`@dojo/cli-test-intern`](https://github.com/dojo/cli-test-intern) command:
+You can test custom element menu locally using the [`@dojo/cli-test-intern`](https://github.com/dojo/cli-test-intern) command:
 
 ```shell
 dojo test -a
