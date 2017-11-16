@@ -9,24 +9,13 @@ import dojoTheme from '@dojo/widgets/themes/dojo/theme';
 import Task from '@dojo/core/async/Task';
 
 import { OptionData } from '@dojo/widgets/select/SelectOption';
-import Button from '@dojo/widgets/button/Button';
-import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
-import ComboBox from '@dojo/widgets/combobox/ComboBox';
-import Dialog from '@dojo/widgets/dialog/Dialog';
-import Radio from '@dojo/widgets/radio/Radio';
-import Select from '@dojo/widgets/select/Select';
-import SlidePane, { Align } from '@dojo/widgets/slidepane/SlidePane';
-import Slider from '@dojo/widgets/slider/Slider';
-import SplitPane, { Direction } from '@dojo/widgets/splitpane/SplitPane';
-import Tab from '@dojo/widgets/tabcontroller/Tab';
-import TabController from '@dojo/widgets/tabcontroller/TabController';
-import Textarea from '@dojo/widgets/textarea/Textarea';
-import TextInput from '@dojo/widgets/textinput/TextInput';
-import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
-import TitlePane from '@dojo/widgets/titlepane/TitlePane';
+import { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 
 import { dataLarge, dataSmall} from './data';
 import * as css from './styles/app.m.css';
+import { Mode } from '@dojo/widgets/checkbox/Checkbox';
+import { Direction } from '@dojo/widgets/splitpane/SplitPane';
+import { Align } from '@dojo/widgets/slidepane/SlidePane';
 
 interface State {
 	activeTabIndex: number;
@@ -94,7 +83,7 @@ export default class App extends AppBase<WidgetProperties> {
 
 	protected render(): DNode | DNode[] {
 		const {
-			activeTabIndex,
+/*			activeTabIndex,
 			buttonPressed,
 			checkboxBasic,
 			checkboxToggle,
@@ -114,26 +103,26 @@ export default class App extends AppBase<WidgetProperties> {
 			textinputValue,
 			timepickerOptions,
 			timepickerValue,
-			titlepaneOpen
+			titlepaneOpen*/
 		} = this._state;
 
 		return v('div', { classes: this.classes(css.content) }, [
 			v('h1', [ 'Form components' ]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Button, {
+				v('dojo-button', {
 					key: 'basic-button',
 					theme: dojoTheme
 				}, [ 'Basic' ])
-			]),
+			])/*,
 			v('div', { classes: this.classes(css.component) }, [
-				w(Button, {
+				v('dojo-button', {
 					key: 'popup-button',
 					theme: dojoTheme,
 					popup: { expanded: false, id: 'fakeId' }
 				}, [ 'Popup' ]),
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Button, {
+				v('dojo-button', {
 					key: 'pressed-button',
 					theme: dojoTheme,
 					pressed: buttonPressed,
@@ -143,7 +132,7 @@ export default class App extends AppBase<WidgetProperties> {
 				}, [ 'Toggle' ])
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Checkbox, {
+				v('dojo-checkbox', {
 					key: 'cb1',
 					checked: checkboxBasic,
 					label: 'Basic checkbox',
@@ -154,7 +143,7 @@ export default class App extends AppBase<WidgetProperties> {
 				}),
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Checkbox, {
+				v('dojo-checkbox', {
 					key: 'cb2',
 					checked: checkboxToggle,
 					label: 'Toggle checkbox',
@@ -166,7 +155,7 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Radio, {
+				v('dojo-radio', {
 					key: 'r1',
 					checked: radioValue === 'first',
 					value: 'first',
@@ -177,7 +166,7 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				}),
-				w(Radio, {
+				v('dojo-radio', {
 					key: 'r2',
 					checked: radioValue === 'second',
 					value: 'second',
@@ -188,7 +177,7 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				}),
-				w(Radio, {
+				v('dojo-radio', {
 					key: 'r3',
 					checked: radioValue === 'third',
 					value: 'third',
@@ -201,7 +190,7 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(TextInput, {
+				v('dojo-textinput', {
 					key: 'text-input',
 					placeholder: 'TextInput',
 					value: textinputValue,
@@ -212,7 +201,7 @@ export default class App extends AppBase<WidgetProperties> {
 				}),
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(ComboBox, {
+				v('dojo-combobox', {
 					key: 'combo-box',
 					clearable: true,
 					onChange: (value: string) => this.setState({ comboboxValue: value }),
@@ -235,7 +224,7 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(TimePicker, {
+				v('dojo-timepicker', {
 					key: 'time-picker',
 					inputProperties: {
 						placeholder: 'TimePicker'
@@ -254,7 +243,7 @@ export default class App extends AppBase<WidgetProperties> {
 				}),
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Select, {
+				v('dojo-select', {
 					key: 'select',
 					options: dataSmall,
 					value: selectValue,
@@ -265,7 +254,7 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Select, {
+				v('dojo-select', {
 					key: 'multiselect',
 					options: dataSmall,
 					value: multiselectValue,
@@ -277,9 +266,9 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Slider, {
+				v('dojo-slider', {
 					key: 'slider',
-					value: sliderValue,
+					value: sliderValue as any,
 					outputIsTooltip: true,
 					onInput: (event: TypedTargetEvent<HTMLInputElement>) => {
 						this.setState({ sliderValue: parseFloat(event.target.value) });
@@ -288,7 +277,7 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Textarea, {
+				v('dojo-textarea', {
 					key: 'text-area',
 					columns: 40,
 					rows: 5,
@@ -302,7 +291,7 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('h1', [ 'Layout components' ]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(Dialog, {
+				v('dojo-dialog', {
 					key: 'dialog',
 					title: 'Dialog',
 					open: dialogOpen,
@@ -315,14 +304,14 @@ export default class App extends AppBase<WidgetProperties> {
 				}, [
 					`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.`
 				]),
-				w(Button, {
+				v('dojo-button', {
 					key: 'dialog-button',
 					theme: dojoTheme,
 					onClick: () => this.setState({ dialogOpen: true })
 				}, [ 'Open Dialog' ])
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(SlidePane, {
+				v('dojo-slidepane', {
 					key: 'slide-pane',
 					align: Align.right,
 					onRequestClose: () => {
@@ -335,7 +324,7 @@ export default class App extends AppBase<WidgetProperties> {
 				}, [
 					`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.`
 				]),
-				w(Button, {
+				v('dojo-button', {
 					key: 'slidepane-button',
 					theme: dojoTheme,
 					onClick: () => this.setState({ slidepaneOpen: true })
@@ -345,7 +334,7 @@ export default class App extends AppBase<WidgetProperties> {
 				v('div', {
 					classes: this.classes(css.splitContainer)
 				}, [
-					w(SplitPane, {
+					v('dojo-splitpane', {
 						key: 'split-pane',
 						direction: Direction.row,
 						onResize: (size: number) => {
@@ -353,7 +342,7 @@ export default class App extends AppBase<WidgetProperties> {
 						},
 						size: nestedSizeA,
 						theme: dojoTheme,
-						trailing: w(SplitPane, {
+						trailing: v('dojo-splitpane', {
 							key: 'split-pane-child',
 							direction: Direction.column,
 							onResize: (size: number) => {
@@ -366,7 +355,7 @@ export default class App extends AppBase<WidgetProperties> {
 				])
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(TitlePane, {
+				v('dojo-titlepane', {
 					key: 'title-pane',
 					open: titlepaneOpen,
 					theme: dojoTheme,
@@ -384,7 +373,7 @@ export default class App extends AppBase<WidgetProperties> {
 				])
 			]),
 			v('div', { classes: this.classes(css.component) }, [
-				w(TabController, {
+				v('dojo-tabcontroller', {
 					key: 'tab-controller',
 					theme: dojoTheme,
 					activeIndex: activeTabIndex,
@@ -407,14 +396,14 @@ export default class App extends AppBase<WidgetProperties> {
 						}
 					}
 				}, [
-					w(Tab, {
+					v('dojo-tab', {
 						theme: dojoTheme,
 						key: 'default',
 						label: 'Default'
 					}, [
 						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in ex pharetra, iaculis turpis eget, tincidunt lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.'
 					]),
-					w(Tab, {
+					v('dojo-tab', {
 						theme: dojoTheme,
 						disabled: true,
 						key: 'disabled',
@@ -422,14 +411,14 @@ export default class App extends AppBase<WidgetProperties> {
 					}, [
 						'Sed nibh est, sollicitudin consectetur porta finibus, condimentum gravida purus. Phasellus varius fringilla erat, a dignissim nunc iaculis et. Curabitur eu neque erat. Integer id lacus nulla. Phasellus ut sem eget enim interdum interdum ac ac orci.'
 					]),
-					w(Tab, {
+					v('dojo-tab', {
 						theme: dojoTheme,
 						key: 'async',
 						label: 'Async'
 					}, [
 						loadingTab ? 'Loading...' : 'Curabitur id elit a tellus consequat maximus in non lorem. Donec sagittis porta aliquam. Nulla facilisi. Quisque sed mauris justo. Donec eu fringilla urna. Aenean vulputate ipsum imperdiet orci ornare tempor.'
 					]),
-					!includes(closedTabKeys, 'closeable') ? w(Tab, {
+					!includes(closedTabKeys, 'closeable') ? v('dojo-tab', {
 						theme: dojoTheme,
 						closeable: true,
 						key: 'closeable',
@@ -437,7 +426,7 @@ export default class App extends AppBase<WidgetProperties> {
 					}, [
 						'Nullam congue, massa in egestas sagittis, diam neque rutrum tellus, nec egestas metus tellus vel odio. Vivamus tincidunt quam nisl, sit amet venenatis purus bibendum eget. Phasellus fringilla ex vitae odio hendrerit, non volutpat orci rhoncus.'
 					]) : null,
-					w(Tab, {
+					v('dojo-tab', {
 						theme: dojoTheme,
 						key: 'foo',
 						label: 'Foobar'
@@ -445,7 +434,7 @@ export default class App extends AppBase<WidgetProperties> {
 						'Sed nibh est, sollicitudin consectetur porta finibus, condimentum gravida purus. Phasellus varius fringilla erat, a dignissim nunc iaculis et. Curabitur eu neque erat. Integer id lacus nulla. Phasellus ut sem eget enim interdum interdum ac ac orci.'
 					])
 				])
-			])
+			])*/
 		]);
 	}
 }

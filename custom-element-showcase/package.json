@@ -2,16 +2,16 @@
   "name": "dojo2-custom-element-showcase",
   "version": "1.0.0",
   "dependencies": {
-    "@dojo/core": "~0.1.0",
+    "@dojo/core": "~0.2.1",
     "@dojo/has": "~0.1.0",
-    "@dojo/routing": "~0.1.0",
-    "@dojo/shim": "~0.1.0",
-    "@dojo/widget-core": "~0.1.0",
-    "@dojo/widgets": "~0.1.0",
-    "@dojo/i18n": "~0.1.0"
+    "@dojo/routing": "~0.2.0",
+    "@dojo/shim": "~0.2.2",
+    "@dojo/widget-core": "~0.3.0",
+    "@dojo/widgets": "~0.2.1",
+    "@dojo/i18n": "~0.2.0"
   },
   "scripts": {
-    "build": "dojo build && npm run button && npm run checkbox && npm run combobox && npm run dialog && npm run radio && npm run select && npm run slidepane && npm run splitpane && npm run tabcontroller && npm run tab && npm run textarea && npm run textinput && npm run timepicker && npm run titlepane",
+    "build": "dojo build && npm run button && npm run checkbox && npm run combobox && npm run dialog && npm run radio && npm run select && npm run slidepane && npm run slider && npm run splitpane && npm run tabcontroller && npm run tab && npm run textarea && npm run textinput && npm run timepicker && npm run titlepane",
     "button": "dojo build --element=src/custom-elements/createButtonElement.ts",
     "checkbox": "dojo build --element=src/custom-elements/createCheckboxElement.ts",
     "combobox": "dojo build --element=src/custom-elements/createComboBoxElement.ts",
@@ -19,6 +19,7 @@
     "radio": "dojo build --element=src/custom-elements/createRadioElement.ts",
     "select": "dojo build --element=src/custom-elements/createSelectElement.ts",
     "slidepane": "dojo build --element=src/custom-elements/createSlidePaneElement.ts",
+    "slider": "dojo build --element=src/custom-elements/createSliderElement.ts",
     "splitpane": "dojo build --element=src/custom-elements/createSplitPaneElement.ts",
     "tabcontroller": "dojo build --element=src/custom-elements/createTabControllerElement.ts",
     "tab": "dojo build --element=src/custom-elements/createTabElement.ts",
@@ -28,11 +29,11 @@
     "titlepane": "dojo build --element=src/custom-elements/createTitlePaneElement.ts"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "~0.1.0",
-    "@dojo/cli-test-intern": "~0.1.0",
+    "@dojo/cli-build-webpack": "~0.2.0",
+    "@dojo/cli-test-intern": "~0.2.0",
     "@dojo/interfaces": "~0.1.0",
     "@dojo/loader": "~0.1.0",
-    "@dojo/test-extras": "~0.1.0",
+    "@dojo/test-extras": "~0.2.0",
     "@types/chai": "~3.4.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
