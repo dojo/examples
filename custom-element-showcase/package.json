@@ -10,6 +10,23 @@
     "@dojo/widgets": "~0.1.0",
     "@dojo/i18n": "~0.1.0"
   },
+  "scripts": {
+    "build": "dojo build && npm run button && npm run checkbox && npm run combobox && npm run dialog && npm run radio && npm run select && npm run slidepane && npm run splitpane && npm run tabcontroller && npm run tab && npm run textarea && npm run textinput && npm run timepicker && npm run titlepane",
+    "button": "dojo build --element=src/custom-elements/createButtonElement.ts",
+    "checkbox": "dojo build --element=src/custom-elements/createCheckboxElement.ts",
+    "combobox": "dojo build --element=src/custom-elements/createComboBoxElement.ts",
+    "dialog": "dojo build --element=src/custom-elements/createDialogElement.ts",
+    "radio": "dojo build --element=src/custom-elements/createRadioElement.ts",
+    "select": "dojo build --element=src/custom-elements/createSelectElement.ts",
+    "slidepane": "dojo build --element=src/custom-elements/createSlidePaneElement.ts",
+    "splitpane": "dojo build --element=src/custom-elements/createSplitPaneElement.ts",
+    "tabcontroller": "dojo build --element=src/custom-elements/createTabControllerElement.ts",
+    "tab": "dojo build --element=src/custom-elements/createTabElement.ts",
+    "textarea": "dojo build --element=src/custom-elements/createTextareaElement.ts",
+    "textinput": "dojo build --element=src/custom-elements/createTextInputElement.ts",
+    "timepicker": "dojo build --element=src/custom-elements/createTimePickerElement.ts",
+    "titlepane": "dojo build --element=src/custom-elements/createTitlePaneElement.ts"
+  },
   "devDependencies": {
     "@dojo/cli-build-webpack": "~0.1.0",
     "@dojo/cli-test-intern": "~0.1.0",
