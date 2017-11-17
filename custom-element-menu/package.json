@@ -2,7 +2,7 @@
   "name": "custom-element",
   "version": "1.0.0",
   "scripts": {
-    "build": "dojo build && dojo build --element=src/widgets/createMenuItemElement.ts && dojo build --element=src/widgets/createMenuElement.ts"
+    "build": "./node_modules/.bin/dojo build && ./node_modules/.bin/dojo build --element=src/widgets/createMenuItemElement.ts && ./node_modules/.bin/dojo build --element=src/widgets/createMenuElement.ts"
   },
   "dependencies": {
     "@dojo/core": "~0.2.0",
