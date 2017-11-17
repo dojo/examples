@@ -32,8 +32,8 @@ There are currently six examples:
 - [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built with current Dojo 2 packages.
 - [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built Dojo 2 packages.
 - [todo-mvc-tsx](./todo-mvc-tsx) - A reference implementation of [TodoMVC](http://todomvc.com/) built using `tsx`, [Redux](https://github.com/reactjs/redux)  and Dojo 2 packages.
-- [widget-showcase](./widget-showcase/README.md) - Show case widgets from [@dojo/widgets](https://github.com/dojo/widgets)
-- [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage
+- [widget-showcase](./widget-showcase/README.md) - Show case widgets from [@dojo/widgets](https://github.com/dojo/widgets).
+- [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage.
 - [dojo-cli-example](./dojo-cli-example) - An example of working with `@dojo/cli`.
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
