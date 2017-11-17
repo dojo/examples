@@ -1,17 +1,17 @@
 {
-  "name": "dojo2-widget-showcase",
+  "name": "custom-element",
   "version": "1.0.0",
   "scripts": {
-    "build": "dojo build"
+    "build": "dojo build && dojo build --element=src/widgets/createMenuItemElement.ts && dojo build --element=src/widgets/createMenuElement.ts"
   },
   "dependencies": {
-    "@dojo/core": "~0.1.0",
+    "@dojo/core": "~0.2.0",
     "@dojo/has": "~0.1.0",
+    "@dojo/i18n": "~0.1.0",
     "@dojo/routing": "~0.1.0",
-    "@dojo/shim": "~0.1.0",
-    "@dojo/widget-core": "~0.1.0",
-    "@dojo/widgets": "~0.1.0",
-    "@dojo/i18n": "~0.1.0"
+    "@dojo/shim": "~0.2.0",
+    "@dojo/widget-core": "~0.3.0",
+    "@dojo/widgets": "~0.1.0"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "~0.1.0",
@@ -23,10 +23,10 @@
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
+    "@types/sinon": "^1.16.35",
     "chai": "^3.5.0",
     "intern": "~3.4.1",
-    "typescript": "~2.4.1",
-    "@types/sinon": "^1.16.36",
-    "sinon": "^2.4.1"
+    "sinon": "^2.0.0",
+    "typescript": "~2.6.1"
   }
 }

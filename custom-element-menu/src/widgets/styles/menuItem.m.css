@@ -1,0 +1,32 @@
+.root {
+	height: 100%;
+	display: inline-block;
+}
+
+.item {
+	color: #fff;
+	text-decoration: none;
+	margin: 0 6.4px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 48px;
+	cursor: pointer;
+}
+
+.item::after {
+	display: block;
+	content: "";
+	background: #fff;
+	height: 2px;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	transition: transform .3s ease-out;
+	transform: translateY(3px);
+}
+
+.selected::after {
+	transform: translateY(0);
+}

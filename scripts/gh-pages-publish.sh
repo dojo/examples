@@ -21,6 +21,7 @@ then
 	buildProject "todo-mvc-kitchensink"
 	buildProject "todo-mvc-tsx"
 	buildProject "widget-showcase"
+	buildProject "custom-element-menu"
 
 	export PROJECT_DIR="auto-deploy"
 
@@ -37,6 +38,7 @@ then
 	cp -r todo-mvc-kitchensink/dist/* samples/todo-mvc-kitchensink
 	cp -r todo-mvc-tsx/dist/* samples/todo-mvc-tsx
 	cp -r widget-showcase/dist/* samples/widget-showcase
+	cp -r custom-element-menu/dist/* samples/custom-element-menu
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 
