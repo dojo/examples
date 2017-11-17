@@ -4,9 +4,7 @@ function buildProject {
 	export PROJECT_DIR=$@
 	./scripts/install.sh
 	cd $PROJECT_DIR
-	npm install typings
-	./node_modules/.bin/typings install
-	./node_modules/.bin/dojo build webpack
+	npm run build
 	cd ..
 }
 
@@ -32,6 +30,7 @@ then
 	mkdir samples/todo-mvc-kitchensink
 	mkdir samples/todo-mvc-tsx
 	mkdir samples/widget-showcase
+	mkdir samples/custom-element-menu
 
 	cp index.html samples/index.html
 	cp -r todo-mvc/dist/* samples/todo-mvc/
