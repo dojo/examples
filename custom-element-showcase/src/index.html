@@ -7,21 +7,56 @@
     <script src="https://rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" />
- 	<link rel="import" href="./button/button.html" />
-    <link rel="import" href="./checkbox/checkbox.html" />
     <link rel="import" href="./combo-box/combo-box.html" />
+    <link rel="import" href="./select/select.html" />
+    <link rel="import" href="./time-picker/time-picker.html" />
+    <link rel="import" href="./title-pane/title-pane.html" />
+    <link rel="import" href="./calendar/calendar.html" />
+    <link rel="import" href="./accordion-pane/accordion-pane.html" />
+    <link rel="import" href="./checkbox/checkbox.html" />
+    <link rel="import" href="./button/button.html" />
     <link rel="import" href="./dialog/dialog.html" />
     <link rel="import" href="./radio/radio.html" />
-    <link rel="import" href="./select/select.html" />
+    <link rel="import" href="./text-input/text-input.html" />
+    <link rel="import" href="./textarea/textarea.html" />
     <link rel="import" href="./slide-pane/slide-pane.html" />
     <link rel="import" href="./split-pane/split-pane.html" />
     <link rel="import" href="./tab/tab.html" />
     <link rel="import" href="./tab-controller/tab-controller.html" />
-    <link rel="import" href="./text-input/text-input.html" />
-    <link rel="import" href="./textarea/textarea.html" />
-    <link rel="import" href="./time-picker/time-picker.html" />
-    <link rel="import" href="./title-pane/title-pane.html" />
 </head>
 <body>
+    <div>
+        <button onclick="document.querySelector('dojo-accordion-pane').setAttribute('open', true)">Open Dialog</button>
+        <dojo-accordion-pane open="false">Accordion Pane Contents</dojo-accordion-pane>
+        <button onclick="document.querySelector('dojo-dialog').setAttribute('open', true)">Open Dialog</button>
+        <dojo-dialog onclose="document.querySelector('dojo-dialog').setAttribute('open', false)" open="false">
+            <div>Dialog Content</div>
+        </dojo-dialog>
+        <button onclick="document.querySelector('dojo-slide-pane').setAttribute('open', true)">Open Slide Pane</button>
+        <dojo-slide-pane onclose="document.querySelector('dojo-slide-pane').setAttribute('open', false)" open="false"><div>Slide Pane Content</div></dojo-slide-pane>
+        <dojo-split-pane size="300">
+            <div>Split Pane Content</div>
+            <div>Split Pane Content</div>
+        </dojo-split-pane>
+        <dojo-tab-controller>
+            <dojo-tab>A</dojo-tab>
+            <dojo-tab>B</dojo-tab>
+            <dojo-tab>C</dojo-tab>
+        </dojo-tab-controller>
+        <dojo-title-pane title="Title"><div>Title Pane Content</div></dojo-title-pane>
+        <dojo-calendar></dojo-calendar>
+        <dojo-tooltip>Content</dojo-tooltip>
+    </div>
+    <script>
+        [ 'dojo-title-pane', 'dojo-accordion-pane' ].forEach(function (tagName) {
+        	var element = document.querySelector(tagName);
+			element.addEventListener('requestClose', function () {
+				element.setAttribute('open', false);
+			});
+			element.addEventListener('requestOpen', function () {
+				element.setAttribute('open', true);
+			});
+        });
+    </script>
 </body>
 </html>

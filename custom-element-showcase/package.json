@@ -11,22 +11,17 @@
     "@dojo/i18n": "~0.2.0"
   },
   "scripts": {
-    "build": "dojo build && npm run button && npm run checkbox && npm run combobox && npm run dialog && npm run radio && npm run select && npm run slidepane && npm run slider && npm run splitpane && npm run tabcontroller && npm run tab && npm run textarea && npm run textinput && npm run timepicker && npm run titlepane",
-    "button": "dojo build --element=src/custom-elements/createButtonElement.ts",
-    "checkbox": "dojo build --element=src/custom-elements/createCheckboxElement.ts",
-    "combobox": "dojo build --element=src/custom-elements/createComboBoxElement.ts",
-    "dialog": "dojo build --element=src/custom-elements/createDialogElement.ts",
-    "radio": "dojo build --element=src/custom-elements/createRadioElement.ts",
-    "select": "dojo build --element=src/custom-elements/createSelectElement.ts",
-    "slidepane": "dojo build --element=src/custom-elements/createSlidePaneElement.ts",
-    "slider": "dojo build --element=src/custom-elements/createSliderElement.ts",
-    "splitpane": "dojo build --element=src/custom-elements/createSplitPaneElement.ts",
-    "tabcontroller": "dojo build --element=src/custom-elements/createTabControllerElement.ts",
-    "tab": "dojo build --element=src/custom-elements/createTabElement.ts",
-    "textarea": "dojo build --element=src/custom-elements/createTextareaElement.ts",
-    "textinput": "dojo build --element=src/custom-elements/createTextInputElement.ts",
-    "timepicker": "dojo build --element=src/custom-elements/createTimePickerElement.ts",
-    "titlepane": "dojo build --element=src/custom-elements/createTitlePaneElement.ts"
+    "build": "dojo build && npm run accordionpane && npm run calendar && npm run combobox && npm run dialog && npm run slidepane && npm run splitpane && npm run tabcontroller && npm run tab && npm run titlepane && npm run tooltip",
+    "accordionpane": "dojo build --elementPrefix=accordion-pane --element=node_modules/@dojo/widgets/accordionpane/createAccordionPaneElement",
+    "calendar": "dojo build --elementPrefix=calendar --element=node_modules/@dojo/widgets/calendar/createCalendarElement",
+    "combobox": "dojo build --elementPrefix=combo-box --element=node_modules/@dojo/widgets/combobox/createComboBoxElement",
+    "dialog": "dojo build --elementPrefix=dialog --element=node_modules/@dojo/widgets/dialog/createDialogElement",
+    "slidepane": "dojo build --elementPrefix=slide-pane --element=node_modules/@dojo/widgets/slidepane/createSlidePaneElement",
+    "splitpane": "dojo build --elementPrefix=split-pane --element=node_modules/@dojo/widgets/splitpane/createSplitPaneElement",
+    "tabcontroller": "dojo build --elementPrefix=tab-controller --element=node_modules/@dojo/widgets/tabcontroller/createTabControllerElement",
+    "tab": "dojo build --elementPrefix=tab --element=node_modules/@dojo/widgets/tabcontroller/createTabElement",
+    "titlepane": "dojo build --elementPrefix=title-pane --element=node_modules/@dojo/widgets/titlepane/createTitlePaneElement",
+    "tooltip": "dojo build --elementPrefix=tooltip --element=node_modules/@dojo/widgets/tooltip/createTooltipElement"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "~0.2.0",
