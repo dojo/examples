@@ -19,44 +19,287 @@
     <link rel="import" href="./radio/radio.html" />
     <link rel="import" href="./text-input/text-input.html" />
     <link rel="import" href="./textarea/textarea.html" />
+    <link rel="import" href="./tooltip/tooltip.html" />
     <link rel="import" href="./slide-pane/slide-pane.html" />
     <link rel="import" href="./split-pane/split-pane.html" />
-    <link rel="import" href="./tab/tab.html" />
-    <link rel="import" href="./tab-controller/tab-controller.html" />
+    <link rel="import" href="./tab-pane/tab-pane.html"/>
+    <link rel="import" href="./tab/tab.html"/>
+    <style>
+        dojo-dialog .dialog-content-container {
+            height: 200px;
+        }
+
+        dojo-dialog .dialog-content {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        body > div > div > button {
+            margin-bottom: 10px;
+            background-color: #fff;
+            border: 1px solid #d6dde2;
+            color: #006be6;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 24px;
+            min-width: 160px;
+            padding: 8px;
+            transition: all .25s ease;
+        }
+
+        body > div > div > button:hover,
+        body > div > div > button:focus {
+            border-color: #006be6;
+            box-shadow: 0 2px 2px 0 #006be6;
+            outline: none;
+        }
+
+        body > div > div > button.pressed {
+            background-color: #006be6;
+            border-color: #006be6;
+            color: #fff;
+        }
+
+        dojo-split-pane div {
+            padding: 3px;
+        }
+
+        dojo-title-pane {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        dojo-title-pane button {
+            font-size: 16px;
+            text-align: left;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #d6dde2;
+            color: #006be6;
+        }
+
+        dojo-title-pane button:hover {
+            background: #f4f6f7;
+        }
+
+        dojo-title-pane button:focus {
+            border-color: #006be6;
+            box-shadow: 0 2px 2px 0 rgba(0,107,230,.2);
+            outline: none;
+        }
+
+        dojo-tooltip {
+            color: #000;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        dojo-tooltip[open="true"] > div > div:last-child {
+            background-color: #5c6c7c;
+            color: #fff;
+            display: inline-block;
+            padding: 8px;
+            margin: 0 0 0 8px;
+            transform: translate(5%, -55%);
+        }
+
+        dojo-tooltip[open="true"] > div > div:last-child::before {
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid #5c6c7c;
+            content: "";
+            position: absolute;
+            left: calc(8px * -1);
+            top: 50%;
+            margin-top: calc(8px * -1);
+        }
+
+        dojo-calendar button {
+            background-color: #fff;
+            border: 1px solid #d6dde2;
+            color: #006be6;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            min-width: 60px;
+            padding: 8px;
+            transition: all .25s ease;
+        }
+
+        dojo-calendar button:hover,
+        dojo-calendar button:focus {
+            border-color: #006be6;
+            box-shadow: 0 2px 2px 0 #006be6;
+            outline: none;
+        }
+
+        body > div > div > button.pressed {
+            background-color: #006be6;
+            border-color: #006be6;
+            color: #fff;
+        }
+
+    </style>
 </head>
 <body>
     <div>
-        <button onclick="document.querySelector('dojo-accordion-pane').setAttribute('open', true)">Open Dialog</button>
-        <dojo-accordion-pane open="false">Accordion Pane Contents</dojo-accordion-pane>
-        <button onclick="document.querySelector('dojo-dialog').setAttribute('open', true)">Open Dialog</button>
-        <dojo-dialog onclose="document.querySelector('dojo-dialog').setAttribute('open', false)" open="false">
-            <div>Dialog Content</div>
-        </dojo-dialog>
-        <button onclick="document.querySelector('dojo-slide-pane').setAttribute('open', true)">Open Slide Pane</button>
-        <dojo-slide-pane onclose="document.querySelector('dojo-slide-pane').setAttribute('open', false)" open="false"><div>Slide Pane Content</div></dojo-slide-pane>
-        <dojo-split-pane size="300">
-            <div>Split Pane Content</div>
-            <div>Split Pane Content</div>
-        </dojo-split-pane>
-        <dojo-tab-controller>
-            <dojo-tab>A</dojo-tab>
-            <dojo-tab>B</dojo-tab>
-            <dojo-tab>C</dojo-tab>
-        </dojo-tab-controller>
-        <dojo-title-pane title="Title"><div>Title Pane Content</div></dojo-title-pane>
+        <h1>Widgets Exported as Custom Elements</h1>
+        <div>
+            <button id="dialog-button" onclick="document.querySelector('dojo-dialog').setAttribute('open', true)">Open Dialog</button>
+            <dojo-dialog onclose="document.querySelector('dojo-dialog').setAttribute('open', false)" open="false">
+                <div class="dialog-content-container">
+                    <div class="dialog-content">Dialog Content</div>
+                </div>
+            </dojo-dialog>
+        </div>
+        <div>
+            <button id="tooltip-button" onclick="document.querySelector('dojo-tooltip').setAttribute('open', document.querySelector('dojo-tooltip').getAttribute('open') === 'false' ? 'true' : 'false')">Toggle Tooltip</button>
+            <dojo-tooltip open="false"></dojo-tooltip>
+        </div>
+        <div>
+            <button id="slide-pane-button" onclick="document.querySelector('dojo-slide-pane').setAttribute('open', true)">Open Slide Pane</button>
+            <dojo-slide-pane width="200" align="right" underlay="true" onclose="document.querySelector('dojo-slide-pane').setAttribute('open', false)" open="false"><div class="slide-pane-content">Slide Pane Content</div></dojo-slide-pane>
+        </div>
+        <h2>Split Pane</h2>
+        <dojo-split-pane direction="0" size="300"></dojo-split-pane>
+        <h2>Calendar</h2>
         <dojo-calendar></dojo-calendar>
-        <dojo-tooltip>Content</dojo-tooltip>
+        <h2>Accordion Pane</h2>
     </div>
     <script>
-        [ 'dojo-title-pane', 'dojo-accordion-pane' ].forEach(function (tagName) {
-        	var element = document.querySelector(tagName);
-			element.addEventListener('requestClose', function () {
-				element.setAttribute('open', false);
+        function initializeSplitPane() {
+			var splitPane = document.querySelector('dojo-split-pane');
+			var splitPaneLeadingContent = document.createElement('div');
+			var splitPaneTrailingContent = document.createElement('div');
+
+			splitPaneLeadingContent.textContent = 'Leading Content';
+			splitPaneTrailingContent.textContent = 'Trailing Content';
+			splitPane.leading = 'Leading Content';
+			splitPane.trailing = 'Trailing Content';
+        }
+
+        function initializeTooltip() {
+        	var tooltip = document.querySelector('dojo-tooltip');
+        	tooltip.content = 'Tooltip content';
+        }
+
+        function createAccordionPane() {
+			var parentDiv = document.createElement('div');
+            var buttonPane1 = document.createElement('button');
+            var buttonPane2 = document.createElement('button');
+            var openKeys = [];
+
+			var accordionPane = document.createElement('dojo-accordionpane');
+			var titlePanes = [
+				document.createElement('dojo-title-pane'),
+				document.createElement('dojo-title-pane')
+			];
+
+			function toggleKey(key) {
+				return function () {
+					var index = openKeys.indexOf(key);
+					if (index < 0) {
+						openKeys.push(key);
+					}
+					else {
+						openKeys.splice(index, 1);
+					}
+					accordionPane.openKeys = openKeys.slice();
+                };
+            }
+
+			buttonPane1.onclick = toggleKey('child-0');
+            buttonPane2.onclick = toggleKey('child-1');
+            buttonPane1.textContent = 'Toggle Title Pane 1';
+            buttonPane2.textContent = 'Toggle Title Pane 2';
+            buttonPane1.id = 'title-pane-button-1';
+            buttonPane2.id = 'title-pane-button-2';
+
+			titlePanes.forEach(function (titlePane, i) {
+				var contentDiv = document.createElement('div');
+				contentDiv.classList.add('title-pane-content');
+				contentDiv.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus.' +
+                    'Nam sollicitudin varius augue, sed lacinia felis tempor in. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id';
+				titlePane.setAttribute('key', i);
+				titlePane.appendChild(contentDiv);
+				titlePane.setAttribute('title', 'Title Pane: ' + i);
+				accordionPane.appendChild(titlePane);
 			});
-			element.addEventListener('requestOpen', function () {
-				element.setAttribute('open', true);
+
+			parentDiv.appendChild(buttonPane1);
+			parentDiv.appendChild(buttonPane2);
+			parentDiv.appendChild(accordionPane);
+			document.body.querySelector('div').appendChild(parentDiv);
+		}
+
+		function createTabs() {
+        	var parentDiv = document.createElement('div');
+			var tabContainer = document.createElement('dojo-tab-pane');
+			var tabs = [
+				document.createElement('dojo-tab'),
+				document.createElement('dojo-tab'),
+				document.createElement('dojo-tab')
+            ];
+
+			tabContainer.setAttribute('activeindex', 1);
+
+            tabs.forEach(function (tab, i) {
+            	var tabContents = document.createElement('div');
+				tabContents.textContent = 'Tab ' + i + ' content';
+				tab.appendChild(tabContents);
+				tab.label = 'Tab ' + i;
+				tab.setAttribute('key', i);
+
+                if (i === 1) {
+                    tab.setAttribute('closeable', true);
+                }
+
+                tabContainer.appendChild(tab);
+            });
+
+            tabContainer.addEventListener('tabchange', function (event) {
+            	console.log('Tab change event');
+                console.log(event);
+            });
+
+			tabContainer.addEventListener('tabclose', function (event) {
+				console.log('Tab close event');
+				console.log(event);
 			});
-        });
+
+			parentDiv.appendChild(tabContainer);
+			document.body.querySelector('div').appendChild(parentDiv);
+        }
+
+        function initializeCalendar() {
+            var calendar = document.querySelector('dojo-calendar');
+
+            calendar.addEventListener('monthchange', function (event) {
+				calendar.setAttribute('month', event.detail);
+            });
+			calendar.addEventListener('yearchange', function (event) {
+				calendar.setAttribute('year', event.detail);
+			});
+			calendar.addEventListener('dateselect', function (event) {
+				calendar.setAttribute('selecteddate', event.detail);
+			});
+        }
+
+        initializeSplitPane();
+		initializeTooltip();
+		createAccordionPane();
+		createTabs();
+		initializeCalendar();
     </script>
 </body>
 </html>

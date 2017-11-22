@@ -7,3 +7,16 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+body > div {
+    padding: 0 25px;
+}
+
+dojo-slide-pane > div {
+    text-align: center;
+}
+
+dojo-dialog button {
+    right: 0 !important;
+    top: 10px !important;
+}
