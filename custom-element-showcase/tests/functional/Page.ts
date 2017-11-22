@@ -42,7 +42,7 @@ export default class Page {
 
 	init() {
 		return this.remote
-			.get('http://localhost:9000/_build/src/index.html')
+			.get('http://localhost:9000/dist/index.html')
 			.setFindTimeout(5000)
   			.findByCssSelector(this.selectors.dialog)
   			.setFindTimeout(100);

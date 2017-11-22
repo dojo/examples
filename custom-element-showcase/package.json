@@ -34,7 +34,7 @@
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
-    "intern": "~4.1.2",
+    "intern": "4.0.2",
     "typescript": "~2.4.1",
     "@types/sinon": "^1.16.36",
     "sinon": "^2.4.1"
