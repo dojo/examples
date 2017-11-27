@@ -18,7 +18,7 @@ else
 	cd $PROJECT_DIR
 	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
 	then
-		runCommandAndCheckStatus ./node_modules/.bin/dojo test -a -c "browserstack"
+		runCommandAndCheckStatus ./node_modules/.bin/dojo test -a -c "saucelabs"
 		runCommandAndCheckStatus npm run build
 	else
 		runCommandAndCheckStatus ./node_modules/.bin/grunt
