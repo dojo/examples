@@ -1,6 +1,6 @@
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import TodoApp from './widgets/TodoApp';
+import App from './App';
 import { Outlet } from '@dojo/routing/Outlet';
 import { Registry } from '@dojo/widget-core/Registry';
 
@@ -9,6 +9,8 @@ import TodoList from './widgets/TodoList';
 import TodoFooter from './widgets/TodoFooter';
 import TodoFilter from './widgets/TodoFilter';
 import TodoItem from './widgets/TodoItem';
+
+require('maquette/src/maquette-polyfills');
 
 const registry = new Registry();
 
@@ -24,7 +26,7 @@ registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam)
 
 const root = document.querySelector('my-app') || undefined;
 
-const Projector = ProjectorMixin(TodoApp);
+const Projector = ProjectorMixin(App);
 const projector = new Projector();
 
 const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter', defaultParams: { filter: 'all' }, defaultRoute: true }], registry);
