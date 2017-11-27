@@ -10,6 +10,7 @@ env:
   - PROJECT_DIR=widget-showcase
   - PROJECT_DIR=dojo-cli-example
   - PROJECT_DIR=custom-element-menu
+  - PROJECT_DIR=custom-element-showcase
   - PROJECT_DIR=auto-deploy
   global:
   - SAUCE_USERNAME=dojo2-ts-ci
