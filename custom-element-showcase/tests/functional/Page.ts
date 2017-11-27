@@ -10,19 +10,18 @@ class Selectors {
 	public slidePane = 'dojo-slide-pane';
 	public slidePaneButton = '#slide-pane-button';
 	public slidePaneContent = 'dojo-slide-pane .slide-pane-content';
+	public slidePaneOverlay = 'dojo-slide-pane > div > div';
 	public accordionTitlePaneOne = '#title-pane-button-1';
 	public accordionTitlePaneTwo = '#title-pane-button-2';
-	public accordionTitlePaneOneContent = 'dojo-accordionpane dojo-title-pane:first-child .title-pane-content';
-	public accordionTitlePaneTwoContent = 'dojo-accordionpane dojo-title-pane:last-child .title-pane-content';
-	public accordionTitlePaneButtonOne = 'dojo-accordionpane dojo-title-pane:first-child button';
-	public accordionTitlePaneButtonTwo = 'dojo-accordionpane dojo-title-pane:last-child button';
+	public accordionTitlePaneOneContent = 'dojo-accordionpane dojo-title-pane:first-child > div > div:last-child';
+	public accordionTitlePaneTwoContent = 'dojo-accordionpane dojo-title-pane:last-child > div > div:last-child';
 	public tooltip = 'dojo-tooltip';
 	public tooltipButton = '#tooltip-button';
-	public tooltipContent = 'dojo-tooltip > div > div';
+	public tooltipContent = 'dojo-tooltip > div > div:last-child';
 	public calendarMonthButton = 'dojo-calendar div[role="menubar"] button:nth-child(2)';
 	public calendarYearButton = 'dojo-calendar div[role="menubar"] button:last-child';
-	public calendarPreviousButton = 'dojo-calendar > div div:last-child button:first-child';
-	public calendarNextButton = 'dojo-calendar > div div:last-child button:last-child';
+	public calendarPreviousButton = 'dojo-calendar > div > div:last-child button:first-child';
+	public calendarNextButton = 'dojo-calendar > div > div:last-child button:last-child';
 
 	public calendarDay = 'dojo-calendar table tbody td[role="gridcell"][tabindex="0"]';
 	public januaryLabel = 'dojo-calendar fieldset abbr[title="January"]';
@@ -51,27 +50,22 @@ export default class Page {
 	isVisible(selector: string) {
 		return this.remote
 			.findByCssSelector(selector)
-			.isDisplayed();
+			.isDisplayed()
+			.then(value => value, () => false);
 	}
 
-	clickAt(x = 0, y = 0) {
-		return this.remote
-			.moveMouseTo(x, y)
-			.click()
-			.sleep(100);
-	}
-
-	getAttribute(selector: string, attribute: string) {
+	getAttributeTruthiness(selector: string, attribute: string) {
 		return this.remote
 			.findByCssSelector(selector)
-			.getAttribute(attribute);
+			.getAttribute(attribute)
+			.then(attribute => Boolean(attribute && attribute !== 'false'));
 	}
 
 	click(selector: string) {
 		return this.remote
 			.findByCssSelector(selector)
 			.click()
-			.sleep(100)
+			.sleep(500)
 			.end();
 	}
 
