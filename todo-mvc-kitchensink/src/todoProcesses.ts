@@ -26,6 +26,25 @@ function addTodoCommand({ get }: CommandRequest): PatchOperation[] {
 	] : [];
 }
 
+function updateCompletedFlagCommand({ get }: CommandRequest): PatchOperation[] {
+	const todoCount = get('/todoCount');
+	const completed = todoCount > 0 && todoCount === get('/completedCount');
+
+	return [
+		replace('/completed', completed)
+	];
+}
+
+function updateTodoCountsCommand({ get }: CommandRequest): PatchOperation[] {
+	const todos = get('/todos');
+	const todoArray = Object.keys(todos).map(key => todos[key]);
+
+	return [
+		replace('/todoCount', todoArray.length),
+		replace('/completedCount', todoArray.filter(({ completed }) => completed).length)
+	];
+}
+
 function setCurrentTodoCommand({ payload: [ currentTodo ] }: CommandRequest): PatchOperation[] {
 	return [
 		replace('/currentTodo', currentTodo)
@@ -33,40 +52,22 @@ function setCurrentTodoCommand({ payload: [ currentTodo ] }: CommandRequest): Pa
 }
 
 function removeTodoCommand({ get, payload: [ id ]  }: CommandRequest): PatchOperation[] {
-	const todo = get(`/todos/${id}`);
-	const operations = [];
-
-	if (todo) {
-		const completedCount = todo.completed ? get('/completedCount') - 1 : get('/completedCount');
-		const todoCount = get('/todoCount') - 1;
-
-		operations.push(replace('/completedCount', completedCount));
-		operations.push(replace('/todoCount', todoCount));
-		operations.push(replace('/completed', completedCount === todoCount && todoCount > 0));
-		operations.push(remove(`/todos/${id}`));
-	}
-
-	return operations;
+	return [ remove(`/todos/${id}`) ];
 }
 
 function toggleTodoCommand({ get, payload: [ id ] }: CommandRequest): PatchOperation[] {
 	const completed = !get(`/todos/${id}/completed`);
-	const completedCount = (completed ? 1 : -1) + get('/completedCount');
-	const todoCount = get('/todoCount');
 
 	return [
-		replace('/completedCount', completedCount),
-		replace(`/todos/${id}/completed`, completed),
-		replace('/completed', completedCount === todoCount)
+		replace(`/todos/${id}/completed`, completed)
 	];
 
 }
 
 function toggleTodosCommand({ get }: CommandRequest): PatchOperation[] {
 	const completed = !get('/completed');
-	const completedCount = completed ? get('/todoCount') : 0;
+
 	return [
-		replace('/completedCount', completedCount),
 		replace('/completed', completed),
 		...Object.keys(get('/todos')).map(key => replace(`/todos/${key}/completed`, completed))
 	];
@@ -79,12 +80,8 @@ function editTodoCommand({ payload: [ todo ] }: CommandRequest): PatchOperation[
 function clearCompletedCommand({ get }: CommandRequest): PatchOperation[] {
 	const todos: Todos = get('/todos');
 	const keys = Object.keys(todos);
-	const todoCount = get<number>('/todoCount') - get<number>('/completedCount');
 
 	return [
-		replace('/todoCount', todoCount),
-		replace('/completedCount', 0),
-		replace('/completed', false),
 		...keys.filter(key => todos[key].completed).map(key => remove(`/todos/${key}`))
 	];
 }
@@ -116,17 +113,17 @@ function initialStateCommand() {
 
 export const initialStateProcess = createProcess([ initialStateCommand ]);
 
-export const addTodoProcess = createProcess([ addTodoCommand ]);
+export const addTodoProcess = createProcess([ addTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const removeTodoProcess = createProcess([ removeTodoCommand ]);
+export const removeTodoProcess = createProcess([ removeTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const toggleTodoProcess = createProcess([ toggleTodoCommand ]);
+export const toggleTodoProcess = createProcess([ toggleTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const toggleTodosProcess = createProcess([ toggleTodosCommand ]);
+export const toggleTodosProcess = createProcess([ toggleTodosCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
 export const editTodoProcess = createProcess([ editTodoCommand ]);
 
-export const clearCompletedProcess = createProcess([ clearCompletedCommand ]);
+export const clearCompletedProcess = createProcess([ clearCompletedCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
 export const saveTodoProcess = createProcess([ saveTodoCommand ]);
 
