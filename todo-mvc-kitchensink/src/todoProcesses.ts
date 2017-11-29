@@ -51,7 +51,7 @@ function setCurrentTodoCommand({ payload: [ currentTodo ] }: CommandRequest): Pa
 	];
 }
 
-function removeTodoCommand({ get, payload: [ id ]  }: CommandRequest): PatchOperation[] {
+function removeTodoCommand({ payload: [ id ]  }: CommandRequest): PatchOperation[] {
 	return [ remove(`/todos/${id}`) ];
 }
 
