@@ -8,6 +8,8 @@
 /html-report
 /node_modules
 /typings
+/coverage
+coverage-final.lcov
 .baseDir.ts
 .tscache
 .tsconfig*.json
