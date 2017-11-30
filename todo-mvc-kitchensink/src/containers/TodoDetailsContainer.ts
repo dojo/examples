@@ -5,8 +5,9 @@ import { TodoDetails } from './../widgets/TodoDetails';
 import { editTodoProcess, saveTodoProcess } from './../todoProcesses';
 
 function getProperties(store: Store, properties: any) {
+	const { get, path } = store;
 	return {
-		todo: store.get('/editedTodo') || store.get(`/todos/${properties.id}`),
+		todo: get(path('/editedTodo')) || get(path(`/todos/${properties.id}`)),
 		editTodo: editTodoProcess(store),
 		saveTodo: saveTodoProcess(store)
 	};

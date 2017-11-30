@@ -14,100 +14,100 @@ export interface Todos {
 	[key: string]: Todo;
 }
 
-function addTodoCommand({ get }: CommandRequest): PatchOperation[] {
+function addTodoCommand({ get, path }: CommandRequest): PatchOperation[] {
 	const id = uuid();
-	const count = get('/todoCount');
-	const todo = { label: get('/currentTodo').trim(), id };
+	const count = get(path('todoCount'));
+	const todo = { label: get(path('currentTodo')).trim(), id };
 
 	return todo.label ? [
-		add(`/todos/${id}`, todo),
-		replace('/currentTodo', ''),
-		replace('/todoCount', count + 1)
+		add(path(`todos/${id}`), todo),
+		replace(path('currentTodo'), ''),
+		replace(path('todoCount'), count + 1)
 	] : [];
 }
 
-function updateCompletedFlagCommand({ get }: CommandRequest): PatchOperation[] {
-	const todoCount = get('/todoCount');
-	const completed = todoCount > 0 && todoCount === get('/completedCount');
+function updateCompletedFlagCommand({ get, path }: CommandRequest): PatchOperation[] {
+	const todoCount = get(path('todoCount'));
+	const completed = todoCount > 0 && todoCount === get(path('completedCount'));
 
 	return [
-		replace('/completed', completed)
+		replace(path('completed'), completed)
 	];
 }
 
-function updateTodoCountsCommand({ get }: CommandRequest): PatchOperation[] {
-	const todos = get('/todos');
+function updateTodoCountsCommand({ get, path }: CommandRequest): PatchOperation[] {
+	const todos = get(path('todos'));
 	const todoArray = Object.keys(todos).map(key => todos[key]);
 
 	return [
-		replace('/todoCount', todoArray.length),
-		replace('/completedCount', todoArray.filter(({ completed }) => completed).length)
+		replace(path('todoCount'), todoArray.length),
+		replace(path('completedCount'), todoArray.filter(({ completed }) => completed).length)
 	];
 }
 
-function setCurrentTodoCommand({ payload: [ currentTodo ] }: CommandRequest): PatchOperation[] {
+function setCurrentTodoCommand({ payload: [ currentTodo ], path }: CommandRequest): PatchOperation[] {
 	return [
-		replace('/currentTodo', currentTodo)
+		replace(path('currentTodo'), currentTodo)
 	];
 }
 
-function removeTodoCommand({ payload: [ id ]  }: CommandRequest): PatchOperation[] {
-	return [ remove(`/todos/${id}`) ];
+function removeTodoCommand({ payload: [ id ], path }: CommandRequest): PatchOperation[] {
+	return [ remove(path(`todos/${id}`)) ];
 }
 
-function toggleTodoCommand({ get, payload: [ id ] }: CommandRequest): PatchOperation[] {
-	const completed = !get(`/todos/${id}/completed`);
-
-	return [
-		replace(`/todos/${id}/completed`, completed)
-	];
-
-}
-
-function toggleTodosCommand({ get }: CommandRequest): PatchOperation[] {
-	const completed = !get('/completed');
+function toggleTodoCommand({ get, path, payload: [ id ] }: CommandRequest): PatchOperation[] {
+	const completed = !get(path(`todos/${id}/completed`));
 
 	return [
-		replace('/completed', completed),
-		...Object.keys(get('/todos')).map(key => replace(`/todos/${key}/completed`, completed))
+		replace(path(`todos/${id}/completed`), completed)
+	];
+
+}
+
+function toggleTodosCommand({ get, path }: CommandRequest): PatchOperation[] {
+	const completed = !get(path('completed'));
+
+	return [
+		replace(path('completed'), completed),
+		...Object.keys(get(path('todos'))).map(key => replace(path(`todos/${key}/completed`), completed))
 	];
 }
 
-function editTodoCommand({ payload: [ todo ] }: CommandRequest): PatchOperation[] {
-	return [ replace('/editedTodo', todo) ];
+function editTodoCommand({ payload: [ todo ], path }: CommandRequest): PatchOperation[] {
+	return [ replace(path('editedTodo'), todo) ];
 }
 
-function clearCompletedCommand({ get }: CommandRequest): PatchOperation[] {
-	const todos: Todos = get('/todos');
+function clearCompletedCommand({ get, path }: CommandRequest): PatchOperation[] {
+	const todos: Todos = get(path('todos'));
 	const keys = Object.keys(todos);
 
 	return [
-		...keys.filter(key => todos[key].completed).map(key => remove(`/todos/${key}`))
+		...keys.filter(key => todos[key].completed).map(key => remove(path(`todos/${key}`)))
 	];
 }
 
-function saveTodoCommand({ get }: CommandRequest): PatchOperation[] {
-	const editedTodo = get<Todo>('/editedTodo');
+function saveTodoCommand({ get, path }: CommandRequest): PatchOperation[] {
+	const editedTodo = get<Todo>(path('editedTodo'));
 
 	return editedTodo ? [
-		replace(`/todos/${editedTodo.id}`, editedTodo),
-		replace('/editedTodo', undefined)
+		replace(path(`todos/${editedTodo.id}`), editedTodo),
+		replace(path('editedTodo'), undefined)
 	] : [];
 }
 
-function searchCommand({ payload: [ search ] }: CommandRequest): PatchOperation[] {
-	return [ replace('/currentSearch', search) ];
+function searchCommand({ payload: [ search ], path }: CommandRequest): PatchOperation[] {
+	return [ replace(path('currentSearch'), search) ];
 }
 
-function initialStateCommand() {
+function initialStateCommand({ path }: CommandRequest) {
 	return [
-		add('/completedCount', 0),
-		add('/completed', false),
-		add('/currentSearch', ''),
-		add('/currentTodo', ''),
-		add('/editedTodo', undefined),
-		add('/todoCount', 0),
-		add('/todos', {})
+		add(path('completedCount'), 0),
+		add(path('completed'), false),
+		add(path('currentSearch'), ''),
+		add(path('currentTodo'), ''),
+		add(path('editedTodo'), undefined),
+		add(path('todoCount'), 0),
+		add(path('todos'), {})
 	];
 }
 

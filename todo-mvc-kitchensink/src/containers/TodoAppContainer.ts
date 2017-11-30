@@ -10,26 +10,25 @@ import {
 	clearCompletedProcess,
 	toggleTodoProcess,
 	toggleTodosProcess,
-	Todos,
-	Todo,
 	removeTodoProcess
 } from '../todoProcesses';
 
 function getProperties(store: Store) {
+	const { get, path } = store;
 	return {
-		todos: Object.keys(store.get<Todos>('/todos')).map(key => store.get<Todo>(`/todos/${key}`)),
-		currentTodo: store.get('/currentTodo'),
+		todos: Object.keys(get(path('todos'))).map(key => get(path(`todos/${key}`))),
+		currentTodo: get(path('currentTodo')),
 		addTodo: addTodoProcess(store),
 		editTodo: editTodoProcess(store),
 		setCurrentTodo: setCurrentTodoProcess(store),
 		search: searchProcess(store),
-		searchValue: store.get('/currentSearch'),
-		completed: store.get('/completed'),
+		searchValue: get(path('currentSearch')),
+		completed: get(path('completed')),
 		clearCompleted: clearCompletedProcess(store),
 		toggleTodos: toggleTodosProcess(store),
 		toggleTodo: toggleTodoProcess(store),
-		activeCount: store.get<number>('/todoCount') - store.get<number>('/completedCount'),
-		todoCount: store.get('/todoCount'),
+		activeCount: get(path('todoCount')) - get(path('completedCount')),
+		todoCount: get(path('todoCount')),
 		removeTodo: removeTodoProcess(store)
 	};
 }
