@@ -1,7 +1,19 @@
-import { CommandRequest, createProcess } from '@dojo/stores/process';
+import { createCommandFactory, createProcess } from '@dojo/stores/process';
 import { PatchOperation } from '@dojo/stores/state/Patch';
 import { add, remove, replace } from '@dojo/stores/state/operations';
 import uuid from '@dojo/core/uuid';
+
+export type TodoStore = {
+	completedCount: number;
+	completed: boolean;
+	currentSearch: string;
+	currentTodo: string;
+	editedTodo: Todo | undefined;
+	todoCount: number;
+	todos: Todos;
+};
+
+const commandFactory = createCommandFactory<TodoStore>();
 
 export interface Todo {
 	id: string;
@@ -14,28 +26,26 @@ export interface Todos {
 	[key: string]: Todo;
 }
 
-function addTodoCommand({ get, path }: CommandRequest): PatchOperation[] {
+const addTodoCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	const id = uuid();
-	const count = get(path('todoCount'));
 	const todo = { label: get(path('currentTodo')).trim(), id };
 
 	return todo.label ? [
-		add(path(`todos/${id}`), todo),
-		replace(path('currentTodo'), ''),
-		replace(path('todoCount'), count + 1)
+		add(path('todos', id), todo),
+		replace(path('currentTodo'), '')
 	] : [];
-}
+});
 
-function updateCompletedFlagCommand({ get, path }: CommandRequest): PatchOperation[] {
+const updateCompletedFlagCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	const todoCount = get(path('todoCount'));
 	const completed = todoCount > 0 && todoCount === get(path('completedCount'));
 
 	return [
 		replace(path('completed'), completed)
 	];
-}
+});
 
-function updateTodoCountsCommand({ get, path }: CommandRequest): PatchOperation[] {
+const updateTodoCountsCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	const todos = get(path('todos'));
 	const todoArray = Object.keys(todos).map(key => todos[key]);
 
@@ -43,63 +53,63 @@ function updateTodoCountsCommand({ get, path }: CommandRequest): PatchOperation[
 		replace(path('todoCount'), todoArray.length),
 		replace(path('completedCount'), todoArray.filter(({ completed }) => completed).length)
 	];
-}
+});
 
-function setCurrentTodoCommand({ payload: [ currentTodo ], path }: CommandRequest): PatchOperation[] {
+const setCurrentTodoCommand = commandFactory(({ payload: [ currentTodo ], path }): PatchOperation[] => {
 	return [
 		replace(path('currentTodo'), currentTodo)
 	];
-}
+});
 
-function removeTodoCommand({ payload: [ id ], path }: CommandRequest): PatchOperation[] {
-	return [ remove(path(`todos/${id}`)) ];
-}
+const removeTodoCommand = commandFactory(({ payload: [ id ], path }): PatchOperation[] => {
+	return [ remove(path('todos', id)) ];
+});
 
-function toggleTodoCommand({ get, path, payload: [ id ] }: CommandRequest): PatchOperation[] {
-	const completed = !get(path(`todos/${id}/completed`));
+const toggleTodoCommand = commandFactory(({ get, path, payload: [ id ] }): PatchOperation[] => {
+	const completed = !get(path('todos', id, 'completed'));
 
 	return [
-		replace(path(`todos/${id}/completed`), completed)
+		replace(path('todos', id, 'completed'), completed)
 	];
 
-}
+});
 
-function toggleTodosCommand({ get, path }: CommandRequest): PatchOperation[] {
+const toggleTodosCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	const completed = !get(path('completed'));
 
 	return [
 		replace(path('completed'), completed),
-		...Object.keys(get(path('todos'))).map(key => replace(path(`todos/${key}/completed`), completed))
+		...Object.keys(get(path('todos'))).map(key => replace(path('todos', key, 'completed'), completed))
 	];
-}
+});
 
-function editTodoCommand({ payload: [ todo ], path }: CommandRequest): PatchOperation[] {
+const editTodoCommand = commandFactory(({ payload: [ todo ], path }): PatchOperation[] => {
 	return [ replace(path('editedTodo'), todo) ];
-}
+});
 
-function clearCompletedCommand({ get, path }: CommandRequest): PatchOperation[] {
+const clearCompletedCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	const todos: Todos = get(path('todos'));
 	const keys = Object.keys(todos);
 
 	return [
-		...keys.filter(key => todos[key].completed).map(key => remove(path(`todos/${key}`)))
+		...keys.filter(key => todos[key].completed).map(key => remove(path('todos', key)))
 	];
-}
+});
 
-function saveTodoCommand({ get, path }: CommandRequest): PatchOperation[] {
-	const editedTodo = get<Todo>(path('editedTodo'));
+const saveTodoCommand = commandFactory(({ get, path }): PatchOperation[] => {
+	const editedTodo = get(path('editedTodo'));
 
 	return editedTodo ? [
-		replace(path(`todos/${editedTodo.id}`), editedTodo),
+		replace(path('todos', editedTodo.id), editedTodo),
 		replace(path('editedTodo'), undefined)
 	] : [];
-}
+});
 
-function searchCommand({ payload: [ search ], path }: CommandRequest): PatchOperation[] {
+const searchCommand = commandFactory(({ payload: [ search ], path }): PatchOperation[] => {
 	return [ replace(path('currentSearch'), search) ];
-}
+});
 
-function initialStateCommand({ path }: CommandRequest) {
+const initialStateCommand = commandFactory(({ path }) => {
 	return [
 		add(path('completedCount'), 0),
 		add(path('completed'), false),
@@ -109,7 +119,7 @@ function initialStateCommand({ path }: CommandRequest) {
 		add(path('todoCount'), 0),
 		add(path('todos'), {})
 	];
-}
+});
 
 export const initialStateProcess = createProcess([ initialStateCommand ]);
 

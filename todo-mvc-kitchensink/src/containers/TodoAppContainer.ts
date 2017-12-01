@@ -10,13 +10,14 @@ import {
 	clearCompletedProcess,
 	toggleTodoProcess,
 	toggleTodosProcess,
-	removeTodoProcess
+	removeTodoProcess,
+	TodoStore
 } from '../todoProcesses';
 
-function getProperties(store: Store) {
+function getProperties(store: Store<TodoStore>) {
 	const { get, path } = store;
 	return {
-		todos: Object.keys(get(path('todos'))).map(key => get(path(`todos/${key}`))),
+		todos: Object.keys(get(path('todos'))).map(key => get(path('todos', key))),
 		currentTodo: get(path('currentTodo')),
 		addTodo: addTodoProcess(store),
 		editTodo: editTodoProcess(store),
