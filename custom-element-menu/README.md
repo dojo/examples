@@ -30,8 +30,15 @@ npm install
 
 To run the application simply run the dojo build.
 
+```shell
+dojo build
 ```
-npm run build
+
+Run the dojo build commands to generate the custom elements.
+
+```shell
+dojo build --element=src/widgets/createMenuItemElement.ts 
+dojo build --element=src/widgets/createMenuElement.ts
 ```
 
 Open the `dist` directory using a local webserver.
