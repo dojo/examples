@@ -4,7 +4,7 @@
   "description": "TodoMVC using Dojo 2",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/dojo build"
+    "build": "dojo build"
   },
   "repository": {
     "type": "git",
