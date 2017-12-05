@@ -2,7 +2,7 @@
   "name": "dojo2-widget-showcase",
   "version": "1.0.0",
   "scripts": {
-    "build": "./node_modules/.bin/dojo build"
+    "build": "dojo build"
   },
   "dependencies": {
     "@dojo/core": "~0.1.0",

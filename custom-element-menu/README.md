@@ -30,15 +30,8 @@ npm install
 
 To run the application simply run the dojo build.
 
-```shell
-dojo build
 ```
-
-Run the dojo build commands to generate the custom elements.
-
-```shell
-dojo build --element=src/widgets/createMenuItemElement.ts 
-dojo build --element=src/widgets/createMenuElement.ts
+npm run build
 ```
 
 Open the `dist` directory using a local webserver.
@@ -46,6 +39,21 @@ Open the `dist` directory using a local webserver.
 ## Features
 
 This package demonstrates how to use Dojo 2 widgets as a custom element.
+
+Notice `src/widgets/createMenuElement.ts` and `src/widgets/createMenuItemElement.ts` describe the custom elements.
+To build the custome elements, the `npm run build` command above first runs `dojo build` and then 
+
+```shell
+dojo build --element=src/widgets/createMenuItemElement.ts 
+dojo build --element=src/widgets/createMenuElement.ts
+```
+Those CLI build commands use webpack to create bundles in the `dist` directory for each custom element.  
+To use those custom elements in your own HTML page, import the custom elements' HTML files:
+
+```html
+<link rel="import" href="./dist/menu/menu.html" />
+<link rel="import" href="./dist/menu-item/menu-item.html" />
+```
 
 ## How do I contribute?
 
