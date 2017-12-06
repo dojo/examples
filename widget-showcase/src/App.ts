@@ -51,23 +51,23 @@ interface State {
 	textareaValue: string;
 	textinputValue: string;
 	timepickerOptions: TimeUnits[];
-  titlepaneOpen: boolean;
-  tooltipOpen: boolean;
-  month?: number;
-  selectedDate?: Date;
-  timepickerValue: string;
-  year?: number;
+	titlepaneOpen: boolean;
+	tooltipOpen: boolean;
+	month?: number;
+	selectedDate?: Date;
+	timepickerValue: string;
+	year?: number;
 }
 
 export const AppBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class App extends AppBase<WidgetProperties> {
-  private _month: number;
+	private _month: number;
 	private _year: number;
 	private _selectedDate: Date;
-  private _tabRefresh: Task<any>;
-  private _openAccordionKeys = new Set<string>();
+	private _tabRefresh: Task<any>;
+	private _openAccordionKeys = new Set<string>();
 	private _state: State = {
 		activeTabIndex: 0,
 		buttonPressed: false,
@@ -89,11 +89,11 @@ export default class App extends AppBase<WidgetProperties> {
 		textinputValue: '',
 		timepickerOptions: [],
 		timepickerValue: '',
-    titlepaneOpen: false,
-    tooltipOpen: false,
-    month: undefined,
-    selectedDate: undefined,
-    year: undefined
+		titlepaneOpen: false,
+		tooltipOpen: false,
+		month: undefined,
+		selectedDate: undefined,
+		year: undefined
 	};
 
 	private refreshTabData() {
@@ -128,12 +128,12 @@ export default class App extends AppBase<WidgetProperties> {
 			textinputValue,
 			timepickerOptions,
 			timepickerValue,
-      titlepaneOpen,
-      tooltipOpen,
-      month,
-      nestedSizeA,
-      selectedDate,
-      year
+			titlepaneOpen,
+			tooltipOpen,
+			month,
+			nestedSizeA,
+			selectedDate,
+			year
 		} = this._state;
 
 		return v('div', { classes: this.theme(css.content) }, [
@@ -218,8 +218,8 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				})
-      ]),
-      v('div', { classes: this.theme(css.component) }, [
+			]),
+			v('div', { classes: this.theme(css.component) }, [
 				w(Tooltip, {
 					key: 'tooltip',
 					content: 'This is a right-oriented tooltip that opens and closes based on child click.',
@@ -228,10 +228,10 @@ export default class App extends AppBase<WidgetProperties> {
 					theme: dojoTheme
 				}, [
 					w(Button, {
-            key: 'tooltip-trigger',
+						key: 'tooltip-trigger',
 						theme: dojoTheme,
 						onClick: () => {
-              this.setState({ tooltipOpen: !tooltipOpen });
+							this.setState({ tooltipOpen: !tooltipOpen });
 						}
 					}, [ 'Tooltip' ])
 				])
@@ -291,18 +291,18 @@ export default class App extends AppBase<WidgetProperties> {
 			]),
 			v('div', { classes: this.theme(css.component) }, [
 				w(Select, {
-          key: 'select',
-          getOptionDisabled: (option: any) => option.disabled,
-          getOptionLabel: (option: any) => option.label,
-          getOptionValue: (option: any) => option.value,
-          getOptionSelected: (option: any) => !!selectValue && option.value === selectValue,
-          label: 'Native select',
-          options: dataSmall,
+					key: 'select',
+					getOptionDisabled: (option: any) => option.disabled,
+					getOptionLabel: (option: any) => option.label,
+					getOptionValue: (option: any) => option.value,
+					getOptionSelected: (option: any) => !!selectValue && option.value === selectValue,
+					label: 'Native select',
+					options: dataSmall,
 					value: selectValue,
 					theme: dojoTheme,
-          onChange: (option: any) => {
-            this.setState({ selectValue: option.value });
-          }
+					onChange: (option: any) => {
+						this.setState({ selectValue: option.value });
+					}
 				})
 			]),
 			v('div', { classes: this.theme(css.component) }, [
@@ -328,23 +328,23 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				}),
-      ]),
-      v('div', { classes: this.theme(css.component) }, [
+			]),
+			v('div', { classes: this.theme(css.component) }, [
 				w(Calendar, {
-          month,
-          selectedDate,
-          theme: dojoTheme,
-          year,
-          onMonthChange: (month: number) => {
-            this.setState({ month });
-          },
-          onYearChange: (year: number) => {
-            this.setState({ year });
-          },
-          onDateSelect: (date: Date) => {
-            this.setState({ selectedDate: date });
-          }
-        })
+					month,
+					selectedDate,
+					theme: dojoTheme,
+					year,
+					onMonthChange: (month: number) => {
+						this.setState({ month });
+					},
+					onYearChange: (year: number) => {
+						this.setState({ year });
+					},
+					onDateSelect: (date: Date) => {
+						this.setState({ selectedDate: date });
+					}
+				})
 			]),
 			v('h1', [ 'Layout components' ]),
 			v('div', { classes: this.theme(css.component) }, [
@@ -428,8 +428,8 @@ export default class App extends AppBase<WidgetProperties> {
 						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.'
 					])
 				])
-      ]),
-      v('div', { classes: this.theme(css.component) }, [
+			]),
+			v('div', { classes: this.theme(css.component) }, [
 				w(AccordionPane, {
 					onRequestOpen: (key: string) => {
 						this._openAccordionKeys.add(key);
