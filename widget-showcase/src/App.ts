@@ -1,15 +1,17 @@
 import { deepAssign } from '@dojo/core/lang';
 import { DNode, WidgetProperties, TypedTargetEvent } from '@dojo/widget-core/interfaces';
-import { includes } from '@dojo/shim/array';
+import { includes, from } from '@dojo/shim/array';
+import { Set } from '@dojo/shim/Set';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { ThemeableMixin, theme } from '@dojo/widget-core/mixins/Themeable';
+import { ThemedMixin, ThemedProperties, theme } from '@dojo/widget-core/mixins/Themed';
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import dojoTheme from '@dojo/widgets/themes/dojo/theme';
 import Task from '@dojo/core/async/Task';
 
-import { OptionData } from '@dojo/widgets/select/SelectOption';
+import AccordionPane from '@dojo/widgets/accordionpane/AccordionPane';
 import Button from '@dojo/widgets/button/Button';
+import Calendar from '@dojo/widgets/calendar/Calendar';
 import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
 import ComboBox from '@dojo/widgets/combobox/ComboBox';
 import Dialog from '@dojo/widgets/dialog/Dialog';
@@ -24,6 +26,7 @@ import Textarea from '@dojo/widgets/textarea/Textarea';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import TitlePane from '@dojo/widgets/titlepane/TitlePane';
+import Tooltip, { Orientation } from '@dojo/widgets/tooltip/Tooltip';
 
 import { dataLarge, dataSmall} from './data';
 import * as css from './styles/app.m.css';
@@ -39,24 +42,32 @@ interface State {
 	dialogOpen: boolean;
 	loadingTab: boolean;
 	multiselectValue: string;
-	nestedSizeA: number | undefined;
-	nestedSizeB: number | undefined;
+	nestedSizeA?: number;
+	nestedSizeB?: number;
 	radioValue: string;
 	selectValue: string;
 	slidepaneOpen: boolean;
-	sliderValue: number | undefined;
+	sliderValue?: number;
 	textareaValue: string;
 	textinputValue: string;
 	timepickerOptions: TimeUnits[];
-	timepickerValue: string;
-	titlepaneOpen: boolean;
+  titlepaneOpen: boolean;
+  tooltipOpen: boolean;
+  month?: number;
+  selectedDate?: Date;
+  timepickerValue: string;
+  year?: number;
 }
 
-export const AppBase = ThemeableMixin(WidgetBase);
+export const AppBase = ThemedMixin(WidgetBase);
 
 @theme(css)
 export default class App extends AppBase<WidgetProperties> {
-	private _tabRefresh: Task<any>;
+  private _month: number;
+	private _year: number;
+	private _selectedDate: Date;
+  private _tabRefresh: Task<any>;
+  private _openAccordionKeys = new Set<string>();
 	private _state: State = {
 		activeTabIndex: 0,
 		buttonPressed: false,
@@ -78,7 +89,11 @@ export default class App extends AppBase<WidgetProperties> {
 		textinputValue: '',
 		timepickerOptions: [],
 		timepickerValue: '',
-		titlepaneOpen: false
+    titlepaneOpen: false,
+    tooltipOpen: false,
+    month: undefined,
+    selectedDate: undefined,
+    year: undefined
 	};
 
 	private refreshTabData() {
@@ -104,7 +119,6 @@ export default class App extends AppBase<WidgetProperties> {
 			dialogOpen,
 			loadingTab,
 			multiselectValue,
-			nestedSizeA,
 			nestedSizeB,
 			radioValue,
 			selectValue,
@@ -114,25 +128,30 @@ export default class App extends AppBase<WidgetProperties> {
 			textinputValue,
 			timepickerOptions,
 			timepickerValue,
-			titlepaneOpen
+      titlepaneOpen,
+      tooltipOpen,
+      month,
+      nestedSizeA,
+      selectedDate,
+      year
 		} = this._state;
 
-		return v('div', { classes: this.classes(css.content) }, [
+		return v('div', { classes: this.theme(css.content) }, [
 			v('h1', [ 'Form components' ]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Button, {
 					key: 'basic-button',
 					theme: dojoTheme
 				}, [ 'Basic' ])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Button, {
 					key: 'popup-button',
 					theme: dojoTheme,
 					popup: { expanded: false, id: 'fakeId' }
 				}, [ 'Popup' ]),
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Button, {
 					key: 'pressed-button',
 					theme: dojoTheme,
@@ -142,7 +161,7 @@ export default class App extends AppBase<WidgetProperties> {
 					}
 				}, [ 'Toggle' ])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Checkbox, {
 					key: 'cb1',
 					checked: checkboxBasic,
@@ -153,7 +172,7 @@ export default class App extends AppBase<WidgetProperties> {
 					theme: dojoTheme
 				}),
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Checkbox, {
 					key: 'cb2',
 					checked: checkboxToggle,
@@ -165,7 +184,7 @@ export default class App extends AppBase<WidgetProperties> {
 					mode: Mode.toggle
 				})
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Radio, {
 					key: 'r1',
 					checked: radioValue === 'first',
@@ -199,8 +218,25 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				})
+      ]),
+      v('div', { classes: this.theme(css.component) }, [
+				w(Tooltip, {
+					key: 'tooltip',
+					content: 'This is a right-oriented tooltip that opens and closes based on child click.',
+					orientation: Orientation.right,
+					open: tooltipOpen,
+					theme: dojoTheme
+				}, [
+					w(Button, {
+            key: 'tooltip-trigger',
+						theme: dojoTheme,
+						onClick: () => {
+              this.setState({ tooltipOpen: !tooltipOpen });
+						}
+					}, [ 'Tooltip' ])
+				])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(TextInput, {
 					key: 'text-input',
 					placeholder: 'TextInput',
@@ -211,7 +247,7 @@ export default class App extends AppBase<WidgetProperties> {
 					theme: dojoTheme
 				}),
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(ComboBox, {
 					key: 'combo-box',
 					clearable: true,
@@ -234,7 +270,7 @@ export default class App extends AppBase<WidgetProperties> {
 					theme: dojoTheme
 				})
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(TimePicker, {
 					key: 'time-picker',
 					inputProperties: {
@@ -253,30 +289,23 @@ export default class App extends AppBase<WidgetProperties> {
 					value: timepickerValue
 				}),
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Select, {
-					key: 'select',
-					options: dataSmall,
+          key: 'select',
+          getOptionDisabled: (option: any) => option.disabled,
+          getOptionLabel: (option: any) => option.label,
+          getOptionValue: (option: any) => option.value,
+          getOptionSelected: (option: any) => !!selectValue && option.value === selectValue,
+          label: 'Native select',
+          options: dataSmall,
 					value: selectValue,
 					theme: dojoTheme,
-					onChange: (option: OptionData) => {
-						this.setState({ selectValue: option.value });
-					}
+          onChange: (option: any) => {
+            this.setState({ selectValue: option.value });
+          }
 				})
 			]),
-			v('div', { classes: this.classes(css.component) }, [
-				w(Select, {
-					key: 'multiselect',
-					options: dataSmall,
-					value: multiselectValue,
-					multiple: true,
-					theme: dojoTheme,
-					onChange: (option: OptionData) => {
-						this.setState({ multiselectValue: option.value });
-					}
-				})
-			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Slider, {
 					key: 'slider',
 					value: sliderValue,
@@ -287,7 +316,7 @@ export default class App extends AppBase<WidgetProperties> {
 					theme: dojoTheme
 				})
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Textarea, {
 					key: 'text-area',
 					columns: 40,
@@ -299,9 +328,26 @@ export default class App extends AppBase<WidgetProperties> {
 					},
 					theme: dojoTheme
 				}),
+      ]),
+      v('div', { classes: this.theme(css.component) }, [
+				w(Calendar, {
+          month,
+          selectedDate,
+          theme: dojoTheme,
+          year,
+          onMonthChange: (month: number) => {
+            this.setState({ month });
+          },
+          onYearChange: (year: number) => {
+            this.setState({ year });
+          },
+          onDateSelect: (date: Date) => {
+            this.setState({ selectedDate: date });
+          }
+        })
 			]),
 			v('h1', [ 'Layout components' ]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(Dialog, {
 					key: 'dialog',
 					title: 'Dialog',
@@ -321,7 +367,7 @@ export default class App extends AppBase<WidgetProperties> {
 					onClick: () => this.setState({ dialogOpen: true })
 				}, [ 'Open Dialog' ])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(SlidePane, {
 					key: 'slide-pane',
 					align: Align.right,
@@ -341,9 +387,9 @@ export default class App extends AppBase<WidgetProperties> {
 					onClick: () => this.setState({ slidepaneOpen: true })
 				}, [ 'Open SlidePane' ])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				v('div', {
-					classes: this.classes(css.splitContainer)
+					classes: this.theme(css.splitContainer)
 				}, [
 					w(SplitPane, {
 						key: 'split-pane',
@@ -365,7 +411,7 @@ export default class App extends AppBase<WidgetProperties> {
 					})
 				])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(TitlePane, {
 					key: 'title-pane',
 					open: titlepaneOpen,
@@ -382,8 +428,31 @@ export default class App extends AppBase<WidgetProperties> {
 						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.'
 					])
 				])
+      ]),
+      v('div', { classes: this.theme(css.component) }, [
+				w(AccordionPane, {
+					onRequestOpen: (key: string) => {
+						this._openAccordionKeys.add(key);
+						this.invalidate();
+					},
+					onRequestClose: (key: string) => {
+						this._openAccordionKeys.delete(key);
+						this.invalidate();
+					},
+					openKeys: from(this._openAccordionKeys),
+					theme: dojoTheme
+				}, [
+					w(TitlePane, {
+						title: 'Pane 1',
+						key: 'accordion-pane-1'
+					}, [ 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sodales ante sed massa finibus, at euismod ex molestie. Donec sagittis ligula at lorem blandit imperdiet. Aenean sapien justo, blandit at aliquet a, tincidunt ac nulla. Donec quis dapibus est. Donec id massa eu nisl cursus ornare quis sit amet velit.' ]),
+					w(TitlePane, {
+						title: 'Pane 2',
+						key: 'accordion-pane-2'
+					}, [ 'Ut non lectus vitae eros hendrerit pellentesque. In rhoncus ut lectus id tempus. Cras eget mauris scelerisque, condimentum ante sed, vehicula tellus. Donec congue ligula felis, a porta felis aliquet nec. Nulla mi lorem, efficitur nec lectus vehicula, vehicula varius eros.' ])
+				])
 			]),
-			v('div', { classes: this.classes(css.component) }, [
+			v('div', { classes: this.theme(css.component) }, [
 				w(TabController, {
 					key: 'tab-controller',
 					theme: dojoTheme,
