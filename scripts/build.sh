@@ -22,8 +22,7 @@ else
 		runCommandAndCheckStatus npm run build
 	else
 		runCommandAndCheckStatus ./node_modules/.bin/grunt
-		runCommandAndCheckStatus ./node_modules/.bin/grunt ci --combined
-		runCommandAndCheckStatus ./node_modules/.bin/grunt remapIstanbul:ci
+		runCommandAndCheckStatus ./node_modules/.bin/grunt ci
 	fi
 	cd ..
 fi

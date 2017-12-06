@@ -16,7 +16,7 @@ import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
 import ComboBox from '@dojo/widgets/combobox/ComboBox';
 import Dialog from '@dojo/widgets/dialog/Dialog';
 import Radio from '@dojo/widgets/radio/Radio';
-import Select from '@dojo/widgets/select/Select';
+import Select, { SelectProperties } from '@dojo/widgets/select/Select';
 import SlidePane, { Align } from '@dojo/widgets/slidepane/SlidePane';
 import Slider from '@dojo/widgets/slider/Slider';
 import SplitPane, { Direction } from '@dojo/widgets/splitpane/SplitPane';
@@ -166,8 +166,9 @@ export default class App extends AppBase<WidgetProperties> {
 					key: 'cb1',
 					checked: checkboxBasic,
 					label: 'Basic checkbox',
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ checkboxBasic: event.target.checked })
+					onChange: (event: Event) => {
+						const { checked } = event.target as HTMLInputElement;
+						this.setState({ checkboxBasic: checked })
 					},
 					theme: dojoTheme
 				}),
@@ -177,8 +178,9 @@ export default class App extends AppBase<WidgetProperties> {
 					key: 'cb2',
 					checked: checkboxToggle,
 					label: 'Toggle checkbox',
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ checkboxToggle: event.target.checked })
+					onChange: (event: Event) => {
+						const { checked } = event.target as HTMLInputElement;
+						this.setState({ checkboxToggle: checked })
 					},
 					theme: dojoTheme,
 					mode: Mode.toggle
@@ -191,8 +193,9 @@ export default class App extends AppBase<WidgetProperties> {
 					value: 'first',
 					label: 'First option',
 					name: 'sample-radios',
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ radioValue: event.target.value });
+					onChange: (event: Event) => {
+						const { value } = event.target as HTMLInputElement;
+						this.setState({ radioValue: value });
 					},
 					theme: dojoTheme
 				}),
@@ -202,8 +205,9 @@ export default class App extends AppBase<WidgetProperties> {
 					value: 'second',
 					label: 'Second option',
 					name: 'sample-radios',
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ radioValue: event.target.value });
+					onChange: (event: Event) => {
+						const { value } = event.target as HTMLInputElement;
+						this.setState({ radioValue: value });
 					},
 					theme: dojoTheme
 				}),
@@ -213,8 +217,9 @@ export default class App extends AppBase<WidgetProperties> {
 					value: 'third',
 					label: 'Third option',
 					name: 'sample-radios',
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ radioValue: event.target.value });
+					onChange: (event: Event) => {
+						const { value } = event.target as HTMLInputElement;
+						this.setState({ radioValue: value });
 					},
 					theme: dojoTheme
 				})
@@ -241,8 +246,9 @@ export default class App extends AppBase<WidgetProperties> {
 					key: 'text-input',
 					placeholder: 'TextInput',
 					value: textinputValue,
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ textinputValue: event.target.value });
+					onChange: (event: Event) => {
+						const { value } = event.target as HTMLInputElement;
+						this.setState({ textinputValue: value });
 					},
 					theme: dojoTheme
 				}),
@@ -310,8 +316,9 @@ export default class App extends AppBase<WidgetProperties> {
 					key: 'slider',
 					value: sliderValue,
 					outputIsTooltip: true,
-					onInput: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ sliderValue: parseFloat(event.target.value) });
+					onInput: (event: Event) => {
+						const { value } = event.target as HTMLInputElement;
+						this.setState({ sliderValue: parseFloat(value) });
 					},
 					theme: dojoTheme
 				})
@@ -323,8 +330,9 @@ export default class App extends AppBase<WidgetProperties> {
 					rows: 5,
 					placeholder: 'Hello, World',
 					value: textareaValue,
-					onChange: (event: TypedTargetEvent<HTMLInputElement>) => {
-						this.setState({ textareaValue: event.target.value });
+					onChange: (event: Event) => {
+						const { value } = event.target as HTMLInputElement;
+						this.setState({ textareaValue: value });
 					},
 					theme: dojoTheme
 				}),

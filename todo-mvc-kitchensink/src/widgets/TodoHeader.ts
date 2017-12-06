@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import  { v } from '@dojo/widget-core/d';
-import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 
@@ -31,7 +31,8 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		}
 	}
 
-	protected todoInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
+	protected todoInput(evt: Event): void {
+		const { value } = evt.target as HTMLInputElement;
 		this.properties.todoInput(value);
 	}
 
