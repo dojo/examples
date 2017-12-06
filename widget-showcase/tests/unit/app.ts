@@ -1,8 +1,9 @@
 const { registerSuite } = intern.getInterface('object');
 
-import harness from '@dojo/test-extras/harness';
+import harness, { Harness } from '@dojo/test-extras/harness';
 import { findKey, replaceChild } from '@dojo/test-extras/support/d';
 import { v, w } from '@dojo/widget-core/d';
+import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { assignProperties } from '@dojo/test-extras/support/d';
 
 import dojoTheme from '@dojo/widgets/themes/dojo/theme';
@@ -31,7 +32,7 @@ import App from '../../src/App';
 import * as AppCSS from '../../src/styles/app.m.css';
 import { dataLarge, dataSmall} from '../../src/data';
 
-function expected(widget: any) {
+function expected(widget: Harness<App>) {
 	const children = [
 		v('h1', [ 'Form components' ]),
 		v('div', {
@@ -187,8 +188,8 @@ function expected(widget: any) {
 			w(Select, {
 				key: 'select',
 				getOptionDisabled: widget.listener,
-				getOptionLabel: widget.listener,
-				getOptionValue: widget.listener,
+				getOptionLabel: widget.listener as any,
+				getOptionValue: widget.listener as any,
 				getOptionSelected: widget.listener,
 				label: 'Native select',
 				options: dataSmall,

@@ -1,5 +1,5 @@
 import { Container } from '@dojo/widget-core/Container';
-import { TodoApp } from './../widgets/TodoApp';
+import { TodoApp, TodoAppProperties } from './../widgets/TodoApp';
 import { Store } from 'redux';
 import {
 	addTodo,
@@ -12,7 +12,7 @@ import {
 	saveTodo
 } from './../actions/todoActions';
 
-function getProperties(store: Store<any>, properties: any) {
+function getProperties({ store }: { store: Store<any> }, properties: TodoAppProperties): TodoAppProperties {
 	const state = store.getState();
 
 	return {

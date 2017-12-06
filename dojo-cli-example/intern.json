@@ -1,0 +1,27 @@
+{
+	"capabilities": {
+		"browserstack.debug": false,
+		"project": "Dojo 2",
+		"name": "@dojo/examples/dojo-cli-example"
+	},
+
+	"environments": [
+		{ "browserName": "node" }
+	],
+
+	"suites": [
+		"./_build/tests/unit/all.js"
+	],
+
+	"functionalSuites": [
+		"./_build/tests/functional/all.js"
+	],
+
+	"coverage": [
+		"./_build/src/**/*.js"
+	],
+
+	"configs": {
+		"local": {}
+	}
+}

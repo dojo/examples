@@ -1,4 +1,4 @@
-import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
@@ -22,7 +22,8 @@ export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> 
 		this.properties.onRequestExit();
 	}
 
-	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
+	protected onInput(evt: Event): void {
+		const { value } = evt.target as HTMLInputElement;
 		this.properties.editTodoInput({ ...this.properties.todo, label: value });
 	}
 
