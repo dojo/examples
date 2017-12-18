@@ -1,4 +1,3 @@
-import Promise from '@dojo/shim/Promise';
 import { Remote } from 'intern/lib/executors/Node';
 
 
@@ -25,6 +24,7 @@ class Selectors {
 
 	public calendarDay = 'dojo-calendar table tbody td[role="gridcell"][tabindex="0"]';
 	public januaryLabel = 'dojo-calendar fieldset abbr[title="January"]';
+
 	public yearLabel(year: number) {
 		return `dojo-calendar fieldset input[value="${year}"]`;
 	}
@@ -43,8 +43,8 @@ export default class Page {
 		return this.remote
 			.get('http://localhost:9000/dist/index.html')
 			.setFindTimeout(5000)
-  			.findByCssSelector(this.selectors.dialog)
-  			.setFindTimeout(100);
+			.findByCssSelector(this.selectors.dialog)
+			.setFindTimeout(100);
 	}
 
 	isVisible(selector: string) {

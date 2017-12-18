@@ -21,15 +21,19 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 
 		it('should open when its open attribute is set to true, and close when set to false', () =>
 			page.isVisible(page.selectors.dialogContent)
-				// Check that is starts closed and verify the open attribute value
+			// Check that is starts closed and verify the open attribute value
 				.then((visible: boolean) => assert.isFalse(visible, 'Dialog should not be visible by default'))
 				.then(() => page.getAttributeTruthiness(page.selectors.dialog, 'open'))
-				.then((open: string) => assert.isFalse(open, 'Open attribute should be false when dialog is not visible'))
+				.then((open: string) => {
+					assert.isFalse(open, 'Open attribute should be false when dialog is not visible');
+				})
 				// Open the dialog
 				.then(() => page.click(page.selectors.dialogButton))
 				// Verify that it's open
 				.then(() => page.isVisible(page.selectors.dialogContent))
-				.then((visible: boolean) => assert.isTrue(visible, 'Dialog should be visible after clicking open button'))
+				.then((visible: boolean) => {
+					assert.isTrue(visible, 'Dialog should be visible after clicking open button');
+				})
 				.then(() => page.getAttributeTruthiness(page.selectors.dialog, 'open'))
 				.then((open: string) => assert.isTrue(open, 'Open attribute should be true when dialog is visible'))
 				// Close the dialog
@@ -51,7 +55,7 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 
 		it('should become visible when open attribute is true, and close when it is false', () =>
 			page.isVisible(page.selectors.slidePaneContent)
-				// Verify it starts closed
+			// Verify it starts closed
 				.then((visible: boolean) => assert.isFalse(visible, 'Should not be visible by default'))
 				.then(() => page.getAttributeTruthiness(page.selectors.slidePane, 'open'))
 				.then((open: string) => assert.isFalse(open, 'Open attribute should be false when pane is closed'))
@@ -82,7 +86,7 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 
 		it('should toggle title pane visibility based on accordion pane properties', () =>
 			page.getAttributeTruthiness(page.selectors.accordionTitlePaneOneContent, 'aria-hidden')
-				// Verify that both panes start closed
+			// Verify that both panes start closed
 				.then((hidden: boolean) => assert.isTrue(hidden, 'Title pane content should not be visible by default'))
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneTwoContent, 'aria-hidden'))
 				.then((hidden: boolean) => assert.isTrue(hidden, 'Title pane content should not be visible by default'))
@@ -90,25 +94,35 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 				.then(() => page.click(page.selectors.accordionTitlePaneOne))
 				// Verify only one is open
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneOneContent, 'aria-hidden'))
-				.then((hidden: boolean) => assert.isFalse(hidden, 'Title pane content should be visible after clicking open'))
+				.then((hidden: boolean) => {
+					assert.isFalse(hidden, 'Title pane content should be visible after clicking open');
+				})
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneTwoContent, 'aria-hidden'))
 				.then((hidden: boolean) => assert.isTrue(hidden, 'Title pane content should not be visible by default'))
 				// Open the other pane
 				.then(() => page.click(page.selectors.accordionTitlePaneTwo))
 				// Verify both are open
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneOneContent, 'aria-hidden'))
-				.then((hidden: boolean) => assert.isFalse(hidden, 'Title pane content should be visible after clicking open'))
+				.then((hidden: boolean) => {
+					assert.isFalse(hidden, 'Title pane content should be visible after clicking open');
+				})
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneTwoContent, 'aria-hidden'))
-				.then((hidden: boolean) => assert.isFalse(hidden, 'Title pane content should be visible after clicking open'))
+				.then((hidden: boolean) => {
+					assert.isFalse(hidden, 'Title pane content should be visible after clicking open');
+				})
 				// Close both panes
 				.then(() => page.click(page.selectors.accordionTitlePaneOne))
 				.then(() => page.click(page.selectors.accordionTitlePaneTwo))
 				// Verify both are closed
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneOneContent, 'aria-hidden'))
-				.then((hidden: boolean) => assert.isTrue(hidden, 'Title pane content should not be visible after closing'))
+				.then((hidden: boolean) => {
+					assert.isTrue(hidden, 'Title pane content should not be visible after closing');
+				})
 				.then(() => page.getAttributeTruthiness(page.selectors.accordionTitlePaneTwoContent, 'aria-hidden'))
-				.then((hidden: boolean) => assert.isTrue(hidden, 'Title pane content should not be visible after closing'))
-		)
+				.then((hidden: boolean) => {
+					assert.isTrue(hidden, 'Title pane content should not be visible after closing');
+				})
+		);
 	});
 
 	describe('Tooltip', () => {
@@ -155,8 +169,8 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 		];
 		const now = new Date(Date.now());
 
-		const currentMonth = months[now.getMonth()];
-		const currentYear =  now.getFullYear();
+		const currentMonth = months[ now.getMonth() ];
+		const currentYear = now.getFullYear();
 
 		it('should display the current month and year by default', () =>
 			page.getTextContent(page.selectors.calendarMonthButton)
@@ -169,12 +183,17 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 			// Go to next month
 			page.click(page.selectors.calendarNextButton)
 				.then(() => page.getTextContent(page.selectors.calendarMonthButton))
-				.then((month: string) => assert.equal(month, months[(months.indexOf(currentMonth) + 1) % months.length],
-					'Should display next month after clicking next button'))
+				.then((month: string) => {
+					assert.equal(month, months[ (months.indexOf(currentMonth) + 1) % months.length ],
+						'Should display next month after clicking next button');
+				})
 				// Go back to current month
 				.then(() => page.click(page.selectors.calendarPreviousButton))
 				.then(() => page.getTextContent(page.selectors.calendarMonthButton))
-				.then((month: string) => assert.equal(month, currentMonth, 'Should display current month after clicking previous button back'))
+				.then((month: string) => {
+					assert.equal(month, currentMonth,
+						'Should display current month after clicking previous button back');
+				})
 				// Navigate to current month next year
 				.then(() => page.click(page.selectors.calendarNextButton))
 				.then(() => page.click(page.selectors.calendarNextButton))
@@ -199,16 +218,18 @@ describe('Custom Element Showcase - Dojo 2', function (this: any) {
 			page.click(page.selectors.calendarMonthButton)
 				.then(() => page.click(page.selectors.januaryLabel))
 				.then(() => page.getTextContent(page.selectors.calendarMonthButton))
-				.then((month: string) => assert.equal(month, months[0],
-					'Should display January in month button after selecting it'))
+				.then((month: string) => {
+					assert.equal(month, months[ 0 ], 'Should display January in month button after selecting it');
+				})
 		);
 
 		it('should allow the year to be selected by clicking the year button', () =>
 			page.click(page.selectors.calendarYearButton)
 				.then(() => page.click(page.selectors.yearLabel(currentYear + 1)))
 				.then(() => page.getTextContent(page.selectors.calendarYearButton))
-				.then((year: string) => assert.equal(year, String(currentYear + 1),
-					'Should display next year after selecting it'))
+				.then((year: string) => {
+					assert.equal(year, String(currentYear + 1), 'Should display next year after selecting it');
+				})
 		);
 
 		it('should allow the day to be selected', () =>
