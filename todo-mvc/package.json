@@ -4,7 +4,7 @@
   "description": "TodoMVC using Dojo2",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/dojo build"
+    "build": "dojo build"
   },
   "repository": {
     "type": "git",
@@ -16,23 +16,22 @@
     "npm": ">=3"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "~0.1.0",
-    "@dojo/cli-test-intern": "~0.1.0",
+    "@dojo/cli-build-webpack": "~0.2.0",
+    "@dojo/cli-test-intern": "~0.2.0",
     "@dojo/interfaces": "~0.1.0",
     "@dojo/loader": "~0.1.0",
     "@types/chai": "^3.4.34",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
-    "chai": "^3.5.0",
-    "intern": "~3.4.1",
+    "intern": "~4.0.2",
     "typescript": "~2.4.1"
   },
   "dependencies": {
-    "@dojo/core": "~0.1.0",
+    "@dojo/core": "~0.2.1",
     "@dojo/has": "~0.1.0",
-    "@dojo/i18n": "~0.1.0",
-    "@dojo/routing": "~0.1.0",
-    "@dojo/shim": "~0.1.0",
-    "@dojo/widget-core": "~0.2.0"
+    "@dojo/i18n": "~0.2.0",
+    "@dojo/routing": "~0.2.0",
+    "@dojo/shim": "~0.2.2",
+    "@dojo/widget-core": "~0.3.0"
   }
 }
