@@ -4,6 +4,7 @@
 	<title>showcase</title>
 	<meta name="theme-color" content="#222127">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-lite.js"></script>
 	<script src="https://rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css"/>
@@ -189,129 +190,131 @@
 		<h2>Accordion Pane</h2>
 	</div>
 	<script>
-		function initializeSplitPane() {
-			var splitPane = document.querySelector('dojo-split-pane');
-			var splitPaneLeadingContent = document.createElement('div');
-			var splitPaneTrailingContent = document.createElement('div');
+		window.addEventListener('WebComponentsReady', function () {
+			function initializeSplitPane() {
+				var splitPane = document.querySelector('dojo-split-pane');
+				var splitPaneLeadingContent = document.createElement('div');
+				var splitPaneTrailingContent = document.createElement('div');
 
-			splitPaneLeadingContent.textContent = 'Leading Content';
-			splitPaneTrailingContent.textContent = 'Trailing Content';
-			splitPane.leading = 'Leading Content';
-			splitPane.trailing = 'Trailing Content';
-		}
-
-		function initializeTooltip() {
-			var tooltip = document.querySelector('dojo-tooltip');
-			tooltip.content = 'Tooltip content';
-		}
-
-		function createAccordionPane() {
-			var parentDiv = document.createElement('div');
-			var buttonPane1 = document.createElement('button');
-			var buttonPane2 = document.createElement('button');
-			var openKeys = [];
-
-			var accordionPane = document.createElement('dojo-accordion-pane');
-			var titlePanes = [
-				document.createElement('dojo-title-pane'),
-				document.createElement('dojo-title-pane')
-			];
-
-			function toggleKey(key) {
-				return function () {
-					var index = openKeys.indexOf(key);
-					if (index < 0) {
-						openKeys.push(key);
-					}
-					else {
-						openKeys.splice(index, 1);
-					}
-					accordionPane.openKeys = openKeys.slice();
-				};
+				splitPaneLeadingContent.textContent = 'Leading Content';
+				splitPaneTrailingContent.textContent = 'Trailing Content';
+				splitPane.leading = 'Leading Content';
+				splitPane.trailing = 'Trailing Content';
 			}
 
-			buttonPane1.onclick = toggleKey('child-0');
-			buttonPane2.onclick = toggleKey('child-1');
-			buttonPane1.textContent = 'Toggle Title Pane 1';
-			buttonPane2.textContent = 'Toggle Title Pane 2';
-			buttonPane1.id = 'title-pane-button-1';
-			buttonPane2.id = 'title-pane-button-2';
+			function initializeTooltip() {
+				var tooltip = document.querySelector('dojo-tooltip');
+				tooltip.content = 'Tooltip content';
+			}
 
-			titlePanes.forEach(function (titlePane, i) {
-				var contentDiv = document.createElement('div');
-				contentDiv.classList.add('title-pane-content');
-				contentDiv.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus.' +
-					'Nam sollicitudin varius augue, sed lacinia felis tempor in. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id';
-				titlePane.setAttribute('key', i);
-				titlePane.appendChild(contentDiv);
-				titlePane.setAttribute('title', 'Title Pane: ' + i);
-				accordionPane.appendChild(titlePane);
-			});
+			function createAccordionPane() {
+				var parentDiv = document.createElement('div');
+				var buttonPane1 = document.createElement('button');
+				var buttonPane2 = document.createElement('button');
+				var openKeys = [];
 
-			parentDiv.appendChild(buttonPane1);
-			parentDiv.appendChild(buttonPane2);
-			parentDiv.appendChild(accordionPane);
-			document.body.querySelector('div').appendChild(parentDiv);
-		}
+				var accordionPane = document.createElement('dojo-accordion-pane');
+				var titlePanes = [
+					document.createElement('dojo-title-pane'),
+					document.createElement('dojo-title-pane')
+				];
 
-		function createTabs() {
-			var parentDiv = document.createElement('div');
-			var tabContainer = document.createElement('dojo-tab-pane');
-			var tabs = [
-				document.createElement('dojo-tab'),
-				document.createElement('dojo-tab'),
-				document.createElement('dojo-tab')
-			];
-
-			tabContainer.setAttribute('activeindex', 1);
-
-			tabs.forEach(function (tab, i) {
-				var tabContents = document.createElement('div');
-				tabContents.textContent = 'Tab ' + i + ' content';
-				tab.appendChild(tabContents);
-				tab.label = 'Tab ' + i;
-				tab.setAttribute('key', i);
-
-				if (i === 1) {
-					tab.setAttribute('closeable', true);
+				function toggleKey(key) {
+					return function () {
+						var index = openKeys.indexOf(key);
+						if (index < 0) {
+							openKeys.push(key);
+						}
+						else {
+							openKeys.splice(index, 1);
+						}
+						accordionPane.openKeys = openKeys.slice();
+					};
 				}
 
-				tabContainer.appendChild(tab);
-			});
+				buttonPane1.onclick = toggleKey('child-0');
+				buttonPane2.onclick = toggleKey('child-1');
+				buttonPane1.textContent = 'Toggle Title Pane 1';
+				buttonPane2.textContent = 'Toggle Title Pane 2';
+				buttonPane1.id = 'title-pane-button-1';
+				buttonPane2.id = 'title-pane-button-2';
 
-			tabContainer.addEventListener('tabchange', function (event) {
-				console.log('Tab change event');
-				console.log(event);
-			});
+				titlePanes.forEach(function (titlePane, i) {
+					var contentDiv = document.createElement('div');
+					contentDiv.classList.add('title-pane-content');
+					contentDiv.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus.' +
+						'Nam sollicitudin varius augue, sed lacinia felis tempor in. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id';
+					titlePane.setAttribute('key', i);
+					titlePane.appendChild(contentDiv);
+					titlePane.setAttribute('title', 'Title Pane: ' + i);
+					accordionPane.appendChild(titlePane);
+				});
 
-			tabContainer.addEventListener('tabclose', function (event) {
-				console.log('Tab close event');
-				console.log(event);
-			});
+				parentDiv.appendChild(buttonPane1);
+				parentDiv.appendChild(buttonPane2);
+				parentDiv.appendChild(accordionPane);
+				document.body.querySelector('div').appendChild(parentDiv);
+			}
 
-			parentDiv.appendChild(tabContainer);
-			document.body.querySelector('div').appendChild(parentDiv);
-		}
+			function createTabs() {
+				var parentDiv = document.createElement('div');
+				var tabContainer = document.createElement('dojo-tab-pane');
+				var tabs = [
+					document.createElement('dojo-tab'),
+					document.createElement('dojo-tab'),
+					document.createElement('dojo-tab')
+				];
 
-		function initializeCalendar() {
-			var calendar = document.querySelector('dojo-calendar');
+				tabContainer.setAttribute('activeindex', 1);
 
-			calendar.addEventListener('monthchange', function (event) {
-				calendar.setAttribute('month', event.detail);
-			});
-			calendar.addEventListener('yearchange', function (event) {
-				calendar.setAttribute('year', event.detail);
-			});
-			calendar.addEventListener('dateselect', function (event) {
-				calendar.setAttribute('selecteddate', event.detail);
-			});
-		}
+				tabs.forEach(function (tab, i) {
+					var tabContents = document.createElement('div');
+					tabContents.textContent = 'Tab ' + i + ' content';
+					tab.appendChild(tabContents);
+					tab.label = 'Tab ' + i;
+					tab.setAttribute('key', i);
 
-		initializeSplitPane();
-		initializeTooltip();
-		createAccordionPane();
-		createTabs();
-		initializeCalendar();
+					if (i === 1) {
+						tab.setAttribute('closeable', true);
+					}
+
+					tabContainer.appendChild(tab);
+				});
+
+				tabContainer.addEventListener('tabchange', function (event) {
+					console.log('Tab change event');
+					console.log(event);
+				});
+
+				tabContainer.addEventListener('tabclose', function (event) {
+					console.log('Tab close event');
+					console.log(event);
+				});
+
+				parentDiv.appendChild(tabContainer);
+				document.body.querySelector('div').appendChild(parentDiv);
+			}
+
+			function initializeCalendar() {
+				var calendar = document.querySelector('dojo-calendar');
+
+				calendar.addEventListener('monthchange', function (event) {
+					calendar.setAttribute('month', event.detail);
+				});
+				calendar.addEventListener('yearchange', function (event) {
+					calendar.setAttribute('year', event.detail);
+				});
+				calendar.addEventListener('dateselect', function (event) {
+					calendar.setAttribute('selecteddate', event.detail);
+				});
+			}
+
+			initializeSplitPane();
+			initializeTooltip();
+			createAccordionPane();
+			createTabs();
+			initializeCalendar();
+		});
 	</script>
 </body>
 </html>
