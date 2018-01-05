@@ -8,7 +8,7 @@ import { TodoFooterOutlet } from './../outlets/TodoFooterOutlet';
 import { TodoHeader } from './TodoHeader';
 import { TodoSearch } from './TodoSearch';
 import { Credits } from './Credits';
-import { Todo } from './../TodoAppContext';
+import { Todo } from './../todoProcesses';
 
 import * as css from './styles/todoApp.m.css';
 
@@ -21,8 +21,8 @@ export interface TodoAppProperties {
 	completed: boolean;
 	addTodo: () => void;
 	editTodo: (id: string) => void;
-	todoInput: (id: string) => void;
-	searchInput: (id: string) => void;
+	setCurrentTodo: (id: string) => void;
+	search: (id: string) => void;
 	removeTodo: (id: string) => void;
 	toggleTodo: (id: string) => void;
 	toggleTodos: () => void;
@@ -37,14 +37,14 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 		const {
 			todos,
 			addTodo,
-			todoInput,
 			completed: allCompleted,
 			toggleTodos,
 			editTodo,
 			removeTodo,
 			toggleTodo,
 			currentTodo: todo,
-			searchInput,
+			setCurrentTodo,
+			search,
 			searchValue,
 			todoCount,
 			activeCount,
@@ -56,13 +56,13 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 				w(ThemeSwitcherContainer, {}),
 				w(TodoHeader, {
 					allCompleted,
+					todo,
 					todoCount,
 					toggleTodos,
 					addTodo,
-					todo,
-					todoInput
+					setCurrentTodo
 				}),
-				todoCount > 0 ? w(TodoSearch, { searchInput, searchValue }) : null,
+				todoCount > 0 ? w(TodoSearch, { search, searchValue }) : null,
 				todoCount > 0 ? w(TodoListOutlet, { todos, searchValue, toggleTodo, removeTodo, editTodo }) : null,
 				todoCount > 0 ? w(TodoFooterOutlet, { activeCount, todoCount, clearCompleted }) : null
 			]),

@@ -13,7 +13,7 @@ export interface TodoHeaderProperties {
 	todoCount: number;
 	toggleTodos: () => void;
 	addTodo: () => void;
-	todoInput: (todo: string) => void;
+	setCurrentTodo: (todo: string) => void;
 }
 
 export const TodoHeaderBase = I18nMixin(ThemedMixin(WidgetBase));
@@ -21,7 +21,7 @@ export const TodoHeaderBase = I18nMixin(ThemedMixin(WidgetBase));
 @theme(css)
 export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
-	protected toggleAllTodos() {
+	protected toggleTodos() {
 		this.properties.toggleTodos();
 	}
 
@@ -31,8 +31,8 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		}
 	}
 
-	protected todoInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
-		this.properties.todoInput(value);
+	protected setCurrentTodo({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
+		this.properties.setCurrentTodo(value);
 	}
 
 	protected onElementCreated(element: HTMLElement, key: string): void {
@@ -51,13 +51,13 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 				key: 'todo-input',
 				classes: this.theme(css.newTodo),
 				onkeydown: this.addTodo,
-				oninput: this.todoInput,
+				oninput: this.setCurrentTodo,
 				value: todo,
 				placeholder: messages.editPlaceholder
 			}),
 			v('input', {
 				classes: this.theme(css.toggleAll),
-				onchange: this.toggleAllTodos,
+				onchange: this.toggleTodos,
 				checked: allCompleted,
 				type: 'checkbox',
 				disabled: todoCount === 0 ? true : false
