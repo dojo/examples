@@ -27,7 +27,7 @@ The latest version(s) will now be available [on github pages](https://dojo.githu
 
 ## Features
 
-There are currently six examples:
+There are currently seven examples:
 
 - [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built with current Dojo 2 packages.
 - [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built Dojo 2 packages.
@@ -35,6 +35,7 @@ There are currently six examples:
 - [widget-showcase](./widget-showcase/README.md) - Show case widgets from [@dojo/widgets](https://github.com/dojo/widgets).
 - [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage.
 - [dojo-cli-example](./dojo-cli-example) - An example of working with `@dojo/cli`.
+- [custom-element-showcase](./custom-element-showcase/README.md) - Demonstrates custom element usage of Dojo 2 widgets.
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
@@ -43,6 +44,7 @@ Application examples that are deployed to [gh-pages](https://dojo.github.io/exam
  - [todoMVC - tsx](https://dojo.github.io/examples/todo-mvc-tsx)
  - [Widget Showcase](https://dojo.github.io/examples/widget-showcase)
  - [Custom Element Menu](https://dojo.github.io/examples/custom-element-menu)
+ - [Custom Element Showcase](https://dojo.github.io/examples/custom-element-showcase)
 
 ## How Do I Contribute?
 
@@ -59,6 +61,7 @@ Refer to each `README.md` for details on installing and testing the examples.
 * [custom-element-menu](./custom-element-menu/README.md)
 * [widget-showcase](./widget-showcase/README.md)
 * [dojo-cli-example](./dojo-cli-example/README.md)
+* [custom-element-showcase](./custom-element-showcase/README.md)
 
 ## Licensing Information
 
