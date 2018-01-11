@@ -6,7 +6,7 @@
     "build-item": "dojo build --element=src/widgets/createMenuItemElement.ts",
     "build-menu": "dojo build --element=src/widgets/createMenuElement.ts",
     "move-dist": "shx mv dist/* temp-example",
-    "build": "shx rm -r temp-example & shx mkdir temp-example && npm run build-app && npm run move-dist && npm run build-menu && npm run move-dist && npm run build-item && npm run move-dist && shx rm -r dist && shx mv temp-example dist"
+    "build": "shx rm -r temp-example & shx mkdir temp-example && npm run build-menu && npm run move-dist && npm run build-item && npm run move-dist && shx rm -r dist && npm run build-app && npm run move-dist && shx mv temp-example dist"
   },
   "dependencies": {
     "@dojo/core": "~0.3.0",
@@ -26,8 +26,7 @@
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
     "@types/sinon": "^1.16.35",
-    "chai": "^3.5.0",
-    "intern": "~3.4.5",
+    "intern": "~4.1.5",
     "shx": "^0.2.2",
     "sinon": "^2.0.0",
     "typescript": "~2.6.1"
