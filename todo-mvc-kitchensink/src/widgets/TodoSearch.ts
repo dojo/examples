@@ -1,6 +1,6 @@
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 
@@ -8,7 +8,7 @@ import appBundle from '../nls/common';
 import * as css from './styles/todoSearch.m.css';
 
 export interface TodoSearchProperties {
-	search: (id: string) => void;
+	search: (payload: { search: string }) => void;
 	searchValue: string;
 }
 
@@ -17,8 +17,8 @@ export const TodoSearchBase = I18nMixin(ThemedMixin(WidgetBase));
 @theme(css)
 export class TodoSearch extends TodoSearchBase<TodoSearchProperties> {
 
-	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>) {
-		this.properties.search(value);
+	protected onInput({ target: { value: search } }: any) {
+		this.properties.search({ search });
 	}
 
 	protected render(): DNode[] {

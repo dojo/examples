@@ -9,9 +9,9 @@ import * as css from './styles/todoCard.m.css';
 
 export interface TodoCardProperties extends WidgetProperties {
 	todo: Todo;
-	editTodo: (id: string) => void;
-	removeTodo: (id: string) => void;
-	toggleTodo: (id: string) => void;
+	editTodo: (payload: { id: string }) => void;
+	removeTodo: (payload: { id: string }) => void;
+	toggleTodo: (payload: { id: string }) => void;
 }
 
 export const TodoCardBase = ThemedMixin(WidgetBase);
@@ -21,17 +21,17 @@ export class TodoCard extends TodoCardBase<TodoCardProperties> {
 
 	protected toggleTodo(): void {
 		const { toggleTodo, todo: { id } } = this.properties;
-		toggleTodo(id);
+		toggleTodo({ id });
 	}
 
 	protected editTodo(): void {
 		const { editTodo, todo: { id } } = this.properties;
-		editTodo(id);
+		editTodo({ id });
 	}
 
 	protected removeTodo(): void {
 		const { removeTodo, todo: { id } } = this.properties;
-		removeTodo(id);
+		removeTodo({ id });
 	}
 
 	protected render(): DNode {

@@ -2,6 +2,6 @@
 	"build-webpack": {
 		"locale": "en",
 		"supportedLocales": [ "en-PR" ],
-		"messageBundles": [ "src/nls/common" ]
+		"cldrPaths": [ "cldr-data/supplemental/likelySubtags.json", "cldr-data/supplemental/plurals.json" ]
 	}
 }

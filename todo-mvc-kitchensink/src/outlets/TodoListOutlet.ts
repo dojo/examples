@@ -7,7 +7,7 @@ export const TodoListOutlet = Outlet(TodoList, 'view', ({ params, router }: MapP
 	return {
 		view: params.view,
 		filter: params.filter,
-		editTodo(id: string) {
+		editTodo({ id }: {id: string}) {
 			router.setPath(router.link('edit', { id }));
 		}
 	};

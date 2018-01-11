@@ -19,14 +19,14 @@ export interface TodoAppProperties {
 	activeCount: number;
 	todoCount: number;
 	completed: boolean;
-	addTodo: () => void;
-	editTodo: (id: string) => void;
-	setCurrentTodo: (id: string) => void;
-	search: (id: string) => void;
-	removeTodo: (id: string) => void;
-	toggleTodo: (id: string) => void;
-	toggleTodos: () => void;
-	clearCompleted: () => void;
+	addTodo: (payload: object) => void;
+	editTodo: (payload: { id: string }) => void;
+	setCurrentTodo: (payload: { todo: string }) => void;
+	search: (payload: { search: string }) => void;
+	removeTodo: (payload: { id: string }) => void;
+	toggleTodo: (payload: { id: string }) => void;
+	toggleTodos: (payload: object) => void;
+	clearCompleted: (payload: object) => void;
 }
 
 export const TodoAppBase = ThemedMixin(WidgetBase);
