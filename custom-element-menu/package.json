@@ -16,7 +16,6 @@
   "devDependencies": {
     "@dojo/cli-build-webpack": "~0.1.0",
     "@dojo/cli-test-intern": "~0.1.0",
-    "@dojo/interfaces": "~0.1.0",
     "@dojo/loader": "~0.1.0",
     "@dojo/test-extras": "~0.1.0",
     "@types/chai": "~3.4.0",
