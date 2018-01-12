@@ -2,7 +2,7 @@ const { describe, it, beforeEach, afterEach } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 import * as sinon from 'sinon';
 import command, { MyArgv } from './../../src/main';
-import { Helper } from '@dojo/interfaces/cli';
+import { Helper } from '@dojo/cli/interfaces';
 
 const testContextMessage = 'test';
 let sandbox: sinon.SinonSandbox;

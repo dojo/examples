@@ -26,7 +26,7 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "@dojo/interfaces": "~0.1.0",
+    "@dojo/cli": "~0.4.2",
     "@dojo/loader": "~0.1.0",
     "@types/chai": "^3.4.34",
     "@types/chalk": "^0.4.31",

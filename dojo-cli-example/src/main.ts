@@ -1,4 +1,4 @@
-import { Command, Helper, OptionsHelper } from '@dojo/interfaces/cli';
+import { Command, Helper, OptionsHelper } from '@dojo/cli/interfaces';
 import { Argv } from 'yargs';
 import { underline } from 'chalk';
 
