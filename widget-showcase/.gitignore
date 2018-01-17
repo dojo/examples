@@ -15,5 +15,5 @@ coverage-final.lcov
 coverage-unmapped.json
 coverage/
 npm-debug.log
-output/*
+/output
 package-lock.json
