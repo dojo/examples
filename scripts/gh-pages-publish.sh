@@ -33,10 +33,10 @@ then
 	mkdir samples/custom-element-menu
 
 	cp index.html samples/index.html
-	cp -r todo-mvc/dist/* samples/todo-mvc/
-	cp -r todo-mvc-kitchensink/dist/* samples/todo-mvc-kitchensink
-	cp -r todo-mvc-tsx/dist/* samples/todo-mvc-tsx
-	cp -r widget-showcase/dist/* samples/widget-showcase
+	cp -r todo-mvc/output/dist/* samples/todo-mvc/
+	cp -r todo-mvc-kitchensink/output/dist/* samples/todo-mvc-kitchensink
+	cp -r todo-mvc-tsx/output/dist/* samples/todo-mvc-tsx
+	cp -r widget-showcase/output/dist/* samples/widget-showcase
 	cp -r custom-element-menu/dist/* samples/custom-element-menu
 
 	git remote add ssh-remote git@github.com:dojo/examples.git

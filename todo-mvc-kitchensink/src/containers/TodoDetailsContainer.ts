@@ -11,7 +11,7 @@ import {
 function getProperties(store: Store<TodoStore>, properties: any) {
 	const { get, path } = store;
 	return {
-		todo: get(path('editedTodo')) || get(path('todos', 'properties.id')),
+		todo: get(path('editedTodo')) || get(path('todos', properties.id)),
 		editTodo: editTodoProcess(store),
 		saveTodo: saveTodoProcess(store)
 	};

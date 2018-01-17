@@ -1,4 +1,4 @@
-import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
@@ -11,7 +11,7 @@ export interface TodoDetailsProperties {
 	todo: Todo;
 	onRequestExit: () => void;
 	saveTodo: () => void;
-	editTodo: (todo: Todo) => void;
+	editTodo: (payload: { todo: Todo }) => void;
 }
 
 @theme(css)
@@ -22,8 +22,8 @@ export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> 
 		this.properties.onRequestExit();
 	}
 
-	protected onInput({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
-		this.properties.editTodo({ ...this.properties.todo, label: value });
+	protected onInput({ target: { value } }: any): void {
+		this.properties.editTodo({ todo:  { ...this.properties.todo, label: value } });
 	}
 
 	protected onElementCreated(element: HTMLElement, key: string) {

@@ -3,7 +3,6 @@ import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 import { Registry } from '@dojo/widget-core/Registry';
 
-import setLocaleData from './setLocaleData';
 import { TodoAppContainer } from './containers/TodoAppContainer';
 import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
 import { initialStateProcess } from './todoProcesses';
@@ -14,7 +13,7 @@ const registry = new Registry();
 const store = new Store();
 const themeContext = registerThemeInjector(undefined, registry);
 
-initialStateProcess(store)();
+initialStateProcess(store)({});
 registry.defineInjector('state', new StoreInjector(store));
 registry.defineInjector('theme-context', new Injector(themeContext));
 
@@ -41,10 +40,5 @@ const config = [
 
 const router = registerRouterInjector(config, registry);
 projector.setProperties({ registry });
-
-setLocaleData().then(() => {
-	if (projector.root) {
-		projector.append();
-		router.start();
-	}
-});
+projector.append();
+router.start();

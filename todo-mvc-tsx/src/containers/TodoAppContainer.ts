@@ -1,6 +1,6 @@
 import { Container } from '@dojo/widget-core/Container';
 import { TodoApp } from './../widgets/TodoApp';
-import { Store } from 'redux';
+import { ReduxInjectorPayload } from '@dojo/interop/redux/ReduxInjector';
 import {
 	addTodo,
 	todoInput,
@@ -12,7 +12,7 @@ import {
 	saveTodo
 } from './../actions/todoActions';
 
-function getProperties(store: Store<any>, properties: any) {
+function getProperties({ store }: ReduxInjectorPayload<any, any>) {
 	const state = store.getState();
 
 	return {

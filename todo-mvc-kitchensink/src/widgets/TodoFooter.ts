@@ -16,7 +16,7 @@ export interface TodoFooterInterface {
 	filter: string;
 	todoCount: number;
 	view: string;
-	clearCompleted: () => void;
+	clearCompleted: (payload: object) => void;
 }
 
 export const TodoFooterBase = I18nMixin(ThemedMixin(WidgetBase));
@@ -25,7 +25,7 @@ export const TodoFooterBase = I18nMixin(ThemedMixin(WidgetBase));
 export class TodoFooter extends TodoFooterBase<TodoFooterInterface> {
 
 	protected clearCompleted(): void {
-		this.properties.clearCompleted();
+		this.properties.clearCompleted({});
 	}
 
 	protected render(): DNode {

@@ -5,6 +5,7 @@
 /_build
 /bower_components
 /dist
+/example
 /html-report
 /output
 /node_modules

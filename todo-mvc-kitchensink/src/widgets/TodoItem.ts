@@ -9,9 +9,9 @@ import * as css from './styles/todoItem.m.css';
 
 export interface TodoItemProperties extends WidgetProperties {
 	todo: Todo;
-	toggleTodo: (id: string) => void;
-	removeTodo: (id: string) => void;
-	editTodo: (id: string) => void;
+	toggleTodo: (payload: { id: string }) => void;
+	removeTodo: (payload: { id: string }) => void;
+	editTodo: (payload: { id: string }) => void;
 }
 
 export const TodoItemBase = ThemedMixin(WidgetBase);
@@ -32,14 +32,14 @@ export class TodoItem extends TodoItemBase<TodoItemProperties> {
 	}
 
 	private toggleTodo() {
-		this.properties.toggleTodo(this.properties.todo.id);
+		this.properties.toggleTodo({ id: this.properties.todo.id });
 	}
 
 	private editTodo() {
-		this.properties.editTodo(this.properties.todo.id);
+		this.properties.editTodo({ id: this.properties.todo.id });
 	}
 
 	private removeTodo() {
-		this.properties.removeTodo(this.properties.todo.id);
+		this.properties.removeTodo({ id: this.properties.todo.id });
 	}
 }

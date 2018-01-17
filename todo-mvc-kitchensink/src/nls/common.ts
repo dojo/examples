@@ -1,5 +1,6 @@
-const bundlePath = 'src/nls/common';
-const locales: string[] = [ 'en-PR' ];
+const locales = {
+	'en-PR': () => import ('./en-PR/common')
+};
 
 const messages = {
 	appTitle: 'todos',
@@ -24,4 +25,4 @@ and
 	themeSwitchTitle: 'Pirate Mode'
 };
 
-export default { bundlePath, locales, messages };
+export default { locales, messages };

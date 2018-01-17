@@ -15,9 +15,9 @@ export interface TodoListProperties extends WidgetProperties {
 	filter: string;
 	todos: Todo[];
 	searchValue: string;
-	toggleTodo: (id: string) => void;
-	removeTodo: (id: string) => void;
-	editTodo: (id: string) => void;
+	toggleTodo: (payload: { id: string }) => void;
+	removeTodo: (payload: { id: string }) => void;
+	editTodo: (payload: { id: string }) => void;
 }
 
 export const TodoListBase = ThemedMixin(WidgetBase);

@@ -55,17 +55,17 @@ const updateTodoCountsCommand = commandFactory(({ get, path }): PatchOperation[]
 	];
 });
 
-const setCurrentTodoCommand = commandFactory(({ payload: [ currentTodo ], path }): PatchOperation[] => {
+const setCurrentTodoCommand = commandFactory(({ payload: { todo }, path }): PatchOperation[] => {
 	return [
-		replace(path('currentTodo'), currentTodo)
+		replace(path('currentTodo'), todo)
 	];
 });
 
-const removeTodoCommand = commandFactory(({ payload: [ id ], path }): PatchOperation[] => {
+const removeTodoCommand = commandFactory(({ payload: { id }, path }): PatchOperation[] => {
 	return [ remove(path('todos', id)) ];
 });
 
-const toggleTodoCommand = commandFactory(({ get, path, payload: [ id ] }): PatchOperation[] => {
+const toggleTodoCommand = commandFactory(({ get, path, payload: { id } }): PatchOperation[] => {
 	const completed = !get(path('todos', id, 'completed'));
 
 	return [
@@ -83,7 +83,7 @@ const toggleTodosCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	];
 });
 
-const editTodoCommand = commandFactory(({ payload: [ todo ], path }): PatchOperation[] => {
+const editTodoCommand = commandFactory(({ payload: { todo }, path }): PatchOperation[] => {
 	return [ replace(path('editedTodo'), todo) ];
 });
 
@@ -105,7 +105,7 @@ const saveTodoCommand = commandFactory(({ get, path }): PatchOperation[] => {
 	] : [];
 });
 
-const searchCommand = commandFactory(({ payload: [ search ], path }): PatchOperation[] => {
+const searchCommand = commandFactory(({ payload: { search }, path }): PatchOperation[] => {
 	return [ replace(path('currentSearch'), search) ];
 });
 

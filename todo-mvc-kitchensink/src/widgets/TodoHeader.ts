@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import  { v } from '@dojo/widget-core/d';
-import { DNode, TypedTargetEvent } from '@dojo/widget-core/interfaces';
+import { DNode } from '@dojo/widget-core/interfaces';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
 
@@ -11,9 +11,9 @@ export interface TodoHeaderProperties {
 	allCompleted: boolean;
 	todo: string;
 	todoCount: number;
-	toggleTodos: () => void;
-	addTodo: () => void;
-	setCurrentTodo: (todo: string) => void;
+	toggleTodos: (payload: object) => void;
+	addTodo: (payload: object) => void;
+	setCurrentTodo: (payload: { todo: string }) => void;
 }
 
 export const TodoHeaderBase = I18nMixin(ThemedMixin(WidgetBase));
@@ -22,17 +22,17 @@ export const TodoHeaderBase = I18nMixin(ThemedMixin(WidgetBase));
 export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
 	protected toggleTodos() {
-		this.properties.toggleTodos();
+		this.properties.toggleTodos({});
 	}
 
 	protected addTodo(event: KeyboardEvent) {
 		if (event.which === 13) {
-			this.properties.addTodo();
+			this.properties.addTodo({});
 		}
 	}
 
-	protected setCurrentTodo({ target: { value } }: TypedTargetEvent<HTMLInputElement>): void {
-		this.properties.setCurrentTodo(value);
+	protected setCurrentTodo({ target: { value: todo } }: any): void {
+		this.properties.setCurrentTodo({ todo });
 	}
 
 	protected onElementCreated(element: HTMLElement, key: string): void {
