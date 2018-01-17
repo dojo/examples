@@ -34,6 +34,7 @@
     "@dojo/shim": "~0.2.3",
     "@dojo/interop": "~0.4.0",
     "@dojo/widget-core": "~0.6.2",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "tslib": "~1.8.1"
   }
 }

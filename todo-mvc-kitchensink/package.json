@@ -37,6 +37,7 @@
     "@dojo/stores": "~0.3.1",
     "@dojo/widget-core": "~0.6.2",
     "@webcomponents/custom-elements": "^1.0.0-alpha.3",
-    "cldr-data": "~30.0.2"
+    "cldr-data": "~30.0.2",
+    "tslib": "~1.8.1"
   }
 }

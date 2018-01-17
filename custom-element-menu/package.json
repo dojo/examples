@@ -15,7 +15,8 @@
     "@dojo/i18n": "~0.4.0",
     "@dojo/routing": "~0.4.0",
     "@dojo/shim": "~0.2.4",
-    "@dojo/widget-core": "~0.6.1"
+    "@dojo/widget-core": "~0.6.1",
+    "tslib": "~1.8.1"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "~0.4.0",
