@@ -1,5 +1,5 @@
 {
-	"build-webpack": {
+	"build-app": {
 		"locale": "en",
 		"supportedLocales": [ "en-PR" ],
 		"cldrPaths": [ "cldr-data/supplemental/likelySubtags.json", "cldr-data/supplemental/plurals.json" ]

@@ -1,5 +1,5 @@
 {
-  "build-webpack": {
+  "build-app": {
   },
   "test-intern": {
   }

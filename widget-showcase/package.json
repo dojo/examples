@@ -2,20 +2,22 @@
   "name": "dojo2-widget-showcase",
   "version": "1.0.0",
   "scripts": {
-    "build": "dojo build"
+    "build": "dojo build",
+    "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
+    "test": "dojo build -m dev && dojo build -m test && dojo test -a"
   },
   "dependencies": {
-    "@dojo/core": "~0.3.0",
-    "@dojo/has": "~0.1.1",
+    "@dojo/core": "~0.3.1",
+    "@dojo/has": "~0.1.2",
     "@dojo/i18n": "~0.4.0",
     "@dojo/routing": "~0.4.0",
-    "@dojo/shim": "~0.2.3",
-    "@dojo/widget-core": "~0.6.0",
-    "@dojo/widgets": "~0.4.0"
+    "@dojo/shim": "~0.2.4",
+    "@dojo/widget-core": "~0.6.2",
+    "@dojo/widgets": "~0.4.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "~0.4.0",
-    "@dojo/cli-test-intern": "~0.3.0",
+    "@dojo/cli-build-app": "~0.1.0",
+    "@dojo/cli-test-intern": "~0.4.0",
     "@dojo/loader": "~0.1.1",
     "@dojo/test-extras": "~0.4.0",
     "@types/glob": "~5.0.0",

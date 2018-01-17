@@ -75,7 +75,7 @@ export default class Page {
 
 	init() {
 		return this.remote
-			.get('http://localhost:9000/_build/src/index.html')
+			.get('http://localhost:9000/output/dev/index.html')
 			.setFindTimeout(5000)
 			.findByCssSelector(this.selectors.newInput)
 			.setFindTimeout(100);

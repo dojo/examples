@@ -23,6 +23,7 @@
     "url": "https://github.com/dojo/examples.git"
   },
   "scripts": {
+    "build": "grunt dev",
     "test": "grunt test"
   },
   "devDependencies": {

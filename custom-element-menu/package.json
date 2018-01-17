@@ -6,20 +6,20 @@
     "build-item": "dojo build --element=src/widgets/createMenuItemElement.ts",
     "build-menu": "dojo build --element=src/widgets/createMenuElement.ts",
     "move-dist": "shx mv dist/* temp-example",
-    "build": "shx rm -r temp-example & shx mkdir temp-example && npm run build-menu && npm run move-dist && npm run build-item && npm run move-dist && shx rm -r dist && npm run build-app && npm run move-dist && shx mv temp-example dist"
+    "build": "shx rm -r temp-example & shx mkdir temp-example && npm run build-menu && npm run move-dist && npm run build-item && npm run move-dist && shx rm -r dist && npm run build-app && npm run move-dist && shx rm -r dist && shx mv temp-example dist",
+    "test-ci": "echo no tests"
   },
   "dependencies": {
-    "@dojo/core": "~0.3.0",
-    "@dojo/has": "~0.1.1",
+    "@dojo/core": "~0.3.1",
+    "@dojo/has": "~0.1.2",
     "@dojo/i18n": "~0.4.0",
     "@dojo/routing": "~0.4.0",
-    "@dojo/shim": "~0.2.3",
-    "@dojo/widget-core": "~0.6.0"
+    "@dojo/shim": "~0.2.4",
+    "@dojo/widget-core": "~0.6.1"
   },
   "devDependencies": {
     "@dojo/cli-build-webpack": "~0.4.0",
-    "@dojo/cli-test-intern": "~0.3.0",
-    "@dojo/interfaces": "~0.2.1",
+    "@dojo/cli-test-intern": "~0.4.0",
     "@dojo/loader": "~0.1.1",
     "@dojo/test-extras": "~0.4.0",
     "@types/glob": "~5.0.0",
