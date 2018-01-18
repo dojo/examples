@@ -24,7 +24,7 @@ import Textarea from '@dojo/widgets/textarea/Textarea';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import TitlePane from '@dojo/widgets/titlepane/TitlePane';
-import Toolbar from '@dojo/widgets/toolbar/Toolbar';
+//import Toolbar from '@dojo/widgets/toolbar/Toolbar';
 import Tooltip, { Orientation } from '@dojo/widgets/tooltip/Tooltip';
 
 import * as sinon from 'sinon';
@@ -202,20 +202,20 @@ function expected(widget: any) {
 		v('div', {
 			classes: AppCSS.component
 		}, [
-			w(Slider, {
-				key: 'slider',
-				value: undefined,
-				outputIsTooltip: true,
-				onInput: widget.listener,
+			w(Progress, {
+				key: 'progress',
+				value: 0,
 				theme: dojoTheme
 			})
 		]),
 		v('div', {
 			classes: AppCSS.component
 		}, [
-			w(Progress, {
-				key: 'progress',
-				value: 0,
+			w(Slider, {
+				key: 'slider',
+				value: undefined,
+				outputIsTooltip: true,
+				onInput: widget.listener,
 				theme: dojoTheme
 			})
 		]),
@@ -324,7 +324,7 @@ function expected(widget: any) {
 				])
 			])
 		]),
-		v('div', {
+/*		v('div', {
 			classes: AppCSS.component
 		}, [
 			w(Toolbar, {
@@ -338,7 +338,7 @@ function expected(widget: any) {
 				v('a', { href: '/#contact' }, [ 'Contact' ])
 			])
 		]),
-		v('div', {
+*/		v('div', {
 			classes: AppCSS.component
 		}, [
 			w(AccordionPane, {

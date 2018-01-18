@@ -85,7 +85,7 @@ export default class App extends AppBase<WidgetProperties> {
 		multiselectValue: '',
 		nestedSizeA: undefined,
 		nestedSizeB: undefined,
-		progressValue: 0,
+		progressValue: 20,
 		radioValue: 'first',
 		selectValue: '',
 		slidepaneOpen: false,
@@ -320,6 +320,13 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.theme(css.component) }, [
+				w(Progress, {
+					key: 'progress',
+					value: progressValue,
+					theme: dojoTheme
+				})
+			]),
+			v('div', { classes: this.theme(css.component) }, [
 				w(Slider, {
 					key: 'slider',
 					value: sliderValue,
@@ -328,13 +335,6 @@ export default class App extends AppBase<WidgetProperties> {
 						const target = event.target as HTMLInputElement;
 						this.setState({ sliderValue: parseFloat(target.value) });
 					},
-					theme: dojoTheme
-				})
-			]),
-			v('div', { classes: this.theme(css.component) }, [
-				w(Progress, {
-					key: 'progress',
-					value: progressValue,
 					theme: dojoTheme
 				})
 			]),
@@ -452,7 +452,7 @@ export default class App extends AppBase<WidgetProperties> {
 					])
 				])
 			]),
-			v('div', { classes: this.theme(css.component) }, [
+			/*v('div', { classes: this.theme(css.component) }, [
 				w(Toolbar, {
 					key: 'toolbar',
 					title: toolbarValue,
@@ -463,7 +463,7 @@ export default class App extends AppBase<WidgetProperties> {
 					v('a', { href: '/#about' }, [ 'About' ]),
 					v('a', { href: '/#contact' }, [ 'Contact' ])
 				])
-			]),
+			]),*/
 			v('div', { classes: this.theme(css.component) }, [
 				w(AccordionPane, {
 					onRequestOpen: (key: string) => {
