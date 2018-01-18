@@ -452,18 +452,20 @@ export default class App extends AppBase<WidgetProperties> {
 					])
 				])
 			]),
-			/*v('div', { classes: this.theme(css.component) }, [
-				w(Toolbar, {
-					key: 'toolbar',
-					title: toolbarValue,
-					fixed: true,
-					collapseWidth: 720
-				}, [
-					v('a', { href: '/#home' }, [ 'Home' ]),
-					v('a', { href: '/#about' }, [ 'About' ]),
-					v('a', { href: '/#contact' }, [ 'Contact' ])
-				])
-			]),*/
+			v('div', { classes: 'foo' }, [
+				v('div', { classes: this.theme(css.component)}, [
+					w(Toolbar, {
+						key: 'toolbar',
+						title: toolbarValue,
+						fixed: true,
+						collapseWidth: 720
+					}, [
+						v('a', { href: '/#home' }, [ 'Home' ]),
+						v('a', { href: '/#about' }, [ 'About' ]),
+						v('a', { href: '/#contact' }, [ 'Contact' ])
+					])
+				]),
+			]),
 			v('div', { classes: this.theme(css.component) }, [
 				w(AccordionPane, {
 					onRequestOpen: (key: string) => {
