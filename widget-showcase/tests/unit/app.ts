@@ -24,7 +24,7 @@ import Textarea from '@dojo/widgets/textarea/Textarea';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import TitlePane from '@dojo/widgets/titlepane/TitlePane';
-//import Toolbar from '@dojo/widgets/toolbar/Toolbar';
+import Toolbar from '@dojo/widgets/toolbar/Toolbar';
 import Tooltip, { Orientation } from '@dojo/widgets/tooltip/Tooltip';
 
 import * as sinon from 'sinon';
@@ -324,21 +324,31 @@ function expected(widget: any) {
 				])
 			])
 		]),
-/*		v('div', {
-			classes: AppCSS.component
+		v('div', {
+			classes: AppCSS.toolbarContainer
 		}, [
-			w(Toolbar, {
-				key: 'toolbar',
-				title: 'Toolbar',
-				fixed: true,
-				collapseWidth: 720
+			v('div', {
+				classes: AppCSS.component
 			}, [
-				v('a', { href: '/#home' }, [ 'Home' ]),
-				v('a', { href: '/#about' }, [ 'About' ]),
-				v('a', { href: '/#contact' }, [ 'Contact' ])
-			])
+				w(Toolbar, {
+					key: 'toolbar',
+					title: 'Toolbar',
+					fixed: true,
+					collapseWidth: 720,
+					actions:  [
+						v('a', { href: '/#home' }, [ 'Home' ]),
+						v('a', { href: '/#about' }, [ 'About' ]),
+						v('a', { href: '/#contact' }, [ 'Contact' ])
+					],
+					theme: dojoTheme
+				}, [
+					v('div', [
+						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.'
+					])
+				])
+			]),
 		]),
-*/		v('div', {
+		v('div', {
 			classes: AppCSS.component
 		}, [
 			w(AccordionPane, {

@@ -452,17 +452,21 @@ export default class App extends AppBase<WidgetProperties> {
 					])
 				])
 			]),
-			v('div', { classes: 'foo' }, [
+			v('div', { classes: this.theme(css.toolbarContainer)}, [
 				v('div', { classes: this.theme(css.component)}, [
 					w(Toolbar, {
 						key: 'toolbar',
+						actions: [
+							v('a', { href: '/#home' }, [ 'Home' ]),
+							v('a', { href: '/#about' }, [ 'About' ]),
+							v('a', { href: '/#contact' }, [ 'Contact' ])
+						],
 						title: toolbarValue,
 						fixed: true,
-						collapseWidth: 720
-					}, [
-						v('a', { href: '/#home' }, [ 'Home' ]),
-						v('a', { href: '/#about' }, [ 'About' ]),
-						v('a', { href: '/#contact' }, [ 'Contact' ])
+						collapseWidth: 720,
+						theme: dojoTheme
+					},  [
+						v('p', ['Text from the Toolbar section'])
 					])
 				]),
 			]),
