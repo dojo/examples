@@ -16,7 +16,7 @@
     "@dojo/routing": "file:deps/dojo-routing.tgz",
     "@dojo/shim": "~0.2.5",
     "@dojo/stores": "~0.3.1",
-    "@dojo/widget-core": "~0.6.5",
+    "@dojo/widget-core": "~0.6.4",
     "marked": "0.3.9",
     "tslib": "~1.8.1"
   },

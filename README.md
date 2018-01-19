@@ -13,18 +13,6 @@ For current progress on Dojo 2, contribution guidelines and other information, p
   - [Testing](#testing)
 - [Licensing information](#licensing-information)
 
-## Deploying to gh-pages
-
-Assuming that you are working on a clone of the repository on the branch that you would like to deploy (typically `master`)
-
-This assumes that npm & typings & dojo-cli have been installed for the example applications.
-
-```shell
-./scripts/gh-pages-publish.sh
-```
-
-The latest version(s) will now be available [on github pages](https://dojo.github.io/examples).
-
 ## Features
 
 The current examples are:
@@ -35,6 +23,7 @@ The current examples are:
 - [widget-showcase](./widget-showcase/README.md) - Show case widgets from [@dojo/widgets](https://github.com/dojo/widgets).
 - [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage.
 - [custom-element-showcase](./custom-element-showcase/README.md) - Demonstrates using @dojo/widgets distributed as compiled custom elements.
+- [Conduit RealWorld Application](./realworld/README.md) - A realworld implementation of a medium clone, conduit.
 - [dojo-cli-example](./dojo-cli-example) - An example of working with `@dojo/cli`.
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
@@ -45,6 +34,7 @@ Application examples that are deployed to [gh-pages](https://dojo.github.io/exam
  - [Widget Showcase](https://dojo.github.io/examples/widget-showcase)
  - [Custom Element Widget Showcase](https://dojo.github.io/examples/custom-element-showcase)
  - [Custom Element Menu](https://dojo.github.io/examples/custom-element-menu)
+ - [RealWorld Application](https://dojo.github.io/examples/realworld)
 
 ## How Do I Contribute?
 
@@ -61,6 +51,7 @@ Refer to each `README.md` for details on installing and testing the examples.
 * [widget-showcase](./widget-showcase/README.md)
 * [custom-element-showcase](./custom-element-showcase/README.md)
 * [dojo-cli-example](./dojo-cli-example/README.md)
+* [Conduit RealWorld Application](./realworld/README.md)
 
 ## Licensing Information
 
