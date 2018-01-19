@@ -36,6 +36,7 @@ export class Register extends WidgetBase<RegisterProperties> {
 		this.properties.onRegister({});
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { errors, email, password, username, inProgress = false } = this.properties;
 

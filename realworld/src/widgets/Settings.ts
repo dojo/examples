@@ -49,6 +49,7 @@ export class Settings extends WidgetBase<SettingsProperties> {
 		this.properties.logout({});
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { email, password, bio, imageUrl, username } = this.properties;
 

@@ -20,6 +20,7 @@ export class Profile extends WidgetBase<ProfileProperties> {
 		followUser({ username, following });
 	}
 
+	// prettier-ignore
 	protected render() {
 		let { currentUser, username, bio, image, type, following } = this.properties;
 		const isCurrentUser = currentUser === username;

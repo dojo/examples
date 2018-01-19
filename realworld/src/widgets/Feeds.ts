@@ -42,6 +42,7 @@ export class Feeds extends WidgetBase<FeedsProperties> {
 		this.properties.fetchFeed({ type: 'user', page: 0, filter: username });
 	}
 
+	// prettier-ignore
 	private _buildTabs(children: DNode, showPagination: boolean = true): DNode {
 		const { fetchFeed, total, currentPage, isAuthenticated, type, username, tagName } = this.properties;
 		const isProfile = type === 'user' || type === 'favorites';
@@ -100,6 +101,7 @@ export class Feeds extends WidgetBase<FeedsProperties> {
 		]);
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { loading = true, items, favoriteArticle } = this.properties;
 
@@ -111,12 +113,9 @@ export class Feeds extends WidgetBase<FeedsProperties> {
 			return this._buildTabs(v('div', { classes: 'article-preview' }, ['No articles here, yet!']), false);
 		}
 
-		const articleList = v(
-			'div',
-			items.map((article, index) => {
-				return w(ArticlePreview, { key: index, article, favoriteArticle });
-			})
-		);
+		const articleList = v('div', items.map((article, index) => {
+			return w(ArticlePreview, { key: index, article, favoriteArticle });
+		}));
 
 		return this._buildTabs(articleList);
 	}

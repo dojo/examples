@@ -23,6 +23,7 @@ export class ArticleControls extends WidgetBase<ArticleControlsProperties> {
 		this.properties.followUser({ username, following });
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { favoritesCount, favorited, following, authorUsername } = this.properties;
 

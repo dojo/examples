@@ -45,6 +45,7 @@ export class Article extends WidgetBase<ArticleProperties> {
 		this.properties.onNewCommentInput({ newComment: event.target.value });
 	}
 
+	// prettier-ignore
 	protected render() {
 		const {
 			username,

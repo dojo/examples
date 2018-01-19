@@ -50,6 +50,7 @@ export class Editor extends WidgetBase<EditorProperties> {
 		this.properties.onPublishPost({});
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { onTagDelete, title, description, body, tag, errors, inProgress = false, tags = [] } = this.properties;
 		return v('div', { classes: 'editor-page' }, [

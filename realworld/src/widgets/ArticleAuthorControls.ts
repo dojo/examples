@@ -14,6 +14,7 @@ export class ArticleAuthorControls extends WidgetBase<ArticleAuthorControlsPrope
 		this.properties.deleteArticle({ slug });
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { slug } = this.properties;
 

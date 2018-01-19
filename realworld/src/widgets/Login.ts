@@ -29,6 +29,7 @@ export class Login extends WidgetBase<LoginProperties> {
 		this.properties.onLogin({});
 	}
 
+	// prettier-ignore
 	protected render() {
 		const { errors, email, password, inProgress = false } = this.properties;
 

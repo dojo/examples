@@ -8,6 +8,8 @@ export interface TagsProperties {
 }
 
 export class Tags extends WidgetBase<TagsProperties> {
+
+	// prettier-ignore
 	protected render() {
 		const { tags = [] } = this.properties;
 		return v('div', { classes: 'col-md-3' }, [
