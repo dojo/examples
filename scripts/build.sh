@@ -16,14 +16,7 @@ then
 	echo "Skipping build for deployment matrix."
 else
 	cd $PROJECT_DIR
-	if [ "$PROJECT_DIR" != "dojo-cli-example" ]
-	then
-		runCommandAndCheckStatus npm run test-ci
-		runCommandAndCheckStatus npm run build
-	else
-		runCommandAndCheckStatus ./node_modules/.bin/grunt
-		runCommandAndCheckStatus ./node_modules/.bin/grunt ci --combined
-		runCommandAndCheckStatus ./node_modules/.bin/grunt remapIstanbul:ci
-	fi
+	runCommandAndCheckStatus npm run test-ci
+	runCommandAndCheckStatus npm run build
 	cd ..
 fi
