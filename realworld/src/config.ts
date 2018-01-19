@@ -28,8 +28,8 @@ export function getRouteConfig(store: Store<State>) {
 			path: 'user/{username}',
 			outlet: 'user',
 			onEnter: ({ username }: Params, type: MatchType) => {
-				getProfileProcess(store)({ username });
 				if (type === 'index') {
+					getProfileProcess(store)({ username });
 					fetchFeedProcess(store)({ type: 'user', page: 0, filter: username });
 				}
 			},
@@ -38,6 +38,7 @@ export function getRouteConfig(store: Store<State>) {
 					path: 'favorites',
 					outlet: 'favorites',
 					onEnter: ({ username }: Params) => {
+						getProfileProcess(store)({ username });
 						fetchFeedProcess(store)({ type: 'favorites', page: 0, filter: username });
 					}
 				}

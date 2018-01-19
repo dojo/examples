@@ -1,11 +1,14 @@
 import { Outlet } from '@dojo/routing/Outlet';
 import { MapParamsOptions } from '@dojo/routing/interfaces';
 
-const mapParams = ({ params, type }: MapParamsOptions) => {
-	return {
-		username: params.username,
-		type: type === 'index' ? 'user' : 'favorites'
+function createMapParams(type: string) {
+	return ({ params }: MapParamsOptions) => {
+		return {
+			username: params.username,
+			type
+		};
 	};
-};
+}
 
-export const ProfileOutlet = Outlet('profile', 'user', { mapParams });
+export const UserProfileOutlet = Outlet({ index: 'profile' }, 'user', { mapParams: createMapParams('user') });
+export const FavProfileOutlet = Outlet('profile', 'favorites', { mapParams: createMapParams('favorites') });

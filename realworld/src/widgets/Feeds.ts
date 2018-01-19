@@ -5,6 +5,7 @@ import { ArticlePreview } from './ArticlePreview';
 import { ArticleItem } from '../interfaces';
 import { FeedPagination } from './FeedPagination';
 import { FetchFeedPayload, FavoriteArticlePayload } from '../processes/interfaces';
+import { Link } from '@dojo/routing/Link';
 
 export interface FeedsProperties {
 	items: ArticleItem[];
@@ -30,16 +31,6 @@ export class Feeds extends WidgetBase<FeedsProperties> {
 		event.preventDefault();
 		const { username } = this.properties;
 		this.properties.fetchFeed({ type: 'feed', page: 0, filter: username });
-	}
-
-	private _onFavoriteFeedClick() {
-		const { username } = this.properties;
-		this.properties.fetchFeed({ type: 'favorites', page: 0, filter: username });
-	}
-
-	private _onUserFeedClick() {
-		const { username } = this.properties;
-		this.properties.fetchFeed({ type: 'user', page: 0, filter: username });
 	}
 
 	// prettier-ignore
@@ -78,18 +69,22 @@ export class Feeds extends WidgetBase<FeedsProperties> {
 						: null,
 					isProfile
 						? v('li', { key: 'articles', classes: 'nav-item' }, [
-								v('a', {
-									onclick: this._onUserFeedClick,
-									href: `#user/${username}`,
+								w(Link, {
+									to: 'user',
+									params: {
+										username
+									},
 									classes: ['nav-link', type === 'user' ? 'active' : null]
 								}, ['My Articles'])
 							])
 						: null,
 					isProfile
 						? v('li', { key: 'favs', classes: 'nav-item' }, [
-								v('a', {
-									onclick: this._onFavoriteFeedClick,
-									href: `#user/${username}/favorites`,
+								w(Link, {
+									to: 'favorites',
+									params: {
+										username
+									},
 									classes: ['nav-link', type === 'favorites' ? 'active' : null]
 								}, ['Favorited Articles'])
 							])
