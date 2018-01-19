@@ -8,7 +8,6 @@ export interface TagsProperties {
 }
 
 export class Tags extends WidgetBase<TagsProperties> {
-
 	// prettier-ignore
 	protected render() {
 		const { tags = [] } = this.properties;
