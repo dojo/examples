@@ -1,0 +1,6 @@
+/output
+/html-report
+/node_modules
+/coverage
+.tsconfig*.json
+npm-debug.log
