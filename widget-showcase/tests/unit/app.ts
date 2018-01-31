@@ -5,7 +5,6 @@ import { findKey, replaceChild } from '@dojo/test-extras/support/d';
 import { v, w } from '@dojo/widget-core/d';
 import { assignProperties } from '@dojo/test-extras/support/d';
 
-import dojoTheme from '@dojo/widgets/themes/dojo/theme';
 import AccordionPane from '@dojo/widgets/accordionpane/AccordionPane';
 import Button from '@dojo/widgets/button/Button';
 import Calendar from '@dojo/widgets/calendar/Calendar';
@@ -38,8 +37,7 @@ function expected(widget: any) {
 			classes: AppCSS.component
 		}, [
 			w(Button, {
-				key: 'basic-button',
-				theme: dojoTheme
+				key: 'basic-button'
 			}, [ 'Basic' ])
 		]),
 		v('div', {
@@ -47,7 +45,6 @@ function expected(widget: any) {
 		}, [
 			w(Button, {
 				key: 'popup-button',
-				theme: dojoTheme,
 				popup: {
 					expanded: false,
 					id: 'fakeId'
@@ -59,7 +56,6 @@ function expected(widget: any) {
 		}, [
 			w(Button, {
 				key: 'pressed-button',
-				theme: dojoTheme,
 				pressed: false,
 				onClick: widget.listener
 			}, [ 'Toggle' ])
@@ -71,8 +67,7 @@ function expected(widget: any) {
 				key: 'cb1',
 				checked: false,
 				label: 'Basic checkbox',
-				onChange: widget.listener,
-				theme: dojoTheme
+				onChange: widget.listener
 			}),
 		]),
 		v('div', {
@@ -83,7 +78,6 @@ function expected(widget: any) {
 				checked: false,
 				label: 'Toggle checkbox',
 				onChange: widget.listener,
-				theme: dojoTheme,
 				mode: Mode.toggle
 			})
 		]),
@@ -96,8 +90,7 @@ function expected(widget: any) {
 				value: 'first',
 				label: 'First option',
 				name: 'sample-radios',
-				onChange: widget.listener,
-				theme: dojoTheme
+				onChange: widget.listener
 			}),
 			w(Radio, {
 				key: 'r2',
@@ -105,8 +98,7 @@ function expected(widget: any) {
 				value: 'second',
 				label: 'Second option',
 				name: 'sample-radios',
-				onChange: widget.listener,
-				theme: dojoTheme
+				onChange: widget.listener
 			}),
 			w(Radio, {
 				key: 'r3',
@@ -114,8 +106,7 @@ function expected(widget: any) {
 				value: 'third',
 				label: 'Third option',
 				name: 'sample-radios',
-				onChange: widget.listener,
-				theme: dojoTheme
+				onChange: widget.listener
 			})
 		]),
 		v('div', {
@@ -125,12 +116,10 @@ function expected(widget: any) {
 				key: 'tooltip',
 				content: 'This is a right-oriented tooltip that opens and closes based on child click.',
 				orientation: Orientation.right,
-				open: false,
-				theme: dojoTheme
+				open: false
 			}, [
 				w(Button, {
 					key: 'tooltip-trigger',
-					theme: dojoTheme,
 					onClick: widget.listener
 				}, [ 'Tooltip' ])
 			])
@@ -142,8 +131,7 @@ function expected(widget: any) {
 				key: 'text-input',
 				placeholder: 'TextInput',
 				value: '',
-				onChange: widget.listener,
-				theme: dojoTheme
+				onChange: widget.listener
 			}),
 		]),
 		v('div', {
@@ -160,8 +148,7 @@ function expected(widget: any) {
 				value: '',
 				inputProperties: {
 					placeholder: 'ComboBox'
-				},
-				theme: dojoTheme
+				}
 			})
 		]),
 		v('div', {
@@ -177,7 +164,6 @@ function expected(widget: any) {
 				openOnFocus: true,
 				options: [],
 				step: 1800,
-				theme: dojoTheme,
 				value: ''
 			}),
 		]),
@@ -193,7 +179,6 @@ function expected(widget: any) {
 				label: 'Native select',
 				options: dataSmall,
 				value: '',
-				theme: dojoTheme,
 				onChange: widget.listener
 			})
 		]),
@@ -204,8 +189,7 @@ function expected(widget: any) {
 				key: 'slider',
 				value: undefined,
 				outputIsTooltip: true,
-				onInput: widget.listener,
-				theme: dojoTheme
+				onInput: widget.listener
 			})
 		]),
 		v('div', {
@@ -217,8 +201,7 @@ function expected(widget: any) {
 				rows: 5,
 				placeholder: 'Hello, World',
 				value: '',
-				onChange: widget.listener,
-				theme: dojoTheme
+				onChange: widget.listener
 			})
 		]),
 		v('div', {
@@ -227,7 +210,6 @@ function expected(widget: any) {
 			w(Calendar, {
 				month: undefined,
 				selectedDate: undefined,
-				theme: dojoTheme,
 				year: undefined,
 				onMonthChange: widget.listener,
 				onYearChange: widget.listener,
@@ -244,14 +226,12 @@ function expected(widget: any) {
 				open: false,
 				underlay: true,
 				closeable: true,
-				onRequestClose: widget.listener,
-				theme: dojoTheme
+				onRequestClose: widget.listener
 			}, [
 				`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.`
 			]),
 			w(Button, {
 				key: 'dialog-button',
-				theme: dojoTheme,
 				onClick: widget.listener
 			}, [ 'Open Dialog' ])
 		]),
@@ -263,7 +243,6 @@ function expected(widget: any) {
 				align: Align.right,
 				onRequestClose: widget.listener,
 				open: false,
-				theme: dojoTheme,
 				title: 'SlidePane',
 				underlay: true
 			}, [
@@ -271,7 +250,6 @@ function expected(widget: any) {
 			]),
 			w(Button, {
 				key: 'slidepane-button',
-				theme: dojoTheme,
 				onClick: widget.listener
 			}, [ 'Open SlidePane' ])
 		]),
@@ -286,13 +264,11 @@ function expected(widget: any) {
 					direction: Direction.row,
 					onResize: widget.listener,
 					size: undefined,
-					theme: dojoTheme,
 					trailing: w(SplitPane, {
 						key: 'split-pane-child',
 						direction: Direction.column,
 						onResize: widget.listener,
-						size: undefined,
-						theme: dojoTheme
+						size: undefined
 					})
 				})
 			])
@@ -303,7 +279,6 @@ function expected(widget: any) {
 			w(TitlePane, {
 				key: 'title-pane',
 				open: false,
-				theme: dojoTheme,
 				title: 'TitlePane',
 				onRequestClose: widget.listener,
 				onRequestOpen: widget.listener
@@ -319,8 +294,7 @@ function expected(widget: any) {
 			w(AccordionPane, {
 				onRequestOpen: widget.listener,
 				onRequestClose: widget.listener,
-				openKeys: [],
-				theme: dojoTheme
+				openKeys: []
 			}, [
 				w(TitlePane, {
 					title: 'Pane 1',
@@ -337,20 +311,17 @@ function expected(widget: any) {
 		}, [
 			w(TabController, {
 				key: 'tab-controller',
-				theme: dojoTheme,
 				activeIndex: 0,
 				onRequestTabClose: widget.listener,
 				onRequestTabChange: widget.listener
 			}, [
 				w(Tab, {
-					theme: dojoTheme,
 					key: 'default',
 					label: 'Default'
 				}, [
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in ex pharetra, iaculis turpis eget, tincidunt lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.'
 				]),
 				w(Tab, {
-					theme: dojoTheme,
 					disabled: true,
 					key: 'disabled',
 					label: 'Disabled'
@@ -358,14 +329,12 @@ function expected(widget: any) {
 					'Sed nibh est, sollicitudin consectetur porta finibus, condimentum gravida purus. Phasellus varius fringilla erat, a dignissim nunc iaculis et. Curabitur eu neque erat. Integer id lacus nulla. Phasellus ut sem eget enim interdum interdum ac ac orci.'
 				]),
 				w(Tab, {
-					theme: dojoTheme,
 					key: 'async',
 					label: 'Async'
 				}, [
 					'Curabitur id elit a tellus consequat maximus in non lorem. Donec sagittis porta aliquam. Nulla facilisi. Quisque sed mauris justo. Donec eu fringilla urna. Aenean vulputate ipsum imperdiet orci ornare tempor.'
 				]),
 				w(Tab, {
-					theme: dojoTheme,
 					closeable: true,
 					key: 'closeable',
 					label: 'Closeable'
@@ -373,7 +342,6 @@ function expected(widget: any) {
 					'Nullam congue, massa in egestas sagittis, diam neque rutrum tellus, nec egestas metus tellus vel odio. Vivamus tincidunt quam nisl, sit amet venenatis purus bibendum eget. Phasellus fringilla ex vitae odio hendrerit, non volutpat orci rhoncus.'
 				]),
 				w(Tab, {
-					theme: dojoTheme,
 					key: 'foo',
 					label: 'Foobar'
 				}, [
