@@ -4,6 +4,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Set } from '@dojo/shim/Set';
 import CalendarPane from './panes/CalendarPane';
+import DialogPane from './panes/DialogPane';
 
 export default class Accordion extends WidgetBase {
 	private _openKeys = new Set<string>();
@@ -31,7 +32,7 @@ export default class Accordion extends WidgetBase {
 			w(TitlePane, {
 				title: 'Dialog',
 				key: 'dialog-title-pane'
-			}, [ 'Dialog goes here' ])
+			}, [ w(DialogPane, {}) ]),
 		])
 
 	}
