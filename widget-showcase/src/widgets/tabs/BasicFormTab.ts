@@ -125,8 +125,8 @@ export default class BasicFormTab extends WidgetBase {
 					label: 'Third option (disabled)',
 					disabled: true,
 					name: 'sample-radios'
-				}),
-			]),
+				})
+			])
 		];
 	}
 }
