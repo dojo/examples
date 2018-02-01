@@ -8,7 +8,8 @@ import { w, v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Tabs from './widgets/Tabs';
 import Toolbar from '@dojo/widgets/toolbar/Toolbar';
-import SplitPane, { Direction } from '@dojo/widgets/splitpane/SplitPane';
+import Splitter from './widgets/Splitter';
+import Accordion from './widgets/Accordion';
 
 // import Task from '@dojo/core/async/Task';
 
@@ -76,17 +77,11 @@ export default class App extends WidgetBase {
 			collapseWidth: 700,
 			fixed: true,
 			menuTitle: 'Menu',
-			title: 'Foobar'
+			title: 'Dojo 2 Widget Showcase'
 		}, [
-			w(SplitPane, {
-				key: 'split-pane',
-				direction: Direction.row,
-				size: 100,
-				leading: 'hello world',
-				trailing: v('div', [
-					v('h2', [ 'Toolbar Examples' ]),
-					w(Tabs, {})
-				])
+			w(Splitter, {
+				leading: w(Accordion, {}),
+				trailing: w(Tabs, {})
 			})
 		]);
 	}
