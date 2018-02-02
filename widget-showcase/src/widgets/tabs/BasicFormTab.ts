@@ -3,6 +3,8 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Button from '@dojo/widgets/button/Button';
 import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
 import Radio from '@dojo/widgets/radio/Radio';
+import * as css from '../../styles/basicFormTab.m.css';
+import * as iconCss from '@dojo/widgets/theme/common/icons.m.css'
 
 export default class BasicFormTab extends WidgetBase {
 	private _togglePressed = true;
@@ -34,9 +36,15 @@ export default class BasicFormTab extends WidgetBase {
 	render() {
 		return [
 			v('h2', [ 'Buttons' ]),
-			v('div', [
+			v('div', {
+				classes: css.buttons
+			}, [
 				v('h3', [ 'Enabled' ]),
-				w(Button, {}, [ 'example' ]),
+				w(Button, {}, [ 'Basic Button' ]),
+				w(Button, {}, [
+					'Icon Button ',
+					v('i', { classes: [ iconCss.icon, iconCss.searchIcon ]})
+				]),
 				w(Button, {
 					popup: { expanded: false, id: 'fakeId' }
 				}, [ 'Popup' ]),
@@ -45,11 +53,19 @@ export default class BasicFormTab extends WidgetBase {
 					onClick: this._toggleButtonClick
 				}, [ 'Toggle' ])
 			]),
-			v('div', [
+			v('div', {
+				classes: css.buttons
+			}, [
 				v('h3', [ 'Disabled' ]),
 				w(Button, {
 					disabled: true
-				}, [ 'example' ]),
+				}, [ 'Basic Button' ]),
+				w(Button, {
+					disabled: true
+				}, [
+					'Icon Button ',
+					v('i', { classes: [ iconCss.icon, iconCss.searchIcon ]})
+				]),
 				w(Button, {
 					disabled: true,
 					popup: { expanded: false, id: 'fakeId' }

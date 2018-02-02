@@ -5,6 +5,7 @@ import TabController, { Align } from '@dojo/widgets/tabcontroller/TabController'
 import BasicFormTab from './tabs/BasicFormTab';
 import TextInputTab from './tabs/TextInputTab';
 import TextAreaTab from './tabs/TextAreaTab';
+import SelectTab from './tabs/SelectTab';
 
 export default class Tabs extends WidgetBase {
 	private _activeIndex = 0;
@@ -35,9 +36,7 @@ export default class Tabs extends WidgetBase {
 			w(Tab, {
 				key: 'select-tab',
 				label: 'Selects'
-			}, [
-				v('h2', [ 'Selects' ])
-			])
+			}, [ w(SelectTab, {}) ])
 		])
 	}
 }

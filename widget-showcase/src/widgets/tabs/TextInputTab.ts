@@ -65,7 +65,7 @@ export default class BasicFormTab extends WidgetBase {
 			v('div', [
 				w(TimePicker, {
 					clearable: true,
-					end: '03:30',
+					end: '23:59',
 					onRequestOptions: this._onRequestOptions,
 					label: 'Basic time picker',
 					onChange: this._onSetValue,
@@ -76,7 +76,7 @@ export default class BasicFormTab extends WidgetBase {
 				}),
 				w(TimePicker, {
 					clearable: true,
-					end: '03:30',
+					end: '23:59',
 					onRequestOptions: this._onRequestOptions,
 					label: 'Basic time picker (native)',
 					onChange: this._onSetValue,
@@ -89,7 +89,7 @@ export default class BasicFormTab extends WidgetBase {
 				w(TimePicker, {
 					clearable: true,
 					disabled: true,
-					end: '03:30',
+					end: '23:59',
 					onRequestOptions: this._onRequestOptions,
 					label: 'Disabled time picker',
 					onChange: this._onSetValue,
@@ -101,7 +101,7 @@ export default class BasicFormTab extends WidgetBase {
 				w(TimePicker, {
 					clearable: true,
 					disabled: true,
-					end: '03:30',
+					end: '23:59',
 					onRequestOptions: this._onRequestOptions,
 					label: 'Disabled time picker (native)',
 					onChange: this._onSetValue,
