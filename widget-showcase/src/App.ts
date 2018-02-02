@@ -14,6 +14,7 @@ import Calendar from '@dojo/widgets/calendar/Calendar';
 import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
 import ComboBox from '@dojo/widgets/combobox/ComboBox';
 import Dialog from '@dojo/widgets/dialog/Dialog';
+import Progress from '@dojo/widgets/progress/Progress';
 import Radio from '@dojo/widgets/radio/Radio';
 import Select from '@dojo/widgets/select/Select';
 import SlidePane, { Align } from '@dojo/widgets/slidepane/SlidePane';
@@ -25,6 +26,7 @@ import Textarea from '@dojo/widgets/textarea/Textarea';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import TitlePane from '@dojo/widgets/titlepane/TitlePane';
+import Toolbar from '@dojo/widgets/toolbar/Toolbar';
 import Tooltip, { Orientation } from '@dojo/widgets/tooltip/Tooltip';
 
 import { dataLarge, dataSmall} from './data';
@@ -43,6 +45,7 @@ interface State {
 	multiselectValue: string;
 	nestedSizeA?: number;
 	nestedSizeB?: number;
+	progressValue: number;
 	radioValue: string;
 	selectValue: string;
 	slidepaneOpen: boolean;
@@ -52,6 +55,7 @@ interface State {
 	timepickerOptions: TimeUnits[];
 	titlepaneOpen: boolean;
 	tooltipOpen: boolean;
+	toolbarValue: string;
 	month?: number;
 	selectedDate?: Date;
 	timepickerValue: string;
@@ -80,6 +84,7 @@ export default class App extends AppBase<WidgetProperties> {
 		multiselectValue: '',
 		nestedSizeA: undefined,
 		nestedSizeB: undefined,
+		progressValue: 20,
 		radioValue: 'first',
 		selectValue: '',
 		slidepaneOpen: false,
@@ -89,6 +94,7 @@ export default class App extends AppBase<WidgetProperties> {
 		timepickerOptions: [],
 		timepickerValue: '',
 		titlepaneOpen: false,
+		toolbarValue: '',
 		tooltipOpen: false,
 		month: undefined,
 		selectedDate: undefined,
@@ -119,6 +125,7 @@ export default class App extends AppBase<WidgetProperties> {
 			loadingTab,
 			multiselectValue,
 			nestedSizeB,
+			progressValue,
 			radioValue,
 			selectValue,
 			slidepaneOpen,
@@ -128,6 +135,7 @@ export default class App extends AppBase<WidgetProperties> {
 			timepickerOptions,
 			timepickerValue,
 			titlepaneOpen,
+			toolbarValue,
 			tooltipOpen,
 			month,
 			nestedSizeA,
@@ -297,6 +305,13 @@ export default class App extends AppBase<WidgetProperties> {
 				})
 			]),
 			v('div', { classes: this.theme(css.component) }, [
+				w(Progress, {
+					key: 'progress',
+					value: progressValue,
+					theme: dojoTheme
+				})
+			]),
+			v('div', { classes: this.theme(css.component) }, [
 				w(Slider, {
 					key: 'slider',
 					value: sliderValue,
@@ -411,6 +426,24 @@ export default class App extends AppBase<WidgetProperties> {
 						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.'
 					])
 				])
+			]),
+			v('div', { classes: this.theme(css.toolbarContainer)}, [
+				v('div', { classes: this.theme(css.component)}, [
+					w(Toolbar, {
+						key: 'toolbar',
+						actions: [
+							v('a', { href: '/#home' }, [ 'Home' ]),
+							v('a', { href: '/#about' }, [ 'About' ]),
+							v('a', { href: '/#contact' }, [ 'Contact' ])
+						],
+						title: toolbarValue,
+						fixed: true,
+						collapseWidth: 720,
+						theme: dojoTheme
+					},  [
+						v('p', ['Text from the Toolbar section'])
+					])
+				]),
 			]),
 			v('div', { classes: this.theme(css.component) }, [
 				w(AccordionPane, {

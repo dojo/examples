@@ -11,6 +11,7 @@ import Calendar from '@dojo/widgets/calendar/Calendar';
 import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
 import ComboBox from '@dojo/widgets/combobox/ComboBox';
 import Dialog from '@dojo/widgets/dialog/Dialog';
+import Progress from '@dojo/widgets/progress/Progress';
 import Radio from '@dojo/widgets/radio/Radio';
 import Select from '@dojo/widgets/select/Select';
 import SlidePane, { Align } from '@dojo/widgets/slidepane/SlidePane';
@@ -22,6 +23,7 @@ import Textarea from '@dojo/widgets/textarea/Textarea';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import TitlePane from '@dojo/widgets/titlepane/TitlePane';
+import Toolbar from '@dojo/widgets/toolbar/Toolbar';
 import Tooltip, { Orientation } from '@dojo/widgets/tooltip/Tooltip';
 
 import * as sinon from 'sinon';
@@ -185,6 +187,15 @@ function expected(widget: any) {
 		v('div', {
 			classes: AppCSS.component
 		}, [
+			w(Progress, {
+				key: 'progress',
+				value: 0,
+				theme: dojoTheme
+			})
+		]),
+		v('div', {
+			classes: AppCSS.component
+		}, [
 			w(Slider, {
 				key: 'slider',
 				value: undefined,
@@ -287,6 +298,30 @@ function expected(widget: any) {
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.'
 				])
 			])
+		]),
+		v('div', {
+			classes: AppCSS.toolbarContainer
+		}, [
+			v('div', {
+				classes: AppCSS.component
+			}, [
+				w(Toolbar, {
+					key: 'toolbar',
+					title: 'Toolbar',
+					fixed: true,
+					collapseWidth: 720,
+					actions:  [
+						v('a', { href: '/#home' }, [ 'Home' ]),
+						v('a', { href: '/#about' }, [ 'About' ]),
+						v('a', { href: '/#contact' }, [ 'Contact' ])
+					],
+					theme: dojoTheme
+				}, [
+					v('div', [
+						'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id purus ipsum. Aenean ac purus purus. Nam sollicitudin varius augue, sed lacinia felis tempor in.'
+					])
+				])
+			]),
 		]),
 		v('div', {
 			classes: AppCSS.component

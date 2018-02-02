@@ -12,3 +12,8 @@
 	max-width: 1000px;
 	border: 1px solid rgba(170, 170, 170, 0.5);
 }
+
+.toolbarContainer {
+	position: relative;
+	height: 10em;
+}
