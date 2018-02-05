@@ -2,11 +2,15 @@
   "name": "custom-element",
   "version": "1.0.0",
   "scripts": {
-    "build-app": "dojo build",
-    "build-item": "dojo build --element=src/widgets/createMenuItemElement.ts",
-    "build-menu": "dojo build --element=src/widgets/createMenuElement.ts",
-    "move-dist": "shx mv dist/* temp-example",
-    "build": "shx rm -r temp-example & shx mkdir temp-example && npm run build-menu && npm run move-dist && npm run build-item && npm run move-dist && shx rm -r dist && npm run build-app && npm run move-dist && shx rm -r dist && shx mv temp-example dist",
+    "build-app": "dojo build app",
+    "build-widgets": "dojo build widget",
+    "copy-index": "shx cp output/dist/index.html src/index.html",
+    "backup-index": "shx cp src/index.html src/index.bk",
+    "reset-index": "shx mv src/index.bk src/index.html",
+    "move-dist": "shx mv output/dist/* temp-example",
+    "setup": "npm run backup-index && shx rm -rf temp-example && shx mkdir temp-example",
+    "reset": "npm run reset-index && shx mv temp-example/* output/dist/",
+    "build": "npm run setup && npm run build-app && npm run copy-index && npm run move-dist && npm run build-widgets && npm run move-dist && npm run reset",
     "test-ci": "echo no tests"
   },
   "dependencies": {
@@ -15,11 +19,12 @@
     "@dojo/i18n": "~0.4.0",
     "@dojo/routing": "~0.4.0",
     "@dojo/shim": "~0.2.4",
-    "@dojo/widget-core": "~0.6.1",
+    "@dojo/widget-core": "~0.8.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-webpack": "~0.4.0",
+    "@dojo/cli-build-app": "~0.1.1",
+    "@dojo/cli-build-widget": "file:../../../dojo2/cli-build-widget/dist/dojo-cli-build-widget-0.1.2-rc.1.tgz",
     "@dojo/cli-test-intern": "~0.4.0",
     "@dojo/loader": "~0.1.1",
     "@dojo/test-extras": "~0.4.0",
