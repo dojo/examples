@@ -11,9 +11,6 @@ export interface ThemePaneProperties {
 export default class ThemePane extends WidgetBase<ThemePaneProperties> {
 
 	private _radioChange(event: Event) {
-
-
-
 		const { onThemeChange } = this.properties;
 		const value = (event.target as HTMLInputElement).value;
 		onThemeChange(value);
@@ -41,6 +38,3 @@ export default class ThemePane extends WidgetBase<ThemePaneProperties> {
 		]);
 	}
 }
-
-
-
