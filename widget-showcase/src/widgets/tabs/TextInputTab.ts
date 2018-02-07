@@ -4,7 +4,7 @@ import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
 import TextInput from '@dojo/widgets/textinput/TextInput';
 import EnhancedTextInput from '@dojo/widgets/enhancedtextinput/EnhancedTextInput';
 
-export default class BasicFormTab extends WidgetBase {
+export default class TextInputTab extends WidgetBase {
 	private _timePickerOptions: TimeUnits[];
 	private _timePickerValue = '10:30';
 

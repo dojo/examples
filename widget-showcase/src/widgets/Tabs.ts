@@ -6,6 +6,7 @@ import BasicFormTab from './tabs/BasicFormTab';
 import TextInputTab from './tabs/TextInputTab';
 import TextAreaTab from './tabs/TextAreaTab';
 import SelectTab from './tabs/SelectTab';
+import ProgressTab from './tabs/ProgressTab';
 
 export default class Tabs extends WidgetBase {
 	private _activeIndex = 0;
@@ -36,7 +37,12 @@ export default class Tabs extends WidgetBase {
 			w(Tab, {
 				key: 'select-tab',
 				label: 'Selects'
-			}, [ w(SelectTab, {}) ])
+			}, [ w(SelectTab, {}) ]),
+			w(Tab, {
+				key: 'progress-tab',
+				label: 'Progress'
+			}, [ w(ProgressTab, {}) ])
+
 		])
 	}
 }
