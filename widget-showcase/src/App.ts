@@ -16,11 +16,6 @@ export default class App extends WidgetBase<AppProperties> {
 		} = this.properties;
 
 		return w(Toolbar, {
-			actions: [
-				v('a', { href: '/#home' }, [ 'Home' ]),
-				v('a', { href: '/#about' }, [ 'About' ]),
-				v('a', { href: '/#contact' }, [ 'Contact' ])
-			],
 			collapseWidth: 700,
 			fixed: true,
 			menuTitle: 'Menu',
