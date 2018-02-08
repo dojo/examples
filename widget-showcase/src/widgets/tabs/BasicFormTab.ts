@@ -91,6 +91,7 @@ export default class BasicFormTab extends WidgetBase {
 				}),
 				w(Checkbox, {
 					checked: false,
+					disabled: true,
 					label: 'Disabled unchecked checkbox',
 					value: 'disabled-uncheckbox-example-1'
 				})
