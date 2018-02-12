@@ -17,18 +17,24 @@ function mapFilterRouteParam({ params }: any) {
 }
 
 registry.define('todo-header', TodoHeader);
-registry.define('todo-list', Outlet(TodoList, 'filter', mapFilterRouteParam));
+registry.define('todo-list', Outlet(TodoList, 'filter', { mapParams: mapFilterRouteParam }));
 registry.define('todo-item', TodoItem);
 registry.define('todo-footer', TodoFooter);
-registry.define('todo-filter', Outlet(TodoFilter, 'filter', mapFilterRouteParam));
+registry.define('todo-filter', Outlet(TodoFilter, 'filter', { mapParams: mapFilterRouteParam }));
 
 const root = document.querySelector('my-app') || undefined;
 
 const Projector = ProjectorMixin(TodoApp);
 const projector = new Projector();
 
-const router = registerRouterInjector([{ path: '{filter}', outlet: 'filter', defaultParams: { filter: 'all' }, defaultRoute: true }], registry);
+const router = registerRouterInjector([
+	{
+		path: 'filter/{filter}',
+		outlet: 'filter',
+		defaultParams: { filter: 'all' },
+		defaultRoute: true
+	}
+], registry);
 projector.setProperties({ registry });
 
 projector.append(root);
-router.start();

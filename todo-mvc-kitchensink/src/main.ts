@@ -41,4 +41,3 @@ const config = [
 const router = registerRouterInjector(config, registry);
 projector.setProperties({ registry });
 projector.append();
-router.start();

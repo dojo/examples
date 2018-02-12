@@ -35,4 +35,3 @@ const Projector = ProjectorMixin(TodoAppContainer);
 const projector = new Projector();
 projector.setProperties({ registry });
 projector.append();
-router.start();

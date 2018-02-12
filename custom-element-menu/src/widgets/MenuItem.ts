@@ -6,16 +6,16 @@ import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import * as css from './styles/menuItem.m.css';
 
 export interface MenuItemProperties {
-	title: string;
 	selected?: boolean;
 	data?: any;
+	title?: string;
 	onSelected?: (data: any) => void;
 }
 
-@customElement<any>({
+@customElement<MenuItemProperties>({
 	tag: 'demo-menu-item',
-	attributes: ['title'],
 	events: ['onSelected'],
+	attributes: [ 'title' ],
 	properties: ['data', 'selected']
 })
 @theme(css)
@@ -26,13 +26,13 @@ export class MenuItem extends ThemedMixin(WidgetBase)<MenuItemProperties> {
 	}
 
 	protected render() {
-		const { title, selected } = this.properties;
+		const { selected } = this.properties;
 
 		return v('li', { classes: this.theme(css.root) }, [
 			v('span', {
 				classes: this.theme([ css.item, selected ? css.selected : null ]),
 				onclick: this._onClick
-			}, [ title ])
+			}, [ this.properties.title ])
 		]);
 	}
 }
