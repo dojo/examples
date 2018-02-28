@@ -21,7 +21,7 @@ registry.defineInjector('application-state', new ReduxInjector(store));
 
 const config = [
 	{
-		path: '{filter}',
+		path: 'filter/{filter}',
 		outlet: 'filter',
 		defaultParams: {
 			filter: 'all'
