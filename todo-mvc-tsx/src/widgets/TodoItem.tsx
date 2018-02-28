@@ -4,7 +4,7 @@ import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { Todo } from './TodoApp';
 import { tsx } from '@dojo/widget-core/tsx';
 
-import * as css from './styles/todoItem.css';
+import * as css from './styles/todoItem.m.css';
 
 export interface TodoItemProperties extends WidgetProperties {
 	todo: Todo;

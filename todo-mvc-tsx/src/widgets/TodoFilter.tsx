@@ -4,7 +4,7 @@ import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { Link } from '@dojo/routing/Link';
 import { tsx } from '@dojo/widget-core/tsx';
 
-import * as css from './styles/todoFilter.css';
+import * as css from './styles/todoFilter.m.css';
 
 export interface TodoFilterProperties extends WidgetProperties {
 	filter?: string;

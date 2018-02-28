@@ -4,7 +4,7 @@ import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { tsx } from '@dojo/widget-core/tsx';
 
 import { TodoFilter } from './TodoFilter';
-import * as css from './styles/todoFooter.css';
+import * as css from './styles/todoFooter.m.css';
 
 export interface TodoFooterProperties extends WidgetProperties {
 	activeCount: number;

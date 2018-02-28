@@ -3,7 +3,7 @@ import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
 import { tsx } from '@dojo/widget-core/tsx';
 
-import * as css from './styles/todoHeader.css';
+import * as css from './styles/todoHeader.m.css';
 
 export interface TodoHeaderProperties extends WidgetProperties {
 	allCompleted: boolean;

@@ -5,7 +5,7 @@ import { Todo } from './TodoApp';
 import { tsx } from '@dojo/widget-core/tsx';
 import TodoItem from './TodoItem';
 
-import * as css from './styles/todoList.css';
+import * as css from './styles/todoList.m.css';
 
 export interface TodoListProperties extends WidgetProperties {
 	filter: string;

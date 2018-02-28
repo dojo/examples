@@ -3,7 +3,7 @@ import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v, w } from '@dojo/widget-core/d';
 
-import * as css from './styles/todoFooter.css';
+import * as css from './styles/todoFooter.m.css';
 
 export interface TodoFooterProperties extends WidgetProperties {
 	activeCount: number;

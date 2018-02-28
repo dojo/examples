@@ -7,7 +7,7 @@ import { v, w } from '@dojo/widget-core/d';
 import { Todo } from './TodoApp';
 import TodoItem from './TodoItem';
 
-import * as css from './styles/todoList.css';
+import * as css from './styles/todoList.m.css';
 
 export interface TodoListProperties extends WidgetProperties {
 	todos: Map<string, Todo>;
