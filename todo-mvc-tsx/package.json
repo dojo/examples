@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "dojo build",
-    "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
-    "test": "dojo build -m dev && dojo build -m test && dojo test -a"
+    "test-ci": "dojo build -m dist && dojo build -m test && dojo test -a -c \"saucelabs\"",
+    "test": "dojo build -m dist && dojo build -m test && dojo test -a -c local"
   },
   "repository": {
     "type": "git",

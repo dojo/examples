@@ -35,12 +35,6 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		this.properties.setCurrentTodo({ todo });
 	}
 
-	protected onElementCreated(element: HTMLElement, key: string): void {
-		if (key === 'todo-input') {
-			element.focus();
-		}
-	}
-
 	protected render(): DNode {
 		const { allCompleted, todo, todoCount } = this.properties;
 		const messages = this.localizeBundle(appBundle);
@@ -49,6 +43,7 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 			v('h1', { classes: this.theme(css.title) }, [ messages.appTitle ]),
 			v('input', {
 				key: 'todo-input',
+				focus: true,
 				classes: this.theme(css.newTodo),
 				onkeydown: this.addTodo,
 				oninput: this.setCurrentTodo,

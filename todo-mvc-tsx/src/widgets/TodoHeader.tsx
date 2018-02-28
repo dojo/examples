@@ -33,12 +33,6 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		this.properties.todoInput(value);
 	}
 
-	protected onElementCreated(element: HTMLElement, key: string): void {
-		if (key === 'todo-input') {
-			element.focus();
-		}
-	}
-
 	protected render(): DNode {
 		const { properties: { todo, allCompleted } } = this;
 
@@ -49,6 +43,7 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 				</h1>
 				<input
 					key='todo-input'
+					focus={true}
 					classes={this.theme(css.newTodo)}
 					onkeyup={this._addTodo}
 					oninput={this._todoInput}
