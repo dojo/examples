@@ -1,5 +1,5 @@
-import AccordionPane, { AccordionPaneProperties } from '@dojo/widgets/accordionpane/AccordionPane';
-import TitlePane from '@dojo/widgets/titlepane/TitlePane';
+import AccordionPane, { AccordionPaneProperties } from '@dojo/widgets/accordion-pane';
+import TitlePane from '@dojo/widgets/title-pane';
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { Set } from '@dojo/shim/Set';

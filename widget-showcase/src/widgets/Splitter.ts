@@ -1,7 +1,7 @@
 import { v, w,  } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode } from '@dojo/widget-core/interfaces';
-import SplitPane, { Direction } from '@dojo/widgets/splitpane/SplitPane';
+import SplitPane, { Direction } from '@dojo/widgets/split-pane';
 
 interface SplitterProperties {
 	leading: DNode;
@@ -23,10 +23,11 @@ export default class Splitter extends WidgetBase<SplitterProperties> {
 			key: 'split-pane',
 			direction: Direction.row,
 			size: this._size,
-			onResize: this._onResize,
+			onResize: this._onResize
+		}, [
 			leading,
 			trailing
-		});
+		]);
 	}
 }
 

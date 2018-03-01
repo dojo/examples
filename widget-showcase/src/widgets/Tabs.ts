@@ -1,7 +1,7 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Tab from '@dojo/widgets/tabcontroller/Tab';
-import TabController, { Align } from '@dojo/widgets/tabcontroller/TabController';
+import Tab from '@dojo/widgets/tab';
+import TabController, { Align } from '@dojo/widgets/tab-controller';
 import BasicFormTab from './tabs/BasicFormTab';
 import TextInputTab from './tabs/TextInputTab';
 import TextAreaTab from './tabs/TextAreaTab';

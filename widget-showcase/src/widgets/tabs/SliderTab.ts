@@ -1,20 +1,18 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Slider from '@dojo/widgets/slider/Slider';
+import Slider from '@dojo/widgets/slider';
 
 export default class SliderTab extends WidgetBase {
 	private _horizontalValue = 50;
 	private _verticalValue = 0;
 	private _verticalInvalid = false;
 
-	private _onHorizontalInput(event: Event) {
-		const value = (event.target as HTMLInputElement).value;
-		this._horizontalValue = parseFloat(value);
+	private _onHorizontalInput(value: number) {
+		this._horizontalValue = value;
 		this.invalidate();
 	}
 
-	private _onVerticalInput(event: Event) {
-		const value = parseFloat((event.target as HTMLInputElement).value);
+	private _onVerticalInput(value: number) {
 		this._verticalValue = value;
 		this._verticalInvalid = value > 50;
 		this.invalidate();

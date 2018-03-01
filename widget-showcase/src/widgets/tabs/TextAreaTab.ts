@@ -1,6 +1,6 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Textarea from '@dojo/widgets/textarea/Textarea';
+import Textarea from '@dojo/widgets/text-area';
 
 export default class TextAreaTab extends WidgetBase {
 

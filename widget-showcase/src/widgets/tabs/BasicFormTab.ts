@@ -1,10 +1,10 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Button from '@dojo/widgets/button/Button';
-import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
-import Radio from '@dojo/widgets/radio/Radio';
+import Button from '@dojo/widgets/button';
+import Checkbox, { Mode } from '@dojo/widgets/checkbox';
+import Radio from '@dojo/widgets/radio';
+import Icon from '@dojo/widgets/icon';
 import * as css from '../../styles/basicFormTab.m.css';
-import * as iconCss from '@dojo/widgets/theme/common/icons.m.css'
 
 export default class BasicFormTab extends WidgetBase {
 	private _togglePressed = true;
@@ -22,8 +22,7 @@ export default class BasicFormTab extends WidgetBase {
 		this.invalidate();
 	}
 
-	private _radioChange(event: Event) {
-		const value = (event.target as HTMLInputElement).value;
+	private _radioChange(value: string) {
 		this._selectedRadio = value;
 		this.invalidate();
 	}
@@ -43,7 +42,7 @@ export default class BasicFormTab extends WidgetBase {
 				w(Button, {}, [ 'Basic Button' ]),
 				w(Button, {}, [
 					'Icon Button ',
-					v('i', { classes: [ iconCss.icon, iconCss.searchIcon ]})
+					w(Icon, { type: 'searchIcon' })
 				]),
 				w(Button, {
 					popup: { expanded: false, id: 'fakeId' }
@@ -64,7 +63,7 @@ export default class BasicFormTab extends WidgetBase {
 					disabled: true
 				}, [
 					'Icon Button ',
-					v('i', { classes: [ iconCss.icon, iconCss.searchIcon ]})
+					w(Icon, { type: 'searchIcon' })
 				]),
 				w(Button, {
 					disabled: true,
