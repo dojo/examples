@@ -3,7 +3,7 @@ import { WidgetProperties } from '@dojo/widget-core/interfaces';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v } from '@dojo/widget-core/d';
 
-import * as css from './styles/todoHeader.css';
+import * as css from './styles/todoHeader.m.css';
 
 export interface TodoHeaderProperties extends WidgetProperties {
 	allCompleted: boolean;
@@ -18,10 +18,11 @@ export const TodoHeaderBase = ThemedMixin(WidgetBase);
 @theme(css)
 export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
-	render() {
+	protected render() {
 		const { properties: { value, allCompleted } } = this;
 		const newTodoProperties: any = {
 			key: 'new-todo',
+			focus: true,
 			classes: this.theme(css.newTodo),
 			onkeyup: this.addTodo,
 			oninput: this.updateTodo,
@@ -48,11 +49,5 @@ export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 
 	private toggleAllTodos() {
 		this.properties.toggleAllTodos();
-	}
-
-	public onElementCreated(element: HTMLInputElement, key: string) {
-		if (key === 'new-todo') {
-			setTimeout(() => element.focus(), 0);
-		}
 	}
 }

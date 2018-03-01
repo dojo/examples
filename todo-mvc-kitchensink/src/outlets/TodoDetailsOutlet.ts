@@ -3,11 +3,12 @@ import { MapParamsOptions } from '@dojo/routing/interfaces';
 
 import { TodoDetailsContainer } from './../containers/TodoDetailsContainer';
 
-export const TodoDetailsOutlet = Outlet(TodoDetailsContainer, 'edit', ({ params, router }: MapParamsOptions) => {
+export const TodoDetailsOutlet = Outlet(TodoDetailsContainer, 'edit', { mapParams: ({ params, router }) => {
 	return {
 		id: params.id,
 		onRequestExit() {
-			router.setPath(router.link('view'));
+			const link = router.link('view');
+			link && router.setPath(link);
 		}
 	};
-});
+}});

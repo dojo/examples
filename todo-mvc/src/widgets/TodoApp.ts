@@ -9,7 +9,7 @@ import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
 import TodoFooter from './TodoFooter';
 
-import * as css from './styles/todoApp.css';
+import * as css from './styles/todoApp.m.css';
 
 export interface Todo {
 	id: string;

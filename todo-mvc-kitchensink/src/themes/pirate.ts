@@ -9,13 +9,13 @@ import * as themeSwitcher from './pirate/themeSwitcher.m.css';
 import * as credits from './pirate/credits.m.css';
 
 export default {
-	todoApp,
-	todoSearch,
-	todoHeader,
-	todoList,
-	todoFooter,
-	todoItem,
-	todoCard,
-	themeSwitcher,
-	credits
+	'dojo2-todo-mvc-kitchensink/todoApp': todoApp,
+	'dojo2-todo-mvc-kitchensink/todoSearch': todoSearch,
+	'dojo2-todo-mvc-kitchensink/todoHeader': todoHeader,
+	'dojo2-todo-mvc-kitchensink/todoList': todoList,
+	'dojo2-todo-mvc-kitchensink/todoFooter': todoFooter,
+	'dojo2-todo-mvc-kitchensink/todoItem': todoItem,
+	'dojo2-todo-mvc-kitchensink/todoCard': todoCard,
+	'dojo2-todo-mvc-kitchensink/themeSwitcher': themeSwitcher,
+	'dojo2-todo-mvc-kitchensink/credits': credits
 };

@@ -121,22 +121,22 @@ const initialStateCommand = commandFactory(({ path }) => {
 	];
 });
 
-export const initialStateProcess = createProcess([ initialStateCommand ]);
+export const initialStateProcess = createProcess('initial-state', [ initialStateCommand ]);
 
-export const addTodoProcess = createProcess([ addTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
+export const addTodoProcess = createProcess('add-todo', [ addTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const removeTodoProcess = createProcess([ removeTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
+export const removeTodoProcess = createProcess('remove-todo', [ removeTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const toggleTodoProcess = createProcess([ toggleTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
+export const toggleTodoProcess = createProcess('toggle-todo', [ toggleTodoCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const toggleTodosProcess = createProcess([ toggleTodosCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
+export const toggleTodosProcess = createProcess('toggle-todos', [ toggleTodosCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const editTodoProcess = createProcess([ editTodoCommand ]);
+export const editTodoProcess = createProcess('edit-todo', [ editTodoCommand ]);
 
-export const clearCompletedProcess = createProcess([ clearCompletedCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
+export const clearCompletedProcess = createProcess('clear-completed', [ clearCompletedCommand, updateTodoCountsCommand, updateCompletedFlagCommand ]);
 
-export const saveTodoProcess = createProcess([ saveTodoCommand ]);
+export const saveTodoProcess = createProcess('save-todo', [ saveTodoCommand ]);
 
-export const searchProcess = createProcess([ searchCommand ]);
+export const searchProcess = createProcess('search', [ searchCommand ]);
 
-export const setCurrentTodoProcess = createProcess([ setCurrentTodoCommand ]);
+export const setCurrentTodoProcess = createProcess('current-todo', [ setCurrentTodoCommand ]);

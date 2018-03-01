@@ -2,12 +2,12 @@ import Promise from '@dojo/shim/Promise';
 import keys from '@theintern/leadfoot/keys';
 import { Remote } from 'intern/lib/executors/Node';
 
-import * as todoAppCss from './../../src/widgets/styles/todoApp.css';
-import * as todoFilterCss from './../../src/widgets/styles/todoFilter.css';
-import * as todoItemCss from './../../src/widgets/styles/todoItem.css';
-import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.css';
-import * as todoFooterCss from './../../src/widgets/styles/todoFooter.css';
-import * as todoListCss from './../../src/widgets/styles/todoList.css';
+import * as todoAppCss from './../../src/widgets/styles/todoApp.m.css';
+import * as todoFilterCss from './../../src/widgets/styles/todoFilter.m.css';
+import * as todoItemCss from './../../src/widgets/styles/todoItem.m.css';
+import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.m.css';
+import * as todoFooterCss from './../../src/widgets/styles/todoFooter.m.css';
+import * as todoListCss from './../../src/widgets/styles/todoList.m.css';
 
 class Selectors {
 	public main = `.${todoAppCss.main}`;
@@ -83,7 +83,7 @@ export default class Page {
 
 	init() {
 		return this.remote
-			.get('http://localhost:9000/output/dev/index.html')
+			.get('http://localhost:9000/output/dist/index.html')
 			.setFindTimeout(5000)
 			.findByCssSelector(this.selectors.newInput)
 			.setFindTimeout(100);

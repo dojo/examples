@@ -5,12 +5,11 @@
 	<meta name="theme-color" content="#222127">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://rawgit.com/webcomponents/custom-elements/master/src/native-shim.js"></script>
-	<script src="https://rawgit.com/webcomponents/html-imports/master/html-imports.min.js"></script>
 	<script src="https://rawgit.com/webcomponents/custom-elements/master/custom-elements.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" />
-	<link rel="import" href="./menu/menu.html" />
-	<link rel="import" href="./menu-item/menu-item.html" />
+	<link rel="stylesheet" href="menu/menu-1.0.0.css" />
+	<link rel="stylesheet" href="menu-item/menu-item-1.0.0.css" />
 	<style>
 
 		.menu-container {
@@ -46,7 +45,6 @@
 		}
 
 	</style>
-</head>
 <body>
 	<div class="main-container">
 		<div class="container">
@@ -80,10 +78,11 @@ class Example extends WidgetBase {
 				<demo-menu id="menu">
 					<demo-menu-item id="a" title="Menu Item A"></demo-menu-item>
 					<demo-menu-item id="b" title="Menu Item B"></demo-menu-item>
-					<demo-menu-item id="c" title="Menu Item C" selected></demo-menu-item>
+					<demo-menu-item id="c" title="Menu Item C"></demo-menu-item>
 				</demo-menu>
 			</div>
 			<script>
+				c.selected = true;
 				a.data = { foo: 'bar' };
 				menu.addEventListener('selected', function(event) {
 					const detail = event.detail;
@@ -96,9 +95,10 @@ class Example extends WidgetBase {
 &lt;demo-menu id=&quot;menu&quot;&gt;
   &lt;demo-menu-item id=&quot;a&quot; title=&quot;Menu Item A&quot;&gt;&lt;/demo-menu-item&gt;
   &lt;demo-menu-item id=&quot;b&quot; title=&quot;Menu Item B&quot;&gt;&lt;/demo-menu-item&gt;
-  &lt;demo-menu-item id=&quot;c&quot; title=&quot;Menu Item C&quot; selected&gt;&lt;/demo-menu-item&gt;
+  &lt;demo-menu-item id=&quot;c&quot; title=&quot;Menu Item C&quot;&gt;&lt;/demo-menu-item&gt;
 &lt;/demo-menu&gt;
 &lt;script&gt;
+  c.selected = true;
   a.data = { foo: 'bar' };
   menu.addEventListener('selected', function(event) {
     const detail = event.detail;
@@ -109,6 +109,8 @@ class Example extends WidgetBase {
 			</pre>
 		</div>
 	</div>
+	<script src="menu/menu-1.0.0.js"></script>
+	<script src="menu-item/menu-item-1.0.0.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/typescript.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>

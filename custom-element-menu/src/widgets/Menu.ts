@@ -1,8 +1,9 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
+import { customElement } from '@dojo/widget-core/decorators/customElement';
 import { WNode } from '@dojo/widget-core/interfaces';
-import { MenuItem, MenuItemProperties } from './MenuItem';
+import { MenuItem } from './MenuItem';
 
 import * as css from './styles/menu.m.css';
 
@@ -11,6 +12,10 @@ interface MenuProperties {
 }
 
 @theme(css)
+@customElement<MenuProperties>({
+	tag: 'demo-menu',
+	events: ['onSelected']
+})
 export class Menu extends ThemedMixin(WidgetBase)<MenuProperties, WNode<MenuItem>> {
 
 	private _selectedId: number;
@@ -24,7 +29,7 @@ export class Menu extends ThemedMixin(WidgetBase)<MenuProperties, WNode<MenuItem
 	render() {
 		const items = this.children.map((child, index) => {
 			if (child) {
-				const properties: Partial<MenuItemProperties> = {
+				const properties: Partial<any> = {
 					onSelected: (data: any) => {
 						this._onSelected(index, data);
 					}
@@ -44,3 +49,5 @@ export class Menu extends ThemedMixin(WidgetBase)<MenuProperties, WNode<MenuItem
 		]);
 	}
 }
+
+export default Menu;
