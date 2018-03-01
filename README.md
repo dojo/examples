@@ -27,7 +27,7 @@ The latest version(s) will now be available [on github pages](https://dojo.githu
 
 ## Features
 
-There current examples are:
+The current examples are:
 
 - [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built with current Dojo 2 packages.
 - [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built Dojo 2 packages.
