@@ -28,7 +28,7 @@ const menu = getCustomElement('dojoToolbar');
 menu.collapseWidth = 700;
 menu.fixed = true;
 menu.menuTitle = 'Menu';
-menu.title = 'Dojo 2 Widget Showcase';
+menu.title = 'Dojo 2 Custom Element Showcase';
 
 // Split Pane
 const splitpane = getCustomElement('dojoSplitPane');
@@ -70,11 +70,12 @@ themes.forEach((theme) => {
 		selectedRadio = radio;
 	}
 	radio.addEventListener('change', (event) => {
-		debugger;
-		window.dojoce.theme = event.detail[0];
-		selectedRadio!.checked = false;
-		radio.checked = true;
-		selectedRadio = radio;
+		if (event.detail) {
+			window.dojoce.theme = event.detail[0];
+			selectedRadio!.checked = false;
+			radio.checked = true;
+			selectedRadio = radio;
+		}
 	});
 	radio.setAttribute('label', theme);
 	radio.setAttribute('value', theme);
@@ -138,13 +139,13 @@ const disabledIconButton = getCustomElement('dojoDisabledIconButton');
 const disabledPopupButton = getCustomElement('dojoDisabledPopupButton');
 const disabledToggleButton = getCustomElement('dojoDisabledToggleButton');
 
+toggleButton.addEventListener('click', () => {
+	popupButton.pressed = !popupButton.pressed;
+});
 popupButton.popup = {
 	expanded: false,
 	id: 'dojoPopupButton'
 };
-popupButton.addEventListener('click', () => {
-	popupButton.pressed = !popupButton.pressed;
-});
 
 disabledBasicButton.disabled = true;
 disabledIconButton.disabled = true;
@@ -175,10 +176,30 @@ disabledCheckbox.disabled = true;
 // Text Input Widgets
 inputsTab.label = "Text Input Widgets";
 
+const textInput = getCustomElement('dojoTextInput');
 const requiredInput = getCustomElement('dojoRequiredTextInput');
+const emailInput = getCustomElement('dojoEmailTextInput');
 const disabledInput = getCustomElement('dojoDisabledTextInput');
 const twitterInput = getCustomElement('dojoTwitterEnhancedInput');
 const priceInput = getCustomElement('dojoPriceEnhancedInput');
+
+textInput.addEventListener('input', (event) => {
+	if (event.detail) {
+		textInput.setAttribute('value', event.detail[0]);
+	}
+});
+
+requiredInput.addEventListener('input', (event) => {
+	if (event.detail) {
+		requiredInput.setAttribute('value', event.detail[0]);
+	}
+});
+
+emailInput.addEventListener('input', (event) => {
+	if (event.detail) {
+		emailInput.setAttribute('value', event.detail[0]);
+	}
+});
 
 requiredInput.required = true;
 disabledInput.value = "Initial Value";
@@ -188,6 +209,19 @@ disabledInput.readOnly = true;
 twitterInput.addonBefore = [ '@' ];
 priceInput.addonBefore = [ '$' ];
 priceInput.addonAfter = [ '.00' ];
+
+twitterInput.addEventListener('input', (event) => {
+	if (event.detail) {
+		twitterInput.setAttribute('value', event.detail[0]);
+	}
+});
+
+priceInput.addEventListener('input', (event) => {
+	if (event.detail) {
+		priceInput.setAttribute('value', event.detail[0]);
+	}
+});
+
 
 const timePicker = getCustomElement('dojoBasicTimePicker');
 
@@ -199,7 +233,9 @@ timePicker.step = 1800;
 timePicker.value = '10:30';
 timePicker.options = undefined;
 timePicker.addEventListener('change', (event) => {
-	timePicker.value = event.detail[0].value;
+	if (event.detail) {
+		timePicker.value = event.detail[0].value;
+	}
 });
 
 textareaTab.label = "Text Area";

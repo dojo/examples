@@ -6,26 +6,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="custom-elements/src/native-shim.js"></script>
 		<script src="custom-elements/custom-elements.min.js"></script>
-		<link rel="stylesheet" href="widgets/split-pane/split-pane-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/tab-controller/tab-controller-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/tab/tab-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/button/button-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/text-input/text-input-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/accordion-pane/accordion-pane-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/toolbar/toolbar-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/dialog/dialog-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/calendar/calendar-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/title-pane/title-pane-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/text-area/text-area-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/slider/slider-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/label/label-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/checkbox/checkbox-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/select/select-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/progress/progress-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/radio/radio-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/time-picker/time-picker-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="widgets/enhanced-text-input/enhanced-text-input-0.4.3-rc.1.css"/>
-		<link rel="stylesheet" href="themes/dojo/dojo-0.1.4-pre.css">
+		<link rel="stylesheet" href="widgets/split-pane/split-pane-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/tab-controller/tab-controller-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/tab/tab-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/button/button-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/text-input/text-input-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/accordion-pane/accordion-pane-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/toolbar/toolbar-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/dialog/dialog-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/calendar/calendar-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/title-pane/title-pane-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/text-area/text-area-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/slider/slider-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/label/label-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/checkbox/checkbox-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/select/select-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/progress/progress-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/radio/radio-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/time-picker/time-picker-0.5.0.css"/>
+		<link rel="stylesheet" href="widgets/enhanced-text-input/enhanced-text-input-0.5.0.css"/>
+		<link rel="stylesheet" href="themes/dojo/dojo-0.2.0.css">
 		<style>
 			html,
 			body {
@@ -47,26 +47,7 @@
 		</style>
 	</head>
 	<body>
-		<script async src="widgets/calendar/calendar-0.4.3-rc.1.js"></script>
-		<script async src="widgets/button/button-0.4.3-rc.1.js"></script>
-		<script async src="widgets/text-input/text-input-0.4.3-rc.1.js"></script>
-		<script async src="widgets/tab/tab-0.4.3-rc.1.js"></script>
-		<script async src="widgets/tab-controller/tab-controller-0.4.3-rc.1.js"></script>
-		<script async src="widgets/text-area/text-area-0.4.3-rc.1.js"></script>
-		<script async src="widgets/slider/slider-0.4.3-rc.1.js"></script>
-		<script async src="widgets/select/select-0.4.3-rc.1.js"></script>
-		<script async src="widgets/title-pane/title-pane-0.4.3-rc.1.js"></script>
-		<script async src="widgets/dialog/dialog-0.4.3-rc.1.js"></script>
-		<script async src="widgets/accordion-pane/accordion-pane-0.4.3-rc.1.js"></script>
-		<script async src="widgets/split-pane/split-pane-0.4.3-rc.1.js"></script>
-		<script async src="widgets/toolbar/toolbar-0.4.3-rc.1.js"></script>
-		<script async src="widgets/label/label-0.4.3-rc.1.js"></script>
-		<script async src="widgets/progress/progress-0.4.3-rc.1.js"></script>
-		<script async src="widgets/radio/radio-0.4.3-rc.1.js"></script>
-		<script async src="widgets/checkbox/checkbox-0.4.3-rc.1.js"></script>
-		<script async src="widgets/enhanced-text-input/enhanced-text-input-0.4.3-rc.1.js"></script>
-		<script async src="widgets/time-picker/time-picker-0.4.3-rc.1.js"></script>
-		<script src="themes/dojo/dojo-0.1.4-pre.js"></script>
+		<script src="themes/dojo/dojo-0.2.0.js"></script>
 		<script>
 			window.dojoce.theme = '';
 		</script>
@@ -106,9 +87,9 @@
 					<dojo-tab id="dojoTabInputs">
 						<div>
 							<h2>Text Input</h2>
-							<dojo-text-input class="ce-layout ce-block" label="Plain Text Input"></dojo-text-input>
+							<dojo-text-input class="ce-layout ce-block" id="dojoTextInput" label="Plain Text Input"></dojo-text-input>
 							<dojo-text-input class="ce-layout ce-block" id="dojoRequiredTextInput" placeholder="World" label="Required Text Input"></dojo-text-input>
-							<dojo-text-input class="ce-layout ce-block" id="dojoEmailTextInput" label="Email Text Input" type="email" placeholder="Email Address"></dojo-text-input>
+							<dojo-text-input class="ce-layout ce-block" id="dojoEmailTextInput" label="Email Text Input" type="email" type="email" placeholder="Email Address"></dojo-text-input>
 							<dojo-text-input class="ce-layout ce-block" id="dojoDisabledTextInput" label="Disabled Text Input"></dojo-text-input>
 							<h2>Enhanced Text Input</h2>
 							<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoTwitterEnhancedInput" label="Twitter Username" placeholder="username"></dojo-enhanced-text-input>
@@ -165,6 +146,25 @@
 				</dojo-tab-controller>
 			</dojo-split-pane>
 		</dojo-toolbar>
+		<script async src="widgets/calendar/calendar-0.5.0.js"></script>
+		<script async src="widgets/button/button-0.5.0.js"></script>
+		<script async src="widgets/text-input/text-input-0.5.0.js"></script>
+		<script async src="widgets/tab/tab-0.5.0.js"></script>
+		<script async src="widgets/tab-controller/tab-controller-0.5.0.js"></script>
+		<script async src="widgets/text-area/text-area-0.5.0.js"></script>
+		<script async src="widgets/slider/slider-0.5.0.js"></script>
+		<script async src="widgets/select/select-0.5.0.js"></script>
+		<script async src="widgets/title-pane/title-pane-0.5.0.js"></script>
+		<script async src="widgets/dialog/dialog-0.5.0.js"></script>
+		<script async src="widgets/accordion-pane/accordion-pane-0.5.0.js"></script>
+		<script async src="widgets/split-pane/split-pane-0.5.0.js"></script>
+		<script async src="widgets/toolbar/toolbar-0.5.0.js"></script>
+		<script async src="widgets/label/label-0.5.0.js"></script>
+		<script async src="widgets/progress/progress-0.5.0.js"></script>
+		<script async src="widgets/radio/radio-0.5.0.js"></script>
+		<script async src="widgets/checkbox/checkbox-0.5.0.js"></script>
+		<script async src="widgets/enhanced-text-input/enhanced-text-input-0.5.0.js"></script>
+		<script async src="widgets/time-picker/time-picker-0.5.0.js"></script>
 		<script async src="show-case.js"></script>
 	</body>
 </html>

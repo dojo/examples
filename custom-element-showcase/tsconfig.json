@@ -12,7 +12,7 @@
 		],
 		"module": "umd",
 		"moduleResolution": "node",
-		"outDir": "_build/",
+		"outDir": "dist/",
 		"removeComments": false,
 		"sourceMap": true,
 		"strict": true,

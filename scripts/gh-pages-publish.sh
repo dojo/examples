@@ -20,6 +20,7 @@ then
 	buildProject "todo-mvc-tsx"
 	buildProject "widget-showcase"
 	buildProject "custom-element-menu"
+	buildProject "custom-element-showcase"
 
 	export PROJECT_DIR="auto-deploy"
 
@@ -31,6 +32,7 @@ then
 	mkdir samples/todo-mvc-tsx
 	mkdir samples/widget-showcase
 	mkdir samples/custom-element-menu
+	mkdir samples/custom-element-showcase
 
 	cp index.html samples/index.html
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
@@ -38,6 +40,7 @@ then
 	cp -r todo-mvc-tsx/output/dist/* samples/todo-mvc-tsx
 	cp -r widget-showcase/output/dist/* samples/widget-showcase
 	cp -r custom-element-menu/dist/* samples/custom-element-menu
+	cp -r custom-element-showcase/dist/* samples/custom-element-showcase
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 
