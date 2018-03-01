@@ -1,7 +1,7 @@
 import { v, w,  } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { DNode } from '@dojo/widget-core/interfaces';
-import SplitPane, { Direction } from '@dojo/widgets/splitpane/SplitPane';
+import SplitPane, { Direction } from '@dojo/widgets/split-pane';
 
 interface SplitterProperties {
 	leading: DNode;

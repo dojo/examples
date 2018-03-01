@@ -1,7 +1,7 @@
 import { w, v } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Tabs from './widgets/Tabs';
-import Toolbar from '@dojo/widgets/toolbar/Toolbar';
+import Toolbar from '@dojo/widgets/toolbar';
 import Splitter from './widgets/Splitter';
 import Accordion, { AccordionProperties } from './widgets/Accordion';
 

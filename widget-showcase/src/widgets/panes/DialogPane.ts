@@ -1,7 +1,7 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Button from '@dojo/widgets/button/Button';
-import Dialog from '@dojo/widgets/dialog/Dialog';
+import Button from '@dojo/widgets/button';
+import Dialog from '@dojo/widgets/dialog';
 
 export default class DialogPane extends WidgetBase {
 	private _dialogOpen = false;

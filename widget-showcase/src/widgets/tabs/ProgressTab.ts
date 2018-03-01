@@ -1,6 +1,6 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Progress from '@dojo/widgets/progress/Progress';
+import Progress from '@dojo/widgets/progress';
 
 export default class ProgressTab extends WidgetBase {
 	private _customOutputMax = 750;

@@ -1,6 +1,6 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Select from '@dojo/widgets/select/Select';
+import Select from '@dojo/widgets/select';
 
 export default class SelectTab extends WidgetBase {
 

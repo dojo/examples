@@ -1,6 +1,6 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Radio from '@dojo/widgets/radio/Radio';
+import Radio from '@dojo/widgets/radio';
 
 export interface ThemePaneProperties {
 	themes: string[];
@@ -10,9 +10,8 @@ export interface ThemePaneProperties {
 
 export default class ThemePane extends WidgetBase<ThemePaneProperties> {
 
-	private _radioChange(event: Event) {
+	private _radioChange(value: string) {
 		const { onThemeChange } = this.properties;
-		const value = (event.target as HTMLInputElement).value;
 		onThemeChange(value);
 	}
 

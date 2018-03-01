@@ -1,17 +1,12 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import TimePicker, { TimeUnits } from '@dojo/widgets/timepicker/TimePicker';
-import TextInput from '@dojo/widgets/textinput/TextInput';
-import EnhancedTextInput from '@dojo/widgets/enhancedtextinput/EnhancedTextInput';
+import TimePicker, { TimeUnits } from '@dojo/widgets/time-picker';
+import TextInput from '@dojo/widgets/text-input';
+import EnhancedTextInput from '@dojo/widgets/enhanced-text-input';
 
 export default class TextInputTab extends WidgetBase {
 	private _timePickerOptions: TimeUnits[];
 	private _timePickerValue = '10:30';
-
-	private _onRequestOptions(value: string, options: TimeUnits[]) {
-		this._timePickerOptions = options;
-		this.invalidate();
-	}
 
 	private _onSetValue(value: string) {
 		this._timePickerValue = value;
@@ -66,7 +61,6 @@ export default class TextInputTab extends WidgetBase {
 				w(TimePicker, {
 					clearable: true,
 					end: '23:59',
-					onRequestOptions: this._onRequestOptions,
 					label: 'Basic time picker',
 					onChange: this._onSetValue,
 					options: this._timePickerOptions,
@@ -77,7 +71,6 @@ export default class TextInputTab extends WidgetBase {
 				w(TimePicker, {
 					clearable: true,
 					end: '23:59',
-					onRequestOptions: this._onRequestOptions,
 					label: 'Basic time picker (native)',
 					onChange: this._onSetValue,
 					options: this._timePickerOptions,
@@ -90,7 +83,6 @@ export default class TextInputTab extends WidgetBase {
 					clearable: true,
 					disabled: true,
 					end: '23:59',
-					onRequestOptions: this._onRequestOptions,
 					label: 'Disabled time picker',
 					onChange: this._onSetValue,
 					options: this._timePickerOptions,
@@ -102,7 +94,6 @@ export default class TextInputTab extends WidgetBase {
 					clearable: true,
 					disabled: true,
 					end: '23:59',
-					onRequestOptions: this._onRequestOptions,
 					label: 'Disabled time picker (native)',
 					onChange: this._onSetValue,
 					options: this._timePickerOptions,

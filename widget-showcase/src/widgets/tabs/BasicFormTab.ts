@@ -1,8 +1,8 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import Button from '@dojo/widgets/button/Button';
-import Checkbox, { Mode } from '@dojo/widgets/checkbox/Checkbox';
-import Radio from '@dojo/widgets/radio/Radio';
+import Button from '@dojo/widgets/button';
+import Checkbox, { Mode } from '@dojo/widgets/checkbox';
+import Radio from '@dojo/widgets/radio';
 import * as css from '../../styles/basicFormTab.m.css';
 import * as iconCss from '@dojo/widgets/theme/common/icons.m.css'
 
@@ -22,8 +22,7 @@ export default class BasicFormTab extends WidgetBase {
 		this.invalidate();
 	}
 
-	private _radioChange(event: Event) {
-		const value = (event.target as HTMLInputElement).value;
+	private _radioChange(value: string) {
 		this._selectedRadio = value;
 		this.invalidate();
 	}
