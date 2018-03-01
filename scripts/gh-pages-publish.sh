@@ -21,6 +21,7 @@ then
 	buildProject "widget-showcase"
 	buildProject "custom-element-menu"
 	buildProject "custom-element-showcase"
+	buildProject "realworld"
 
 	export PROJECT_DIR="auto-deploy"
 
@@ -33,6 +34,7 @@ then
 	mkdir samples/widget-showcase
 	mkdir samples/custom-element-menu
 	mkdir samples/custom-element-showcase
+	mkdir samples/realworld
 
 	cp index.html samples/index.html
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
@@ -41,6 +43,7 @@ then
 	cp -r widget-showcase/output/dist/* samples/widget-showcase
 	cp -r custom-element-menu/output/dist/* samples/custom-element-menu
 	cp -r custom-element-showcase/dist/* samples/custom-element-showcase
+	cp -r realworld/output/dist/* samples/realworld
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 
