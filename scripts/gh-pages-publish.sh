@@ -39,7 +39,7 @@ then
 	cp -r todo-mvc-kitchensink/output/dist/* samples/todo-mvc-kitchensink
 	cp -r todo-mvc-tsx/output/dist/* samples/todo-mvc-tsx
 	cp -r widget-showcase/output/dist/* samples/widget-showcase
-	cp -r custom-element-menu/dist/* samples/custom-element-menu
+	cp -r custom-element-menu/output/dist/* samples/custom-element-menu
 	cp -r custom-element-showcase/dist/* samples/custom-element-showcase
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
