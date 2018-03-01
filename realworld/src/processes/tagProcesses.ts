@@ -10,4 +10,4 @@ const getTagsCommand = commandFactory(async ({ path }) => {
 	return [replace(path('tags'), json.tags)];
 });
 
-export const getTagsProcess = createProcess([getTagsCommand]);
+export const getTagsProcess = createProcess('get-tags', [getTagsCommand]);

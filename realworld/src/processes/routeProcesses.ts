@@ -16,4 +16,4 @@ const changeRouteCommand = commandFactory<ChangeRoutePayload>(({ path, payload: 
 	];
 });
 
-export const changeRouteProcess = createProcess([changeRouteCommand]);
+export const changeRouteProcess = createProcess('change-route', [changeRouteCommand]);

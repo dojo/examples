@@ -51,10 +51,10 @@ const updateUserSettingsCommand = commandFactory(async ({ path, get }) => {
 	];
 });
 
-export const getUserSettingsProcess = createProcess([startUserSettingsCommand, getUserSettingsCommand]);
-export const updateUserSettingsProcess = createProcess([updateUserSettingsCommand]);
-export const usernameInputProcess = createProcess([usernameInputCommand]);
-export const emailInputProcess = createProcess([emailInputCommand]);
-export const passwordInputProcess = createProcess([passwordInputCommand]);
-export const bioInputProcess = createProcess([bioInputCommand]);
-export const imageUrlInputProcess = createProcess([imageUrlInputCommand]);
+export const getUserSettingsProcess = createProcess('user-settings', [startUserSettingsCommand, getUserSettingsCommand]);
+export const updateUserSettingsProcess = createProcess('update-user-settings', [updateUserSettingsCommand]);
+export const usernameInputProcess = createProcess('username-input', [usernameInputCommand]);
+export const emailInputProcess = createProcess('email-input', [emailInputCommand]);
+export const passwordInputProcess = createProcess('password-input', [passwordInputCommand]);
+export const bioInputProcess = createProcess('bio-input', [bioInputCommand]);
+export const imageUrlInputProcess = createProcess('image-url-input', [imageUrlInputCommand]);

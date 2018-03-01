@@ -80,12 +80,12 @@ const publishArticleCommand = commandFactory(async ({ get, path }) => {
 	];
 });
 
-export const titleInputProcess = createProcess([titleInputCommand]);
-export const descInputProcess = createProcess([descriptionInputCommand]);
-export const bodyInputProcess = createProcess([bodyInputCommand]);
-export const tagInputProcess = createProcess([tagInputCommand]);
-export const addTagProcess = createProcess([addTagCommand, clearTagInputCommand]);
-export const removeTagProcess = createProcess([removeTagCommand]);
-export const getEditorArticleProcess = createProcess([getArticleForEditorCommand]);
-export const publishArticleProcess = createProcess([startPublishCommand, publishArticleCommand]);
-export const clearEditorProcess = createProcess([clearEditorCommand]);
+export const titleInputProcess = createProcess('title-input', [titleInputCommand]);
+export const descInputProcess = createProcess('desc-input', [descriptionInputCommand]);
+export const bodyInputProcess = createProcess('body-input', [bodyInputCommand]);
+export const tagInputProcess = createProcess('tag-input', [tagInputCommand]);
+export const addTagProcess = createProcess('add-tag', [addTagCommand, clearTagInputCommand]);
+export const removeTagProcess = createProcess('remove-tag', [removeTagCommand]);
+export const getEditorArticleProcess = createProcess('get-editor-article', [getArticleForEditorCommand]);
+export const publishArticleProcess = createProcess('publish-article', [startPublishCommand, publishArticleCommand]);
+export const clearEditorProcess = createProcess('clear-editor', [clearEditorCommand]);

@@ -128,10 +128,10 @@ const deleteArticleCommand = commandFactory<SlugPayload>(async ({ get, path, pay
 	return [replace(path('routing', 'outlet'), 'home')];
 });
 
-export const getArticleProcess = createProcess([startLoadingArticleCommand, [loadArticleCommand, loadCommentsCommand]]);
-export const deleteCommentProcess = createProcess([deleteCommentCommand]);
-export const addCommentProcess = createProcess([addCommentCommand]);
-export const newCommentInputProcess = createProcess([newCommentInputCommand]);
-export const favoriteArticleProcess = createProcess([favoriteArticleCommand]);
-export const followUserProcess = createProcess([followUserCommand]);
-export const deleteArticleProcess = createProcess([deleteArticleCommand]);
+export const getArticleProcess = createProcess('get-article', [startLoadingArticleCommand, [loadArticleCommand, loadCommentsCommand]]);
+export const deleteCommentProcess = createProcess('delete-comment', [deleteCommentCommand]);
+export const addCommentProcess = createProcess('add-comment', [addCommentCommand]);
+export const newCommentInputProcess = createProcess('new-comment-input', [newCommentInputCommand]);
+export const favoriteArticleProcess = createProcess('fav-article', [favoriteArticleCommand]);
+export const followUserProcess = createProcess('follow-user', [followUserCommand]);
+export const deleteArticleProcess = createProcess('delete-article', [deleteArticleCommand]);

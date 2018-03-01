@@ -119,12 +119,12 @@ const logoutCommand = commandFactory(({ path }) => {
 	return [replace(path('routing', 'outlet'), 'home'), replace(path('user'), {})];
 });
 
-export const loginProcess = createProcess([startLoginCommand, loginCommand, clearLoginInputs]);
-export const registerProcess = createProcess([startRegisterCommand, registerCommand, clearRegisterInputs]);
-export const loginEmailInputProcess = createProcess([loginEmailInputCommand]);
-export const loginPasswordInputProcess = createProcess([loginPasswordInputCommand]);
-export const registerEmailInputProcess = createProcess([registerEmailInputCommand]);
-export const registerPasswordInputProcess = createProcess([registerPasswordInputCommand]);
-export const registerUsernameInputProcess = createProcess([registerUsernameInputCommand]);
-export const setSessionProcess = createProcess([setSessionCommand]);
-export const logoutProcess = createProcess([logoutCommand]);
+export const loginProcess = createProcess('login', [startLoginCommand, loginCommand, clearLoginInputs]);
+export const registerProcess = createProcess('register', [startRegisterCommand, registerCommand, clearRegisterInputs]);
+export const loginEmailInputProcess = createProcess('login-email-input', [loginEmailInputCommand]);
+export const loginPasswordInputProcess = createProcess('login-password-input', [loginPasswordInputCommand]);
+export const registerEmailInputProcess = createProcess('register-email-input', [registerEmailInputCommand]);
+export const registerPasswordInputProcess = createProcess('register-password-input', [registerPasswordInputCommand]);
+export const registerUsernameInputProcess = createProcess('register-username-input', [registerUsernameInputCommand]);
+export const setSessionProcess = createProcess('set-session', [setSessionCommand]);
+export const logoutProcess = createProcess('logout', [logoutCommand]);

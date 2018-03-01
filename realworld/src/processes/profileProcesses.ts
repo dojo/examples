@@ -35,5 +35,5 @@ const getProfileCommand = commandFactory<UsernamePayload>(async ({ get, path, pa
 	];
 });
 
-export const getProfileProcess = createProcess([startGetProfileCommand, getProfileCommand]);
-export const followUserProcess = createProcess([followUserCommand]);
+export const getProfileProcess = createProcess('get-profile', [startGetProfileCommand, getProfileCommand]);
+export const followUserProcess = createProcess('follow-user', [followUserCommand]);

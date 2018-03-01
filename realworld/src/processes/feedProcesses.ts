@@ -78,5 +78,5 @@ const favoriteFeedArticleCommand = commandFactory<FavoriteArticlePayload>(
 	}
 );
 
-export const fetchFeedProcess = createProcess([startFetchingFeedCommand, fetchFeedCommand]);
-export const favoriteFeedArticleProcess = createProcess([favoriteFeedArticleCommand]);
+export const fetchFeedProcess = createProcess('fetch-feed', [startFetchingFeedCommand, fetchFeedCommand]);
+export const favoriteFeedArticleProcess = createProcess('fav-feed-article', [favoriteFeedArticleCommand]);
