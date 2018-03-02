@@ -1,186 +1,128 @@
+<!DOCTYPE html>
 <html>
-	<!DOCTYPE html>
 	<head>
-		<script src="https://use.fontawesome.com/f0f61fe257.js"></script>
-		<style media="screen">
-			html, body {
-				margin: 0;
-				width: 100%;
-				height: 100%;
-				font-family: Lato, sans-serif;
-			}
-			h1, h2, h3 {
-				margin: 0;
-				font-weight: normal;
-			}
-			.row {
-				max-width: 1150px;
-				margin: 0 auto;
-			}
-			nav {
-				height: 86px;
-				background: #fff;
-			}
-			ul {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				 display: inline-block;
-			}
-			nav ul li {
-				line-height: 86px;
-				font-size: 15px;
-				margin-left: 30px;
-			}
-			a {
-				text-decoration: none;
-			}
-			nav a {
-				text-transform: uppercase;
-				color: #f02541;
-			}
-			nav img {
-				position: relative;
-				top: 24px;
-				height: 46px;
-			}
-			.pull-right {
-				float: right;
-			}
-			.heading {
-				text-align: center;
-				background: linear-gradient(141deg,#fc5b3a 0,#f02541 100%);
-				color: #fff;
-				padding: 3rem 0 1.5rem;
-			}
-			.heading h1 {
-				color: #fff;
-				font-size: 67.5px;
-				font-weight: 300;
-				margin: 0 0 1rem;
-			}
-			a.download {
-				font-weight: bold;
-				padding: 15px 60px;
-				margin: 40px 0px;
-				border: 2px solid #fff;
-				border-radius: 40px;
-				color: #fff;
-				display: inline-block;
-				text-transform: uppercase;
-				transition: background .3s,color .3s;
-			}
-			.download:hover {
-				background: #fff;
-				color: #f02541;
-			}
-			p {
-				font-family: Merriweather, serif;
-				font-size: 20px;
-			}
-			.examples {
-				background: #353535;
-				padding: 2rem;
-				text-align: center;
-				color: #fff;
-			}
-			.examples h2 {
-				color: #fc5b3a;
-				font-size: 22.5px;
-				text-transform: uppercase;
-				margin-bottom: 40px;
-			}
-			.examples ul li {
-				display: inline-block;
-				max-width: 250px;
-				border: 2px solid #fff;
-				border-radius: 20px;
-				margin: 0 10px;
-				height: 210px;
-				box-sizing: border-box;
-				overflow: hidden;
-			}
-			.examples ul li a {
-				color: #fff;
-				display: block;
-				padding: 20px;
-			}
-			.examples h3 {
-				margin: 10px 0;
-				text-transform: uppercase;
-			}
-		</style>
+		<meta charset="utf-8">
+		<title>Examples | Dojo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Dojo">
+		<meta property="og:url" content="https://dojo.github.io/index.html">
+		<meta property="og:site_name" content="Dojo">
+		<meta property="og:locale" content="en">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Dojo">
+		<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+		<link rel="icon" href="https://dojo.io/images/favicons/favicon.ico">
+		<link rel="stylesheet" href="https://dojo.io/css/main.css">
+
+		<link rel="stylesheet" href="https://dojo.io/css/prism-ghcolors.css" type="text/css">
 	</head>
-	<body>
-		<nav>
-			<div class="row">
-				<img src="https://dojotoolkit.org/documentation/tutorials/1.10/gfx/images/gfxlogo.png">
-				<ul class='pull-right'>
-					<li><a href='http://dojotoolkit.org/download' target="blank">get dojo</a></li>
-					<li><a href='http://dojotoolkit.org/documentation' target="blank">docs</a></li>
-					<li><a href='http://dojotoolkit.org/community' target="blank">community</a></li>
-					<li><a href='http://dojotoolkit.org/community/roadmap' target="blank">roadmap</a></li>
-					<li><a href='http://dojotoolkit.org/blog' target="blank">blog</a></li>
-				</ul>
+
+	<body class="body-front-page">
+		<div class="page-wrapper">
+			<header class="header">
+				<div class="container">
+					<nav class="navbar">
+						<div class="navbar-brand">
+							<a href="https://dojo.io/" class="navbar-item"><img src="https://dojo.io/images/logos/dojo2-logo-white.svg" class="site-logo" alt="Dojo"></a>
+							<div class="navbar-burger">
+								<span></span>
+								<span></span>
+								<span></span>
+							</div>
+						</div>
+						<div class="navbar-menu">
+							<div class="navbar-start"></div>
+							<div class="navbar-end">
+								<a class="navbar-item" href="https://dojo.io/docs/fundamentals/accessibility/index.html">Docs</a>
+								<a class="navbar-item" href="https://dojo.io/tutorials">Tutorials</a>
+								<a class="navbar-item" href="https://dojo.io/cookbook/modern-web-apps/efficient-state-management.html">Cookbook</a>
+								<a class="navbar-item" href="https://dojo.io/blog">Blog</a>
+								<a class="navbar-item" href="https://github.com/dojo/meta/"><span class="icon is-medium"><i class="fa fa-github" aria-hidden="true"></i></span></a>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</header>
+
+			<div class="content-wrapper">
+				<div class="page-content">
+					<div class="bodyContainer">
+						<section class="features container">
+							<div class="typescript feature">
+								<div class="icon">
+									<img src="https://dojo.io/images/icon-routing.svg" alt="ToDoMVC">
+								</div>
+								<h4>
+									TodoMVC
+								</h4>
+								<p>
+									<a href="./todo-mvc/">A Dojo 2 implementation of TodoMVC</a><br>
+									<a href="./todo-mvc-tsx/">TSX variant</a><br>
+									<a href="./todo-mvc-kitchensink/">Feature-rich variant</a>
+								</p>
+							</div>
+							<div class="widget-authoring feature">
+								<div class="icon">
+									<img src="https://dojo.io/images/icon-widget-authoring.svg" alt="widget authoring">
+								</div>
+								<h4>
+									Widgets and Custom Elements
+								</h4>
+								<p>
+									<a href="./widget-showcase/">Dojo 2 widget showcase</a><br>
+									<a href="./custom-element-showcase/">Custom elements variant</a><br>
+									<a href="./custom-element-menu/">Custom Elements Menu Demo</a>
+								</p>
+							</div>
+							<div class="routing feature">
+								<div class="icon">
+									<img src="https://dojo.io/images/icon-routing.svg" alt="routing">
+								</div>
+								<h4>
+									Other Apps
+								</h4>
+								<p>
+									<a href="./realworld">Dojo 2 RealWorld</a><br>
+									<a href="https://dojo-2-hnpwa-d668d.firebaseapp.com/">Dojo 2 HNPWA</a>
+								</p>
+							</div>
+						</section>
+
+						<section class="links">
+							<div class="container">
+								<h2>
+									Build with Dojo
+								</h2>
+								<a class="reference-guide" href="https://dojo.io/docs">
+									Reference Guide
+								</a>
+								<a class="tutorials" href="https://dojo.io/tutorials">
+									Tutorials
+								</a>
+								<!--<a class="api" href="https://dojo.io/api">
+									API Docs
+								</a>-->
+							</div>
+							<div class="bottom-border"></div>
+						</section>
+					</div>
+				</div>
+				<footer class="footer">
+					<div class="container">
+						<div class="info">
+							<span class="is-size-7">&copy; 2018 JS Foundation, All Rights Reserved.</span>
+						</div>
+						<div class="link-container">
+							<div class="links">
+								<a href="https://twitter.com/dojo" class="twitter"></a>
+								<a href="https://github.com/dojo" class="github"></a>
+							</div>
+						</div>
+					</div>
+				</footer>
 			</div>
-		</nav>
-		<section class="heading">
-			<div class="row">
-				<h1>Dojo 2 Examples</h1>
-				<p>Use these examples to learn about the Dojo 2 toolkit and to get started with your own app</p>
-				<a href="https://github.com/dojo/meta" class="download" target='blank'>Get Dojo</a>
-			</div>
-		</section>
-		<section class="examples">
-			<div class="row">
-				<h2>Examples</h2>
-				<ul>
-					<li>
-						<a href="./todo-mvc/">
-							<i class="fa fa-check-square-o fa-3x"></i>
-							<h3>TodoMVC</h3>
-							<p>A Dojo 2 implementation of TodoMVC</p>
-						</a>
-					</li>
-					<li>
-						<a href="./todo-mvc-kitchensink/">
-							<i class="fa fa-wrench fa-3x"></i>
-							<h3>todo kitchen sink</h3>
-							<p>A more feature-rich TodoMVC implementation</p>
-						</a>
-					</li>
-					<li>
-						<a href="./todo-mvc-tsx/">
-							<i class="fa fa-check-square-o fa-3x"></i>
-							<h3>todo mvc tsx</h3>
-							<p>A Dojo 2 TodoMVC implementation using tsx</p>
-						</a>
-					</li>
-					<li>
-						<a href="./widget-showcase/">
-							<i class="fa fa-check-square-o fa-3x"></i>
-							<h3>Widget Showcase</h3>
-							<p>Demo of Dojo 2 widgets all on one page</p>
-						</a>
-					</li>
-					<li>
-						<a href="./custom-element-showcase/">
-							<i class="fa fa-check-square-o fa-3x"></i>
-							<h3>Custom Element Showcase</h3>
-							<p>Demo of Dojo 2 widgets as custom elements</p>
-						</a>
-					</li>
-					<li>
-						<a href="./custom-element-menu/">
-							<i class="fa fa-check-square-o fa-3x"></i>
-							<h3>Custom Element Menu Demo</h3>
-							<p>Demos using Dojo 2 widgets as custom elements</p>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</section>
+		</div>
 	</body>
 </html>
