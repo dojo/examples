@@ -37,7 +37,7 @@ dojo build
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build -w
+dojo build -w -s
 ```
 
 ## Features
@@ -47,7 +47,7 @@ This package demonstrates how to build a simple application using Dojo 2 widgets
 It is an example of:
 
 * Custom widgets using `@dojo/widget-core`
-* Applying CSS to widgets 
+* Applying CSS to widgets
 * Using `@dojo/router`
 
 ## How do I contribute?
@@ -73,4 +73,4 @@ dojo test -a
 
 ## Licensing Information
 
-© 2017 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
+© 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.

@@ -33,3 +33,7 @@ For a production build of the application:
 - `npm run build` to build the output into the `output/dist` directory.
 
 To run the tests run `npm test`
+
+## Licensing Information
+
+The Dojo-specific portions of this example are © 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.

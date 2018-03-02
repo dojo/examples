@@ -41,10 +41,10 @@ Open the `dist` directory using a local webserver.
 This package demonstrates how to use Dojo 2 widgets as a custom element.
 
 Notice `src/widgets/createMenuElement.ts` and `src/widgets/createMenuItemElement.ts` describe the custom elements.
-To build the custome elements, the `npm run build` command above first runs `dojo build` and then 
+To build the custom elements, the `npm run build` command above first runs `dojo build` and then 
 
 ```shell
-dojo build --element=src/widgets/createMenuItemElement.ts 
+dojo build --element=src/widgets/createMenuItemElement.ts
 dojo build --element=src/widgets/createMenuElement.ts
 ```
 Those CLI build commands use webpack to create bundles in the `dist` directory for each custom element.  
@@ -78,4 +78,4 @@ dojo test -a
 
 ## Licensing Information
 
-© 2017 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
+© 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.

@@ -18,13 +18,17 @@ cd examples/widget-showcase
 npm install
 ```
 
-To build the showcase simply run the dojo build.
+To run the showcase, simply run the dojo build.
 
 ```
-npm run build
+dojo build
 ```
 
-To view the showcase, open the `output/dist` directory.
+To watch and serve the application source, then run the build with the `-w` command.
+
+```
+dojo build -w -s
+```
 
 ## How do I contribute?
 
