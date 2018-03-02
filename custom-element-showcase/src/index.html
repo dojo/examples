@@ -441,6 +441,9 @@
 			var complexNativeSelect = document.getElementById('dojoComplexNativeSelect');
 
 			select.options = [ 'foo', 'bar', 'baz', 'qux' ];
+			select.addEventListener('change', function(event) {
+				select.setAttribute('value', event.detail[0]);
+			});
 			disabledSelect.disabled = true;
 			disabledSelect.options = [ 'foo', 'bar', 'baz', 'qux' ];
 			nativeSelect.options = [ 'foo', 'bar', 'baz', 'qux' ];
@@ -483,6 +486,9 @@
 			complexSelect.getOptionDisabled = getOptionDisabled;
 			complexSelect.getOptionLabel = getOptionLabel;
 			complexSelect.getOptionValue = getOptionValue;
+			complexSelect.addEventListener('change', function(event) {
+				complexSelect.setAttribute('value', event.detail[0].value);
+			});
 
 			complexNativeSelect.useNativeElement = true;
 			complexNativeSelect.options = animalOptions;
