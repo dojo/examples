@@ -24,7 +24,7 @@ To build the showcase simply run the dojo build.
 npm run build
 ```
 
-To view the showcase, open the `dist` directory.
+To view the showcase, open the `output/dist` directory.
 
 ## How do I contribute?
 
