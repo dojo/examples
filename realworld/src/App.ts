@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { w } from '@dojo/widget-core/d';
 
-import { HeaderContainer } from './containers/HeaderContainer';
+import HeaderContainer from './containers/HeaderContainer';
 import { HomeOutlet } from './outlets/HomeOutlet';
 import { LoginOutlet } from './outlets/LoginOutlet';
 import { UserProfileOutlet, FavProfileOutlet } from './outlets/ProfileOutlet';

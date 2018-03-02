@@ -1,9 +1,9 @@
-import { Container } from '@dojo/widget-core/Container';
 import { Store } from '@dojo/stores/Store';
 import { Feeds, FeedsProperties } from './../widgets/Feeds';
 import { fetchFeedProcess, favoriteFeedArticleProcess } from './../processes/feedProcesses';
 
 import { State } from './../interfaces';
+import StoreContainer from './StoreContainer';
 
 function getProperties(store: Store<State>, properties: FeedsProperties): FeedsProperties {
 	const { get, path } = store;
@@ -27,4 +27,4 @@ function getProperties(store: Store<State>, properties: FeedsProperties): FeedsP
 	};
 }
 
-export const FeedsContainer = Container(Feeds, 'state', { getProperties });
+export default StoreContainer(Feeds, 'state', { paths: [[ 'feed' ]], getProperties });

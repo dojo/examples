@@ -1,7 +1,6 @@
 import global from '@dojo/shim/global';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { Registry } from '@dojo/widget-core/Registry';
-import { Injector } from '@dojo/widget-core/Injector';
 import { Store } from '@dojo/stores/Store';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 
@@ -11,45 +10,20 @@ import { setSessionProcess } from './processes/loginProcesses';
 import { changeRouteProcess } from './processes/routeProcesses';
 import { State } from './interfaces';
 import { getRouteConfig } from './config';
-
-class StoreInjector extends Injector {
-	constructor(payload: Store<State>) {
-		super(payload);
-		payload.on('invalidate', () => {
-			this.emit({ type: 'invalidate' });
-		});
-	}
-}
+import { StoreInjector } from '@dojo/stores/StoreInjector';
 
 const store = new Store<State>();
 const registry = new Registry();
 
 const router = registerRouterInjector(getRouteConfig(store), registry);
 
-registry.define('editor', async () => {
-	const module = await import('./containers/EditorContainer');
-	return module.EditorContainer;
-});
-registry.define('article', async () => {
-	const module = await import('./containers/ArticleContainer');
-	return module.ArticleContainer;
-});
-registry.define('login', async () => {
-	const module = await import('./containers/LoginContainer');
-	return module.LoginContainer;
-});
-registry.define('register', async () => {
-	const module = await import('./containers/RegisterContainer');
-	return module.RegisterContainer;
-});
-registry.define('profile', async () => {
-	const module = await import('./containers/ProfileContainer');
-	return module.ProfileContainer;
-});
-registry.define('settings', async () => {
-	const module = await import('./containers/SettingsContainer');
-	return module.SettingsContainer;
-});
+// TODO remove any when the typings are resolved
+registry.define('editor', async () => import('./containers/EditorContainer') as any);
+registry.define('article', async () => import('./containers/ArticleContainer') as any);
+registry.define('login', async () => import('./containers/LoginContainer') as any);
+registry.define('register', async () => import('./containers/RegisterContainer') as any);
+registry.define('profile', async () => import('./containers/ProfileContainer') as any);
+registry.define('settings', async () => import('./containers/SettingsContainer') as any);
 
 const session = global.sessionStorage.getItem('conduit-session');
 
