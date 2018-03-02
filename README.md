@@ -6,11 +6,9 @@ This repository contains example applications built using Dojo 2.
 
 For current progress on Dojo 2, contribution guidelines and other information, please visit [`dojo/meta`](https://github.com/dojo/meta).
 
-- [Deploying to gh-pages](#deploying-to-gh-pages)
 - [Features](#features)
 - [How do I contribute?](#how-do-i-contribute)
-  - [Installation](#installation)
-  - [Testing](#testing)
+  - [Installation & Testing](#installation--testing)
 - [Licensing information](#licensing-information)
 
 ## Features
