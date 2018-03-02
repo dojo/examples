@@ -45,6 +45,11 @@
 			.ce-block {
 				display: block;
 			}
+
+			.vertical-slider {
+				margin-left: 20px;
+				display: inline-block;
+			}
 		</style>
 	</head>
 	<body>
@@ -535,7 +540,7 @@
 			verticalSlider.invalid = false;
 			verticalSlider.outputIsTooltip = true;
 			verticalSlider.output = function (value) {
-				return value + verticalSlider.invalid ? '!' : '';
+				return verticalSlider.invalid ? value + '!' : value + '';
 			}
 			verticalSlider.addEventListener('input', function (event) {
 				var value = event.detail[0];
