@@ -37,7 +37,7 @@ dojo build
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build -w
+dojo build -w -s
 ```
 
 ## Features
@@ -73,4 +73,4 @@ dojo test -a
 
 ## Licensing Information
 
-© 2017 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
+© 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
