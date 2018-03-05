@@ -3,13 +3,14 @@
   "description": "An example that use that demonstrates the custom elements from @dojo/widgets and themes from @dojo/themes",
   "version": "1.0.0",
   "scripts": {
-    "build": "shx rm -rf dist && shx mkdir dist && shx cp src/index.html dist && shx cp -r node_modules/@webcomponents/custom-elements dist && shx cp -r node_modules/@dojo/widgets/dist dist/widgets && shx cp -r node_modules/@dojo/themes/dist dist/themes",
+    "build": "shx rm -rf dist && shx mkdir dist && shx cp src/index.html dist && shx cp -r node_modules/@webcomponents/custom-elements dist && shx cp -r node_modules/web-animations-js dist && shx cp -r node_modules/@dojo/widgets/dist dist/widgets && shx cp -r node_modules/@dojo/themes/dist dist/themes",
     "test-ci": "echo \"no tests\""
   },
   "dependencies": {
     "@dojo/themes": "~0.2.0",
-    "@dojo/widgets": "~0.5.0",
-    "@webcomponents/custom-elements": "^1.0.8"
+    "@dojo/widgets": "file:../../widgets/dist/dojo-widgets-0.5.1.tgz",
+    "@webcomponents/custom-elements": "^1.0.8",
+    "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
     "shx": "^0.2.2"
