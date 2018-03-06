@@ -14,7 +14,8 @@
     "@dojo/themes": "~0.2.0",
     "@dojo/widget-core": "~0.9.5",
     "@dojo/widgets": "~0.5.1",
-    "tslib": "~1.8.1"
+    "tslib": "~1.8.1",
+    "web-animations-js": "~2.3.1"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "~0.3.3",
