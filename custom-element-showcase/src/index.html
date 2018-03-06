@@ -4,27 +4,28 @@
 		<title>Dojo 2 Custom Element Showcase</title>
 		<meta name="theme-color" content="#222127">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="custom-elements/src/native-shim.js"></script>
 		<script src="custom-elements/custom-elements.min.js"></script>
-		<link rel="stylesheet" href="widgets/split-pane/split-pane-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/tab-controller/tab-controller-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/tab/tab-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/button/button-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/text-input/text-input-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/accordion-pane/accordion-pane-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/toolbar/toolbar-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/dialog/dialog-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/calendar/calendar-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/title-pane/title-pane-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/text-area/text-area-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/slider/slider-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/label/label-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/checkbox/checkbox-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/select/select-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/progress/progress-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/radio/radio-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/time-picker/time-picker-0.5.0.css"/>
-		<link rel="stylesheet" href="widgets/enhanced-text-input/enhanced-text-input-0.5.0.css"/>
+		<script src="web-animations-js/web-animations-next-lite.min.js"></script>
+		<link rel="stylesheet" href="widgets/split-pane/split-pane-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/tab-controller/tab-controller-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/tab/tab-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/button/button-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/icon/icon-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/text-input/text-input-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/accordion-pane/accordion-pane-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/toolbar/toolbar-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/dialog/dialog-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/calendar/calendar-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/title-pane/title-pane-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/text-area/text-area-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/slider/slider-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/label/label-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/checkbox/checkbox-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/select/select-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/progress/progress-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/radio/radio-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/time-picker/time-picker-0.5.1.css"/>
+		<link rel="stylesheet" href="widgets/enhanced-text-input/enhanced-text-input-0.5.1.css"/>
 		<link rel="stylesheet" href="themes/dojo/dojo-0.2.0.css">
 		<style>
 			html,
@@ -48,131 +49,139 @@
 	</head>
 	<body>
 		<script src="themes/dojo/dojo-0.2.0.js"></script>
-		<dojo-toolbar id="dojoToolbar">
-			<dojo-split-pane id="dojoSplitPane">
-				<dojo-accordion-pane id="dojoAccordianPane">
-					<dojo-title-pane id="themePane" key="theme-pane" title="Theme"></dojo-title-pane>
-					<dojo-title-pane key="dialog-pane" title="Dialog">
-						<dojo-button id="dojoDialogButton">Open Dialog</dojo-button>
-						<dojo-dialog id="dojoDialog" title="Dialog"></dojo-dialog>
-					</dojo-title-pane>
-					<dojo-title-pane key="calendar-pane" title="Calendar">
-							<dojo-calendar id="dojoCalendar"></dojo-calendar>
-							<dojo-dom id="dojoCalendarLabel" tag="div"></dojo-dom>
-					</dojo-title-pane>
-				</dojo-accordion-pane>
-				<dojo-tab-controller id="dojoTabController">
-					<dojo-tab id="dojoTabBasic">
-						<div>
-							<h2>Buttons</h2>
-							<div>Enabled</div>
-							<dojo-button class="ce-layout">Basic Button</dojo-button>
-							<dojo-button class="ce-layout">Icon Button</dojo-button>
-							<dojo-button class="ce-layout" id="dojoEnabledPopupButton">Popup</dojo-button>
-							<dojo-button class="ce-layout" id="dojoEnabledToggleButton">Toggle</dojo-button>
-							<div>Disabled</div>
-							<dojo-button class="ce-layout" id="dojoDisabledBasicButton">Basic Button</dojo-button>
-							<dojo-button class="ce-layout" id="dojoDisabledIconButton">Icon Button</dojo-button>
-							<dojo-button class="ce-layout" id="dojoDisabledPopupButton">Popup</dojo-button>
-							<dojo-button class="ce-layout" id="dojoDisabledToggleButton">Toggle</dojo-button>
-							<h2>Checkbox</h2>
-							<dojo-checkbox class="ce-layout ce-block" id="dojoCheckedCheckbox" label="Checked checkbox"></dojo-checkbox>
-							<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledCheckedCheckbox" label="Disabled checked checkbox"></dojo-checkbox>
-							<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledUnCheckedCheckbox" label="Disabled unchecked checkbox"></dojo-checkbox>
-						</div>
-					</dojo-tab>
-					<dojo-tab id="dojoTabInputs">
-						<div>
-							<h2>Text Input</h2>
-							<dojo-text-input class="ce-layout ce-block" id="dojoTextInput" label="Plain Text Input"></dojo-text-input>
-							<dojo-text-input class="ce-layout ce-block" id="dojoRequiredTextInput" placeholder="World" label="Required Text Input"></dojo-text-input>
-							<dojo-text-input class="ce-layout ce-block" id="dojoEmailTextInput" label="Email Text Input" type="email" type="email" placeholder="Email Address"></dojo-text-input>
-							<dojo-text-input class="ce-layout ce-block" id="dojoDisabledTextInput" label="Disabled Text Input"></dojo-text-input>
-							<h2>Enhanced Text Input</h2>
-							<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoTwitterEnhancedInput" label="Twitter Username" placeholder="username"></dojo-enhanced-text-input>
-							<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoPriceEnhancedInput" label="Price, rounded to the nearest dollar" type="number"></dojo-enhanced-text-input>
-							<h2>Time Picker</h2>
-							<div>Basic Time Picker</div>
-							<dojo-time-picker class="ce-layout" id="dojoBasicTimePicker" label="Basic Time Picker"></dojo-time-picker>
-						</div>
-					</dojo-tab>
-					<dojo-tab id="dojoTabTextArea">
-						<div>
-							<h2>Text Area</h2>
-							<div>Example Text Area</div>
-							<dojo-text-area id="dojoTextarea"></dojo-text-area>
-							<div>Disabled Text Area</div>
-							<dojo-text-area id="dojoDisabledTextarea"></dojo-text-area>
-						</div>
-					</dojo-tab>
-					<dojo-tab id="dojoTabSelects">
-						<div>
-							<h2>Selects</h2>
-							<dojo-select id="dojoSimpleSelect" label="Simple string array"></dojo-select>
-							<dojo-select id="dojoSimpleDisabledSelect" label="Simple string array (disabled)"></dojo-select>
-							<dojo-select id="dojoNativeSelect" label="Simple string array (native)"></dojo-select>
-							<dojo-select id="dojoDisabledNativeSelect" label="Simple string array (native, disabled)"></dojo-select>
-							<dojo-select id="dojoComplexSelect" label="Complex options array"></dojo-select>
-							<dojo-select id="dojoComplexNativeSelect" label="Complex options array (native)"></dojo-select>
-						</div>
-					</dojo-tab>
-					<dojo-tab id="dojoTabProgress">
-						<div>
-							<h2>Progress Bars</h2>
-							<div>value: 50%</div>
-							<dojo-progress id="dojoProgress"></dojo-progress>
-							<div>value: 0.3, max: 1</div>
-							<dojo-progress id="dojoProgressMaxOne"></dojo-progress>
-							<div>value: 250, custom output function</div>
-							<dojo-progress id="dojoProgressCustomOutput"></dojo-progress>
-							<div>value: 10, showOutput: false</div>
-							<dojo-progress id="dojoProgressNoOutput"></dojo-progress>
-						</div>
-					</dojo-tab>
-					<dojo-tab id="dojoTabSlider">
-						<div>
-							<h2>Sliders</h2>
-							<div>Horizontal slider, value: 50</div>
-							<dojo-slider id="dojoSlider" label="'How much do you like tribbles?'"></dojo-slider>
-							<div>Disabled slider, value: 30</div>
-							<dojo-slider id="dojoDisabledSlider" label="Disabled Slider"></dojo-slider>
-							<div>Vertical slider with validation</div>
-							<dojo-slider id="dojoVerticalSlider"></dojo-slider>
-						</div>
-					</dojo-tab>
-				</dojo-tab-controller>
-			</dojo-split-pane>
-		</dojo-toolbar>
-		<script async src="widgets/calendar/calendar-0.5.0.js"></script>
-		<script async src="widgets/button/button-0.5.0.js"></script>
-		<script async src="widgets/text-input/text-input-0.5.0.js"></script>
-		<script async src="widgets/tab/tab-0.5.0.js"></script>
-		<script async src="widgets/tab-controller/tab-controller-0.5.0.js"></script>
-		<script async src="widgets/text-area/text-area-0.5.0.js"></script>
-		<script async src="widgets/slider/slider-0.5.0.js"></script>
-		<script async src="widgets/select/select-0.5.0.js"></script>
-		<script async src="widgets/title-pane/title-pane-0.5.0.js"></script>
-		<script async src="widgets/dialog/dialog-0.5.0.js"></script>
-		<script async src="widgets/accordion-pane/accordion-pane-0.5.0.js"></script>
-		<script async src="widgets/split-pane/split-pane-0.5.0.js"></script>
-		<script async src="widgets/toolbar/toolbar-0.5.0.js"></script>
-		<script async src="widgets/label/label-0.5.0.js"></script>
-		<script async src="widgets/progress/progress-0.5.0.js"></script>
-		<script async src="widgets/radio/radio-0.5.0.js"></script>
-		<script async src="widgets/checkbox/checkbox-0.5.0.js"></script>
-		<script async src="widgets/enhanced-text-input/enhanced-text-input-0.5.0.js"></script>
-		<script async src="widgets/time-picker/time-picker-0.5.0.js"></script>
+		<dojo-toolbar id="dojoToolbar"></dojo-toolbar>
+		<dojo-split-pane id="dojoSplitPane">
+			<dojo-accordion-pane id="dojoAccordianPane">
+				<dojo-title-pane id="themePane" key="theme-pane" title="Theme"></dojo-title-pane>
+				<dojo-title-pane key="dialog-pane" title="Dialog">
+					<dojo-button id="dojoDialogButton">Open Dialog</dojo-button>
+					<dojo-dialog id="dojoDialog" title="Dialog"></dojo-dialog>
+				</dojo-title-pane>
+				<dojo-title-pane key="calendar-pane" title="Calendar">
+						<dojo-calendar id="dojoCalendar"></dojo-calendar>
+						<dojo-dom id="dojoCalendarLabel" tag="div"></dojo-dom>
+				</dojo-title-pane>
+			</dojo-accordion-pane>
+			<dojo-tab-controller id="dojoTabController">
+				<dojo-tab id="dojoTabBasic">
+					<div>
+						<h2>Buttons</h2>
+						<h3>Enabled</h3>
+						<dojo-button class="ce-layout">Basic Button</dojo-button>
+						<dojo-button class="ce-layout">Icon Button <dojo-icon type="searchIcon"></dojo-icon></dojo-button>
+						<dojo-button class="ce-layout" id="dojoEnabledPopupButton">Popup</dojo-button>
+						<dojo-button class="ce-layout" id="dojoEnabledToggleButton">Toggle</dojo-button>
+						<h3>Disabled</h3>
+						<dojo-button class="ce-layout" id="dojoDisabledBasicButton">Basic Button</dojo-button>
+						<dojo-button class="ce-layout" id="dojoDisabledIconButton">Icon Button <dojo-icon type="searchIcon"></dojo-icon></dojo-button>
+						<dojo-button class="ce-layout" id="dojoDisabledPopupButton">Popup</dojo-button>
+						<dojo-button class="ce-layout" id="dojoDisabledToggleButton">Toggle</dojo-button>
+						<h2>Checkbox</h2>
+						<dojo-checkbox class="ce-layout ce-block" id="dojoCheckedCheckbox" label="Checked checkbox"></dojo-checkbox>
+						<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledCheckedCheckbox" label="Disabled checked checkbox"></dojo-checkbox>
+						<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledUnCheckedCheckbox" label="Disabled unchecked checkbox"></dojo-checkbox>
+						<h2>Toggle</h2>
+						<dojo-checkbox class="ce-layout ce-block" id="dojoCheckedToggle" mode="toggle" label="Checked Toggle"></dojo-checkbox>
+						<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledCheckedToggle" mode="toggle" label="Disabled checked Toggle"></dojo-checkbox>
+						<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledUnCheckedToggle" mode="toggle" label="Disabled unchecked Toggle"></dojo-checkbox>
+						<h2>Radio</h2>
+						<dojo-radio class="ce-layout ce-block" id="dojoRadioOne" value="radioGroupOne" label="Radio one"></dojo-radio>
+						<dojo-radio class="ce-layout ce-block" id="dojoRadioTwo" value="radioGroupOne" label="Radio two"></dojo-radio>
+						<dojo-radio class="ce-layout ce-block" id="dojoDisabledUnCheckedRadio" label="Disabled unchecked Radio"></dojo-radio>
+					</div>
+				</dojo-tab>
+				<dojo-tab id="dojoTabInputs">
+					<div>
+						<h2>Text Input</h2>
+						<dojo-text-input class="ce-layout ce-block" id="dojoTextInput" label="Plain Text Input"></dojo-text-input>
+						<dojo-text-input class="ce-layout ce-block" id="dojoRequiredTextInput" placeholder="World" label="Required Text Input"></dojo-text-input>
+						<dojo-text-input class="ce-layout ce-block" id="dojoEmailTextInput" label="Email Text Input" type="email" type="email" placeholder="Email Address"></dojo-text-input>
+						<dojo-text-input class="ce-layout ce-block" id="dojoDisabledTextInput" label="Disabled Text Input"></dojo-text-input>
+						<h2>Enhanced Text Input</h2>
+						<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoTwitterEnhancedInput" label="Twitter Username" placeholder="username"></dojo-enhanced-text-input>
+						<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoPriceEnhancedInput" label="Price, rounded to the nearest dollar" type="number"></dojo-enhanced-text-input>
+						<h2>Time Picker</h2>
+						<div>Basic Time Picker</div>
+						<dojo-time-picker class="ce-layout" id="dojoBasicTimePicker" label="Basic Time Picker"></dojo-time-picker>
+					</div>
+				</dojo-tab>
+				<dojo-tab id="dojoTabTextArea">
+					<div>
+						<h2>Text Area</h2>
+						<div>Example Text Area</div>
+						<dojo-text-area id="dojoTextarea"></dojo-text-area>
+						<div>Disabled Text Area</div>
+						<dojo-text-area id="dojoDisabledTextarea"></dojo-text-area>
+					</div>
+				</dojo-tab>
+				<dojo-tab id="dojoTabSelects">
+					<div>
+						<h2>Selects</h2>
+						<dojo-select id="dojoSimpleSelect" label="Simple string array"></dojo-select>
+						<dojo-select id="dojoSimpleDisabledSelect" label="Simple string array (disabled)"></dojo-select>
+						<dojo-select id="dojoNativeSelect" label="Simple string array (native)"></dojo-select>
+						<dojo-select id="dojoDisabledNativeSelect" label="Simple string array (native, disabled)"></dojo-select>
+						<dojo-select id="dojoComplexSelect" label="Complex options array"></dojo-select>
+						<dojo-select id="dojoComplexNativeSelect" label="Complex options array (native)"></dojo-select>
+					</div>
+				</dojo-tab>
+				<dojo-tab id="dojoTabProgress">
+					<div>
+						<h2>Progress Bars</h2>
+						<div>value: 50%</div>
+						<dojo-progress id="dojoProgress"></dojo-progress>
+						<div>value: 0.3, max: 1</div>
+						<dojo-progress id="dojoProgressMaxOne"></dojo-progress>
+						<div>value: 250, custom output function</div>
+						<dojo-progress id="dojoProgressCustomOutput"></dojo-progress>
+						<div>value: 10, showOutput: false</div>
+						<dojo-progress id="dojoProgressNoOutput"></dojo-progress>
+					</div>
+				</dojo-tab>
+				<dojo-tab id="dojoTabSlider">
+					<div>
+						<h2>Sliders</h2>
+						<div>Horizontal slider, value: 50</div>
+						<dojo-slider id="dojoSlider" label="'How much do you like tribbles?'"></dojo-slider>
+						<div>Disabled slider, value: 30</div>
+						<dojo-slider id="dojoDisabledSlider" label="Disabled Slider"></dojo-slider>
+						<div>Vertical slider with validation</div>
+						<dojo-slider id="dojoVerticalSlider"></dojo-slider>
+					</div>
+				</dojo-tab>
+			</dojo-tab-controller>
+		</dojo-split-pane>
+
+		<script async src="widgets/calendar/calendar-0.5.1.js"></script>
+		<script async src="widgets/button/button-0.5.1.js"></script>
+		<script async src="widgets/icon/icon-0.5.1.js"></script>
+		<script async src="widgets/text-input/text-input-0.5.1.js"></script>
+		<script async src="widgets/tab/tab-0.5.1.js"></script>
+		<script async src="widgets/tab-controller/tab-controller-0.5.1.js"></script>
+		<script async src="widgets/text-area/text-area-0.5.1.js"></script>
+		<script async src="widgets/slider/slider-0.5.1.js"></script>
+		<script async src="widgets/select/select-0.5.1.js"></script>
+		<script async src="widgets/title-pane/title-pane-0.5.1.js"></script>
+		<script async src="widgets/dialog/dialog-0.5.1.js"></script>
+		<script async src="widgets/accordion-pane/accordion-pane-0.5.1.js"></script>
+		<script async src="widgets/split-pane/split-pane-0.5.1.js"></script>
+		<script async src="widgets/toolbar/toolbar-0.5.1.js"></script>
+		<script async src="widgets/label/label-0.5.1.js"></script>
+		<script async src="widgets/progress/progress-0.5.1.js"></script>
+		<script async src="widgets/radio/radio-0.5.1.js"></script>
+		<script async src="widgets/checkbox/checkbox-0.5.1.js"></script>
+		<script async src="widgets/enhanced-text-input/enhanced-text-input-0.5.1.js"></script>
+		<script async src="widgets/time-picker/time-picker-0.5.1.js"></script>
 		<script>
 			// Main Tool Bar
 			var menu = document.getElementById('dojoToolbar');
 			menu.collapseWidth = 700;
 			menu.fixed = true;
-			menu.menuTitle = 'Menu';
-			menu.title = 'Dojo 2 Custom Element Showcase';
+			menu.heading = 'Dojo 2 Custom Element Showcase';
 
 			// Split Pane
 			var splitpane = document.getElementById('dojoSplitPane');
-			splitpane.size = 500;
+			splitpane.size = 300;
 			splitpane.addEventListener('resize', function (event) {
 				splitpane.size = event.detail[0];
 			});
@@ -314,6 +323,28 @@
 			disabledCheckedCheckbox.checked = true;
 			disabledCheckedCheckbox.disabled = true;
 			disabledCheckbox.disabled = true;
+
+			// Toggle
+			var toggle = document.getElementById('dojoCheckedToggle');
+			var disabledCheckedToggle = document.getElementById('dojoDisabledCheckedToggle');
+			var disabledUnCheckedToggle = document.getElementById('dojoDisabledUnCheckedToggle');
+
+			toggle.checked = true;
+			toggle.addEventListener('change', function () {
+				toggle.checked = !toggle.checked;
+			});
+
+			disabledCheckedToggle.disabled = true;
+			disabledCheckedToggle.checked = true;
+			disabledUnCheckedToggle.disabled = true;
+			disabledUnCheckedToggle.checked = false;
+
+			// Radio
+			var radioOne = document.getElementById('dojoRadioOne');
+			var radioTwo = document.getElementById('dojoRadioTwo');
+			var disabledRadio = document.getElementById('dojoDisabledUnCheckedRadio');
+
+			radioOne.checked = true;
 
 			// Text Input Widgets
 			inputsTab.label = "Text Input Widgets";
