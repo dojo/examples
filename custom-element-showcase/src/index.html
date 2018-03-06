@@ -4,7 +4,6 @@
 		<title>Dojo 2 Custom Element Showcase</title>
 		<meta name="theme-color" content="#222127">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="custom-elements/src/native-shim.js"></script>
 		<script src="custom-elements/custom-elements.min.js"></script>
 		<script src="web-animations-js/web-animations-next-lite.min.js"></script>
 		<link rel="stylesheet" href="widgets/split-pane/split-pane-0.5.1.css"/>
@@ -86,8 +85,9 @@
 						<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledCheckedToggle" mode="toggle" label="Disabled checked Toggle"></dojo-checkbox>
 						<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledUnCheckedToggle" mode="toggle" label="Disabled unchecked Toggle"></dojo-checkbox>
 						<h2>Radio</h2>
-						<dojo-radio class="ce-layout ce-block" id="dojoRadioOne" label="Checked Radio"></dojo-radio>
-						<dojo-radio class="ce-layout ce-block" id="dojoRadioTwo" label="Disabled checked Radio"></dojo-radio>
+						<dojo-radio class="ce-layout ce-block" id="dojoRadioOne" value="radioGroupOne" label="Radio one"></dojo-radio>
+						<dojo-radio class="ce-layout ce-block" id="dojoRadioTwo" value="radioGroupOne" label="Radio two"></dojo-radio>
+						<dojo-radio class="ce-layout ce-block" id="dojoRadioThree" value="radioGroupTwo" label="Radio three (different value)"></dojo-radio>
 						<dojo-radio class="ce-layout ce-block" id="dojoDisabledUnCheckedRadio" label="Disabled unchecked Radio"></dojo-radio>
 					</div>
 				</dojo-tab>
@@ -343,7 +343,24 @@
 			// Radio
 			var radioOne = document.getElementById('dojoRadioOne');
 			var radioTwo = document.getElementById('dojoRadioTwo');
+			var radioThree = document.getElementById('dojoRadioThree');
 			var disabledRadio = document.getElementById('dojoDisabledUnCheckedRadio');
+
+			radioOne.checked = true;
+			radioOne.addEventListener('change', ({ detail }) => {
+				const [,checked] = detail;
+				radioOne.checked = checked;
+			});
+
+			radioTwo.addEventListener('change', ({ detail }) => {
+				const [,checked] = detail;
+				radioTwo.checked = checked;
+			});
+
+			radioThree.addEventListener('change', ({ detail }) => {
+				const [,checked] = detail;
+				radioThree.checked = checked;
+			});
 
 			// Text Input Widgets
 			inputsTab.label = "Text Input Widgets";
