@@ -87,7 +87,6 @@
 						<h2>Radio</h2>
 						<dojo-radio class="ce-layout ce-block" id="dojoRadioOne" value="radioGroupOne" label="Radio one"></dojo-radio>
 						<dojo-radio class="ce-layout ce-block" id="dojoRadioTwo" value="radioGroupOne" label="Radio two"></dojo-radio>
-						<dojo-radio class="ce-layout ce-block" id="dojoRadioThree" value="radioGroupTwo" label="Radio three (different value)"></dojo-radio>
 						<dojo-radio class="ce-layout ce-block" id="dojoDisabledUnCheckedRadio" label="Disabled unchecked Radio"></dojo-radio>
 					</div>
 				</dojo-tab>
@@ -343,24 +342,9 @@
 			// Radio
 			var radioOne = document.getElementById('dojoRadioOne');
 			var radioTwo = document.getElementById('dojoRadioTwo');
-			var radioThree = document.getElementById('dojoRadioThree');
 			var disabledRadio = document.getElementById('dojoDisabledUnCheckedRadio');
 
 			radioOne.checked = true;
-			radioOne.addEventListener('change', ({ detail }) => {
-				const [,checked] = detail;
-				radioOne.checked = checked;
-			});
-
-			radioTwo.addEventListener('change', ({ detail }) => {
-				const [,checked] = detail;
-				radioTwo.checked = checked;
-			});
-
-			radioThree.addEventListener('change', ({ detail }) => {
-				const [,checked] = detail;
-				radioThree.checked = checked;
-			});
 
 			// Text Input Widgets
 			inputsTab.label = "Text Input Widgets";
