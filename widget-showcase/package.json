@@ -12,12 +12,13 @@
     "@dojo/i18n": "~0.5.0",
     "@dojo/shim": "~0.2.6",
     "@dojo/themes": "~0.2.0",
-    "@dojo/widget-core": "~0.9.4",
-    "@dojo/widgets": "~0.5.0",
-    "tslib": "~1.8.1"
+    "@dojo/widget-core": "~0.9.5",
+    "@dojo/widgets": "~0.5.1",
+    "tslib": "~1.8.1",
+    "web-animations-js": "~2.3.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "~0.3.1",
+    "@dojo/cli-build-app": "~0.3.3",
     "@dojo/cli-test-intern": "~0.5.0",
     "@dojo/loader": "~0.1.1",
     "@dojo/test-extras": "~0.6.0",
