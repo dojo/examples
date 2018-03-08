@@ -19,7 +19,7 @@
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "~0.3.3",
+    "@dojo/cli-build-app": "~0.3.4",
     "@dojo/cli-test-intern": "~0.5.0",
     "@dojo/loader": "~0.1.0",
     "@dojo/test-extras": "~0.6.0",
