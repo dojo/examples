@@ -4,6 +4,7 @@ import Tabs from './widgets/Tabs';
 import Toolbar from '@dojo/widgets/toolbar';
 import SplitPane, { Direction } from '@dojo/widgets/split-pane';
 import Accordion, { AccordionProperties } from './widgets/Accordion';
+import * as css from './styles/app.m.css';
 
 export interface AppProperties extends AccordionProperties {};
 
@@ -23,23 +24,28 @@ export default class App extends WidgetBase<AppProperties> {
 		} = this.properties;
 
 		return [
-			w(Toolbar, {
-				collapseWidth: 700,
-				fixed: true,
-				heading: 'Dojo 2 Widget Showcase'
-			}),
-			w(SplitPane, {
-				key: 'split-pane',
-				direction: Direction.column,
-				size: this._size,
-				onResize: this._onResize
-			}, [
-				w(Accordion, {
-					themes,
-					currentTheme,
-					onThemeChange
-				}),
-				w(Tabs, {})
+			v('div', { classes: css.app }, [
+				v('div', { classes: css.toolbarHolder }, [
+					w(Toolbar, {
+						collapseWidth: 700,
+						heading: 'Dojo 2 Widget Showcase'
+					})
+				]),
+				v('div', { classes: css.splitPaneHolder }, [
+					w(SplitPane, {
+						key: 'split-pane',
+						direction: Direction.column,
+						size: this._size,
+						onResize: this._onResize
+					}, [
+						w(Accordion, {
+							themes,
+							currentTheme,
+							onThemeChange
+						}),
+						w(Tabs, {})
+					])
+				])
 			])
 		];
 	}
