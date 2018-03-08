@@ -11,7 +11,7 @@ This codebase was created to demonstrate an application built with Dojo 2.
  * **Authentication**: Demonstrates handling authentication within a Dojo 2 application.
  * **State Management**: Uses `@dojo/stores` for state management and managing fetching, createing and inserting CRUD data.
  * **Routing**: Uses `@dojo/routing` to provide full application routing.
- * **Lazy Loading (Code Splitting)**: Automatically code splits for widgets/outlets or containers for components defined in an application registry using the dynamic `import` syntax.
+ * **Lazy Loading (Code Splitting)**: Automatically code splits for widgets/outlets or containers that are defined in an application registry using the dynamic `import` syntax.
  * **Pagination**: Includes pagination for displaying larger sets of data.
 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
