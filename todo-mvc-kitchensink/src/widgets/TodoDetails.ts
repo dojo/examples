@@ -47,6 +47,7 @@ export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> 
 					]),
 					v('section', [
 						v('textarea', {
+							focus: true,
 							key: 'edit-todo',
 							classes: this.theme(css.todoDetailsTextArea),
 							value: todo.label,

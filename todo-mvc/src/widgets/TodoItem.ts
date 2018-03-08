@@ -28,7 +28,7 @@ export default class TodoItem extends TodoItemBase<TodoItemProperties> {
 				v('label', { classes: this.theme(css.todoLabel), innerHTML: todo.label, ondblclick: this.editTodo }),
 				v('button', { id: 'destroy', onclick: this.removeTodo, classes: this.theme(css.destroy) })
 			]),
-			todo.editing ? v('input', { afterCreate: this.afterCreate, onkeyup: this.updateTodo, onblur: this.updateTodo, value: todo.label, classes: this.theme(css.edit) }) : null
+			todo.editing ? v('input', { focus: true, afterCreate: this.afterCreate, onkeyup: this.updateTodo, onblur: this.updateTodo, value: todo.label, classes: this.theme(css.edit) }) : null
 		]);
 	}
 
