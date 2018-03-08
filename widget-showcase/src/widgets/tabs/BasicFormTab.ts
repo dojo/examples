@@ -4,7 +4,7 @@ import Button from '@dojo/widgets/button';
 import Checkbox, { Mode } from '@dojo/widgets/checkbox';
 import Radio from '@dojo/widgets/radio';
 import Icon from '@dojo/widgets/icon';
-import * as css from '../../styles/basicFormTab.m.css';
+import * as css from '../../styles/tabs.m.css';
 
 export default class BasicFormTab extends WidgetBase {
 	private _togglePressed = true;
@@ -33,7 +33,7 @@ export default class BasicFormTab extends WidgetBase {
 	}
 
 	render() {
-		return [
+		return v('div', { classes: css.root }, [
 			v('h2', [ 'Buttons' ]),
 			v('div', {
 				classes: css.buttons
@@ -144,6 +144,6 @@ export default class BasicFormTab extends WidgetBase {
 					name: 'sample-radios'
 				})
 			])
-		];
+		]);
 	}
 }

@@ -1,6 +1,7 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Progress from '@dojo/widgets/progress';
+import * as css from '../../styles/tabs.m.css';
 
 export default class ProgressTab extends WidgetBase {
 	private _customOutputMax = 750;
@@ -10,7 +11,7 @@ export default class ProgressTab extends WidgetBase {
 	}
 
 	render() {
-		return [
+		return v('div', { classes: css.root }, [
 			v('h2', [ 'Progress Bars' ]),
 			v('div', [
 				v('h3', {}, ['value: 50%']),
@@ -26,6 +27,6 @@ export default class ProgressTab extends WidgetBase {
 				v('h3', {}, ['value: 10, showOutput: false']),
 				w(Progress, { value: 10, showOutput: false })
 			])
-		];
+		]);
 	}
 }

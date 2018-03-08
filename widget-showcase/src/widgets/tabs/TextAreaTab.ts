@@ -1,11 +1,12 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Textarea from '@dojo/widgets/text-area';
+import * as css from '../../styles/tabs.m.css';
 
 export default class TextAreaTab extends WidgetBase {
 
 	render() {
-		return [
+		return v('div', { classes: css.root }, [
 			v('h2', [ 'Text Areas' ]),
 			v('div', [
 				w(Textarea, {
@@ -22,6 +23,6 @@ export default class TextAreaTab extends WidgetBase {
 					label: 'Disabled text area'
 				})
 			])
-		];
+		]);
 	}
 }

@@ -3,6 +3,7 @@ import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import TimePicker, { TimeUnits } from '@dojo/widgets/time-picker';
 import TextInput from '@dojo/widgets/text-input';
 import EnhancedTextInput from '@dojo/widgets/enhanced-text-input';
+import * as css from '../../styles/tabs.m.css';
 
 export default class TextInputTab extends WidgetBase {
 	private _timePickerOptions: TimeUnits[];
@@ -14,7 +15,7 @@ export default class TextInputTab extends WidgetBase {
 	}
 
 	render() {
-		return [
+		return v('div', { classes: css.root }, [
 			v('h2', [ 'Text input' ]),
 			v('div', [
 				w(TextInput, {
@@ -103,6 +104,6 @@ export default class TextInputTab extends WidgetBase {
 					useNativeElement: true
 				})
 			])
-		];
+		]);
 	}
 }

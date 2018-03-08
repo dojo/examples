@@ -9,7 +9,7 @@ import * as css from './styles/app.m.css';
 export interface AppProperties extends AccordionProperties {};
 
 export default class App extends WidgetBase<AppProperties> {
-	private _size = 300;
+	private _size = 360;
 
 	private _onResize(size: number) {
 		this._size = size;
