@@ -17,6 +17,36 @@
 		<link rel="stylesheet" href="https://dojo.io/css/main.css">
 
 		<link rel="stylesheet" href="https://dojo.io/css/prism-ghcolors.css" type="text/css">
+
+		<style>
+			.body-front-page .bodyContainer {
+				align-items: initial;
+			}
+
+			.body-front-page .bodyContainer section.features {
+				display: flex !important;
+				margin: 3em;
+				align-items: flex-start;
+			}
+
+			.body-front-page .bodyContainer section.features .feature {
+				height: auto;
+				width: auto;
+			}
+
+			@media screen and (max-width: 768px) {
+				.body-front-page .bodyContainer section.features {
+					flex-direction: column;
+					margin: 1.5em 0;
+					align-items: center;
+				}
+
+				.body-front-page .bodyContainer section.features .feature {
+					height: auto;
+					width: auto;
+				}
+			}
+		</style>
 	</head>
 
 	<body class="body-front-page">
@@ -49,7 +79,7 @@
 			<div class="content-wrapper">
 				<div class="page-content">
 					<div class="bodyContainer">
-						<section class="features container">
+						<section class="features">
 							<div class="typescript feature">
 								<div class="icon">
 									<img src="https://dojo.io/images/icon-widget-authoring.svg" alt="ToDoMVC">
@@ -122,6 +152,16 @@
 						</div>
 					</div>
 				</footer>
+				<script>
+					(function () {
+						var navBurger = document.querySelector('.header .navbar-burger');
+						var navMenu = document.querySelector('.header .navbar-menu');
+						navBurger.addEventListener('click', function () {
+							navBurger.classList.toggle('is-active');
+							navMenu.classList.toggle('is-active');
+						});
+					})();
+				</script>
 			</div>
 		</div>
 	</body>
