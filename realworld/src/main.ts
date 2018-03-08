@@ -17,12 +17,12 @@ const registry = new Registry();
 
 const router = registerRouterInjector(getRouteConfig(store), registry);
 
-registry.define('editor', async () => import('./containers/EditorContainer'));
-registry.define('article', async () => import('./containers/ArticleContainer'));
-registry.define('login', async () => import('./containers/LoginContainer'));
-registry.define('register', async () => import('./containers/RegisterContainer'));
-registry.define('profile', async () => import('./containers/ProfileContainer'));
-registry.define('settings', async () => import('./containers/SettingsContainer'));
+registry.define('editor', () => import('./containers/EditorContainer'));
+registry.define('article', () => import('./containers/ArticleContainer'));
+registry.define('login', () => import('./containers/LoginContainer'));
+registry.define('register', () => import('./containers/RegisterContainer'));
+registry.define('profile', () => import('./containers/ProfileContainer'));
+registry.define('settings', () => import('./containers/SettingsContainer'));
 
 const session = global.sessionStorage.getItem('conduit-session');
 
