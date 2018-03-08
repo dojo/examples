@@ -1,0 +1,10 @@
+{
+	"build-app": {
+		"build-time-render": {
+			"root": "app"
+		}
+	},
+	"test-intern": {},
+	"create-app": {},
+	"create-widget": {}
+}
