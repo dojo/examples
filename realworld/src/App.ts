@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { w } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/widget-core/d';
 
-import { HeaderContainer } from './containers/HeaderContainer';
+import HeaderContainer from './containers/HeaderContainer';
 import { HomeOutlet } from './outlets/HomeOutlet';
 import { LoginOutlet } from './outlets/LoginOutlet';
 import { UserProfileOutlet, FavProfileOutlet } from './outlets/ProfileOutlet';
@@ -12,7 +12,7 @@ import { SettingsOutlet } from './outlets/SettingsOutlet';
 
 export class App extends WidgetBase {
 	protected render() {
-		return [
+		return v('div', [
 			w(HeaderContainer, {}),
 			w(LoginOutlet, {}),
 			w(RegisterOutlet, {}),
@@ -23,6 +23,6 @@ export class App extends WidgetBase {
 			w(ArticleOutlet, {}),
 			w(SettingsOutlet, {}),
 			w(HomeOutlet, {})
-		];
+		]);
 	}
 }

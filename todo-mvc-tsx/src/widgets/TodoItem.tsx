@@ -74,6 +74,7 @@ export class TodoItem extends TodoItemBase<TodoItemProperties> {
 				</div>
 				{ todo.editing ?
 					<input
+						focus={true}
 						key='edit-input'
 						value={todo.label}
 						classes={this.theme(css.edit)}

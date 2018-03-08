@@ -1,8 +1,8 @@
-import { Container } from '@dojo/widget-core/Container';
 import { Store } from '@dojo/stores/Store';
 import { Login, LoginProperties } from './../widgets/Login';
 import { loginProcess, loginEmailInputProcess, loginPasswordInputProcess } from './../processes/loginProcesses';
 import { State } from '../interfaces';
+import StoreContainer from './StoreContainer';
 
 function getProperties(store: Store<State>): LoginProperties {
 	const { get, path } = store;
@@ -18,4 +18,4 @@ function getProperties(store: Store<State>): LoginProperties {
 	};
 }
 
-export const LoginContainer = Container(Login, 'state', { getProperties });
+export default StoreContainer(Login, 'state', { paths: [[ 'login' ], [ 'errors' ]], getProperties });

@@ -1,4 +1,3 @@
-import { Container } from '@dojo/widget-core/Container';
 import { Store } from '@dojo/stores/Store';
 import { Settings, SettingsProperties } from './../widgets/Settings';
 import {
@@ -11,6 +10,7 @@ import {
 } from './../processes/settingsProcesses';
 import { logoutProcess } from '../processes/loginProcesses';
 import { State } from '../interfaces';
+import StoreContainer from './StoreContainer';
 
 function getProperties(store: Store<State>): SettingsProperties {
 	const { get, path } = store;
@@ -31,4 +31,4 @@ function getProperties(store: Store<State>): SettingsProperties {
 	};
 }
 
-export const SettingsContainer = Container(Settings, 'state', { getProperties });
+export default StoreContainer(Settings, 'state', { paths: [[ 'settings' ]], getProperties });

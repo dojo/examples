@@ -1,4 +1,3 @@
-import { Container } from '@dojo/widget-core/Container';
 import { Store } from '@dojo/stores/Store';
 import { Register, RegisterProperties } from './../widgets/Register';
 import {
@@ -8,6 +7,7 @@ import {
 	registerUsernameInputProcess
 } from './../processes/loginProcesses';
 import { State } from '../interfaces';
+import StoreContainer from './StoreContainer';
 
 function getProperties(store: Store<State>): RegisterProperties {
 	const { get, path } = store;
@@ -25,4 +25,4 @@ function getProperties(store: Store<State>): RegisterProperties {
 	};
 }
 
-export const RegisterContainer = Container(Register, 'state', { getProperties });
+export default StoreContainer(Register, 'state', { paths: [[ 'register' ], [ 'errors' ]], getProperties });

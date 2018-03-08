@@ -1,8 +1,8 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
 import { Banner } from './Banner';
-import { FeedsContainer } from './../containers/FeedsContainer';
-import { TagsContainer } from './../containers/TagsContainer';
+import FeedsContainer from './../containers/FeedsContainer';
+import TagsContainer from './../containers/TagsContainer';
 
 export class Home extends WidgetBase {
 	protected render() {

@@ -6,7 +6,7 @@ import { Registry } from '@dojo/widget-core/Registry';
 import { TodoAppContainer } from './containers/TodoAppContainer';
 import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
 import { initialStateProcess } from './todoProcesses';
-import StoreInjector from './StoreInjector';
+import { StoreInjector } from '@dojo/stores/StoreInjector';
 import Injector from '@dojo/widget-core/Injector';
 
 const registry = new Registry();

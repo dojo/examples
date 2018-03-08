@@ -1,4 +1,3 @@
-import { Container } from '@dojo/widget-core/Container';
 import { Store } from '@dojo/stores/Store';
 import { Article, ArticleProperties } from './../widgets/Article';
 import {
@@ -10,6 +9,7 @@ import {
 	deleteArticleProcess
 } from './../processes/articleProcesses';
 import { State } from '../interfaces';
+import StoreContainer from './StoreContainer';
 
 function getProperties(store: Store<State>, properties: ArticleProperties): ArticleProperties {
 	const { get, path } = store;
@@ -33,4 +33,4 @@ function getProperties(store: Store<State>, properties: ArticleProperties): Arti
 	};
 }
 
-export const ArticleContainer = Container(Article, 'state', { getProperties });
+export default StoreContainer(Article, 'state', { paths: [[ 'user' ], [ 'article' ]], getProperties });

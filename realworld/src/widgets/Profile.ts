@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
 import { Link } from '@dojo/routing/Link';
-import { FeedsContainer } from '../containers/FeedsContainer';
+import FeedsContainer from '../containers/FeedsContainer';
 import { FollowUserPayload } from '../processes/interfaces';
 
 export interface ProfileProperties {
