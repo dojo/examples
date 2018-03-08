@@ -54,7 +54,7 @@ export class Header extends WidgetBase<HeaderProperties> {
 				v('a', { classes: 'navbar-brand' }, ['conduit']),
 				v('ul', { classes: ['nav', 'navbar-nav pull-xs-right'] }, [
 					v('li', { classes: 'nav-item' }, [
-						w(Link, { classes: ['nav-link', route === '/' ? 'active' : null], to: 'home' }, ['Home'])
+						w(Link, { classes: ['nav-link', route === 'home' ? 'active' : null], to: 'home' }, ['Home'])
 					]),
 					...(isAuthenticated ? this._authenticatedMenu() : this._unauthenticatedMenu())
 				])

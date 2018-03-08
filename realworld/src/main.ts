@@ -17,13 +17,12 @@ const registry = new Registry();
 
 const router = registerRouterInjector(getRouteConfig(store), registry);
 
-// TODO remove any when the typings are resolved
-registry.define('editor', async () => import('./containers/EditorContainer') as any);
-registry.define('article', async () => import('./containers/ArticleContainer') as any);
-registry.define('login', async () => import('./containers/LoginContainer') as any);
-registry.define('register', async () => import('./containers/RegisterContainer') as any);
-registry.define('profile', async () => import('./containers/ProfileContainer') as any);
-registry.define('settings', async () => import('./containers/SettingsContainer') as any);
+registry.define('editor', async () => import('./containers/EditorContainer'));
+registry.define('article', async () => import('./containers/ArticleContainer'));
+registry.define('login', async () => import('./containers/LoginContainer'));
+registry.define('register', async () => import('./containers/RegisterContainer'));
+registry.define('profile', async () => import('./containers/ProfileContainer'));
+registry.define('settings', async () => import('./containers/SettingsContainer'));
 
 const session = global.sessionStorage.getItem('conduit-session');
 
@@ -55,5 +54,4 @@ registry.defineInjector('state', new StoreInjector(store));
 const Projector = ProjectorMixin(App);
 const projector = new Projector();
 projector.setProperties({ registry });
-
 projector.append();
