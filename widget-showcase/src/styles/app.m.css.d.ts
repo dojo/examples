@@ -1,3 +1,3 @@
-export const content: string;
-export const component: string;
-export const splitContainer: string;
+export const app: string;
+export const toolbarHolder: string;
+export const splitPaneHolder: string;

@@ -1,0 +1,9 @@
+@import './variables.css';
+
+.buttons button {
+	margin: var(--spacing);
+}
+
+.root {
+	padding: var(--padding);
+}

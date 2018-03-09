@@ -1,6 +1,7 @@
 import { v, w } from '@dojo/widget-core/d';
 import { WidgetBase } from '@dojo/widget-core/WidgetBase';
 import Select from '@dojo/widgets/select';
+import * as css from '../../styles/tabs.m.css';
 
 export default class SelectTab extends WidgetBase {
 
@@ -25,7 +26,7 @@ export default class SelectTab extends WidgetBase {
 	];
 
 	render() {
-		return [
+		return v('div', { classes: css.root }, [
 			v('h2', [ 'Select Widgets' ]),
 			v('div', [
 				w(Select, {
@@ -64,6 +65,6 @@ export default class SelectTab extends WidgetBase {
 					useNativeElement: true
 				})
 			])
-		];
+		]);
 	}
 }

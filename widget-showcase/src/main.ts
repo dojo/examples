@@ -4,7 +4,6 @@ import { Registry } from '@dojo/widget-core/Registry';
 import Injector from '@dojo/widget-core/Injector';
 import App from './App';
 import dojo from '@dojo/themes/dojo';
-import 'web-animations-js/web-animations-next-lite.min';
 
 const themes: { [index: string]: any } = {
 	dojo,
