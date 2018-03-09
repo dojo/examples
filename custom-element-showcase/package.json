@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@dojo/themes": "~0.6.1",
-    "@dojo/widgets": "~0.6.0",
+    "@dojo/widgets": "~0.6.1",
     "@webcomponents/custom-elements": "~1.0.8"
   },
   "devDependencies": {
