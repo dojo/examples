@@ -11,11 +11,10 @@
     "@dojo/has": "~0.1.2",
     "@dojo/i18n": "~0.5.1",
     "@dojo/shim": "~0.2.6",
-    "@dojo/themes": "~0.2.0",
+    "@dojo/themes": "~0.6.1",
     "@dojo/widget-core": "~0.9.6",
-    "@dojo/widgets": "~0.5.1",
-    "tslib": "~1.8.1",
-    "web-animations-js": "~2.3.1"
+    "@dojo/widgets": "~0.6.0",
+    "tslib": "~1.8.1"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "~0.3.3",

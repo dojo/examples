@@ -1,6 +1,6 @@
 @import './variables.css';
 
-.buttons > * {
+.buttons button {
 	margin: var(--spacing);
 }
 
