@@ -13,7 +13,7 @@
     "@dojo/shim": "~0.2.6",
     "@dojo/themes": "~0.6.1",
     "@dojo/widget-core": "~0.9.6",
-    "@dojo/widgets": "~0.6.0",
+    "@dojo/widgets": "~0.6.1",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
