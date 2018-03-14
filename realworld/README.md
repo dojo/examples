@@ -1,6 +1,6 @@
 # <img src="logo.png" width="48"> RealWorld Example App
 
-> ### Dojo 2 codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### Dojo 2 codebase containing real-world examples (CRUD, auth, advanced patterns, etc.) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 ### [Demo](https://dojo.github.io/examples/realworld/)
 
@@ -9,12 +9,12 @@ This codebase was created to demonstrate an application built with Dojo 2.
 
  * **Build Time Rendering**: Configured to build the home page at build time which injects the applications HTML into the index.html.
  * **Authentication**: Demonstrates handling authentication within a Dojo 2 application.
- * **State Management**: Uses `@dojo/stores` for state management and managing fetching, createing and inserting CRUD data.
+ * **State Management**: Uses `@dojo/stores` for state management and managing fetching, creating, and inserting CRUD data.
  * **Routing**: Uses `@dojo/routing` to provide full application routing.
  * **Lazy Loading (Code Splitting)**: Automatically code splits for widgets/outlets or containers that are defined in an application registry using the dynamic `import` syntax.
  * **Pagination**: Includes pagination for displaying larger sets of data.
 
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+For more information on how this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 
 # How it works
