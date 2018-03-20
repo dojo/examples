@@ -34,7 +34,7 @@ To run the application simply run the dojo build.
 dojo build
 ```
 
-To watch and serve the application source, then run the build with the `-w` command.
+To watch and serve the application source, run the build with the `-w` command.
 
 ```
 dojo build -w -s
@@ -65,7 +65,7 @@ In order to build the project run `dojo build`.
 
 ### Testing
 
-Test cases MUST be written using [Intern](https://theintern.github.io) using the Object test interface and Assert assertion interface.
+Test cases MUST be written using [Intern](https://theintern.github.io). Generally tests should be authored using the Object test interface and Assert assertion interface, though other interfaces such as Intern's BDD test interface may be used.
 
 You can test TodoMVC locally using the [`@dojo/cli-test-intern`](https://github.com/dojo/cli-test-intern) command:
 
