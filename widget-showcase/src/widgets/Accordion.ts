@@ -6,6 +6,7 @@ import { Set } from '@dojo/shim/Set';
 import CalendarPane from './panes/CalendarPane';
 import DialogPane from './panes/DialogPane';
 import ThemePane, { ThemePaneProperties } from './panes/ThemePane';
+import { from } from '@dojo/shim/array';
 
 export interface AccordionProperties extends ThemePaneProperties {};
 
@@ -32,7 +33,7 @@ export default class Accordion extends WidgetBase<AccordionProperties> {
 		return w(AccordionPane, {
 			onRequestOpen: this._requestOpen,
 			onRequestClose: this._requestClose,
-			openKeys: Array.from(this._openKeys)
+			openKeys: from(this._openKeys)
 		}, [
 			w(TitlePane, {
 				title: 'Theme',
