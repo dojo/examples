@@ -1,26 +1,24 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v, w } from '@dojo/widget-core/d';
+import { TodoFilterOutlet } from './TodoFilter';
 
 import * as css from './styles/todoFooter.m.css';
 
-export interface TodoFooterProperties extends WidgetProperties {
+export interface TodoFooterProperties {
 	activeCount: number;
 	clearCompleted: Function;
 	completedItems: boolean;
 }
 
-export const TodoHeaderBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
+export default class TodoFooter extends ThemedMixin(WidgetBase)<TodoFooterProperties> {
 
 	clearCompleted() {
 		this.properties.clearCompleted();
 	}
 
-	render() {
+	protected render() {
 		const { activeCount, completedItems } = this.properties;
 		const countLabel = activeCount === 1 ? 'item' : 'items';
 
@@ -29,7 +27,7 @@ export default class TodoFooter extends TodoHeaderBase<TodoFooterProperties> {
 				v('strong', [activeCount + ' ']),
 				v('span', [countLabel + ' left'])
 			]),
-			w('todo-filter', { }),
+			w(TodoFilterOutlet, {}),
 			completedItems ? v('button', {
 				onclick: this.clearCompleted,
 				innerHTML: 'Clear completed',

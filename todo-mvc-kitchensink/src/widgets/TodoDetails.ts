@@ -1,7 +1,6 @@
-import { DNode } from '@dojo/widget-core/interfaces';
 import { v } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
+import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
 
 import { Todo } from './../todoProcesses';
 
@@ -15,7 +14,7 @@ export interface TodoDetailsProperties {
 }
 
 @theme(css)
-export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> {
+export default class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> {
 
 	protected onClose(): void {
 		this.properties.saveTodo();
@@ -32,7 +31,7 @@ export class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> 
 		}
 	}
 
-	protected render(): DNode {
+	protected render() {
 		const { todo } = this.properties;
 
 		return todo ?

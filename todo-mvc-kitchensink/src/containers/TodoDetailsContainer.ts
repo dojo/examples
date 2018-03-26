@@ -1,7 +1,7 @@
-import { Container } from '@dojo/widget-core/Container';
+import Container from '@dojo/widget-core/Container';
 import Store from '@dojo/stores/Store';
 
-import { TodoDetails } from './../widgets/TodoDetails';
+import TodoDetails from './../widgets/TodoDetails';
 import {
 	editTodoProcess,
 	saveTodoProcess,
@@ -17,4 +17,4 @@ function getProperties(store: Store<TodoStore>, properties: any) {
 	};
 }
 
-export const TodoDetailsContainer = Container(TodoDetails, 'state', { getProperties });
+export default Container(TodoDetails, 'state', { getProperties });

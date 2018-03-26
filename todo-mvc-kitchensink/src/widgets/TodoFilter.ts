@@ -1,25 +1,22 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
+import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
 import { v, w } from '@dojo/widget-core/d';
-import { Link } from '@dojo/routing/Link';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
+import I18nMixin from '@dojo/widget-core/mixins/I18n';
+import Link from '@dojo/routing/Link';
 
 import appBundle from '../nls/common';
 import * as css from './styles/todoFilter.m.css';
 
-export interface TodoFilterProperties extends WidgetProperties {
+export interface TodoFilterProperties {
 	filter?: string;
 }
 
-export const TodoFilterBase = I18nMixin(ThemedMixin(WidgetBase));
-
 @theme(css)
-export class TodoFilter extends TodoFilterBase<TodoFilterProperties> {
+export default class TodoFilter extends I18nMixin(ThemedMixin(WidgetBase))<TodoFilterProperties> {
 
-	render() {
+	protected render() {
 		const { filter } = this.properties;
-		const messages = this.localizeBundle(appBundle);
+		const { messages } = this.localizeBundle(appBundle);
 
 		return v('ul', { classes: this.theme(css.filters) }, [
 			v('li', [

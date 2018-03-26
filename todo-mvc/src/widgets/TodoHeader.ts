@@ -1,11 +1,10 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { v } from '@dojo/widget-core/d';
 
 import * as css from './styles/todoHeader.m.css';
 
-export interface TodoHeaderProperties extends WidgetProperties {
+export interface TodoHeaderProperties {
 	allCompleted: boolean;
 	addTodo: Function;
 	toggleAllTodos: Function;
@@ -13,10 +12,8 @@ export interface TodoHeaderProperties extends WidgetProperties {
 	value: string;
 }
 
-export const TodoHeaderBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
+export default class TodoHeader extends ThemedMixin(WidgetBase)<TodoHeaderProperties> {
 
 	protected render() {
 		const { properties: { value, allCompleted } } = this;

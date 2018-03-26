@@ -1,7 +1,7 @@
+import WidgetBase from '@dojo/widget-core/WidgetBase';
 import { v, w } from '@dojo/widget-core/d';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { Link } from '@dojo/routing/Link';
+import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
+import Link from '@dojo/routing/Link';
 
 import * as css from './styles/todoViewSwitch.m.css';
 
@@ -9,11 +9,9 @@ export interface TodoViewSwitchProperties {
 	view: string;
 }
 
-export const TodoViewSwitchBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export class TodoViewSwitch extends TodoViewSwitchBase<TodoViewSwitchProperties> {
-	render() {
+export default class TodoViewSwitch extends ThemedMixin(WidgetBase)<TodoViewSwitchProperties> {
+	protected render() {
 		const { view } = this.properties;
 
 		return v('ul', {

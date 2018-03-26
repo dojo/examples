@@ -1,13 +1,13 @@
 import Store from '@dojo/stores/Store';
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import { Registry } from '@dojo/widget-core/Registry';
-
-import { TodoAppContainer } from './containers/TodoAppContainer';
-import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
-import { initialStateProcess } from './todoProcesses';
+import ProjectorMixin from '@dojo/widget-core/mixins/Projector';
+import Registry from '@dojo/widget-core/Registry';
 import { StoreInjector } from '@dojo/stores/StoreInjector';
 import Injector from '@dojo/widget-core/Injector';
+import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
+import { registerRouterInjector } from '@dojo/routing/RouterInjector';
+
+import TodoAppContainer from './containers/TodoAppContainer';
+import { initialStateProcess } from './todoProcesses';
 
 const registry = new Registry();
 const store = new Store();

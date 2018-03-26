@@ -1,7 +1,7 @@
-import { Container } from '@dojo/widget-core/Container';
+import Container from '@dojo/widget-core/Container';
 import Store from '@dojo/stores/Store';
 
-import { TodoApp } from './../widgets/TodoApp';
+import TodoApp from './../widgets/TodoApp';
 import {
 	addTodoProcess,
 	editTodoProcess,
@@ -34,4 +34,4 @@ function getProperties(store: Store<TodoStore>) {
 	};
 }
 
-export const TodoAppContainer = Container(TodoApp, 'state', { getProperties });
+export default Container(TodoApp, 'state', { getProperties });

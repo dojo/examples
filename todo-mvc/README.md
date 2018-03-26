@@ -1,6 +1,6 @@
-# Dojo2 TodoMVC - tsx Example
+# Dojo2 TodoMVC
 
-A reference implementation of [TodoMVC](http://todomvc.com/) built with `tsx` using the current beta1 versions of Dojo 2 packages.
+A reference implementation of [TodoMVC](http://todomvc.com/) using the current beta1 versions of Dojo 2 packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -24,20 +24,20 @@ To use `todo-mvc`, clone the `examples` repository and install the npm dependenc
 
 ```shell
 git clone https://github.com/dojo/examples
-cd examples/todo-mvc-tsx
+cd examples/todo-mvc
 npm install
 ```
 
 To run the application simply run the dojo build.
 
 ```
-dojo build
+dojo build app
 ```
 
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build -w -s
+dojo build app -w -s
 ```
 
 ## Features
