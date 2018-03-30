@@ -1,8 +1,7 @@
+import WidgetBase from '@dojo/widget-core/WidgetBase';
 import { v } from '@dojo/widget-core/d';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import { DNode } from '@dojo/widget-core/interfaces';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
+import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
+import I18nMixin from '@dojo/widget-core/mixins/I18n';
 
 import appBundle from '../nls/common';
 import * as css from './styles/todoSearch.m.css';
@@ -12,18 +11,16 @@ export interface TodoSearchProperties {
 	searchValue: string;
 }
 
-export const TodoSearchBase = I18nMixin(ThemedMixin(WidgetBase));
-
 @theme(css)
-export class TodoSearch extends TodoSearchBase<TodoSearchProperties> {
+export default class TodoSearch extends I18nMixin(ThemedMixin(WidgetBase))<TodoSearchProperties> {
 
 	protected onInput({ target: { value: search } }: any) {
 		this.properties.search({ search });
 	}
 
-	protected render(): DNode[] {
+	protected render() {
 		const { searchValue: value } = this.properties;
-		const messages = this.localizeBundle(appBundle);
+		const { messages } = this.localizeBundle(appBundle);
 
 		return [
 			v('span', { classes: this.theme(css.searchIcon) }),

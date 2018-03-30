@@ -1,8 +1,7 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import  { v } from '@dojo/widget-core/d';
-import { DNode } from '@dojo/widget-core/interfaces';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import { I18nMixin } from '@dojo/widget-core/mixins/I18n';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
+import { v } from '@dojo/widget-core/d';
+import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
+import I18nMixin from '@dojo/widget-core/mixins/I18n';
 
 import appBundle from '../nls/common';
 import * as css from './styles/todoHeader.m.css';
@@ -16,10 +15,8 @@ export interface TodoHeaderProperties {
 	setCurrentTodo: (payload: { todo: string }) => void;
 }
 
-export const TodoHeaderBase = I18nMixin(ThemedMixin(WidgetBase));
-
 @theme(css)
-export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
+export default class TodoHeader extends I18nMixin(ThemedMixin(WidgetBase))<TodoHeaderProperties> {
 
 	protected toggleTodos() {
 		this.properties.toggleTodos({});
@@ -35,9 +32,9 @@ export class TodoHeader extends TodoHeaderBase<TodoHeaderProperties> {
 		this.properties.setCurrentTodo({ todo });
 	}
 
-	protected render(): DNode {
+	protected render() {
 		const { allCompleted, todo, todoCount } = this.properties;
-		const messages = this.localizeBundle(appBundle);
+		const { messages } = this.localizeBundle(appBundle);
 
 		return v('header', [
 			v('h1', { classes: this.theme(css.title) }, [ messages.appTitle ]),

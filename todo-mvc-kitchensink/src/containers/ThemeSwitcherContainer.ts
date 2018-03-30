@@ -1,8 +1,8 @@
-import { Container } from '@dojo/widget-core/Container';
+import Container from '@dojo/widget-core/Container';
 import Injector from '@dojo/widget-core/Injector';
 import { switchLocale } from '@dojo/i18n/i18n';
 
-import { ThemeSwitcher } from './../widgets/ThemeSwitcher';
+import ThemeSwitcher from './../widgets/ThemeSwitcher';
 import pirateThemeStyles from './../themes/pirate';
 
 function getProperties(themeContext: Injector) {
@@ -20,4 +20,4 @@ function getProperties(themeContext: Injector) {
 	};
 }
 
-export const ThemeSwitcherContainer = Container(ThemeSwitcher, 'theme-context', { getProperties });
+export default Container(ThemeSwitcher, 'theme-context', { getProperties });

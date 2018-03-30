@@ -1,15 +1,16 @@
 import Map from '@dojo/shim/Map';
 import { from as arrayFrom } from '@dojo/shim/array';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import { WidgetProperties } from '@dojo/widget-core/interfaces';
+import { Outlet } from '@dojo/routing/Outlet';
+
 import { v, w } from '@dojo/widget-core/d';
 import { Todo } from './TodoApp';
 import TodoItem from './TodoItem';
 
 import * as css from './styles/todoList.m.css';
 
-export interface TodoListProperties extends WidgetProperties {
+export interface TodoListProperties {
 	todos: Map<string, Todo>;
 	updated: string;
 	activeFilter?: 'all' | 'active' | 'completed';
@@ -18,8 +19,6 @@ export interface TodoListProperties extends WidgetProperties {
 	editTodo: Function;
 	updateTodo: Function;
 }
-
-export const TodoListBase = ThemedMixin(WidgetBase);
 
 function filter(filterName: string = 'all', todo: Todo): boolean {
 	switch (filterName) {
@@ -32,14 +31,20 @@ function filter(filterName: string = 'all', todo: Todo): boolean {
 	}
 }
 
+function mapFilterRouteParam({ params }: any) {
+	return { activeFilter: params.filter };
+}
+
 @theme(css)
-export default class TodoList extends TodoListBase<TodoListProperties> {
-	render() {
-		const { properties: { activeFilter, todos, toggleTodo, editTodo, updateTodo, removeTodo } } = this;
+export default class TodoList extends ThemedMixin(WidgetBase)<TodoListProperties> {
+	protected render() {
+		const { activeFilter, todos, toggleTodo, editTodo, updateTodo, removeTodo } = this.properties;
 		const todoItems = arrayFrom(todos.entries()).filter(([ , value ]) => filter(activeFilter, value));
 
-		return v('ul', { id: 'todo-list', classes: this.theme(css.todoList) }, todoItems.map(([ key, todo ]) => {
-			return w<TodoItem>('todo-item', { key, todo, toggleTodo, editTodo, removeTodo, updateTodo });
+		return v('ul', { classes: this.theme(css.todoList) }, todoItems.map(([ key, todo ]) => {
+			return w(TodoItem, { key, todo, toggleTodo, editTodo, removeTodo, updateTodo });
 		}));
 	}
 }
+
+export const TodoListOutlet = Outlet(TodoList, 'filter', { mapParams: mapFilterRouteParam });

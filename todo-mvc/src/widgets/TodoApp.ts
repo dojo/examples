@@ -1,12 +1,12 @@
 import Map from '@dojo/shim/Map';
 import uuid from '@dojo/core/uuid';
 import { assign } from '@dojo/core/lang';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import WidgetBase from '@dojo/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
 import { w, v } from '@dojo/widget-core/d';
 
 import TodoHeader from './TodoHeader';
-import TodoList from './TodoList';
+import { TodoListOutlet } from './TodoList';
 import TodoFooter from './TodoFooter';
 
 import * as css from './styles/todoApp.m.css';
@@ -18,28 +18,26 @@ export interface Todo {
 	editing?: boolean;
 }
 
-export const TodoAppBase = ThemedMixin(WidgetBase);
-
 @theme(css)
-export default class TodoApp extends TodoAppBase {
+export default class TodoApp extends ThemedMixin(WidgetBase) {
 
 	private todos: Map<string, Todo> = new Map<string, Todo>();
 	private todoItem = '';
 	private completedCount = 0;
 	private updated: string = uuid();
 
-	render() {
+	protected render() {
 		const { todoItem, updateTodo, updated, todos, completedCount, clearCompleted, editTodo, removeTodo, toggleTodo, toggleAllTodos } = this;
 		const allCompleted = todos.size !== 0 && completedCount === todos.size;
 		const activeCount = todos.size - completedCount;
 		const completedItems = completedCount > 0;
 
 		return v('section', { classes: this.theme(css.todoapp) }, [
-			w<TodoHeader>('todo-header', { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
-			v('section', {}, [
-				w<TodoList>('todo-list', { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
+			w(TodoHeader, { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
+			v('section', [
+				w(TodoListOutlet, { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
 			]),
-			todos.size ? w<TodoFooter>('todo-footer', { clearCompleted, activeCount, completedItems }) : null
+			todos.size ? w(TodoFooter, { clearCompleted, activeCount, completedItems }) : null
 		]);
 	}
 
