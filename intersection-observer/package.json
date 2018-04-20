@@ -1,6 +1,11 @@
 {
   "name": "intersection-observer",
   "version": "1.0.0",
+  "scripts": {
+    "build": "dojo build",
+    "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
+    "test": "dojo build -m dev && dojo build -m test && dojo test -a"
+  },
   "dependencies": {
     "@dojo/core": "~0.5.0",
     "@dojo/has": "~0.1.2",
