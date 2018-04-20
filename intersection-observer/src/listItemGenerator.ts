@@ -61,7 +61,7 @@ const organizations = [
 function generateArticleTitle() {
 	let template = titles[Math.floor(Math.random() * titles.length)];
 
-	return template.replace(/\[.+?]/g, (match) => {
+	return template.replace(/\[[^\]]+\]/g, (match) => {
 		switch (match) {
 			case '[number]':
 				return String(Math.round(Math.random() * 14) + 1);
