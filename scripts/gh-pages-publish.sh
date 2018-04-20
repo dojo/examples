@@ -22,6 +22,7 @@ then
 	buildProject "custom-element-menu"
 	buildProject "custom-element-showcase"
 	buildProject "realworld"
+	buildProject "intersection-observer"
 
 	export PROJECT_DIR="auto-deploy"
 
@@ -35,6 +36,7 @@ then
 	mkdir samples/custom-element-menu
 	mkdir samples/custom-element-showcase
 	mkdir samples/realworld
+	mkdir samples/intersection-observer
 
 	cp index.html samples/index.html
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
@@ -44,6 +46,7 @@ then
 	cp -r custom-element-menu/output/dist/* samples/custom-element-menu
 	cp -r custom-element-showcase/dist/* samples/custom-element-showcase
 	cp -r realworld/output/dist/* samples/realworld
+	cp -r intersection-observer/output/dist/* samples/intersection-observer
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 
