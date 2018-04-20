@@ -1,0 +1,34 @@
+@import './variables.css';
+
+.label {
+	text-align: center;
+}
+
+.clock {
+	fill: #000;
+}
+
+.hourText {
+	fill: var(--clock-text-color);
+	font-size: var(--clock-text-size);
+}
+
+.hand {
+	stroke: #fff;
+}
+
+.hourHand {
+	stroke-width: var(--hour-hand-stroke-width);
+}
+
+.minuteHand {
+	stroke-width: var(--minute-hand-stroke-width);
+}
+
+.secondHand {
+	stroke-width: var(--second-hand-stroke-width);
+}
+
+.joint {
+	stroke: #fff;
+}
