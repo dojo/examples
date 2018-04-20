@@ -1,28 +1,22 @@
-const { describe, it } = intern.getInterface('bdd');
+const { describe, it, beforeEach } = intern.getInterface('bdd');
 import harness from '@dojo/test-extras/harness';
 
 import { v, w } from '@dojo/widget-core/d';
-import Intersection from '@dojo/widget-core/meta/Intersection';
-import { beforeEach } from 'intern/lib/interfaces/tdd';
-import { stub } from 'sinon';
 
 import InfiniteList from '../../../src/widgets/InfiniteList';
 import * as css from '../../../src/widgets/styles/infiniteList.m.css';
 
-let intersectionGetStub: any = stub();
+let intersectionGetStub: any;
 
 class TestWidget extends InfiniteList {
 	constructor() {
 		super();
 
-		const metaStub = stub();
-		const intersectionStub = {
-			get: intersectionGetStub
-		};
-
-		metaStub.withArgs(Intersection).returns(intersectionStub);
-
-		this.meta = metaStub;
+		this.meta = (() => {
+			return {
+				get: intersectionGetStub
+			};
+		}) as any;
 	}
 }
 
