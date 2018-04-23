@@ -11,10 +11,10 @@
     "@dojo/core": "~0.5.0",
     "@dojo/has": "~0.1.2",
     "@dojo/i18n": "~0.6.0",
-    "@dojo/routing": "~0.6.0",
+    "@dojo/routing": "file:../../routing/dist/dojo-routing-0.6.1-rc.1.tgz",
     "@dojo/shim": "~0.2.7",
-    "@dojo/stores": "~0.5.0",
-    "@dojo/widget-core": "~0.10.0",
+    "@dojo/stores": "file:../../stores/dist/dojo-stores-0.5.1-rc.1.tgz",
+    "@dojo/widget-core": "file:../../widget-core/dist/dojo-widget-core-0.10.3-rc.1.tgz",
     "marked": "0.3.9",
     "tslib": "~1.8.1"
   },

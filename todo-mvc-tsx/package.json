@@ -21,10 +21,10 @@
     "@dojo/core": "~0.5.0",
     "@dojo/has": "~0.1.2",
     "@dojo/i18n": "~0.6.0",
-    "@dojo/routing": "~0.6.0",
+    "@dojo/interop": "file:../../interop/dist/dojo-interop-0.6.1-rc.1.tgz",
+    "@dojo/routing": "file:../../routing/dist/dojo-routing-0.6.1-rc.1.tgz",
     "@dojo/shim": "~0.2.7",
-    "@dojo/widget-core": "~0.10.0",
-    "@dojo/interop": "~0.6.0",
+    "@dojo/widget-core": "file:../../widget-core/dist/dojo-widget-core-0.10.3-rc.1.tgz",
     "redux": "^3.7.2",
     "tslib": "~1.8.1"
   },

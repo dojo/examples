@@ -1,7 +1,7 @@
 import global from '@dojo/shim/global';
 import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
-import { ReduxInjector } from '@dojo/interop/redux/ReduxInjector';
+import { reduxInjectorFactory } from '@dojo/interop/redux/ReduxInjector';
 import { Registry } from '@dojo/widget-core/Registry';
 
 import { TodoAppContainer } from './containers/TodoAppContainer';
@@ -17,7 +17,7 @@ const defaultState = {
 
 const registry = new Registry();
 const store = createStore(todoReducer, defaultState, global.__REDUX_DEVTOOLS_EXTENSION__ && global.__REDUX_DEVTOOLS_EXTENSION__());
-registry.defineInjector('application-state', new ReduxInjector(store));
+registry.defineInjector('application-state', reduxInjectorFactory(store));
 
 const config = [
 	{

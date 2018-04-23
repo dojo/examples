@@ -1,8 +1,6 @@
 import Store from '@dojo/stores/Store';
 import ProjectorMixin from '@dojo/widget-core/mixins/Projector';
 import Registry from '@dojo/widget-core/Registry';
-import { StoreInjector } from '@dojo/stores/StoreInjector';
-import Injector from '@dojo/widget-core/Injector';
 import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
 import { registerRouterInjector } from '@dojo/routing/RouterInjector';
 
@@ -14,8 +12,16 @@ const store = new Store();
 const themeContext = registerThemeInjector(undefined, registry);
 
 initialStateProcess(store)({});
-registry.defineInjector('state', new StoreInjector(store));
-registry.defineInjector('theme-context', new Injector(themeContext));
+registry.defineInjector('state', (invalidator) => {
+	store.on('invalidate', () => invalidator());
+	return () => store;
+});
+registry.defineInjector('theme-context', () => {
+	return () => ({
+		get: () => themeContext,
+		set: (theme: string) => themeContext.set(theme)
+	});
+});
 
 const Projector = ProjectorMixin(TodoAppContainer);
 const projector = new Projector();
