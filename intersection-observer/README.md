@@ -26,7 +26,7 @@ dojo build -w -s
 
 ## What's Going On?
 
-The `InfiniteList` widget uses the [Intersection meta](https://github.com/dojo/widget-core#intersection) to determine when it's bottom element is in the viewport. If it is, then the bottom of the list is visible and more content needs to be loaded.
+The `InfiniteList` widget uses the [Intersection meta](https://github.com/dojo/widget-core#intersection) to determine when its bottom element is in the viewport. If it is, then the bottom of the list is visible and more content needs to be loaded.
 
 ## How do I contribute?
 
