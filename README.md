@@ -22,6 +22,7 @@ The current examples are:
 - [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage.
 - [custom-element-showcase](./custom-element-showcase/README.md) - Demonstrates using @dojo/widgets distributed as compiled custom elements.
 - [Conduit RealWorld Application](./realworld/README.md) - A realworld implementation of a medium clone, conduit.
+- [intersection-observer](./intersection-observer/README.md) - Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list.
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
@@ -32,6 +33,7 @@ Application examples that are deployed to [gh-pages](https://dojo.github.io/exam
  - [Custom Element Widget Showcase](https://dojo.github.io/examples/custom-element-showcase)
  - [Custom Element Menu](https://dojo.github.io/examples/custom-element-menu)
  - [RealWorld Application](https://dojo.github.io/examples/realworld)
+ - [intersection-observer](https://dojo.github.io/examples/intersection-observer/)
 
 ## How Do I Contribute?
 
@@ -49,6 +51,7 @@ Refer to each `README.md` for details on installing and testing the examples.
 * [custom-element-showcase](./custom-element-showcase/README.md)
 * [dojo-cli-example](./dojo-cli-example/README.md)
 * [Conduit RealWorld Application](./realworld/README.md)
+* [intersection-observer](./intersection-observer/README.md)
 
 ## Licensing Information
 
