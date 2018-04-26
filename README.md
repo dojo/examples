@@ -22,7 +22,7 @@ The current examples are:
 - [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage.
 - [custom-element-showcase](./custom-element-showcase/README.md) - Demonstrates using @dojo/widgets distributed as compiled custom elements.
 - [Conduit RealWorld Application](./realworld/README.md) - A realworld implementation of a medium clone, conduit.
-- [intersection-obersver](./intersection-observer/README.md) - Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list.
+- [intersection-observer](./intersection-observer/README.md) - Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list.
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
