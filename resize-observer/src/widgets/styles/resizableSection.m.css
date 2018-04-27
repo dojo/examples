@@ -1,5 +1,5 @@
 .root {
-	border-right: 1px solid black;
+	border: 1px solid rgba(0,0,0,.075);
 	overflow-y: auto;
 	transition: width .3s ease-in-out;
 	padding: 5px;
