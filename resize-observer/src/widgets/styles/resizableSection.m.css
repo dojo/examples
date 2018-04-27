@@ -46,23 +46,3 @@
 	width: 100%;
 	transition: none;
 }
-
-.medium {
-	&.oneColumn {
-		 width: 0;
-		 border: none;
-		 padding: 0;
-	}
-
-	&.threeColumns {
-		 width: 25%;
-	}
-
-    &.fiveColumns {
-		 width: 50%
-	}
-
-	&.sevenColumns {
-		 width: 75%
-	}
-}

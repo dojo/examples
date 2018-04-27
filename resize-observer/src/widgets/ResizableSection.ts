@@ -15,23 +15,12 @@ export class ResizableSection extends WidgetBase<ResizableSectionProperties> {
     8: css.eightColumns
   };
 
-  private _getSizeClasses() {
-    const { isMedium, isSmall, columns } = this.properties;
-    if (isSmall) {
-      return [ css.eightColumns ];
-    } else if (isMedium) {
-      return [ css.medium, this._columnClasses[columns] ]
-    } else {
-      return [ this._columnClasses[columns] ];
-    }
-  }
-
   protected render() {
     const { isSmall, isMedium, columns, expand, shrink } = this.properties;
 
     return v(
       'div',
-      { key: 'root', classes: [ css.root, ...this._getSizeClasses() ] },
+      { key: 'root', classes: [ css.root, isSmall ? css.eightColumns : this._columnClasses[columns] ] },
       [
         isSmall ? null : v('div', {}, [
           v('button', { disabled: columns <= (isMedium ? 2 : 1), onclick: shrink }, [ 'Shrink Component' ]),

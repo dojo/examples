@@ -76,7 +76,24 @@ export class App extends WidgetBase {
     return columns;
   }
 
-	private _createResizer(column: number, expand: boolean, isMedium: boolean) {
+  private _adjustSizes() {
+    let numberOfOdd = this._columns.filter(column => column % 2 === 1).length;
+    const newColumns = this._columns.map(columns => columns % 2 === 1 ? columns - 1 : columns);
+    const numberOfColumns = newColumns.length;
+
+    let index = 0;
+    while (numberOfOdd > 0) {
+      if (newColumns[index] !== 0) {
+        newColumns[index] = newColumns[index] + 2;
+        numberOfOdd -= 2;
+      }
+      index = (index + 1) % numberOfColumns;
+    }
+
+    this._columns = newColumns;
+  }
+
+  private _createResizer(column: number, expand: boolean, isMedium: boolean) {
 	  return () => {
       this._columns = this._resize(column, expand, isMedium);
       this.invalidate();
@@ -96,6 +113,11 @@ export class App extends WidgetBase {
       isSmall: this._smallPredicate,
       isMedium: this._mediumPredicate
     });
+
+    if (isMedium && this._columns.filter(columns => columns % 2 === 1).length) {
+      this._adjustSizes();
+      this.invalidate();
+    }
 
 	  const widgets = [
       w(Article, {}),
