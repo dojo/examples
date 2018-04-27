@@ -8,3 +8,4 @@ export const fiveColumns: string;
 export const sixColumns: string;
 export const sevenColumns: string;
 export const eightColumns: string;
+export const medium: string;

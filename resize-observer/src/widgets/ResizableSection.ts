@@ -15,15 +15,26 @@ export class ResizableSection extends WidgetBase<ResizableSectionProperties> {
     8: css.eightColumns
   };
 
+  private _getSizeClasses() {
+    const { isMedium, isSmall, columns } = this.properties;
+    if (isSmall) {
+      return [ css.eightColumns ];
+    } else if (isMedium) {
+      return [ css.medium, this._columnClasses[columns] ]
+    } else {
+      return [ this._columnClasses[columns] ];
+    }
+  }
+
   protected render() {
-    const { small, columns, expand, shrink } = this.properties;
+    const { isSmall, isMedium, columns, expand, shrink } = this.properties;
 
     return v(
       'div',
-      { key: 'root', classes: [ css.root, small ? css.eightColumns : this._columnClasses[columns] ] },
+      { key: 'root', classes: [ css.root, ...this._getSizeClasses() ] },
       [
-        small ? null : v('div', {}, [
-          v('button', { disabled: columns <= 1, onclick: shrink }, [ 'Shrink Component' ]),
+        isSmall ? null : v('div', {}, [
+          v('button', { disabled: columns <= (isMedium ? 2 : 1), onclick: shrink }, [ 'Shrink Component' ]),
           v('button', { disabled: columns === 8, onclick: expand }, [ 'Expand Component' ])
         ]),
         ...this.children
@@ -32,11 +43,10 @@ export class ResizableSection extends WidgetBase<ResizableSectionProperties> {
   }
 }
 
-export type ColumnCount = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-
 export interface ResizableSectionProperties {
-  columns: ColumnCount;
-  small?: boolean;
+  columns: number;
+  isMedium?: boolean;
+  isSmall?: boolean;
   expand: () => void;
   shrink: () => void;
 }

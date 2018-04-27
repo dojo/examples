@@ -6,44 +6,63 @@
 	& div {
 		margin: 5px;
   	}
+}
 
-	&.zeroColumns {
-		width: 0;
-		border: none;
-		padding: 0;
-	}
+.zeroColumns {
+	width: 0;
+	border: none;
+	padding: 0;
+}
 
+.oneColumn {
+	width: 12.5%;
+}
+
+.twoColumns {
+	width: 25%;
+}
+
+.threeColumns {
+	width: 37.5%;
+}
+
+.fourColumns {
+	width: 50%
+}
+
+.fiveColumns {
+	width: 62.5%
+}
+
+.sixColumns {
+	width: 75%
+}
+
+.sevenColumns {
+	width: 87.5%;
+}
+
+.eightColumns {
+	width: 100%;
+	transition: none;
+}
+
+.medium {
 	&.oneColumn {
-		width: 12.5%;
-	}
-
-	&.twoColumns {
-		width: 25%;
+		 width: 0;
+		 border: none;
+		 padding: 0;
 	}
 
 	&.threeColumns {
-		width: 37.5%;
+		 width: 25%;
 	}
 
-	&.fourColumns {
-		width: 50%
-	}
-
-	&.fiveColumns {
-		width: 62.5%
-	}
-
-	&.sixColumns {
-		width: 75%
+    &.fiveColumns {
+		 width: 50%
 	}
 
 	&.sevenColumns {
-		width: 87.5%;
-	}
-
-	&.eightColumns {
-		width: 100%;
-		transition: none;
+		 width: 75%
 	}
 }
-

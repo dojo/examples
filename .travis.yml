@@ -12,6 +12,7 @@ env:
   - PROJECT_DIR=custom-element-menu
   - PROJECT_DIR=auto-deploy
   - PROJECT_DIR=intersection-observer
+  - PROJECT_DIR=resize-observer
   global:
   - SAUCE_USERNAME=dojo2-ts-ci
   - SAUCE_ACCESS_KEY=e92610e3-834e-4bec-a3b5-6f7b9d874601

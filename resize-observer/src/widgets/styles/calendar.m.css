@@ -130,24 +130,20 @@
 		background: #40bf80;
 	}
 
-	--calendar-dateHeight: 4.5em;
-	--calendar-entryHeight: 3.333em;
-
 	display: flex;
 	padding: 1.5em;
 
 	& .calendarTimes {
 		display: block;
-		margin-top: var(--calendar-dateHeight);
+		margin-top: 4.5em;
 		min-width: 4em;
 	}
 
 	& .calendarTime {
-		--calendar-timeSize: 0.8;
 
 		border-top: 1px solid #eee;
-		font-size: calc(1em * var(--calendar-timeSize));
-		height: calc(var(--calendar-entryHeight) / var(--calendar-timeSize));
+		font-size: calc(1em * 0.8);
+		height: calc(3.333em / 0.8);
 		list-style: none;
 		padding-top: 0.25em;
 	}
@@ -174,7 +170,7 @@
 		padding: 0;
 		position: static;
 		text-align: left;
-		height: var(--calendar-dateHeight);
+		height: 4.5em;
 		overflow: hidden;
 	}
 
@@ -183,7 +179,6 @@
 	}
 
 	& .calendarEntry {
-
 		margin: 0;
 		position: absolute;
 		width: 100%;

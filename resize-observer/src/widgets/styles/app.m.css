@@ -5,3 +5,12 @@
 	overflow-y: scroll; /* has to be scroll, not auto */
 	-webkit-overflow-scrolling: touch;
 }
+
+.controls {
+	height: 25px
+}
+
+.parentContainer {
+	display: flex;
+	border: 1px solid black;
+}

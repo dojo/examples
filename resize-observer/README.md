@@ -1,33 +1,53 @@
-# resizeObserver
+# Resize Observer Demo
 
-This project was generated with the [Dojo CLI](https://github.com/dojo/cli) & [Dojo CLI create app command](https://github.com/dojo/cli-create-app).
+A demo implementation of responsive components that dynamically adjust
+their presentation based on the space currently available to them.
 
-## Build
+## Usage
 
-Run `dojo build --mode dist` (the `mode` option defaults to `dist`) to create a production build for the project. The built artifacts will be stored in the `output/dist` directory.
+To see the demo, clone the `examples` repository and install the npm dependencies:
 
-## Development Build
+```
+git clone https://github.com/dojo/examples
+cd examples/resize-observer
+npm install
+```
 
-Run `dojo build --mode dev` to create a development build for the project. The built artifacts will be stored in the `output/dev` directory.
+To run the example, simply run the dojo build.
 
-## Development server
+```
+dojo build
+```
 
-Run `dojo build --mode dev --watch memory --serve` to create an in memory development build and start a development server with hot reload. By default the server runs on port `9999`, navigate to `http://localhost:9999/`.
+To watch and serve the application source, then run the build with the `-w` command.
 
-To change the port of the development use the `--port` option.
+```
+dojo build -w -s
+```
 
-## Running unit tests
+## What's Going On?
 
-To run units tests in node only use `dojo test` which uses JIT (just in time) compilation.
+The `App`, `Card`, `Calendar`, `Article`, and `Column` widgets
+use the [Resize meta](https://github.com/dojo/widget-core#resize) to
+check the amount of horizontal space they have to render in. Based on
+this space they use a combination of programmatic logic and custom
+styles to adjust their rendering to be optimal for the space available.
 
-To run the unit tests against built bundles, first the run a test build with `dojo build --mode test`. The build test artifacts are written to the `output/test` directory.
+The components can be dynamically resized using the buttons in each
+container, and the app itself will adjust the number and minimum size
+of the components displayed as the overall space available decreases.
 
-Then `dojo test -c local` to run the projects unit tests. These tests are located in the `tests/unit` directory. The `--watch` options can be used with the test build which means that `dojo test` can be re-run without needing to re-build the full application each time.
+## How do I contribute?
 
-## Running functional tests
+We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
 
-To run the functional tests, first the run a test build with `dojo build --mode test` and then `dojo test -f` to run the projects functional tests. These tests are located in the `tests/functional` directory.
+### Installation
 
-## Further help
+To start working with this package, clone the repository and run `npm install`.
 
-To get help for these commands and more, run `dojo` on the command line.
+In order to build the project run `npm run build`.
+
+## Licensing Information
+
+© 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
+
