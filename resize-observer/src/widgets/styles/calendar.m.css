@@ -1,0 +1,195 @@
+.badge {
+	composes: badge from './common.m.css';
+}
+
+.root {
+	position: relative;
+	background: hsl(0, 0%, 100%);
+	border: 1px solid hsl(0, 0%, 93%);
+	padding: 0.2em 1em;
+	overflow: hidden;
+
+	& .badge {
+		  background: #33b2cc;
+  	}
+
+	& .calendarTimes {
+		display: none;
+ 	}
+
+	& .calendarDay {
+		border-top: 1px solid hsl(0, 0%, 92.5%);
+	}
+
+	& .calendarDay:first-of-type {
+		border: 0;
+	}
+
+	& .calendarDayHeader {
+		position: relative;
+		flex: 0 0 4em;
+		margin-right: 1em;
+	}
+
+	& .calendarDate {
+		display: flex;
+		align-items: baseline;
+		padding: 0.75em 0;
+	}
+
+	& .calendarDateMo {
+		font-size: 1.5em;
+		font-weight: 500;
+		line-height: 1;
+		margin-right: 0.2em;
+	}
+
+	& .calendarDateWk {
+		font-size: 0.8em;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+
+	& .calendarEntries {
+		  margin: 0;
+		  max-width: 100%;
+		  padding: 0;
+	}
+
+	& .calendarEntry {
+		  border: 1px solid hsl(0, 0%, 75%);
+		  border-radius: 0.2em;
+		  cursor: pointer;
+		  line-height: 1.2;
+		  list-style: none;
+		  margin: 0 0 1em;
+		  padding: 0.5em;
+	}
+
+	& .calendarEntryTime {
+		  font-size: 0.9em;
+		  font-weight: 600;
+		  margin-bottom: 0.1em;
+	}
+
+	& .calendarEntryDesc {
+		  font-size: 0.9em;
+	}
+}
+
+
+/* Medium */
+.root.medium {
+	& .badge {
+		background: #ab47bc;
+  	}
+
+	& .calendarDay {
+		display: flex;
+	}
+
+	& .calendarDateMo {
+		margin: 0;
+	}
+
+	& .calendarEntries {
+		flex: 1 0 0%;
+	}
+
+	& .calendarEntry {
+		margin: 1em 0;
+	}
+
+	& .calendarDate {
+		align-items: stretch;
+		position: sticky;
+		top: 0em;
+		left: 0;
+
+		flex-flow: column;
+		padding: 0.75em 0;
+		text-align: center;
+	}
+
+	& .calendarDateWk {
+		font-size: 0.8em;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+
+	& .calendarDateMo {
+		font-size: 2.5em;
+		font-weight: 300;
+		line-height: 1;
+	}
+}
+
+/* Large */
+.root.large {
+	& .badge {
+		background: #40bf80;
+	}
+
+	--calendar-dateHeight: 4.5em;
+	--calendar-entryHeight: 3.333em;
+
+	display: flex;
+	padding: 1.5em;
+
+	& .calendarTimes {
+		display: block;
+		margin-top: var(--calendar-dateHeight);
+		min-width: 4em;
+	}
+
+	& .calendarTime {
+		--calendar-timeSize: 0.8;
+
+		border-top: 1px solid #eee;
+		font-size: calc(1em * var(--calendar-timeSize));
+		height: calc(var(--calendar-entryHeight) / var(--calendar-timeSize));
+		list-style: none;
+		padding-top: 0.25em;
+	}
+
+	& .calendarDay {
+		flex: 1 0 0%;
+		min-width: 0;
+
+		border: 0;
+		border-left: 1px solid #eee;
+		flex-flow: column;
+		padding: 0 1em;
+	}
+
+	& .calendarDay:last-child {
+		padding-right: 0;
+	}
+
+	& .calendarDayHeader {
+		position: static;
+	}
+
+	& .calendar .calendarDate {
+		padding: 0;
+		position: static;
+		text-align: left;
+		height: var(--calendar-dateHeight);
+		overflow: hidden;
+	}
+
+	& .calendarEntries {
+		position: relative;
+	}
+
+	& .calendarEntry {
+
+		margin: 0;
+		position: absolute;
+		width: 100%;
+	}
+
+	& .calendarEntryDesc {
+		font-size: 0.8em;
+	}
+}

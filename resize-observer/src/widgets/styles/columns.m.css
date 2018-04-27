@@ -1,0 +1,25 @@
+.root {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+}
+
+.small {
+    grid-template-columns: 1fr;
+
+    & .badge {
+        background: #33b2cc;
+    }
+}
+
+.big {
+    grid-template-columns: 1fr 1fr;
+
+    & .badge {
+        background: #40bf80;
+    }
+}
+
+.badge {
+    composes: badge from './common.m.css';
+}

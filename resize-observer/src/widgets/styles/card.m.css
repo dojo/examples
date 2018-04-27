@@ -1,0 +1,108 @@
+.root {
+	border: 1px solid rgba(0,0,0,.075);
+	display: flex;
+	flex: row;
+	padding: 1em;
+	position: relative;
+	overflow: hidden;
+}
+
+.text {
+	padding: 0;
+	margin: 0;
+}
+
+.big {
+	& .badge {
+		background: #40bf80;
+	}
+
+    & .badgeLeft {
+        background: #40bf80;
+    }
+}
+
+.medium {
+	flex-flow: column;
+	& .figureHolder {
+		padding-right: none;
+		border-right: none;
+		margin-bottom: 1em !important;
+	}
+
+	& .badge {
+		background: #ab47bc;
+  	}
+	& .badgeLeft {
+		background: #ab47bc;
+  	}
+}
+
+.small {
+    & .figureHolder {
+        display: none;
+    }
+
+	& .badge {
+		  background: #33b2cc;
+ 	}
+
+	& .badgeLeft {
+		  background: #33b2cc;
+	}
+}
+
+.badge {
+	composes: badge from './common.m.css';
+}
+
+.badgeLeft {
+    color: #fff;
+    background: #fff;
+    font-size: .8em;
+    font-weight: 700;
+    letter-spacing: .1em;
+    position: absolute;
+    left: -1.2em;
+    text-align: center;
+    top: 3.1em;
+    transform: rotate(-45deg);
+    transform-origin: 0 0;
+    width: 6em;
+    z-index: 10;
+    transition: all 0.5s ease-in;
+}
+
+.figure {
+	border: 1px solid #e6e6e6;
+	padding: .25em;
+}
+
+.figure:after {
+	background: #e6e6e6;
+	content: "";
+	display: block;
+	height: 0;
+	padding-top: 56.25%;
+	width: 100%;
+}
+
+.figureHolder {
+	border-right: 1px solid #eee;
+	flex: 2;
+	margin-bottom: 0;
+	margin-right: 1em;
+	min-width: 0;
+	padding-right: 1em;
+}
+
+.title {
+	font-size: 1.4em;
+	font-weight: 600;
+	margin-bottom: .53571em;
+}
+
+.bodyHolder {
+	flex: 5;
+	min-width: 0;
+}
