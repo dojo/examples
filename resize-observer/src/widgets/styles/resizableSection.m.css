@@ -2,10 +2,11 @@
 	border: 1px solid rgba(0,0,0,.075);
 	overflow-y: auto;
 	transition: width .3s ease-in-out;
-	padding: 5px;
-	& div {
-		margin: 5px;
-  	}
+	padding: 10px;
+}
+
+.sizeControls {
+	margin-bottom: 10px;
 }
 
 .zeroColumns {

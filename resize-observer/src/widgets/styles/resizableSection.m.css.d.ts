@@ -1,4 +1,5 @@
 export const root: string;
+export const sizeControls: string;
 export const zeroColumns: string;
 export const oneColumn: string;
 export const twoColumns: string;

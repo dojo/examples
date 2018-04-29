@@ -2,6 +2,9 @@
     display: grid;
     position: relative;
     overflow: hidden;
+	& > div {
+		margin-bottom: 10px;
+  	}
 }
 
 .small {

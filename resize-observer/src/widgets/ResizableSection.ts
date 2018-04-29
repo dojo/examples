@@ -22,7 +22,7 @@ export class ResizableSection extends WidgetBase<ResizableSectionProperties> {
       'div',
       { key: 'root', classes: [ css.root, isSmall ? css.eightColumns : this._columnClasses[columns] ] },
       [
-        isSmall ? null : v('div', {}, [
+        isSmall ? null : v('div', { classes: css.sizeControls }, [
           v('button', { disabled: columns <= (isMedium ? 2 : 1), onclick: shrink }, [ 'Shrink Component' ]),
           v('button', { disabled: columns === 8, onclick: expand }, [ 'Expand Component' ])
         ]),
