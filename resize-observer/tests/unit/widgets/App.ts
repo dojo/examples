@@ -9,7 +9,7 @@ import Card from '../../../src/widgets/Card';
 import ResizableSection from '../../../src/widgets/ResizableSection';
 import Article from '../../../src/widgets/Article';
 import Column from '../../../src/widgets/Column';
-import Button from '@dojo/widgets/Button'
+import Button from '@dojo/widgets/button'
 import * as css from '../../../src/widgets/styles/app.m.css';
 
 let resizeGetStub: any;
