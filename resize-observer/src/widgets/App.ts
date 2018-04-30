@@ -5,7 +5,7 @@ import Card from './Card';
 import ResizableSection from './ResizableSection';
 import Article from './Article';
 import Column from './Column';
-import Button from '@dojo/widgets/Button';
+import Button from '@dojo/widgets/button';
 import * as css from './styles/app.m.css';
 import Resize, { ContentRect } from '@dojo/widget-core/meta/Resize';
 
