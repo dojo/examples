@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@dojo/cli-build-app": "^2.0.0",
-    "@dojo/cli-build-widget": "file:/Users/Anthony/development/test-beds/release-check/deps/dojo-cli-build-widget-0.2.3-rc.1.tgz",
+    "@dojo/cli-build-widget": "^2.0.0",
     "@dojo/cli-test-intern": "^2.0.0",
     "@dojo/test-extras": "^2.0.0",
     "@types/glob": "~5.0.0",
