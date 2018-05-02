@@ -1,6 +1,7 @@
 {
   "name": "custom-element",
   "version": "1.0.0",
+  "main": "src/main.ts",
   "scripts": {
     "build-app": "dojo build app",
     "build-widgets": "dojo build widget",
@@ -14,20 +15,22 @@
     "test-ci": "echo no tests"
   },
   "dependencies": {
-    "@dojo/core": "~0.5.0",
-    "@dojo/has": "~0.1.2",
-    "@dojo/i18n": "~0.6.0",
-    "@dojo/routing": "~0.6.0",
-    "@dojo/shim": "~0.2.7",
-    "@dojo/widget-core": "~0.10.0",
+    "@dojo/core": "^2.0.0",
+    "@dojo/has": "^2.0.0",
+    "@dojo/i18n": "^2.0.0",
+    "@dojo/interop": "^2.0.0",
+    "@dojo/routing": "^2.0.0",
+    "@dojo/shim": "^2.0.0",
+    "@dojo/stores": "^2.0.0",
+    "@dojo/widget-core": "^2.0.0",
+    "@dojo/widgets": "^2.0.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "~0.3.5",
-    "@dojo/cli-build-widget": "~0.2.2",
-    "@dojo/cli-test-intern": "~0.5.2",
-    "@dojo/loader": "~0.1.1",
-    "@dojo/test-extras": "~0.6.0",
+    "@dojo/cli-build-app": "^2.0.0",
+    "@dojo/cli-build-widget": "file:/Users/Anthony/development/test-beds/release-check/deps/dojo-cli-build-widget-0.2.3-rc.1.tgz",
+    "@dojo/cli-test-intern": "^2.0.0",
+    "@dojo/test-extras": "^2.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
