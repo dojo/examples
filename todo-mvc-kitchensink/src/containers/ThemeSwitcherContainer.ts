@@ -10,11 +10,11 @@ function getProperties(themeContext: Injector) {
 		changeTheme(wantsPirate: boolean) {
 			if (wantsPirate) {
 				switchLocale('en-PR');
-				/*themeContext.set(pirateThemeStyles);*/
+				themeContext.set(pirateThemeStyles);
 			}
 			else {
 				switchLocale('en');
-				/*themeContext.set(undefined);*/
+				themeContext.set(undefined);
 			}
 		}
 	};
