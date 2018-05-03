@@ -15,7 +15,7 @@
     "@dojo/routing": "^2.0.0",
     "@dojo/shim": "^2.0.0",
     "@dojo/stores": "^2.0.0",
-    "@dojo/themes": "^0.7.0",
+    "@dojo/themes": "^2.0.0",
     "@dojo/widget-core": "^2.0.0",
     "@dojo/widgets": "^2.0.0",
     "tslib": "~1.8.1"
