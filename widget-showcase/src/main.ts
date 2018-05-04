@@ -13,7 +13,13 @@ const themes: { [index: string]: any } = {
 const registry = new Registry();
 const themeContext = registerThemeInjector(dojo, registry);
 
-registry.defineInjector('theme-context', new Injector(themeContext));
+registry.defineInjector('theme-context', () => {
+	return () => ({
+		get: () => themeContext,
+		set: (theme: string) => themeContext.set(theme)
+	});
+});
+
 
 let initialAppState = {
 	registry,

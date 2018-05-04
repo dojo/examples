@@ -11,7 +11,6 @@ import { setSessionProcess } from './processes/loginProcesses';
 import { changeRouteProcess } from './processes/routeProcesses';
 import { State } from './interfaces';
 import { getRouteConfig } from './config';
-import { StoreInjector } from '@dojo/stores/StoreInjector';
 
 const store = new Store<State>();
 const registry = new Registry();
@@ -54,7 +53,7 @@ function onRouteChange() {
 store.onChange(store.path('routing', 'outlet'), onRouteChange);
 store.onChange(store.path('routing', 'params'), onRouteChange);
 
-registry.defineInjector('state', new StoreInjector(store));
+registry.defineInjector('state', () => () => store);
 
 const appRoot = document.getElementById('app')!;
 const Projector = ProjectorMixin(App);
