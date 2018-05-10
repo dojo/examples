@@ -23,6 +23,7 @@ The current examples are:
 - [custom-element-showcase](./custom-element-showcase/README.md) - Demonstrates using @dojo/widgets distributed as compiled custom elements.
 - [Conduit RealWorld Application](./realworld/README.md) - A realworld implementation of a medium clone, conduit.
 - [intersection-observer](./intersection-observer/README.md) - Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list.
+- [resize-observer](./resize-observer/README.md) - Demonstrates using the [`Resize`](https://github.com/dojo/widget-core#resize) meta for creating responsive components that dynamically modify the way they are renderd based on the space available to them.
 
 Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
 
@@ -34,6 +35,7 @@ Application examples that are deployed to [gh-pages](https://dojo.github.io/exam
  - [Custom Element Menu](https://dojo.github.io/examples/custom-element-menu)
  - [RealWorld Application](https://dojo.github.io/examples/realworld)
  - [intersection-observer](https://dojo.github.io/examples/intersection-observer/)
+ - [resize-observer](https://dojo.github.io/examples/resize-observer/)
 
 ## How Do I Contribute?
 
@@ -52,6 +54,7 @@ Refer to each `README.md` for details on installing and testing the examples.
 * [dojo-cli-example](./dojo-cli-example/README.md)
 * [Conduit RealWorld Application](./realworld/README.md)
 * [intersection-observer](./intersection-observer/README.md)
+* [resize-observer](./resize-observer/README.md)
 
 ## Licensing Information
 

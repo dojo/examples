@@ -1,0 +1,16 @@
+.badge {
+	color: #fff;
+	background: #fff;
+	font-size: .8em;
+	font-weight: 700;
+	letter-spacing: .1em;
+	position: absolute;
+	right: -3.1em;
+	text-align: center;
+	top: -1.2em;
+	transform: rotate(45deg);
+	transform-origin: 0 0;
+	width: 6em;
+	z-index: 10;
+	transition: all 0.5s ease-in;
+}

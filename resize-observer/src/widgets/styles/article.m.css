@@ -1,0 +1,60 @@
+.root {
+	background: #fff;
+	border: 1px solid rgba(0,0,0,.075);
+	padding: 1.5em;
+	position: relative;
+	overflow: hidden;
+}
+
+.content {}
+
+.text {
+	padding: 0;
+	margin: 0;
+}
+
+.big {
+	& .content {
+		column-count: 3;
+	}
+	& .badge {
+		background: #40bf80;
+	}
+}
+
+.medium {
+	& .content {
+		column-count: 2;
+	}
+	& .badge {
+		background: #ab47bc;
+	}
+}
+
+.small {
+	& .content {
+		column-count: 1;
+	}
+	& .badge {
+		background: #33b2cc;
+	}
+}
+
+.title {
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	font-weight: 700;
+	letter-spacing: .15em;
+	margin-bottom: 1em;
+	padding-bottom: .5em;
+	text-transform: uppercase;
+	font-size: 1.2em;
+
+}
+
+.root p {
+	margin: 0 0 1em;
+}
+
+.badge {
+	composes: badge from './common.m.css';
+}

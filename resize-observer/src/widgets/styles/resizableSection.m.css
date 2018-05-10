@@ -1,0 +1,49 @@
+.root {
+	border: 1px solid rgba(0,0,0,.075);
+	overflow-y: auto;
+	transition: width .3s ease-in-out;
+	padding: 10px;
+}
+
+.sizeControls {
+	margin-bottom: 10px;
+}
+
+.zeroColumns {
+	width: 0;
+	border: none;
+	padding: 0;
+}
+
+.oneColumn {
+	width: 12.5%;
+}
+
+.twoColumns {
+	width: 25%;
+}
+
+.threeColumns {
+	width: 37.5%;
+}
+
+.fourColumns {
+	width: 50%
+}
+
+.fiveColumns {
+	width: 62.5%
+}
+
+.sixColumns {
+	width: 75%
+}
+
+.sevenColumns {
+	width: 87.5%;
+}
+
+.eightColumns {
+	width: 100%;
+	transition: none;
+}
