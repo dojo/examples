@@ -20,135 +20,135 @@ export class App extends WidgetBase {
 	}
 
 	private _increment(value: number, increment: number) {
-	  return Math.min(value + increment, 8);
-  }
+		return Math.min(value + increment, 8);
+	}
 
-  private _decrement(value: number, increment: number) {
-	  return Math.max(value - increment, 0);
-  }
+	private _decrement(value: number, increment: number) {
+		return Math.max(value - increment, 0);
+	}
 
 	private _resize(column: number, expand: boolean, isMedium: boolean) {
-	  const columns = this._columns.slice();
-	  const increment = isMedium ? 2 : 1;
+		const columns = this._columns.slice();
+		const increment = isMedium ? 2 : 1;
 
-    if (expand && columns[column] !== 8) {
-      for (let i = column + 1; i < 4; i ++) {
-        if (columns[i] > 0) {
-          columns[i] = this._decrement(columns[i], increment);
-          columns[column] = this._increment(columns[column], increment);
-          return columns;
-        }
-      }
+		if (expand && columns[column] !== 8) {
+			for (let i = column + 1; i < 4; i ++) {
+				if (columns[i] > 0) {
+					columns[i] = this._decrement(columns[i], increment);
+					columns[column] = this._increment(columns[column], increment);
+					return columns;
+				}
+			}
 
-      for (let i = column - 1; i >= 0; i--) {
-        if (columns[i] > 0) {
-          columns[i] = this._decrement(columns[i], increment);
-          columns[column] = this._increment(columns[column], increment);
-          return columns;
-        }
-      }
-    } else if (!expand && columns[column] !== 0) {
-      for (let i = column + 1; i < 4; i ++) {
-        if (columns[i] === 0) {
-          columns[i] = this._increment(columns[i], increment);
-          columns[column] = this._decrement(columns[column], increment);
-          return columns;
-        }
-      }
+			for (let i = column - 1; i >= 0; i--) {
+				if (columns[i] > 0) {
+					columns[i] = this._decrement(columns[i], increment);
+					columns[column] = this._increment(columns[column], increment);
+					return columns;
+				}
+			}
+		} else if (!expand && columns[column] !== 0) {
+			for (let i = column + 1; i < 4; i ++) {
+				if (columns[i] === 0) {
+					columns[i] = this._increment(columns[i], increment);
+					columns[column] = this._decrement(columns[column], increment);
+					return columns;
+				}
+			}
 
-      for (let i = column - 1; i >= 0; i--) {
-        if (columns[i] === 0) {
-          columns[i] = this._increment(columns[i], increment);
-          columns[column] = this._decrement(columns[column], increment);
-          return columns;
-        }
-      }
+			for (let i = column - 1; i >= 0; i--) {
+				if (columns[i] === 0) {
+					columns[i] = this._increment(columns[i], increment);
+					columns[column] = this._decrement(columns[column], increment);
+					return columns;
+				}
+			}
 
-      if (columns[column + 1]) {
-        columns[column + 1] = this._increment(columns[column + 1], increment);
-        columns[column] = this._decrement(columns[column], increment);
-      } else if (columns[column - 1]) {
-        columns[column - 1] = this._increment(columns[column - 1], increment);
-        columns[column] = this._decrement(columns[column], increment);
-      }
-    }
+			if (columns[column + 1]) {
+				columns[column + 1] = this._increment(columns[column + 1], increment);
+				columns[column] = this._decrement(columns[column], increment);
+			} else if (columns[column - 1]) {
+				columns[column - 1] = this._increment(columns[column - 1], increment);
+				columns[column] = this._decrement(columns[column], increment);
+			}
+		}
 
-    return columns;
-  }
+		return columns;
+	}
 
-  private _adjustSizes() {
-    let numberOfOdd = this._columns.filter(column => column % 2 === 1).length;
-    const newColumns = this._columns.map(columns => columns % 2 === 1 ? columns - 1 : columns);
-    const numberOfColumns = newColumns.length;
+	private _adjustSizes() {
+		let numberOfOdd = this._columns.filter(column => column % 2 === 1).length;
+		const newColumns = this._columns.map(columns => columns % 2 === 1 ? columns - 1 : columns);
+		const numberOfColumns = newColumns.length;
 
-    let index = 0;
-    while (numberOfOdd > 0) {
-      if (newColumns[index] !== 0) {
-        newColumns[index] = newColumns[index] + 2;
-        numberOfOdd -= 2;
-      }
-      index = (index + 1) % numberOfColumns;
-    }
+		let index = 0;
+		while (numberOfOdd > 0) {
+			if (newColumns[index] !== 0) {
+				newColumns[index] = newColumns[index] + 2;
+				numberOfOdd -= 2;
+			}
+			index = (index + 1) % numberOfColumns;
+		}
 
-    this._columns = newColumns;
-  }
+		this._columns = newColumns;
+	}
 
-  private _createResizer(column: number, expand: boolean, isMedium: boolean) {
-	  return () => {
-      this._columns = this._resize(column, expand, isMedium);
-      this.invalidate();
-    };
-  }
+	private _createResizer(column: number, expand: boolean, isMedium: boolean) {
+		return () => {
+			this._columns = this._resize(column, expand, isMedium);
+			this.invalidate();
+		};
+	}
 
-  protected _smallPredicate(contentRect: ContentRect) {
-    return contentRect.width < 600;
-  }
+	protected _smallPredicate(contentRect: ContentRect) {
+		return contentRect.width < 600;
+	}
 
-  protected _mediumPredicate(contentRect: ContentRect) {
-	  return contentRect.width < 1000;
-  }
+	protected _mediumPredicate(contentRect: ContentRect) {
+		return contentRect.width < 1000;
+	}
 
 	protected render() {
-    const { isSmall, isMedium } = this.meta(Resize).get('root', {
-      isSmall: this._smallPredicate,
-      isMedium: this._mediumPredicate
-    });
+		const { isSmall, isMedium } = this.meta(Resize).get('root', {
+			isSmall: this._smallPredicate,
+			isMedium: this._mediumPredicate
+		});
 
-    if (isMedium && this._columns.filter(columns => columns % 2 === 1).length) {
-      this._adjustSizes();
-      this.invalidate();
-    }
+		if (isMedium && this._columns.filter(columns => columns % 2 === 1).length) {
+			this._adjustSizes();
+			this.invalidate();
+		}
 
-	  const widgets = [
-      w(Article, {}),
-      v('div', {}, [
-        v('h3', {}, [ 'Nested Components' ]),
-        w(Column, {}, [ w(Card, { labelOnLeft: true }), w(Card, { labelOnLeft: true }) ])
-      ]),
-      w(Calendar, {}),
-      w(Card, {})
-    ];
+		const widgets = [
+			w(Article, {}),
+			v('div', {}, [
+				v('h3', {}, [ 'Nested Components' ]),
+				w(Column, {}, [ w(Card, { labelOnLeft: true }), w(Card, { labelOnLeft: true }) ])
+			]),
+			w(Calendar, {}),
+			w(Card, {})
+		];
 
-	  return v('div', { classes: css.root }, [
-      isSmall ? v('div', { key: 'controls', classes: css.controls }, [
-        w(Button, { onClick: () => this._rotate() }, [
-          'Switch Demo Positions'
-        ])
-      ]) : null,
-      v('div', { key: 'root' }, [
-        v('div', { classes: css.parentContainer }, this._columns.map((columns, index) => {
-            const expand = this._createResizer(index, true, isMedium);
-            const shrink = this._createResizer(index, false, isMedium);
+		return v('div', { classes: css.root }, [
+			isSmall ? v('div', { key: 'controls', classes: css.controls }, [
+				w(Button, { onClick: () => this._rotate() }, [
+					'Switch Demo Positions'
+				])
+			]) : null,
+			v('div', { key: 'root' }, [
+				v('div', { classes: css.parentContainer }, this._columns.map((columns, index) => {
+						const expand = this._createResizer(index, true, isMedium);
+						const shrink = this._createResizer(index, false, isMedium);
 
-            return (!isSmall || index === this._offset) ? w(
-              ResizableSection,
-              { key: index, expand, shrink, columns, isSmall, isMedium },
-              [ widgets[index] ]
-            ) : null;
-          })
-        ),
-      ])
-    ]);
+						return (!isSmall || index === this._offset) ? w(
+							ResizableSection,
+							{ key: index, expand, shrink, columns, isSmall, isMedium },
+							[ widgets[index] ]
+						) : null;
+					})
+				),
+			])
+		]);
 	}
 }
 

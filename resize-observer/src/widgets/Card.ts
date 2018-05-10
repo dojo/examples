@@ -4,9 +4,9 @@ import Resize, { ContentRect } from '@dojo/widget-core/meta/Resize';
 import * as css from './styles/card.m.css';
 
 export class Card extends WidgetBase<CardProperties> {
-  protected _smallPredicate(contentRect: ContentRect) {
-    return contentRect.width < 150;
-  }
+	protected _smallPredicate(contentRect: ContentRect) {
+		return contentRect.width < 150;
+	}
 
 	protected _mediumPredicate(contentRect: ContentRect) {
 		return contentRect.width < 300;
@@ -15,7 +15,7 @@ export class Card extends WidgetBase<CardProperties> {
 	protected render() {
 		const { isMedium, isSmall } = this.meta(Resize).get('root', {
 			isMedium: this._mediumPredicate,
-      isSmall: this._smallPredicate
+			isSmall: this._smallPredicate
 		});
 
 		return v('div', { key: 'root', classes: [
@@ -23,10 +23,10 @@ export class Card extends WidgetBase<CardProperties> {
 				isSmall ? css.small : (isMedium ? css.medium : css.big)
 			] }, [
 			v('div', {
-			  classes: this.properties.labelOnLeft ? css.badgeLeft : css.badge
-      }, [
-        isSmall ? 'small' : (isMedium ? 'med' : 'big')
-      ]),
+				classes: this.properties.labelOnLeft ? css.badgeLeft : css.badge
+			}, [
+				isSmall ? 'small' : (isMedium ? 'med' : 'big')
+			]),
 			v('div', { key: 'image', classes: css.figureHolder }, [
 				v('div', { classes: css.figure })
 			]),
@@ -41,5 +41,5 @@ export class Card extends WidgetBase<CardProperties> {
 export default Card;
 
 export interface CardProperties {
-  labelOnLeft?: boolean
+	labelOnLeft?: boolean
 }
