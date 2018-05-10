@@ -6,6 +6,7 @@
     "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
     "test": "dojo build -m dev && dojo build -m test && dojo test -a"
   },
+  "main": "src/main.ts",
   "dependencies": {
     "@dojo/core": "^2.0.0",
     "@dojo/has": "^2.0.0",
