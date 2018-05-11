@@ -4,6 +4,7 @@ import harness from '@dojo/test-extras/harness';
 import * as moment from 'moment-timezone';
 import i18n, { switchLocale, systemLocale } from '@dojo/i18n/i18n';
 import { v, w } from '@dojo/widget-core/d';
+import GlobalEvent from '@dojo/widgets/global-event';
 
 import App from '../../../src/widgets/App';
 import Clock from '../../../src/widgets/Clock';
@@ -47,56 +48,58 @@ function getLocalizedDate(date: Date, tz: string) {
 function getExpectedRender(messages: typeof bundle.messages) {
 	const date = new Date();
 
-	return v('div', {
-		dir: '',
-		lang: null
-	}, [
+	return w(GlobalEvent, { document: { visibilitychange: () => {} } }, [
 		v('div', {
-			classes: css.formFields
+			dir: '',
+			lang: null
 		}, [
 			v('div', {
-				classes: css.formField
+				classes: css.formFields
 			}, [
-				v('label', { 'for': 'language' }, [ messages.language ]),
-				v('select', {
-					id: 'language',
-					onchange: noop
-				}, languages.map((data) => {
-					const language = (messages as any)[data.key];
-					const label = i18n.locale.indexOf(data.locale) === 0 ?
-						language :
-						`${language} (${data.name})`;
+				v('div', {
+					classes: css.formField
+				}, [
+					v('label', { 'for': 'language' }, [ messages.language ]),
+					v('select', {
+						id: 'language',
+						onchange: noop
+					}, languages.map((data) => {
+						const language = (messages as any)[data.key];
+						const label = i18n.locale.indexOf(data.locale) === 0 ?
+							language :
+							`${language} (${data.name})`;
 
-					return v('option', {
-						selected: i18n.locale.indexOf(data.locale) === 0,
-						value: data.locale
-					}, [ label ]);
-				}))
+						return v('option', {
+							selected: i18n.locale.indexOf(data.locale) === 0,
+							value: data.locale
+						}, [ label ]);
+					}))
+				]),
+
+				v('div', {
+					classes: css.formField
+				}, [
+					v('label', { 'for': 'multipleLocales' }, [ messages.multipleLocales ]),
+					v('input', {
+						id: 'multipleLocales',
+						type: 'checkbox',
+						onchange: noop
+					})
+				])
 			]),
-
 			v('div', {
-				classes: css.formField
-			}, [
-				v('label', { 'for': 'multipleLocales' }, [ messages.multipleLocales ]),
-				v('input', {
-					id: 'multipleLocales',
-					type: 'checkbox',
-					onchange: noop
-				})
-			])
-		]),
-		v('div', {
-			classes: css.clocks
-		}, cities.map((data) => {
-			return w(Clock, {
-				date: getLocalizedDate(date, data.tz),
-				labelKey: data.key,
-				key: data.key,
-				locale: undefined,
-				rtl: false,
-				size: 160
-			});
-		}))
+				classes: css.clocks
+			}, cities.map((data) => {
+				return w(Clock, {
+					date: getLocalizedDate(date, data.tz),
+					labelKey: data.key,
+					key: data.key,
+					locale: undefined,
+					rtl: false,
+					size: 160
+				});
+			}))
+		])
 	]);
 }
 

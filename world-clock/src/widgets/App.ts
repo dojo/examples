@@ -1,9 +1,9 @@
-import on from '@dojo/core/on';
 import i18n, { switchLocale } from '@dojo/i18n/i18n';
 import { v, w } from '@dojo/widget-core/d';
 import I18nMixin from '@dojo/widget-core/mixins/I18n';
 import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
 import WidgetBase from '@dojo/widget-core/WidgetBase';
+import GlobalEvent from '@dojo/widgets/global-event';
 
 import * as moment from 'moment-timezone';
 
@@ -47,24 +47,23 @@ export default class App extends AppBase {
 		{ key: 'japanese', locale: 'ja', name: '日本語' }
 	];
 
-	constructor() {
-		super();
-		on(document, 'visibilitychange', () => {
-			if (!document.hidden) {
-				this.invalidate();
-			}
-		});
+	private _onDocumentVisibilityChange() {
+		if (!document.hidden) {
+			this.invalidate();
+		}
 	}
 
 	protected render() {
 		const { messages } = this.localizeBundle(nlsBundle);
 
-		return v('div', {
-			lang: i18n.locale,
-			dir: i18n.locale.indexOf('ar-') === 0 ? 'rtl' : 'ltr'
-		}, [
-			this._renderFormInputs(messages),
-			this._renderClocks()
+		return w(GlobalEvent, { document: { visibilitychange: this._onDocumentVisibilityChange } }, [
+			v('div', {
+				lang: i18n.locale,
+				dir: i18n.locale.indexOf('ar-') === 0 ? 'rtl' : 'ltr'
+			}, [
+				this._renderFormInputs(messages),
+				this._renderClocks()
+			])
 		]);
 	}
 

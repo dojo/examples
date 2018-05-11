@@ -13,6 +13,7 @@
     "@dojo/shim": "^2.0.0",
     "@dojo/stores": "^2.0.0",
     "@dojo/widget-core": "^2.0.0",
+    "@dojo/widgets": "^2.0.0",
     "cldr-data": "^32.0.1",
     "moment-timezone": "^0.5.16",
     "tslib": "~1.8.1"
