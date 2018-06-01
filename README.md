@@ -6,36 +6,26 @@ This repository contains example applications built using Dojo 2.
 
 For current progress on Dojo 2, contribution guidelines and other information, please visit [`dojo/meta`](https://github.com/dojo/meta).
 
-- [Features](#features)
+- [Examples](#examples)
 - [How do I contribute?](#how-do-i-contribute)
   - [Installation & Testing](#installation--testing)
 - [Licensing information](#licensing-information)
 
-## Features
+## Examples
 
-The current examples are:
+Here is a table of the current examples available in this repository complete with code and a hosted demonstration:
 
-- [todo-mvc](./todo-mvc) - A reference implementation of [TodoMVC](http://todomvc.com/) built with current Dojo 2 packages.
-- [todo-mvc-kitchensink](./todo-mvc-kitchensink) - A feature-rich version of TodoMVC, built Dojo 2 packages.
-- [todo-mvc-tsx](./todo-mvc-tsx) - A reference implementation of [TodoMVC](http://todomvc.com/) built using `tsx`, [Redux](https://github.com/reactjs/redux)  and Dojo 2 packages.
-- [widget-showcase](./widget-showcase/README.md) - Show case widgets from [@dojo/widgets](https://github.com/dojo/widgets).
-- [custom-element-menu](./custom-element-menu/README.md) - Demonstrates custom element usage against standard Dojo 2 widget usage.
-- [custom-element-showcase](./custom-element-showcase/README.md) - Demonstrates using @dojo/widgets distributed as compiled custom elements.
-- [Conduit RealWorld Application](./realworld/README.md) - A realworld implementation of a medium clone, conduit.
-- [intersection-observer](./intersection-observer/README.md) - Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list.
-- [resize-observer](./resize-observer/README.md) - Demonstrates using the [`Resize`](https://github.com/dojo/widget-core#resize) meta for creating responsive components that dynamically modify the way they are renderd based on the space available to them.
-
-Application examples that are deployed to [gh-pages](https://dojo.github.io/examples):
-
- - [todoMVC](https://dojo.github.io/examples/todo-mvc)
- - [todoMVC Kitchen Sink](https://dojo.github.io/examples/todo-mvc-kitchensink)
- - [todoMVC - tsx](https://dojo.github.io/examples/todo-mvc-tsx)
- - [Widget Showcase](https://dojo.github.io/examples/widget-showcase)
- - [Custom Element Widget Showcase](https://dojo.github.io/examples/custom-element-showcase)
- - [Custom Element Menu](https://dojo.github.io/examples/custom-element-menu)
- - [RealWorld Application](https://dojo.github.io/examples/realworld)
- - [intersection-observer](https://dojo.github.io/examples/intersection-observer/)
- - [resize-observer](https://dojo.github.io/examples/resize-observer/)
+| Example  | Code  | Demo  | Overview  |
+|---|---|---|---|
+|  todoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  | A reference implementation of [TodoMVC](http://todomvc.com/) built with current Dojo 2 packages.  |
+|  todoMVC Kitchen Sink | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  |   A feature-rich version of TodoMVC, built Dojo 2 packages. |
+| todoMVC - tsx  |  [Link](./todo-mvc-tsx) | [Link](https://dojo.github.io/examples/todo-mvc-tsx) | A reference implementation of [TodoMVC](http://todomvc.com/) built using `tsx`, [Redux](https://github.com/reactjs/redux)  and Dojo 2 packages.  |
+| Widget Showcase  |  [Link](./widget-showcase/README.md)  | [Link](https://dojo.github.io/examples/widget-showcase)  | Show case widgets from [@dojo/widgets](https://github.com/dojo/widgets).  |
+| Custom Element Widget Showcase | [Link](./custom-element-showcase/README.md) | [Link](https://dojo.github.io/examples/custom-element-showcase) |  Demonstrates using @dojo/widgets distributed as compiled custom elements. |
+| Custom Element Menu |  [Link](./custom-element-menu/README.md) |  [Link](https://dojo.github.io/examples/custom-element-menu) | Demonstrates custom element usage against standard Dojo 2 widget usage. |
+| RealWorld Application | [Link](./realworld/README.md) |  [Link](https://dojo.github.io/examples/realworld) | A realworld implementation of a medium clone, conduit.  |
+| Intersection Observer | [Link](./intersection-observer/README.md)   |  [Link](https://dojo.github.io/examples/intersection-observer/)  |  Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list. |
+| Resize Observer | [Link](./resize-observer/README.md) |  [Link](https://dojo.github.io/examples/resize-observer/)  |  Demonstrates using the [`Resize`](https://github.com/dojo/widget-core#resize) meta for creating responsive components that dynamically modify the way they are renderd based on the space available to them. |
 
 ## How Do I Contribute?
 
