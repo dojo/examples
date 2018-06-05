@@ -33,7 +33,7 @@ We appreciate your interest! Please see the [Dojo Meta Repository](https://githu
 
 ### Installation & Testing
 
-Refer to each `README.md` for details on installing and testing the examples.
+Refer to each `README.md` for details on installing and testing the examples:
 
 * [todo-mvc](./todo-mvc/README.md)
 * [todo-mvc-kitchensink](./todo-mvc-kitchensink/README.md)
