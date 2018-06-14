@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "dev": "dojo build -m dev -w -s"
+    "dev": "dojo build -m dev -w -s",
+    "test-ci": "echo \"no tests\""
   },
   "dependencies": {
     "@dojo/core": "^2.0.0",
