@@ -2,9 +2,8 @@
   "name": "hnpwa",
   "version": "1.0.0",
   "scripts": {
-    "build:prod": "dojo build",
-    "build:dev": "dojo build -m dev",
-    "build:dev:watch": "dojo build -m dev -w -s"
+    "build": "dojo build",
+    "dev": "dojo build -m dev -w -s"
   },
   "dependencies": {
     "@dojo/core": "^2.0.0",
