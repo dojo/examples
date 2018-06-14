@@ -1,0 +1,30 @@
+{
+	"hosting": {
+		"public": "output/dist",
+		"headers": [
+			{
+				"source" : "**/*.@(svg|css|js|jpg|jpeg|gif|png)",
+				"headers" : [
+					{
+						"key" : "Cache-Control",
+						"value" : "max-age=30672000"
+					}
+				]
+			}
+		],
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		],
+		"rewrites": [
+			{
+				"source": "/hn/**", "function": "hn"
+			},
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	}
+}

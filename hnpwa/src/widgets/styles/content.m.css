@@ -1,0 +1,24 @@
+.pageLink {
+	color: #000;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.pagination {
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	margin: 0;
+	left: 0;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	height: 56px;
+	display: flex;
+	z-index: 99;
+	align-items: center;
+	justify-content: center;
+}
+
+.pageNumber {
+	margin: 0 16px;
+}
