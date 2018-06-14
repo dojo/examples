@@ -14,7 +14,6 @@
     "@dojo/widget-core": "^2.0.4"
   },
   "devDependencies": {
-    "@dojo/cli": "^2.0.0",
     "@dojo/cli-build-app": "^2.0.1",
     "typescript": "~2.6.1"
   }

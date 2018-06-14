@@ -31,7 +31,7 @@ export class Context {
 		this.articles = undefined;
 		this._invalidator();
 		if (!has('build-time-render')) {
-			this.articles = await fetch(`/hn/${catKey}?page=${page}`).then(response =>
+			this.articles = await fetch(`https://node-hnapi.herokuapp.com/${catKey}?page=${page}`).then(response =>
 				response.json()
 			);
 		}
@@ -44,7 +44,7 @@ export class Context {
 		this.route = 'comments';
 		this._invalidator();
 		if (!has('build-time-render')) {
-			this.item = await fetch(`/hn/item/${id}`).then(response => response.json());
+			this.item = await fetch(`https://node-hnapi.herokuapp.com/item/${id}`).then(response => response.json());
 		}
 		this._invalidator();
 	}

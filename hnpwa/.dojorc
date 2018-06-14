@@ -23,7 +23,7 @@
 				"clientsClaim": true,
 				"routes": [
 					{
-						"urlPattern": "https://dojo-2-hnpwa-d668d.firebaseapp.com",
+						"urlPattern": "https://node-hnapi.herokuapp.com",
 						"strategy": "networkFirst",
 						"expiration": {
 							"maxEntries": 25
