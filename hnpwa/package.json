@@ -1,0 +1,20 @@
+{
+  "name": "hnpwa",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "dojo build",
+    "dev": "dojo build -m dev -w -s",
+    "test-ci": "echo \"no tests\""
+  },
+  "dependencies": {
+    "@dojo/core": "^2.0.0",
+    "@dojo/has": "^2.0.0",
+    "@dojo/shim": "^2.0.0",
+    "@dojo/i18n": "^2.0.0",
+    "@dojo/widget-core": "^2.0.4"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-app": "^2.0.1",
+    "typescript": "~2.6.1"
+  }
+}

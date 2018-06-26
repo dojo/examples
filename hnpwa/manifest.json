@@ -1,0 +1,25 @@
+{
+  "short_name": "hacker-news",
+  "name": "hacker-news",
+  "icons" : [{
+    "src": "images/app192.png",
+    "sizes": "192x192",
+    "type": "images/png"
+  }, {
+    "src": "images/app256.png",
+    "sizes": "256x256",
+    "type": "images/png"
+  }, {
+    "src": "images/app384.png",
+    "sizes": "384x384",
+    "type": "images/png"
+  }, {
+    "src": "images/app512.png",
+    "sizes": "512x512",
+    "type": "images/png"
+  }],
+  "start_url": "index.html",
+  "theme_color": "#222127",
+  "background_color": "#f5f5f5",
+  "display": "standalone"
+}

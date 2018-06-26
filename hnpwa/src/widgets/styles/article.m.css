@@ -1,0 +1,95 @@
+.root {
+	display: flex;
+	padding: 8px 16px 8px 0;
+	border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.root:first-of-type {
+	padding-top: 72px;
+}
+
+.pageNumber {
+	font-size: 24px;
+	margin-right: 16px;
+	text-align: right;
+	min-width: 48px;
+}
+
+.post {
+	display: block;
+	width: 100%;
+}
+
+.title a {
+	display: block;
+	margin-bottom: 8px;
+	text-decoration: none;
+	color: #000;
+}
+
+.details {
+	color: #666;
+	font-size: 12px;
+	height: 15px;
+}
+
+.link {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #666;
+}
+
+.comments {
+	padding-left: 8px;
+	border-left: 1px solid #ccc;
+}
+
+@keyframes placeHolderShimmer{
+	0%{
+		background-position: -468px 0
+	}
+	100%{
+		background-position: 468px 0
+	}
+}
+
+.animated {
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-name: placeHolderShimmer;
+	animation-timing-function: linear;
+	background-size: 800px 104px;
+	height: 96px;
+	position: relative;
+}
+
+.animatedTitle {
+	background: #ddd;
+	background: linear-gradient(to right, #ddd 8%, #ccc 18%, #ddd 33%);
+}
+
+.animatedSubTitle {
+	animation-delay: 0.2s;
+	background: #f6f7f8;
+	background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+}
+
+.titleShell {
+	max-width: 650px;
+	border-radius: 4px;
+	height: 21px;
+	margin-bottom: 6px;
+	margin-right: 16px;
+	transition: opacity 0.5s;
+	opacity: 1;
+}
+
+.subtitleShell {
+	width: 60%;
+	border-radius: 4px;
+	max-width: 350px;
+	height: 15px;
+	padding-bottom: 2px;
+	margin-right: 16px;
+}

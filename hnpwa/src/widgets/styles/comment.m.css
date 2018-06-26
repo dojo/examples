@@ -1,0 +1,24 @@
+.root {
+	padding: 0 1.5rem;
+}
+
+.padding {
+	margin: 0 0 16px;
+}
+
+.user {
+	color: #666;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.time {
+	padding-left: 8px;
+	font-size: 13px;
+}
+
+.comment {
+	border-bottom: 1px solid #ececec;
+	padding-bottom: 16px;
+	margin-bottom: 16px;
+}

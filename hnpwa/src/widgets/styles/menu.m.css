@@ -1,0 +1,35 @@
+.root {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	height: 48px;
+	z-index: 100;
+	background-color: #1d1f20;
+}
+
+.menuContainer {
+	height: 100%;
+	margin: 0 auto;
+}
+
+.home {
+	float: left;
+	cursor: pointer;
+}
+
+.logoLoaded {
+	height: 38px;
+	margin: 4px;
+	animation: fadein 0.5s;
+	width: 148px;
+}
+
+.logo {
+	width: 148px;
+	opacity: 0;
+}
+
+@keyframes fadein {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}

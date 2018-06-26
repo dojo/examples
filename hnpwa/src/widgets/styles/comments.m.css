@@ -1,0 +1,27 @@
+.article {
+	margin-bottom: 24px;
+	border-bottom: 32px solid #f3f3f3;
+	padding: 16px 24px 8px;
+}
+
+.title {
+	display: block;
+	text-decoration: none;
+	font-size: 27px;
+	color: #000;
+	margin-bottom: 12px;
+}
+
+.user {
+	color: #666;
+}
+
+.comments {
+	padding: 0 24px;
+}
+
+.commentCount {
+	border-bottom: 1px solid #ececec;
+	margin-bottom: 12px;
+	padding-bottom: 12px;
+}
