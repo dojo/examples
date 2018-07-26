@@ -1,6 +1,6 @@
-# Dojo2 TodoMVC
+# Dojo TodoMVC
 
-A reference implementation of [TodoMVC](http://todomvc.com/) using the current beta1 versions of Dojo 2 packages.
+A reference implementation of [TodoMVC](http://todomvc.com/) using the current beta1 versions of Dojo packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -42,7 +42,7 @@ dojo build app -w -s
 
 ## Features
 
-This package demonstrates how to build a simple application using Dojo 2 widgets.
+This package demonstrates how to build a simple application using Dojo widgets.
 
 It is an example of:
 

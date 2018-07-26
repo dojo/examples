@@ -1,4 +1,4 @@
-# Dojo2 Widgets Showcase
+# Dojo Widgets Showcase
 
 A demo implementation of [@dojo/widgets](https://github.com/dojo/widgets).
 

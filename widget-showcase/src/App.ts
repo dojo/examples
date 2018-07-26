@@ -28,7 +28,7 @@ export default class App extends WidgetBase<AppProperties> {
 				v('div', { classes: css.toolbarHolder }, [
 					w(Toolbar, {
 						collapseWidth: 700,
-						heading: 'Dojo 2 Widget Showcase'
+						heading: 'Dojo Widget Showcase'
 					})
 				]),
 				v('div', { classes: css.splitPaneHolder }, [

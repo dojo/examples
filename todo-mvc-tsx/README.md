@@ -1,6 +1,6 @@
-# Dojo2 TodoMVC with tsx and redux
+# Dojo TodoMVC with tsx and redux
 
-A reference implementation of [TodoMVC](http://todomvc.com/) built with latest pre-release versions of Dojo 2 packages.
+A reference implementation of [TodoMVC](http://todomvc.com/) built with latest pre-release versions of Dojo packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -42,7 +42,7 @@ dojo build -w -s
 
 ## Features
 
-This package demonstrates how to build a simple application using Dojo 2 widgets with the alternative tsx syntax, a TypeScript version of jsx.
+This package demonstrates how to build a simple application using Dojo widgets with the alternative tsx syntax, a TypeScript version of jsx.
 
 It is an example of:
 

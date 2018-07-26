@@ -3,7 +3,7 @@ const { assert } = intern.getPlugin('chai');
 import Page from './Page';
 import '@dojo/framework/shim/Promise';
 
-test.describe('TodoMVC - Dojo 2', function () {
+test.describe('TodoMVC - Dojo', function () {
 
 	let page: Page;
 
