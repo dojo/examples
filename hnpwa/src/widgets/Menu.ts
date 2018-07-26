@@ -1,5 +1,5 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
 import { MenuItem } from './MenuItem';
 import * as css from './styles/menu.m.css';
 const logo = require('../img/logo.svg');

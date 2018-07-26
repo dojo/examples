@@ -1,5 +1,5 @@
-import { w, v } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { w, v } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import Tabs from './widgets/Tabs';
 import Toolbar from '@dojo/widgets/toolbar';
 import SplitPane, { Direction } from '@dojo/widgets/split-pane';

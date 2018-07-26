@@ -1,9 +1,9 @@
-import has from '@dojo/has/has';
-import global from '@dojo/shim/global';
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { Registry } from '@dojo/widget-core/Registry';
-import { Store } from '@dojo/stores/Store';
-import { registerRouterInjector } from '@dojo/routing/RouterInjector';
+import has from '@dojo/framework/has/has';
+import global from '@dojo/framework/shim/global';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import { Registry } from '@dojo/framework/widget-core/Registry';
+import { Store } from '@dojo/framework/stores/Store';
+import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 
 import { App } from './App';
 import { getTagsProcess } from './processes/tagProcesses';

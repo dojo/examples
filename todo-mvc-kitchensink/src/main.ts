@@ -1,8 +1,8 @@
-import Store from '@dojo/stores/Store';
-import ProjectorMixin from '@dojo/widget-core/mixins/Projector';
-import Registry from '@dojo/widget-core/Registry';
-import { registerThemeInjector } from '@dojo/widget-core/mixins/Themed';
-import { registerRouterInjector } from '@dojo/routing/RouterInjector';
+import Store from '@dojo/framework/stores/Store';
+import ProjectorMixin from '@dojo/framework/widget-core/mixins/Projector';
+import Registry from '@dojo/framework/widget-core/Registry';
+import { registerThemeInjector } from '@dojo/framework/widget-core/mixins/Themed';
+import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 
 import TodoAppContainer from './containers/TodoAppContainer';
 import { initialStateProcess } from './todoProcesses';

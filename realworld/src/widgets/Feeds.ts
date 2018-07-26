@@ -1,11 +1,11 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode } from '@dojo/widget-core/interfaces';
-import { v, w } from '@dojo/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
+import { v, w } from '@dojo/framework/widget-core/d';
 import { ArticlePreview } from './ArticlePreview';
 import { ArticleItem } from '../interfaces';
 import { FeedPagination } from './FeedPagination';
 import { FetchFeedPayload, FavoriteArticlePayload } from '../processes/interfaces';
-import { Link } from '@dojo/routing/Link';
+import { Link } from '@dojo/framework/routing/Link';
 
 export interface FeedsProperties {
 	items: ArticleItem[];

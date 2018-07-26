@@ -1,6 +1,6 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
 import App from './widgets/App';
-import '@dojo/shim/browser';
+import '@dojo/framework/shim/browser';
 
 const Projector = ProjectorMixin(App);
 const projector = new Projector();

@@ -1,6 +1,6 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { State } from './interfaces';
-import { Params, MatchType } from '@dojo/routing/interfaces';
+import { Params, MatchType } from '@dojo/framework/routing/interfaces';
 import { getEditorArticleProcess, clearEditorProcess } from './processes/editorProcesses';
 import { getUserSettingsProcess } from './processes/settingsProcesses';
 import { getArticleProcess } from './processes/articleProcesses';

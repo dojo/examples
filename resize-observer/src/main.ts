@@ -1,8 +1,8 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
 import ResizeObserver from 'resize-observer-polyfill';
-import global from '@dojo/shim/global';
+import global from '@dojo/framework/shim/global';
 import App from './widgets/App';
-import '@dojo/shim/browser';
+import '@dojo/framework/shim/browser';
 
 if (!global.ResizeObserver) {
 	global.ResizeObserver = ResizeObserver;

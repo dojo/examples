@@ -1,7 +1,7 @@
 const test = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 import Page from './Page';
-import '@dojo/shim/Promise';
+import '@dojo/framework/shim/Promise';
 
 test.describe('TodoMVC - Dojo 2', function () {
 

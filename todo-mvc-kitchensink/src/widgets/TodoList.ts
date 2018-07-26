@@ -1,6 +1,6 @@
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
-import { v, w } from '@dojo/widget-core/d';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { v, w } from '@dojo/framework/widget-core/d';
 
 import { Todo } from './../todoProcesses';
 import TodoItem from './TodoItem';

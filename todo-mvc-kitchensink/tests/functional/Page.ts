@@ -1,4 +1,4 @@
-import Promise from '@dojo/shim/Promise';
+import Promise from '@dojo/framework/shim/Promise';
 import keys from '@theintern/leadfoot/keys';
 import { Remote } from 'intern/lib/executors/Node';
 

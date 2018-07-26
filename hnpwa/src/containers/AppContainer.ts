@@ -1,4 +1,4 @@
-import { Container } from '@dojo/widget-core/Container';
+import { Container } from '@dojo/framework/widget-core/Container';
 import { Context } from './../Context';
 import { App } from './../widgets/App';
 

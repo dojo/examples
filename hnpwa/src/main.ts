@@ -1,5 +1,5 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { Registry } from '@dojo/widget-core/Registry';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import { Registry } from '@dojo/framework/widget-core/Registry';
 import { Context } from './Context';
 import { AppContainer } from './containers/AppContainer';
 

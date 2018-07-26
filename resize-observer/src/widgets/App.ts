@@ -1,5 +1,5 @@
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
 import Calendar from './Calendar';
 import Card from './Card';
 import ResizableSection from './ResizableSection';
@@ -7,7 +7,7 @@ import Article from './Article';
 import Column from './Column';
 import Button from '@dojo/widgets/button';
 import * as css from './styles/app.m.css';
-import Resize, { ContentRect } from '@dojo/widget-core/meta/Resize';
+import Resize, { ContentRect } from '@dojo/framework/widget-core/meta/Resize';
 
 export class App extends WidgetBase {
 

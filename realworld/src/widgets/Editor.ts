@@ -1,5 +1,5 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
 import { ErrorList } from './ErrorList';
 import { Errors, WithTarget } from '../interfaces';
 import { TitlePayload, DescriptionPayload, BodyPayload, TagPayload } from '../processes/interfaces';

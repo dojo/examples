@@ -1,5 +1,5 @@
-import { createProcess } from '@dojo/stores/process';
-import { replace, add, remove } from '@dojo/stores/state/operations';
+import { createProcess } from '@dojo/framework/stores/process';
+import { replace, add, remove } from '@dojo/framework/stores/state/operations';
 import { getHeaders, commandFactory } from './utils';
 import { baseUrl } from '../config';
 import { TitlePayload, DescriptionPayload, BodyPayload, TagPayload, SlugPayload } from './interfaces';

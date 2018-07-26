@@ -1,4 +1,4 @@
-import { v } from '@dojo/widget-core/d';
+import { v } from '@dojo/framework/widget-core/d';
 import { WithTarget } from './interfaces';
 
 export function createInputNode(value: string, placeholder: string, oninput: (event: WithTarget) => void) {

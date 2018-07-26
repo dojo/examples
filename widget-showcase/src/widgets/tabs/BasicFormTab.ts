@@ -1,5 +1,5 @@
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import Button from '@dojo/widgets/button';
 import Checkbox, { Mode } from '@dojo/widgets/checkbox';
 import Radio from '@dojo/widgets/radio';

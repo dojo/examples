@@ -1,4 +1,4 @@
-import { createCommandFactory } from '@dojo/stores/process';
+import { createCommandFactory } from '@dojo/framework/stores/process';
 import { State } from '../interfaces';
 
 export function getHeaders(token?: string): any {

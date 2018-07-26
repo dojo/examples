@@ -1,7 +1,7 @@
-import { createCommandFactory, createProcess } from '@dojo/stores/process';
-import { PatchOperation } from '@dojo/stores/state/Patch';
-import { add, remove, replace } from '@dojo/stores/state/operations';
-import uuid from '@dojo/core/uuid';
+import { createCommandFactory, createProcess } from '@dojo/framework/stores/process';
+import { PatchOperation } from '@dojo/framework/stores/state/Patch';
+import { add, remove, replace } from '@dojo/framework/stores/state/operations';
+import uuid from '@dojo/framework/core/uuid';
 
 export type TodoStore = {
 	completedCount: number;

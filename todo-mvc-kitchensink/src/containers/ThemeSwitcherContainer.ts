@@ -1,6 +1,6 @@
-import Container from '@dojo/widget-core/Container';
-import Injector from '@dojo/widget-core/Injector';
-import { switchLocale } from '@dojo/i18n/i18n';
+import Container from '@dojo/framework/widget-core/Container';
+import Injector from '@dojo/framework/widget-core/Injector';
+import { switchLocale } from '@dojo/framework/i18n/i18n';
 
 import ThemeSwitcher from './../widgets/ThemeSwitcher';
 import pirateThemeStyles from './../themes/pirate';

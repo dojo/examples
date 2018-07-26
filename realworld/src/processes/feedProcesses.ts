@@ -1,5 +1,5 @@
-import { createProcess } from '@dojo/stores/process';
-import { replace } from '@dojo/stores/state/operations';
+import { createProcess } from '@dojo/framework/stores/process';
+import { replace } from '@dojo/framework/stores/state/operations';
 import { ArticleItem } from './../interfaces';
 import { getHeaders, commandFactory } from './utils';
 import { baseUrl } from '../config';

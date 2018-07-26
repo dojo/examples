@@ -1,4 +1,4 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { Header, HeaderProperties } from './../widgets/Header';
 import { State } from '../interfaces';
 import StoreContainer from './StoreContainer';

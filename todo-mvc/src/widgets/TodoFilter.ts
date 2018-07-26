@@ -1,7 +1,7 @@
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import { Outlet } from '@dojo/routing/Outlet';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import { v } from '@dojo/widget-core/d';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { Outlet } from '@dojo/framework/routing/Outlet';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { v } from '@dojo/framework/widget-core/d';
 
 import * as css from './styles/todoFilter.m.css';
 

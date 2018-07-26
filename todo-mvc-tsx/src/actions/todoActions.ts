@@ -1,4 +1,4 @@
-import uuid from '@dojo/core/uuid';
+import uuid from '@dojo/framework/core/uuid';
 
 export function addTodo() {
 	return { type: 'ADD_TODO', payload: { id: uuid() }};

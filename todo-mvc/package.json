@@ -18,21 +18,14 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@dojo/core": "^2.0.0",
-    "@dojo/has": "^2.0.0",
-    "@dojo/i18n": "^2.0.0",
-    "@dojo/routing": "^2.0.0",
-    "@dojo/shim": "^2.0.0",
-    "@dojo/widget-core": "^2.0.0",
+    "@dojo/framework": "^3.0.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^2.0.0",
-    "@dojo/cli-test-intern": "^2.0.0",
-    "@dojo/loader": "^2.0.0",
+    "@dojo/cli-build-app": "^3.0.0",
+    "@dojo/cli-test-intern": "^3.0.0",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
-    "intern": "~4.1.5",
     "typescript": "~2.6.1"
   }
 }

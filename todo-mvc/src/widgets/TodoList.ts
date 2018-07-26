@@ -1,10 +1,10 @@
-import Map from '@dojo/shim/Map';
-import { from as arrayFrom } from '@dojo/shim/array';
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import { Outlet } from '@dojo/routing/Outlet';
+import Map from '@dojo/framework/shim/Map';
+import { from as arrayFrom } from '@dojo/framework/shim/array';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { Outlet } from '@dojo/framework/routing/Outlet';
 
-import { v, w } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/framework/widget-core/d';
 import { Todo } from './TodoApp';
 import TodoItem from './TodoItem';
 

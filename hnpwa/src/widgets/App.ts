@@ -1,5 +1,5 @@
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import { ContentContainer } from './../containers/ContentContainer';
 import { CommentsContainer } from './../containers/CommentsContainer';
 import { MenuContainer } from './../containers/MenuContainer';

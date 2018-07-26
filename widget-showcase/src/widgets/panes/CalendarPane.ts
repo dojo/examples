@@ -1,5 +1,5 @@
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import Calendar from '@dojo/widgets/calendar';
 
 export default class CalendarPane extends WidgetBase {

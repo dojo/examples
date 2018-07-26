@@ -1,7 +1,7 @@
 const { describe, it } = intern.getInterface('bdd');
-import harness from '@dojo/test-extras/harness';
+import harness from '@dojo/framework/testing/harness';
 
-import { v, w } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/framework/widget-core/d';
 
 import App from '../../../src/widgets/App';
 import Calendar from '../../../src/widgets/Calendar';

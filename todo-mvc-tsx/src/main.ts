@@ -1,8 +1,8 @@
-import global from '@dojo/shim/global';
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { registerRouterInjector } from '@dojo/routing/RouterInjector';
+import global from '@dojo/framework/shim/global';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import { reduxInjectorFactory } from '@dojo/interop/redux/ReduxInjector';
-import { Registry } from '@dojo/widget-core/Registry';
+import { Registry } from '@dojo/framework/widget-core/Registry';
 
 import { TodoAppContainer } from './containers/TodoAppContainer';
 import { createStore } from 'redux';

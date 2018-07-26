@@ -2,8 +2,8 @@ const { describe, it } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 import { stub } from 'sinon';
 
-import { v, w } from '@dojo/widget-core/d';
-import harness from '@dojo/test-extras/harness';
+import { v, w } from '@dojo/framework/widget-core/d';
+import harness from '@dojo/framework/testing/harness';
 
 import { Tags } from './../../../src/widgets/Tags';
 

@@ -1,5 +1,5 @@
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import TimePicker, { TimeUnits } from '@dojo/widgets/time-picker';
 import TextInput from '@dojo/widgets/text-input';
 import EnhancedTextInput from '@dojo/widgets/enhanced-text-input';

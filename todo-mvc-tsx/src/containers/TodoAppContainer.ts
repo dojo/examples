@@ -1,4 +1,4 @@
-import { Container } from '@dojo/widget-core/Container';
+import { Container } from '@dojo/framework/widget-core/Container';
 import { TodoApp } from './../widgets/TodoApp';
 import { ReduxInjectorPayload } from '@dojo/interop/redux/ReduxInjector';
 import {

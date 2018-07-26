@@ -1,5 +1,5 @@
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import Select from '@dojo/widgets/select';
 import * as css from '../../styles/tabs.m.css';
 
