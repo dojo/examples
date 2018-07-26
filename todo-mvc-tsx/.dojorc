@@ -1,0 +1,7 @@
+{
+	"build-app": {
+		"legacy": true
+	},
+	"test-intern": {},
+	"create-app": {}
+}
