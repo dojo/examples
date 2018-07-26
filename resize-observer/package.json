@@ -9,6 +9,7 @@
   "main": "src/main.ts",
   "dependencies": {
     "@dojo/framework": "^3.0.0",
+    "@dojo/widgets": "^3.0.0",
     "resize-observer-polyfill": "^1.5.0",
     "tslib": "~1.8.1"
   },
