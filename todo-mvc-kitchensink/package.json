@@ -20,6 +20,7 @@
   "dependencies": {
     "@dojo/framework": "^3.0.0",
     "@dojo/widgets": "^2.0.0",
+    "@dojo/core": "^2.0.0",
     "cldr-data": "~30.0.2",
     "tslib": "~1.8.1"
   },
