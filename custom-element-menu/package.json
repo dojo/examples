@@ -11,12 +11,13 @@
     "move-dist": "shx mv output/dist/* temp-example",
     "setup": "npm run backup-index && shx rm -rf temp-example && shx mkdir temp-example",
     "reset": "npm run reset-index && shx mv temp-example/* output/dist/",
-    "build": "npm run setup && npm run build-app && npm run copy-index && npm run move-dist && npm run build-widgets && npm run move-dist && npm run reset",
+    "build": "npm run setup && npm run build-app && npm run copy-index && npm run move-dist && npm run build-widgets && shx cp -r node_modules/@webcomponents/custom-elements output/dist && npm run move-dist && npm run reset",
     "test-ci": "echo no tests"
   },
   "dependencies": {
     "@dojo/framework": "^3.0.0",
-    "tslib": "~1.8.1"
+    "tslib": "~1.8.1",
+    "@webcomponents/custom-elements": "~1.0.8"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "^3.0.0",

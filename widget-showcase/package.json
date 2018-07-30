@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@dojo/framework": "^3.0.0",
-    "@dojo/themes": "^2.0.0",
+    "@dojo/themes": "^3.0.1",
     "@dojo/widgets": "^3.0.0",
     "tslib": "~1.8.1"
   },
