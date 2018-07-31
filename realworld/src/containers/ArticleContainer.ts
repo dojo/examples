@@ -1,4 +1,4 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { Article, ArticleProperties } from './../widgets/Article';
 import {
 	deleteCommentProcess,

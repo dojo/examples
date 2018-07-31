@@ -3,7 +3,7 @@
 ### [Demo](https://dojo-2-hnpwa-d668d.firebaseapp.com/)
 
 
-This codebase was created to demonstrate an application built with Dojo 2.
+This codebase was created to demonstrate an application built with Dojo.
 
  * **Build Time Rendering**: Uses the `.dojorc` to configure static html and critical CSS injection at build time.
  * **Progress Web Application**: Uses the `.dojorc` to configure PWA capabilities such as manifests and service workers.
@@ -12,7 +12,7 @@ This codebase was created to demonstrate an application built with Dojo 2.
 
 # Getting started
 
-View the [Dojo 2 HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/)
+View the [Dojo HNPWA](https://dojo-2-hnpwa-d668d.firebaseapp.com/)
 
 To get the frontend running locally:
 

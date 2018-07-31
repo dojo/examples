@@ -1,12 +1,12 @@
 import AccordionPane, { AccordionPaneProperties } from '@dojo/widgets/accordion-pane';
 import TitlePane from '@dojo/widgets/title-pane';
-import { v, w } from '@dojo/widget-core/d';
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { Set } from '@dojo/shim/Set';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { Set } from '@dojo/framework/shim/Set';
 import CalendarPane from './panes/CalendarPane';
 import DialogPane from './panes/DialogPane';
 import ThemePane, { ThemePaneProperties } from './panes/ThemePane';
-import { from } from '@dojo/shim/array';
+import { from } from '@dojo/framework/shim/array';
 
 export interface AccordionProperties extends ThemePaneProperties {};
 

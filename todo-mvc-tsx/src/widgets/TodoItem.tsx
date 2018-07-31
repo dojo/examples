@@ -1,8 +1,8 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { DNode, WidgetProperties } from '@dojo/framework/widget-core/interfaces';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { Todo } from './TodoApp';
-import { tsx } from '@dojo/widget-core/tsx';
+import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import * as css from './styles/todoItem.m.css';
 

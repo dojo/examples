@@ -1,4 +1,4 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { Feeds, FeedsProperties } from './../widgets/Feeds';
 import { fetchFeedProcess, favoriteFeedArticleProcess } from './../processes/feedProcesses';
 

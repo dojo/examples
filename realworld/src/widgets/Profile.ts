@@ -1,6 +1,6 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
-import { Link } from '@dojo/routing/Link';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { Link } from '@dojo/framework/routing/Link';
 import FeedsContainer from '../containers/FeedsContainer';
 import { FollowUserPayload } from '../processes/interfaces';
 

@@ -1,4 +1,4 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { Editor, EditorProperties } from './../widgets/Editor';
 import {
 	publishArticleProcess,

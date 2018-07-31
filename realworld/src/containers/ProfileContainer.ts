@@ -1,4 +1,4 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { Profile, ProfileProperties } from './../widgets/Profile';
 import { State } from '../interfaces';
 import { followUserProcess } from './../processes/profileProcesses';

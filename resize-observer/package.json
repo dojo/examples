@@ -8,26 +8,18 @@
   },
   "main": "src/main.ts",
   "dependencies": {
-    "@dojo/core": "^2.0.0",
-    "@dojo/has": "^2.0.0",
-    "@dojo/i18n": "^2.0.0",
-    "@dojo/routing": "^2.0.0",
-    "@dojo/shim": "^2.0.0",
-    "@dojo/stores": "^2.0.0",
-    "@dojo/widget-core": "^2.0.0",
-    "@dojo/widgets": "^2.0.0",
+    "@dojo/framework": "^3.0.0",
+    "@dojo/widgets": "^3.0.0",
     "resize-observer-polyfill": "^1.5.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^2.0.0",
-    "@dojo/cli-test-intern": "^2.0.0",
-    "@dojo/test-extras": "^2.0.0",
+    "@dojo/cli-build-app": "^3.0.0",
+    "@dojo/cli-test-intern": "^3.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
     "@types/sinon": "^1.16.35",
-    "intern": "~4.1.5",
     "typescript": "~2.6.1"
   }
 }

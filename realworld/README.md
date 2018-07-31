@@ -1,14 +1,14 @@
 # <img src="logo.png" width="48"> RealWorld Example App
 
-> ### Dojo 2 codebase containing real-world examples (CRUD, auth, advanced patterns, etc.) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### Dojo codebase containing real-world examples (CRUD, auth, advanced patterns, etc.) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 ### [Demo](https://dojo.github.io/examples/realworld/)
 
 
-This codebase was created to demonstrate an application built with Dojo 2.
+This codebase was created to demonstrate an application built with Dojo.
 
  * **Build Time Rendering**: Configured to build the home page at build time which injects the applications HTML into the index.html.
- * **Authentication**: Demonstrates handling authentication within a Dojo 2 application.
+ * **Authentication**: Demonstrates handling authentication within a Dojo application.
  * **State Management**: Uses `@dojo/stores` for state management and managing fetching, creating, and inserting CRUD data.
  * **Routing**: Uses `@dojo/routing` to provide full application routing.
  * **Lazy Loading (Code Splitting)**: Automatically code splits for widgets/outlets or containers that are defined in an application registry using the dynamic `import` syntax.
@@ -19,13 +19,13 @@ For more information on how this works with other frontends/backends, head over 
 
 # How it works
 
-Dojo 2 RealWorld using @dojo/widget-core, @dojo/routing and @dojo/stores.
+Dojo RealWorld using @dojo/widget-core, @dojo/routing and @dojo/stores.
 
-For more information on Dojo 2 visit [dojo.io](https://dojo.io)
+For more information on Dojo visit [dojo.io](https://dojo.io)
 
 # Getting started
 
-View the [Dojo 2 RealWorld live demo](https://dojo.github.io/examples/realworld/)
+View the [Dojo RealWorld live demo](https://dojo.github.io/examples/realworld/)
 
 To get the frontend running locally:
 

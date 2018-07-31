@@ -1,6 +1,6 @@
-# Dojo2 TodoMVC Kitchen Sink Example
+# Dojo TodoMVC Kitchen Sink Example
 
-A feature-rich version of TodoMVC, built with current pre-release versions of Dojo 2 packages.
+A feature-rich version of TodoMVC, built with current pre-release versions of Dojo packages.
 
 - [Pre-requisites](#pre-requisites)
 - [Usage](#usage)
@@ -42,7 +42,7 @@ dojo build -w -s
 
 ## Features
 
-This package demonstrates how to build an application using Dojo 2.
+This package demonstrates how to build an application using Dojo.
 
 * Custom widgets using `@dojo/widget-core`
 * Applying CSS to widgets

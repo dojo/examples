@@ -1,5 +1,5 @@
-import Container from '@dojo/widget-core/Container';
-import Store from '@dojo/stores/Store';
+import Container from '@dojo/framework/widget-core/Container';
+import Store from '@dojo/framework/stores/Store';
 
 import TodoDetails from './../widgets/TodoDetails';
 import {

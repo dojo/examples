@@ -2,7 +2,8 @@
 	"build-app": {
 		"build-time-render": {
 			"root": "app"
-		}
+		},
+		"legacy": true
 	},
 	"test-intern": {},
 	"create-app": {},

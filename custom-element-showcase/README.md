@@ -1,4 +1,4 @@
-# Dojo2 Widgets Custom Element Showcase
+# Dojo Widgets Custom Element Showcase
 
 A demo implementation of [@dojo/widgets](https://github.com/dojo/widgets) used as custom elements.
 

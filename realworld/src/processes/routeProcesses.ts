@@ -1,5 +1,5 @@
-import { createProcess } from '@dojo/stores/process';
-import { replace } from '@dojo/stores/state/operations';
+import { createProcess } from '@dojo/framework/stores/process';
+import { replace } from '@dojo/framework/stores/state/operations';
 import { commandFactory } from './utils';
 import { ChangeRoutePayload } from './interfaces';
 

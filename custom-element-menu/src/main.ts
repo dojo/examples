@@ -1,6 +1,6 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { w } from '@dojo/widget-core/d';
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { w } from '@dojo/framework/widget-core/d';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
 import { Menu } from './widgets/Menu';
 import { MenuItem } from './widgets/MenuItem';
 

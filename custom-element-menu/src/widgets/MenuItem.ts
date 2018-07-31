@@ -1,7 +1,7 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v } from '@dojo/widget-core/d';
-import { customElement } from '@dojo/widget-core/decorators/customElement';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v } from '@dojo/framework/widget-core/d';
+import { customElement } from '@dojo/framework/widget-core/decorators/customElement';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 
 import * as css from './styles/menuItem.m.css';
 

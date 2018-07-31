@@ -1,8 +1,8 @@
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
-import { v, w } from '@dojo/widget-core/d';
-import I18nMixin from '@dojo/widget-core/mixins/I18n';
-import Link from '@dojo/routing/Link';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { v, w } from '@dojo/framework/widget-core/d';
+import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
+import Link from '@dojo/framework/routing/Link';
 
 import appBundle from '../nls/common';
 import * as css from './styles/todoFilter.m.css';

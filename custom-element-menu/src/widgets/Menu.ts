@@ -1,8 +1,8 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v } from '@dojo/widget-core/d';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import { customElement } from '@dojo/widget-core/decorators/customElement';
-import { WNode } from '@dojo/widget-core/interfaces';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v } from '@dojo/framework/widget-core/d';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
+import { customElement } from '@dojo/framework/widget-core/decorators/customElement';
+import { WNode } from '@dojo/framework/widget-core/interfaces';
 import { MenuItem } from './MenuItem';
 
 import * as css from './styles/menu.m.css';

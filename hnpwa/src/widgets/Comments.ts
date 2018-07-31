@@ -1,5 +1,5 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
 import { ArticleItem } from './../interfaces';
 import { Comment } from './Comment';
 import { Loading } from './Loading';

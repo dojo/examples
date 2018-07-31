@@ -1,7 +1,7 @@
 const { describe, it, beforeEach } = intern.getInterface('bdd');
-import harness from '@dojo/test-extras/harness';
+import harness from '@dojo/framework/testing/harness';
 
-import { v, w } from '@dojo/widget-core/d';
+import { v, w } from '@dojo/framework/widget-core/d';
 
 import InfiniteList from '../../../src/widgets/InfiniteList';
 import * as css from '../../../src/widgets/styles/infiniteList.m.css';

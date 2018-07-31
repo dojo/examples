@@ -1,6 +1,6 @@
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import { v } from '@dojo/widget-core/d';
-import Resize, { ContentRect } from '@dojo/widget-core/meta/Resize';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { v } from '@dojo/framework/widget-core/d';
+import Resize, { ContentRect } from '@dojo/framework/widget-core/meta/Resize';
 import * as css from './styles/calendar.m.css';
 
 const times = [

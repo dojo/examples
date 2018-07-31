@@ -1,7 +1,7 @@
-import { WidgetBase } from '@dojo/widget-core/WidgetBase';
-import { v, w } from '@dojo/widget-core/d';
-import { Link } from '@dojo/routing/Link';
-import { DNode } from '@dojo/widget-core/interfaces';
+import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { v, w } from '@dojo/framework/widget-core/d';
+import { Link } from '@dojo/framework/routing/Link';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 
 export interface HeaderProperties {
 	isAuthenticated: boolean;

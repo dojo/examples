@@ -1,7 +1,7 @@
-import { ProjectorMixin } from '@dojo/widget-core/mixins/Projector';
-import { registerRouterInjector } from '@dojo/routing/RouterInjector';
+import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import TodoApp from './widgets/TodoApp';
-import Registry from '@dojo/widget-core/Registry';
+import Registry from '@dojo/framework/widget-core/Registry';
 
 const registry = new Registry();
 const router = registerRouterInjector([

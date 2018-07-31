@@ -1,4 +1,4 @@
-import has from '@dojo/has/has';
+import has from '@dojo/framework/has/has';
 import { ArticleItem } from './interfaces';
 
 export class Context {

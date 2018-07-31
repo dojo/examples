@@ -1,7 +1,7 @@
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import { v } from '@dojo/widget-core/d';
-import ThemedMixin, { theme } from '@dojo/widget-core/mixins/Themed';
-import I18nMixin from '@dojo/widget-core/mixins/I18n';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { v } from '@dojo/framework/widget-core/d';
+import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
+import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
 
 import appBundle from '../nls/common';
 import * as css from './styles/todoSearch.m.css';

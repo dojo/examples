@@ -1,5 +1,5 @@
-import { Outlet } from '@dojo/routing/Outlet';
-import { MapParamsOptions } from '@dojo/routing/interfaces';
+import { Outlet } from '@dojo/framework/routing/Outlet';
+import { MapParamsOptions } from '@dojo/framework/routing/interfaces';
 
 const mapParams = ({ params }: MapParamsOptions) => {
 	return {

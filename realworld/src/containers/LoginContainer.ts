@@ -1,4 +1,4 @@
-import { Store } from '@dojo/stores/Store';
+import { Store } from '@dojo/framework/stores/Store';
 import { Login, LoginProperties } from './../widgets/Login';
 import { loginProcess, loginEmailInputProcess, loginPasswordInputProcess } from './../processes/loginProcesses';
 import { State } from '../interfaces';

@@ -1,5 +1,5 @@
 import { UserProfile } from '../interfaces';
-import { OutletContext } from '@dojo/routing/interfaces';
+import { OutletContext } from '@dojo/framework/routing/interfaces';
 
 export interface SlugPayload {
 	slug: string;

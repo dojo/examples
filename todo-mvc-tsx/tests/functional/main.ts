@@ -2,7 +2,7 @@ const test = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 import Page from './Page';
 
-test.describe('TodoMVC with `tsx` - Dojo 2', function () {
+test.describe('TodoMVC with `tsx` - Dojo', function () {
 
 	let page: Page;
 

@@ -1,9 +1,9 @@
-import Map from '@dojo/shim/Map';
-import uuid from '@dojo/core/uuid';
-import { assign } from '@dojo/core/lang';
-import WidgetBase from '@dojo/widget-core/WidgetBase';
-import { ThemedMixin, theme } from '@dojo/widget-core/mixins/Themed';
-import { w, v } from '@dojo/widget-core/d';
+import Map from '@dojo/framework/shim/Map';
+import uuid from '@dojo/framework/core/uuid';
+import { assign } from '@dojo/framework/core/lang';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { w, v } from '@dojo/framework/widget-core/d';
 
 import TodoHeader from './TodoHeader';
 import { TodoListOutlet } from './TodoList';
