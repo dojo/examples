@@ -14,8 +14,5 @@
 			"cldr-data/supplemental/timeData",
 			"cldr-data/supplemental/weekData"
 		]
-	},
-	"test-intern": {},
-	"create-app": {},
-	"create-widget": {}
+	}
 }

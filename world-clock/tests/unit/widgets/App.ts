@@ -1,9 +1,9 @@
 const { afterEach, describe, it } = intern.getInterface('bdd');
-import harness from '@dojo/test-extras/harness';
+import harness from '@dojo/framework/testing/harness';
 
 import * as moment from 'moment-timezone';
-import i18n, { switchLocale, systemLocale } from '@dojo/i18n/i18n';
-import { v, w } from '@dojo/widget-core/d';
+import i18n, { switchLocale, systemLocale } from '@dojo/framework/i18n/i18n';
+import { v, w } from '@dojo/framework/widget-core/d';
 import GlobalEvent from '@dojo/widgets/global-event';
 
 import App from '../../../src/widgets/App';
@@ -45,13 +45,13 @@ function getLocalizedDate(date: Date, tz: string) {
 	return new Date(years, months, day, hours, minutes, seconds, milliseconds);
 }
 
-function getExpectedRender(messages: typeof bundle.messages) {
+function getExpectedRender(messages: typeof bundle.messages, locale: string = 'en-US') {
 	const date = new Date();
 
 	return w(GlobalEvent, { document: { visibilitychange: () => {} } }, [
 		v('div', {
-			dir: '',
-			lang: null
+			dir: locale === 'ar' ? 'rtl' : 'ltr',
+			lang: locale
 		}, [
 			v('div', {
 				classes: css.formFields
@@ -138,7 +138,7 @@ describe('App', () => {
 		return i18n(bundle, 'ar').then((messages) => {
 			const h = harness(() => w(App, {}), getDateComparators());
 			h.expect(() =>
-				getExpectedRender(messages as any)
+				getExpectedRender(messages as any, 'ar')
 			);
 		});
 	});

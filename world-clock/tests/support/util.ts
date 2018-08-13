@@ -1,7 +1,7 @@
-import request from '@dojo/core/request';
-import has from '@dojo/has/has';
-import '@dojo/shim/Promise';
-import loadCldrData, { CldrData, isLoaded } from '@dojo/i18n/cldr/load';
+import request from '@dojo/framework/core/request';
+import has from '@dojo/framework/has/has';
+import '@dojo/framework/shim/Promise';
+import loadCldrData, { CldrData, isLoaded } from '@dojo/framework/i18n/cldr/load';
 
 function mapHandPosition(angle: number, radius: number, innerRadius: number) {
 	const { x, y } = getHandPosition(angle, radius, innerRadius);

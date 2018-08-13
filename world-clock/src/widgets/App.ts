@@ -1,8 +1,8 @@
-import i18n, { switchLocale } from '@dojo/i18n/i18n';
-import { v, w } from '@dojo/widget-core/d';
-import I18nMixin from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import WidgetBase from '@dojo/widget-core/WidgetBase';
+import i18n, { switchLocale } from '@dojo/framework/i18n/i18n';
+import { v, w } from '@dojo/framework/widget-core/d';
+import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import GlobalEvent from '@dojo/widgets/global-event';
 
 import * as moment from 'moment-timezone';
@@ -59,7 +59,7 @@ export default class App extends AppBase {
 		return w(GlobalEvent, { document: { visibilitychange: this._onDocumentVisibilityChange } }, [
 			v('div', {
 				lang: i18n.locale,
-				dir: i18n.locale.indexOf('ar-') === 0 ? 'rtl' : 'ltr'
+				dir: /^ar(-.*)?$/.test(i18n.locale) ? 'rtl' : 'ltr'
 			}, [
 				this._renderFormInputs(messages),
 				this._renderClocks()

@@ -22,7 +22,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-		"types": [ "intern" ]
+		"types": [ "intern", "web-animations-js" ]
 	},
 	"include": [
 		"./src/**/*.ts",

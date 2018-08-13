@@ -1,9 +1,9 @@
-import { formatNumber } from '@dojo/i18n/number';
-import { v } from '@dojo/widget-core/d';
-import { DNode, WidgetProperties } from '@dojo/widget-core/interfaces';
-import I18nMixin from '@dojo/widget-core/mixins/I18n';
-import { theme, ThemedMixin } from '@dojo/widget-core/mixins/Themed';
-import WidgetBase from '@dojo/widget-core/WidgetBase';
+import { formatNumber } from '@dojo/framework/i18n/number';
+import { v } from '@dojo/framework/widget-core/d';
+import { DNode, WidgetProperties } from '@dojo/framework/widget-core/interfaces';
+import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
+import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
+import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 
 import * as css from '../styles/clock.m.css';
 import nlsBundle from '../nls/main';

@@ -1,9 +1,9 @@
 const { afterEach, describe, it } = intern.getInterface('bdd');
-import harness from '@dojo/test-extras/harness';
+import harness from '@dojo/framework/testing/harness';
 
-import i18n, { switchLocale, systemLocale } from '@dojo/i18n/i18n';
-import { formatNumber } from '@dojo/i18n/number';
-import { v, w } from '@dojo/widget-core/d';
+import i18n, { switchLocale, systemLocale } from '@dojo/framework/i18n/i18n';
+import { formatNumber } from '@dojo/framework/i18n/number';
+import { v, w } from '@dojo/framework/widget-core/d';
 
 import Clock, { ClockProperties } from '../../../src/widgets/Clock';
 import * as css from '../../../src/styles/clock.m.css';
@@ -21,10 +21,7 @@ function getExpectedRender(properties: ClockProperties) {
 	const { date, size } = properties;
 	const radius = size / 2;
 
-	return v('div', {
-		dir: '',
-		lang: null
-	}, [
+	return v('div', {}, [
 		v('svg', {
 			classes: css.clock,
 			height: `${size}`,
