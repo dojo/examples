@@ -11,24 +11,10 @@ import * as css from '../styles/app.m.css';
 import nlsBundle from '../nls/main';
 import Clock from './Clock';
 
-interface CityData {
-	key: string;
-	locale: string;
-	tz: string;
-}
-
-interface LanguageData {
-	key: string;
-	locale: string;
-	name: string;
-}
-
-export const AppBase = ThemedMixin(I18nMixin(WidgetBase));
-
 @theme(css)
-export default class App extends AppBase {
-	private _multipleLocales: boolean = false;
-	private _cities: CityData[] = [
+export default class App extends ThemedMixin(I18nMixin(WidgetBase)) {
+	private _multipleLocales = false;
+	private _cities = [
 		{ key: 'mexicoCity', locale: 'es', tz: 'America/Mexico_City' },
 		{ key: 'newYork', locale: 'en', tz: 'America/New_York' },
 		{ key: 'london', locale: 'en', tz: 'Europe/London' },
@@ -38,7 +24,7 @@ export default class App extends AppBase {
 		{ key: 'newDehli', locale: 'hi', tz: 'Asia/Colombo' },
 		{ key: 'tokyo', locale: 'ja', tz: 'Asia/Tokyo' }
 	];
-	private _languages: LanguageData[] = [
+	private _languages = [
 		{ key: 'arabic', locale: 'ar', name: 'عربى' },
 		{ key: 'english', locale: 'en', name: 'English' },
 		{ key: 'spanish', locale: 'es', name: 'Español' },
@@ -67,7 +53,7 @@ export default class App extends AppBase {
 		]);
 	}
 
-	private _getLocalizedDate(date: Date, tz: string): Date {
+	private _getLocalizedDate(date: Date, tz: string) {
 		const {
 			years,
 			months,
@@ -98,7 +84,7 @@ export default class App extends AppBase {
 
 		return v('div', {
 			classes: this.theme(css.clocks)
-		}, this._cities.map(({ key, locale, tz }: CityData) => {
+		}, this._cities.map(({ key, locale, tz }) => {
 			return w(Clock, {
 				date: this._getLocalizedDate(date, tz),
 				labelKey: key,

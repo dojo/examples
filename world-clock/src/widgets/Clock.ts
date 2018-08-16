@@ -1,6 +1,6 @@
 import { formatNumber } from '@dojo/framework/i18n/number';
 import { v } from '@dojo/framework/widget-core/d';
-import { DNode, WidgetProperties } from '@dojo/framework/widget-core/interfaces';
+import { DNode } from '@dojo/framework/widget-core/interfaces';
 import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
 import { theme, ThemedMixin } from '@dojo/framework/widget-core/mixins/Themed';
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
@@ -8,16 +8,14 @@ import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import * as css from '../styles/clock.m.css';
 import nlsBundle from '../nls/main';
 
-export interface ClockProperties extends WidgetProperties {
+export interface ClockProperties {
 	date: Date;
 	labelKey: string;
 	size: number;
 }
 
-export const ClockBase = ThemedMixin(I18nMixin(WidgetBase));
-
 @theme(css)
-export default class Clock extends ClockBase<ClockProperties> {
+export default class Clock extends ThemedMixin(I18nMixin(WidgetBase))<ClockProperties> {
 	protected render() {
 		const { format } = this.localizeBundle(nlsBundle);
 		const { labelKey, size } = this.properties;
@@ -70,7 +68,7 @@ export default class Clock extends ClockBase<ClockProperties> {
 		};
 	}
 
-	private _renderHands(): DNode {
+	private _renderHands() {
 		const { date, size } = this.properties;
 		const secondsAngle = this._calculateAngle(date.getSeconds() * 6);
 		const minutesAngle = this._calculateAngle((date.getMinutes() + date.getSeconds() / 60) * 6);
@@ -86,22 +84,22 @@ export default class Clock extends ClockBase<ClockProperties> {
 				classes: this.theme([ css.hand, css.hourHand ]),
 				x1: `${radius}`,
 				y1: `${radius}`,
-				x2: String(hourX),
-				y2: String(hourY)
+				x2: `${hourX}`,
+				y2: `${hourY}`
 			}, [ this._getHandAnimation(12 * 60 * 60) ]),
 			v('line', {
 				classes: this.theme([ css.hand, css.minuteHand ]),
 				x1: `${radius}`,
 				y1: `${radius}`,
-				x2: String(minuteX),
-				y2: String(minuteY)
+				x2: `${minuteX}`,
+				y2: `${minuteY}`
 			}, [ this._getHandAnimation(60 * 60) ]),
 			v('line', {
 				classes: this.theme([ css.hand, css.secondHand ]),
 				x1: `${radius}`,
 				y1: `${radius}`,
-				x2: String(secondX),
-				y2: String(secondY)
+				x2: `${secondX}`,
+				y2: `${secondY}`
 			}, [ this._getHandAnimation(60) ]),
 			v('circle', {
 				classes: this.theme(css.joint),
@@ -112,7 +110,7 @@ export default class Clock extends ClockBase<ClockProperties> {
 		]);
 	}
 
-	private _renderHours(): DNode {
+	private _renderHours() {
 		const { locale, size } = this.properties;
 		const fontSize = size / 10;
 		const padding = fontSize * 0.75;
@@ -126,8 +124,8 @@ export default class Clock extends ClockBase<ClockProperties> {
 			hours.push(v('text', {
 				classes: this.theme(css.hourText),
 				'text-anchor': 'middle',
-				x: String(x),
-				y: String(y + padding / 2)
+				x: `${x}`,
+				y: `${y + padding / 2}`
 			}, [ formatNumber(i, locale) ]));
 		}
 
