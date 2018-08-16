@@ -1,0 +1,22 @@
+{
+  "name": "world-clock",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "dojo build -s -w -m dev",
+    "test": "dojo test"
+  },
+  "dependencies": {
+    "@dojo/framework": "~3.0.0",
+    "@dojo/widgets": "^3.0.0",
+    "cldr-data": "32.0.1",
+    "moment-timezone": "0.5.21",
+    "tslib": "~1.8.1"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-app": "~3.0.0",
+    "@dojo/cli-test-intern": "~3.0.0",
+    "@types/moment-timezone": "0.5.7",
+    "@types/node": "~9.6.5",
+    "typescript": "~2.6.1"
+  }
+}

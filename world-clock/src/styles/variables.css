@@ -1,0 +1,10 @@
+:root {
+	--clock-fill-color: #000;
+	--clock-hand-color: #fff;
+	--clock-text-color: #fff;
+	--clock-text-size: 16px;
+	--clock-size: 160px;
+	--hour-hand-stroke-width: 6px;
+	--minute-hand-stroke-width: 3px;
+	--second-hand-stroke-width: 2px;
+}
