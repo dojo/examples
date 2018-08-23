@@ -31,13 +31,13 @@ npm install
 To run the application simply run the dojo build.
 
 ```
-dojo build
+npm run build
 ```
 
 To watch and serve the application source, run the build with the `-w` command.
 
 ```
-dojo build -w -s
+npm run build -- -w -s
 ```
 
 ## Features
@@ -61,16 +61,17 @@ Contributing Guidelines and Style Guide.
 
 To start working with this package, clone the repository and run `npm install`.
 
-In order to build the project run `dojo build`.
+In order to build the project run `npm run build`.
 
 ### Testing
 
 Test cases MUST be written using [Intern](https://theintern.github.io). Generally tests should be authored using the Object test interface and Assert assertion interface, though other interfaces such as Intern's BDD test interface may be used.
 
-You can test TodoMVC locally using the [`@dojo/cli-test-intern`](https://github.com/dojo/cli-test-intern) command:
+You can test TodoMVC locally using the `npm test` command. More command options are available with the [`@dojo/cli-test-intern`](https://github.com/dojo/cli-test-intern)
+package if you install `@dojo/cli` gloablly.
 
 ```shell
-dojo test -a
+npm install @dojo/cli -g
 ```
 
 ## Licensing Information

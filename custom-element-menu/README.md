@@ -11,8 +11,7 @@ Implementation of a basic menu widget that demonstrates using as custom elements
 - [Licensing information](#licensing-information)
 
 ## Pre-requisites
-
-`@dojo/cli` must be installed globally:
+For and `dojo <cmd>` commands, `@dojo/cli` must be installed globally:
 
 ```shell
 npm install @dojo/cli -g

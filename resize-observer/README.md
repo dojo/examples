@@ -16,13 +16,13 @@ npm install
 To run the example, simply run the dojo build.
 
 ```
-dojo build
+npm run build
 ```
 
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build -w -s
+npm run build -- -w -s
 ```
 
 ## What's Going On?

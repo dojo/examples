@@ -2,6 +2,14 @@
 
 This project was generated with the [Dojo CLI](https://github.com/dojo/cli) & [Dojo CLI create app command](https://github.com/dojo/cli-create-app).
 
+## Pre-requisites
+
+`@dojo/cli` must be installed globally:
+
+```shell
+npm install @dojo/cli -g
+```
+
 ## Build
 
 Run `dojo build --mode dist` (the `mode` option defaults to `dist`) to create a production build for the project. The built artifacts will be stored in the `output/dist` directory.

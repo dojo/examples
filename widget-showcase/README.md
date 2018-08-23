@@ -21,13 +21,13 @@ npm install
 To run the showcase, simply run the dojo build.
 
 ```
-dojo build
+npm run build
 ```
 
 To watch and serve the application source, then run the build with the `-w` command.
 
 ```
-dojo build -w -s
+npm run build -- -w -s
 ```
 
 ## How do I contribute?

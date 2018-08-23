@@ -20,6 +20,7 @@
     "@webcomponents/custom-elements": "~1.0.8"
   },
   "devDependencies": {
+    "@dojo/cli": "^3.0.0",
     "@dojo/cli-build-app": "^3.0.0",
     "@dojo/cli-build-widget": "^3.0.0",
     "@dojo/cli-test-intern": "^3.0.0",

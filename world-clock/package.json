@@ -13,6 +13,7 @@
     "tslib": "~1.8.1"
   },
   "devDependencies": {
+    "@dojo/cli": "^3.0.0",
     "@dojo/cli-build-app": "~3.0.0",
     "@dojo/cli-test-intern": "~3.0.0",
     "@types/moment-timezone": "0.5.7",
