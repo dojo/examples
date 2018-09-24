@@ -1,4 +1,5 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import { Registry } from '@dojo/framework/widget-core/Registry';
 import { Context } from './Context';
 import { AppContainer } from './containers/AppContainer';
@@ -28,7 +29,5 @@ function router() {
 window.onhashchange = router;
 router();
 
-const Projector = ProjectorMixin(AppContainer);
-const projector = new Projector();
-projector.setProperties({ registry });
-projector.merge(document.getElementById('app') || undefined);
+const r = renderer(() => w(AppContainer, {}));
+r.mount({ domNode: document.getElementById('app') as HTMLElement, registry });

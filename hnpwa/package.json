@@ -7,11 +7,11 @@
     "test-ci": "echo \"no tests\""
   },
   "dependencies": {
-    "@dojo/framework": "^3.0.0",
+    "@dojo/framework": "next",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^3.0.0",
+    "@dojo/cli-build-app": "next",
     "typescript": "~2.6.1"
   }
 }
