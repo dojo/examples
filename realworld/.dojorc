@@ -25,7 +25,21 @@
 				"clientsClaim": true,
 				"routes": [
 					{
-						"urlPattern": "http://demo.productionready.io",
+						"urlPattern": "https://fonts.googleapis.com/css",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
+					},
+					{
+						"urlPattern": "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
+					},
+					{
+						"urlPattern": "https://demo.productionready.io",
 						"strategy": "networkFirst",
 						"expiration": {
 							"maxEntries": 25
