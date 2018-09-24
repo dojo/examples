@@ -16,10 +16,9 @@ export default class App extends WidgetBase<AppProperties> {
 		this.invalidate();
 	}
 
-	render() {
+	protected render() {
 		const {
 			themes,
-			currentTheme,
 			onThemeChange
 		} = this.properties;
 
@@ -40,7 +39,6 @@ export default class App extends WidgetBase<AppProperties> {
 					}, [
 						w(Accordion, {
 							themes,
-							currentTheme,
 							onThemeChange
 						}),
 						w(Tabs, {})

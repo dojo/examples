@@ -8,10 +8,15 @@ import DialogPane from './panes/DialogPane';
 import ThemePane, { ThemePaneProperties } from './panes/ThemePane';
 import { from } from '@dojo/framework/shim/array';
 
-export interface AccordionProperties extends ThemePaneProperties {};
+export interface AccordionProperties {
+	themes: string[];
+	onThemeChange: (theme: string) => void;
+}
+;
 
 export default class Accordion extends WidgetBase<AccordionProperties> {
 	private _openKeys = new Set<string>();
+	private _currentTheme = 'dojo';
 
 	private _requestOpen(key: string) {
 		this._openKeys.add(key);
@@ -23,10 +28,15 @@ export default class Accordion extends WidgetBase<AccordionProperties> {
 		this.invalidate();
 	}
 
+	private _onThemeChange(theme: string) {
+		const { onThemeChange } = this.properties;
+		this._currentTheme = theme;
+		onThemeChange(theme);
+	}
+
 	render() {
 		const {
 			themes,
-			currentTheme,
 			onThemeChange
 		} = this.properties;
 
@@ -40,7 +50,7 @@ export default class Accordion extends WidgetBase<AccordionProperties> {
 				key: 'theme-title-pane'
 			}, [ w(ThemePane, {
 				themes,
-				currentTheme,
+				currentTheme: this._currentTheme,
 				onThemeChange
 			}) ]),
 			w(TitlePane, {
