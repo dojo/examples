@@ -4,8 +4,11 @@ import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { tsx } from '@dojo/framework/widget-core/tsx';
 
 import TodoHeader from './TodoHeader';
-import TodoList from './../outlets/TodoListOutlet';
-import TodoFooter from './../outlets/TodoFooterOutlet';
+// import TodoList from './../outlets/TodoListOutlet';
+// import TodoFooter from './../outlets/TodoFooterOutlet';
+import TodoFooter from './TodoFooter';
+import TodoList from './TodoList';
+import Outlet from '@dojo/framework/routing/Outlet';
 
 import * as css from './styles/todoApp.m.css';
 
@@ -64,20 +67,26 @@ export class TodoApp extends TodoAppBase<TodoAppProperties> {
 					todoCount={todoCount}
 				/>
 				<section>
-					<TodoList
-						todos={todos}
-						editTodo={editTodo}
-						removeTodo={removeTodo}
-						toggleTodo={toggleTodo}
-						saveTodo={saveTodo}
-					/>
+					<Outlet id='filter' renderer={(details) => {
+						return <TodoList
+							filter={details.params.filter}
+							todos={todos}
+							editTodo={editTodo}
+							removeTodo={removeTodo}
+							toggleTodo={toggleTodo}
+							saveTodo={saveTodo}
+						/>;
+					}} />
 				</section>
-				{ todoCount ?
-					<TodoFooter
-						clearCompleted={clearCompleted}
-						activeCount={activeCount}
-						todoCount={todoCount}
-					/> : null }
+				{todoCount ?
+					<Outlet id='filter' renderer={(details) => {
+						return <TodoFooter
+							filter={details.params.filter}
+							clearCompleted={clearCompleted}
+							activeCount={activeCount}
+							todoCount={todoCount}
+						/>;
+					}} /> : null}
 			</section>
 		);
 	}
