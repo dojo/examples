@@ -18,14 +18,13 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@dojo/framework": "^3.0.0",
-    "@dojo/widgets": "^2.0.0",
-    "@dojo/core": "^2.0.0",
+    "@dojo/framework": "next",
+    "@dojo/widgets": "file:../deps/dojo-widgets-3.0.1-rc.1.tgz",
     "cldr-data": "~30.0.2",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^3.0.0",
+    "@dojo/cli-build-app": "next",
     "@dojo/cli-test-intern": "^3.0.0",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
