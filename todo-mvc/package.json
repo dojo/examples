@@ -18,11 +18,11 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@dojo/framework": "^3.0.0",
+    "@dojo/framework": "next",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^3.0.0",
+    "@dojo/cli-build-app": "next",
     "@dojo/cli-test-intern": "^3.0.0",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",

@@ -1,7 +1,9 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { v, w } from '@dojo/framework/widget-core/d';
-import { TodoFilterOutlet } from './TodoFilter';
+import TodoFilter from './TodoFilter';
+import Outlet from '@dojo/framework/routing/Outlet';
+import { MatchDetails } from '@dojo/framework/routing/interfaces';
 
 import * as css from './styles/todoFooter.m.css';
 
@@ -27,7 +29,9 @@ export default class TodoFooter extends ThemedMixin(WidgetBase)<TodoFooterProper
 				v('strong', [activeCount + ' ']),
 				v('span', [countLabel + ' left'])
 			]),
-			w(TodoFilterOutlet, {}),
+			w(Outlet, { id: 'filter', renderer: (matchDetails: MatchDetails) => {
+				return w(TodoFilter, { activeFilter: matchDetails.params.filter });
+			} }),
 			completedItems ? v('button', {
 				onclick: this.clearCompleted,
 				innerHTML: 'Clear completed',

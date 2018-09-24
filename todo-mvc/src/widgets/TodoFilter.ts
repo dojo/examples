@@ -1,16 +1,11 @@
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { Outlet } from '@dojo/framework/routing/Outlet';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { v } from '@dojo/framework/widget-core/d';
 
 import * as css from './styles/todoFilter.m.css';
 
 export interface TodoFilterProperties {
-	activeFilter: 'all' | 'active' | 'completed';
-}
-
-function mapFilterRouteParam({ params }: any) {
-	return { activeFilter: params.filter };
+	activeFilter: string;
 }
 
 @theme(css)
@@ -37,5 +32,3 @@ export default class TodoFilter extends ThemedMixin(WidgetBase)<TodoFilterProper
 		]);
 	}
 }
-
-export const TodoFilterOutlet = Outlet(TodoFilter, 'filter', { mapParams: mapFilterRouteParam });
