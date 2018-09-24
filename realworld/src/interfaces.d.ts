@@ -64,11 +64,6 @@ export interface Errors {
 	[index: string]: string[];
 }
 
-export interface Routing {
-	outlet: string;
-	params: { [index: string]: string };
-}
-
 export interface Login extends ResourceBased {
 	email: string;
 	password: string;
@@ -97,7 +92,6 @@ export interface State {
 	article: Article;
 	user: UserProfile;
 	errors: Errors;
-	routing: Routing;
 	login: Login;
 	register: Register;
 	editor: Editor;

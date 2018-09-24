@@ -13,6 +13,7 @@ interface ArticleMetaProperties {
 	favoritesCount: number;
 	createdAt: string;
 	slug: string;
+	isAuthenticated: boolean;
 	favoriteArticle: (opts: FavoriteArticlePayload) => void;
 	followUser: (opts: FollowUserPayload) => void;
 	deleteArticle: (opts: SlugPayload) => void;
@@ -27,6 +28,7 @@ export class ArticleMeta extends WidgetBase<ArticleMetaProperties> {
 			username,
 			favorited,
 			favoritesCount,
+			isAuthenticated,
 			createdAt,
 			slug,
 			authorProfile
@@ -42,20 +44,22 @@ export class ArticleMeta extends WidgetBase<ArticleMetaProperties> {
 				]),
 				v('span', { classes: 'date' }, [new Date(createdAt).toDateString()])
 			]),
-			username === authorProfile.username
-				? w(ArticleAuthorControls, {
-						slug,
-						deleteArticle
-					})
-				: w(ArticleControls, {
-						favorited,
-						followUser,
-						favoriteArticle,
-						favoritesCount,
-						slug,
-						following: authorProfile.following,
-						authorUsername: authorProfile.username
-					})
+			isAuthenticated
+				? username === authorProfile.username
+					? w(ArticleAuthorControls, {
+							slug,
+							deleteArticle
+						})
+					: w(ArticleControls, {
+							favorited,
+							followUser,
+							favoriteArticle,
+							favoritesCount,
+							slug,
+							following: authorProfile.following,
+							authorUsername: authorProfile.username
+						})
+				: null
 		]);
 	}
 }

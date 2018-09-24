@@ -27,39 +27,41 @@ const startFetchingFeedCommand = commandFactory<FetchFeedPayload>(({ path, paylo
 	];
 });
 
-const fetchFeedCommand = commandFactory<FetchFeedPayload>(async ({ get, path, payload: { type, page, filter } }) => {
-	const token = get(path('user', 'token'));
-	const offset = page * 10;
-	let url: string;
+export const fetchFeedCommand = commandFactory<FetchFeedPayload>(
+	async ({ get, path, payload: { type, page, filter } }) => {
+		const token = get(path('user', 'token'));
+		const offset = page * 10;
+		let url: string;
 
-	switch (type) {
-		case 'feed':
-			url = `${baseUrl}/articles/feed?`;
-			break;
-		case 'favorites':
-			url = `${baseUrl}/articles?favorited=${filter}&`;
-			break;
-		case 'user':
-			url = `${baseUrl}/articles?author=${filter}&`;
-			break;
-		case 'tag':
-			url = `${baseUrl}/articles?tag=${filter}&`;
-			break;
-		default:
-			url = `${baseUrl}/articles/?`;
-			break;
+		switch (type) {
+			case 'feed':
+				url = `${baseUrl}/articles/feed?`;
+				break;
+			case 'favorites':
+				url = `${baseUrl}/articles?favorited=${filter}&`;
+				break;
+			case 'user':
+				url = `${baseUrl}/articles?author=${filter}&`;
+				break;
+			case 'tag':
+				url = `${baseUrl}/articles?tag=${filter}&`;
+				break;
+			default:
+				url = `${baseUrl}/articles/?`;
+				break;
+		}
+
+		const response = await fetch(`${url}limit=10&offset=${offset}`, { headers: getHeaders(token) });
+		const json = await response.json();
+		return [
+			replace(path('feed', 'items'), json.articles),
+			replace(path('feed', 'total'), json.articlesCount),
+			replace(path('feed', 'offset'), offset),
+			replace(path('feed', 'loading'), false),
+			replace(path('feed', 'loaded'), true)
+		];
 	}
-
-	const response = await fetch(`${url}limit=10&offset=${offset}`, { headers: getHeaders(token) });
-	const json = await response.json();
-	return [
-		replace(path('feed', 'items'), json.articles),
-		replace(path('feed', 'total'), json.articlesCount),
-		replace(path('feed', 'offset'), offset),
-		replace(path('feed', 'loading'), false),
-		replace(path('feed', 'loaded'), true)
-	];
-});
+);
 
 const favoriteFeedArticleCommand = commandFactory<FavoriteArticlePayload>(
 	async ({ at, get, path, payload: { slug, favorited } }) => {

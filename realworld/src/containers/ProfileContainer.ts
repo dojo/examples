@@ -2,7 +2,7 @@ import { Store } from '@dojo/framework/stores/Store';
 import { Profile, ProfileProperties } from './../widgets/Profile';
 import { State } from '../interfaces';
 import { followUserProcess } from './../processes/profileProcesses';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>, properties: ProfileProperties): ProfileProperties {
 	const { get, path } = store;
@@ -18,4 +18,4 @@ function getProperties(store: Store<State>, properties: ProfileProperties): Prof
 	};
 }
 
-export default StoreContainer(Profile, 'state', { paths: [[ 'profile' ], [ 'user' ]], getProperties });
+export default StoreContainer(Profile, 'state', { paths: [['profile'], ['user']], getProperties });

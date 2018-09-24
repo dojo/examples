@@ -1,16 +1,15 @@
 import { Store } from '@dojo/framework/stores/Store';
 import { Header, HeaderProperties } from './../widgets/Header';
 import { State } from '../interfaces';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>): HeaderProperties {
 	const { get, path } = store;
 
 	return {
-		route: get(path('routing', 'outlet')),
 		isAuthenticated: !!get(path('user', 'token')),
 		loggedInUser: get(path('user', 'username'))
 	};
 }
 
-export default StoreContainer(Header, 'state', { paths: [[ 'routing' ], [ 'user' ]], getProperties });
+export default StoreContainer(Header, 'state', { paths: [['user']], getProperties });

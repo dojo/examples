@@ -1,7 +1,7 @@
 import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import { v, w } from '@dojo/framework/widget-core/d';
 import { Link } from '@dojo/framework/routing/Link';
-import * as marked from 'marked';
+const snarkdown = require('snarkdown');
 import { Comment } from './Comment';
 import { ArticleItem, Comment as CommentItem, AuthorProfile, WithTarget } from '../interfaces';
 import { ArticleMeta } from './ArticleMeta';
@@ -71,25 +71,24 @@ export class Article extends WidgetBase<ArticleProperties> {
 			v('div', { key: 'banner', classes: 'banner' }, [
 				v('div', { classes: 'container' }, [
 					v('h1', [article.title]),
-					isAuthenticated
-						? w(ArticleMeta, {
-								authorProfile,
-								slug,
-								createdAt,
-								favoriteArticle,
-								followUser,
-								deleteArticle,
-								username,
-								favorited,
-								favoritesCount
-							})
-						: null
+					w(ArticleMeta, {
+						authorProfile,
+						isAuthenticated,
+						slug,
+						createdAt,
+						favoriteArticle,
+						followUser,
+						deleteArticle,
+						username,
+						favorited,
+						favoritesCount
+					})
 				])
 			]),
 			v('div', { key: 'page', classes: ['container', 'page'] }, [
 				v('div', { classes: ['row', 'article-content'] }, [
 					v('div', { classes: 'col-xs-12' }, [
-						v('div', { innerHTML: marked(article.body, { sanitize: true }) }),
+						v('div', { innerHTML: snarkdown.default(article.body) }),
 						v('ul', { classes: 'tag-list' }, article.tagList.map((tag: string) => {
 							return v('li', { classes: ['tag-default', 'tag-pill', 'tag-outline'] }, [tag]);
 						}))
@@ -97,48 +96,47 @@ export class Article extends WidgetBase<ArticleProperties> {
 				]),
 				v('hr'),
 				v('div', { classes: 'article-actions' }, [
-					isAuthenticated
-						? w(ArticleMeta, {
-								authorProfile,
-								slug,
-								createdAt,
-								favoriteArticle,
-								followUser,
-								deleteArticle,
-								username,
-								favorited,
-								favoritesCount
-							})
-						: null
+					w(ArticleMeta, {
+						authorProfile,
+						isAuthenticated,
+						slug,
+						createdAt,
+						favoriteArticle,
+						followUser,
+						deleteArticle,
+						username,
+						favorited,
+						favoritesCount
+					})
 				]),
 				v('div', { classes: 'row' }, [
 					v('div', { classes: ['col-xs-12', 'col-md-8', 'offset-md-2'] }, [
 						isAuthenticated
 							? v('form', { classes: ['card', 'comment-form'] }, [
-									v('div', { classes: 'card-block' }, [
-										v('textarea', {
-											value: newComment,
-											oninput: this._onNewCommentInput,
-											classes: 'form-control',
-											placeholder: 'Write a comment...',
-											rows: 3
-										})
-									]),
-									v('div', { classes: 'card-footer' }, [
-										v('img', { classes: 'comment-author-img', src: '' }),
-										v(
-											'button',
-											{ onclick: this._addComment, classes: ['btn', 'btn-sm', 'btn-primary'] },
-											['Post Comment']
-										)
-									])
-								])
-							: v('p', [
-									w(Link, { to: 'login' }, ['Sign In']),
-									' or ',
-									w(Link, { to: 'register' }, ['Sign Up']),
-									' to add comments on this article.'
+								v('div', { classes: 'card-block' }, [
+									v('textarea', {
+										value: newComment,
+										oninput: this._onNewCommentInput,
+										classes: 'form-control',
+										placeholder: 'Write a comment...',
+										rows: 3
+									})
 								]),
+								v('div', { classes: 'card-footer' }, [
+									v('img', { classes: 'comment-author-img', src: '' }),
+									v(
+										'button',
+										{ onclick: this._addComment, classes: ['btn', 'btn-sm', 'btn-primary'] },
+										['Post Comment']
+									)
+								])
+							])
+							: v('p', [
+								w(Link, { to: 'login' }, ['Sign In']),
+								' or ',
+								w(Link, { to: 'register' }, ['Sign Up']),
+								' to add comments on this article.'
+							]),
 						v('div', comments.map((comment: CommentItem, index: number) => {
 							return w(Comment, {
 								key: index,

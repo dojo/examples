@@ -124,11 +124,13 @@ const deleteArticleCommand = commandFactory<SlugPayload>(async ({ get, path, pay
 		method: 'delete',
 		headers: getHeaders(token)
 	});
-
-	return [replace(path('routing', 'outlet'), 'home')];
+	return [];
 });
 
-export const getArticleProcess = createProcess('get-article', [startLoadingArticleCommand, [loadArticleCommand, loadCommentsCommand]]);
+export const getArticleProcess = createProcess('get-article', [
+	startLoadingArticleCommand,
+	[loadArticleCommand, loadCommentsCommand]
+]);
 export const deleteCommentProcess = createProcess('delete-comment', [deleteCommentCommand]);
 export const addCommentProcess = createProcess('add-comment', [addCommentCommand]);
 export const newCommentInputProcess = createProcess('new-comment-input', [newCommentInputCommand]);

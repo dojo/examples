@@ -3,6 +3,44 @@
 		"build-time-render": {
 			"root": "app"
 		},
+		"pwa": {
+			"manifest": {
+				"name": "dojo-realworld",
+				"short_name": "dojo-realworld",
+				"description": "dojo-realworld",
+				"background_color": "#ffffff",
+				"theme_color": "#222127",
+				"icons": [
+					{
+						"src": "src/logo.png",
+						"sizes": [
+							128,
+							256,
+							512
+						]
+					}
+				]
+			},
+			"serviceWorker": {
+				"clientsClaim": true,
+				"routes": [
+					{
+						"urlPattern": "http://demo.productionready.io",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
+					},
+					{
+						"urlPattern": "https://conduit.productionready.io/api",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
+					}
+				]
+			}
+		},
 		"legacy": true
 	},
 	"test-intern": {},

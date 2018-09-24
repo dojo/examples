@@ -10,7 +10,7 @@ import {
 } from './../processes/settingsProcesses';
 import { logoutProcess } from '../processes/loginProcesses';
 import { State } from '../interfaces';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>): SettingsProperties {
 	const { get, path } = store;
@@ -31,4 +31,4 @@ function getProperties(store: Store<State>): SettingsProperties {
 	};
 }
 
-export default StoreContainer(Settings, 'state', { paths: [[ 'settings' ]], getProperties });
+export default StoreContainer(Settings, 'state', { paths: [['settings']], getProperties });

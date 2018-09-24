@@ -9,7 +9,7 @@ import {
 	deleteArticleProcess
 } from './../processes/articleProcesses';
 import { State } from '../interfaces';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>, properties: ArticleProperties): ArticleProperties {
 	const { get, path } = store;
@@ -33,4 +33,4 @@ function getProperties(store: Store<State>, properties: ArticleProperties): Arti
 	};
 }
 
-export default StoreContainer(Article, 'state', { paths: [[ 'user' ], [ 'article' ]], getProperties });
+export default StoreContainer(Article, 'state', { paths: [['user'], ['article']], getProperties });

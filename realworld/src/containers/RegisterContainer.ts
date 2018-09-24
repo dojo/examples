@@ -7,7 +7,7 @@ import {
 	registerUsernameInputProcess
 } from './../processes/loginProcesses';
 import { State } from '../interfaces';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>): RegisterProperties {
 	const { get, path } = store;
@@ -25,4 +25,4 @@ function getProperties(store: Store<State>): RegisterProperties {
 	};
 }
 
-export default StoreContainer(Register, 'state', { paths: [[ 'register' ], [ 'errors' ]], getProperties });
+export default StoreContainer(Register, 'state', { paths: [['register'], ['errors']], getProperties });

@@ -10,7 +10,7 @@ import {
 	titleInputProcess
 } from './../processes/editorProcesses';
 import { State } from '../interfaces';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>, properties: EditorProperties): EditorProperties {
 	const { get, path } = store;
@@ -33,4 +33,4 @@ function getProperties(store: Store<State>, properties: EditorProperties): Edito
 	};
 }
 
-export default StoreContainer(Editor, 'state', { paths: [[ 'editor' ], [ 'errors' ]], getProperties });
+export default StoreContainer(Editor, 'state', { paths: [['editor'], ['errors']], getProperties });
