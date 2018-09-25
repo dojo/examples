@@ -4,13 +4,14 @@
   "main": "src/main.ts",
   "scripts": {
     "build": "dojo build",
+    "build:dev": "dojo build -m dev",
     "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
     "test": "dojo build -m dev && dojo build -m test && dojo test -a"
   },
   "dependencies": {
     "@dojo/framework": "next",
-    "@dojo/themes": "file:../deps/dojo-themes-3.0.4.tgz",
-    "@dojo/widgets": "file:../deps/dojo-widgets-3.0.1-rc.1.tgz",
+    "@dojo/themes": "next",
+    "@dojo/widgets": "next",
     "tslib": "~1.8.1"
   },
   "devDependencies": {

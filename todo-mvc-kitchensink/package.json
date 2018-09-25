@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@dojo/framework": "next",
-    "@dojo/widgets": "file:../deps/dojo-widgets-3.0.1-rc.1.tgz",
+    "@dojo/widgets": "next",
     "cldr-data": "~30.0.2",
     "tslib": "~1.8.1"
   },
