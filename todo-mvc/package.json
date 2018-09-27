@@ -6,7 +6,7 @@
   "scripts": {
     "build": "dojo build",
     "build:tests": "dojo build -m unit && dojo build -m functional",
-    "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"saucelabs\"",
+    "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\"",
     "test": "dojo build -m dist && npm run build:tests && dojo test -c local -a"
   },
   "repository": {
