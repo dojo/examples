@@ -3,19 +3,19 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
-    "test": "dojo build -m dev && dojo build -m test && dojo test -a"
+    "test-ci": "dojo build -m dev && dojo build -m unit && dojo test -c \"saucelabs\"",
+    "test": "dojo build -m dev && dojo build -m unit && dojo test"
   },
   "main": "src/main.ts",
   "dependencies": {
     "@dojo/framework": "next",
-    "@dojo/widgets": "file:../deps/dojo-widgets-3.0.1-rc.1.tgz",
+    "@dojo/widgets": "next",
     "resize-observer-polyfill": "1.5.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "next",
-    "@dojo/cli-test-intern": "^3.0.0",
+    "@dojo/cli-test-intern": "next",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",

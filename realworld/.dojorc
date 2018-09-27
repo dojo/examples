@@ -55,7 +55,7 @@
 				]
 			}
 		},
-		"legacy": true
+		"legacy": false
 	},
 	"test-intern": {},
 	"create-app": {},
