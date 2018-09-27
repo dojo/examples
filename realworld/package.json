@@ -6,7 +6,7 @@
     "dev": "dojo build -m dev -s -w memory",
     "build": "dojo build",
     "test": "dojo build -m unit && dojo test",
-    "test-ci": "dojo build -m unit && dojo test -c \"saucelabs\""
+    "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
   },
   "dependencies": {
     "@dojo/framework": "next",
