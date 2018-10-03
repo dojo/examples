@@ -7,6 +7,7 @@ import { Todo } from './../todoProcesses';
 import * as css from './styles/todoDetails.m.css';
 
 export interface TodoDetailsProperties {
+	id?: string;
 	todo: Todo;
 	onRequestExit: () => void;
 	saveTodo: () => void;

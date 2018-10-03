@@ -63,7 +63,7 @@ export default class TodoApp extends ThemedMixin(WidgetBase)<TodoAppProperties> 
 					setCurrentTodo
 				}),
 				todoCount > 0 ? w(TodoSearch, { search, searchValue }) : null,
-				todoCount > 0 ? w(Outlet, { id: 'view', renderer: ({ router, params, queryParams }: MatchDetails) => {
+				todoCount > 0 ? w(Outlet, { key: 'list-view', id: 'view', renderer: ({ router, params, queryParams }: MatchDetails) => {
 					return w(TodoList, {
 						todos,
 						searchValue,
@@ -76,7 +76,7 @@ export default class TodoApp extends ThemedMixin(WidgetBase)<TodoAppProperties> 
 							link && router.setPath(link);
 						}});
 				}}) : null,
-				todoCount > 0 ? w(Outlet, { id: 'view', renderer: ({ params, queryParams }: MatchDetails) => {
+				todoCount > 0 ? w(Outlet, { key: 'footer-view', id: 'view', renderer: ({ params, queryParams }: MatchDetails) => {
 					return w(TodoFooter, { view: params.view, filter: queryParams.filter, activeCount, todoCount, clearCompleted });
 				}}) : null
 			]),
