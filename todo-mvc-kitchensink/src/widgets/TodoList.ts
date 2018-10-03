@@ -41,8 +41,9 @@ export default class TodoList extends TodoListBase<TodoListProperties> {
 					w(TodoItem, { key: todo.id, todo, editTodo, toggleTodo, removeTodo }) :
 					w(TodoCard, { key: todo.id, todo, editTodo, toggleTodo, removeTodo });
 			})),
-			w(Outlet, { id: 'edit', renderer: ({ router }: MatchDetails) => {
+			w(Outlet, { id: 'edit', renderer: ({ router, params }: MatchDetails) => {
 				return w(TodoDetailsContainer, {
+					id: params.id,
 					onRequestExit: () => {
 						const link = router.link('view');
 						link && router.setPath(link);
