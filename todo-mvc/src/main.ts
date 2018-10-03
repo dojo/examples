@@ -1,4 +1,5 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import TodoApp from './widgets/TodoApp';
 import Registry from '@dojo/framework/widget-core/Registry';
@@ -13,7 +14,5 @@ const router = registerRouterInjector([
 	}
 ], registry);
 
-const Projector = ProjectorMixin(TodoApp);
-const projector = new Projector();
-projector.setProperties({ registry });
-projector.append();
+const r = renderer(() => w(TodoApp, {}));
+r.mount({ registry });

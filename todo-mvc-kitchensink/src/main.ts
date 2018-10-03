@@ -1,5 +1,6 @@
 import Store from '@dojo/framework/stores/Store';
-import ProjectorMixin from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import Registry from '@dojo/framework/widget-core/Registry';
 import { registerThemeInjector } from '@dojo/framework/widget-core/mixins/Themed';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
@@ -23,9 +24,6 @@ registry.defineInjector('theme-context', () => {
 	});
 });
 
-const Projector = ProjectorMixin(TodoAppContainer);
-const projector = new Projector();
-
 const config = [
 	{
 		path: 'view/{view}?{filter}',
@@ -43,7 +41,7 @@ const config = [
 		]
 	}
 ];
+registerRouterInjector(config, registry);
 
-const router = registerRouterInjector(config, registry);
-projector.setProperties({ registry });
-projector.append();
+const r = renderer(() => w(TodoAppContainer, {}));
+r.mount({ registry });

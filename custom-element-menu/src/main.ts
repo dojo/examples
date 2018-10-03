@@ -1,6 +1,6 @@
 import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import { w } from '@dojo/framework/widget-core/d';
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
 import { Menu } from './widgets/Menu';
 import { MenuItem } from './widgets/MenuItem';
 
@@ -19,8 +19,6 @@ class Example extends WidgetBase {
 	}
 }
 
-const element = document.getElementById('widget') as Element;
-const Projector = ProjectorMixin(Example);
-const projector = new Projector();
-
-projector.append(element);
+const element = document.getElementById('widget') as HTMLElement;
+const r = renderer(() => w(Example, {}));
+r.mount({ domNode: element });

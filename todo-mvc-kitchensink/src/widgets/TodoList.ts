@@ -5,9 +5,11 @@ import { v, w } from '@dojo/framework/widget-core/d';
 import { Todo } from './../todoProcesses';
 import TodoItem from './TodoItem';
 import TodoCard from './TodoCard';
-import TodoDetailsOutlet from './../outlets/TodoDetailsOutlet';
 
 import * as css from './styles/todoList.m.css';
+import { Outlet } from '@dojo/framework/routing/Outlet';
+import TodoDetailsContainer from '../containers/TodoDetailsContainer';
+import { MatchDetails } from '@dojo/framework/routing/interfaces';
 
 export interface TodoListProperties {
 	view: string;
@@ -39,7 +41,14 @@ export default class TodoList extends TodoListBase<TodoListProperties> {
 					w(TodoItem, { key: todo.id, todo, editTodo, toggleTodo, removeTodo }) :
 					w(TodoCard, { key: todo.id, todo, editTodo, toggleTodo, removeTodo });
 			})),
-			w(TodoDetailsOutlet, { })
+			w(Outlet, { id: 'edit', renderer: ({ router }: MatchDetails) => {
+				return w(TodoDetailsContainer, {
+					onRequestExit: () => {
+						const link = router.link('view');
+						link && router.setPath(link);
+					}
+				});
+			} })
 		];
 	}
 }

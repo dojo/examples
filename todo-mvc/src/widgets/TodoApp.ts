@@ -1,12 +1,13 @@
 import Map from '@dojo/framework/shim/Map';
-import uuid from '@dojo/framework/core/uuid';
-import { assign } from '@dojo/framework/core/lang';
+import { uuid } from '@dojo/framework/core/util';
 import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
 import { ThemedMixin, theme } from '@dojo/framework/widget-core/mixins/Themed';
 import { w, v } from '@dojo/framework/widget-core/d';
+import Outlet from '@dojo/framework/routing/Outlet';
+import { MatchDetails } from '@dojo/framework/routing/interfaces';
 
 import TodoHeader from './TodoHeader';
-import { TodoListOutlet } from './TodoList';
+import TodoList from './TodoList';
 import TodoFooter from './TodoFooter';
 
 import * as css from './styles/todoApp.m.css';
@@ -35,13 +36,15 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 		return v('section', { classes: this.theme(css.todoapp) }, [
 			w(TodoHeader, { value: todoItem, updateTodo, allCompleted, addTodo: this.setTodo, toggleAllTodos }),
 			v('section', [
-				w(TodoListOutlet, { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo })
+				w(Outlet, { id: 'filter', renderer: (match: MatchDetails) => {
+					return w(TodoList, { updated, todos, editTodo, removeTodo, toggleTodo, updateTodo: this.setTodo, activeFilter: match.params.filter });
+				} })
 			]),
 			todos.size ? w(TodoFooter, { clearCompleted, activeCount, completedItems }) : null
 		]);
 	}
 
-	private removeTodo(id: string) {
+	private removeTodo = (id: string) => {
 		const todo = this.todos.get(id);
 		if (todo) {
 			this.todos.delete(id);
@@ -50,7 +53,7 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 		}
 	}
 
-	private toggleTodo(id: string) {
+	private toggleTodo = (id: string) => {
 		const todo = this.todos.get(id);
 		if (todo) {
 			const completed = !todo.completed;
@@ -59,7 +62,7 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 		}
 	}
 
-	private toggleAllTodos() {
+	private toggleAllTodos = () => {
 		const completed = this.completedCount !== this.todos.size;
 		this.todos.forEach((todo, key) => {
 			this.setTodo({ completed }, key);
@@ -68,7 +71,7 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 		this.onUpdate();
 	}
 
-	private editTodo(id: string) {
+	private editTodo = (id: string) => {
 		const todo = this.todos.get(id);
 		if (todo) {
 			this.setTodo({ editing: true}, id);
@@ -76,7 +79,7 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 		}
 	}
 
-	private clearCompleted() {
+	private clearCompleted = () => {
 		this.todos.forEach((todo, key) => {
 			if (todo.completed) {
 				this.todos.delete(key);
@@ -86,12 +89,12 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 		this.onUpdate();
 	}
 
-	private updateTodo(todo: string) {
+	private updateTodo = (todo: string) => {
 		this.todoItem = todo;
 		this.invalidate();
 	}
 
-	private setTodo(todo: Partial<Todo>, id?: string) {
+	private setTodo = (todo: Partial<Todo>, id?: string) => {
 		if (!id) {
 			id = uuid();
 			this.todoItem = '';
@@ -103,11 +106,11 @@ export default class TodoApp extends ThemedMixin(WidgetBase) {
 				return;
 			}
 		}
-		this.todos.set(id, assign(<any> { id }, this.todos.get(id) || {}, todo));
+		this.todos.set(id, { id,  ...this.todos.get(id)!, ...todo });
 		this.onUpdate();
 	}
 
-	private onUpdate() {
+	private onUpdate = () => {
 		this.updated = uuid();
 		this.invalidate();
 	}

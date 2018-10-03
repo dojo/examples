@@ -13,7 +13,7 @@ import * as css from './styles/todoList.m.css';
 export interface TodoListProperties {
 	todos: Map<string, Todo>;
 	updated: string;
-	activeFilter?: 'all' | 'active' | 'completed';
+	activeFilter?: string;
 	toggleTodo: Function;
 	removeTodo: Function;
 	editTodo: Function;
@@ -31,10 +31,6 @@ function filter(filterName: string = 'all', todo: Todo): boolean {
 	}
 }
 
-function mapFilterRouteParam({ params }: any) {
-	return { activeFilter: params.filter };
-}
-
 @theme(css)
 export default class TodoList extends ThemedMixin(WidgetBase)<TodoListProperties> {
 	protected render() {
@@ -46,5 +42,3 @@ export default class TodoList extends ThemedMixin(WidgetBase)<TodoListProperties
 		}));
 	}
 }
-
-export const TodoListOutlet = Outlet(TodoList, 'filter', { mapParams: mapFilterRouteParam });

@@ -74,9 +74,7 @@ const publishArticleCommand = commandFactory(async ({ get, path }) => {
 	return [
 		replace(path('article', 'item'), json.article),
 		replace(path('article', 'loaded'), true),
-		replace(path('editor'), undefined),
-		replace(path('routing', 'outlet'), 'article'),
-		replace(path('routing', 'params'), { slug: json.article.slug })
+		replace(path('editor'), undefined)
 	];
 });
 

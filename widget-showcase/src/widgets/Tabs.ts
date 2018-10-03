@@ -8,6 +8,7 @@ import TextAreaTab from './tabs/TextAreaTab';
 import SelectTab from './tabs/SelectTab';
 import ProgressTab from './tabs/ProgressTab';
 import SliderTab from './tabs/SliderTab';
+import GridTab from './tabs/GridTab';
 
 export default class Tabs extends WidgetBase {
 	private _activeIndex = 0;
@@ -46,7 +47,11 @@ export default class Tabs extends WidgetBase {
 			w(Tab, {
 				key: 'slider-tab',
 				label: 'Slider'
-			}, [ w(SliderTab, {}) ])
+			}, [ w(SliderTab, {}) ]),
+			w(Tab, {
+				key: 'grid-tab',
+				label: 'Grid'
+			}, [ w(GridTab, {}) ])
 		])
 	}
 }

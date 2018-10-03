@@ -4,18 +4,18 @@
 
 ### [Demo](https://dojo.github.io/examples/realworld/)
 
-
 This codebase was created to demonstrate an application built with Dojo.
 
+ * **Automatic Code Splitting**: The application is split into bundles by top level routes configured in the `src/routes.ts`.
  * **Build Time Rendering**: Configured to build the home page at build time which injects the applications HTML into the index.html.
- * **Authentication**: Demonstrates handling authentication within a Dojo application.
- * **State Management**: Uses `@dojo/stores` for state management and managing fetching, creating, and inserting CRUD data.
- * **Routing**: Uses `@dojo/routing` to provide full application routing.
+ * **Progress Web Application**: Build configuration for PWA.
+ * **State Management**: Uses `@dojo/framework/stores` for state management and managing fetching, creating, and inserting CRUD data.
+ * **Routing**: Uses `@dojo/framework/routing` to provide full application routing.
  * **Lazy Loading (Code Splitting)**: Automatically code splits for widgets/outlets or containers that are defined in an application registry using the dynamic `import` syntax.
+ * **Authentication**: Demonstrates handling authentication within a Dojo application.
  * **Pagination**: Includes pagination for displaying larger sets of data.
 
-For more information on how this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
-
+For more information on how this works with other front-ends & back-ends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repository.
 
 # How it works
 
@@ -29,7 +29,7 @@ View the [Dojo RealWorld live demo](https://dojo.github.io/examples/realworld/)
 
 To get the frontend running locally:
 
-- Clone this repo
+- Clone this repository
 - `npm install` to install all required dependencies
 - `npm run dev` to build the application with watch and start a local server ([http:localhost:9999](http:localhost:9999))
 

@@ -4,18 +4,22 @@
   "main": "src/main.ts",
   "scripts": {
     "build": "dojo build",
-    "test-ci": "dojo build -m dev && dojo build -m test && dojo test -a -c \"saucelabs\"",
-    "test": "dojo build -m dev && dojo build -m test && dojo test -a"
+    "build:dev": "dojo build -m dev",
+    "build:tests": "dojo build -m unit && dojo build -m functional",
+    "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
+    "test": "dojo build -m dev && npm run build:tests && dojo test -a"
   },
   "dependencies": {
-    "@dojo/framework": "^3.0.0",
-    "@dojo/themes": "^3.0.1",
-    "@dojo/widgets": "^3.0.0",
+    "@dojo/framework": "next",
+    "@dojo/themes": "next",
+    "@dojo/widgets": "next",
+    "faker": "^4.1.0",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^3.0.0",
-    "@dojo/cli-test-intern": "^3.0.0",
+    "@dojo/cli-build-app": "next",
+    "@dojo/cli-test-intern": "next",
+    "@types/faker": "^4.1.4",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",

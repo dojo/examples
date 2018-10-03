@@ -1,3 +1,19 @@
+import * as faker from 'faker';
+
+export function generateData(records: number = 10000) {
+	let data: any = [];
+	for (let i = 0; i < records; i++) {
+		const item = {
+			id: i,
+			firstName: faker.name.firstName(),
+			lastName: faker.name.lastName(),
+			jobTitle: faker.name.jobTitle()
+		};
+		data.push(item);
+	}
+	return data;
+}
+
 export const dataLarge = [
 	{ value: 'Alabama', label: 'Alabama' },
 	{ value: 'Alaska', label: 'Alaska' },

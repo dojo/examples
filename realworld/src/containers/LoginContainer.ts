@@ -2,7 +2,7 @@ import { Store } from '@dojo/framework/stores/Store';
 import { Login, LoginProperties } from './../widgets/Login';
 import { loginProcess, loginEmailInputProcess, loginPasswordInputProcess } from './../processes/loginProcesses';
 import { State } from '../interfaces';
-import StoreContainer from './StoreContainer';
+import { StoreContainer } from '@dojo/framework/stores/StoreInjector';
 
 function getProperties(store: Store<State>): LoginProperties {
 	const { get, path } = store;
@@ -18,4 +18,4 @@ function getProperties(store: Store<State>): LoginProperties {
 	};
 }
 
-export default StoreContainer(Login, 'state', { paths: [[ 'login' ], [ 'errors' ]], getProperties });
+export default StoreContainer(Login, 'state', { paths: [['login'], ['errors']], getProperties });

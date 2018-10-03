@@ -1,26 +1,25 @@
 import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import { v, w } from '@dojo/framework/widget-core/d';
-import { Link } from '@dojo/framework/routing/Link';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
+import ActiveLink from '@dojo/framework/routing/ActiveLink';
+import Link from '@dojo/framework/routing/Link';
 
 export interface HeaderProperties {
 	isAuthenticated: boolean;
 	loggedInUser: string;
-	route: string;
 }
 
 export class Header extends WidgetBase<HeaderProperties> {
 	private _authenticatedMenu() {
-		const { route, loggedInUser } = this.properties;
+		const { loggedInUser } = this.properties;
 		return [
 			v('li', { key: 'new-post', classes: 'nav-item' }, [
-				w(Link, { classes: ['nav-link', route === 'new-post' ? 'active' : null], to: 'new-post' }, [
+				w(ActiveLink, { classes: ['nav-link'], activeClasses: ['active'], to: 'new-post' }, [
 					v('i', { classes: 'ion-compose' }),
 					'New Post'
 				])
 			]),
 			v('li', { key: 'settings', classes: 'nav-item' }, [
-				w(Link, { classes: ['nav-link', route === 'settings' ? 'active' : null], to: 'settings' }, [
+				w(ActiveLink, { classes: ['nav-link'], activeClasses: ['active'], to: 'settings' }, [
 					v('i', { classes: 'ion-gear' }),
 					'Settings'
 				])
@@ -34,27 +33,26 @@ export class Header extends WidgetBase<HeaderProperties> {
 		];
 	}
 
-	private _unauthenticatedMenu(): DNode[] {
-		const { route } = this.properties;
+	private _unauthenticatedMenu() {
 		return [
 			v('li', { key: 'sign-in', classes: 'nav-item' }, [
-				w(Link, { classes: ['nav-link', route === 'login' ? 'active' : null], to: 'login' }, ['Sign In'])
+				w(ActiveLink, { classes: ['nav-link'], activeClasses: ['active'], to: 'login' }, ['Sign In'])
 			]),
 			v('li', { key: 'sign-up', classes: 'nav-item' }, [
-				w(Link, { classes: ['nav-link', route === 'register' ? 'active' : null], to: 'register' }, ['Sign Up'])
+				w(ActiveLink, { classes: ['nav-link'], activeClasses: ['active'], to: 'register' }, ['Sign Up'])
 			])
 		];
 	}
 
 	protected render() {
-		const { isAuthenticated, route } = this.properties;
+		const { isAuthenticated } = this.properties;
 
 		return v('nav', { classes: ['navbar', 'navbar-light'] }, [
 			v('div', { classes: 'container' }, [
 				v('a', { classes: 'navbar-brand' }, ['conduit']),
 				v('ul', { classes: ['nav', 'navbar-nav pull-xs-right'] }, [
 					v('li', { classes: 'nav-item' }, [
-						w(Link, { classes: ['nav-link', route === 'home' ? 'active' : null], to: 'home' }, ['Home'])
+						w(ActiveLink, { classes: ['nav-link'], activeClasses: ['active'], to: 'home' }, ['Home'])
 					]),
 					...(isAuthenticated ? this._authenticatedMenu() : this._unauthenticatedMenu())
 				])

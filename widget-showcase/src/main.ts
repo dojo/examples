@@ -1,9 +1,11 @@
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import { registerThemeInjector } from '@dojo/framework/widget-core/mixins/Themed';
 import { Registry } from '@dojo/framework/widget-core/Registry';
 import Injector from '@dojo/framework/widget-core/Injector';
 import App from './App';
 import dojo from '@dojo/themes/dojo';
+import '@dojo/themes/dojo/index.css';
 
 const themes: { [index: string]: any } = {
 	dojo,
@@ -24,19 +26,12 @@ registry.defineInjector('theme-context', () => {
 let initialAppState = {
 	registry,
 	themes: Object.keys(themes),
-	currentTheme: 'dojo',
 	onThemeChange: _onThemechange
 }
 
 function _onThemechange(theme: string) {
 	themeContext.set(themes[theme]);
-	projector.setProperties({
-		...initialAppState,
-		currentTheme: theme
-	});
 }
 
-const Projector = ProjectorMixin(App);
-const projector = new Projector();
-projector.setProperties(initialAppState);
-projector.append();
+const r = renderer(() => w(App, initialAppState));
+r.mount({ registry });
