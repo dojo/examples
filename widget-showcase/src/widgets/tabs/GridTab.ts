@@ -4,12 +4,12 @@ import Grid from '@dojo/widgets/grid';
 import { createFetcher, createUpdater } from '@dojo/widgets/grid/utils';
 
 import * as css from '../../styles/tabs.m.css';
-import { generateData } from '../../data';
+import { gridData } from '../../data';
 import { ColumnConfig } from '@dojo/widgets/grid/interfaces';
 
 export default class GridTab extends WidgetBase {
 
-	private _data = generateData(100000);
+	private _data = [ ...gridData ];
 
 	private _columnConfig: ColumnConfig[] = [
 		{
