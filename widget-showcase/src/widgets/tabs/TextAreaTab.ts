@@ -8,7 +8,7 @@ export default class TextAreaTab extends WidgetBase {
 
 	private _state: any = {};
 
-	private w<W extends WidgetBase>(
+	private createInput<W extends WidgetBase>(
 		Widget: Constructor<W>,
 		props: W['properties'] & { key: string },
 		options: { cbName: string, initialValue: string } = { cbName: 'onInput', initialValue: '' }
@@ -31,14 +31,14 @@ export default class TextAreaTab extends WidgetBase {
 		return v('div', { classes: css.root }, [
 			v('h2', [ 'Text Areas' ]),
 			v('div', [
-				this.w(Textarea, {
+				this.createInput(Textarea, {
 					columns: 40,
 					rows: 8,
 					placeholder: 'Hello, World',
 					label: 'Example text area',
 					key: 'text-area'
 				}),
-				this.w(Textarea, {
+				this.createInput(Textarea, {
 					columns: 40,
 					disabled: true,
 					rows: 8,

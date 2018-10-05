@@ -8,7 +8,7 @@ export default class SelectTab extends WidgetBase {
 
 	private _state: any = {};
 
-	private w<W extends WidgetBase>(
+	private createInput<W extends WidgetBase>(
 		Widget: Constructor<W>,
 		props: W['properties'] & { key: string },
 		options: { cbName?: string, initialValue?: string, mapper?: (value: any) => string } = { cbName: 'onInput', initialValue: '' }
@@ -52,31 +52,31 @@ export default class SelectTab extends WidgetBase {
 		return v('div', { classes: css.root }, [
 			v('h2', [ 'Select Widgets' ]),
 			v('div', [
-				this.w(Select, {
+				this.createInput(Select, {
 					label: 'Simple string array',
 					options: [ 'foo', 'bar', 'baz', 'qux' ],
 					key: 'simple'
 				}, { cbName: 'onChange'}),
-				this.w(Select, {
+				this.createInput(Select, {
 					label: 'Simple string array (disabled)',
 					options: [ 'foo', 'bar', 'baz', 'qux' ],
 					disabled: true,
 					key: 'simple-disabled'
 				}, { cbName: 'onChange'}),
-				this.w(Select, {
+				this.createInput(Select, {
 					label: 'Simple string array (native)',
 					options: [ 'foo', 'bar', 'baz', 'qux' ],
 					useNativeElement: true,
 					key: 'simple-native'
 				}, { cbName: 'onChange'}),
-				this.w(Select, {
+				this.createInput(Select, {
 					label: 'Simple string array (native, disabled)',
 					options: [ 'foo', 'bar', 'baz', 'qux' ],
 					useNativeElement: true,
 					disabled: true,
 					key: 'simple-native-disabled'
 				}, { cbName: 'onChange'}),
-				this.w(Select, {
+				this.createInput(Select, {
 					label: 'Complex options array',
 					options: this._animals,
 					getOptionDisabled: (option: any) => option.disabled,
@@ -84,7 +84,7 @@ export default class SelectTab extends WidgetBase {
 					getOptionValue: (option: any) => option.value,
 					key: 'complex'
 				}, { cbName: 'onChange', mapper: (option: any) => option.value}),
-				this.w(Select, {
+				this.createInput(Select, {
 					label: 'Complex options array (native)',
 					options: this._animals,
 					getOptionDisabled: (option: any) => option.disabled,

@@ -9,7 +9,7 @@ import { Constructor } from '@dojo/framework/widget-core/interfaces';
 export default class TextInputTab extends WidgetBase {
 	private _state: any = {};
 
-	private w<W extends WidgetBase>(
+	private createInput<W extends WidgetBase>(
 		Widget: Constructor<W>,
 		props: W['properties'] & { key: string },
 		options: { cbName: string, initialValue: string } = { cbName: 'onInput', initialValue: '' }
@@ -32,26 +32,26 @@ export default class TextInputTab extends WidgetBase {
 		return v('div', { classes: css.root }, [
 			v('h2', [ 'Text input' ]),
 			v('div', [
-				this.w(TextInput, {
+				this.createInput(TextInput, {
 					label: 'Plain text input',
 					type: 'text',
 					placeholder: 'Hello',
 					key: 'plain'
 				}),
-				this.w(TextInput, {
+				this.createInput(TextInput, {
 					label: 'required text input',
 					type: 'text',
 					required: true,
 					placeholder: 'World',
 					key: 'required'
 				}),
-				this.w(TextInput, {
+				this.createInput(TextInput, {
 					label: 'email input',
 					type: 'email',
 					placeholder: 'Email address',
 					key: 'email'
 				}),
-				this.w(TextInput, {
+				this.createInput(TextInput, {
 					type: 'text',
 					label: 'Disabled input',
 					value: 'Initial value',
@@ -62,14 +62,14 @@ export default class TextInputTab extends WidgetBase {
 			]),
 			v('h2', [ 'Enhanced Text input' ]),
 			v('div', [
-				this.w(EnhancedTextInput, {
+				this.createInput(EnhancedTextInput, {
 					addonBefore: [ '@' ],
 					label: 'Twitter Username',
 					type: 'text',
 					placeholder: 'username',
 					key: 'twitter'
 				}),
-				this.w(EnhancedTextInput, {
+				this.createInput(EnhancedTextInput, {
 					addonBefore: [ '$' ],
 					addonAfter: [ '.00' ],
 					label: 'Price, rounded to the nearest dollar',
@@ -79,7 +79,7 @@ export default class TextInputTab extends WidgetBase {
 			]),
 			v('h2', [ 'Time picker' ]),
 			v('div', [
-				this.w(TimePicker, {
+				this.createInput(TimePicker, {
 					clearable: true,
 					end: '23:59',
 					label: 'Basic time picker',
@@ -87,7 +87,7 @@ export default class TextInputTab extends WidgetBase {
 					step: 1800,
 					key: 'basic-picker'
 				}, { cbName: 'onChange', initialValue: '01:30' }),
-				this.w(TimePicker, {
+				this.createInput(TimePicker, {
 					clearable: true,
 					end: '23:59',
 					label: 'Basic time picker (native)',
@@ -96,7 +96,7 @@ export default class TextInputTab extends WidgetBase {
 					useNativeElement: true,
 					key: 'basic-native-picker'
 				}, { cbName: 'onChange', initialValue: '08:30' }),
-				this.w(TimePicker, {
+				this.createInput(TimePicker, {
 					clearable: true,
 					disabled: true,
 					end: '23:59',
@@ -105,7 +105,7 @@ export default class TextInputTab extends WidgetBase {
 					step: 1800,
 					key: 'disabled-picker'
 				}, { cbName: 'onChange', initialValue: '10:30' }),
-				this.w(TimePicker, {
+				this.createInput(TimePicker, {
 					clearable: true,
 					disabled: true,
 					end: '23:59',
