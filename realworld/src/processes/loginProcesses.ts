@@ -116,7 +116,7 @@ const registerCommand = commandFactory(async ({ get, path }) => {
 
 const logoutCommand = commandFactory(({ path }) => {
 	global.sessionStorage.removeItem('conduit-session');
-	return [replace(path('user'), {}), replace(path('routing', 'outlet'), 'home'),];
+	return [replace(path('user'), {}), replace(path('routing', 'outlet'), 'home')];
 });
 
 export const loginProcess = createProcess('login', [startLoginCommand, loginCommand, clearLoginInputs]);
