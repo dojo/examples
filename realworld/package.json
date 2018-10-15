@@ -28,9 +28,6 @@
   },
   "dojo": {
     "build-app": {
-      "build-time-render": {
-        "root": "app"
-      },
       "pwa": {
         "manifest": {
           "name": "dojo-realworld",

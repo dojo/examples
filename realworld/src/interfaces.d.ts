@@ -28,6 +28,11 @@ export interface Comment {
 	author: AuthorProfile;
 }
 
+export interface Routing {
+	outlet: string;
+	params: { [index: string]: string };
+}
+
 export interface ArticleItem {
 	slug: string;
 	title: string;
@@ -92,6 +97,7 @@ export interface State {
 	article: Article;
 	user: UserProfile;
 	errors: Errors;
+	routing: Routing;
 	login: Login;
 	register: Register;
 	editor: Editor;
