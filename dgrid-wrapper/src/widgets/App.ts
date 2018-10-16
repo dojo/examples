@@ -27,17 +27,17 @@ function buildToggleLabel(label: string, currentValue: boolean) {
 	return 'Turn ' + label + (currentValue ? ' Off' : ' On');
 }
 export class App extends WidgetBase {
-	private data: DataItem[] = [
+	private _data: DataItem[] = [
 		{ first: 'Bob', last: 'Thomson', id: 1, hasChildren: true },
 		{ first: 'Tom', last: 'Bobson', id: 2, hasChildren: true }
 	];
 
-	columnSets = [
+	private _columnSets = [
 		[[{ field: 'id', label: 'ID' }]],
 		[[{ field: 'first', label: 'First' }], [{ field: 'last', label: 'Last' }]]
 	];
 
-	compoundColumns = [
+	private _compoundColumns = [
 		{
 			label: 'Full Name',
 			children: [{ field: 'first', label: 'First' }, { field: 'last', label: 'Last' }]
@@ -49,32 +49,32 @@ export class App extends WidgetBase {
 		return v('div', {}, [
 			w(DgridWrapper, {
 				features: {
-					pagination: this.paginationOn,
-					keyboard: this.keyboardOn,
-					selection: this.selectionType,
-					tree: this.treeOn,
-					columnHider: this.columnHiderOn,
-					columnReorder: this.columnReorderOn,
-					columnResizer: this.columnResizerOn,
-					compoundColumns: this.compoundColumnsOn,
-					columnSet: this.columnSetsOn
+					pagination: this._paginationOn,
+					keyboard: this._keyboardOn,
+					selection: this._selectionType,
+					tree: this._treeOn,
+					columnHider: this._columnHiderOn,
+					columnReorder: this._columnReorderOn,
+					columnResizer: this._columnResizerOn,
+					compoundColumns: this._compoundColumnsOn,
+					columnSet: this._columnSetsOn
 				},
-				data: this.data,
-				columns: this.compoundColumnsOn ? this.compoundColumns : this.columnDefs[this.columnToggle],
-				columnSets: this.columnSets,
+				data: this._data,
+				columns: this._compoundColumnsOn ? this._compoundColumns : this._columnDefs[this._columnToggle],
+				columnSets: this._columnSets,
 
-				rowsPerPage: this.rowsPerPage,
-				previousNextArrows: this.previousNextArrows,
-				firstLastArrows: this.firstLastArrows,
-				pagingLinks: this.pagingLinks,
+				rowsPerPage: this._rowsPerPage,
+				previousNextArrows: this._previousNextArrows,
+				firstLastArrows: this._firstLastArrows,
+				pagingLinks: this._pagingLinks,
 
-				pageSkip: this.pageSkip,
+				pageSkip: this._pageSkip,
 				tabIndex: 2,
 
-				deselectOnRefresh: this.deselectOnRefresh,
-				allowSelectAll: this.allowSelectAll,
-				selectionMode: this.selectionMode,
-				allowTextSelection: this.allowTextSelection,
+				deselectOnRefresh: this._deselectOnRefresh,
+				allowSelectAll: this._allowSelectAll,
+				selectionMode: this._selectionMode,
+				allowTextSelection: this._allowTextSelection,
 				onSelect: (selected: SelectionData, selections: Selections) => {
 					console.log('SELECTED:', selected);
 					console.log('SELECTIONS:', selections);
@@ -84,9 +84,9 @@ export class App extends WidgetBase {
 					console.log('SELECTIONS:', selections);
 				},
 
-				collapseOnRefresh: this.collapseOnRefresh,
-				enableTreeTransitions: this.enableTreeTransitions,
-				treeIndentWidth: this.treeIndentWidth,
+				collapseOnRefresh: this._collapseOnRefresh,
+				enableTreeTransitions: this._enableTreeTransitions,
+				treeIndentWidth: this._treeIndentWidth,
 
 				onColumnStateChange: (columnStateData: ColumnStateChangeData) => {
 					console.log('COLUMN STATE CHANGE', columnStateData);
@@ -112,7 +112,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.togglePagination
 					},
-					[buildToggleLabel('Pagination', this.paginationOn)]
+					[buildToggleLabel('Pagination', this._paginationOn)]
 				),
 				v('div', this.renderPaginationButtons())
 			]),
@@ -122,7 +122,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleKeyboard
 					},
-					[buildToggleLabel('Keyboard', this.keyboardOn)]
+					[buildToggleLabel('Keyboard', this._keyboardOn)]
 				),
 				v('div', this.renderKeyboardButtons())
 			]),
@@ -132,7 +132,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleSelectionOnOff
 					},
-					[buildToggleLabel('Selection', this.selectionType != null)]
+					[buildToggleLabel('Selection', this._selectionType != null)]
 				),
 				v('div', this.renderSelectionButtons())
 			]),
@@ -142,7 +142,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleTree
 					},
-					[buildToggleLabel('Tree', this.treeOn)]
+					[buildToggleLabel('Tree', this._treeOn)]
 				),
 				v('div', this.renderTreeButtons())
 			]),
@@ -152,7 +152,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleColumnHider
 					},
-					[buildToggleLabel('Column Hider', this.columnHiderOn)]
+					[buildToggleLabel('Column Hider', this._columnHiderOn)]
 				)
 			]),
 			v('p', [
@@ -161,7 +161,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleColumnReorder
 					},
-					[buildToggleLabel('Column Reorder', this.columnReorderOn)]
+					[buildToggleLabel('Column Reorder', this._columnReorderOn)]
 				)
 			]),
 			v('p', [
@@ -170,7 +170,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleColumnResizer
 					},
-					[buildToggleLabel('Column Resizer', this.columnResizerOn)]
+					[buildToggleLabel('Column Resizer', this._columnResizerOn)]
 				)
 			]),
 			v('p', [
@@ -179,7 +179,7 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleCompoundColumns
 					},
-					[buildToggleLabel('Compound Columns', this.compoundColumnsOn)]
+					[buildToggleLabel('Compound Columns', this._compoundColumnsOn)]
 				)
 			]),
 			v('p', [
@@ -188,21 +188,21 @@ export class App extends WidgetBase {
 					{
 						onclick: this.toggleColumnSets
 					},
-					[buildToggleLabel('Column Sets', this.columnSetsOn)]
+					[buildToggleLabel('Column Sets', this._columnSetsOn)]
 				)
 			])
 		]);
 	}
 
 	private renderPaginationButtons() {
-		if (this.paginationOn) {
+		if (this._paginationOn) {
 			return [
 				v('button', { onclick: this.updateRowsPerPage }, ['Set Rows Per Page ' + this.nextRowsPerPage()]),
 				v('button', { onclick: this.togglePreviousNextArrows }, [
-					buildToggleLabel('Prev/Next Arrows', this.previousNextArrows)
+					buildToggleLabel('Prev/Next Arrows', this._previousNextArrows)
 				]),
 				v('button', { onclick: this.toggleFirstLastArrows }, [
-					buildToggleLabel('First/Last Arrows', this.firstLastArrows)
+					buildToggleLabel('First/Last Arrows', this._firstLastArrows)
 				]),
 				v('button', { onclick: this.updatePagingLinks }, ['Set Paging Links # ' + this.nextPagingLinks()])
 			];
@@ -211,42 +211,42 @@ export class App extends WidgetBase {
 		}
 	}
 
-	paginationOn = false;
+	private _paginationOn = false;
 	private togglePagination(): void {
-		this.paginationOn = !this.paginationOn;
+		this._paginationOn = !this._paginationOn;
 		this.invalidate();
 	}
 
-	rowsPerPage = 5;
+	private _rowsPerPage = 5;
 	private updateRowsPerPage(): void {
-		this.rowsPerPage = this.nextRowsPerPage();
+		this._rowsPerPage = this.nextRowsPerPage();
 		this.invalidate();
 	}
 
 	private nextRowsPerPage() {
-		return (this.rowsPerPage + 5) % 19;
+		return (this._rowsPerPage + 5) % 19;
 	}
 
-	previousNextArrows = true;
+	private _previousNextArrows = true;
 	private togglePreviousNextArrows(): void {
-		this.previousNextArrows = !this.previousNextArrows;
+		this._previousNextArrows = !this._previousNextArrows;
 		this.invalidate();
 	}
 
-	firstLastArrows = true;
+	private _firstLastArrows = true;
 	private toggleFirstLastArrows(): void {
-		this.firstLastArrows = !this.firstLastArrows;
+		this._firstLastArrows = !this._firstLastArrows;
 		this.invalidate();
 	}
 
-	pagingLinks = 2;
+	private _pagingLinks = 2;
 	private updatePagingLinks(): void {
-		this.pagingLinks = this.nextPagingLinks();
+		this._pagingLinks = this.nextPagingLinks();
 		this.invalidate();
 	}
 
 	private nextPagingLinks() {
-		let pagingLinks = (this.pagingLinks + 2) % 10;
+		let pagingLinks = (this._pagingLinks + 2) % 10;
 		if (!pagingLinks) {
 			pagingLinks = 2;
 		}
@@ -254,14 +254,14 @@ export class App extends WidgetBase {
 	}
 
 	private addData(): void {
-		this.data = this.data.map((item) => {
+		this._data = this._data.map((item) => {
 			return duplicate(item);
 		});
 		for (let i = 0; i < 20; i++) {
-			this.data.push({
+			this._data.push({
 				first: 'Extra',
 				last: 'Person',
-				id: this.data.length + 1,
+				id: this._data.length + 1,
 				hasChildren: false,
 				parent: (i % 2) + 1
 			});
@@ -269,8 +269,8 @@ export class App extends WidgetBase {
 		this.invalidate();
 	}
 
-	columnToggle = 0;
-	columnDefs = [
+	private _columnToggle = 0;
+	private _columnDefs = [
 		[{ field: 'first', label: 'First', renderExpando: true }, { field: 'last', label: 'Last' }],
 		[
 			{ field: 'id', label: 'ID', renderExpando: true },
@@ -279,61 +279,61 @@ export class App extends WidgetBase {
 		]
 	];
 	private swapColumnDef(): void {
-		this.columnToggle = this.columnToggle ? 0 : 1;
+		this._columnToggle = this._columnToggle ? 0 : 1;
 		this.invalidate();
 	}
 
-	keyboardOn = false;
+	private _keyboardOn = false;
 	private toggleKeyboard(): void {
-		this.keyboardOn = !this.keyboardOn;
+		this._keyboardOn = !this._keyboardOn;
 		this.invalidate();
 	}
 
 	private renderKeyboardButtons() {
-		if (this.keyboardOn) {
+		if (this._keyboardOn) {
 			return [v('button', { onclick: this.updatePageSkip }, ['Set Page Skip ' + this.nextPageSkip()])];
 		} else {
 			return [];
 		}
 	}
 
-	pageSkip = 3;
+	private _pageSkip = 3;
 	private updatePageSkip(): void {
-		this.pageSkip = this.nextPageSkip();
+		this._pageSkip = this.nextPageSkip();
 		this.invalidate();
 	}
 
 	private nextPageSkip() {
-		return (this.pageSkip + 2) % 9;
+		return (this._pageSkip + 2) % 9;
 	}
 
-	selectionType?: SelectionType;
+	private _selectionType?: SelectionType;
 	private toggleSelectionOnOff(): void {
-		this.selectionType = this.selectionType ? undefined : SelectionType.row;
+		this._selectionType = this._selectionType ? undefined : SelectionType.row;
 		this.invalidate();
 	}
 	private toggleSelectionType(): void {
-		this.selectionType = this.selectionType === SelectionType.row ? SelectionType.cell : SelectionType.row;
+		this._selectionType = this._selectionType === SelectionType.row ? SelectionType.cell : SelectionType.row;
 		this.invalidate();
 	}
 
 	private renderSelectionButtons() {
-		if (this.selectionType) {
+		if (this._selectionType) {
 			return [
 				v('div', [
 					v('button', { onclick: this.toggleSelectionType }, [
-						'Set Selection Type ' + (this.selectionType === SelectionType.row ? 'Cell' : 'Row')
+						'Set Selection Type ' + (this._selectionType === SelectionType.row ? 'Cell' : 'Row')
 					])
 				]),
 				v('div', [
 					v('button', { onclick: this.toggleDeselectOnRefresh }, [
-						buildToggleLabel('Deselect On Referesh', this.deselectOnRefresh)
+						buildToggleLabel('Deselect On Referesh', this._deselectOnRefresh)
 					]),
 					v('button', { onclick: this.toggleAllowSelectAll }, [
-						buildToggleLabel('Select All', this.allowSelectAll)
+						buildToggleLabel('Select All', this._allowSelectAll)
 					]),
 					v('button', { onclick: this.toggleAllowTextSelection }, [
-						buildToggleLabel('Allow Text Selection', this.allowTextSelection)
+						buildToggleLabel('Allow Text Selection', this._allowTextSelection)
 					])
 				]),
 				v('div', [
@@ -348,62 +348,61 @@ export class App extends WidgetBase {
 		}
 	}
 
-	deselectOnRefresh = false;
+	private _deselectOnRefresh = false;
 	private toggleDeselectOnRefresh(): void {
-		this.deselectOnRefresh = !this.deselectOnRefresh;
+		this._deselectOnRefresh = !this._deselectOnRefresh;
 		this.invalidate();
 	}
 
-	allowSelectAll = false;
+	private _allowSelectAll = false;
 	private toggleAllowSelectAll(): void {
-		this.allowSelectAll = !this.allowSelectAll;
+		this._allowSelectAll = !this._allowSelectAll;
 		this.invalidate();
 	}
 
-	selection: { [id: string]: boolean };
-	selectionMode = SelectionMode.single;
+	private _selectionMode = SelectionMode.single;
 
-	allowTextSelection = false;
+	private _allowTextSelection = false;
 	private toggleAllowTextSelection(): void {
-		this.allowTextSelection = !this.allowTextSelection;
+		this._allowTextSelection = !this._allowTextSelection;
 		this.invalidate();
 	}
 
 	private setSelectionModeNone() {
-		this.selectionMode = SelectionMode.none;
+		this._selectionMode = SelectionMode.none;
 		this.invalidate();
 	}
 
 	private setSelectionModeMultiple() {
-		this.selectionMode = SelectionMode.multiple;
+		this._selectionMode = SelectionMode.multiple;
 		this.invalidate();
 	}
 
 	private setSelectionModeExtended() {
-		this.selectionMode = SelectionMode.extended;
+		this._selectionMode = SelectionMode.extended;
 		this.invalidate();
 	}
 
 	private setSelectionModeSingle() {
-		this.selectionMode = SelectionMode.single;
+		this._selectionMode = SelectionMode.single;
 		this.invalidate();
 	}
 
-	treeOn = false;
+	private _treeOn = false;
 	private toggleTree(): void {
-		this.treeOn = !this.treeOn;
+		this._treeOn = !this._treeOn;
 		this.invalidate();
 	}
 
 	private renderTreeButtons() {
-		if (this.treeOn) {
+		if (this._treeOn) {
 			return [
 				v('div', [
 					v('button', { onclick: this.toggleCollapseOnRefresh }, [
-						buildToggleLabel('Collapse on Refresh', this.collapseOnRefresh)
+						buildToggleLabel('Collapse on Refresh', this._collapseOnRefresh)
 					]),
 					v('button', { onclick: this.toggleEnableTreeTransitions }, [
-						buildToggleLabel('Tree Transitions', this.enableTreeTransitions)
+						buildToggleLabel('Tree Transitions', this._enableTreeTransitions)
 					]),
 					v('button', { onclick: this.updateTreeIndentWidth }, [
 						'Set Tree Indent ' + this.nextTreeIndentWidth()
@@ -415,55 +414,55 @@ export class App extends WidgetBase {
 		}
 	}
 
-	collapseOnRefresh = false;
+	private _collapseOnRefresh = false;
 	private toggleCollapseOnRefresh() {
-		this.collapseOnRefresh = !this.collapseOnRefresh;
+		this._collapseOnRefresh = !this._collapseOnRefresh;
 		this.invalidate();
 	}
 
-	enableTreeTransitions = false;
+	private _enableTreeTransitions = false;
 	private toggleEnableTreeTransitions() {
-		this.enableTreeTransitions = !this.enableTreeTransitions;
+		this._enableTreeTransitions = !this._enableTreeTransitions;
 		this.invalidate();
 	}
 
-	treeIndentWidth = 9;
+	private _treeIndentWidth = 9;
 	private updateTreeIndentWidth() {
-		this.treeIndentWidth = this.nextTreeIndentWidth();
+		this._treeIndentWidth = this.nextTreeIndentWidth();
 		this.invalidate();
 	}
 
 	private nextTreeIndentWidth() {
-		return (this.treeIndentWidth + 20) % 100;
+		return (this._treeIndentWidth + 20) % 100;
 	}
 
-	columnHiderOn = false;
+	private _columnHiderOn = false;
 	private toggleColumnHider(): void {
-		this.columnHiderOn = !this.columnHiderOn;
+		this._columnHiderOn = !this._columnHiderOn;
 		this.invalidate();
 	}
 
-	columnReorderOn = false;
+	private _columnReorderOn = false;
 	private toggleColumnReorder(): void {
-		this.columnReorderOn = !this.columnReorderOn;
+		this._columnReorderOn = !this._columnReorderOn;
 		this.invalidate();
 	}
 
-	columnResizerOn = false;
+	private _columnResizerOn = false;
 	private toggleColumnResizer(): void {
-		this.columnResizerOn = !this.columnResizerOn;
+		this._columnResizerOn = !this._columnResizerOn;
 		this.invalidate();
 	}
 
-	compoundColumnsOn = false;
+	private _compoundColumnsOn = false;
 	private toggleCompoundColumns(): void {
-		this.compoundColumnsOn = !this.compoundColumnsOn;
+		this._compoundColumnsOn = !this._compoundColumnsOn;
 		this.invalidate();
 	}
 
-	columnSetsOn = false;
+	private _columnSetsOn = false;
 	private toggleColumnSets(): void {
-		this.columnSetsOn = !this.columnSetsOn;
+		this._columnSetsOn = !this._columnSetsOn;
 		this.invalidate();
 	}
 }
