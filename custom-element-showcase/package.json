@@ -7,8 +7,8 @@
     "test-ci": "echo \"no tests\""
   },
   "dependencies": {
-    "@dojo/themes": "next",
-    "@dojo/widgets": "next",
+    "@dojo/themes": "^4.0.0",
+    "@dojo/widgets": "^4.0.0",
     "@webcomponents/custom-elements": "~1.0.8"
   },
   "devDependencies": {

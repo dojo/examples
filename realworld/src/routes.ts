@@ -9,13 +9,11 @@ export default [
 	},
 	{
 		path: 'user/{username}',
-		outlet: 'user',
-		children: [
-			{
-				path: 'favorites',
-				outlet: 'favorites'
-			}
-		]
+		outlet: 'user'
+	},
+	{
+		path: 'user/{username}/favorites',
+		outlet: 'favorites'
 	},
 	{
 		path: 'article/{slug}',
