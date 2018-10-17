@@ -22,8 +22,10 @@ then
 	buildProject "custom-element-menu"
 	buildProject "custom-element-showcase"
 	buildProject "realworld"
+	buildProject "world-clock"
 	buildProject "intersection-observer"
 	buildProject "resize-observer"
+	buildProject "dgrid-wrapper"
 
 	export PROJECT_DIR="auto-deploy"
 
@@ -37,8 +39,10 @@ then
 	mkdir samples/custom-element-menu
 	mkdir samples/custom-element-showcase
 	mkdir samples/realworld
+	mkdir samples/world-clock
 	mkdir samples/intersection-observer
 	mkdir samples/resize-observer
+	mkdir samples/dgrid-wrapper
 
 	cp index.html samples/index.html
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
@@ -48,8 +52,10 @@ then
 	cp -r custom-element-menu/output/dist/* samples/custom-element-menu
 	cp -r custom-element-showcase/dist/* samples/custom-element-showcase
 	cp -r realworld/output/dist/* samples/realworld
+	cp -r world-clock/output/dist/* samples/world-clock
 	cp -r intersection-observer/output/dist/* samples/intersection-observer
 	cp -r resize-observer/output/dist/* samples/resize-observer
+	cp -r dgrid-wrapper/output/dist/* samples/dgrid-wrapper
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 

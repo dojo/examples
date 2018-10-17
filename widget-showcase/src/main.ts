@@ -3,9 +3,15 @@ import { w } from '@dojo/framework/widget-core/d';
 import { registerThemeInjector } from '@dojo/framework/widget-core/mixins/Themed';
 import { Registry } from '@dojo/framework/widget-core/Registry';
 import Injector from '@dojo/framework/widget-core/Injector';
+import ResizeObserver from 'resize-observer-polyfill';
+import global from '@dojo/framework/shim/global';
 import App from './App';
 import dojo from '@dojo/themes/dojo';
 import '@dojo/themes/dojo/index.css';
+
+if (!global.ResizeObserver) {
+	global.ResizeObserver = ResizeObserver;
+}
 
 const themes: { [index: string]: any } = {
 	dojo,
