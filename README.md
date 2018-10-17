@@ -28,6 +28,7 @@ Here is a table of the current examples available in this repository complete wi
 | Intersection Observer | [Link](./intersection-observer/README.md)   |  [Link](https://dojo.github.io/examples/intersection-observer/)  |  Demonstrates using the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta for creating an infinite scrolling list. |
 | Resize Observer | [Link](./resize-observer/README.md) |  [Link](https://dojo.github.io/examples/resize-observer/)  |  Demonstrates using the [`Resize`](https://github.com/dojo/widget-core#resize) meta for creating responsive components that dynamically modify the way they are rendered based on the space available to them. |
 | Dgrid Wrapper | [Link](./dgrid-wrapper/README.md) | [Link](htttps://dojo.github.io.examples/dgrid-wrapper) | Demonstrates using the [`Dgrid Wrapper`](https://github.com/dojo/interop/tree/master/src/dgrid) for running dgrid in a reactive way in a modern Dojo app. |
+| World Clock | [Link](./world-clock/README.md) | [Link](htttps://dojo.github.io.examples/world-clock) | Demonstrates i18n with Dojo. |
 
 ## How Do I Contribute?
 
@@ -49,6 +50,7 @@ Refer to each `README.md` for details on installing and testing the examples:
 * [intersection-observer](./intersection-observer/README.md)
 * [resize-observer](./resize-observer/README.md)
 * [dgrid-wrapper](./dgrid-wrapper/README.md)
+* [world-clock](./world-clock/README.md)
 
 ## Licensing Information
 
