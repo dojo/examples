@@ -57,6 +57,7 @@ then
 	cp -r intersection-observer/output/dist/* samples/intersection-observer
 	cp -r resize-observer/output/dist/* samples/resize-observer
 	cp -r dgrid-wrapper/output/dist/* samples/dgrid-wrapper
+	touch samples/dgrid-wrapper/.nojekyll
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 
