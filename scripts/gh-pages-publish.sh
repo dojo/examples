@@ -45,6 +45,7 @@ then
 	mkdir samples/dgrid-wrapper
 
 	cp index.html samples/index.html
+	touch samples/.nojekyll
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
 	cp -r todo-mvc-kitchensink/output/dist/* samples/todo-mvc-kitchensink
 	cp -r todo-mvc-tsx/output/dist/* samples/todo-mvc-tsx
