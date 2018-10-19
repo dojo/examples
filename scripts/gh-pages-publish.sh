@@ -45,6 +45,7 @@ then
 	mkdir samples/dgrid-wrapper
 
 	cp index.html samples/index.html
+	touch samples/.nojekyll
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
 	cp -r todo-mvc-kitchensink/output/dist/* samples/todo-mvc-kitchensink
 	cp -r todo-mvc-tsx/output/dist/* samples/todo-mvc-tsx
@@ -56,6 +57,7 @@ then
 	cp -r intersection-observer/output/dist/* samples/intersection-observer
 	cp -r resize-observer/output/dist/* samples/resize-observer
 	cp -r dgrid-wrapper/output/dist/* samples/dgrid-wrapper
+	touch samples/dgrid-wrapper/.nojekyll
 
 	git remote add ssh-remote git@github.com:dojo/examples.git
 
