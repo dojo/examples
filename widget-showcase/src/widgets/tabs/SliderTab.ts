@@ -1,12 +1,17 @@
 import { v, w } from '@dojo/framework/widget-core/d';
 import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
 import Slider from '@dojo/widgets/slider';
+import RangeSlider from '@dojo/widgets/range-slider';
 import * as css from '../../styles/tabs.m.css';
 
 export default class SliderTab extends WidgetBase {
 	private _horizontalValue = 50;
 	private _verticalValue = 0;
 	private _verticalInvalid = false;
+	private _rangeMin = 25;
+	private _rangeMax = 75;
+	private _range2Min = 150;
+	private _range2Max = 250;
 
 	private _onHorizontalInput(value: number) {
 		this._horizontalValue = value;
@@ -16,6 +21,18 @@ export default class SliderTab extends WidgetBase {
 	private _onVerticalInput(value: number) {
 		this._verticalValue = value;
 		this._verticalInvalid = value > 50;
+		this.invalidate();
+	}
+
+	private _onRangeInput(minValue: number, maxValue: number) {
+		this._rangeMin = minValue;
+		this._rangeMax = maxValue;
+		this.invalidate();
+	}
+
+	private _onRange2Input(minValue: number, maxValue: number) {
+		this._range2Min = minValue;
+		this._range2Max = maxValue;
 		this.invalidate();
 	}
 
@@ -64,6 +81,38 @@ export default class SliderTab extends WidgetBase {
 					outputIsTooltip: true,
 					onChange: this._onVerticalInput,
 					onInput: this._onVerticalInput
+				}),
+				v('h3', {}, ['Range Slider']),
+				w(RangeSlider, {
+					label: 'Range Slider with default properties.',
+					minValue: this._rangeMin,
+					maxValue: this._rangeMax,
+					onChange: this._onRangeInput,
+					onInput: this._onRangeInput,
+					showOutput: true,
+					output: (minValue: number, maxValue: number) => {
+						return v('span', {
+							innerHTML: `${minValue}, ${maxValue}`
+						});
+					}
+				}),
+				w(RangeSlider, {
+					label: 'Range Slider with output as tooltip, step.',
+					min: 100,
+					max: 500,
+					step: 50,
+					invalid: this._range2Max - this._range2Min == 50,
+					minValue: this._range2Min,
+					maxValue: this._range2Max,
+					onChange: this._onRange2Input,
+					onInput: this._onRange2Input,
+					outputIsTooltip: true,
+					showOutput: true,
+					output: (minValue: number, maxValue: number) => {
+						return v('span', {
+							innerHTML: `${minValue} thru ${maxValue}`
+						});
+					}
 				})
 			])
 		]);
