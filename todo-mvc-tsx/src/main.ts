@@ -1,5 +1,6 @@
 import global from '@dojo/framework/shim/global';
-import { ProjectorMixin } from '@dojo/framework/widget-core/mixins/Projector';
+import renderer from '@dojo/framework/widget-core/vdom';
+import { w } from '@dojo/framework/widget-core/d';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import { reduxInjectorFactory } from '@dojo/interop/redux/ReduxInjector';
 import { Registry } from '@dojo/framework/widget-core/Registry';
@@ -31,7 +32,5 @@ const config = [
 ];
 
 const router = registerRouterInjector(config, registry);
-const Projector = ProjectorMixin(TodoAppContainer);
-const projector = new Projector();
-projector.setProperties({ registry });
-projector.append();
+const r = renderer(() => w(TodoAppContainer, {}));
+r.mount({ registry });

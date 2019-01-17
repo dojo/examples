@@ -9,12 +9,12 @@
     "test": "dojo build -m dev && npm run build:tests && dojo test -a"
   },
   "dependencies": {
-    "@dojo/framework": "^4.0.0",
+    "@dojo/framework": "next",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^4.0.0",
-    "@dojo/cli-test-intern": "^4.0.0",
+    "@dojo/cli-build-app": "next",
+    "@dojo/cli-test-intern": "next",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
