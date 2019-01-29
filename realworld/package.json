@@ -9,14 +9,14 @@
     "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
   },
   "dependencies": {
-    "@dojo/framework": "next",
+    "@dojo/framework": "^5.0.0",
     "snarkdown": "^1.2.2",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli": "next",
-    "@dojo/cli-build-app": "next",
-    "@dojo/cli-test-intern": "next",
+    "@dojo/cli": "^5.0.0",
+    "@dojo/cli-build-app": "^5.0.0",
+    "@dojo/cli-test-intern": "^5.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/marked": "^0.3.0",
