@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@dojo/framework": "^5.0.0",
-    "@dojo/interop": "^4.0.0",
-    "@dojo/widgets": "next",
+    "@dojo/interop": "^5.0.0",
+    "@dojo/widgets": "^5.0.0",
     "redux": "^3.7.2",
     "tslib": "~1.8.1"
   },
