@@ -45,7 +45,7 @@ function getLocalizedDate(date: Date, tz: string) {
 	return new Date(years, months, day, hours, minutes, seconds, milliseconds);
 }
 
-function getExpectedRender(messages: typeof bundle.messages, locale: string = 'en-GB') {
+function getExpectedRender(messages: typeof bundle.messages, locale: string = 'en-US') {
 	const date = new Date();
 
 	return w(GlobalEvent, { document: { visibilitychange: () => {} } }, [
