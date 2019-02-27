@@ -1,4 +1,4 @@
-import Container from '@dojo/framework/widget-core/Container';
+import StoreContainer from '@dojo/framework/stores/StoreContainer';
 import Store from '@dojo/framework/stores/Store';
 
 import TodoApp from './../widgets/TodoApp';
@@ -34,4 +34,4 @@ function getProperties(store: Store<TodoStore>) {
 	};
 }
 
-export default Container(TodoApp, 'state', { getProperties });
+export default StoreContainer(TodoApp, 'state', { getProperties });

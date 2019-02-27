@@ -1,13 +1,13 @@
-import * as faker from 'faker';
+import { name } from 'faker';
 
 export function generateData(records: number = 10000) {
 	let data: any = [];
 	for (let i = 0; i < records; i++) {
 		const item = {
 			id: i,
-			firstName: faker.name.firstName(),
-			lastName: faker.name.lastName(),
-			jobTitle: faker.name.jobTitle()
+			firstName: name.firstName(),
+			lastName: name.lastName(),
+			jobTitle: name.jobTitle()
 		};
 		data.push(item);
 	}

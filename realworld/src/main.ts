@@ -1,9 +1,9 @@
 import has from '@dojo/framework/has/has';
 import global from '@dojo/framework/shim/global';
-import { Registry } from '@dojo/framework/widget-core/Registry';
 import { renderer } from '@dojo/framework/widget-core/vdom';
 import { w } from '@dojo/framework/widget-core/d';
 import { Store } from '@dojo/framework/stores/Store';
+import { registerStoreInjector } from '@dojo/framework/stores/StoreInjector';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
 import { getEditorArticleProcess, clearEditorProcess } from './processes/editorProcesses';
 import { getUserSettingsProcess } from './processes/settingsProcesses';
@@ -19,7 +19,6 @@ import config from './routes';
 import { changeRouteProcess } from './processes/routeProcesses';
 
 const store = new Store<State>();
-const registry = new Registry();
 
 let session;
 if (!has('build-time-render')) {
@@ -29,8 +28,7 @@ if (session) {
 	setSessionProcess(store)({ session: JSON.parse(session) });
 }
 getTagsProcess(store)({});
-registry.defineInjector('state', () => () => store);
-
+const registry = registerStoreInjector(store);
 const router = registerRouterInjector(config, registry);
 
 router.on('nav', ({ outlet, context }: any) => {

@@ -8,15 +8,15 @@
     "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
   },
   "dependencies": {
-    "@dojo/framework": "^4.0.0",
-    "@dojo/widgets": "^4.0.0",
+    "@dojo/framework": "^5.0.0",
+    "@dojo/widgets": "^5.0.0",
     "cldr-data": "32.0.1",
     "moment-timezone": "0.5.21",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^4.0.0",
-    "@dojo/cli-test-intern": "^4.0.0",
+    "@dojo/cli-build-app": "^5.0.0",
+    "@dojo/cli-test-intern": "^5.0.0",
     "@types/moment-timezone": "0.5.7",
     "@types/node": "~9.6.5",
     "typescript": "~2.6.1"
