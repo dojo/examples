@@ -55,3 +55,17 @@ Refer to each `README.md` for details on installing and testing the examples:
 ## Licensing Information
 
 © 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
+
+<!---
+
+This comment block is used during Dojo site generation
+to determine what examples support codesandbox.io.
+
+<codesandbox> todo-mvc
+<codesandbox> todo-mvc-kitchensink
+<codesandbox> todo-mvc-tsx
+<codesandbox> hnpwa
+<codesandbox> widget-showcase
+<codesandbox> intersection-observer
+
+--->
