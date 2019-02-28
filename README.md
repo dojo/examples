@@ -61,11 +61,11 @@ Refer to each `README.md` for details on installing and testing the examples:
 This comment block is used during Dojo site generation
 to determine what examples support codesandbox.io.
 
-<codesandbox> todo-mvc </codesandbox>
-<codesandbox> todo-mvc-kitchensink </codesandbox>
-<codesandbox> todo-mvc-tsx </codesandbox>
-<codesandbox> hnpwa </codesandbox>
-<codesandbox> widget-showcase </codesandbox>
+<codesandbox> todo-mvc 				</codesandbox>
+<codesandbox> todo-mvc-kitchensink 	</codesandbox>
+<codesandbox> todo-mvc-tsx 			</codesandbox>
+<codesandbox> hnpwa 				</codesandbox>
+<codesandbox> widget-showcase 		</codesandbox>
 <codesandbox> intersection-observer </codesandbox>
 
 --->
