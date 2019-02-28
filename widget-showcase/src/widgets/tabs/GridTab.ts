@@ -38,8 +38,8 @@ export default class GridTab extends WidgetBase {
 			editable: true
 		},
 		{
-			id: 'jobTitle',
-			title: 'Job Title',
+			id: 'location',
+			title: 'Location',
 			sortable: true,
 			filterable: true
 		}

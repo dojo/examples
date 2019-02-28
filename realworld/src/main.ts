@@ -1,4 +1,4 @@
-import has from '@dojo/framework/has/has';
+import has, { add, exists } from "@dojo/framework/has/has";
 import global from '@dojo/framework/shim/global';
 import { renderer } from '@dojo/framework/widget-core/vdom';
 import { w } from '@dojo/framework/widget-core/d';
@@ -21,6 +21,11 @@ import { changeRouteProcess } from './processes/routeProcesses';
 const store = new Store<State>();
 
 let session;
+
+if (!exists("build-time-render")) {
+	add("build-time-render", false);
+}
+
 if (!has('build-time-render')) {
 	session = global.sessionStorage.getItem('conduit-session');
 }

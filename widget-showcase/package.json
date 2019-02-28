@@ -13,13 +13,13 @@
     "@dojo/framework": "^5.0.0",
     "@dojo/themes": "^5.0.0",
     "@dojo/widgets": "^5.0.0",
-    "faker": "^4.1.0",
+    "cldrjs": "0.5.0",
+    "random-name": "^0.1.2",
     "tslib": "~1.8.1"
   },
   "devDependencies": {
     "@dojo/cli-build-app": "^5.0.0",
     "@dojo/cli-test-intern": "^5.0.0",
-    "@types/faker": "^4.1.4",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
