@@ -67,5 +67,6 @@ to determine what examples support codesandbox.io.
 <codesandbox> hnpwa 				</codesandbox>
 <codesandbox> widget-showcase 		</codesandbox>
 <codesandbox> intersection-observer </codesandbox>
+<codesandbox> realworld 			</codesandbox>
 
 --->
