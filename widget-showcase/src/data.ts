@@ -1,13 +1,13 @@
-import { name } from 'faker';
+const random = require('random-name');
 
 export function generateData(records: number = 10000) {
 	let data: any = [];
 	for (let i = 0; i < records; i++) {
 		const item = {
 			id: i,
-			firstName: name.firstName(),
-			lastName: name.lastName(),
-			jobTitle: name.jobTitle()
+			firstName: random.first(),
+			lastName: random.last(),
+			location: random.place()
 		};
 		data.push(item);
 	}

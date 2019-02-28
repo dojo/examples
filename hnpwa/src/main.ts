@@ -1,8 +1,13 @@
 import renderer from '@dojo/framework/widget-core/vdom';
 import { w } from '@dojo/framework/widget-core/d';
 import { Registry } from '@dojo/framework/widget-core/Registry';
+import has, { add, exists } from "@dojo/framework/has/has";
 import { Context } from './Context';
 import { AppContainer } from './containers/AppContainer';
+
+if (!exists("build-time-render")) {
+	add("build-time-render", false);
+}
 
 const registry = new Registry();
 let context: Context;
