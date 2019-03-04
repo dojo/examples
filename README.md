@@ -16,7 +16,7 @@ For current progress on Dojo, contribution guidelines and other information, ple
 Here is a table of the current examples available in this repository complete with code and a hosted demonstration:
 
 | Example  | Code  | Demo  | Sandbox | Overview  |
-|---|---|---|---|
+|---|---|---|---|---|
 |  TodoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
 |  TodoMVC (kitchen sink) | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-kitchensink) |    Feature-enhanced version of TodoMVC built using Dojo packages. |
 | TodoMVC (tsx)  |  [Link](./todo-mvc-tsx) | [Link](https://dojo.github.io/examples/todo-mvc-tsx) | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-tsx) |  Reference implementation of [TodoMVC](http://todomvc.com/) built using `tsx`, [Redux](https://github.com/reactjs/redux), and Dojo packages.  |
