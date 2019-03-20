@@ -27,8 +27,8 @@ Here is a table of the current examples available in this repository complete wi
 | Real-world Application | [Link](./realworld) |  [Link](https://dojo.github.io/examples/realworld) | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/realworld) |  A real-world implementation of an existing site using Dojo packages: conduit.  |
 | Intersection Observer | [Link](./intersection-observer)   |  [Link](https://dojo.github.io/examples/intersection-observer/)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/intersection-observer) |   Demonstration of the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta and how it can be used to create an infinite scrolling list. |
 | Resize Observer | [Link](./resize-observer) |  [Link](https://dojo.github.io/examples/resize-observer/)  |  | Demonstration of the [`Resize`](https://github.com/dojo/widget-core#resize) meta and how it can be used to create responsive components. |
-| Dgrid Wrapper | [Link](./dgrid-wrapper) | [Link](htttps://dojo.github.io.examples/dgrid-wrapper) | | Demonstration of the [`Dgrid Wrapper`](https://github.com/dojo/interop/tree/master/src/dgrid) for running [dgrid](http://dgrid.io) in a reactive way in a modern Dojo application. |
-| World Clock | [Link](./world-clock) | [Link](htttps://dojo.github.io.examples/world-clock) | | Demonstration of i18n in an application built using Dojo packages. |
+| Dgrid Wrapper | [Link](./dgrid-wrapper) | [Link](https://dojo.github.io.examples/dgrid-wrapper) | | Demonstration of the [`Dgrid Wrapper`](https://github.com/dojo/interop/tree/master/src/dgrid) for running [dgrid](http://dgrid.io) in a reactive way in a modern Dojo application. |
+| World Clock | [Link](./world-clock) | [Link](https://dojo.github.io.examples/world-clock) | | Demonstration of i18n in an application built using Dojo packages. |
 
 ## How Do I Contribute?
 
