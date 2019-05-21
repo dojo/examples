@@ -38,5 +38,5 @@ In order to build the project run `npm run build`.
 
 ## Licensing Information
 
-© 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
+© 2019 [OpenJS Foundation](https://openjsf.org) & contributors. [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
 
