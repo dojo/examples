@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "tsx",
 		"declaration": false,
 		"module": "umd",
 		"noImplicitAny": true,
