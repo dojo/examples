@@ -1,60 +1,43 @@
-// import { v } from '@dojo/framework/widget-core/d';
-// import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-// import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
 
-// import { Todo } from './../todoProcesses';
+import store from '../store';
+import * as css from './styles/todoDetails.m.css';
+import { todoReadMode, saveTodo, updateTodoInput } from '../processes';
 
-// import * as css from './styles/todoDetails.m.css';
+const factory = create({ theme, store });
 
-// export interface TodoDetailsProperties {
-// 	id?: string;
-// 	todo: Todo;
-// 	onRequestExit: () => void;
-// 	saveTodo: () => void;
-// 	editTodo: (payload: { todo: Todo }) => void;
-// }
-
-// @theme(css)
-// export default class TodoDetails extends ThemedMixin(WidgetBase)<TodoDetailsProperties> {
-
-// 	protected onClose(): void {
-// 		this.properties.saveTodo();
-// 		this.properties.onRequestExit();
-// 	}
-
-// 	protected onInput({ target: { value } }: any): void {
-// 		this.properties.editTodo({ todo:  { ...this.properties.todo, label: value } });
-// 	}
-
-// 	protected onElementCreated(element: HTMLElement, key: string) {
-// 		if (key === 'edit-todo') {
-// 			element.focus();
-// 		}
-// 	}
-
-// 	protected render() {
-// 		const { todo } = this.properties;
-
-// 		return todo ?
-// 			v('div', { classes: this.theme(css.todoDetails) }, [
-// 				v('div', { classes: this.theme(css.backdrop) }),
-// 				v('div', { classes: this.theme(css.modal) }, [
-// 					v('div', { onclick: this.onClose, classes: this.theme(css.close) }),
-// 					v('header', {
-// 						classes: this.theme(css.todoDetailsHeader)
-// 					}, [
-// 						v('div', { classes: this.theme(css.title) }, [ 'Details' ])
-// 					]),
-// 					v('section', [
-// 						v('textarea', {
-// 							focus: true,
-// 							key: 'edit-todo',
-// 							classes: this.theme(css.todoDetailsTextArea),
-// 							value: todo.label,
-// 							oninput: this.onInput
-// 						})
-// 					])
-// 				])
-// 			]) : null;
-// 	}
-// }
+export default factory(function TodoDetails({ middleware: { theme, store } }) {
+	const { executor, get, path } = store;
+	const { todoDetails, backdrop, modal, close, todoDetailsHeader, title, todoDetailsTextArea } = theme.get(css);
+	const value = get(path('editingLabel'));
+	const id = get(path('editingId'));
+	return (
+		<div onkeyup={(event: KeyboardEvent) => {
+			event.stopPropagation();
+			event.preventDefault();
+			if (event.which === 27) {
+				executor(todoReadMode)({ id });
+			}
+		}} classes={[todoDetails]}>
+			<div classes={[backdrop]}></div>
+			<div classes={[modal]}>
+				<div onclick={() => {
+					executor(saveTodo)({});
+				}} classes={[close]}></div>
+				<header classes={[todoDetailsHeader]}>
+					<div classes={[title]}>
+						Details
+					</div>
+				</header>
+				<section>
+					<textarea focus={() => true} value={value} oninput={(event: KeyboardEvent) => {
+						const target = event.target as HTMLTextAreaElement;
+						executor(updateTodoInput)({ label: target.value });
+					}} classes={[todoDetailsTextArea]}>
+					</textarea>
+				</section>
+			</div>
+		</div>
+	);
+});

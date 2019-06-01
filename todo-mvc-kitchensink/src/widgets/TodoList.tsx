@@ -6,6 +6,7 @@ import TodoItem from './TodoItem';
 import TodoCard from './TodoCard';
 
 import * as css from './styles/todoList.m.css';
+import TodoDetails from './TodoDetails';
 
 export interface TodoListProperties {
 	view: string;
@@ -29,6 +30,7 @@ export default factory(function TodoList({ middleware: { store, theme }, propert
 	const { cardList, todoList } = theme.get(css);
 	const todos = get(path('todos')) || [];
 	const search = get(path('search')) || '';
+	const showDetails = !!get(path('editingId'));
 	const filteredTodos = filterTodos(todos, search, filter);
 	if (filteredTodos.length === 0) {
 		return null;
@@ -39,5 +41,8 @@ export default factory(function TodoList({ middleware: { store, theme }, propert
 		}
 		return <TodoItem key={todo.id} todo={todo} />;
 	});
-	return <ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>;
+	return [
+		<ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>,
+		showDetails && <TodoDetails />
+	];
 });
