@@ -1,35 +1,28 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
-import { v } from '@dojo/framework/widget-core/d';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import { i18n } from '@dojo/framework/core/middleware/i18n';
 
-import appBundle from '../nls/common';
 import * as css from './styles/themeSwitcher.m.css';
+import pirateThemeStyles from './../themes/pirate';
 
-interface ThemeSwitcherProperties {
-	changeTheme: (wantsPirate: boolean) => void;
-}
+const factory = create({ theme, i18n });
 
-@theme(css)
-export default class ThemeSwitcher extends I18nMixin(ThemedMixin(WidgetBase))<ThemeSwitcherProperties> {
-
-	private _onClick(event: MouseEvent) {
+export default factory(function ThemeSwitcher({ middleware: { theme, i18n } }) {
+	const { themeSwitcher, themeSwitcherCheckbox } = theme.get(css);
+	function switcher(event: MouseEvent) {
 		const target = event.target as HTMLInputElement;
-		this.properties.changeTheme(target.checked);
+		if (target.checked) {
+			i18n.set({ locale: 'en-PR' });
+			theme.set(pirateThemeStyles);
+		} else {
+			i18n.set({});
+			theme.set({});
+		}
 	}
-
-	protected render() {
-		const { messages } = this.localizeBundle(appBundle);
-
-		return v('label', {
-			classes: this.theme(css.themeSwitcher)
-		}, [
-			v('span', [ messages.themeSwitchTitle ]),
-			v('input', {
-				type: 'checkbox',
-				onclick: this._onClick,
-				classes: this.theme(css.themeSwitcherCheckbox)
-			})
-		]);
-	}
-}
+	return (
+		<label classes={[themeSwitcher]}>
+			<span>Pirate Mode</span>
+			<input classes={[themeSwitcherCheckbox]} type="checkbox" onclick={switcher} />
+		</label>
+	);
+});

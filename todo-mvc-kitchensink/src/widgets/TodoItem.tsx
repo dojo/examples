@@ -1,44 +1,46 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import { v } from '@dojo/framework/widget-core/d';
-
-import { Todo } from './../todoProcesses';
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import store, { Todo } from '../store';
 
 import * as css from './styles/todoItem.m.css';
+import { toggleTodo, todoEditMode, deleteTodo } from '../processes';
 
 export interface TodoItemProperties {
 	todo: Todo;
-	toggleTodo: (payload: { id: string }) => void;
-	removeTodo: (payload: { id: string }) => void;
-	editTodo: (payload: { id: string }) => void;
 }
 
-export const TodoItemBase = ThemedMixin(WidgetBase);
+const factory = create({ theme, store }).properties<TodoItemProperties>();
 
-@theme(css)
-export default class TodoItem extends TodoItemBase<TodoItemProperties> {
-
-	private toggleTodo() {
-		this.properties.toggleTodo({ id: this.properties.todo.id });
-	}
-
-	private editTodo() {
-		this.properties.editTodo({ id: this.properties.todo.id });
-	}
-
-	private removeTodo() {
-		this.properties.removeTodo({ id: this.properties.todo.id });
-	}
-
-	protected render() {
-		const { properties: { todo } } = this;
-
-		return v('li', { classes: this.theme([ css.todoItem, Boolean(todo.completed && !todo.editing) ? css.completed : null ]) }, [
-			v('div', [
-				v('input', { classes: this.theme(css.toggle), type: 'checkbox', checked: todo.completed, onchange: this.toggleTodo }),
-				v('label', { classes: this.theme(css.todoLabel), ondblclick: this.editTodo }, [ todo.label ]),
-				v('button', { onclick: this.removeTodo, classes: this.theme(css.destroy) })
-			])
-		]);
-	}
-}
+export default factory(function TodoItem({ middleware: { store, theme }, properties }) {
+	const { todo } = properties;
+	const { executor } = store;
+	const { todoItem, toggle, completed, todoLabel, destroy } = theme.get(css);
+	return (
+		<li key={todo.id} classes={[todoItem, Boolean(todo.completed) && completed]}>
+			<div>
+				<input
+					onchange={() => {
+						executor(toggleTodo)({ id: todo.id });
+					}}
+					type="checkbox"
+					classes={[toggle]}
+					checked={todo.completed}
+				/>
+				<label
+					ondblclick={() => {
+						executor(todoEditMode)({ id: todo.id, label: todo.label });
+					}}
+					classes={[todoLabel]}
+				>
+					{todo.label}
+				</label>
+				<button
+					onclick={() => {
+						executor(deleteTodo)({ id: todo.id });
+					}}
+					classes={[destroy]}
+				/>
+			</div>
+		</li>
+	);
+});

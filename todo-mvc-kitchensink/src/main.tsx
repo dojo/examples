@@ -1,28 +1,17 @@
-import Store from '@dojo/framework/stores/Store';
-import renderer from '@dojo/framework/widget-core/vdom';
-import { w } from '@dojo/framework/widget-core/d';
-import { registerThemeInjector } from '@dojo/framework/widget-core/mixins/Themed';
+import { renderer, tsx } from '@dojo/framework/core/vdom';
+import { registerThemeInjector } from '@dojo/framework/core/mixins/Themed';
 import { registerRouterInjector } from '@dojo/framework/routing/RouterInjector';
-import { registerStoreInjector } from '@dojo/framework/stores/StoreInjector';
+import { registerI18nInjector } from '@dojo/framework/core/mixins/I18n';
+import App from './App';
+import Registry from '@dojo/framework/core/Registry';
 
-import TodoAppContainer from './containers/TodoAppContainer';
-import { initialStateProcess } from './todoProcesses';
-
-const store = new Store();
-initialStateProcess(store)({});
-const registry = registerStoreInjector(store);
-const themeContext = registerThemeInjector(undefined, registry);
-
-registry.defineInjector('theme-context', () => {
-	return () => ({
-		get: () => themeContext,
-		set: (theme: string) => themeContext.set(theme)
-	});
-});
+const registry = new Registry();
+registerThemeInjector(undefined, registry);
+registerI18nInjector({ locale: 'en' }, registry);
 
 const config = [
 	{
-		path: 'view/{view}?{filter}',
+		path: 'view/{view}/{filter}',
 		outlet: 'view',
 		defaultParams: {
 			filter: 'all',
@@ -39,5 +28,5 @@ const config = [
 ];
 registerRouterInjector(config, registry);
 
-const r = renderer(() => w(TodoAppContainer, {}));
+const r = renderer(() => <App />);
 r.mount({ registry });

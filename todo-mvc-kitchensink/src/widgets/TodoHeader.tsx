@@ -1,59 +1,49 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { v } from '@dojo/framework/widget-core/d';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import { i18n } from '@dojo/framework/core/middleware/i18n';
 
-import appBundle from '../nls/common';
+import store from '../store';
+import { addTodo, todoInput, toggleAllTodos } from '../processes';
+import bundle from '../nls/common';
 import * as css from './styles/todoHeader.m.css';
 
-export interface TodoHeaderProperties {
-	allCompleted: boolean;
-	todo: string;
-	todoCount: number;
-	toggleTodos: (payload: object) => void;
-	addTodo: (payload: object) => void;
-	setCurrentTodo: (payload: { todo: string }) => void;
-}
+const factory = create({ theme, store, i18n });
 
-@theme(css)
-export default class TodoHeader extends I18nMixin(ThemedMixin(WidgetBase))<TodoHeaderProperties> {
+export default factory(function TodoHeader({ middleware: { theme, store, i18n } }) {
+	const { newTodo, title, toggleAll } = theme.get(css);
+	const { editPlaceholder, appTitle } = i18n.get(bundle, true as any).messages;
+	const { get, path, executor } = store;
+	const current = get(path('current'));
+	const completedCount = get(path('completedCount')) || 0;
+	const todos = get(path('todos')) || [];
 
-	protected toggleTodos() {
-		this.properties.toggleTodos({});
-	}
-
-	protected addTodo(event: KeyboardEvent) {
-		if (event.which === 13) {
-			this.properties.addTodo({});
+	const add = ({ which }: any) => {
+		if (which === 13 && current) {
+			executor(addTodo)({ label: current });
 		}
-	}
+	};
 
-	protected setCurrentTodo({ target: { value: todo } }: any): void {
-		this.properties.setCurrentTodo({ todo });
-	}
-
-	protected render() {
-		const { allCompleted, todo, todoCount } = this.properties;
-		const { messages } = this.localizeBundle(appBundle);
-
-		return v('header', [
-			v('h1', { classes: this.theme(css.title) }, [ messages.appTitle ]),
-			v('input', {
-				key: 'todo-input',
-				focus: true,
-				classes: this.theme(css.newTodo),
-				onkeydown: this.addTodo,
-				oninput: this.setCurrentTodo,
-				value: todo,
-				placeholder: messages.editPlaceholder
-			}),
-			v('input', {
-				classes: this.theme(css.toggleAll),
-				onchange: this.toggleTodos,
-				checked: allCompleted,
-				type: 'checkbox',
-				disabled: todoCount === 0 ? true : false
-			})
-		]);
-	}
-}
+	return (
+		<header>
+			<h1 classes={[title]}>{appTitle}</h1>
+			<input
+				value={current}
+				onkeyup={add}
+				focus={true}
+				classes={[newTodo]}
+				oninput={(event: any) => {
+					executor(todoInput)({ current: event.target.value });
+				}}
+				placeholder={editPlaceholder}
+			/>
+			<input
+				checked={todos && completedCount > 0 && todos.length === completedCount}
+				type="checkbox"
+				classes={[toggleAll]}
+				onchange={() => {
+					executor(toggleAllTodos)({});
+				}}
+			/>
+		</header>
+	);
+});

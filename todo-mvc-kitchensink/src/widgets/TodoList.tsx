@@ -1,55 +1,43 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import { v, w } from '@dojo/framework/widget-core/d';
+import { create, tsx, v } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import store, { Todo } from '../store';
 
-import { Todo } from './../todoProcesses';
 import TodoItem from './TodoItem';
 import TodoCard from './TodoCard';
 
 import * as css from './styles/todoList.m.css';
-import { Outlet } from '@dojo/framework/routing/Outlet';
-import TodoDetailsContainer from '../containers/TodoDetailsContainer';
-import { MatchDetails } from '@dojo/framework/routing/interfaces';
 
 export interface TodoListProperties {
 	view: string;
 	filter: string;
-	todos: Todo[];
-	searchValue: string;
-	toggleTodo: (payload: { id: string }) => void;
-	removeTodo: (payload: { id: string }) => void;
-	editTodo: (payload: { id: string }) => void;
 }
-
-export const TodoListBase = ThemedMixin(WidgetBase);
 
 function filterTodos(todos: Todo[], quickFilter: string, filter: string): Todo[] {
 	return todos.filter((todo) => {
-		return (quickFilter === '' || 	todo.label.toLowerCase().indexOf(quickFilter.toLowerCase()) >= 0) &&
-			(filter === 'completed' && todo.completed || filter === 'active' && !todo.completed || filter === 'all');
+		return (
+			(quickFilter === '' || todo.label.toLowerCase().indexOf(quickFilter.toLowerCase()) >= 0) &&
+			((filter === 'completed' && todo.completed) || (filter === 'active' && !todo.completed) || filter === 'all')
+		);
 	});
 }
 
-@theme(css)
-export default class TodoList extends TodoListBase<TodoListProperties> {
-	protected render() {
-		const { todos, searchValue, view, filter, toggleTodo, removeTodo, editTodo } = this.properties;
+const factory = create({ theme, store }).properties<TodoListProperties>();
 
-		return [
-			v('ul', { classes: this.theme([ css.todoList, view === 'card' && todos.length > 0 ? css.cardList : null ]) }, filterTodos(todos, searchValue, filter).map((todo) => {
-				return view === 'list' ?
-					w(TodoItem, { key: todo.id, todo, editTodo, toggleTodo, removeTodo }) :
-					w(TodoCard, { key: todo.id, todo, editTodo, toggleTodo, removeTodo });
-			})),
-			w(Outlet, { id: 'edit', renderer: ({ router, params }: MatchDetails) => {
-				return w(TodoDetailsContainer, {
-					id: params.id,
-					onRequestExit: () => {
-						const link = router.link('view');
-						link && router.setPath(link);
-					}
-				});
-			} })
-		];
+export default factory(function TodoList({ middleware: { store, theme }, properties }) {
+	const { view, filter } = properties;
+	const { get, path } = store;
+	const { cardList, todoList } = theme.get(css);
+	const todos = get(path('todos')) || [];
+	const search = get(path('search')) || '';
+	const filteredTodos = filterTodos(todos, search, filter);
+	if (filteredTodos.length === 0) {
+		return null;
 	}
-}
+	const todosNodes = filteredTodos.map((todo) => {
+		if (view === 'card') {
+			return <TodoCard key={todo.id} todo={todo} />;
+		}
+		return <TodoItem key={todo.id} todo={todo} />;
+	});
+	return <ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>;
+});

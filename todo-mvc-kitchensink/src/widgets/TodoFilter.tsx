@@ -1,47 +1,27 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import { v, w } from '@dojo/framework/widget-core/d';
-import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
-import Link from '@dojo/framework/routing/Link';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import Link from '@dojo/framework/routing/ActiveLink';
 
-import appBundle from '../nls/common';
 import * as css from './styles/todoFilter.m.css';
 
-export interface TodoFilterProperties {
-	filter?: string;
-}
+const factory = create({ theme });
 
-@theme(css)
-export default class TodoFilter extends I18nMixin(ThemedMixin(WidgetBase))<TodoFilterProperties> {
+export default factory(function TodoFilter({ middleware: { theme } }) {
+	const { filters, selected } = theme.get(css);
 
-	protected render() {
-		const { filter } = this.properties;
-		const { messages } = this.localizeBundle(appBundle);
-
-		return v('ul', { classes: this.theme(css.filters) }, [
-			v('li', [
-				w(Link, {
-					key: 'all',
-					classes: this.theme(filter === 'all' ? css.selected : null),
-					to: 'view',
-					isOutlet: true,
-					params: { filter: 'all' }
-				}, [ messages.filterAll ]),
-				w(Link, {
-					key: 'active',
-					classes: this.theme(filter === 'active' ? css.selected : null),
-					to: 'view',
-					isOutlet: true,
-					params: { filter: 'active' }
-				}, [ messages.filterActive ]),
-				w(Link, {
-					key: 'completed',
-					classes: this.theme(filter === 'completed' ? css.selected : null),
-					to: 'view',
-					isOutlet: true,
-					params: { filter: 'completed' }
-				}, [ messages.filterCompleted ])
-			])
-		]);
-	}
-}
+	return (
+		<ul classes={[filters]}>
+			<li>
+				<Link key="all" to="view" params={{ filter: 'all' }} activeClasses={[selected]}>
+					all
+				</Link>
+				<Link key="active" to="view" params={{ filter: 'active' }} activeClasses={[selected]}>
+					active
+				</Link>
+				<Link key="completed" to="view" params={{ filter: 'completed' }} activeClasses={[selected]}>
+					completed
+				</Link>
+			</li>
+		</ul>
+	);
+});

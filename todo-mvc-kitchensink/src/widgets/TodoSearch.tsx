@@ -1,36 +1,26 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { v } from '@dojo/framework/widget-core/d';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import store from '../store';
+import { todoSearch } from '../processes';
 
-import appBundle from '../nls/common';
 import * as css from './styles/todoSearch.m.css';
 
-export interface TodoSearchProperties {
-	search: (payload: { search: string }) => void;
-	searchValue: string;
-}
+const factory = create({ theme, store });
 
-@theme(css)
-export default class TodoSearch extends I18nMixin(ThemedMixin(WidgetBase))<TodoSearchProperties> {
+export default factory(function TodoSearch({ middleware: { store, theme } }) {
+	const { get, path, executor } = store;
+	const { search, searchIcon } = theme.get(css);
+	const value = get(path('search'));
 
-	protected onInput({ target: { value: search } }: any) {
-		this.properties.search({ search });
+	function onInput(event: KeyboardEvent) {
+		const target = event.target as HTMLInputElement;
+		executor(todoSearch)({ search: target.value });
 	}
 
-	protected render() {
-		const { searchValue: value } = this.properties;
-		const { messages } = this.localizeBundle(appBundle);
-
-		return [
-			v('span', { classes: this.theme(css.searchIcon) }),
-			v('input', {
-				type: 'text',
-				classes: this.theme(css.search),
-				placeholder: messages.searchPlaceholder,
-				value,
-				oninput: this.onInput
-			})
-		];
-	}
-}
+	return (
+		<div>
+			<span classes={[searchIcon]} />
+			<input classes={[search]} placeholder="Quick Filter" value={value} oninput={onInput} />
+		</div>
+	);
+});

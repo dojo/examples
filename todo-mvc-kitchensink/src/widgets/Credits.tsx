@@ -1,23 +1,17 @@
-import { v } from '@dojo/framework/widget-core/d';
-import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import appBundle from '../nls/common';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+
 import * as css from './styles/credits.m.css';
 
-@theme(css)
-export default class Credits extends I18nMixin(ThemedMixin(WidgetBase)) {
-	protected render() {
-		const { messages } = this.localizeBundle(appBundle);
+const factory = create({ theme });
 
-		return [
-			v('footer', {
-				classes: this.theme(css.footer)
-			}, [
-				v('p', [ messages.footerInstructions ]),
-				v('p', [ messages.footerCredits ]),
-				v('p', [ messages.footerPartOf ])
-			])
-		];
-	}
-}
+export default factory(function Credits({ middleware: { theme } }) {
+	const { footer } = theme.get(css);
+	return (
+		<footer classes={[footer]}>
+			<p>blah</p>
+			<p>blah</p>
+			<p>blah</p>
+		</footer>
+	);
+});

@@ -1,46 +1,41 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { v, w } from '@dojo/framework/widget-core/d';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import I18nMixin from '@dojo/framework/widget-core/mixins/I18n';
+import { tsx, create } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
 
+import store from '../store';
 import TodoViewSwitch from './TodoViewSwitch';
 import TodoFilter from './TodoFilter';
-import appBundle from '../nls/common';
+import { clearCompleted } from '../processes';
 import * as css from './styles/todoFooter.m.css';
 
 export interface TodoFooterInterface {
-	activeCount: number;
 	filter: string;
-	todoCount: number;
-	view: string;
-	clearCompleted: (payload: object) => void;
 }
 
-@theme(css)
-export default class TodoFooter extends I18nMixin(ThemedMixin(WidgetBase))<TodoFooterInterface> {
+const factory = create({ theme, store }).properties<TodoFooterInterface>();
 
-	protected clearCompleted(): void {
-		this.properties.clearCompleted({});
-	}
-
-	protected render() {
-		const { filter, view, activeCount, todoCount } = this.properties;
-		const completedItems = (todoCount - activeCount) > 0;
-		const { messages, format } = this.localizeBundle(appBundle);
-
-		return v('footer', {
-			classes: this.theme(css.footer)
-		}, [
-			v('span', { classes: this.theme(css.todoCount) }, [
-				v('strong', [activeCount + ' ']),
-				v('span', [ format('itemsLeft', { count: activeCount }) ])
-			]),
-			w(TodoFilter, { filter }),
-			w(TodoViewSwitch, { view }),
-			completedItems ? v('button', {
-				onclick: this.clearCompleted,
-				classes: this.theme(css.clearCompleted)
-			}, [ messages.clearButtonText ]) : null
-		]);
-	}
-}
+export default factory(function TodoFooter({ middleware: { theme, store }, properties }) {
+	const { get, path, executor } = store;
+	const { filter } = properties;
+	const { footer, todoCount, clearCompleted: clear } = theme.get(css);
+	const completedCount = get(path('completedCount'));
+	return (
+		<footer classes={[footer]}>
+			<span classes={[todoCount]}>
+				<strong />
+				<span />
+			</span>
+			<TodoFilter />
+			<TodoViewSwitch filter={filter} />
+			{completedCount && (
+				<button
+					classes={[clear]}
+					onclick={() => {
+						executor(clearCompleted)({});
+					}}
+				>
+					Clear Completed
+				</button>
+			)}
+		</footer>
+	);
+});

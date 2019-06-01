@@ -1,40 +1,26 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { v, w } from '@dojo/framework/widget-core/d';
-import ThemedMixin, { theme } from '@dojo/framework/widget-core/mixins/Themed';
-import Link from '@dojo/framework/routing/Link';
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { theme } from '@dojo/framework/core/middleware/theme';
+import Link from '@dojo/framework/routing/ActiveLink';
 
 import * as css from './styles/todoViewSwitch.m.css';
 
 export interface TodoViewSwitchProperties {
-	view: string;
+	filter: string;
 }
 
-@theme(css)
-export default class TodoViewSwitch extends ThemedMixin(WidgetBase)<TodoViewSwitchProperties> {
-	protected render() {
-		const { view } = this.properties;
+const factory = create({ theme }).properties<TodoViewSwitchProperties>();
 
-		return v('ul', {
-			classes: this.theme(css.viewChooser)
-		}, [
-			v('li', [
-				w(Link, {
-					key: 'list',
-					to: 'view',
-					isOutlet: true,
-					params: { view: 'list' },
-					classes: this.theme([ css.list, view === 'list' ? css.active : null ])
-				})
-			]),
-			v('li', [
-				w(Link, {
-					key: 'card',
-					to: 'view',
-					isOutlet: true,
-					params: { view: 'card' },
-					classes: this.theme([ css.cards, view === 'card' ? css.active : null ])
-				})
-			])
-		]);
-	}
-}
+export default factory(function TodoViewSwitch({ middleware: { theme }, properties }) {
+	const { filter } = properties;
+	const { active, viewChooser, list, cards } = theme.get(css);
+	return (
+		<ul classes={[viewChooser]}>
+			<li>
+				<Link to="view" params={{ view: 'list', filter }} activeClasses={[active]} classes={[list]} />
+			</li>
+			<li>
+				<Link to="view" params={{ view: 'card', filter }} activeClasses={[active]} classes={[cards]} />
+			</li>
+		</ul>
+	);
+});
