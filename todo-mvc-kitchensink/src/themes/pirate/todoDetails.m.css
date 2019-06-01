@@ -1,0 +1,60 @@
+.backdrop {
+	position: fixed;
+	left: 0;
+	top: -0;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	background-color: rgba(255, 255, 255, 0.75);
+}
+
+.modal {
+	position: fixed;
+	top: 230px;
+	left: 50%;
+	width: 600px;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	background-color: #ebe2a9;
+	padding: 16px;
+	border-radius: 6px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.close:after {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	content: 'X';
+	cursor: pointer;
+}
+
+.todoDetailsHeader {
+	font-weight: 300;
+	font-size: 32px;
+	margin-bottom: 12px;
+}
+
+.todoDetailsTextArea {
+	width: calc(100% - 24px);
+	height: 78px;
+	padding: 12px;
+	margin: 0;
+	font-size: 24px;
+	font-weight: inherit;
+	color: inherit;
+	background-color:#fdf4cb;
+	border: none;
+	resize: none;
+}
+
+.lastUpdated {
+	float: left;
+	line-height: 40px;
+}
+
+.toggle {
+	float: right;
+	position: relative;
+}
