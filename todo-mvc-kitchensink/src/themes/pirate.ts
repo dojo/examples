@@ -1,4 +1,4 @@
-import * as todoApp from './pirate/todoApp.m.css';
+import * as App from './pirate/App.m.css';
 import * as todoSearch from './pirate/todoSearch.m.css';
 import * as todoHeader from './pirate/todoHeader.m.css';
 import * as todoList from './pirate/todoList.m.css';
@@ -9,7 +9,7 @@ import * as themeSwitcher from './pirate/themeSwitcher.m.css';
 import * as credits from './pirate/credits.m.css';
 
 export default {
-	'dojo2-todo-mvc-kitchensink/todoApp': todoApp,
+	'dojo2-todo-mvc-kitchensink/App': App,
 	'dojo2-todo-mvc-kitchensink/todoSearch': todoSearch,
 	'dojo2-todo-mvc-kitchensink/todoHeader': todoHeader,
 	'dojo2-todo-mvc-kitchensink/todoList': todoList,

@@ -16,6 +16,4 @@ export interface State {
 	search?: string;
 }
 
-// (store: any) => load('todo', store)
-
-export default createStoreMiddleware<State>();
+export default createStoreMiddleware<State>((store: any) => load('todo', store));
