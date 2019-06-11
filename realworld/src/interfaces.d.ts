@@ -1,8 +1,8 @@
 export type WithTarget<T extends Event = Event, E extends HTMLElement = HTMLInputElement> = T & { target: E };
 
 export interface ResourceBased {
-	loading: boolean;
-	loaded: boolean;
+	isLoaded: boolean;
+	isLoading: boolean;
 }
 
 export interface User {
@@ -13,9 +13,10 @@ export interface User {
 
 export interface AuthorProfile extends User {
 	following: boolean;
+	feed: Feed;
 }
 
-export interface UserProfile extends User, ResourceBased {
+export interface Session extends User, ResourceBased {
 	email: string;
 	token: string;
 }
@@ -46,8 +47,9 @@ export interface ArticleItem {
 	author: AuthorProfile;
 }
 
-export interface Settings extends UserProfile {
-	password: string;
+export interface Settings extends User, ResourceBased {
+	email: string;
+	password?: string;
 }
 
 export interface Article extends ResourceBased {
@@ -59,9 +61,10 @@ export interface Article extends ResourceBased {
 export interface Feed extends ResourceBased {
 	category: string;
 	tagName: string;
+	filter: string;
 	items: ArticleItem[];
 	offset: number;
-	pageNumber: number;
+	page: number;
 	total: number;
 }
 
@@ -91,16 +94,23 @@ export interface Editor extends ResourceBased {
 	tagList: string[];
 }
 
-export interface State {
-	settings: Settings;
+export interface Profile {
+	user: AuthorProfile & ResourceBased;
 	feed: Feed;
-	article: Article;
-	user: UserProfile;
-	errors: Errors;
+}
+
+interface State {
+	settings: Settings;
+	article: {
+		[index: string]: Article;
+	};
+	feed: Feed;
+	session: Session;
+	profile: Profile;
 	routing: Routing;
-	login: Login;
-	register: Register;
-	editor: Editor;
-	profile: AuthorProfile & ResourceBased;
 	tags: string[];
+	errors: Errors;
+	login: ResourceBased;
+	register: ResourceBased;
+	editor: Editor;
 }
