@@ -50,7 +50,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 												}}
 												classes={["nav-link", type === "feed" && "active"]}
 											>
-												Your Feeds
+												Your Feed
 											</a>
 										</li>
 									)}
@@ -68,7 +68,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 											}}
 											classes={["nav-link", type === "global" && "active"]}
 										>
-											Global Feeds
+											Global Feed
 										</a>
 									</li>
 									{ tagName &&
