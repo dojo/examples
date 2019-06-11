@@ -66,17 +66,30 @@ const clearFeedCommand = commandFactory(({ path }) => {
 });
 
 const favoriteFeedArticleCommand = commandFactory<FavoriteArticlePayload>(
-	async ({ at, get, path, payload: { slug, favorited } }) => {
+	async ({ get, path, payload: { slug, favorited, type } }) => {
 		const token = get(path("session", "token"));
 		const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, {
 			method: favorited ? "delete" : "post",
 			headers: getHeaders(token)
 		});
 		const json = await response.json();
-		const index = getItemIndex(get(path("feed", "items")), slug);
+		let feedPath = path("feed", "items");
+		if (type === 'favorites' || type === 'user') {
+			feedPath = path("profile", "feed", "items");
+		}
+		let articles = get(feedPath);
+
+		const index = getItemIndex(articles, slug);
+		articles = [ ...articles ];
+		articles[index] = json.article;
 
 		if (index !== -1) {
-			return [replace(at(path("feed", "items"), index), json.article)];
+			if (type === 'favorites') {
+				articles.splice(index, 1);
+				return [replace(feedPath, articles)];
+			}
+			articles[index] = json.article;
+			return [replace(feedPath, articles)];
 		}
 		return [];
 	}

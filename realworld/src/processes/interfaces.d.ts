@@ -49,6 +49,7 @@ export interface FollowUserPayload {
 
 export interface FavoriteArticlePayload extends SlugPayload {
 	favorited: boolean;
+	type?: string;
 }
 
 export interface NewCommentPayload {

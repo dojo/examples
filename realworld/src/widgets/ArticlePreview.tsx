@@ -2,11 +2,10 @@ import { create, tsx } from "@dojo/framework/core/vdom";
 import { Link } from "@dojo/framework/routing/Link";
 
 import { ArticleItem } from "../interfaces";
-import { FavoriteArticlePayload } from "../processes/interfaces";
 
 export interface ArticlePreviewProperties {
 	article: ArticleItem;
-	favoriteArticle: (opts: FavoriteArticlePayload) => void;
+	favoriteArticle: () => void;
 }
 
 const factory = create({}).properties<ArticlePreviewProperties>();
@@ -37,7 +36,7 @@ export const ArticlePreview = factory(function ArticlePreview({ properties }) {
 				</div>
 				<button
 					onclick={() => {
-						favoriteArticle({ slug, favorited });
+						favoriteArticle();
 					}}
 					classes={buttonClasses}
 				>

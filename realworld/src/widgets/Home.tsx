@@ -82,7 +82,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 								{loading ? (
 									<div classes={["article-preview"]}>Loading... </div>
 								) : (
-										<FeedList articles={articles} />
+										<FeedList type={type} articles={articles} />
 									)}
 							</div>
 							{!loading && (

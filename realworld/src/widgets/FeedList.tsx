@@ -6,6 +6,7 @@ import { ArticlePreview } from "./ArticlePreview";
 import { ArticleItem } from "../interfaces";
 
 interface FeedListProperties {
+	type: string;
 	articles: ArticleItem[];
 }
 
@@ -21,7 +22,7 @@ export const FeedList = factory(function Tab({ middleware: { store }, properties
 						key={article.slug}
 						article={article}
 						favoriteArticle={() => {
-							executor(favoriteFeedArticleProcess)({ slug: article.slug, favorited: article.favorited });
+							executor(favoriteFeedArticleProcess)({ slug: article.slug, favorited: article.favorited, type: properties.type });
 						}}
 					/>
 				))}

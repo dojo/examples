@@ -102,7 +102,7 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 							{feed.isLoading ? (
 								<div classes={["article-preview"]}>Loading... </div>
 							) : (
-								<FeedList articles={feed.items || []} />
+								<FeedList type={properties.type} articles={feed.items || []} />
 							)}
 						</div>
 						{!feed.isLoading && (
