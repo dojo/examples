@@ -55,10 +55,7 @@ const followUserCommand = commandFactory<Required<FollowUserPayload>>(
 		});
 		const json = await response.json();
 		const article = get(path("article", slug, "item"));
-
-		article.author = json.profile;
-
-		return [replace(path("article", slug, "item"), article)];
+		return [replace(path("article", slug, "item"), { ...article, author: json.profile })];
 	}
 );
 
@@ -124,7 +121,9 @@ const deleteArticleCommand = commandFactory<SlugPayload>(async ({ get, path, pay
 		method: "delete",
 		headers: getHeaders(token)
 	});
-	return [];
+	return [
+		replace(path("routing", "outlet"), "home")
+	];
 });
 
 export const getArticleProcess = createProcess("get-article", [
