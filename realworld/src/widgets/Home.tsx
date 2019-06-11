@@ -14,6 +14,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 	const isAuthenticated = !!get(path("session", "token"));
 	const username = get(path("session", "username"));
 	const articles = get(path("feed", "items")) || [];
+	const tagName = get(path("feed", "tagName"));
 	const loaded = get(path("feed", "isLoaded")) || false;
 	const loading = get(path("feed", "isLoading")) || false;
 	const type = get(path("feed", "category")) || (isAuthenticated ? "feed" : "global");
@@ -38,7 +39,9 @@ export const Home = factory(function Home({ middleware: { store } }) {
 									{isAuthenticated && (
 										<li key="feeds" classes={["nav-item"]}>
 											<a
-												onclick={() => {
+												href=""
+												onclick={(event: MouseEvent) => {
+													event.preventDefault();
 													executor(fetchFeedProcess)({
 														page: 0,
 														type: "feed",
@@ -54,7 +57,9 @@ export const Home = factory(function Home({ middleware: { store } }) {
 
 									<li key="global" classes={["nav-item"]}>
 										<a
-											onclick={() => {
+											href=""
+											onclick={(event: MouseEvent) => {
+												event.preventDefault();
 												executor(fetchFeedProcess)({
 													page: 0,
 													type: "global",
@@ -66,21 +71,26 @@ export const Home = factory(function Home({ middleware: { store } }) {
 											Global Feeds
 										</a>
 									</li>
+									{ tagName &&
+										<li key="tags" classes={["nav-item"]}>
+											<a classes={["nav-link", "active"]}>{`#${tagName}`}</a>
+										</li>
+									}
 								</ul>
 							</div>
 							<div classes={["home-global"]}>
 								{loading ? (
 									<div classes={["article-preview"]}>Loading... </div>
 								) : (
-									<FeedList articles={articles} />
-								)}
+										<FeedList articles={articles} />
+									)}
 							</div>
 							{!loading && (
 								<FeedPagination
 									total={total}
 									currentPage={currentPage}
 									fetchFeed={(page: number) => {
-										executor(fetchFeedProcess)({ type, filter: username, page });
+										executor(fetchFeedProcess)({ type, filter: type === 'tag' ? tagName : username, page });
 									}}
 								/>
 							)}

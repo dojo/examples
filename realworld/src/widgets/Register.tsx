@@ -47,6 +47,7 @@ export const Register = factory(function Register({ middleware: { store, icache 
 							<fieldset>
 								<fieldset classes={["form-group"]}>
 									<input
+										autocomplete="username"
 										value={username}
 										placeholder="Username"
 										oninput={setUsername}
@@ -55,6 +56,7 @@ export const Register = factory(function Register({ middleware: { store, icache 
 								</fieldset>
 								<fieldset classes={["form-group"]}>
 									<input
+										autocomplete="email"
 										value={email}
 										placeholder="Email"
 										type="email"
@@ -64,6 +66,7 @@ export const Register = factory(function Register({ middleware: { store, icache 
 								</fieldset>
 								<fieldset classes={["form-group"]}>
 									<input
+										autocomplete="current-password"
 										value={password}
 										placeholder="Password"
 										type="password"

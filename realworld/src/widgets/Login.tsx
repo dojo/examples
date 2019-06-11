@@ -42,6 +42,7 @@ export const Login = factory(function Login({ middleware: { store, icache } }) {
 							<fieldset>
 								<fieldset classes={["form-group"]}>
 									<input
+										autocomplete="email"
 										value={email}
 										placeholder="Email"
 										type="email"
@@ -51,6 +52,7 @@ export const Login = factory(function Login({ middleware: { store, icache } }) {
 								</fieldset>
 								<fieldset classes={["form-group"]}>
 									<input
+										autocomplete="current-password"
 										value={password}
 										placeholder="Password"
 										type="password"

@@ -24,7 +24,7 @@ export const FeedPagination = factory(function({ properties }) {
 		pageNumbers.push(
 			<li key={page} classes={["page-item", isActive && "active"]}>
 				<a href="" onclick={onclick} classes={["page-link"]}>
-					`${page + 1}`
+					{`${page + 1}`}
 				</a>
 			</li>
 		);
@@ -32,7 +32,7 @@ export const FeedPagination = factory(function({ properties }) {
 
 	return (
 		<nav>
-			<ul classes={["pagination"]}></ul>
+			<ul classes={["pagination"]}>{pageNumbers}</ul>
 		</nav>
 	);
 });
