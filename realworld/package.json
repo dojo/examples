@@ -10,15 +10,14 @@
     "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
   },
   "dependencies": {
-    "@dojo/framework": "../dojo-framework-6.0.0-alpha.2.tgz",
+    "@dojo/framework": "6.0.0-alpha.3",
     "snarkdown": "^1.2.2",
     "tslib": "~1.9.1"
   },
   "devDependencies": {
     "@dojo/cli": "^5.0.0",
-    "@dojo/cli-build-app": "^6.0.0-alpha.3",
+    "@dojo/cli-build-app": "6.0.0-alpha.4",
     "@dojo/cli-test-intern": "^5.0.0",
-    "@dojo/webpack-contrib": "../dojo-webpack-contrib-6.0.0-alpha.2.tgz",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/marked": "^0.3.0",
