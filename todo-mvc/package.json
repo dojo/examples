@@ -1,7 +1,7 @@
 {
-  "name": "dojo2-todo-mvc",
+  "name": "dojo-todo-mvc",
   "version": "0.0.1",
-  "description": "TodoMVC using Dojo2",
+  "description": "TodoMVC using Dojo",
   "main": "src/main.ts",
   "scripts": {
     "build": "dojo build",
