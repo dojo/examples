@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@dojo/cli-build-app": "6.0.0-alpha.5",
-    "@dojo/cli-test-intern": "^5.0.0",
+    "@dojo/cli-test-intern": "./dojo-cli-test-intern-6.0.0-alpha.1.tgz",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
     "husky": "0.14.3",
