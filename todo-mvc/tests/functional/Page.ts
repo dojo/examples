@@ -2,31 +2,26 @@ import Promise from '@dojo/framework/shim/Promise';
 import keys from '@theintern/leadfoot/keys';
 import { Remote } from 'intern/lib/executors/Node';
 
-import * as todoAppCss from './../../src/widgets/styles/todoApp.m.css';
-import * as todoFilterCss from './../../src/widgets/styles/todoFilter.m.css';
-import * as todoItemCss from './../../src/widgets/styles/todoItem.m.css';
-import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.m.css';
-import * as todoFooterCss from './../../src/widgets/styles/todoFooter.m.css';
-import * as todoListCss from './../../src/widgets/styles/todoList.m.css';
+import * as css from './../../src/App.m.css';
 
 class Selectors {
-	public main = `.${todoAppCss.main}`;
-	public footer = `.${todoFooterCss.footer}`;
-	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
-	public newInput = `.${todoHeaderCss.newTodo}`;
-	public toggleAllButton = `.${todoHeaderCss.toggleAll}`;
-	public itemCount = `.${todoFooterCss.todoCount}`;
-	public list = `.${todoListCss.todoList}`;
+	public main = `.${css.main}`;
+	public footer = `.${css.footer}`;
+	public clearCompletedButton = `.${css.clearCompleted}`;
+	public newInput = `.${css.newTodo}`;
+	public toggleAllButton = `.${css.toggleAll}`;
+	public itemCount = `.${css.todoCount}`;
+	public list = `.${css.todoList}`;
 
 	getFilter(index: number): string {
-		return `.${todoFilterCss.filters} li:nth-of-type(${index + 1}) a'`;
+		return `.${css.filters} li:nth-of-type(${index + 1}) a'`;
 	}
 
 	getSelectedFilter(index: number): string {
-		return this.getFilter(index) + `.${todoFilterCss.selected}`;
+		return this.getFilter(index) + `.${css.selected}`;
 	}
 
-	getFilterAll(): string  {
+	getFilterAll(): string {
 		return this.getFilter(0);
 	}
 
@@ -48,11 +43,11 @@ class Selectors {
 	}
 
 	getListItemToggle(index: number): string {
-		return this.getListItem(index, ` .${todoItemCss.toggle}`);
+		return this.getListItem(index, ` .${css.toggle}`);
 	}
 
 	getListItemLabel(index: number) {
-		return this.getListItem(index, ` .${todoItemCss.todoLabel}`);
+		return this.getListItem(index, ` .${css.todoLabel}`);
 	}
 
 	getLastListItemLabel(index: number) {
@@ -60,11 +55,11 @@ class Selectors {
 	}
 
 	getListItemInput(index: number) {
-		return this.getListItem(index, ` .${todoItemCss.edit}`);
+		return this.getListItem(index, ` .${css.edit}`);
 	}
 
 	getEditingListItemInput() {
-		return this.getListItem(undefined, ` .${todoItemCss.editing} .${todoItemCss.edit}`);
+		return this.getListItem(undefined, ` .${css.editing} .${css.edit}`);
 	}
 }
 
@@ -73,7 +68,7 @@ export default class Page {
 	private selectors: Selectors;
 
 	constructor(remote: Remote) {
-		this.remote  = remote;
+		this.remote = remote;
 		this.selectors = new Selectors();
 	}
 
@@ -97,9 +92,7 @@ export default class Page {
 	}
 
 	isFooterVisible() {
-		return this.remote
-			.findByCssSelector(this.selectors.footer)
-			.then(() => true, () => false);
+		return this.remote.findByCssSelector(this.selectors.footer).then(() => true, () => false);
 	}
 
 	isCompleteAllChecked() {
@@ -113,7 +106,7 @@ export default class Page {
 		let activeElement: any;
 		return this.remote
 			.getActiveElement()
-			.then((element) => activeElement = element)
+			.then((element) => (activeElement = element))
 			.end()
 			.findByCssSelector(this.selectors.newInput)
 			.then((inputElement) => inputElement.equals(activeElement));
@@ -151,14 +144,14 @@ export default class Page {
 	getCompletedCount() {
 		return this.remote
 			.then(this.delay)
-			.findAllByCssSelector(this.selectors.getListItem(undefined, `.${todoItemCss.completed}`))
+			.findAllByCssSelector(this.selectors.getListItem(undefined, `.${css.completed}`))
 			.then((elements: any[]) => elements.length);
 	}
 
 	getCounterText() {
 		return this.remote
 			.then(this.delay)
-			.findAllByCssSelector(this.selectors.itemCount)
+			.findByCssSelector(this.selectors.itemCount)
 			.getVisibleText();
 	}
 
