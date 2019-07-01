@@ -21,7 +21,7 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-alpha.8",
+    "@dojo/framework": "6.0.0-alpha.9",
     "tslib": "~1.9.1"
   },
   "devDependencies": {

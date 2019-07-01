@@ -245,15 +245,16 @@ export default createWidget(({ middleware }) => {
 						</section>
 						{todos.length && (
 							<footer classes={[css.footer]}>
-								<span classes={[css.todoCount]}>
-									<strong>{`${itemCount} `}</strong>
+								<span classes={[css.todoCountLabel]}>
+									<strong classes={[css.todoCount]}>{`${itemCount} `}</strong>
 									<span>{`${itemCount === 1 ? 'item' : 'items'} left`}</span>
 								</span>
 								<ul classes={[css.filters]}>
-									<li>
+									<li classes={[css.filter]}>
 										<ActiveLink
 											to="filter"
 											params={{ filter: 'all' }}
+											classes={[css.filterLink]}
 											activeClasses={[css.selected]}
 										>
 											all
@@ -261,6 +262,7 @@ export default createWidget(({ middleware }) => {
 										<ActiveLink
 											to="filter"
 											params={{ filter: 'active' }}
+											classes={[css.filterLink]}
 											activeClasses={[css.selected]}
 										>
 											active
@@ -268,6 +270,7 @@ export default createWidget(({ middleware }) => {
 										<ActiveLink
 											to="filter"
 											params={{ filter: 'completed' }}
+											classes={[css.filterLink]}
 											activeClasses={[css.selected]}
 										>
 											completed

@@ -19,13 +19,6 @@
 	display: block;
 }
 
-.todoList li {
-	position: relative;
-	font-size: 24px;
-	border-bottom: 1px solid #ededed;
-}
-
-
 .title {
 	position: absolute;
 	top: -155px;
@@ -232,12 +225,12 @@
 	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
-.todoCount {
+.todoCountLabel {
 	float: left;
 	text-align: left;
 }
 
-.todoCount strong {
+.todoCount {
 	font-weight: 300;
 }
 
@@ -262,11 +255,11 @@
 	left: 0;
 }
 
-.filters li {
+.filter {
 	display: inline;
 }
 
-.filters li a {
+.filterLink {
 	color: inherit;
 	margin: 3px;
 	padding: 3px 7px;
@@ -275,10 +268,10 @@
 	border-radius: 3px;
 }
 
-.filters li a:hover {
+.filterLink:hover {
 	border-color: rgba(175, 47, 47, 0.1);
 }
 
-.filters li a.selected {
+.filterLink.selected {
 	border-color: rgba(175, 47, 47, 0.2);
 }
