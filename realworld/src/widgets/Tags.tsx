@@ -16,7 +16,7 @@ export const Tags = factory(function Tags({ middleware: { store } }) {
 					{tags.map((tag, i) => (
 						<a
 							href=""
-							key={i}
+							key={`${i}`}
 							onclick={(event: MouseEvent) => {
 								event.preventDefault();
 								executor(fetchFeedProcess)({ type: 'tag', filter: tag, page: 0 })
