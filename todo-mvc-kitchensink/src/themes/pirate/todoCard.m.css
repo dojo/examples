@@ -1,4 +1,6 @@
 .card {
+	position: relative;
+	border: 1px solid #ededed;
 	background-color: #fdf4cb;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
@@ -15,26 +17,22 @@
 	text-align: center;
 	width: 40px;
 	height: auto;
-	bottom: 0;
+	position: absolute;
+	bottom: 54px;
 	border: none;
 	appearance: none;
 	left: 0;
 	top: 0;
 	margin: 0;
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23666666%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;
 }
 
-.cardToggle:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/></svg>')
+.cardToggle:checked {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23666666%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
 }
-.cardToggle:checked:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
-}
-.cardToggle:focus:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/></svg>');
-}
-.cardToggle:checked:focus:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#666666" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
-}
+
 .cardDestroy {
 	display: none;
 	position: absolute;
@@ -62,6 +60,11 @@
 	display: block;
 }
 
+.completed {
+	color: #d9d9d9;
+	text-decoration: line-through;
+}
+
 .todoLabel {
 	word-break: break-all;
 	display: block;
@@ -79,14 +82,5 @@
 }
 
 .listItem:hover .destroyContainer {
-	opacity: 1;
-}
-
-.completed label {
-	color:black;
-	text-decoration: line-through;
-}
-
-.todoItemList li:hover .destroy {
 	opacity: 1;
 }

@@ -9,19 +9,19 @@ import * as css from './styles/todoFilter.m.css';
 const factory = create({ theme, i18n });
 
 export default factory(function TodoFilter({ middleware: { theme, i18n } }) {
-	const { filters, selected } = theme.get(css);
-	const { filterAll, filterActive, filterCompleted } = i18n.get(bundle).messages;
+	const { filters, selected, wrapper, link } = theme.classes(css);
+	const { filterAll, filterActive, filterCompleted } = i18n.localize(bundle).messages;
 
 	return (
 		<ul classes={[filters]}>
-			<li>
-				<Link key="all" to="view" params={{ filter: 'all' }} activeClasses={[selected]}>
+			<li classes={[wrapper]}>
+				<Link key="all" to="view" params={{ filter: 'all' }} classes={[link]} activeClasses={[selected]}>
 					{filterAll}
 				</Link>
-				<Link key="active" to="view" params={{ filter: 'active' }} activeClasses={[selected]}>
+				<Link key="active" to="view" params={{ filter: 'active' }} classes={[link]} activeClasses={[selected]}>
 					{filterActive}
 				</Link>
-				<Link key="completed" to="view" params={{ filter: 'completed' }} activeClasses={[selected]}>
+				<Link key="completed" to="view" params={{ filter: 'completed' }} classes={[link]} activeClasses={[selected]}>
 					{filterCompleted}
 				</Link>
 			</li>

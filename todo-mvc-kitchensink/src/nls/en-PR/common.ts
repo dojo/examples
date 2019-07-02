@@ -6,12 +6,8 @@ const messages = {
 	clearButtonText: 'Clean up',
 	footerInstructions: 'Double-click fer more',
 	filterCompleted: 'Done',
-	footerCredits: `Credits be to:
-<a href="https://github.com/matt-gadd">Matt Gadd</a>,
-<a href="https://github.com/agubler">Anthony Gubler</a>
-and
-<a href="https://github.com/Tomdye">Tom Dye</a>`,
-	footerPartOf: 'Part of <a href="http://todomvc.com">TodoMVC</a>',
+	footerCredits: 'Credits be to:',
+	footerPartOf: 'Part of ',
 	itemsLeft: `{count, plural,
 		=1 {thin' left}
 		other {thin's left}}`,

@@ -10,8 +10,8 @@ import * as css from './styles/todoHeader.m.css';
 const factory = create({ theme, store, i18n });
 
 export default factory(function TodoHeader({ middleware: { theme, store, i18n } }) {
-	const { newTodo, title, toggleAll } = theme.get(css);
-	const { editPlaceholder, appTitle } = i18n.get(bundle, true as any).messages;
+	const { newTodo, title, toggleAll } = theme.classes(css);
+	const { editPlaceholder, appTitle } = i18n.localize(bundle, true as any).messages;
 	const { get, path, executor } = store;
 	const current = get(path('current'));
 	const completedCount = get(path('completedCount')) || 0;

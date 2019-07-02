@@ -11,8 +11,8 @@ const factory = create({ theme, store, i18n });
 
 export default factory(function TodoSearch({ middleware: { store, theme, i18n } }) {
 	const { get, path, executor } = store;
-	const { search, searchIcon } = theme.get(css);
-	const { searchPlaceholder } = i18n.get(bundle).messages;
+	const { search, searchIcon } = theme.classes(css);
+	const { searchPlaceholder } = i18n.localize(bundle).messages;
 	const value = get(path('search'));
 
 	function onInput(event: KeyboardEvent) {

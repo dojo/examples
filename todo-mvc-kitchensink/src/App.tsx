@@ -14,7 +14,7 @@ import * as css from './App.m.css';
 const factory = create({ theme });
 
 export default factory(function App({ middleware: { theme } }) {
-	const { todoapp } = theme.get(css);
+	const { todoapp } = theme.classes(css);
 	return (
 		<div>
 			<section classes={[todoapp]}>

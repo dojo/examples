@@ -9,8 +9,8 @@ import pirateThemeStyles from './../themes/pirate';
 const factory = create({ theme, i18n });
 
 export default factory(function ThemeSwitcher({ middleware: { theme, i18n } }) {
-	const { themeSwitcher, themeSwitcherCheckbox } = theme.get(css);
-	const { themeSwitchTitle } = i18n.get(bundle).messages;
+	const { themeSwitcher, themeSwitcherCheckbox } = theme.classes(css);
+	const { themeSwitchTitle } = i18n.localize(bundle).messages;
 	function switcher(event: MouseEvent) {
 		const target = event.target as HTMLInputElement;
 		if (target.checked) {

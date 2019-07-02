@@ -9,7 +9,7 @@ const factory = create({ theme, store });
 
 export default factory(function TodoDetails({ middleware: { theme, store } }) {
 	const { executor, get, path } = store;
-	const { todoDetails, backdrop, modal, close, todoDetailsHeader, title, todoDetailsTextArea } = theme.get(css);
+	const { todoDetails, backdrop, modal, close, todoDetailsHeader, title, todoDetailsTextArea } = theme.classes(css);
 	const value = get(path('editingLabel'));
 	const id = get(path('editingId'));
 	return (

@@ -14,7 +14,7 @@ const factory = create({ theme, store }).properties<TodoCardProperties>();
 export default factory(function TodoItem({ middleware: { store, theme }, properties }) {
 	const { todo } = properties;
 	const { executor } = store;
-	const { card, cardToggle, cardHeader, completed, todoLabel, cardDestroy } = theme.get(css);
+	const { card, cardToggle, cardHeader, completed, todoLabel, cardDestroy } = theme.classes(css);
 	return (
 		<li key={todo.id} classes={[card, Boolean(todo.completed) && completed]}>
 			<div classes={[cardHeader]}>

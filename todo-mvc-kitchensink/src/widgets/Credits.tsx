@@ -8,13 +8,13 @@ import bundle from '../nls/common';
 const factory = create({ theme, i18n });
 
 export default factory(function Credits({ middleware: { theme, i18n } }) {
-	const { footer } = theme.get(css);
-	const { footerCredits, footerInstructions, footerPartOf } = i18n.get(bundle).messages;
+	const { footer } = theme.classes(css);
+	const { footerCredits, footerInstructions, footerPartOf } = i18n.localize(bundle).messages;
 	return (
 		<footer classes={[footer]}>
 			<p>{footerInstructions}</p>
-			<p>{footerCredits}</p>
-			<p>{footerPartOf}</p>
+			<p>{`${footerCredits} The Dojo Team`}</p>
+			<p>{footerPartOf}{<a href="http://todomvc.com">TodoMVC</a>}</p>
 		</footer>
 	);
 });

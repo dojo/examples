@@ -12,14 +12,14 @@ const factory = create({ theme }).properties<TodoViewSwitchProperties>();
 
 export default factory(function TodoViewSwitch({ middleware: { theme }, properties }) {
 	const { filter } = properties;
-	const { active, viewChooser, list, cards } = theme.get(css);
+	const { active, viewChooser, list, cards, item, link } = theme.classes(css);
 	return (
 		<ul classes={[viewChooser]}>
-			<li>
-				<Link to="view" params={{ view: 'list', filter }} activeClasses={[active]} classes={[list]} />
+			<li classes={[item]}>
+				<Link to="view" params={{ view: 'list', filter }} activeClasses={[active]} classes={[list, link]} />
 			</li>
-			<li>
-				<Link to="view" params={{ view: 'card', filter }} activeClasses={[active]} classes={[cards]} />
+			<li classes={[item]}>
+				<Link to="view" params={{ view: 'card', filter }} activeClasses={[active]} classes={[cards, link]} />
 			</li>
 		</ul>
 	);

@@ -20,16 +20,15 @@
 		"npm": ">=3"
 	},
 	"dependencies": {
-		"@dojo/framework": "./dojo-framework-6.0.0-alpha.1.tgz",
-		"@dojo/widgets": "^5.0.0",
+		"@dojo/framework": "6.0.0-alpha.10",
+		"@dojo/widgets": "6.0.0-alpha.4",
 		"cldr-data": "~30.0.2",
 		"cldrjs": "0.5.0",
 		"tslib": "~1.9.1"
 	},
 	"devDependencies": {
-		"@dojo/cli-build-app": "6.0.0-alpha.1",
-		"@dojo/cli-test-intern": "^5.0.0",
-		"@dojo/webpack-contrib": "./dojo-webpack-contrib-6.0.0-alpha.2.tgz",
+		"@dojo/cli-build-app": "6.0.0-alpha.6",
+		"@dojo/cli-test-intern": "6.0.0-alpha.1",
 		"@types/glob": "~5.0.0",
 		"@types/node": "^6.0.46",
 		"loader-utils": "^1.0.2",
