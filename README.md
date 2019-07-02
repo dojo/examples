@@ -17,9 +17,8 @@ Here is a table of the current examples available in this repository complete wi
 
 | Example  | Code  | Demo  | Sandbox | Overview  |
 |---|---|---|---|---|
-|  TodoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
-|  TodoMVC (kitchen sink) | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-kitchensink) |    Feature-enhanced version of TodoMVC built using Dojo packages. |
-| TodoMVC (tsx)  |  [Link](./todo-mvc-tsx) | [Link](https://dojo.github.io/examples/todo-mvc-tsx) | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-tsx) |  Reference implementation of [TodoMVC](http://todomvc.com/) built using `tsx`, [Redux](https://github.com/reactjs/redux), and Dojo packages.  |
+| TodoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
+| TodoMVC (kitchen sink) | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-kitchensink) |    Feature-enhanced version of TodoMVC built using Dojo packages. |
 | HNPWA  |  [Link](./hnpwa) | [Link](https://dojo-2-hnpwa-d668d.firebaseapp.com/) | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/hnpwa) |  Reference implementation of [HNPWA](https://http://hnpwa.com/) built using Dojo packages.  |
 | Widget Showcase  |  [Link](./widget-showcase)  | [Link](https://dojo.github.io/examples/widget-showcase)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/widget-showcase) |  Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets).  |
 | Custom Element Showcase | [Link](./custom-element-showcase) | [Link](https://dojo.github.io/examples/custom-element-showcase) |  | Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets) compiled and [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). |
@@ -40,7 +39,6 @@ Refer to each `README.md` for details on installing and testing the examples:
 
 * [todo-mvc](./todo-mvc/README.md)
 * [todo-mvc-kitchensink](./todo-mvc-kitchensink/README.md)
-* [todo-mvc-tsx](./todo-mvc-tsx/README.md)
 * [hnpwa](./hnpwa/README.md)
 * [custom-element-menu](./custom-element-menu/README.md)
 * [widget-showcase](./widget-showcase/README.md)

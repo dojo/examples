@@ -17,7 +17,6 @@ then
 
 	buildProject "todo-mvc"
 	buildProject "todo-mvc-kitchensink"
-	buildProject "todo-mvc-tsx"
 	buildProject "widget-showcase"
 	buildProject "custom-element-menu"
 	buildProject "custom-element-showcase"
@@ -34,7 +33,6 @@ then
 	mkdir samples
 	mkdir samples/todo-mvc
 	mkdir samples/todo-mvc-kitchensink
-	mkdir samples/todo-mvc-tsx
 	mkdir samples/widget-showcase
 	mkdir samples/custom-element-menu
 	mkdir samples/custom-element-showcase
@@ -48,7 +46,6 @@ then
 	touch samples/.nojekyll
 	cp -r todo-mvc/output/dist/* samples/todo-mvc/
 	cp -r todo-mvc-kitchensink/output/dist/* samples/todo-mvc-kitchensink
-	cp -r todo-mvc-tsx/output/dist/* samples/todo-mvc-tsx
 	cp -r widget-showcase/output/dist/* samples/widget-showcase
 	cp -r custom-element-menu/output/dist/* samples/custom-element-menu
 	cp -r custom-element-showcase/dist/* samples/custom-element-showcase

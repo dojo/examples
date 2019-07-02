@@ -7,7 +7,6 @@ env:
   - PROJECT_DIR=widget-showcase
   - PROJECT_DIR=todo-mvc
   - PROJECT_DIR=todo-mvc-kitchensink
-  - PROJECT_DIR=todo-mvc-tsx
   - PROJECT_DIR=realworld
   - PROJECT_DIR=world-clock
   - PROJECT_DIR=custom-element-menu
