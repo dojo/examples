@@ -1,86 +1,95 @@
 {
-  "name": "realworld-app",
-  "version": "1.0.0",
-  "main": "src/main.ts",
-  "scripts": {
-    "dev": "dojo build -m dev -s -w memory",
-    "build": "dojo build",
-    "test": "dojo build -m unit && dojo test",
-    "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
-  },
-  "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "snarkdown": "^1.2.2",
-    "tslib": "~1.8.1"
-  },
-  "devDependencies": {
-    "@dojo/cli": "^5.0.0",
-    "@dojo/cli-build-app": "^5.0.0",
-    "@dojo/cli-test-intern": "^5.0.0",
-    "@types/glob": "~5.0.0",
-    "@types/grunt": "~0.4.0",
-    "@types/marked": "^0.3.0",
-    "@types/node": "^6.0.46",
-    "@types/sinon": "^1.16.35",
-    "sinon": "^2.0.0",
-    "tslint": "5.2.0",
-    "typescript": "~2.6.1"
-  },
-  "dojo": {
-    "build-app": {
-      "pwa": {
-        "manifest": {
-          "name": "dojo-realworld",
-          "short_name": "dojo-realworld",
-          "description": "dojo-realworld",
-          "background_color": "#ffffff",
-          "theme_color": "#222127",
-          "icons": [
-            {
-              "src": "src/logo.png",
-              "sizes": [
-                128,
-                256,
-                512
-              ]
-            }
-          ]
-        },
-        "serviceWorker": {
-          "clientsClaim": true,
-          "routes": [
-            {
-              "urlPattern": "https://fonts.googleapis.com/css",
-              "strategy": "networkFirst",
-              "expiration": {
-                "maxEntries": 25
-              }
-            },
-            {
-              "urlPattern": "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css",
-              "strategy": "networkFirst",
-              "expiration": {
-                "maxEntries": 25
-              }
-            },
-            {
-              "urlPattern": "https://demo.productionready.io",
-              "strategy": "networkFirst",
-              "expiration": {
-                "maxEntries": 25
-              }
-            },
-            {
-              "urlPattern": "https://conduit.productionready.io/api",
-              "strategy": "networkFirst",
-              "expiration": {
-                "maxEntries": 25
-              }
-            }
-          ]
-        }
-      },
-      "legacy": false
-    }
-  }
+	"name": "realworld-app",
+	"version": "1.0.0",
+	"main": "src/main.ts",
+	"scripts": {
+		"dev": "dojo build -m dev -s -w memory",
+		"build": "dojo build",
+		"prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
+		"test": "dojo build -m unit && dojo test",
+		"test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
+	},
+	"dependencies": {
+		"@dojo/framework": "6.0.0-alpha.10",
+		"snarkdown": "^1.2.2",
+		"tslib": "^1.10.0"
+	},
+	"devDependencies": {
+		"@dojo/cli": "^5.0.0",
+		"@dojo/cli-build-app": "6.0.0-alpha.6",
+		"@dojo/cli-test-intern": "6.0.0-alpha.1",
+		"@types/glob": "~5.0.0",
+		"@types/grunt": "~0.4.0",
+		"@types/marked": "^0.3.0",
+		"@types/node": "^6.0.46",
+		"@types/sinon": "^1.16.35",
+		"prettier": "1.18.2",
+		"sinon": "^2.0.0",
+		"tslint": "5.2.0",
+		"typescript": "~3.4.5"
+	},
+	"prettier": {
+		"singleQuote": false,
+		"tabWidth": 4,
+		"useTabs": true,
+		"printWidth": 120,
+		"arrowParens": "always"
+	},
+	"dojo": {
+		"build-app": {
+			"pwa": {
+				"manifest": {
+					"name": "dojo-realworld",
+					"short_name": "dojo-realworld",
+					"description": "dojo-realworld",
+					"background_color": "#ffffff",
+					"theme_color": "#222127",
+					"icons": [
+						{
+							"src": "src/logo.png",
+							"sizes": [
+								128,
+								256,
+								512
+							]
+						}
+					]
+				},
+				"serviceWorker": {
+					"clientsClaim": true,
+					"routes": [
+						{
+							"urlPattern": "https://fonts.googleapis.com/css",
+							"strategy": "networkFirst",
+							"expiration": {
+								"maxEntries": 25
+							}
+						},
+						{
+							"urlPattern": "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css",
+							"strategy": "networkFirst",
+							"expiration": {
+								"maxEntries": 25
+							}
+						},
+						{
+							"urlPattern": "https://demo.productionready.io",
+							"strategy": "networkFirst",
+							"expiration": {
+								"maxEntries": 25
+							}
+						},
+						{
+							"urlPattern": "https://conduit.productionready.io/api",
+							"strategy": "networkFirst",
+							"expiration": {
+								"maxEntries": 25
+							}
+						}
+					]
+				}
+			},
+			"legacy": false
+		}
+	}
 }

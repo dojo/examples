@@ -2,10 +2,14 @@ const { describe, it } = intern.getInterface('bdd');
 const { assert } = intern.getPlugin('chai');
 import { stub } from 'sinon';
 
-import { v, w } from '@dojo/framework/widget-core/d';
+import { v, w } from '@dojo/framework/core/vdom';
 import harness from '@dojo/framework/testing/harness';
+import createMockStoreMiddleware from '@dojo/framework/testing/mocks/middleware/store';
 
+import { fetchFeedProcess } from '../../../src/processes/feedProcesses';
 import { Tags } from './../../../src/widgets/Tags';
+import store from './../../../src/store';
+import { replace } from '@dojo/framework/stores/state/operations';
 
 const mockEvent = {
 	preventDefault() {}
@@ -14,9 +18,10 @@ const mockEvent = {
 describe('tags widget', () => {
 	it('no tags', () => {
 		const fetchFeed = stub();
-		const h = harness(() => w(Tags, { fetchFeed }));
-		const expected = v('div', { classes: 'col-md-3' }, [
-			v('div', { classes: 'sidebar' }, [v('p', ['Popular Tags']), v('div', { classes: 'tag-list' }, [])])
+		const mockStore = createMockStoreMiddleware([[fetchFeedProcess, fetchFeed]])
+		const h = harness(() => w(Tags, {}), { middleware: [ [ store, mockStore ] ] });
+		const expected = v('div', { classes: ['col-md-3'] }, [
+			v('div', { classes: ['sidebar'] }, [v('p', ['Popular Tags']), v('div', { classes: ['tag-list'] }, [])])
 		]);
 
 		h.expect(() => expected);
@@ -24,11 +29,13 @@ describe('tags widget', () => {
 
 	it('with tags', () => {
 		const fetchFeed = stub();
-		const h = harness(() => w(Tags, { tags: ['first', 'second'], fetchFeed }));
-		h.expect(() => v('div', { classes: 'col-md-3' }, [
-			v('div', { classes: 'sidebar' }, [
+		const mockStore = createMockStoreMiddleware([[fetchFeedProcess, fetchFeed]])
+		const h = harness(() => w(Tags, {}), { middleware: [ [ store, mockStore ] ] });
+		mockStore((path) => [replace(path('tags'), ['first', 'second'])]);
+		h.expect(() => v('div', { classes: ['col-md-3'] }, [
+			v('div', { classes: ['sidebar'] }, [
 				v('p', ['Popular Tags']),
-				v('div', { classes: 'tag-list' }, [
+				v('div', { classes: ['tag-list'] }, [
 					v('a', { href: '', onclick: () => {}, key: '0', classes: ['tag-pill', 'tag-default'] }, [
 						'first'
 					]),

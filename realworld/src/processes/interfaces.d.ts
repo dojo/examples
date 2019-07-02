@@ -1,5 +1,5 @@
-import { UserProfile } from '../interfaces';
-import { OutletContext } from '@dojo/framework/routing/interfaces';
+import { Session } from "../interfaces";
+import { OutletContext } from "@dojo/framework/routing/interfaces";
 
 export interface SlugPayload {
 	slug: string;
@@ -44,14 +44,17 @@ export interface PasswordPayload {
 export interface FollowUserPayload {
 	username: string;
 	following: boolean;
+	slug?: string;
 }
 
 export interface FavoriteArticlePayload extends SlugPayload {
 	favorited: boolean;
+	type?: string;
 }
 
 export interface NewCommentPayload {
 	newComment: string;
+	slug: string;
 }
 
 export interface AddCommentPayload extends SlugPayload, NewCommentPayload {}
@@ -67,7 +70,7 @@ export interface FetchFeedPayload {
 }
 
 export interface SetSessionPayload {
-	session: UserProfile;
+	session: Session;
 }
 
 export interface ChangeRoutePayload {
