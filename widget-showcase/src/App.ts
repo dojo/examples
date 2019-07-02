@@ -1,50 +1,42 @@
-import { w, v } from '@dojo/framework/widget-core/d';
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { create, w, v } from '@dojo/framework/core/vdom';
+import icache from '@dojo/framework/core/middleware/icache';
+import theme from '@dojo/framework/core/middleware/theme';
+
 import Tabs from './widgets/Tabs';
 import Toolbar from '@dojo/widgets/toolbar';
 import SplitPane, { Direction } from '@dojo/widgets/split-pane';
-import Accordion, { AccordionProperties } from './widgets/Accordion';
+import Accordion from './widgets/Accordion';
 import * as css from './styles/app.m.css';
+import dojo from '@dojo/themes/dojo';
 
-export interface AppProperties extends AccordionProperties {};
+const factory = create({ icache, theme });
 
-export default class App extends WidgetBase<AppProperties> {
-	private _size = 360;
-
-	private _onResize(size: number) {
-		this._size = size;
-		this.invalidate();
+export default factory(function App({ middleware: { icache, theme } }) {
+	const size = icache.get<number>('size') || 360;
+	if (!theme.get()) {
+		theme.set(dojo);
 	}
 
-	protected render() {
-		const {
-			themes,
-			onThemeChange
-		} = this.properties;
-
-		return [
-			v('div', { classes: css.app }, [
-				v('div', { classes: css.toolbarHolder }, [
-					w(Toolbar, {
-						collapseWidth: 700,
-						heading: 'Dojo Widget Showcase'
-					})
-				]),
-				v('div', { classes: css.splitPaneHolder }, [
-					w(SplitPane, {
-						key: 'split-pane',
-						direction: Direction.column,
-						size: this._size,
-						onResize: this._onResize
-					}, [
-						w(Accordion, {
-							themes,
-							onThemeChange
-						}),
-						w(Tabs, {})
-					])
-				])
-			])
-		];
-	}
-}
+	return v('div', { classes: css.app }, [
+		v('div', { classes: css.toolbarHolder }, [
+			w(Toolbar, {
+				collapseWidth: 700,
+				heading: 'Dojo Widget Showcase'
+			})
+		]),
+		v('div', { classes: css.splitPaneHolder }, [
+			w(
+				SplitPane,
+				{
+					key: 'split-pane',
+					direction: Direction.column,
+					size,
+					onResize: (size: number) => {
+						icache.set('size', size);
+					}
+				},
+				[w(Accordion, {}), w(Tabs, {})]
+			)
+		])
+	]);
+});

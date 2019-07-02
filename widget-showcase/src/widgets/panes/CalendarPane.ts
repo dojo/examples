@@ -1,32 +1,29 @@
-import { v, w } from '@dojo/framework/widget-core/d';
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { create, w, v } from '@dojo/framework/core/vdom';
+import icache from '@dojo/framework/core/middleware/icache';
 import Calendar from '@dojo/widgets/calendar';
 
-export default class CalendarPane extends WidgetBase {
-	private _month: number;
-	private _year: number;
-	private _selectedDate: Date;
+const factory = create({ icache });
 
-	render() {
-		return v('div', [
-			w(Calendar, {
-				month: this._month,
-				selectedDate: this._selectedDate,
-				year: this._year,
-				onMonthChange: (month: number) => {
-					this._month = month;
-					this.invalidate();
-				},
-				onYearChange: (year: number) => {
-					this._year = year;
-					this.invalidate();
-				},
-				onDateSelect: (date: Date) => {
-					this._selectedDate = date;
-					this.invalidate();
-				}
-			}),
-			this._selectedDate ? v('p', [ `Selected Date: ${this._selectedDate.toDateString()}` ]) : null
-		]);
-	}
-}
+export default factory(function CalendarPane({ middleware: { icache } }) {
+	const month = icache.get('month');
+	const year = icache.get('year');
+	const selected = icache.get('selected');
+
+	return v('div', [
+		w(Calendar, {
+			month,
+			selectedDate: selected,
+			year,
+			onMonthChange: (month: number) => {
+				icache.set('month', month);
+			},
+			onYearChange: (year: number) => {
+				icache.set('year', year);
+			},
+			onDateSelect: (date: Date) => {
+				icache.set('selected', date);
+			}
+		}),
+		selected ? v('p', [`Selected Date: ${selected.toDateString()}`]) : null
+	]);
+});

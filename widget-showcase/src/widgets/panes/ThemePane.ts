@@ -1,39 +1,34 @@
-import { v, w } from '@dojo/framework/widget-core/d';
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { create, w, v, invalidator } from '@dojo/framework/core/vdom';
+import theme from '@dojo/framework/core/middleware/theme';
 import Radio from '@dojo/widgets/radio';
+import dojo from '@dojo/themes/dojo';
 
-export interface ThemePaneProperties {
-	themes: string[];
-	currentTheme: string;
-	onThemeChange: (theme: string) => void;
-}
+const themes: { [index: string]: any } = {
+	dojo,
+	vanilla: {}
+};
 
-export default class ThemePane extends WidgetBase<ThemePaneProperties> {
+const factory = create({ theme, invalidator });
 
-	private _radioChange(value: string) {
-		const { onThemeChange } = this.properties;
-		onThemeChange(value);
-	}
-
-	render() {
-		const {
-			themes,
-			currentTheme
-		} = this.properties;
-
-		return v('div', [
-			v('h2', [ 'Change Theme' ]),
-			v('div', themes.map(theme => {
-				const checked = currentTheme === theme;
+export default factory(function ThemePane({ middleware: { theme, invalidator } }) {
+	return v('div', [
+		v('h2', ['Change Theme']),
+		v(
+			'div',
+			Object.keys(themes).map((themeName) => {
+				const checked = theme.get() === themes[themeName];
 				return w(Radio, {
 					key: `${theme}-radio`,
 					checked,
-					value: theme,
-					label: theme,
+					value: themeName,
+					label: themeName,
 					name: 'theme-radios',
-					onChange: this._radioChange
-				})
-			}))
-		]);
-	}
-}
+					onChange: (value: string) => {
+						theme.set(themes[value]);
+						invalidator();
+					}
+				});
+			})
+		)
+	]);
+});
