@@ -166,6 +166,14 @@ export default class Page {
 			.getVisibleText();
 	}
 
+	clearCompletedItems() {
+		return this.remote
+			.then(this.delay)
+			.findByCssSelector(this.selectors.clearCompletedButton)
+			.click()
+			.end();
+	}
+
 	toggleItem(index: number) {
 		return this.remote
 			.findAllByCssSelector(this.selectors.getListItemToggle(index))
