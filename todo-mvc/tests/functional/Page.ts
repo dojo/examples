@@ -10,7 +10,7 @@ class Selectors {
 	public clearCompletedButton = `.${css.clearCompleted}`;
 	public newInput = `.${css.newTodo}`;
 	public toggleAllButton = `.${css.toggleAll}`;
-	public itemCount = `.${css.todoCount}`;
+	public itemCount = `.${css.todoCountLabel}`;
 	public list = `.${css.todoList}`;
 
 	getFilter(index: number): string {
