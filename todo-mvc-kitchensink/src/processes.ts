@@ -1,9 +1,7 @@
-import { createCommandFactory, createProcessFactoryWith } from '@dojo/framework/stores/process';
-import { collector } from '@dojo/framework/stores/middleware/localStorage';
+import { createCommandFactory, createProcess } from '@dojo/framework/stores/process';
 import { State, Todo } from './store';
 
 let counter = 0;
-const createProcess = createProcessFactoryWith([collector('todo', (path) => [path('todos'), path('completedCount')])]);
 const commandFactory = createCommandFactory<State>();
 
 function findTodo(id?: string) {
@@ -33,20 +31,9 @@ const deleteTodoCommand = commandFactory<{ id: string }>(({ state, payload: { id
 
 const clearCompletedCommand = commandFactory(({ state }) => {
 	if (state.todos) {
-		const newTodos = [];
-		for (let i = 0; i < state.todos.length; i++) {
-			const todo = state.todos[i];
-			if (!todo.completed) {
-				newTodos.push({ id: todo.id, label: todo.label });
-			}
-		}
-		state.todos = newTodos;
+		state.todos = state.todos.filter((todo) => !todo.completed);
 	}
 	state.completedCount = 0;
-	// if (state.todos) {
-	// 	state.todos = state.todos.filter((todo) => !todo.completed);
-	// }
-	// state.completedCount = 0;
 });
 
 const toggleTodoCommand = commandFactory<{ id: string }>(({ state, payload: { id } }) => {

@@ -1,5 +1,4 @@
 import { createStoreMiddleware } from '@dojo/framework/core/middleware/store';
-import { load } from '@dojo/framework/stores/middleware/localStorage';
 
 export interface Todo {
 	id: string;
@@ -16,4 +15,4 @@ export interface State {
 	search?: string;
 }
 
-export default createStoreMiddleware<State>((store: any) => load('todo', store));
+export default createStoreMiddleware<State>();
