@@ -1,13 +1,32 @@
-const random = require('random-name');
+function random() {
+	return Math.floor(Math.random() * 10);
+}
+
+const names = ['Paul', 'Pater', 'Amber', 'Anna', 'Moura', 'Jordan', 'Tommy', 'Maggie', 'Liz', 'Curtis'];
+
+const surnames = ['Smith', 'Jones', 'Ferguson', 'Goldman', 'Friend', 'Rice', 'Peterson', 'Hope', 'Brice', 'Jefferson'];
+
+const places = [
+	'Moon',
+	'Barbers',
+	'Gym',
+	'Coffee Shop',
+	'Church Yard',
+	'Mall',
+	'Pizza Hut',
+	'Nandos',
+	'Bus',
+	'Antarctica'
+];
 
 export function generateData(records: number = 10000) {
 	let data: any = [];
 	for (let i = 0; i < records; i++) {
 		const item = {
 			id: i,
-			firstName: random.first(),
-			lastName: random.last(),
-			location: random.place()
+			firstName: names[random()],
+			lastName: surnames[random()],
+			location: places[random()]
 		};
 		data.push(item);
 	}

@@ -1,5 +1,5 @@
-import { v, w } from '@dojo/framework/widget-core/d';
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
+import { create, w, v } from '@dojo/framework/core/vdom';
+import icache from '@dojo/framework/core/middleware/icache';
 import Tab from '@dojo/widgets/tab';
 import TabController, { Align } from '@dojo/widgets/tab-controller';
 import BasicFormTab from './tabs/BasicFormTab';
@@ -10,48 +10,77 @@ import ProgressTab from './tabs/ProgressTab';
 import SliderTab from './tabs/SliderTab';
 import GridTab from './tabs/GridTab';
 
-export default class Tabs extends WidgetBase {
-	private _activeIndex = 0;
+const factory = create({ icache });
 
-	private _requestTabChange(activeIndex: number) {
-		this._activeIndex = activeIndex;
-		this.invalidate();
-	}
+export default factory(function Tabs({ middleware: { icache } }) {
+	const activeIndex = icache.get<number>('active') || 0;
 
-	render() {
-		return w(TabController, {
+	return w(
+		TabController,
+		{
 			alignButtons: Align.top,
-			activeIndex: this._activeIndex,
-			onRequestTabChange: this._requestTabChange
-		}, [
-			w(Tab, {
-				key: 'button-tab',
-				label: 'Basic Form Widgets'
-			}, [ w(BasicFormTab, {}) ]),
-			w(Tab, {
-				key: 'input-tab',
-				label: 'Text Input Widgets'
-			}, [ w(TextInputTab, {}) ]),
-			w(Tab, {
-				key: 'text-area-tab',
-				label: 'Text Area'
-			}, [ w(TextAreaTab, {}) ]),
-			w(Tab, {
-				key: 'select-tab',
-				label: 'Selects'
-			}, [ w(SelectTab, {}) ]),
-			w(Tab, {
-				key: 'progress-tab',
-				label: 'Progress'
-			}, [ w(ProgressTab, {}) ]),
-			w(Tab, {
-				key: 'slider-tab',
-				label: 'Slider'
-			}, [ w(SliderTab, {}) ]),
-			w(Tab, {
-				key: 'grid-tab',
-				label: 'Grid'
-			}, [ w(GridTab, {}) ])
-		])
-	}
-}
+			activeIndex: activeIndex,
+			onRequestTabChange: (index: number) => {
+				icache.set('active', index);
+			}
+		},
+		[
+			w(
+				Tab,
+				{
+					key: 'button-tab',
+					label: 'Basic Form Widgets'
+				},
+				[w(BasicFormTab, {})]
+			),
+			w(
+				Tab,
+				{
+					key: 'input-tab',
+					label: 'Text Input Widgets'
+				},
+				[w(TextInputTab, {})]
+			),
+			w(
+				Tab,
+				{
+					key: 'text-area-tab',
+					label: 'Text Area'
+				},
+				[w(TextAreaTab, {})]
+			),
+			w(
+				Tab,
+				{
+					key: 'select-tab',
+					label: 'Selects'
+				},
+				[w(SelectTab, {})]
+			),
+			w(
+				Tab,
+				{
+					key: 'progress-tab',
+					label: 'Progress'
+				},
+				[w(ProgressTab, {})]
+			),
+			w(
+				Tab,
+				{
+					key: 'slider-tab',
+					label: 'Slider'
+				},
+				[w(SliderTab, {})]
+			),
+			w(
+				Tab,
+				{
+					key: 'grid-tab',
+					label: 'Grid'
+				},
+				[w(GridTab, {})]
+			)
+		]
+	);
+});
