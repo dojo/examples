@@ -13,11 +13,7 @@ test.describe('TodoMVC - Dojo', function () {
 
 	test.beforeEach(({ remote }) => {
 		page = new Page(remote);
-		return page.init().then(() => {
-			return page.toggleAll().then(() => {
-				return page.clearCompletedItems().catch(() => {});
-			});
-		});;
+		return page.init();
 	});
 
 	test.describe('When page is initially opened', function () {
