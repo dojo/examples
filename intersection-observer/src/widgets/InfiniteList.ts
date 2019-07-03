@@ -1,40 +1,26 @@
-import { v } from '@dojo/framework/widget-core/d';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
-import Intersection from '@dojo/framework/widget-core/meta/Intersection';
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
+import { create, v, w } from '@dojo/framework/core/vdom';
+import intersection from '@dojo/framework/core/middleware/intersection';
 
+import Item from './Item';
 import * as css from './styles/infiniteList.m.css';
 
 export interface InfiniteListProperties {
-	onRequestItems(startIndex: number): Promise<DNode[]>;
+	onRequestItems(): void;
+	data: any[];
+	isLoading: boolean;
 }
 
-/**
- * Infinite list widget. The widget simply has an element at the bottom that, when is detected to be on the screen,
- * causes a request for more data.  To keep things simple, it is the responsibility of the containing widget to provide
- * more data.
- */
-export class InfiniteList extends WidgetBase<InfiniteListProperties> {
-	items: DNode[] = [];
-	isLoadingData = false;
+const factory = create({ intersection }).properties<InfiniteListProperties>();
 
-	protected render() {
-		const { isIntersecting } = this.meta(Intersection).get('bottom');
+export default factory(function InfiniteList({ middleware: { intersection }, properties: { onRequestItems, data, isLoading }}) {
+	const { isIntersecting } = intersection.get('bottom');
 
-		if (isIntersecting && !this.isLoadingData) {
-			this.isLoadingData = true;
-			this.properties.onRequestItems(this.items.length).then(items => {
-				this.items = this.items.concat(items);
-				this.isLoadingData = false;
-				this.invalidate();
-			});
-		}
-
-		return v('div', {}, [
-			...this.items,
-			v('div', { key: 'bottom', classes: css.bottom })
-		]);
+	if (isIntersecting && !isLoading) {
+		onRequestItems();
 	}
-}
 
-export default InfiniteList;
+	return v('div', {}, [
+		v('div', { key: 'data'}, data.map(({ title, summary }) => w(Item, { title, summary }))),
+		v('div', { key: 'bottom', classes: css.bottom })
+	]);
+});

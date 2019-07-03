@@ -1,0 +1,19 @@
+.root {
+	background-color: white;
+	padding: 40px;
+	border: 1px solid #eee;
+	margin: 17px;
+  }
+
+  .title {
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;
+	color: #0170cd;
+  }
+
+  .summary {
+	font-family: serif;
+	font-size: 16px;
+	line-height: 1.6em;
+  }
