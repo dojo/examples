@@ -4,7 +4,7 @@ import AccordionPane from '@dojo/widgets/accordion-pane';
 import TitlePane from '@dojo/widgets/title-pane';
 import { Set } from '@dojo/framework/shim/Set';
 import CalendarPane from './panes/CalendarPane';
-// import DialogPane from './panes/DialogPane';
+import DialogPane from './panes/DialogPane';
 import ThemePane from './panes/ThemePane';
 import { from } from '@dojo/framework/shim/array';
 
@@ -44,11 +44,15 @@ export default factory(function Accordion({ middleware: { icache } }) {
 					key: 'calendar-title-pane'
 				},
 				[w(CalendarPane, {})]
+			),
+			w(
+				TitlePane,
+				{
+					title: 'Dialog',
+					key: 'dialog-title-pane'
+				},
+				[w(DialogPane, {})]
 			)
-			// w(TitlePane, {
-			// 	title: 'Dialog',
-			// 	key: 'dialog-title-pane'
-			// }, [ w(DialogPane, {}) ]),
 		]
 	);
 });
