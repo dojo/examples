@@ -12,12 +12,8 @@ const messages = {
 	filterAll: 'All',
 	filterCompleted: 'Completed',
 	footerInstructions: 'Double-click or press Enter to edit a todo',
-	footerCredits: `Credits:
-<a href="https://github.com/matt-gadd">Matt Gadd</a>,
-<a href="https://github.com/agubler">Anthony Gubler</a>
-and
-<a href="https://github.com/Tomdye">Tom Dye</a>`,
-	footerPartOf: 'Part of <a href="http://todomvc.com">TodoMVC</a>',
+	footerCredits: 'Credits:',
+	footerPartOf: 'Part of ',
 	itemsLeft: `{count, plural,
 		=1 {item left}
 		other {items left}}`,

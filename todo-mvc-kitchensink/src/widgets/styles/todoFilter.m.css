@@ -7,11 +7,11 @@
 	left: 0;
 }
 
-.filters li {
+.wrapper {
 	display: inline;
 }
 
-.filters li a {
+.link {
 	color: inherit;
 	margin: 3px;
 	padding: 3px 7px;
@@ -20,20 +20,10 @@
 	border-radius: 3px;
 }
 
-.filters li a:focus {
-	background-color: rgba(175,47,47,.1);
-}
-
-.filters li a:hover {
+.link:hover {
 	border-color: rgba(175, 47, 47, 0.1);
 }
 
-.filters li a.selected {
+.link.selected {
 	border-color: rgba(175, 47, 47, 0.2);
-}
-
-@media (max-width: 430px) {
-	.filters {
-		bottom: 10px;
-	}
 }

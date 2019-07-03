@@ -2,7 +2,7 @@ import Promise from '@dojo/framework/shim/Promise';
 import keys from '@theintern/leadfoot/keys';
 import { Remote } from 'intern/lib/executors/Node';
 
-import * as appCss from './../../src/widgets/styles/todoApp.m.css';
+import * as appCss from './../../src/App.m.css';
 import * as TodoFilterCss from './../../src/widgets/styles/todoFilter.m.css';
 import * as todoFooterCss from './../../src/widgets/styles/todoFooter.m.css';
 import * as todoHeaderCss from './../../src/widgets/styles/todoHeader.m.css';
@@ -15,7 +15,7 @@ class Selectors {
 	public newInput = `.${todoHeaderCss.newTodo}`;
 	public toggleAllButton = `.${todoHeaderCss.toggleAll}`;
 	public clearCompletedButton = `.${todoFooterCss.clearCompleted}`;
-	public itemCount = `.${todoFooterCss.todoCount}`;
+	public itemCount = `.${todoFooterCss.todoCountLabel}`;
 	public list = `.${todoListCss.todoList}`;
 
 	getFilter(index: number): string {
@@ -162,8 +162,16 @@ export default class Page {
 	getClearCompletedText() {
 		return this.remote
 			.then(this.delay)
-			.findAllByCssSelector(this.selectors.clearCompletedButton)
+			.findByCssSelector(this.selectors.clearCompletedButton)
 			.getVisibleText();
+	}
+
+	clearCompletedItems() {
+		return this.remote
+			.then(this.delay)
+			.findByCssSelector(this.selectors.clearCompletedButton)
+			.click()
+			.end();
 	}
 
 	toggleItem(index: number) {

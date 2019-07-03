@@ -21,12 +21,12 @@
 	0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
-.todoCount {
+.todoCountLabel {
 	float: left;
 	text-align: left;
 }
 
-.todoCount strong {
+.todoCount {
 	font-weight: 300;
 }
 

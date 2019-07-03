@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "tsx",
 		"declaration": false,
 		"module": "umd",
 		"noImplicitAny": true,
@@ -25,6 +27,8 @@
 	},
 	"include": [
 		"./src/**/*.ts",
-		"./tests/**/*.ts"
+		"./tests/**/*.ts",
+		"./src/**/*.tsx",
+		"./tests/**/*.tsx"
 	]
 }

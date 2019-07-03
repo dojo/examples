@@ -1,3 +1,14 @@
+.title {
+	position: absolute;
+	top: -130px;
+	width: 100%;
+	font-size: 66px;
+	font-weight: 100;
+	text-align: center;
+	color: black;
+	text-rendering: optimizeLegibility;
+}
+
 .newTodo {
 	padding: 16px 16px 16px 60px;
 	border: none;

@@ -1,36 +1,45 @@
 {
-  "name": "dojo2-todo-mvc-kitchensink",
-  "version": "0.0.1",
-  "description": "TodoMVC using Dojo",
-  "main": "src/main.ts",
-  "scripts": {
-    "build": "dojo build",
-    "build:tests": "dojo build -m unit && dojo build -m functional",
-    "test": "dojo build -m dist && npm run build:tests && dojo test -a -c local",
-    "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dojo/examples.git"
-  },
-  "license": "BSD-3-Clause",
-  "engines": {
-    "node": ">=6",
-    "npm": ">=3"
-  },
-  "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "@dojo/widgets": "^5.0.0",
-    "cldr-data": "~30.0.2",
-    "cldrjs": "0.5.0",
-    "tslib": "~1.8.1"
-  },
-  "devDependencies": {
-    "@dojo/cli-build-app": "^5.0.0",
-    "@dojo/cli-test-intern": "^5.0.0",
-    "@types/glob": "~5.0.0",
-    "@types/node": "^6.0.46",
-    "loader-utils": "^1.0.2",
-    "typescript": "~2.6.1"
-  }
+	"name": "dojo2-todo-mvc-kitchensink",
+	"version": "0.0.1",
+	"description": "TodoMVC using Dojo",
+	"main": "src/main.ts",
+	"scripts": {
+		"build": "dojo build",
+		"prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
+		"build:tests": "dojo build -m unit && dojo build -m functional",
+		"test": "dojo build -m dist && npm run build:tests && dojo test -a -c local",
+		"test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dojo/examples.git"
+	},
+	"license": "BSD-3-Clause",
+	"engines": {
+		"node": ">=6",
+		"npm": ">=3"
+	},
+	"dependencies": {
+		"@dojo/framework": "6.0.0-alpha.10",
+		"@dojo/widgets": "6.0.0-alpha.4",
+		"cldr-data": "~30.0.2",
+		"cldrjs": "0.5.0",
+		"tslib": "~1.9.1"
+	},
+	"devDependencies": {
+		"@dojo/cli-build-app": "6.0.0-alpha.6",
+		"@dojo/cli-test-intern": "6.0.0-alpha.1",
+		"@types/glob": "~5.0.0",
+		"@types/node": "^6.0.46",
+		"loader-utils": "^1.0.2",
+		"prettier": "1.17.1",
+		"typescript": "~3.4.5"
+	},
+	"prettier": {
+		"singleQuote": true,
+		"tabWidth": 4,
+		"useTabs": true,
+		"printWidth": 120,
+		"arrowParens": "always"
+	}
 }
