@@ -85,13 +85,13 @@ function generateArticleTitle() {
  * Grabs content for our list. This is async because it could be pulling data from a server.
  */
 export function getListItems(count = 10) {
-	const articles = [];
+	const articles: any[] = [];
 
 	for (let i = 0; i < count; i++) {
 		const sentences = Math.round(Math.random() * 3);
 
 		let summary = generateArticleTitle();
-		for(let j = 0; j < sentences; j++) {
+		for (let j = 0; j < sentences; j++) {
 			summary += '. ' + generateArticleTitle();
 		}
 
@@ -101,5 +101,9 @@ export function getListItems(count = 10) {
 		});
 	}
 
-	return Promise.resolve(articles);
+	return new Promise<any>((resolve) => {
+		setTimeout(() => {
+			resolve(articles);
+		}, 300);
+	});
 }
