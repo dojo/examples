@@ -8,11 +8,11 @@
   },
   "main": "src/main.ts",
   "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "tslib": "~1.8.1"
+    "@dojo/framework": "6.0.0-alpha.11",
+    "tslib": "~1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^5.0.0",
-    "typescript": "~2.6.1"
+    "@dojo/cli-build-app": "6.0.0-alpha.7",
+    "typescript": "~3.4.5"
   }
 }
