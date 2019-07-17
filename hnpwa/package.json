@@ -4,6 +4,7 @@
   "scripts": {
     "build": "dojo build",
     "dev": "dojo build -m dev -w -s",
+    "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "echo \"no tests\""
   },
   "main": "src/main.ts",
@@ -13,6 +14,14 @@
   },
   "devDependencies": {
     "@dojo/cli-build-app": "6.0.0-alpha.7",
-    "typescript": "~3.4.5"
+    "prettier": "1.18.2",
+    "typescript": "3.4.5"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "tabWidth": 4,
+    "useTabs": true,
+    "printWidth": 120,
+    "arrowParens": "always"
   }
 }

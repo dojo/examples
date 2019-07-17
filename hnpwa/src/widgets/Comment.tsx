@@ -1,38 +1,31 @@
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { v, w } from '@dojo/framework/widget-core/d';
-import { CommentItem } from './../interfaces';
-import * as css from './styles/comment.m.css';
+import { create, tsx } from "@dojo/framework/core/vdom";
+import { CommentItem } from "./../interfaces";
+
+import * as css from "./styles/comment.m.css";
 
 export interface CommentProperties {
 	comment: CommentItem;
 }
 
-export class Comment extends WidgetBase<CommentProperties> {
-	protected render() {
-		const { comment: { user, content, time_ago, comments = [] } } = this.properties;
-		return v('div', { classes: css.root }, [
-			v('header', { classes: css.padding }, [
-				user
-					? v(
-							'a',
-							{
-								key: 'user',
-								href: `#/user/${user}`,
-								classes: css.user
-							},
-							[user]
-						)
-					: null,
-				v('span', { classes: css.time }, [time_ago])
-			]),
-			v('div', { key: 'content', innerHTML: content, classes: css.comment }),
-			v(
-				'div',
-				{ key: 'comments', classes: css.padding },
-				comments.map((comment, index) => {
-					return w(Comment, { comment, key: index });
-				})
-			)
-		]);
-	}
-}
+const factory = create().properties<CommentProperties>();
+
+const CommentWidget = factory(function Comment({ properties: { comment } }) {
+	const { user, content, time_ago, comments = [] } = comment;
+
+	return (
+		<div classes={[css.root]}>
+			<header classes={[css.padding]}>
+				{user && <a classes={[css.user]}>{user}</a>}
+				<span classes={[css.time]}>{time_ago}</span>
+			</header>
+			<div key="content" innerHTML={content} classes={[css.comment]}></div>
+			<div key="comments" classes={[css.padding]}>
+				{comments.map((comment, index) => (
+					<CommentWidget comment={comment} key={index} />
+				))}
+			</div>
+		</div>
+	);
+});
+
+export default CommentWidget;

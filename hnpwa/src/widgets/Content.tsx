@@ -1,55 +1,55 @@
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { w, v } from '@dojo/framework/widget-core/d';
-import { DNode } from '@dojo/framework/widget-core/interfaces';
-import { ArticleItem } from './../interfaces';
-import { Article } from './Article';
-import * as css from './styles/content.m.css';
+import has from '@dojo/framework/core/has';
+import { create, tsx } from "@dojo/framework/core/vdom";
+import icache from "@dojo/framework/core/middleware/icache";
+import Link from "@dojo/framework/routing/Link";
+import Article from "./Article";
+import * as css from "./styles/content.m.css";
 
 export interface ContentProperties {
-	articles?: ArticleItem[];
 	category: string;
-	pageNumber: number;
+	page: number;
 }
 
-export class Content extends WidgetBase<ContentProperties> {
-	protected render() {
-		const { articles = [], pageNumber, category } = this.properties;
-		const articlesNodes: DNode[] = [];
-		const length = articles.length || 30;
-		for (let index = 0; index < length; index++) {
-			articlesNodes.push(w(Article, { key: index, index, item: articles[index], pageNumber }));
-		}
-		const prevProps = pageNumber > 1 ? { href: `#/${category}/${pageNumber - 1}` } : {};
-		const nextProps = articles.length === 30 ? { href: `#/${category}/${pageNumber + 1}` } : {};
+const factory = create({ icache }).properties<ContentProperties>();
 
-		const pagination = v('div', { classes: css.pagination }, [
-			v(
-				'a',
-				{
-					...prevProps,
-					key: 'prev',
-					classes: css.pageLink,
-					styles: {
-						color: pageNumber > 1 ? '#000' : 'rgba(49, 40, 40, 0.65)'
-					}
-				},
-				['< prev']
-			),
-			v('span', { classes: css.pageNumber }, [`${pageNumber}`]),
-			v(
-				'a',
-				{
-					...nextProps,
-					key: 'next',
-					classes: css.pageLink,
-					styles: {
-						color: articles.length === 30 ? '#000' : 'rgba(49, 40, 40, 0.65)'
-					}
-				},
-				['next >']
-			)
-		]);
-
-		return [pagination, ...articlesNodes];
+export default factory(function Content({ properties: { page, category }, middleware: { icache } }) {
+	let articles = [];
+	if (!has('build-time-render')) {
+	articles =
+		icache.getOrSet("articles", async () => {
+			const catKey = category === "top" ? "news" : category === "new" ? "newest" : category;
+			const response = await fetch(`https://node-hnapi.herokuapp.com/${catKey}?page=${page}`);
+			const articles = await response.json();
+			return articles;
+		}) || [];
 	}
-}
+	const articlesNodes = [];
+	const length = articles.length || 30;
+	for (let index = 0; index < length; index++) {
+		articlesNodes.push(<Article key={index} index={index} item={articles[index]} page={page} />);
+	}
+	return (
+		<div>
+			<div classes={[css.pagination]}>
+				
+					<Link
+						key="prev"
+						classes={[css.pageLink, page === 1 ? css.disabled : undefined]}
+						to={page > 1 ? "content": ""}
+						params={{ category, page: `${page - 1}` }}
+					>{`< Prev`}</Link>
+				
+				<span key="page" classes={[css.pageNumber]}>{`${page}`}</span>
+				
+					<Link
+						key="next"
+						classes={[css.pageLink, articles.length !== 30 && css.disabled]}
+						to={articles.length === 30 ? "content": ""}
+						params={{ category, page: `${page + 1}` }}
+					>{`Next >`}</Link>
+				
+			</div>
+			{articlesNodes}
+		</div>
+	);
+});

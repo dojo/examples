@@ -1,50 +1,39 @@
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { v, w } from '@dojo/framework/widget-core/d';
-import { MenuItem } from './MenuItem';
-import * as css from './styles/menu.m.css';
-const logo = require('../img/logo.svg');
+import { create, tsx } from "@dojo/framework/core/vdom";
+import ActiveLink from "./ActiveLink";
+import Link from "@dojo/framework/routing/Link";
 
-const categories = ['top', 'new', 'show', 'ask', 'jobs'];
+import * as css from "./styles/menu.m.css";
+const logo = require("../img/logo.svg");
 
 export interface MenuProperties {
 	currentCategory?: string;
 }
 
-export class Menu extends WidgetBase<MenuProperties> {
-	private _logoLoaded = false;
+const categories = ["top", "new", "show", "ask", "jobs"];
 
-	private _onLogoLoad() {
-		this._logoLoaded = true;
-		this.invalidate();
-	}
+const factory = create();
 
-	render() {
-		const { currentCategory = '' } = this.properties;
-
-		return v('nav', { classes: css.root }, [
-			v('a', { href: '#/top/1', classes: css.home }, [
-				v('img', {
-					onload: this._onLogoLoad,
-					classes: this._logoLoaded ? css.logoLoaded : css.logo,
-					src: logo,
-					alt: 'Home'
-				})
-			]),
-			v(
-				'ol',
-				{ classes: css.menuContainer },
-				categories.map(category => {
-					return w(
-						MenuItem,
-						{
-							key: category,
-							selected: category === currentCategory,
-							category
-						},
-						[category]
-					);
-				})
-			)
-		]);
-	}
-}
+export default factory(function Menu() {
+	return (
+		<nav classes={[css.root]}>
+			<Link to="content" params={{ page: "1", category: "top" }} classes={[css.home]}>
+				<img src={logo} alt="Home" classes={[css.logoLoaded]} />
+			</Link>
+			<ol classes={[css.menuContainer]}>
+				{categories.map((category) => (
+					<li classes={[css.item]}>
+						<ActiveLink
+							classes={[css.link]}
+							activeClasses={[css.selected]}
+							to="content"
+							params={{ category, page: '1' }}
+							matchParams={{ category }}
+						>
+							{category}
+						</ActiveLink>
+					</li>
+				))}
+			</ol>
+		</nav>
+	);
+});

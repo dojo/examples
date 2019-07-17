@@ -9,5 +9,7 @@ export const animated: string;
 export const placeHolderShimmer: string;
 export const animatedTitle: string;
 export const animatedSubTitle: string;
+export const animatedComment: string;
 export const titleShell: string;
 export const subtitleShell: string;
+export const commentShell: string;

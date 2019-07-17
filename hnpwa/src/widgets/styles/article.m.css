@@ -40,8 +40,7 @@
 }
 
 .comments {
-	padding-left: 8px;
-	border-left: 1px solid #ccc;
+	margin-top: 10px;
 }
 
 @keyframes placeHolderShimmer{
@@ -75,6 +74,12 @@
 	background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
 }
 
+.animatedComment {
+	animation-delay: 0.4s;
+	background: #f6f7f8;
+	background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+}
+
 .titleShell {
 	max-width: 650px;
 	border-radius: 4px;
@@ -92,4 +97,12 @@
 	height: 15px;
 	padding-bottom: 2px;
 	margin-right: 16px;
+}
+
+.commentShell {
+	width: 40%;
+	border-radius: 4px;
+	max-width: 250px;
+	height: 19px;
+	padding-bottom: 2px;
 }

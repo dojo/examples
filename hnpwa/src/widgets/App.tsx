@@ -1,19 +1,32 @@
-import { v, w } from '@dojo/framework/widget-core/d';
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { ContentContainer } from './../containers/ContentContainer';
-import { CommentsContainer } from './../containers/CommentsContainer';
-import { MenuContainer } from './../containers/MenuContainer';
+import { create, tsx } from "@dojo/framework/core/vdom";
+import Outlet from "@dojo/framework/routing/Outlet";
 
-import * as css from './styles/app.m.css';
-export class App extends WidgetBase<any> {
-	protected render() {
-		const { route } = this.properties;
-		return v('div', [
-			w(MenuContainer, {}),
-			v('main', { classes: css.main }, [
-				route === 'content' ? w(ContentContainer, {}) : null,
-				route === 'comments' ? w(CommentsContainer, {}) : null
-			])
-		]);
-	}
-}
+import Comments from "./Comments";
+import Content from "./Content";
+import Menu from "./Menu";
+
+import * as css from "./styles/app.m.css";
+
+const factory = create();
+
+export default factory(function App() {
+	return (
+		<div>
+			<Menu />
+			<main classes={[css.main]}>
+				<Outlet
+					id="content"
+					renderer={({ params: { category, page } }) => {
+						return <Content key={`${category}-${page}`} category={category} page={parseInt(page)} />;
+					}}
+				/>
+				<Outlet
+					id="comments"
+					renderer={({ params: { id } }) => {
+						return <Comments key={id} id={id} />;
+					}}
+				/>
+			</main>
+		</div>
+	);
+});

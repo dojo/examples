@@ -1,9 +1,8 @@
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { v } from '@dojo/framework/widget-core/d';
-import * as css from './styles/loading.m.css';
+import { create, tsx } from "@dojo/framework/core/vdom";
+import * as css from "./styles/loading.m.css";
 
-export class Loading extends WidgetBase {
-	render() {
-		return v('div', { key: this.properties.key, classes: css.spinner });
-	}
-}
+const factory = create();
+
+export default factory(function Loading() {
+	return <div classes={[css.spinner]}></div>;
+});
