@@ -1,15 +1,15 @@
 export default [
 	{
-		path: "/{category}/{page}",
-		outlet: "content",
+		path: '/{category}/{page}',
+		outlet: 'content',
 		defaultRoute: true,
 		defaultParams: {
-			category: "top",
-			page: "1"
+			category: 'top',
+			page: '1'
 		}
 	},
 	{
-		path: "/comments/{id}",
-		outlet: "comments"
+		path: '/comments/{id}',
+		outlet: 'comments'
 	}
 ];

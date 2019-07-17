@@ -1,7 +1,7 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import { CommentItem } from "./../interfaces";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { CommentItem } from './../interfaces';
 
-import * as css from "./styles/comment.m.css";
+import * as css from './styles/comment.m.css';
 
 export interface CommentProperties {
 	comment: CommentItem;

@@ -8,8 +8,8 @@ import Router from '@dojo/framework/routing/Router';
 import { Params } from '@dojo/framework/routing/interfaces';
 
 export interface ActiveLinkProperties extends LinkProperties {
-    activeClasses: SupportedClassName[];
-    matchParams?: Params;
+	activeClasses: SupportedClassName[];
+	matchParams?: Params;
 }
 
 function paramsEqual(linkParams: any = {}, contextParams: any = {}) {

@@ -1,10 +1,10 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import icache from "@dojo/framework/core/middleware/icache";
-import Comment from "./Comment";
-import Loading from "./Loading";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import icache from '@dojo/framework/core/middleware/icache';
+import Comment from './Comment';
+import Loading from './Loading';
 
-import * as css from "./styles/comments.m.css";
-import { ArticleItem } from "../interfaces";
+import * as css from './styles/comments.m.css';
+import { ArticleItem } from '../interfaces';
 
 export interface CommentsProperties {
 	id: string;
@@ -13,7 +13,7 @@ export interface CommentsProperties {
 const factory = create({ icache }).properties<CommentsProperties>();
 
 export default factory(function Comments({ properties: { id }, middleware: { icache } }) {
-	const item = icache.getOrSet<ArticleItem>("comment", async () => {
+	const item = icache.getOrSet<ArticleItem>('comment', async () => {
 		const response = await fetch(`https://node-hnapi.herokuapp.com/item/${id}`);
 		const item = await response.json();
 		return item;
@@ -26,7 +26,11 @@ export default factory(function Comments({ properties: { id }, middleware: { ica
 	return (
 		<virtual>
 			<article classes={[css.article]}>
-				<h1><a href={item.url} classes={css.title}>{item.title}</a></h1>
+				<h1>
+					<a href={item.url} classes={css.title}>
+						{item.title}
+					</a>
+				</h1>
 				<p>
 					{`${item.points || 0} points`}
 					{item.user && ` by `}

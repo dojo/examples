@@ -1,7 +1,7 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import { ArticleItem } from "./../interfaces";
-import * as css from "./styles/article.m.css";
-import Link from "@dojo/framework/routing/Link";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { ArticleItem } from './../interfaces';
+import * as css from './styles/article.m.css';
+import Link from '@dojo/framework/routing/Link';
 
 export interface ArticleProperties {
 	item?: ArticleItem;
@@ -16,8 +16,8 @@ export default factory(function Article({ properties }) {
 	const articleNumber = `${(page - 1) * 30 + index + 1}`;
 	function renderArticle(article: ArticleItem) {
 		const { url, title, points, user, id, comments_count, time_ago } = article;
-		const commentText = comments_count === 0 ? "discuss" : `${comments_count} comments`;
-		const isComment = url.substr(0, 8) === "item?id=";
+		const commentText = comments_count === 0 ? 'discuss' : `${comments_count} comments`;
+		const isComment = url.substr(0, 8) === 'item?id=';
 		return (
 			<virtual>
 				<h2 styles={{ width: undefined }} classes={[css.title]}>
@@ -32,7 +32,7 @@ export default factory(function Article({ properties }) {
 					)}
 				</h2>
 				<p classes={[css.details]}>
-					<span key="points">{`${points || 0} points ${user ? "by " : ""}`}</span>
+					<span key="points">{`${points || 0} points ${user ? 'by ' : ''}`}</span>
 					<a classes={[css.link]}>{user}</a>
 					<span key="time">{` ${time_ago} `}</span>
 				</p>

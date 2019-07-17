@@ -1,5 +1,5 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import * as css from "./styles/loading.m.css";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import * as css from './styles/loading.m.css';
 
 const factory = create();
 

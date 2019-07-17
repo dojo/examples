@@ -1,11 +1,11 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import Outlet from "@dojo/framework/routing/Outlet";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import Outlet from '@dojo/framework/routing/Outlet';
 
-import Comments from "./Comments";
-import Content from "./Content";
-import Menu from "./Menu";
+import Comments from './Comments';
+import Content from './Content';
+import Menu from './Menu';
 
-import * as css from "./styles/app.m.css";
+import * as css from './styles/app.m.css';
 
 const factory = create();
 
