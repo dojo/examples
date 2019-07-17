@@ -25,7 +25,14 @@ export default factory(function Comments({ properties: { id }, middleware: { ica
 
 	return (
 		<virtual>
-			<article></article>
+			<article classes={[css.article]}>
+				<h1><a href={item.url} classes={css.title}>{item.title}</a></h1>
+				<p>
+					{`${item.points || 0} points`}
+					{item.user && ` by `}
+					{item.user && <a classes={[css.user]}>{item.user}</a>}
+				</p>
+			</article>
 			<div classes={[css.comments]}>
 				<h2 classes={[css.commentCount]}>{`${item.comments_count} comments`}</h2>
 				<div>
@@ -37,40 +44,3 @@ export default factory(function Comments({ properties: { id }, middleware: { ica
 		</virtual>
 	);
 });
-
-// export class Comments extends WidgetBase<CommentsProperties> {
-// 	protected render() {
-// 		const { item } = this.properties;
-
-// 		return item
-// 			? [
-// 					v('article', { classes: css.article }, [
-// 						v('h1', [v('a', { href: item.url, classes: css.title }, [item.title])]),
-// 						v('p', [
-// 							`${item.points || 0} points`,
-// 							item.user
-// 								? v(
-// 										'a',
-// 										{
-// 											key: 'user',
-// 											href: `#/user/${item.user}`,
-// 											classes: css.user
-// 										},
-// 										[` by ${item.user}`]
-// 									)
-// 								: null
-// 						])
-// 					]),
-// 					v('div', { classes: css.comments }, [
-// 						v('h2', { classes: css.commentCount }, [`${item.comments_count} comments`]),
-// 						v(
-// 							'div',
-// 							item.comments.map((comment, index) => {
-// 								return w(Comment, { key: index, comment });
-// 							})
-// 						)
-// 					])
-// 				]
-// 			: w(Loading, {});
-// 	}
-// }
