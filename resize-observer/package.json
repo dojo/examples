@@ -3,22 +3,31 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
+    "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "dojo build -m dev && dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
     "test": "dojo build -m dev && dojo build -m unit && dojo test"
   },
   "main": "src/main.ts",
   "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "@dojo/widgets": "^5.0.0",
-    "tslib": "~1.8.1"
+    "@dojo/framework": "6.0.0-alpha.11",
+    "@dojo/widgets": "6.0.0-alpha.4",
+    "tslib": "~1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^5.0.0",
+    "@dojo/cli-build-app": "6.0.0-alpha.7",
     "@dojo/cli-test-intern": "^5.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
     "@types/sinon": "^1.16.35",
-    "typescript": "~2.6.1"
-  }
+    "prettier": "1.18.2",
+    "typescript": "~3.4.5"
+  },
+	"prettier": {
+		"singleQuote": false,
+		"tabWidth": 4,
+		"useTabs": true,
+		"printWidth": 120,
+		"arrowParens": "always"
+	}
 }
