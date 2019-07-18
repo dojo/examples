@@ -11,4 +11,4 @@ export default {
 	mexicoCity: 'Mexico',
 
 	multipleLocales: 'Plusieurs langues'
-}
+};

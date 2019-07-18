@@ -17,4 +17,4 @@ export default {
 	tokyo: '東京',
 
 	multipleLocales: '複数のロケール'
-}
+};

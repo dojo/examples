@@ -17,4 +17,4 @@ export default {
 	tokyo: 'طوكي',
 
 	multipleLocales: 'لغات متعددة'
-}
+};

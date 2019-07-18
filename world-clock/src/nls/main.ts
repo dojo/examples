@@ -26,4 +26,4 @@ export default {
 
 		multipleLocales: 'Multiple Locales'
 	}
-}
+};
