@@ -76,7 +76,7 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 		SM: 0,
 		MD: 800,
 		LG: 1000
-	}) || { breakpoint: "SM" };
+	}) || { breakpoint: "LG" };
 	const isSmall = bp === "SM";
 	const isMedium = bp === "MD";
 

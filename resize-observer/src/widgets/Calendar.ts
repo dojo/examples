@@ -108,7 +108,7 @@ const entryHeight = 3.333;
 
 const factory = create({ breakpoint });
 
-export default factory(function Calendar({ middleware: { breakpoint }, properties }) {
+export default factory(function Calendar({ middleware: { breakpoint } }) {
 	const { breakpoint: bp } = breakpoint.get("root", {
 		SM: 0,
 		MD: 500,
