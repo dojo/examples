@@ -1,1 +1,1 @@
-import "./widgets/all";
+import './widgets/all';

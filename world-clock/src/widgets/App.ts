@@ -1,14 +1,14 @@
-import i18nCore from "@dojo/framework/i18n/i18n";
-import { create, v, w, invalidator } from "@dojo/framework/core/vdom";
-import i18n from "@dojo/framework/core/middleware/i18n";
-import icache from "@dojo/framework/core/middleware/icache";
-import GlobalEvent from "@dojo/widgets/global-event";
+import i18nCore from '@dojo/framework/i18n/i18n';
+import { create, v, w, invalidator } from '@dojo/framework/core/vdom';
+import i18n from '@dojo/framework/core/middleware/i18n';
+import icache from '@dojo/framework/core/middleware/icache';
+import GlobalEvent from '@dojo/widgets/global-event';
 
-import * as moment from "moment-timezone";
+import * as moment from 'moment-timezone';
 
-import * as css from "../styles/app.m.css";
-import nlsBundle from "../nls/main";
-import Clock from "./Clock";
+import * as css from '../styles/app.m.css';
+import nlsBundle from '../nls/main';
+import Clock from './Clock';
 
 function getLocalizedDate(date: Date, tz: string) {
 	const { years, months, date: day, hours, minutes, seconds, milliseconds } = moment(date)
@@ -19,22 +19,22 @@ function getLocalizedDate(date: Date, tz: string) {
 }
 
 const cities = [
-	{ key: "mexicoCity", locale: "es", tz: "America/Mexico_City" },
-	{ key: "newYork", locale: "en", tz: "America/New_York" },
-	{ key: "london", locale: "en", tz: "Europe/London" },
-	{ key: "johannesburg", locale: "en", tz: "Africa/Johannesburg" },
-	{ key: "cairo", locale: "ar", tz: "Africa/Cairo" },
-	{ key: "paris", locale: "fr", tz: "Europe/Paris" },
-	{ key: "newDehli", locale: "hi", tz: "Asia/Colombo" },
-	{ key: "tokyo", locale: "ja", tz: "Asia/Tokyo" }
+	{ key: 'mexicoCity', locale: 'es', tz: 'America/Mexico_City' },
+	{ key: 'newYork', locale: 'en', tz: 'America/New_York' },
+	{ key: 'london', locale: 'en', tz: 'Europe/London' },
+	{ key: 'johannesburg', locale: 'en', tz: 'Africa/Johannesburg' },
+	{ key: 'cairo', locale: 'ar', tz: 'Africa/Cairo' },
+	{ key: 'paris', locale: 'fr', tz: 'Europe/Paris' },
+	{ key: 'newDehli', locale: 'hi', tz: 'Asia/Colombo' },
+	{ key: 'tokyo', locale: 'ja', tz: 'Asia/Tokyo' }
 ];
 const languages = [
-	{ key: "arabic", locale: "ar", name: "عربى" },
-	{ key: "english", locale: "en", name: "English" },
-	{ key: "spanish", locale: "es", name: "Español" },
-	{ key: "french", locale: "fr", name: "Français" },
-	{ key: "hindi", locale: "hi", name: "हिंदी" },
-	{ key: "japanese", locale: "ja", name: "日本語" }
+	{ key: 'arabic', locale: 'ar', name: 'عربى' },
+	{ key: 'english', locale: 'en', name: 'English' },
+	{ key: 'spanish', locale: 'es', name: 'Español' },
+	{ key: 'french', locale: 'fr', name: 'Français' },
+	{ key: 'hindi', locale: 'hi', name: 'हिंदी' },
+	{ key: 'japanese', locale: 'ja', name: '日本語' }
 ];
 
 const factory = create({ i18n, invalidator, icache });
@@ -47,7 +47,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 		localeDetails = { locale: i18nCore.locale, rtl };
 		i18n.set(localeDetails);
 	}
-	const multiple = icache.get<boolean>("multiple") || false;
+	const multiple = icache.get<boolean>('multiple') || false;
 	const date = new Date();
 
 	return w(
@@ -63,29 +63,29 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 		},
 		[
 			v(
-				"div",
+				'div',
 				{
 					lang: localeDetails.locale,
-					dir: localeDetails.rtl ? "rtl" : "ltr"
+					dir: localeDetails.rtl ? 'rtl' : 'ltr'
 				},
 				[
 					v(
-						"div",
+						'div',
 						{
 							classes: [css.formFields]
 						},
 						[
 							v(
-								"div",
+								'div',
 								{
 									classes: [css.formField]
 								},
 								[
-									v("label", { for: "language" }, [messages.language]),
+									v('label', { for: 'language' }, [messages.language]),
 									v(
-										"select",
+										'select',
 										{
-											id: "language",
+											id: 'language',
 											onchange: (event: Event) => {
 												const select = event.target as HTMLSelectElement;
 												i18n.set({ locale: select.options[select.selectedIndex].value });
@@ -99,7 +99,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 													: `${language} (${data.name})`;
 
 											return v(
-												"option",
+												'option',
 												{
 													selected: localeDetails!.locale!.indexOf(data.locale) === 0,
 													value: data.locale
@@ -112,18 +112,18 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 							),
 
 							v(
-								"div",
+								'div',
 								{
 									classes: [css.formField]
 								},
 								[
-									v("label", { for: "multipleLocales" }, [messages.multipleLocales]),
-									v("input", {
-										id: "multipleLocales",
-										type: "checkbox",
+									v('label', { for: 'multipleLocales' }, [messages.multipleLocales]),
+									v('input', {
+										id: 'multipleLocales',
+										type: 'checkbox',
 										onchange: (event: Event) => {
 											const input = event.target as HTMLInputElement;
-											icache.set("multiple", input.checked);
+											icache.set('multiple', input.checked);
 										}
 									})
 								]
@@ -131,7 +131,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 						]
 					),
 					v(
-						"div",
+						'div',
 						{
 							classes: [css.clocks]
 						},
@@ -141,7 +141,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 								labelKey: key,
 								key,
 								locale: multiple ? locale : locale,
-								rtl: multiple && locale.indexOf("ar-") === 0,
+								rtl: multiple && locale.indexOf('ar-') === 0,
 								size: 160
 							});
 						})

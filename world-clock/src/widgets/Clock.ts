@@ -1,9 +1,9 @@
-import { formatNumber } from "@dojo/framework/i18n/number";
-import { create, v } from "@dojo/framework/core/vdom";
-import i18n from "@dojo/framework/core/middleware/i18n";
+import { formatNumber } from '@dojo/framework/i18n/number';
+import { create, v } from '@dojo/framework/core/vdom';
+import i18n from '@dojo/framework/core/middleware/i18n';
 
-import * as css from "../styles/clock.m.css";
-import nlsBundle from "../nls/main";
+import * as css from '../styles/clock.m.css';
+import nlsBundle from '../nls/main';
 
 export interface ClockProperties {
 	date: Date;
@@ -26,13 +26,13 @@ function getHandPosition(size: number, angle: number, innerRadius: number) {
 function getHandAnimation(duration: number, size: number) {
 	const center = size / 2;
 
-	return v("animateTransform", {
-		attributeName: "transform",
-		type: "rotate",
+	return v('animateTransform', {
+		attributeName: 'transform',
+		type: 'rotate',
 		from: `0 ${center} ${center}`,
 		to: `360 ${center} ${center}`,
 		dur: `${duration}s`,
-		repeatCount: "indefinite"
+		repeatCount: 'indefinite'
 	});
 }
 
@@ -56,10 +56,10 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 
 			hours.push(
 				v(
-					"text",
+					'text',
 					{
 						classes: [css.hourText],
-						"text-anchor": "middle",
+						'text-anchor': 'middle',
 						x: `${x}`,
 						y: `${y + padding / 2}`
 					},
@@ -68,7 +68,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 			);
 		}
 
-		return v("g", hours);
+		return v('g', hours);
 	}
 
 	function renderHands() {
@@ -81,9 +81,9 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 		const { x: minuteX, y: minuteY } = getHandPosition(size, minutesAngle, radius * 0.75);
 		const { x: secondX, y: secondY } = getHandPosition(size, secondsAngle, radius * 0.9);
 
-		return v("g", [
+		return v('g', [
 			v(
-				"line",
+				'line',
 				{
 					classes: [css.hand, css.hourHand],
 					x1: `${radius}`,
@@ -94,7 +94,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 				[getHandAnimation(12 * 60 * 60, size)]
 			),
 			v(
-				"line",
+				'line',
 				{
 					classes: [css.hand, css.minuteHand],
 					x1: `${radius}`,
@@ -105,7 +105,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 				[getHandAnimation(60 * 60, size)]
 			),
 			v(
-				"line",
+				'line',
 				{
 					classes: [css.hand, css.secondHand],
 					x1: `${radius}`,
@@ -115,7 +115,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 				},
 				[getHandAnimation(60, size)]
 			),
-			v("circle", {
+			v('circle', {
 				classes: [css.joint],
 				cx: `${radius}`,
 				cy: `${radius}`,
@@ -124,16 +124,16 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 		]);
 	}
 
-	return v("div", [
+	return v('div', [
 		v(
-			"svg",
+			'svg',
 			{
 				classes: [css.clock],
 				height: `${size}`,
 				width: `${size}`
 			},
 			[
-				v("circle", {
+				v('circle', {
 					cx: `${radius}`,
 					cy: `${radius}`,
 					r: `${radius}`
@@ -143,7 +143,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 			]
 		),
 		v(
-			"p",
+			'p',
 			{
 				classes: [css.label]
 			},
