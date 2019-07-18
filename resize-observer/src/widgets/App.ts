@@ -12,12 +12,61 @@ import * as css from "./styles/app.m.css";
 
 const factory = create({ breakpoint, icache });
 
-function doIncrement(value: number, increment: number) {
+function increment(value: number, increment: number) {
 	return Math.min(value + increment, 8);
 }
 
 function decrement(value: number, increment: number) {
 	return Math.max(value - increment, 0);
+}
+
+function resize(columns: number[], column: number, expand: boolean, isMedium: boolean) {
+	columns = [...columns];
+	const incrementValue = isMedium ? 2 : 1;
+
+	if (expand && columns[column] !== 8) {
+		for (let i = column + 1; i < 4; i++) {
+			if (columns[i] > 0) {
+				columns[i] = decrement(columns[i], incrementValue);
+				columns[column] = increment(columns[column], incrementValue);
+				return columns;
+			}
+		}
+
+		for (let i = column - 1; i >= 0; i--) {
+			if (columns[i] > 0) {
+				columns[i] = decrement(columns[i], incrementValue);
+				columns[column] = increment(columns[column], incrementValue);
+				return columns;
+			}
+		}
+	} else if (!expand && columns[column] !== 0) {
+		for (let i = column + 1; i < 4; i++) {
+			if (columns[i] === 0) {
+				columns[i] = increment(columns[i], incrementValue);
+				columns[column] = decrement(columns[column], incrementValue);
+				return columns;
+			}
+		}
+
+		for (let i = column - 1; i >= 0; i--) {
+			if (columns[i] === 0) {
+				columns[i] = increment(columns[i], incrementValue);
+				columns[column] = decrement(columns[column], incrementValue);
+				return columns;
+			}
+		}
+
+		if (columns[column + 1]) {
+			columns[column + 1] = increment(columns[column + 1], incrementValue);
+			columns[column] = decrement(columns[column], incrementValue);
+		} else if (columns[column - 1]) {
+			columns[column - 1] = increment(columns[column - 1], incrementValue);
+			columns[column] = decrement(columns[column], incrementValue);
+		}
+	}
+
+	return columns;
 }
 
 export default factory(function App({ middleware: { breakpoint, icache } }) {
@@ -30,61 +79,6 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 	}) || { breakpoint: "SM" };
 	const isSmall = bp === "SM";
 	const isMedium = bp === "MD";
-
-	function resize(column: number, expand: boolean, isMedium: boolean) {
-		const columns = cachedColumns.slice();
-		const increment = isMedium ? 2 : 1;
-
-		if (expand && columns[column] !== 8) {
-			for (let i = column + 1; i < 4; i++) {
-				if (columns[i] > 0) {
-					columns[i] = decrement(columns[i], increment);
-					columns[column] = doIncrement(columns[column], increment);
-					return columns;
-				}
-			}
-
-			for (let i = column - 1; i >= 0; i--) {
-				if (columns[i] > 0) {
-					columns[i] = decrement(columns[i], increment);
-					columns[column] = doIncrement(columns[column], increment);
-					return columns;
-				}
-			}
-		} else if (!expand && columns[column] !== 0) {
-			for (let i = column + 1; i < 4; i++) {
-				if (columns[i] === 0) {
-					columns[i] = doIncrement(columns[i], increment);
-					columns[column] = decrement(columns[column], increment);
-					return columns;
-				}
-			}
-
-			for (let i = column - 1; i >= 0; i--) {
-				if (columns[i] === 0) {
-					columns[i] = doIncrement(columns[i], increment);
-					columns[column] = decrement(columns[column], increment);
-					return columns;
-				}
-			}
-
-			if (columns[column + 1]) {
-				columns[column + 1] = doIncrement(columns[column + 1], increment);
-				columns[column] = decrement(columns[column], increment);
-			} else if (columns[column - 1]) {
-				columns[column - 1] = doIncrement(columns[column - 1], increment);
-				columns[column] = decrement(columns[column], increment);
-			}
-		}
-
-		return columns;
-	}
-
-	function createResizer(column: number, expand: boolean, isMedium: boolean) {
-		return () => {
-			icache.set("columns", resize(column, expand, isMedium));
-		};
-	}
 
 	if (isMedium && cachedColumns.filter((columns) => columns % 2 === 1).length) {
 		let numberOfOdd = cachedColumns.filter((column) => column % 2 === 1).length;
@@ -134,8 +128,12 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 				"div",
 				{ classes: css.parentContainer },
 				cachedColumns.map((columns, index) => {
-					const expand = createResizer(index, true, isMedium);
-					const shrink = createResizer(index, false, isMedium);
+					const expand = () => {
+						icache.set("columns", resize(cachedColumns, index, true, isMedium));
+					};
+					const shrink = () => {
+						icache.set("columns", resize(cachedColumns, index, false, isMedium));
+					};
 
 					return !isSmall || index === offset
 						? w(
