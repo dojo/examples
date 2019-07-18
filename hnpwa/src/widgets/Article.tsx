@@ -12,7 +12,7 @@ export interface ArticleProperties {
 const factory = create().properties<ArticleProperties>();
 
 export default factory(function Article({ properties }) {
-	const { item, index, page } = properties;
+	const { item, index, page } = properties();
 	const articleNumber = `${(page - 1) * 30 + index + 1}`;
 	function renderArticle(article: ArticleItem) {
 		const { url, title, points, user, id, comments_count, time_ago } = article;

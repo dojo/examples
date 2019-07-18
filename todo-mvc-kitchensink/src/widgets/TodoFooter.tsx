@@ -17,7 +17,7 @@ const factory = create({ theme, store, i18n }).properties<TodoFooterInterface>()
 
 export default factory(function TodoFooter({ middleware: { theme, store, i18n }, properties }) {
 	const { get, path, executor } = store;
-	const { filter } = properties;
+	const { filter } = properties();
 	const { footer, todoCount, clearCompleted: clear, todoCountLabel } = theme.classes(css);
 	const { format, messages } = i18n.localize(bundle);
 	const completedCount = get(path('completedCount')) || 0;

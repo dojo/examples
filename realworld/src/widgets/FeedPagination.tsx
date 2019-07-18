@@ -10,7 +10,7 @@ interface FeedPaginationProperties {
 const factory = create({}).properties<FeedPaginationProperties>();
 
 export const FeedPagination = factory(function({ properties }) {
-	const { total, currentPage, fetchFeed } = properties;
+	const { total, currentPage, fetchFeed } = properties();
 
 	let pageNumbers: DNode[] = [];
 	for (let page = 0; page < Math.ceil(total / 10); page++) {

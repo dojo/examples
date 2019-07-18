@@ -21,7 +21,7 @@ const factory = create({ store }).properties<ArticleProperties>();
 
 export const Article = factory(function Article({ middleware: { store }, properties }) {
 	const { get, path, executor } = store;
-	const slug = properties.slug;
+	const { slug } = properties();
 	const article = get(path("article", slug, "item"));
 	const comments = get(path("article", slug, "comments")) || [];
 	const newComment = get(path("article", slug, "newComment"));

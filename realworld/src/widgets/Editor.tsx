@@ -22,9 +22,10 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 	const { get, path, executor } = store;
 	const article = get(path("editor")) || {};
 	const errors = get(path("errors"));
+	const { slug } = properties();
 
-	if (properties.slug && (!article || (article.slug !== properties.slug && !article.isLoading))) {
-		executor(getEditorArticleProcess)({ slug: properties.slug });
+	if (slug && (!article || (article.slug !== slug && !article.isLoading))) {
+		executor(getEditorArticleProcess)({ slug });
 		return null;
 	}
 

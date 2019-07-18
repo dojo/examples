@@ -40,7 +40,7 @@ const factory = create({ i18n }).properties<ClockProperties>();
 
 export default factory(function Clock({ properties, middleware: { i18n } }) {
 	const { format } = i18n.localize(nlsBundle);
-	const { labelKey, size, date, locale } = properties;
+	const { labelKey, size, date, locale } = properties();
 	const label = format(labelKey);
 	const radius = size / 2;
 

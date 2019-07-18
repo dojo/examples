@@ -23,8 +23,8 @@ export const ActiveLink = factory(function ActiveLink({
 	properties,
 	children
 }) {
-	const { to, routerKey = 'router', params, matchParams = params } = properties;
-	let { activeClasses, classes = [], ...props } = properties;
+	const { to, routerKey = 'router', params, matchParams = params } = properties();
+	let { activeClasses, classes = [], ...props } = properties();
 
 	diffProperty('to', (current: ActiveLinkProperties, next: ActiveLinkProperties) => {
 		if (current.to !== next.to) {
@@ -64,7 +64,7 @@ export const ActiveLink = factory(function ActiveLink({
 		}
 		props = { ...props, classes };
 	}
-	return w(Link, props, children);
+	return w(Link, props, children());
 });
 
 export default ActiveLink;

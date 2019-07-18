@@ -12,7 +12,8 @@ export interface ContentProperties {
 
 const factory = create({ icache }).properties<ContentProperties>();
 
-export default factory(function Content({ properties: { page, category }, middleware: { icache } }) {
+export default factory(function Content({ properties, middleware: { icache } }) {
+	const { page, category } = properties();
 	let articles = [];
 	if (!has('build-time-render')) {
 		articles =

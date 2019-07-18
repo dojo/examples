@@ -10,7 +10,7 @@ interface ArticleAuthorControlsProperties {
 const factory = create({}).properties<ArticleAuthorControlsProperties>();
 
 export const ArticleAuthorControls = factory(function ArticleAuthorControls({ properties }) {
-	const { slug } = properties;
+	const { slug, deleteArticle } = properties();
 	return (
 		<span>
 			<Link to="edit-post" params={{ slug }} classes={["btn", "btn-sm", "btn-outline-secondary"]}>
@@ -19,7 +19,7 @@ export const ArticleAuthorControls = factory(function ArticleAuthorControls({ pr
 			<button
 				classes={["btn", "btn-sm", "btn-outline-danger"]}
 				onclick={() => {
-					properties.deleteArticle({ slug });
+					deleteArticle({ slug });
 				}}
 			>
 				<i classes={["ion-trash-a"]}></i> Delete Article

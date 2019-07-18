@@ -13,7 +13,8 @@ export interface CommentsProperties {
 
 const factory = create({ icache }).properties<CommentsProperties>();
 
-export default factory(function Comments({ properties: { id }, middleware: { icache } }) {
+export default factory(function Comments({ properties, middleware: { icache } }) {
+	const { id } = properties();
 	let item: ArticleItem | undefined;
 	if (!has('build-time-render')) {
 		item = icache.getOrSet<ArticleItem>('comment', async () => {

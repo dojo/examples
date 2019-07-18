@@ -12,7 +12,7 @@ export interface TodoCardProperties {
 const factory = create({ theme, store }).properties<TodoCardProperties>();
 
 export default factory(function TodoItem({ middleware: { store, theme }, properties }) {
-	const { todo } = properties;
+	const { todo } = properties();
 	const { executor } = store;
 	const { card, cardToggle, cardHeader, completed, todoLabel, cardDestroy } = theme.classes(css);
 	return (

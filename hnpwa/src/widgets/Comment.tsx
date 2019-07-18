@@ -9,8 +9,8 @@ export interface CommentProperties {
 
 const factory = create().properties<CommentProperties>();
 
-const CommentWidget = factory(function Comment({ properties: { comment } }) {
-	const { user, content, time_ago, comments = [] } = comment;
+const CommentWidget = factory(function Comment({ properties }) {
+	const { comment: { user, content, time_ago, comments = [] } } = properties();
 
 	return (
 		<div classes={[css.root]}>

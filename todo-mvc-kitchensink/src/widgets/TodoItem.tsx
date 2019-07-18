@@ -12,7 +12,7 @@ export interface TodoItemProperties {
 const factory = create({ theme, store }).properties<TodoItemProperties>();
 
 export default factory(function TodoItem({ middleware: { store, theme }, properties }) {
-	const { todo } = properties;
+	const { todo } = properties();
 	const { executor } = store;
 	const { todoItem, toggle, completed, todoLabel, destroy } = theme.classes(css);
 	return (

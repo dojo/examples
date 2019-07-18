@@ -11,7 +11,7 @@ export interface TodoViewSwitchProperties {
 const factory = create({ theme }).properties<TodoViewSwitchProperties>();
 
 export default factory(function TodoViewSwitch({ middleware: { theme }, properties }) {
-	const { filter } = properties;
+	const { filter } = properties();
 	const { active, viewChooser, list, cards, item, link } = theme.classes(css);
 	return (
 		<ul classes={[viewChooser]}>
