@@ -4,7 +4,7 @@ function mapHandPosition(angle: number, radius: number, innerRadius: number) {
 }
 
 export function calculateAngle(angle: number) {
-	return (angle - 90) * Math.PI / 180;
+	return ((angle - 90) * Math.PI) / 180;
 }
 
 export function getHandPosition(angle: number, radius: number, innerRadius: number) {
@@ -29,9 +29,9 @@ export function getSecondPosition(date: Date, radius: number) {
 	return mapHandPosition(angle, radius, radius * 0.9);
 }
 
-export function getHours(radius: number): Array<{x: string; y: string}> {
-	const hours: Array<{x: string; y: string}> = [];
-	const padding = radius / 5 * 0.75;
+export function getHours(radius: number): Array<{ x: string; y: string }> {
+	const hours: Array<{ x: string; y: string }> = [];
+	const padding = (radius / 5) * 0.75;
 
 	for (let i = 1; i <= 12; i++) {
 		const angle = calculateAngle(i * 30);
