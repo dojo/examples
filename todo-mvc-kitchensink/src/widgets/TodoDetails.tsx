@@ -13,29 +13,37 @@ export default factory(function TodoDetails({ middleware: { theme, store } }) {
 	const value = get(path('editingLabel'));
 	const id = get(path('editingId'));
 	return (
-		<div onkeyup={(event: KeyboardEvent) => {
-			event.stopPropagation();
-			event.preventDefault();
-			if (event.which === 27) {
-				executor(todoReadMode)({ id });
-			}
-		}} classes={[todoDetails]}>
-			<div classes={[backdrop]}></div>
+		<div
+			onkeyup={(event: KeyboardEvent) => {
+				event.stopPropagation();
+				event.preventDefault();
+				if (event.which === 27) {
+					executor(todoReadMode)({ id });
+				}
+			}}
+			classes={[todoDetails]}
+		>
+			<div classes={[backdrop]} />
 			<div classes={[modal]}>
-				<div onclick={() => {
-					executor(saveTodo)({});
-				}} classes={[close]}></div>
+				<div
+					onclick={() => {
+						executor(saveTodo)({});
+					}}
+					classes={[close]}
+				/>
 				<header classes={[todoDetailsHeader]}>
-					<div classes={[title]}>
-						Details
-					</div>
+					<div classes={[title]}>Details</div>
 				</header>
 				<section>
-					<textarea focus={() => true} value={value} oninput={(event: KeyboardEvent) => {
-						const target = event.target as HTMLTextAreaElement;
-						executor(updateTodoInput)({ label: target.value });
-					}} classes={[todoDetailsTextArea]}>
-					</textarea>
+					<textarea
+						focus={() => true}
+						value={value}
+						oninput={(event: KeyboardEvent) => {
+							const target = event.target as HTMLTextAreaElement;
+							executor(updateTodoInput)({ label: target.value });
+						}}
+						classes={[todoDetailsTextArea]}
+					/>
 				</section>
 			</div>
 		</div>

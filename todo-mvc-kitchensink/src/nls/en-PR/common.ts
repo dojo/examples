@@ -1,8 +1,8 @@
 const messages = {
-	appTitle: 'Plunderin\' list',
+	appTitle: "Plunderin' list",
 	createdTitle: 'Sailed on ',
 	detailsTitle: 'Here be more',
-	editPlaceholder: 'wha\' needs t\' be plunderin\'?',
+	editPlaceholder: "wha' needs t' be plunderin'?",
 	clearButtonText: 'Clean up',
 	footerInstructions: 'Double-click fer more',
 	filterCompleted: 'Done',
@@ -11,9 +11,8 @@ const messages = {
 	itemsLeft: `{count, plural,
 		=1 {thin' left}
 		other {thin's left}}`,
-	searchPlaceholder: 'be searchin\'',
+	searchPlaceholder: "be searchin'",
 	themeSwitchTitle: 'Pirate Mode'
-
 };
 
 export default messages;

@@ -14,7 +14,10 @@ export default factory(function Credits({ middleware: { theme, i18n } }) {
 		<footer classes={[footer]}>
 			<p>{footerInstructions}</p>
 			<p>{`${footerCredits} The Dojo Team`}</p>
-			<p>{footerPartOf}{<a href="http://todomvc.com">TodoMVC</a>}</p>
+			<p>
+				{footerPartOf}
+				{<a href="http://todomvc.com">TodoMVC</a>}
+			</p>
 		</footer>
 	);
 });

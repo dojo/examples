@@ -21,7 +21,13 @@ export default factory(function TodoFilter({ middleware: { theme, i18n } }) {
 				<Link key="active" to="view" params={{ filter: 'active' }} classes={[link]} activeClasses={[selected]}>
 					{filterActive}
 				</Link>
-				<Link key="completed" to="view" params={{ filter: 'completed' }} classes={[link]} activeClasses={[selected]}>
+				<Link
+					key="completed"
+					to="view"
+					params={{ filter: 'completed' }}
+					classes={[link]}
+					activeClasses={[selected]}
+				>
 					{filterCompleted}
 				</Link>
 			</li>

@@ -16,7 +16,7 @@ const router = registerRouterInjector(config, registry);
 
 const store = createStoreMiddleware<State>((store: Store) => {
 	let session: any;
-	if (!has("build-time-render") && !has('test')) {
+	if (!has("build-time-render") && !has("test")) {
 		session = global.sessionStorage.getItem("conduit-session");
 	}
 	if (session) {

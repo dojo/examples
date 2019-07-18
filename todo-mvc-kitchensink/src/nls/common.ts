@@ -1,5 +1,5 @@
 const locales = {
-	'en-PR': () => import ('./en-PR/common')
+	'en-PR': () => import('./en-PR/common')
 };
 
 const messages = {

@@ -23,7 +23,11 @@ export const FeedList = factory(function Tab({ middleware: { store }, properties
 						key={article.slug}
 						article={article}
 						favoriteArticle={() => {
-							executor(favoriteFeedArticleProcess)({ slug: article.slug, favorited: article.favorited, type });
+							executor(favoriteFeedArticleProcess)({
+								slug: article.slug,
+								favorited: article.favorited,
+								type
+							});
 						}}
 					/>
 				))}

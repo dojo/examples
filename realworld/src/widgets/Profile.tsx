@@ -21,7 +21,6 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 	const currentUser = get(path("session", "username"));
 	const { username, type } = properties();
 
-
 	if (username !== profileUser && !isLoading) {
 		executor(getProfileProcess)({ username, type, page: 0 });
 		return null;

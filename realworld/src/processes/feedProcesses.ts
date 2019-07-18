@@ -74,17 +74,17 @@ const favoriteFeedArticleCommand = commandFactory<FavoriteArticlePayload>(
 		});
 		const json = await response.json();
 		let feedPath = path("feed", "items");
-		if (type === 'favorites' || type === 'user') {
+		if (type === "favorites" || type === "user") {
 			feedPath = path("profile", "feed", "items");
 		}
 		let articles = get(feedPath);
 
 		const index = getItemIndex(articles, slug);
-		articles = [ ...articles ];
+		articles = [...articles];
 		articles[index] = json.article;
 
 		if (index !== -1) {
-			if (type === 'favorites') {
+			if (type === "favorites") {
 				articles.splice(index, 1);
 				return [replace(feedPath, articles)];
 			}

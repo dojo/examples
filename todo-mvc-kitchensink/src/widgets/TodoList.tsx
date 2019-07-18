@@ -41,8 +41,5 @@ export default factory(function TodoList({ middleware: { store, theme }, propert
 		}
 		return <TodoItem key={todo.id} todo={todo} />;
 	});
-	return [
-		<ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>,
-		showDetails && <TodoDetails />
-	];
+	return [<ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>, showDetails && <TodoDetails />];
 });

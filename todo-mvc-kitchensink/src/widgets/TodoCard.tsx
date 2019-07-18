@@ -34,13 +34,13 @@ export default factory(function TodoItem({ middleware: { store, theme }, propert
 				/>
 			</div>
 			<label
-					ondblclick={() => {
-						executor(todoEditMode)({ id: todo.id, label: todo.label });
-					}}
-					classes={[todoLabel]}
-				>
-					{todo.label}
-				</label>
+				ondblclick={() => {
+					executor(todoEditMode)({ id: todo.id, label: todo.label });
+				}}
+				classes={[todoLabel]}
+			>
+				{todo.label}
+			</label>
 		</li>
 	);
 });
