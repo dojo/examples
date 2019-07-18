@@ -4,3 +4,6 @@ export const home: string;
 export const logoLoaded: string;
 export const fadein: string;
 export const logo: string;
+export const item: string;
+export const link: string;
+export const selected: string;

@@ -1,7 +1,7 @@
 export const root: string;
 export const pageNumber: string;
 export const post: string;
-export const title: string;
+export const titleLink: string;
 export const details: string;
 export const link: string;
 export const comments: string;
@@ -9,5 +9,7 @@ export const animated: string;
 export const placeHolderShimmer: string;
 export const animatedTitle: string;
 export const animatedSubTitle: string;
+export const animatedComment: string;
 export const titleShell: string;
 export const subtitleShell: string;
+export const commentShell: string;

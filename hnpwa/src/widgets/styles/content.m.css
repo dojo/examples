@@ -4,6 +4,12 @@
 	text-decoration: underline;
 }
 
+.disabled {
+	color: rgba(49, 40, 40, 0.65);
+	cursor: not-allowed;
+	text-decoration: underline;
+}
+
 .pagination {
 	text-align: center;
 	position: fixed;

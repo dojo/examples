@@ -4,15 +4,24 @@
   "scripts": {
     "build": "dojo build",
     "dev": "dojo build -m dev -w -s",
+    "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "echo \"no tests\""
   },
   "main": "src/main.ts",
   "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "tslib": "~1.8.1"
+    "@dojo/framework": "6.0.0-alpha.11",
+    "tslib": "~1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli-build-app": "^5.0.0",
-    "typescript": "~2.6.1"
+    "@dojo/cli-build-app": "6.0.0-alpha.7",
+    "prettier": "1.18.2",
+    "typescript": "3.4.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "printWidth": 120,
+    "arrowParens": "always"
   }
 }
