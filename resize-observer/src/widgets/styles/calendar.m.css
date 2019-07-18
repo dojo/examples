@@ -131,7 +131,6 @@
 	}
 
 	display: flex;
-	padding: 1.5em;
 
 	& .calendarTimes {
 		display: block;
