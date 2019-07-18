@@ -20,13 +20,13 @@ export default factory(function Article({ properties }) {
 		const isComment = url.substr(0, 8) === 'item?id=';
 		return (
 			<virtual>
-				<h2 styles={{ width: undefined }} classes={[css.title]}>
+				<h2 styles={{ width: undefined }}>
 					{isComment ? (
-						<Link to="comments" params={{ id: url.substr(8) }}>
+						<Link to="comments" params={{ id: url.substr(8) }} classes={css.titleLink}>
 							{title}
 						</Link>
 					) : (
-						<a href={url} target="none">
+						<a href={url} target="none" classes={css.titleLink}>
 							{title}
 						</a>
 					)}

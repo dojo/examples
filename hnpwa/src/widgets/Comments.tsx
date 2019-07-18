@@ -1,4 +1,5 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
+import has from '@dojo/framework/core/has';
 import icache from '@dojo/framework/core/middleware/icache';
 import Comment from './Comment';
 import Loading from './Loading';
@@ -13,11 +14,14 @@ export interface CommentsProperties {
 const factory = create({ icache }).properties<CommentsProperties>();
 
 export default factory(function Comments({ properties: { id }, middleware: { icache } }) {
-	const item = icache.getOrSet<ArticleItem>('comment', async () => {
-		const response = await fetch(`https://node-hnapi.herokuapp.com/item/${id}`);
-		const item = await response.json();
-		return item;
-	});
+	let item: ArticleItem | undefined;
+	if (!has('build-time-render')) {
+		item = icache.getOrSet<ArticleItem>('comment', async () => {
+			const response = await fetch(`https://node-hnapi.herokuapp.com/item/${id}`);
+			const item = await response.json();
+			return item;
+		});
+	}
 
 	if (!item) {
 		return <Loading />;

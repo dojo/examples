@@ -36,6 +36,12 @@
 			"root": "app",
 			"paths": [
 				{
+					"path": "#comments/9999",
+					"match": [
+						"#comments\/.*"
+					]
+				},
+				{
 					"path": "#dummy/1",
 					"match": [
 						"#[a-zA-Z]+\/\\d+"
