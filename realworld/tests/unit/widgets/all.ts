@@ -1,1 +1,1 @@
-import './Tags';
+import "./Tags";

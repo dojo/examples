@@ -13,7 +13,7 @@ interface CommentProperties {
 const factory = create({}).properties<CommentProperties>();
 
 export const Comment = factory(function Comment({ properties }) {
-	const { slug, comment, loggedInUser, deleteComment } = properties;
+	const { slug, comment, loggedInUser, deleteComment } = properties();
 	return (
 		<div classes={["card"]}>
 			<div classes={["card-block"]}>

@@ -9,11 +9,12 @@
   },
   "main": "src/main.ts",
   "dependencies": {
-    "@dojo/framework": "6.0.0-alpha.11",
+    "@dojo/framework": "6.0.0-alpha.12",
     "@dojo/widgets": "6.0.0-alpha.4",
     "tslib": "~1.9.1"
   },
   "devDependencies": {
+    "@dojo/cli": "^5.0.0",
     "@dojo/cli-build-app": "6.0.0-alpha.7",
     "@dojo/cli-test-intern": "^5.0.0",
     "@types/glob": "~5.0.0",
@@ -23,11 +24,11 @@
     "prettier": "1.18.2",
     "typescript": "~3.4.5"
   },
-	"prettier": {
-		"singleQuote": false,
-		"tabWidth": 4,
-		"useTabs": true,
-		"printWidth": 120,
-		"arrowParens": "always"
-	}
+  "prettier": {
+    "singleQuote": false,
+    "tabWidth": 4,
+    "useTabs": true,
+    "printWidth": 120,
+    "arrowParens": "always"
+  }
 }

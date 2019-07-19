@@ -121,9 +121,7 @@ const deleteArticleCommand = commandFactory<SlugPayload>(async ({ get, path, pay
 		method: "delete",
 		headers: getHeaders(token)
 	});
-	return [
-		replace(path("routing", "outlet"), "home")
-	];
+	return [replace(path("routing", "outlet"), "home")];
 });
 
 export const getArticleProcess = createProcess("get-article", [

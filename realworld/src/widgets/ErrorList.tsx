@@ -8,7 +8,7 @@ interface ErrorListProperties {
 const factory = create({}).properties<ErrorListProperties>();
 
 export const ErrorList = factory(function ErrorList({ properties }) {
-	const { errors } = properties;
+	const { errors } = properties();
 	const errorCategories = Object.keys(errors);
 	let errorList: string[] = [];
 	for (let i = 0; i < errorCategories.length; i++) {

@@ -24,7 +24,7 @@ const columnClasses: { [index: number]: string } = {
 };
 
 export default factory(function ResizableSection({ properties, children }) {
-	const { isSmall, isMedium, columns, expand, shrink } = properties;
+	const { isSmall, isMedium, columns, expand, shrink } = properties();
 
 	return v(
 		"div",
@@ -46,7 +46,7 @@ export default factory(function ResizableSection({ properties, children }) {
 						),
 						v("button", { disabled: columns === 8, onclick: expand }, ["Expand Component"])
 				  ]),
-			...children
+			...children()
 		]
 	);
 });

@@ -13,4 +13,3 @@ coverage-final.lcov
 npm-debug.log
 /_apidoc
 deploy_key
-package-lock.json

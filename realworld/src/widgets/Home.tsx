@@ -71,26 +71,30 @@ export const Home = factory(function Home({ middleware: { store } }) {
 											Global Feed
 										</a>
 									</li>
-									{ tagName &&
+									{tagName && (
 										<li key="tags" classes={["nav-item"]}>
 											<a classes={["nav-link", "active"]}>{`#${tagName}`}</a>
 										</li>
-									}
+									)}
 								</ul>
 							</div>
 							<div classes={["home-global"]}>
 								{loading ? (
 									<div classes={["article-preview"]}>Loading... </div>
 								) : (
-										<FeedList type={type} articles={articles} />
-									)}
+									<FeedList type={type} articles={articles} />
+								)}
 							</div>
 							{!loading && (
 								<FeedPagination
 									total={total}
 									currentPage={currentPage}
 									fetchFeed={(page: number) => {
-										executor(fetchFeedProcess)({ type, filter: type === 'tag' ? tagName : username, page });
+										executor(fetchFeedProcess)({
+											type,
+											filter: type === "tag" ? tagName : username,
+											page
+										});
 									}}
 								/>
 							)}

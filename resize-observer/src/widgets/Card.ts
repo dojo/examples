@@ -14,6 +14,7 @@ export default factory(function Column({ middleware: { breakpoint }, properties 
 		MD: 150,
 		LG: 300
 	}) || { breakpoint: "SM" };
+	const { labelOnLeft } = properties();
 	return v(
 		"div",
 		{
@@ -24,7 +25,7 @@ export default factory(function Column({ middleware: { breakpoint }, properties 
 			v(
 				"div",
 				{
-					classes: properties.labelOnLeft ? css.badgeLeft : css.badge
+					classes: labelOnLeft ? css.badgeLeft : css.badge
 				},
 				[bp === "SM" ? "small" : bp === "MD" ? "med" : "big"]
 			),

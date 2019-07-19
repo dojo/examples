@@ -14,7 +14,7 @@ interface ArticleControlsProperties {
 const factory = create({}).properties<ArticleControlsProperties>();
 
 export const ArticleControls = factory(function ArticleControls({ properties }) {
-	const { favoritesCount, slug, favoriteArticle, favorited, following, authorUsername, followUser } = properties;
+	const { favoritesCount, slug, favoriteArticle, favorited, following, authorUsername, followUser } = properties();
 	return (
 		<span>
 			<button

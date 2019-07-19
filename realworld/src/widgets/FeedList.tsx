@@ -14,15 +14,20 @@ const factory = create({ store }).properties<FeedListProperties>();
 
 export const FeedList = factory(function Tab({ middleware: { store }, properties }) {
 	const { executor } = store;
-	if (properties.articles.length) {
+	const { articles, type } = properties();
+	if (articles.length) {
 		return (
 			<div>
-				{properties.articles.map((article) => (
+				{articles.map((article) => (
 					<ArticlePreview
 						key={article.slug}
 						article={article}
 						favoriteArticle={() => {
-							executor(favoriteFeedArticleProcess)({ slug: article.slug, favorited: article.favorited, type: properties.type });
+							executor(favoriteFeedArticleProcess)({
+								slug: article.slug,
+								favorited: article.favorited,
+								type
+							});
 						}}
 					/>
 				))}

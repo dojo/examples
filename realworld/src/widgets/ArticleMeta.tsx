@@ -17,7 +17,7 @@ interface ArticleMetaProperties {
 const factory = create({}).properties<ArticleMetaProperties>();
 
 export const ArticleMeta = factory(function ArticleMeta({ properties }) {
-	const { article, isAuthenticated, currentUser, favoriteArticle, followUser, deleteArticle } = properties;
+	const { article, isAuthenticated, currentUser, favoriteArticle, followUser, deleteArticle } = properties();
 	const { author, slug, createdAt, favorited, favoritesCount } = article;
 
 	return (

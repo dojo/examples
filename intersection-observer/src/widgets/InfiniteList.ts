@@ -12,7 +12,8 @@ export interface InfiniteListProperties {
 
 const factory = create({ intersection }).properties<InfiniteListProperties>();
 
-export default factory(function InfiniteList({ middleware: { intersection }, properties: { onRequestItems, data, isLoading }}) {
+export default factory(function InfiniteList({ middleware: { intersection }, properties }) {
+	const { onRequestItems, data, isLoading } = properties();
 	const { isIntersecting } = intersection.get('bottom');
 
 	if (isIntersecting && !isLoading) {

@@ -16,17 +16,18 @@ const factory = create({ store }).properties<ProfileProperties>();
 export const Profile = factory(function Profile({ middleware: { store }, properties }) {
 	const { get, path, executor } = store;
 	const isLoading = get(path("profile", "user", "isLoading"));
-	const username = get(path("profile", "user", "username"));
+	const profileUser = get(path("profile", "user", "username"));
 	const feed = get(path("profile", "feed"));
 	const currentUser = get(path("session", "username"));
+	const { username, type } = properties();
 
-	if (properties.username !== username && !isLoading) {
-		executor(getProfileProcess)({ username: properties.username, type: properties.type, page: 0 });
+	if (username !== profileUser && !isLoading) {
+		executor(getProfileProcess)({ username, type, page: 0 });
 		return null;
-	} else if (properties.type !== feed.category && !feed.isLoading) {
-		executor(getProfileFeedProcess)({ username: properties.username, type: properties.type, page: 0 });
+	} else if (type !== feed.category && !feed.isLoading) {
+		executor(getProfileFeedProcess)({ username, type, page: 0 });
 	}
-	const isCurrentUser = currentUser === username;
+	const isCurrentUser = currentUser === profileUser;
 	const currentPage = get(path("profile", "feed", "page")) || 0;
 	const total = get(path("profile", "feed", "total")) || 0;
 	const image = get(path("profile", "user", "image"));
@@ -80,7 +81,7 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 									<ActiveLink
 										to="user"
 										classes={["nav-link"]}
-										params={{ username: properties.username }}
+										params={{ username }}
 										activeClasses={["active"]}
 									>
 										My Articles
@@ -90,7 +91,7 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 									<ActiveLink
 										to="favorites"
 										classes={["nav-link"]}
-										params={{ username: properties.username }}
+										params={{ username }}
 										activeClasses={["active"]}
 									>
 										Favorited Articles
@@ -102,7 +103,7 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 							{feed.isLoading ? (
 								<div classes={["article-preview"]}>Loading... </div>
 							) : (
-								<FeedList type={properties.type} articles={feed.items || []} />
+								<FeedList type={type} articles={feed.items || []} />
 							)}
 						</div>
 						{!feed.isLoading && (
@@ -111,8 +112,8 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 								currentPage={currentPage}
 								fetchFeed={(page: number) => {
 									executor(getProfileFeedProcess)({
-										type: properties.type,
-										username: properties.username,
+										type,
+										username,
 										page
 									});
 								}}

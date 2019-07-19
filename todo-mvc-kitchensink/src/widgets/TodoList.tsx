@@ -25,7 +25,7 @@ function filterTodos(todos: Todo[], quickFilter: string, filter: string): Todo[]
 const factory = create({ theme, store }).properties<TodoListProperties>();
 
 export default factory(function TodoList({ middleware: { store, theme }, properties }) {
-	const { view, filter } = properties;
+	const { view, filter } = properties();
 	const { get, path } = store;
 	const { cardList, todoList } = theme.classes(css);
 	const todos = get(path('todos')) || [];
@@ -41,8 +41,5 @@ export default factory(function TodoList({ middleware: { store, theme }, propert
 		}
 		return <TodoItem key={todo.id} todo={todo} />;
 	});
-	return [
-		<ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>,
-		showDetails && <TodoDetails />
-	];
+	return [<ul classes={[view === 'card' && cardList, todoList]}>{todosNodes}</ul>, showDetails && <TodoDetails />];
 });

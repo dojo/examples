@@ -12,7 +12,7 @@ export interface TodoCardProperties {
 const factory = create({ theme, store }).properties<TodoCardProperties>();
 
 export default factory(function TodoItem({ middleware: { store, theme }, properties }) {
-	const { todo } = properties;
+	const { todo } = properties();
 	const { executor } = store;
 	const { card, cardToggle, cardHeader, completed, todoLabel, cardDestroy } = theme.classes(css);
 	return (
@@ -34,13 +34,13 @@ export default factory(function TodoItem({ middleware: { store, theme }, propert
 				/>
 			</div>
 			<label
-					ondblclick={() => {
-						executor(todoEditMode)({ id: todo.id, label: todo.label });
-					}}
-					classes={[todoLabel]}
-				>
-					{todo.label}
-				</label>
+				ondblclick={() => {
+					executor(todoEditMode)({ id: todo.id, label: todo.label });
+				}}
+				classes={[todoLabel]}
+			>
+				{todo.label}
+			</label>
 		</li>
 	);
 });

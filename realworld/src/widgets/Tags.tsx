@@ -1,5 +1,5 @@
 import { create, tsx } from "@dojo/framework/core/vdom";
-import { fetchFeedProcess } from '../processes/feedProcesses';
+import { fetchFeedProcess } from "../processes/feedProcesses";
 import store from "../store";
 
 const factory = create({ store });
@@ -19,7 +19,7 @@ export const Tags = factory(function Tags({ middleware: { store } }) {
 							key={`${i}`}
 							onclick={(event: MouseEvent) => {
 								event.preventDefault();
-								executor(fetchFeedProcess)({ type: 'tag', filter: tag, page: 0 })
+								executor(fetchFeedProcess)({ type: "tag", filter: tag, page: 0 });
 							}}
 							classes={["tag-pill", "tag-default"]}
 						>
