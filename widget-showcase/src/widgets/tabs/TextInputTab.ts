@@ -49,6 +49,33 @@ export default factory(function TextInputTab({ middleware: { icache } }) {
 				onInput: (value: string) => {
 					icache.set('state', { ...state, disabled: value });
 				}
+			}),
+			w(TextInput, {
+				key: 'helperText',
+				label: 'Helper Text input',
+				value: state['helperText'] || 'Initial value',
+				onInput: (value: string) => {
+					icache.set('state', { ...state, helperText: value });
+				},
+				helperText: 'I am helper text!'
+			}),
+			w(TextInput, {
+				key: 'valid',
+				label: 'Valid Text input',
+				value: state['valid'] || 'Initial value',
+				onInput: (value: string) => {
+					icache.set('state', { ...state, valid: value });
+				},
+				valid: true
+			}),
+			w(TextInput, {
+				key: 'invalid',
+				label: 'Invalid Text input',
+				value: state['invalid'] || 'Initial value',
+				onInput: (value: string) => {
+					icache.set('state', { ...state, invalid: value });
+				},
+				valid: { valid: false, message: 'This is invalid' }
 			})
 		]),
 		v('h2', ['Time picker']),

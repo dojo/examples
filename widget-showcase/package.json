@@ -12,8 +12,8 @@
     "test": "dojo build -m dev && npm run build:tests && dojo test -a"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-alpha.12",
-    "@dojo/themes": "^5.0.0",
+    "@dojo/framework": "6.0.0-alpha.15",
+    "@dojo/themes": "5.0.1",
     "@dojo/widgets": "6.0.0-alpha.4",
     "cldrjs": "0.5.0",
     "random-name": "^0.1.2",
