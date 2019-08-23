@@ -1,5 +1,5 @@
-import WidgetBase from '@dojo/framework/widget-core/WidgetBase';
-import { v, w } from '@dojo/framework/widget-core/d';
+import WidgetBase from '@dojo/framework/core/WidgetBase';
+import { v, w } from '@dojo/framework/core/vdom';
 import DgridWrapper, {
 	SelectionData,
 	SelectionMode,
@@ -18,9 +18,9 @@ interface DataItem {
 }
 
 function duplicate<T extends {}>(source: T): T {
-    const target = Object.create(Object.getPrototypeOf(source));
+	const target = Object.create(Object.getPrototypeOf(source));
 
-    return deepMixin(target, source);
+	return deepMixin(target, source);
 }
 
 function buildToggleLabel(label: string, currentValue: boolean) {

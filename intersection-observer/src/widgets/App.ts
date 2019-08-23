@@ -8,7 +8,7 @@ import * as css from './styles/app.m.css';
 const factory = create({ icache });
 
 export default factory(function App({ middleware: { icache }}) {
-	const data = icache.getOrSet('data', getListItems);
+	const data = icache.getOrSet<{ title: string; summary: string }[]>('data', getListItems);
 	const isLoading = icache.get('loading') || false;
 
 	return v('div', { classes: css.root }, [

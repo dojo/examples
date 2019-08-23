@@ -39,11 +39,15 @@ const languages = [
 
 const factory = create({ i18n, invalidator, icache });
 
+function isRtl(locale: string) {
+	return /^ar(-.*)?$/.test(locale);
+}
+
 export default factory(function App({ middleware: { i18n, invalidator, icache } }) {
 	const { messages } = i18n.localize(nlsBundle);
 	let localeDetails = i18n.get();
 	if (!localeDetails || !localeDetails.locale) {
-		let rtl = /^ar(-.*)?$/.test(i18nCore.locale);
+		let rtl = isRtl(i18nCore.locale);
 		localeDetails = { locale: i18nCore.locale, rtl };
 		i18n.set(localeDetails);
 	}
@@ -86,9 +90,9 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 										'select',
 										{
 											id: 'language',
-											onchange: (event: Event) => {
-												const select = event.target as HTMLSelectElement;
-												i18n.set({ locale: select.options[select.selectedIndex].value });
+											onchange: (event) => {
+												const locale = event.target.options[event.target.selectedIndex].value;
+												i18n.set({ locale, rtl: isRtl(locale) });
 											}
 										},
 										languages.map((data) => {
@@ -140,8 +144,8 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 								date: getLocalizedDate(date, tz),
 								labelKey: key,
 								key,
-								locale: multiple ? locale : locale,
-								rtl: multiple && locale.indexOf('ar-') === 0,
+								locale: multiple ? locale : undefined,
+								rtl: multiple && isRtl(locale),
 								size: 160
 							});
 						})
