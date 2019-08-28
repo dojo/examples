@@ -5,6 +5,7 @@
 	"main": "src/main.ts",
 	"scripts": {
 		"build": "dojo build",
+    "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
 		"prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
 		"build:tests": "dojo build -m unit && dojo build -m functional",
 		"test": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c local",

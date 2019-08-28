@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
+    "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "dojo build -m dev && dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
     "test": "dojo build -m dev && dojo build -m unit && dojo test"

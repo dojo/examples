@@ -4,6 +4,7 @@
   "scripts": {
     "prettier": "prettier --write 'src/**/*.ts' 'tests/**/*.ts'",
     "build": "dojo build",
+    "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "build:tests": "dojo build --legacy -m unit && dojo build --legacy -m functional",
     "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
     "test": "dojo build -m dist && npm run build:tests && dojo test -c local -a"

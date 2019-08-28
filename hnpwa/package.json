@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
+    "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "dev": "dojo build -m dev -w -s",
     "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "echo \"no tests\""

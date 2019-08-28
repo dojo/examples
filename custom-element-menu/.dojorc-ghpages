@@ -1,0 +1,11 @@
+{
+	"build-app": {
+		"base": "/examples/custom-element-menu"
+	},
+	"build-widget": {
+		"widgets": [
+			"src/widgets/MenuItem",
+			"src/widgets/Menu"
+		]
+	}
+}
