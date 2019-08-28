@@ -1,6 +1,6 @@
 {
 	"build-app": {
-		"base": "/examples/todo-mvc"
+		"base": "/examples/todo-mvc/"
 	},
 	"test-intern": {},
 	"create-app": {},

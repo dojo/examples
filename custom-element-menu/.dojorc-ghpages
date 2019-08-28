@@ -1,6 +1,6 @@
 {
 	"build-app": {
-		"base": "/examples/custom-element-menu"
+		"base": "/examples/custom-element-menu/"
 	},
 	"build-widget": {
 		"widgets": [
