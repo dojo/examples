@@ -16,4 +16,3 @@ coverage-unmapped.json
 coverage/
 npm-debug.log
 /output
-package-lock.json

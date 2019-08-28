@@ -1,6 +1,6 @@
 {
 	"build-app": {
-		"base": "/examples/dgrid-wrapper",
+		"base": "/examples/dgrid-wrapper/",
 		"externals": {
 			"dependencies": [
 				{ "from": "loaderConfig.js", "inject": true },
