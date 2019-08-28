@@ -7,8 +7,8 @@
 		"build": "dojo build",
 		"prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
 		"build:tests": "dojo build -m unit && dojo build -m functional",
-		"test": "dojo build -m dist && npm run build:tests && dojo test -a -c local",
-		"test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
+		"test": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c local",
+		"test-ci": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
 	},
 	"repository": {
 		"type": "git",
