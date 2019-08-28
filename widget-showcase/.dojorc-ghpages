@@ -1,0 +1,7 @@
+{
+  "build-app": {
+	"base": "/examples/widget-showcase/"
+  },
+  "test-intern": {
+  }
+}

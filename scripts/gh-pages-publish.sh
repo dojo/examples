@@ -4,7 +4,7 @@ function buildProject {
 	export PROJECT_DIR=$@
 	./scripts/install.sh
 	cd $PROJECT_DIR
-	npm run build
+	npm run build:ghpages
 	cd ..
 }
 

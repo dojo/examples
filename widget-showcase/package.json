@@ -4,6 +4,7 @@
   "main": "src/main.ts",
   "scripts": {
     "build": "dojo build",
+    "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "build:dev": "dojo build -m dev",
     "build:tests": "dojo build -m unit && dojo build -m functional",
     "precommit": "lint-staged",

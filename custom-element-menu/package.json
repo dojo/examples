@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
-    "build-app": "dojo build app",
-    "build-widgets": "dojo build widget",
+    "build:app:ghpages": "dojo build app --dojorc .dojorc-ghpages",
+    "build:app": "dojo build app",
+    "build:widgets": "dojo build widget",
     "clean": "shx rm -rf assets",
     "move-to-assets": "shx mv output/dist assets",
-    "build": "npm run build-widgets && npm run move-to-assets && npm run build-app && npm run clean",
+    "build:ghpages": "npm run build:widgets && npm run move-to-assets && npm run build:app:ghpages && npm run clean",
+    "build": "npm run build:widgets && npm run move-to-assets && npm run build:app && npm run clean",
     "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "echo no tests"
   },
