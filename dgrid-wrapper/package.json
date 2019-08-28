@@ -9,19 +9,19 @@
     "test": "dojo build -m dist && npm run build:tests && dojo test -c local -a"
   },
   "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "@dojo/interop": "^5.0.0",
+    "@dojo/framework": "^6.0.0",
+    "@dojo/interop": "^6.0.0",
     "dgrid": "1.2.1",
     "dijit": "1.13.0",
     "dojo": "1.13.0",
     "dojo-dstore": "1.1.2",
     "dojo-util": "1.13.0",
-    "tslib": "1.8.1"
+    "tslib": "1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli": "^5.0.0",
-    "@dojo/cli-build-app": "^5.0.0",
-    "@dojo/cli-test-intern": "^5.0.0",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli-test-intern": "^6.0.0",
     "@types/dojo": "^1.9.40",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
@@ -29,7 +29,7 @@
     "@types/sinon": "^1.16.35",
     "intern": "4.3.1",
     "prettier": "1.13.7",
-    "typescript": "2.6.1"
+    "typescript": "3.4.5"
   },
   "prettier": {
     "singleQuote": true,

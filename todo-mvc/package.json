@@ -8,8 +8,8 @@
     "build:tests": "dojo build -m unit && dojo build -m functional",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
-    "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
-    "test": "dojo build -m dist && npm run build:tests && dojo test -c local -a"
+    "test-ci": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
+    "test": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -c local -a"
   },
   "repository": {
     "type": "git",
@@ -21,13 +21,13 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-alpha.12",
+    "@dojo/framework": "^6.0.0",
     "tslib": "~1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli": "^5.0.0",
-    "@dojo/cli-build-app": "6.0.0-alpha.7",
-    "@dojo/cli-test-intern": "6.0.0-alpha.1",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli-test-intern": "^6.0.0",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
     "husky": "0.14.3",

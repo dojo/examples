@@ -1,31 +1,41 @@
 {
-  "name": "custom-element",
+  "name": "demo",
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
     "build-app": "dojo build app",
     "build-widgets": "dojo build widget",
-    "clean": "shx rm -rf src/assets",
-    "move-to-assets": "shx mv output/dist src/assets",
+    "clean": "shx rm -rf assets",
+    "move-to-assets": "shx mv output/dist assets",
     "build": "npm run build-widgets && npm run move-to-assets && npm run build-app && npm run clean",
+    "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "echo no tests"
   },
   "dependencies": {
-    "@dojo/framework": "^5.0.0",
-    "tslib": "~1.8.1",
+    "@dojo/framework": "^6.0.0",
+    "tslib": "~1.9.1",
     "@webcomponents/custom-elements": "~1.0.8"
   },
   "devDependencies": {
-    "@dojo/cli": "^5.0.0",
-    "@dojo/cli-build-app": "^5.0.0",
-    "@dojo/cli-build-widget": "^5.0.0",
-    "@dojo/cli-test-intern": "^5.0.0",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli-build-widget": "^6.0.0",
+    "@dojo/cli-test-intern": "^6.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",
     "@types/sinon": "^1.16.35",
+    "prettier": "1.18.2",
     "shx": "^0.2.2",
     "sinon": "^2.0.0",
-    "typescript": "~2.6.1"
+    "ts-loader": "5.4.5",
+    "typescript": "~3.4.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "printWidth": 120,
+    "arrowParens": "always"
   }
 }

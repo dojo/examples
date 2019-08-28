@@ -1,11 +1,9 @@
-import { WidgetBase } from '@dojo/framework/widget-core/WidgetBase';
-import { w } from '@dojo/framework/widget-core/d';
-import renderer from '@dojo/framework/widget-core/vdom';
+import { WidgetBase } from '@dojo/framework/core/WidgetBase';
+import renderer, { w } from '@dojo/framework/core/vdom';
 import { Menu } from './widgets/Menu';
 import { MenuItem } from './widgets/MenuItem';
 
 class Example extends WidgetBase {
-
 	private _onSelected(data: any) {
 		console.log(data);
 	}
