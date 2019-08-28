@@ -12,15 +12,15 @@
     "test-ci": "echo no tests"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-rc.2",
+    "@dojo/framework": "^6.0.0",
     "tslib": "~1.9.1",
     "@webcomponents/custom-elements": "~1.0.8"
   },
   "devDependencies": {
-    "@dojo/cli": "6.0.0-rc.1",
-    "@dojo/cli-build-app": "6.0.0-rc.2",
-    "@dojo/cli-build-widget": "6.0.0-rc.2",
-    "@dojo/cli-test-intern": "6.0.0-rc.1",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli-build-widget": "^6.0.0",
+    "@dojo/cli-test-intern": "^6.0.0",
     "@types/glob": "~5.0.0",
     "@types/grunt": "~0.4.0",
     "@types/node": "^6.0.46",

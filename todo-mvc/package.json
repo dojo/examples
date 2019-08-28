@@ -21,13 +21,13 @@
     "npm": ">=3"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-rc.2",
+    "@dojo/framework": "^6.0.0",
     "tslib": "~1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli": "6.0.0-rc.1",
-    "@dojo/cli-build-app": "6.0.0-rc.2",
-    "@dojo/cli-test-intern": "6.0.0-rc.1",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli-test-intern": "^6.0.0",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
     "husky": "0.14.3",

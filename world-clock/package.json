@@ -9,17 +9,17 @@
     "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
   },
   "dependencies": {
-    "@dojo/framework": "6.0.0-rc.2",
-    "@dojo/widgets": "6.0.0-rc.2",
+    "@dojo/framework": "^6.0.0",
+    "@dojo/widgets": "^6.0.0",
     "cldrjs": "0.5.0",
     "cldr-data": "32.0.1",
     "moment-timezone": "0.5.21",
     "tslib": "~1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli": "6.0.0-rc.1",
-    "@dojo/cli-build-app": "6.0.0-rc.2",
-    "@dojo/cli-test-intern": "6.0.0-rc.1",
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli-test-intern": "^6.0.0",
     "@types/moment-timezone": "0.5.7",
     "@types/node": "~9.6.5",
     "prettier": "1.18.2",
