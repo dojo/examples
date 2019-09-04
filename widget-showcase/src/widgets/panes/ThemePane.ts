@@ -2,9 +2,11 @@ import { create, w, v, invalidator } from '@dojo/framework/core/vdom';
 import theme from '@dojo/framework/core/middleware/theme';
 import Radio from '@dojo/widgets/radio';
 import dojo from '@dojo/themes/dojo';
+import material from '@dojo/themes/material';
 
 const themes: { [index: string]: any } = {
 	dojo,
+	material,
 	vanilla: {}
 };
 
