@@ -5,7 +5,7 @@
   "scripts": {
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-    "build:dev": "dojo build -m dev",
+    "build:dev": "dojo build -m dev -w -s",
     "build:tests": "dojo build -m unit && dojo build -m functional",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@dojo/framework": "^6.0.0",
-    "@dojo/themes": "^6.0.0",
-    "@dojo/widgets": "^6.0.0",
+    "@dojo/themes": "./dojo-themes-6.2.0.tgz",
+    "@dojo/widgets": "./dojo-widgets-6.2.0.tgz",
     "cldrjs": "0.5.0",
     "random-name": "^0.1.2",
     "tslib": "~1.9.1"

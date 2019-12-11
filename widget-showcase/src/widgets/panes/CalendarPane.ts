@@ -5,9 +5,9 @@ import Calendar from '@dojo/widgets/calendar';
 const factory = create({ icache });
 
 export default factory(function CalendarPane({ middleware: { icache } }) {
-	const month = icache.get('month');
-	const year = icache.get('year');
-	const selected = icache.get('selected');
+	const month = icache.get<number>('month');
+	const year = icache.get<number>('year');
+	const selected = icache.get<Date>('selected');
 
 	return v('div', [
 		w(Calendar, {
