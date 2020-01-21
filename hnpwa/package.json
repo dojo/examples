@@ -8,7 +8,7 @@
     "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "echo \"no tests\""
   },
-  "main": "src/main.ts",
+  "main": "src/main.tsx",
   "dependencies": {
     "@dojo/framework": "^6.0.0",
     "tslib": "~1.9.1"
