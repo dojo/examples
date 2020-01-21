@@ -2,7 +2,7 @@
   "name": "dojo-todo-mvc",
   "version": "0.0.1",
   "description": "TodoMVC using Dojo",
-  "main": "src/main.ts",
+  "main": "src/main.tsx",
   "scripts": {
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
