@@ -12,7 +12,7 @@
 			"es2015.symbol",
 			"es2015.symbol.wellknown"
 		],
-		"module": "commonjs",
+		"module": "umd",
 		"moduleResolution": "node",
 		"noUnusedLocals": true,
 		"outDir": "_build/",
@@ -26,6 +26,8 @@
 	},
 	"include": [
 		"./src/**/*.ts",
-		"./tests/**/*.ts"
+		"./tests/**/*.ts",
+		"./src/**/*.tsx",
+		"./tests/**/*.tsx"
 	]
 }
