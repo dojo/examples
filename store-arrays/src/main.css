@@ -1,0 +1,30 @@
+/* Put your styles and imports here */
+
+body {
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.parent {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+
+.child {
+    padding: 5px;
+	width: 200px;
+    user-select: none;
+	border: 1px black solid;
+	margin: 5px;
+}
+
+.company {
+    padding-bottom: 5px;
+    height: 50px;
+}
+
+.people {
+    display: flex;
+    justify-content: space-between
+}

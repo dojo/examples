@@ -1,0 +1,24 @@
+{
+  "name": "store-arrays",
+  "version": "1.0.0",
+  "main": "src/main.tsx",
+  "scripts": {
+    "dev": "dojo build --mode dev --watch --serve",
+    "build": "dojo build --mode dist",
+    "build:dev": "dojo build --mode dev",
+    "test-ci": "echo no tests"
+  },
+  "dependencies": {
+    "@dojo/framework": "^6.0.0",
+    "faker": "4.1.0",
+    "tslib": "~1.9.1"
+  },
+  "devDependencies": {
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@types/faker": "4.1.2",
+    "typescript": "~3.4.5"
+  },
+  "keywords": [],
+  "description": "Demonstrates working with arrays in @dojo/stores"
+}

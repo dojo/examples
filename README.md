@@ -19,6 +19,9 @@ Here is a table of the current examples available in this repository complete wi
 |---|---|---|---|---|
 | TodoMVC  | [Link](./todo-mvc)  | [Link](https://dojo.github.io/examples/todo-mvc)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.  |
 | TodoMVC (kitchen sink) | [Link](./todo-mvc-kitchensink)  | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-kitchensink) |    Feature-enhanced version of TodoMVC built using Dojo packages. |
+| iCache Basic | [Link](./icache-basic)  | [Link](https://dojo.github.io/examples/icache-basic)  |  [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/icache-basic) | Basic example of icache middleware usage |
+| iCache Advanced | [Link](./icache-advanced)  | [Link](https://dojo.github.io/examples/icache-advanced)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/icache-advanced) | Example of getOrSet icache API and typed icache |
+| Resize Middleware | [Link](./resize-middleware)  | [Link](https://dojo.github.io/examples/resize-middleware)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/resize-middleware) | Demonstrates working with an element that changes dimensions |
 | HNPWA  |  [Link](./hnpwa) | [Link](https://dojo-2-hnpwa-d668d.firebaseapp.com/) | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/hnpwa) |  Reference implementation of [HNPWA](https://hnpwa.com/) built using Dojo packages.  |
 | Widget Showcase  |  [Link](./widget-showcase)  | [Link](https://dojo.github.io/examples/widget-showcase)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/widget-showcase) |  Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets).  |
 | Custom Element Showcase | [Link](./custom-element-showcase) | [Link](https://dojo.github.io/examples/custom-element-showcase) |  | Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets) compiled and [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). |
@@ -28,6 +31,8 @@ Here is a table of the current examples available in this repository complete wi
 | Resize Observer | [Link](./resize-observer) |  [Link](https://dojo.github.io/examples/resize-observer/)  |  | Demonstration of the [`Resize`](https://github.com/dojo/widget-core#resize) meta and how it can be used to create responsive components. |
 | Dgrid Wrapper | [Link](./dgrid-wrapper) | [Link](https://dojo.github.io/examples/dgrid-wrapper) | | Demonstration of the [`Dgrid Wrapper`](https://github.com/dojo/interop/tree/master/src/dgrid) for running [dgrid](http://dgrid.io) in a reactive way in a modern Dojo application. |
 | World Clock | [Link](./world-clock) | [Link](https://dojo.github.io/examples/world-clock) | | Demonstration of i18n in an application built using Dojo packages. |
+| Static Blog | [Link](./static-blog)  | [Link](https://dojo.github.io/examples/static-blog)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/static-blog) | Template for creating a blog using dojo with build time rendering and blocks |
+| Store Arrays | [Link](./store-arrays)  | [Link](https://dojo.github.io/examples/store-arrays)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/store-arrays) | Demonstrates working with arrays in @dojo/stores |
 
 ## How Do I Contribute?
 
