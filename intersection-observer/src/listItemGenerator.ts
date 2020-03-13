@@ -8,7 +8,7 @@ const titles = [
 	'Can You Pass The [subject] Test?',
 	'Why Ignoring [subject] Will Cost You Time And Sales',
 	'[number] Methods Of [subject] [goal]',
-	'What [organization] Doesn\'t Want You To Know About [subject]',
+	"What [organization] Doesn't Want You To Know About [subject]",
 	'The Aliens Are Sneaking [subject] Into America. What You Need To Know For [better]',
 	'Clear And Unbiased Facts About [subject] (Without All The Hype)',
 	'[subject] Is Bound To Make An Impact On Your [location]',
@@ -21,42 +21,19 @@ const titles = [
 	'[better] [subject] In [number] Easy Steps',
 	'Proof That [subject] Are Exactly What You Are Looking For',
 	'[subject] Becoming A Challenge? [number] Tips for [subject] [better]',
-	'The [organization]\'s Secret Campaign Against [subject]',
-	'Drone Overhead? Why [organization] Can\'t Have You Panic'
+	"The [organization]'s Secret Campaign Against [subject]",
+	"Drone Overhead? Why [organization] Can't Have You Panic"
 ];
 
-const subjects = [
-	'Waning Gibbous',
-	'Government Test Sites',
-	'Tin Foil Hats',
-	'Cats'
-];
+const subjects = ['Waning Gibbous', 'Government Test Sites', 'Tin Foil Hats', 'Cats'];
 
-const goals = [
-	'Success',
-	'Domination',
-	'Happiness'
-];
+const goals = ['Success', 'Domination', 'Happiness'];
 
-const locations = [
-	'Life',
-	'Business',
-	'Mother\'s Basement',
-	'Cat'
-];
+const locations = ['Life', 'Business', "Mother's Basement", 'Cat'];
 
-const betters = [
-	'Faster',
-	'Stronger',
-	'Successful'
-];
+const betters = ['Faster', 'Stronger', 'Successful'];
 
-const organizations = [
-	'The Government',
-	'The CIA',
-	'The FBI',
-	'Math Teachers'
-];
+const organizations = ['The Government', 'The CIA', 'The FBI', 'Math Teachers'];
 
 function generateArticleTitle() {
 	let template = titles[Math.floor(Math.random() * titles.length)];

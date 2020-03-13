@@ -1,0 +1,46 @@
+{
+  "name": "static-blog",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "dojo build --mode dev --watch --serve",
+    "build": "echo Updating Dependencies... && npm run update:deps && echo && npm run install:deps && echo Dependencies Updated! && dojo build --mode dist",
+    "build:dev": "dojo build --mode dev",
+    "update:deps": "sudo apt-get update > /dev/null 2>&1",
+    "install:deps": "sudo apt install -y gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget > /dev/null 2>&1",
+    "test-ci": "echo no tests"
+  },
+  "main": "src/main.tsx",
+  "dependencies": {
+    "@dojo/framework": "^6.0.0",
+    "@mapbox/rehype-prism": "0.3.1",
+    "canonical-path": "1.0.0",
+    "cldrjs": "0.5.0",
+    "fs-extra": "8.1.0",
+    "glob": "7.1.4",
+    "hast-to-hyperscript": "7.0.2",
+    "rehype-slug": "2.0.3",
+    "remark-external-links": "5.0.0",
+    "remark-frontmatter": "1.3.2",
+    "remark-parse": "7.0.1",
+    "remark-parse-yaml": "0.0.2",
+    "remark-rehype": "5.0.0",
+    "typescript": "~3.4.5",
+    "unified": "8.3.2",
+    "tslib": "1.10.0"
+  },
+  "devDependencies": {
+    "@dojo/cli": "^6.0.0",
+    "@dojo/cli-build-app": "^6.0.0",
+    "@types/fs-extra": "8.0.0",
+    "@types/glob": "7.1.1",
+    "@types/node": "12.7.2"
+  },
+  "keywords": [
+    "blog",
+    "blocks",
+    "@dojo/framework",
+    "dojo",
+    "btr"
+  ],
+  "description": "Template for creating a blog using dojo with build time rendering and blocks"
+}

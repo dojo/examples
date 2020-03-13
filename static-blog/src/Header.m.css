@@ -1,0 +1,52 @@
+.root {
+	padding: 1rem;
+}
+
+.link {
+	color: #000;
+	display: inline-block;
+	font-weight: bold;
+	text-decoration: none;
+	transition: color 0.15s ease-in;
+	opacity: 1;
+	transition: opacity 0.15s ease-in;
+	font-size: 3rem;
+	text-align: center;
+	display: block;
+}
+
+.link:hover,
+.link:focus {
+	opacity: 0.5;
+	transition: opacity 0.15s ease-in;
+}
+
+.link:active {
+	opacity: 0.8;
+	transition: opacity 0.15s ease-out;
+	transition: color 0.15s ease-in;
+}
+
+.link:link,
+.link:visited {
+	transition: color 0.15s ease-in;
+}
+
+.link:hover {
+	transition: color 0.15s ease-in;
+}
+
+.link:focus {
+	transition: color 0.15s ease-in;
+	outline: 1px dotted currentColor;
+}
+
+@media screen and (min-width: 30em) {
+	.root {
+		padding: 2rem;
+	}
+
+	.link {
+		font-size: 2rem;
+	}
+}

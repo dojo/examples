@@ -1,0 +1,87 @@
+.header {
+	background-color: #ffb700;
+	font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+		"helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+		sans-serif;
+}
+
+.container {
+	max-width: 96rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 2rem;
+}
+
+.date {
+	font-size: 0.875rem;
+	margin-bottom: 0.5rem;
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.title {
+	font-size: 2.25rem;
+	max-width: 20em;
+	line-height: 1.25;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.titleLabel {
+	background-color: rgba(0, 0, 0, 0.9);
+	line-height: 1.5;
+	color: #fff;
+	padding: 0.25rem;
+	letter-spacing: -0.05em;
+}
+
+.description {
+	font-size: 1.5rem;
+	font-weight: 100;
+	font-family: georgia, serif;
+	font-style: italic;
+}
+
+.author {
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.blog {
+	padding: 2rem;
+	font-family: georgia, serif;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media screen and (min-width: 30em) {
+	.container {
+		padding-top: 4rem;
+	}
+}
+
+@media screen and (min-width: 30em) and (max-width: 60em) {
+	.title {
+		font-size: 3rem;
+	}
+}
+
+@media screen and (min-width: 60em) {
+	.container {
+		padding-left: 16rem;
+		padding-right: 16rem;
+	}
+
+	.title {
+		font-size: 4rem;
+	}
+
+	.blog {
+		padding-left: 16rem;
+		padding-right: 16rem;
+		max-width: 96rem;
+	}
+}

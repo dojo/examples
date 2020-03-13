@@ -1,5 +1,5 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import store from "../store";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import store from '../store';
 import {
 	getEditorArticleProcess,
 	titleInputProcess,
@@ -9,8 +9,8 @@ import {
 	addTagProcess,
 	removeTagProcess,
 	publishArticleProcess
-} from "../processes/editorProcesses";
-import ErrorList from "./ErrorList";
+} from '../processes/editorProcesses';
+import ErrorList from './ErrorList';
 
 export interface EditorProperties {
 	slug?: string;
@@ -20,8 +20,8 @@ const factory = create({ store }).properties<EditorProperties>();
 
 export const Editor = factory(function Editor({ middleware: { store }, properties }) {
 	const { get, path, executor } = store;
-	const article = get(path("editor")) || {};
-	const errors = get(path("errors"));
+	const article = get(path('editor')) || {};
+	const errors = get(path('errors'));
 	const { slug } = properties();
 
 	if (slug && (!article || (article.slug !== slug && !article.isLoading))) {
@@ -30,14 +30,14 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 	}
 
 	return (
-		<div classes={["editor-page"]}>
-			<div classes={["container", "page"]}>
-				<div classes={["row"]}>
-					<div classes={["col-md-10", "offset-md-1", "col-xs-12"]}>
+		<div classes={['editor-page']}>
+			<div classes={['container', 'page']}>
+				<div classes={['row']}>
+					<div classes={['col-md-10', 'offset-md-1', 'col-xs-12']}>
 						{errors && <ErrorList errors={errors} />}
 						<form>
 							<fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										value={article.title}
 										oninput={(event: KeyboardEvent) => {
@@ -45,10 +45,10 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 											executor(titleInputProcess)({ title: target.value });
 										}}
 										placeholder="Article Title"
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										value={article.description}
 										oninput={(event: KeyboardEvent) => {
@@ -56,10 +56,10 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 											executor(descInputProcess)({ description: target.value });
 										}}
 										placeholder="What's this article about?"
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<textarea
 										value={article.body}
 										oninput={(event: KeyboardEvent) => {
@@ -68,10 +68,10 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 										}}
 										rows={8}
 										placeholder="Write your article (in markdown)"
-										classes={["form-control"]}
+										classes={['form-control']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										onkeydown={(event: KeyboardEvent) => {
 											if (event.keyCode === 13) {
@@ -86,17 +86,17 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 										}}
 										value={article.tag}
 										placeholder="Enter Tag"
-										classes={["form-control"]}
+										classes={['form-control']}
 									/>
-									<div classes={["tag-list"]}>
+									<div classes={['tag-list']}>
 										{article.tagList &&
 											article.tagList.map((tag) => (
-												<span classes={["tag-default", "tag-pill"]}>
+												<span classes={['tag-default', 'tag-pill']}>
 													<i
 														onclick={() => {
 															executor(removeTagProcess)({ tag });
 														}}
-														classes={["ion-close-round"]}
+														classes={['ion-close-round']}
 													/>
 													{tag}
 												</span>
@@ -109,7 +109,7 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 										event.preventDefault();
 										executor(publishArticleProcess)({});
 									}}
-									classes={["btn", "btn-lg", "pull-xs-right", "btn-primary"]}
+									classes={['btn', 'btn-lg', 'pull-xs-right', 'btn-primary']}
 								>
 									Publish Article
 								</button>

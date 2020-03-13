@@ -6,7 +6,6 @@
 	"scripts": {
 		"build": "dojo build",
 		"build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-		"prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
 		"build:tests": "dojo build -m unit && dojo build -m functional",
 		"test": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c local",
 		"test-ci": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
@@ -34,14 +33,6 @@
 		"@types/glob": "~5.0.0",
 		"@types/node": "^6.0.46",
 		"loader-utils": "^1.0.2",
-		"prettier": "1.17.1",
 		"typescript": "~3.4.5"
-	},
-	"prettier": {
-		"singleQuote": true,
-		"tabWidth": 4,
-		"useTabs": true,
-		"printWidth": 120,
-		"arrowParens": "always"
 	}
 }

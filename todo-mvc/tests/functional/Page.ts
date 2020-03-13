@@ -92,14 +92,20 @@ export default class Page {
 	}
 
 	isFooterVisible() {
-		return this.remote.findByCssSelector(this.selectors.footer).then(() => true, () => false);
+		return this.remote.findByCssSelector(this.selectors.footer).then(
+			() => true,
+			() => false
+		);
 	}
 
 	isCompleteAllChecked() {
 		return this.remote
 			.then(this.delay)
 			.findByCssSelector(this.selectors.toggleAllButton + ':checked')
-			.then(() => true, () => false);
+			.then(
+				() => true,
+				() => false
+			);
 	}
 
 	isNewItemInputFocused() {

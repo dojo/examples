@@ -2,11 +2,11 @@
 
 A demo implementation of [@dojo/widgets](https://github.com/dojo/widgets) used as custom elements.
 
-- [Pre-requisites](#pre-requisites)
-- [Usage](#usage)
-- [How do I contribute?](#how-do-i-contribute)
-  - [Installation](#installation)
-- [Licensing information](#licensing-information)
+-   [Pre-requisites](#pre-requisites)
+-   [Usage](#usage)
+-   [How do I contribute?](#how-do-i-contribute)
+    -   [Installation](#installation)
+-   [Licensing information](#licensing-information)
 
 ## Usage
 
@@ -28,7 +28,7 @@ To view the showcase, open the `dist` directory.
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
 
 ### Installation
 
@@ -39,4 +39,3 @@ In order to build the project run `npm run build`.
 ## Licensing Information
 
 © 2019 [OpenJS Foundation](https://openjsf.org) & contributors. [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
-

@@ -1,9 +1,9 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import store from "../store";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import store from '../store';
 
-import { favoriteFeedArticleProcess } from "./../processes/feedProcesses";
-import { ArticlePreview } from "./ArticlePreview";
-import { ArticleItem } from "../interfaces";
+import { favoriteFeedArticleProcess } from './../processes/feedProcesses';
+import { ArticlePreview } from './ArticlePreview';
+import { ArticleItem } from '../interfaces';
 
 interface FeedListProperties {
 	type: string;
@@ -35,7 +35,7 @@ export const FeedList = factory(function Tab({ middleware: { store }, properties
 		);
 	}
 
-	return <div classes={["article-preview"]}>No articles here, yet!</div>;
+	return <div classes={['article-preview']}>No articles here, yet!</div>;
 });
 
 export default FeedList;

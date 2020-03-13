@@ -8,7 +8,6 @@
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "build:tests": "dojo build -m unit && dojo build -m functional",
     "precommit": "lint-staged",
-    "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
     "test": "dojo build --dojorc .dojorc-test && npm run build:tests && dojo test -c local -a"
   },
@@ -31,22 +30,6 @@
     "@dojo/cli-test-intern": "^6.0.0",
     "@types/glob": "~5.0.0",
     "@types/node": "^6.0.46",
-    "husky": "0.14.3",
-    "lint-staged": "6.0.0",
-    "prettier": "1.18.2",
     "typescript": "~3.4.5"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 4,
-    "useTabs": true,
-    "printWidth": 120,
-    "arrowParens": "always"
   }
 }

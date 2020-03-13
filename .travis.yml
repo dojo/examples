@@ -1,12 +1,15 @@
 sudo: false
 language: node_js
 node_js:
-- '10'
+- '12'
 env:
   matrix:
   - PROJECT_DIR=widget-showcase
   - PROJECT_DIR=todo-mvc
   - PROJECT_DIR=todo-mvc-kitchensink
+  - PROJECT_DIR=icache-basic
+  - PROJECT_DIR=icache-advanced
+  - PROJECT_DIR=resize-middleware
   - PROJECT_DIR=realworld
   - PROJECT_DIR=world-clock
   - PROJECT_DIR=custom-element-menu
@@ -14,6 +17,8 @@ env:
   - PROJECT_DIR=intersection-observer
   - PROJECT_DIR=resize-observer
   - PROJECT_DIR=dgrid-wrapper
+  - PROJECT_DIR=static-blog
+  - PROJECT_DIR=store-arrays
   global:
   - SAUCE_USERNAME=dojo2-ts-ci
   - SAUCE_ACCESS_KEY=e92610e3-834e-4bec-a3b5-6f7b9d874601

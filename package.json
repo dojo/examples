@@ -1,0 +1,29 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "scripts": {
+    "prettier": "prettier --write \"**/*.{ts,tsx,md}\" --ignore-path=.gitignore"
+  },
+  "devDependencies": {
+    "husky": "4.2.3",
+    "lint-staged": "10.0.8",
+    "prettier": "1.19.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "printWidth": 120,
+    "arrowParens": "always"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

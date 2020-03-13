@@ -1,5 +1,5 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import { Errors } from "../interfaces";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { Errors } from '../interfaces';
 
 interface ErrorListProperties {
 	errors: Errors;
@@ -20,7 +20,7 @@ export const ErrorList = factory(function ErrorList({ properties }) {
 	errorList;
 
 	return (
-		<ul classes={["error-messages"]}>
+		<ul classes={['error-messages']}>
 			{errorList.map((error: string) => (
 				<li>{error}</li>
 			))}

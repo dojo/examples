@@ -1,15 +1,15 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import { Outlet } from "@dojo/framework/routing/Outlet";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { Outlet } from '@dojo/framework/routing/Outlet';
 
-import Header from "./widgets/Header";
-import Settings from "./widgets/Settings";
-import Login from "./widgets/Login";
-import Register from "./widgets/Register";
-import Profile from "./widgets/Profile";
-import Editor from "./widgets/Editor";
-import Article from "./widgets/Article";
-import Home from "./widgets/Home";
-import Footer from "./widgets/Footer";
+import Header from './widgets/Header';
+import Settings from './widgets/Settings';
+import Login from './widgets/Login';
+import Register from './widgets/Register';
+import Profile from './widgets/Profile';
+import Editor from './widgets/Editor';
+import Article from './widgets/Article';
+import Home from './widgets/Home';
+import Footer from './widgets/Footer';
 
 const factory = create();
 

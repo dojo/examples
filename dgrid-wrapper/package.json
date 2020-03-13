@@ -2,7 +2,6 @@
   "name": "dgrid-wrapper-app",
   "version": "1.0.0",
   "scripts": {
-    "prettier": "prettier --write 'src/**/*.ts' 'tests/**/*.ts'",
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "build:tests": "dojo build --legacy -m unit && dojo build --legacy -m functional",
@@ -29,15 +28,6 @@
     "@types/node": "^6.0.46",
     "@types/sinon": "^1.16.35",
     "intern": "4.3.1",
-    "prettier": "1.13.7",
     "typescript": "3.4.5"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 4,
-    "useTabs": true,
-    "parser": "typescript",
-    "printWidth": 120,
-    "arrowParens": "always"
   }
 }

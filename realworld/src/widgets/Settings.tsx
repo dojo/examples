@@ -1,5 +1,5 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import store from "../store";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import store from '../store';
 import {
 	bioInputProcess,
 	emailInputProcess,
@@ -8,14 +8,14 @@ import {
 	getUserSettingsProcess,
 	usernameInputProcess,
 	updateUserSettingsProcess
-} from "./../processes/settingsProcesses";
-import { logoutProcess } from "../processes/loginProcesses";
+} from './../processes/settingsProcesses';
+import { logoutProcess } from '../processes/loginProcesses';
 
 const factory = create({ store });
 
 export const Settings = factory(function Settings({ middleware: { store } }) {
 	const { get, path, executor } = store;
-	const settings = get(path("settings"));
+	const settings = get(path('settings'));
 
 	if (!settings) {
 		executor(getUserSettingsProcess)({});
@@ -23,14 +23,14 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 	}
 
 	return (
-		<div classes={["editor-page"]}>
-			<div classes={["container", "page"]}>
-				<div classes={["row"]}>
-					<div classes={["col-md-10", "offset-md-1", "col-xs-12"]}>
-						<h1 classes={["text-xs-center"]}>Your Settings</h1>
+		<div classes={['editor-page']}>
+			<div classes={['container', 'page']}>
+				<div classes={['row']}>
+					<div classes={['col-md-10', 'offset-md-1', 'col-xs-12']}>
+						<h1 classes={['text-xs-center']}>Your Settings</h1>
 						<form>
 							<fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										value={settings.image}
 										oninput={(event: KeyboardEvent) => {
@@ -38,10 +38,10 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 											executor(imageUrlInputProcess)({ imageUrl: target.value });
 										}}
 										placeholder=""
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										value={settings.username}
 										oninput={(event: KeyboardEvent) => {
@@ -49,10 +49,10 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 											executor(usernameInputProcess)({ username: target.value });
 										}}
 										placeholder="Your Name"
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<textarea
 										rows={8}
 										value={settings.bio}
@@ -61,10 +61,10 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 											executor(bioInputProcess)({ bio: target.value });
 										}}
 										placeholder="Short bio about you"
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										value={settings.email}
 										oninput={(event: KeyboardEvent) => {
@@ -72,10 +72,10 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 											executor(emailInputProcess)({ email: target.value });
 										}}
 										placeholder="Email"
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
-								<fieldset classes={["form-group"]}>
+								<fieldset classes={['form-group']}>
 									<input
 										value={settings.password}
 										type="password"
@@ -84,7 +84,7 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 											executor(passwordInputProcess)({ password: target.value });
 										}}
 										placeholder="Password"
-										classes={["form-control", "form-control-lg"]}
+										classes={['form-control', 'form-control-lg']}
 									/>
 								</fieldset>
 								<button
@@ -93,7 +93,7 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 										executor(updateUserSettingsProcess)({});
 									}}
 									type="submit"
-									classes={["btn", "btn-lg", "btn-primary", "pull-xs-right"]}
+									classes={['btn', 'btn-lg', 'btn-primary', 'pull-xs-right']}
 								>
 									Update Settings
 								</button>
@@ -104,7 +104,7 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 							onclick={() => {
 								executor(logoutProcess)({});
 							}}
-							classes={["btn", "btn-outline-danger"]}
+							classes={['btn', 'btn-outline-danger']}
 						>
 							Or click here to logout
 						</button>

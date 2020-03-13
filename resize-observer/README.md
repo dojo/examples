@@ -39,7 +39,7 @@ of the components displayed as the overall space available decreases.
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
 
 ### Installation
 
@@ -50,4 +50,3 @@ In order to build the project run `npm run build`.
 ## Licensing Information
 
 © 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
-
