@@ -2,13 +2,13 @@
 
 Implementation of a basic menu widget that demonstrates using as custom elements against standard Dojo widgets.
 
-- [Pre-requisites](#pre-requisites)
-- [Usage](#usage)
-- [Features](#features)
-- [How do I contribute?](#how-do-i-contribute)
-  - [Installation](#installation)
-  - [Testing](#testing)
-- [Licensing information](#licensing-information)
+-   [Pre-requisites](#pre-requisites)
+-   [Usage](#usage)
+-   [Features](#features)
+-   [How do I contribute?](#how-do-i-contribute)
+    -   [Installation](#installation)
+    -   [Testing](#testing)
+-   [Licensing information](#licensing-information)
 
 ## Pre-requisites
 
@@ -47,17 +47,17 @@ To build the custom elements, the `npm run build` command above first runs `dojo
 dojo build --element=src/widgets/createMenuItemElement.ts
 dojo build --element=src/widgets/createMenuElement.ts
 ```
+
 Those CLI build commands use webpack to create bundles in the `dist` directory for each custom element.
 To use those custom elements in your own HTML page, import the custom elements' HTML files:
 
 ```html
-<link rel="import" href="./dist/menu/menu.html" />
-<link rel="import" href="./dist/menu-item/menu-item.html" />
+<link rel="import" href="./dist/menu/menu.html" /> <link rel="import" href="./dist/menu-item/menu-item.html" />
 ```
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
 Contributing Guidelines and Style Guide.
 
 ### Installation

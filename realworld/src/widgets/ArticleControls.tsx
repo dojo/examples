@@ -1,5 +1,5 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import { FollowUserPayload, FavoriteArticlePayload } from "../processes/interfaces";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { FollowUserPayload, FavoriteArticlePayload } from '../processes/interfaces';
 
 interface ArticleControlsProperties {
 	slug: string;
@@ -21,20 +21,20 @@ export const ArticleControls = factory(function ArticleControls({ properties }) 
 				onclick={() => {
 					followUser({ username: authorUsername, following });
 				}}
-				classes={["btn", "btn-sm", following ? "btn-secondary" : "btn-outline-secondary"]}
+				classes={['btn', 'btn-sm', following ? 'btn-secondary' : 'btn-outline-secondary']}
 			>
-				<i classes={["ioc-plus-round"]} />
-				{`${following ? " Unfollow" : " Follow"} ${authorUsername}`}
+				<i classes={['ioc-plus-round']} />
+				{`${following ? ' Unfollow' : ' Follow'} ${authorUsername}`}
 			</button>
 			<button
 				onclick={() => {
 					favoriteArticle({ slug, favorited });
 				}}
-				classes={["btn", "btn-sm", favorited ? "btn-primary" : "btn-outline-primary"]}
+				classes={['btn', 'btn-sm', favorited ? 'btn-primary' : 'btn-outline-primary']}
 			>
-				<i classes={["ion-heart"]}></i>
-				{`${favorited ? " Unfavorite" : " Favorite"}`}
-				<span classes={["counter"]}>{`(${favoritesCount})`}</span>
+				<i classes={['ion-heart']}></i>
+				{`${favorited ? ' Unfavorite' : ' Favorite'}`}
+				<span classes={['counter']}>{`(${favoritesCount})`}</span>
 			</button>
 		</span>
 	);

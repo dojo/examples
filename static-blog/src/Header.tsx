@@ -1,7 +1,7 @@
-import { tsx, create } from "@dojo/framework/core/vdom";
-import Link from "@dojo/framework/routing/Link";
+import { tsx, create } from '@dojo/framework/core/vdom';
+import Link from '@dojo/framework/routing/Link';
 
-import * as css from "./Header.m.css";
+import * as css from './Header.m.css';
 
 interface HeaderProperties {
 	title: string;

@@ -6,7 +6,6 @@
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
     "test": "dojo build -m unit && dojo test",
-    "prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
     "test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
   },
   "dependencies": {
@@ -23,14 +22,6 @@
     "@dojo/cli-test-intern": "^6.0.0",
     "@types/moment-timezone": "0.5.7",
     "@types/node": "~9.6.5",
-    "prettier": "1.18.2",
     "typescript": "~3.4.5"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 4,
-    "useTabs": true,
-    "printWidth": 120,
-    "arrowParens": "always"
   }
 }

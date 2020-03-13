@@ -40,7 +40,10 @@ export class App extends WidgetBase {
 	private _compoundColumns = [
 		{
 			label: 'Full Name',
-			children: [{ field: 'first', label: 'First' }, { field: 'last', label: 'Last' }]
+			children: [
+				{ field: 'first', label: 'First' },
+				{ field: 'last', label: 'Last' }
+			]
 		},
 		{ field: 'id', label: 'ID' }
 	];
@@ -271,7 +274,10 @@ export class App extends WidgetBase {
 
 	private _columnToggle = 0;
 	private _columnDefs = [
-		[{ field: 'first', label: 'First', renderExpando: true }, { field: 'last', label: 'Last' }],
+		[
+			{ field: 'first', label: 'First', renderExpando: true },
+			{ field: 'last', label: 'Last' }
+		],
 		[
 			{ field: 'id', label: 'ID', renderExpando: true },
 			{ field: 'first', label: 'First' },

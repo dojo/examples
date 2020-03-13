@@ -1,14 +1,14 @@
-import { create, v, w } from "@dojo/framework/core/vdom";
-import breakpoint from "@dojo/framework/core/middleware/breakpoint";
-import icache from "@dojo/framework/core/middleware/icache";
+import { create, v, w } from '@dojo/framework/core/vdom';
+import breakpoint from '@dojo/framework/core/middleware/breakpoint';
+import icache from '@dojo/framework/core/middleware/icache';
 
-import Calendar from "./Calendar";
-import Card from "./Card";
-import ResizableSection from "./ResizableSection";
-import Article from "./Article";
-import Column from "./Column";
-import Button from "@dojo/widgets/button";
-import * as css from "./styles/app.m.css";
+import Calendar from './Calendar';
+import Card from './Card';
+import ResizableSection from './ResizableSection';
+import Article from './Article';
+import Column from './Column';
+import Button from '@dojo/widgets/button';
+import * as css from './styles/app.m.css';
 
 const factory = create({ breakpoint, icache });
 
@@ -70,15 +70,15 @@ function resize(columns: number[], column: number, expand: boolean, isMedium: bo
 }
 
 export default factory(function App({ middleware: { breakpoint, icache } }) {
-	let cachedColumns = icache.get<number[]>("columns") || [2, 2, 2, 2];
-	const offset = icache.get<number>("offset") || 0;
-	const { breakpoint: bp } = breakpoint.get("root", {
+	let cachedColumns = icache.get<number[]>('columns') || [2, 2, 2, 2];
+	const offset = icache.get<number>('offset') || 0;
+	const { breakpoint: bp } = breakpoint.get('root', {
 		SM: 0,
 		MD: 800,
 		LG: 1000
-	}) || { breakpoint: "LG" };
-	const isSmall = bp === "SM";
-	const isMedium = bp === "MD";
+	}) || { breakpoint: 'LG' };
+	const isSmall = bp === 'SM';
+	const isMedium = bp === 'MD';
 
 	if (isMedium && cachedColumns.filter((columns) => columns % 2 === 1).length) {
 		let numberOfOdd = cachedColumns.filter((column) => column % 2 === 1).length;
@@ -95,44 +95,44 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 		}
 
 		cachedColumns = newColumns;
-		icache.set("columns", cachedColumns);
+		icache.set('columns', cachedColumns);
 	}
 
 	const widgets = [
 		w(Article, {}),
-		v("div", {}, [
-			v("h3", {}, ["Nested Components"]),
+		v('div', {}, [
+			v('h3', {}, ['Nested Components']),
 			w(Column, {}, [w(Card, { labelOnLeft: true }), w(Card, { labelOnLeft: true })])
 		]),
 		w(Calendar, {}),
 		w(Card, {})
 	];
 
-	return v("div", { classes: css.root }, [
+	return v('div', { classes: css.root }, [
 		isSmall
-			? v("div", { key: "controls", classes: css.controls }, [
+			? v('div', { key: 'controls', classes: css.controls }, [
 					w(
 						Button,
 						{
 							onClick: () => () => {
-								const offset = icache.get<number>("offset") || 0;
-								icache.set("offset", (offset + 1) % 4);
+								const offset = icache.get<number>('offset') || 0;
+								icache.set('offset', (offset + 1) % 4);
 							}
 						},
-						["Switch Demo Positions"]
+						['Switch Demo Positions']
 					)
 			  ])
 			: null,
-		v("div", { key: "root" }, [
+		v('div', { key: 'root' }, [
 			v(
-				"div",
+				'div',
 				{ classes: css.parentContainer },
 				cachedColumns.map((columns, index) => {
 					const expand = () => {
-						icache.set("columns", resize(cachedColumns, index, true, isMedium));
+						icache.set('columns', resize(cachedColumns, index, true, isMedium));
 					};
 					const shrink = () => {
-						icache.set("columns", resize(cachedColumns, index, false, isMedium));
+						icache.set('columns', resize(cachedColumns, index, false, isMedium));
 					};
 
 					return !isSmall || index === offset

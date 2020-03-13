@@ -1,6 +1,6 @@
 interface Company {
 	name: string;
-	people: string[]
+	people: string[];
 }
 
 export interface State {

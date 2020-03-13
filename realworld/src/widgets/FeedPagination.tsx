@@ -1,5 +1,5 @@
-import { create, tsx } from "@dojo/framework/core/vdom";
-import { DNode } from "@dojo/framework/core/interfaces";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import { DNode } from '@dojo/framework/core/interfaces';
 
 interface FeedPaginationProperties {
 	total: number;
@@ -22,8 +22,8 @@ export const FeedPagination = factory(function({ properties }) {
 			}
 		};
 		pageNumbers.push(
-			<li key={page} classes={["page-item", isActive && "active"]}>
-				<a href="" onclick={onclick} classes={["page-link"]}>
+			<li key={page} classes={['page-item', isActive && 'active']}>
+				<a href="" onclick={onclick} classes={['page-link']}>
 					{`${page + 1}`}
 				</a>
 			</li>
@@ -32,7 +32,7 @@ export const FeedPagination = factory(function({ properties }) {
 
 	return (
 		<nav>
-			<ul classes={["pagination"]}>{pageNumbers}</ul>
+			<ul classes={['pagination']}>{pageNumbers}</ul>
 		</nav>
 	);
 });

@@ -78,15 +78,13 @@ Using the `block` middleware, this function gets called in a widget so that the 
 ​
 
 ```tsx
-import { create, tsx } from "@dojo/framework/core/vdom";
-import myBlock from "./my-block.block.ts";
+import { create, tsx } from '@dojo/framework/core/vdom';
+import myBlock from './my-block.block.ts';
 const factory = create({ block });
-const MyBlockWidget = factory(function MyBlockWidget({
-	middleware: { block }
-}) {
+const MyBlockWidget = factory(function MyBlockWidget({ middleware: { block } }) {
 	// the block will be undefined the first render as the blocks are
 	// async so need provide a default value
-	const results = block(myBlock)("fooParam") || {};
+	const results = block(myBlock)('fooParam') || {};
 	// do something with the results
 	return <div>JSON.stringify(results)</div>;
 });

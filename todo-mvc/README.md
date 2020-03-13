@@ -2,13 +2,13 @@
 
 A reference implementation of [TodoMVC](http://todomvc.com/) using the current beta1 versions of Dojo packages.
 
-- [Pre-requisites](#pre-requisites)
-- [Usage](#usage)
-- [Features](#features)
-- [How do I contribute?](#how-do-i-contribute)
-  - [Installation](#installation)
-  - [Testing](#testing)
-- [Licensing information](#licensing-information)
+-   [Pre-requisites](#pre-requisites)
+-   [Usage](#usage)
+-   [Features](#features)
+-   [How do I contribute?](#how-do-i-contribute)
+    -   [Installation](#installation)
+    -   [Testing](#testing)
+-   [Licensing information](#licensing-information)
 
 ## Pre-requisites
 
@@ -46,13 +46,13 @@ This package demonstrates how to build a simple application using Dojo widgets.
 
 It is an example of:
 
-* Custom widgets using `@dojo/widget-core`
-* Applying CSS to widgets
-* Using `@dojo/router`
+-   Custom widgets using `@dojo/widget-core`
+-   Applying CSS to widgets
+-   Using `@dojo/router`
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
 Contributing Guidelines and Style Guide.
 
 ### Installation

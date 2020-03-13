@@ -1,5 +1,5 @@
-import { create, v } from "@dojo/framework/core/vdom";
-import * as css from "./styles/resizableSection.m.css";
+import { create, v } from '@dojo/framework/core/vdom';
+import * as css from './styles/resizableSection.m.css';
 
 export interface ResizableSectionProperties {
 	columns: number;
@@ -27,24 +27,24 @@ export default factory(function ResizableSection({ properties, children }) {
 	const { isSmall, isMedium, columns, expand, shrink } = properties();
 
 	return v(
-		"div",
+		'div',
 		{
-			key: "root",
+			key: 'root',
 			classes: [css.root, isSmall ? css.eightColumns : columnClasses[columns]]
 		},
 		[
 			isSmall
 				? null
-				: v("div", { classes: css.sizeControls }, [
+				: v('div', { classes: css.sizeControls }, [
 						v(
-							"button",
+							'button',
 							{
 								disabled: columns <= (isMedium ? 2 : 1),
 								onclick: shrink
 							},
-							["Shrink Component"]
+							['Shrink Component']
 						),
-						v("button", { disabled: columns === 8, onclick: expand }, ["Expand Component"])
+						v('button', { disabled: columns === 8, onclick: expand }, ['Expand Component'])
 				  ]),
 			...children()
 		]

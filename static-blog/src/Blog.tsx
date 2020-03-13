@@ -1,8 +1,8 @@
-import { tsx, create } from "@dojo/framework/core/vdom";
-import block from "@dojo/framework/core/middleware/block";
-import getBlog from "./blocks/blog.block";
+import { tsx, create } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
+import getBlog from './blocks/blog.block';
 
-import * as css from "./Blog.m.css";
+import * as css from './Blog.m.css';
 
 interface BlogProperties {
 	name: string;
@@ -10,10 +10,7 @@ interface BlogProperties {
 
 const factory = create({ block }).properties<BlogProperties>();
 
-export default factory(function BlogList({
-	middleware: { block },
-	properties
-}) {
+export default factory(function BlogList({ middleware: { block }, properties }) {
 	const { name } = properties();
 	const blog = block(getBlog)({ path: `${name}.md` });
 

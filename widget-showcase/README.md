@@ -2,11 +2,11 @@
 
 A demo implementation of [@dojo/widgets](https://github.com/dojo/widgets).
 
-- [Pre-requisites](#pre-requisites)
-- [Usage](#usage)
-- [How do I contribute?](#how-do-i-contribute)
-  - [Installation](#installation)
-- [Licensing information](#licensing-information)
+-   [Pre-requisites](#pre-requisites)
+-   [Usage](#usage)
+-   [How do I contribute?](#how-do-i-contribute)
+    -   [Installation](#installation)
+-   [Licensing information](#licensing-information)
 
 ## Usage
 
@@ -32,7 +32,7 @@ dojo build -w -s
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
 
 ### Installation
 

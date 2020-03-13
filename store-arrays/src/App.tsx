@@ -9,11 +9,11 @@ export default factory(function App({ middleware: { store } }) {
 	return (
 		<div>
 			<div classes={['parent']}>
-				{companies.map(company => (
+				{companies.map((company) => (
 					<div classes={['child']} key={company.name}>
 						<div classes={['company']}>{company.name}</div>
 						<div>
-							{company.people.map(person => (
+							{company.people.map((person) => (
 								<div classes={['people']}>
 									<span classes={['person']}>{person}</span>
 									<button

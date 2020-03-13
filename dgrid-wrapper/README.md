@@ -1,7 +1,7 @@
 # dgrid-wrapper-app
 
-This project leverages the [Dgrid wrapper](https://github.com/dojo/interop/tree/master/src/dgrid) provided by 
-`@dojo/interop`, along with the externals configuration support provided by [`@dojo/cli-build-app`]() and 
+This project leverages the [Dgrid wrapper](https://github.com/dojo/interop/tree/master/src/dgrid) provided by
+`@dojo/interop`, along with the externals configuration support provided by [`@dojo/cli-build-app`]() and
 `@dojo/cli-test-intern` (Which uses the same structure as cli-buildapp) to demonstrate dgrid running
 in a modern Dojo application.
 

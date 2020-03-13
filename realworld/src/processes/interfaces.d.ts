@@ -1,5 +1,5 @@
-import { Session } from "../interfaces";
-import { OutletContext } from "@dojo/framework/routing/interfaces";
+import { Session } from '../interfaces';
+import { OutletContext } from '@dojo/framework/routing/interfaces';
 
 export interface SlugPayload {
 	slug: string;

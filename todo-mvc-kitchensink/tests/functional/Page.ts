@@ -96,7 +96,10 @@ export default class Page {
 		return this.remote
 			.then(this.delay)
 			.findByCssSelector(this.selectors.toggleAllButton + ':checked')
-			.then(() => true, () => false);
+			.then(
+				() => true,
+				() => false
+			);
 	}
 
 	isNewItemInputFocused() {

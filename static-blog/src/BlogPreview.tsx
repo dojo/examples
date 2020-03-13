@@ -1,8 +1,8 @@
-import { tsx, create } from "@dojo/framework/core/vdom";
-import intersection from "@dojo/framework/core/middleware/intersection";
-import Link from "@dojo/framework/routing/Link";
+import { tsx, create } from '@dojo/framework/core/vdom';
+import intersection from '@dojo/framework/core/middleware/intersection';
+import Link from '@dojo/framework/routing/Link';
 
-import * as css from "./BlogPreview.m.css";
+import * as css from './BlogPreview.m.css';
 
 interface BlogPreviewProperties {
 	author: string;
@@ -14,13 +14,10 @@ interface BlogPreviewProperties {
 
 const factory = create({ intersection }).properties<BlogPreviewProperties>();
 
-export default factory(function BlogPreview({
-	middleware: { intersection },
-	properties
-}) {
-	const { isIntersecting } = intersection.get("root");
+export default factory(function BlogPreview({ middleware: { intersection }, properties }) {
+	const { isIntersecting } = intersection.get('root');
 	const { image, file, title, description, author } = properties();
-	let url = "";
+	let url = '';
 	if (isIntersecting) {
 		url = image;
 	}

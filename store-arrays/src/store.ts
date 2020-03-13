@@ -10,6 +10,6 @@ export interface State {
 	companies: Company[];
 }
 
-export default createStoreMiddleware<State>(store => {
+export default createStoreMiddleware<State>((store) => {
 	initialStateProcess(store)({});
 });

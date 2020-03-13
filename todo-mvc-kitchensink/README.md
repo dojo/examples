@@ -2,13 +2,13 @@
 
 A feature-rich version of TodoMVC, built with current pre-release versions of Dojo packages.
 
-- [Pre-requisites](#pre-requisites)
-- [Usage](#usage)
-- [Features](#features)
-- [How do I contribute?](#how-do-i-contribute)
-  - [Installation](#installation)
-  - [Testing](#testing)
-- [Licensing information](#licensing-information)
+-   [Pre-requisites](#pre-requisites)
+-   [Usage](#usage)
+-   [Features](#features)
+-   [How do I contribute?](#how-do-i-contribute)
+    -   [Installation](#installation)
+    -   [Testing](#testing)
+-   [Licensing information](#licensing-information)
 
 ## Pre-requisites
 
@@ -44,15 +44,15 @@ dojo build -w -s
 
 This package demonstrates how to build an application using Dojo.
 
-* Custom widgets using `@dojo/widget-core`
-* Applying CSS to widgets
-* Overriding CSS with theming.
-* Using `@dojo/router`
-* Using `@dojo/i18n` to provide internalization.
+-   Custom widgets using `@dojo/widget-core`
+-   Applying CSS to widgets
+-   Overriding CSS with theming.
+-   Using `@dojo/router`
+-   Using `@dojo/i18n` to provide internalization.
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the
 Contributing Guidelines and Style Guide.
 
 ### Installation

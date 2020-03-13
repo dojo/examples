@@ -1,8 +1,8 @@
-import { tsx, create } from "@dojo/framework/core/vdom";
-import block from "@dojo/framework/core/middleware/block";
-import getBlogIndex from "./blocks/blog-index.block";
-import BlogPreview from "./BlogPreview";
-import * as css from "./BlogList.m.css";
+import { tsx, create } from '@dojo/framework/core/vdom';
+import block from '@dojo/framework/core/middleware/block';
+import getBlogIndex from './blocks/blog-index.block';
+import BlogPreview from './BlogPreview';
+import * as css from './BlogList.m.css';
 
 const factory = create({ block });
 

@@ -6,7 +6,6 @@
 		"dev": "dojo build -m dev -s -w memory",
 		"build": "dojo build",
 		"build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-		"prettier": "prettier --write \"{docs,src,tests}/**/*.{ts,tsx,md}\"",
 		"test": "dojo build -m unit && dojo test",
 		"test-ci": "dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS"
 	},
@@ -24,16 +23,8 @@
 		"@types/marked": "^0.3.0",
 		"@types/node": "^6.0.46",
 		"@types/sinon": "^1.16.35",
-		"prettier": "1.18.2",
 		"sinon": "^2.0.0",
 		"tslint": "5.2.0",
 		"typescript": "~3.4.5"
-	},
-	"prettier": {
-		"singleQuote": false,
-		"tabWidth": 4,
-		"useTabs": true,
-		"printWidth": 120,
-		"arrowParens": "always"
 	}
 }

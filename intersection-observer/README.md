@@ -30,7 +30,7 @@ The `InfiniteList` widget uses the [Intersection meta](https://github.com/dojo/w
 
 ## How do I contribute?
 
-We appreciate your interest!  Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
+We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
 
 ### Installation
 
