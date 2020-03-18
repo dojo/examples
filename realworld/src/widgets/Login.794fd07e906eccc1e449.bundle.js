@@ -1,0 +1,10 @@
+/*!
+ * 
+ * [Dojo](https://dojo.io/)
+ * Copyright [JS Foundation](https://js.foundation/) & contributors
+ * [New BSD license](https://github.com/dojo/meta/blob/master/LICENSE)
+ * All rights reserved
+ * 
+ */
+(window.dojoWebpackJsonprealworld_app=window.dojoWebpackJsonprealworld_app||[]).push([["src/widgets/Login"],{55:function(e,t,s){"use strict";s.r(t),s.d(t,"Login",function(){return i});var o=s(18),c=s(34),a=s(23),r=s(19),l=s(29),n=s(33);const i=Object(o.a)({icache:c.a,store:r.a})(function({middleware:{store:e,icache:t}}){const{get:s,path:c,executor:r}=e,i=s(c("login","isLoading")),g=s(c("errors")),p=t.get("email")||"",d=t.get("password")||"";return Object(o.g)("div",{classes:["auth-page"]},Object(o.g)("div",{classes:["container","page"]},Object(o.g)("div",{classes:["row"]},Object(o.g)("div",{classes:["col-md-6","offset-md-3","col-xs-12"]},Object(o.g)("h1",{classes:["text-xs-center"]},"Sign In"),Object(o.g)("p",{classes:["text-xs-center"]},Object(o.g)(a.b,{to:"register"},"Need an account?")),g&&Object(o.g)(n.a,{errors:g}),Object(o.g)("form",{onsubmit:e=>{e.preventDefault(),r(l.a)({email:p,password:d})}},Object(o.g)("fieldset",null,Object(o.g)("fieldset",{classes:["form-group"]},Object(o.g)("input",{autocomplete:"email",value:p,placeholder:"Email",type:"email",oninput:function(e){const s=e.target;t.set("email",s.value)},classes:["form-control","form-control-lg"]})),Object(o.g)("fieldset",{classes:["form-group"]},Object(o.g)("input",{autocomplete:"current-password",value:d,placeholder:"Password",type:"password",oninput:function(e){const s=e.target;t.set("password",s.value)},classes:["form-control","form-control-lg"]}))),Object(o.g)("button",{disabled:i,type:"submit",classes:["btn btn-lg","btn-primary","pull-xs-right"]},"Sign In"))))))});t.default=i}}]);
+//# sourceMappingURL=Login.794fd07e906eccc1e449.bundle.js.map

@@ -1,0 +1,8 @@
+/*!
+ * 
+ * [Dojo](https://dojo.io/)
+ * Copyright [JS Foundation](https://js.foundation/) & contributors
+ * [New BSD license](https://github.com/dojo/meta/blob/master/LICENSE)
+ * All rights reserved
+ * 
+ */:root{--selected-background:#34495e;--selected-color:#fff;--disabled-color:#bbb;--component-background:#fff;--component-color:#424242;--underlay-background:rgba(66,66,66,0.3);--error-color:red;--success-color:green;--short-animation-duration:.2s;--short-animation-easing:ease;--zindex-base:0;--zindex-tooltip:100;--zindex-dropdown:200;--zindex-fixed:300;--zindex-dialog:400;--zindex-alert:500}.snackbar-m__root__32Nqt{display:none}.snackbar-m__content__2GA-t{display:-webkit-box;display:-ms-flexbox;display:flex;opacity:0}.snackbar-m__label__cpl-d{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;margin:0}.snackbar-m__actions__vPe_i{-ms-flex-negative:0;flex-shrink:0}.snackbar-m__actions__vPe_i,.snackbar-m__open__2hulo{display:-webkit-box;display:-ms-flexbox;display:flex}.snackbar-m__open__2hulo .snackbar-m__content__2GA-t{opacity:1}.snackbar-m__success__CNI7D .snackbar-m__label__cpl-d{color:var(--success-color)}.snackbar-m__error__2vlDU .snackbar-m__label__cpl-d{color:var(--error-color)}.snackbar-m__leading__2l6Xg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.snackbar-m__stacked__3Zudj .snackbar-m__content__2GA-t{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}

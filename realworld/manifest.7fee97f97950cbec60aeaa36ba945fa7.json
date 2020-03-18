@@ -1,0 +1,27 @@
+{
+  "icons": [
+    {
+      "src": "icon_512x512.4b938ed405cd7a04e8c706a0097e2bc5.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_256x256.c3399fc140e7b7ce69760eb55c9e94cd.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_128x128.3789c4a4f67429a0cd993c52d2c0d2a0.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "name": "dojo-realworld",
+  "short_name": "dojo-realworld",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "dojo-realworld",
+  "background_color": "#ffffff",
+  "theme_color": "#222127"
+}

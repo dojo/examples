@@ -1,0 +1,44 @@
+{
+	"name": "dojo",
+	"version": "1.13.7",
+	"directories": {
+		"lib": "."
+	},
+	"devDependencies": {
+		"intern-geezer": "2.2.2",
+		"http-proxy": "0.10.3",
+		"glob": "3.2.7",
+		"jsgi-node": "0.3.1",
+		"formidable": "1.0.17",
+		"sinon": "1.12.2",
+		"dojo": "1.13.7"
+	},
+	"main": "main",
+	"scripts": {
+		"test": "intern-client config=tests/dojo.intern",
+		"test-coverage": "intern-client config=tests/dojo.intern reporters=console reporters=lcovhtml",
+		"test-remote": "intern-runner config=tests/dojo.intern",
+		"test-remote-coverage": "intern-runner config=tests/dojo.intern reporters=runner reporters=lcovhtml",
+		"test-local": "intern-runner config=tests/dojo.intern.local",
+		"test-local-coverage": "intern-runner config=tests/dojo.intern.local reporters=runner reporters=lcovhtml",
+		"test-proxy": "intern-runner config=tests/dojo.intern.proxy proxyOnly=true"
+	},
+	"description": "Dojo core is a powerful, lightweight library that makes common tasks quicker and easier. Animate elements, manipulate the DOM, and query with easy CSS syntax, all without sacrificing performance.",
+	"license": "BSD-3-Clause OR AFL-2.1",
+	"bugs": "http://bugs.dojotoolkit.org/",
+	"keywords": [
+		"JavaScript",
+		"Dojo",
+		"Toolkit"
+	],
+	"homepage": "http://dojotoolkit.org/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dojo/dojo.git"
+	},
+	"dojoBuild": "dojo.profile.js"
+
+,"_resolved": "https://registry.npmjs.org/dojo/-/dojo-1.13.7.tgz"
+,"_integrity": "sha512-dghZxPsmYYX0fvORQbMT111CndnUUn8lWLAPfIyQwhryvGeVifD/r9A0G0kj6b8iK1ACyXMcsT9zxrWZHmVwxg=="
+,"_from": "dojo@1.13.7"
+}

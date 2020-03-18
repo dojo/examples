@@ -1,0 +1,1 @@
+{"version":3,"sources":["/home/travis/build/dojo/examples/widget-showcase/src/main.css"],"names":[],"mappings":"AAAA,UAEC,SAAU,AACV,UAAW,AACX,WAAY,AACZ,YAAa,AACb,iBAAmB,CACnB","file":"bootstrap.31a22102379892789a45.bundle.css","sourcesContent":["html,\nbody {\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 100%;\n\theight: 100%;\n\tfont-family: arial;\n}\n"]}

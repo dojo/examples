@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Examples | Dojo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Dojo">
+		<meta property="og:url" content="https://dojo.github.io/index.html">
+		<meta property="og:site_name" content="Dojo">
+		<meta property="og:locale" content="en">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Dojo">
+		<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;dojo">
+		<link rel="alternate" href="/atom.xml" title="Dojo" type="application/atom+xml">
+		<link rel="icon" href="https://v5.dojo.io/images/favicons/favicon.ico">
+		<link rel="stylesheet" href="https://v5.dojo.io/css/main.css">
+		<style>
+
+			.uk-card {
+				min-width: 30vw;
+			}
+
+			.uk-card:not(:first-of-type) {
+				margin-left: 2vw;
+			}
+
+			.demos {
+				margin-top: 5rem;
+			}
+
+			@media screen and (max-width: 768px) {
+				.demos {
+					flex-direction: column;
+					margin-top: 1rem;
+				}
+
+				.uk-card {
+					min-width: 90vw;
+					margin-top: 1.5rem;
+				}
+
+				.uk-card:not(:first-of-type) {
+					margin-left: 0;
+				}
+			}
+		</style>
+	</head>
+
+<body class="body-front-page">
+	<div class="page-wrapper">
+		<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+			<div class="uk-container uk-container-expand uk-navbar-container">
+				<nav class="uk-navbar" uk-navbar>
+					<div class="uk-navbar-left">
+						<ul class="uk-navbar-nav">
+							<li>
+								<a href="#sidebar-nav" uk-icon="icon: menu" class="navbar-item uk-hidden@m" uk-toggle="target: #mobile-sidebar"></a>
+							</li>
+							<li>
+								<a href="https://dojo.io/" class="navbar-item">
+									<img src="https://v5.dojo.io/images/logos/dojo2-logo-white.svg" class="uk-logo site-logo" alt="Dojo">
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="uk-navbar-right uk-visible@m">
+						<ul class="uk-navbar-nav">
+							<li>
+								<a class="navbar-item" href="https://dojo.io/learn/overview/introduction">Docs</a>
+							</li>
+							<li>
+								<a class="navbar-item" href="https://dojo.io/blog">Blog</a>
+							</li>
+
+							<li>
+								<a class="navbar-item">Community</a>
+								<div class="uk-navbar-dropdown uk-box-shadow-large" uk-dropdown="animation: uk-animation-slide-top-small; duration: 400; offset:-15;">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+										<li>
+											<a href="https://github.com/dojo/framework">
+												<span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a>
+										</li>
+										<li>
+											<a href="https://twitter.com/dojo">
+												<span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a>
+										</li>
+										<li>
+											<a href="https://discourse.dojo.io/">
+												<span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a>
+										</li>
+
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<div class="content-wrapper">
+			<div class="page-content">
+				<div class="bodyContainer">
+					<div class="uk-container uk-container-expand">
+						<section class="uk-flex demos">
+
+							<div class="uk-card uk-card-primary uk-card-body sp-card-shadow">
+								<h4 class="uk-card-title">
+									TodoMVC
+								</h4>
+								<ul class="uk-list">
+									<li><a href="./todo-mvc/">Dojo TodoMVC</a></li>
+									<li><a href="./todo-mvc-kitchensink/">Feature-rich TodoMVC variant</a></li>
+								</ul>
+							</div>
+							<div class="uk-card uk-card-secondary uk-card-body sp-card-shadow">
+								<h4 class="uk-card-title">
+									Widgets and Custom Elements
+								</h4>
+								<ul class="uk-list">
+									<li><a href="./widget-showcase/">Dojo widget showcase</a></li>
+									<li><a href="./custom-element-showcase/">Custom elements showcase variant</a></li>
+									<li><a href="./custom-element-menu/">Custom elements Menu demo</a></li>
+									<li><a href="./intersection-observer/">Intersection Observer demo</a></li>
+									<li><a href="./resize-observer/">Resize Observer demo</a></li>
+								</ul>
+							</div>
+
+							<div class="uk-card uk-card uk-card-body sp-card-shadow">
+								<h4 class="uk-card-title">
+									Other Apps
+								</h4>
+								<ul class="uk-list">
+									<li><a href="./realworld">Dojo RealWorld</a></li>
+									<li><a href="./world-clock/">Dojo World Clock</a></li>
+									<li><a href="https://dojo-2-hnpwa-d668d.firebaseapp.com/">Dojo HNPWA</a></li>
+									<li><a href="./dgrid-wrapper">Dgrid Wrapper</a></li>
+								</ul>
+							</div>
+
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.40/js/uikit-icons.min.js"></script>
+		<div id="mobile-sidebar" class="sidebar-left" uk-offcanvas>
+			<div class="uk-offcanvas-bar">
+				<ul class="uk-nav" data-uk-nav>
+					<li><a class="navbar-item" href="https://dojo.io/learn/overview/introduction">Docs</a></li>
+					<li><a class="navbar-item" href="https://dojo.io/blog">Blog</a></li>
+					<li class="uk-parent">
+						<a class="navbar-item">Community</a>
+							<ul class="uk-nav-sub">
+								<li><a href="https://github.com/dojo/meta"><span class="uk-margin-small-right" uk-icon="icon: github"></span> Github</a></li>
+								<li><a href="https://twitter.com/dojo"><span class="uk-margin-small-right" uk-icon="icon: twitter"></span> Twitter</a></li>
+								<li><a href="https://discourse.dojo.io/"><span class="uk-margin-small-right" uk-icon="icon: comments"></span> Discourse</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

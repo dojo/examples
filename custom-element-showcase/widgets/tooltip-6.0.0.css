@@ -1,0 +1,8 @@
+/*!
+ * 
+ * [Dojo](https://dojo.io/)
+ * Copyright [JS Foundation](https://js.foundation/) & contributors
+ * [New BSD license](https://github.com/dojo/meta/blob/master/LICENSE)
+ * All rights reserved
+ * 
+ */:root{--selected-background:#34495e;--selected-color:#fff;--disabled-color:#bbb;--component-background:#fff;--component-color:#424242;--underlay-background:rgba(66,66,66,0.3);--error-color:red;--success-color:green;--short-animation-duration:.2s;--short-animation-easing:ease;--zindex-base:0;--zindex-tooltip:100;--zindex-dropdown:200;--zindex-fixed:300;--zindex-dialog:400;--zindex-alert:500}.tooltip-m__rootFixed__2mT-k{position:relative;display:inline-block}.tooltip-m__contentFixed__RlqCM{position:absolute;z-index:var(--zindex-tooltip)}.tooltip-m__bottomFixed__1vS1l .tooltip-m__contentFixed__RlqCM{bottom:0;left:50%;-webkit-transform:translate(-50%,100%);transform:translate(-50%,100%)}.tooltip-m__leftFixed__1JBNj .tooltip-m__contentFixed__RlqCM{left:0;top:50%;-webkit-transform:translate(-100%,-50%);transform:translate(-100%,-50%)}.tooltip-m__rightFixed__ZY9pP .tooltip-m__contentFixed__RlqCM{right:0;top:50%;-webkit-transform:translate(100%,-50%);transform:translate(100%,-50%)}.tooltip-m__topFixed__3quLW .tooltip-m__contentFixed__RlqCM{top:0;left:50%;-webkit-transform:translate(-50%,-100%);transform:translate(-50%,-100%)}

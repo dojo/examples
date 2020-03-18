@@ -1,0 +1,25 @@
+{
+	"name": "dijit",
+	"version": "1.13.0",
+	"directories": {
+		"lib": "."
+	},
+	"main": "main",
+	"dependencies": {
+		"dojo": "1.13.0"
+	},
+	"description": "Dijit provides a complete collection of user interface controls based on Dojo, giving you the power to create web applications that are highly optimized for usability, performance, internationalization, accessibility, but above all deliver an incredible user experience.",
+	"license" : "BSD-3-Clause OR AFL-2.1",
+	"bugs": "http://bugs.dojotoolkit.org/",
+	"keywords": [ "JavaScript", "Dojo", "Widget" ],
+	"homepage": "http://dojotoolkit.org/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dojo/dijit.git"
+	},
+	"dojoBuild": "dijit.profile.js"
+
+,"_resolved": "https://registry.npmjs.org/dijit/-/dijit-1.13.0.tgz"
+,"_integrity": "sha512-trzi45atc86S37/AtgcUC4akByxpqeKfoOftXlgrTSoM136tjcgLbWUYGjFkP3hk2APTDrYOCSa8xTjhp3YPpw=="
+,"_from": "dijit@1.13.0"
+}

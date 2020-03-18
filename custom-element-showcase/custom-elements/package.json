@@ -1,0 +1,52 @@
+{
+  "name": "@webcomponents/custom-elements",
+  "version": "1.0.9",
+  "description": "HTML Custom Elements Polyfill",
+  "main": "custom-elements.min.js",
+  "keywords": [
+    "custom-elements",
+    "customelements",
+    "web-components",
+    "webcomponents",
+    "polyfill",
+    "shim"
+  ],
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webcomponents/custom-elements.git"
+  },
+  "author": "The Polymer Authors",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/webcomponents/custom-elements/issues"
+  },
+  "scripts": {
+    "bower-install": "$(npm bin)/bower install",
+    "build": "gulp",
+    "test": "wct"
+  },
+  "homepage": "https://webcomponents.org/polyfills",
+  "devDependencies": {
+    "@webcomponents/html-imports": "^1.0.0",
+    "@webcomponents/template": "^1.0.0",
+    "@webcomponents/webcomponents-platform": "^1.0.0",
+    "bower": "^1.8.0",
+    "es6-promise": "4.1.1",
+    "google-closure-compiler": "^20170409.0.0",
+    "gulp": "^3.8.8",
+    "gulp-sourcemaps": "^1.6.0",
+    "rollup-stream": "^1.14.0",
+    "vinyl-source-stream": "^1.1.0",
+    "web-component-tester": "^6.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+
+,"_resolved": "https://registry.npmjs.org/@webcomponents/custom-elements/-/custom-elements-1.0.9.tgz"
+,"_integrity": "sha512-/r5HiDwOXTjucbBYkrTMpzWQAwil9MH7zSEfKH+RWWZv27r4vDiUd2FiBJItyQoPThLPxaf82IO6gCXyJR0ZnQ=="
+,"_from": "@webcomponents/custom-elements@1.0.9"
+}

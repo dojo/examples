@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Dojo Custom Element Showcase</title>
+		<meta name="theme-color" content="#222127">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="custom-elements/custom-elements.min.js"></script>
+		<link rel="stylesheet" href="widgets/split-pane-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/tab-controller-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/tab-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/button-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/icon-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/text-input-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/accordion-pane-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/toolbar-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/dialog-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/calendar-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/title-pane-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/text-area-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/slider-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/label-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/checkbox-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/select-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/progress-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/radio-6.0.0.css"/>
+		<link rel="stylesheet" href="widgets/time-picker-6.0.0.css"/>
+		<link rel="stylesheet" href="themes/dojo/dojo-6.0.0.css">
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				font-family: arial;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.split-pane-holder {
+				flex: 1;
+				overflow: hidden;
+			}
+
+			.ce-layout {
+				margin: 5px;
+				display: inline-block;
+			}
+
+			.vertical-slider {
+				margin-left: 20px;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="themes/dojo/dojo-6.0.0.js"></script>
+		<dojo-toolbar id="dojoToolbar"></dojo-toolbar>
+		<div class="split-pane-holder">
+			<dojo-split-pane id="dojoSplitPane">
+				<dojo-accordion-pane id="dojoAccordianPane">
+					<dojo-title-pane id="themePane" key="theme-pane" title="Theme"></dojo-title-pane>
+					<dojo-title-pane key="dialog-pane" title="Dialog">
+						<dojo-button id="dojoDialogButton">Open Dialog</dojo-button>
+						<dojo-dialog id="dojoDialog" title="Dialog"></dojo-dialog>
+					</dojo-title-pane>
+					<dojo-title-pane key="calendar-pane" title="Calendar">
+							<dojo-calendar id="dojoCalendar"></dojo-calendar>
+							<dojo-dom id="dojoCalendarLabel" tag="div"></dojo-dom>
+					</dojo-title-pane>
+				</dojo-accordion-pane>
+				<dojo-tab-controller id="dojoTabController">
+					<dojo-tab id="dojoTabBasic">
+						<div>
+							<h2>Buttons</h2>
+							<h3>Enabled</h3>
+							<dojo-button class="ce-layout">Basic Button</dojo-button>
+							<dojo-button class="ce-layout">Icon Button <dojo-icon type="searchIcon"></dojo-icon></dojo-button>
+							<dojo-button class="ce-layout" id="dojoEnabledPopupButton">Popup</dojo-button>
+							<dojo-button class="ce-layout" id="dojoEnabledToggleButton">Toggle</dojo-button>
+							<h3>Disabled</h3>
+							<dojo-button class="ce-layout" id="dojoDisabledBasicButton">Basic Button</dojo-button>
+							<dojo-button class="ce-layout" id="dojoDisabledIconButton">Icon Button <dojo-icon type="searchIcon"></dojo-icon></dojo-button>
+							<dojo-button class="ce-layout" id="dojoDisabledPopupButton">Popup</dojo-button>
+							<dojo-button class="ce-layout" id="dojoDisabledToggleButton">Toggle</dojo-button>
+							<h2>Checkbox</h2>
+							<dojo-checkbox class="ce-layout ce-block" id="dojoCheckedCheckbox" label="Checked checkbox"></dojo-checkbox>
+							<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledCheckedCheckbox" label="Disabled checked checkbox"></dojo-checkbox>
+							<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledUnCheckedCheckbox" label="Disabled unchecked checkbox"></dojo-checkbox>
+							<h2>Toggle</h2>
+							<dojo-checkbox class="ce-layout ce-block" id="dojoCheckedToggle" mode="toggle" label="Checked Toggle"></dojo-checkbox>
+							<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledCheckedToggle" mode="toggle" label="Disabled checked Toggle"></dojo-checkbox>
+							<dojo-checkbox class="ce-layout ce-block" id="dojoDisabledUnCheckedToggle" mode="toggle" label="Disabled unchecked Toggle"></dojo-checkbox>
+							<h2>Radio</h2>
+							<dojo-radio class="ce-layout ce-block" id="dojoRadioOne" value="radioGroupOne" label="Radio one"></dojo-radio>
+							<dojo-radio class="ce-layout ce-block" id="dojoRadioTwo" value="radioGroupOne" label="Radio two"></dojo-radio>
+							<dojo-radio class="ce-layout ce-block" id="dojoDisabledUnCheckedRadio" label="Disabled unchecked Radio"></dojo-radio>
+						</div>
+					</dojo-tab>
+					<dojo-tab id="dojoTabInputs">
+						<div>
+							<h2>Text Input</h2>
+							<dojo-text-input class="ce-layout ce-block" id="dojoTextInput" label="Plain Text Input"></dojo-text-input>
+							<dojo-text-input class="ce-layout ce-block" id="dojoRequiredTextInput" placeholder="World" label="Required Text Input"></dojo-text-input>
+							<dojo-text-input class="ce-layout ce-block" id="dojoEmailTextInput" label="Email Text Input" type="email" type="email" placeholder="Email Address"></dojo-text-input>
+							<dojo-text-input class="ce-layout ce-block" id="dojoDisabledTextInput" label="Disabled Text Input"></dojo-text-input>
+							<h2>Enhanced Text Input</h2>
+							<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoTwitterEnhancedInput" label="Twitter Username" placeholder="username"></dojo-enhanced-text-input>
+							<dojo-enhanced-text-input class="ce-layout ce-block" id="dojoPriceEnhancedInput" label="Price, rounded to the nearest dollar" type="number"></dojo-enhanced-text-input>
+							<h2>Time Picker</h2>
+							<div>Basic Time Picker</div>
+							<dojo-time-picker class="ce-layout" id="dojoBasicTimePicker" label="Basic Time Picker"></dojo-time-picker>
+						</div>
+					</dojo-tab>
+					<dojo-tab id="dojoTabTextArea">
+						<div>
+							<h2>Text Area</h2>
+							<div>Example Text Area</div>
+							<dojo-text-area id="dojoTextarea"></dojo-text-area>
+							<div>Disabled Text Area</div>
+							<dojo-text-area id="dojoDisabledTextarea"></dojo-text-area>
+						</div>
+					</dojo-tab>
+					<dojo-tab id="dojoTabSelects">
+						<div>
+							<h2>Selects</h2>
+							<dojo-select id="dojoSimpleSelect" label="Simple string array"></dojo-select>
+							<dojo-select id="dojoSimpleDisabledSelect" label="Simple string array (disabled)"></dojo-select>
+							<dojo-select id="dojoNativeSelect" label="Simple string array (native)"></dojo-select>
+							<dojo-select id="dojoDisabledNativeSelect" label="Simple string array (native, disabled)"></dojo-select>
+							<dojo-select id="dojoComplexSelect" label="Complex options array"></dojo-select>
+							<dojo-select id="dojoComplexNativeSelect" label="Complex options array (native)"></dojo-select>
+						</div>
+					</dojo-tab>
+					<dojo-tab id="dojoTabProgress">
+						<div>
+							<h2>Progress Bars</h2>
+							<div>value: 50%</div>
+							<dojo-progress id="dojoProgress"></dojo-progress>
+							<div>value: 0.3, max: 1</div>
+							<dojo-progress id="dojoProgressMaxOne"></dojo-progress>
+							<div>value: 250, custom output function</div>
+							<dojo-progress id="dojoProgressCustomOutput"></dojo-progress>
+							<div>value: 10, showOutput: false</div>
+							<dojo-progress id="dojoProgressNoOutput"></dojo-progress>
+						</div>
+					</dojo-tab>
+					<dojo-tab id="dojoTabSlider">
+						<div>
+							<h2>Sliders</h2>
+							<div>Horizontal slider, value: 50</div>
+							<dojo-slider id="dojoSlider" label="'How much do you like tribbles?'"></dojo-slider>
+							<div>Disabled slider, value: 30</div>
+							<dojo-slider id="dojoDisabledSlider" label="Disabled Slider"></dojo-slider>
+							<div>Vertical slider with validation</div>
+							<dojo-slider id="dojoVerticalSlider"></dojo-slider>
+						</div>
+					</dojo-tab>
+				</dojo-tab-controller>
+			</dojo-split-pane>
+		</div>
+
+		<script async src="widgets/calendar-6.0.0.js"></script>
+		<script async src="widgets/button-6.0.0.js"></script>
+		<script async src="widgets/icon-6.0.0.js"></script>
+		<script async src="widgets/text-input-6.0.0.js"></script>
+		<script async src="widgets/tab-6.0.0.js"></script>
+		<script async src="widgets/tab-controller-6.0.0.js"></script>
+		<script async src="widgets/text-area-6.0.0.js"></script>
+		<script async src="widgets/slider-6.0.0.js"></script>
+		<script async src="widgets/select-6.0.0.js"></script>
+		<script async src="widgets/title-pane-6.0.0.js"></script>
+		<script async src="widgets/dialog-6.0.0.js"></script>
+		<script async src="widgets/accordion-pane-6.0.0.js"></script>
+		<script async src="widgets/split-pane-6.0.0.js"></script>
+		<script async src="widgets/toolbar-6.0.0.js"></script>
+		<script async src="widgets/label-6.0.0.js"></script>
+		<script async src="widgets/progress-6.0.0.js"></script>
+		<script async src="widgets/radio-6.0.0.js"></script>
+		<script async src="widgets/checkbox-6.0.0.js"></script>
+		<script async src="widgets/time-picker-6.0.0.js"></script>
+		<script>
+			// Main Tool Bar
+			var menu = document.getElementById('dojoToolbar');
+			menu.collapseWidth = 700;
+			menu.fixed = true;
+			menu.heading = 'Dojo Custom Element Showcase';
+
+			// Split Pane
+			var splitpane = document.getElementById('dojoSplitPane');
+			splitpane.size = 360;
+			splitpane.addEventListener('resize', function (event) {
+				splitpane.size = event.detail[0];
+			});
+
+			// Accordian
+			var panes = document.getElementById('dojoAccordianPane');
+			var openPaneKeys = [];
+			panes.addEventListener('requestopen', function (event) {
+				var openKey = event.detail[0];
+				var keyIndex = openPaneKeys.indexOf(openKey);
+				if (keyIndex === -1) {
+					openPaneKeys.push(openKey);
+				}
+				panes.openKeys = openPaneKeys;
+			});
+			panes.addEventListener('requestclose', function (event) {
+				var openKey = event.detail[0];
+				var keyIndex = openPaneKeys.indexOf(openKey);
+				if (keyIndex !== -1) {
+					openPaneKeys.splice(keyIndex, 1);
+				}
+				panes.openKeys = openPaneKeys;
+			});
+
+			// Theme
+			var themePane = document.getElementById('themePane');
+			var themes = Object.keys(window.dojoce.themes);
+			var currentTheme = window.dojoce.theme;
+			var selectedRadio;
+
+			themes.forEach(function (theme) {
+				var radio = document.createElement('dojo-radio');
+				radio.checked = theme === currentTheme;
+				if (radio.checked) {
+					selectedRadio = radio;
+				}
+				radio.addEventListener('change', function (event) {
+					if (event.detail) {
+						window.dojoce.theme = event.detail[0];
+						selectedRadio.checked = false;
+						radio.checked = true;
+						selectedRadio = radio;
+					}
+				});
+				radio.setAttribute('label', theme);
+				radio.setAttribute('value', theme);
+				themePane.appendChild(radio);
+			});
+
+			// Calendar
+			var calendar = document.getElementById('dojoCalendar');
+			var selectedDate = document.getElementById('dojoCalendarLabel');
+
+			calendar.selectedDate = new Date();
+			selectedDate.setAttribute('label', calendar.selectedDate.toDateString());
+			calendar.addEventListener('monthchange', function (event) {
+				calendar.month = event.detail[0];
+			});
+			calendar.addEventListener('yearchange', function (event) {
+				calendar.year = event.detail[0];
+			});
+			calendar.addEventListener('dateselect', function (event) {
+				calendar.selectedDate = event.detail[0];
+				selectedDate.setAttribute('label', calendar.selectedDate.toDateString());
+			});
+
+			// Dialog
+			var dialog = document.getElementById('dojoDialog');
+			var openDialogButton = document.getElementById('dojoDialogButton');
+			dialog.modal = true;
+			dialog.underlay = true;
+			dialog.closeable = true;
+			dialog.open = false;
+			openDialogButton.addEventListener('click', function () {
+				dialog.open = true;
+			});
+			dialog.addEventListener('requestclose', function () {
+				dialog.open = false;
+			});
+
+			// Tab Controller
+			var tabController = document.getElementById('dojoTabController');
+			var basicTab = document.getElementById('dojoTabBasic');
+			var inputsTab = document.getElementById('dojoTabInputs');
+			var textareaTab = document.getElementById('dojoTabTextArea');
+			var selectsTab = document.getElementById('dojoTabSelects');
+			var progressTab = document.getElementById('dojoTabProgress');
+			var sliderTab = document.getElementById('dojoTabSlider');
+
+			tabController.activeIndex = 0;
+			tabController.addEventListener('requesttabchange', function (event) {
+				tabController.activeIndex = event.detail[0];
+			});
+
+			// Basic Form Widgets
+			basicTab.label = "Basic Form Widgets";
+
+			// Buttons
+
+			var popupButton = document.getElementById('dojoEnabledPopupButton');
+			var toggleButton = document.getElementById('dojoEnabledToggleButton');
+			var disabledBasicButton = document.getElementById('dojoDisabledBasicButton');
+			var disabledIconButton = document.getElementById('dojoDisabledIconButton');
+			var disabledPopupButton = document.getElementById('dojoDisabledPopupButton');
+			var disabledToggleButton = document.getElementById('dojoDisabledToggleButton');
+
+			toggleButton.pressed = true;
+
+			toggleButton.addEventListener('click', function () {
+				toggleButton.pressed = !toggleButton.pressed;
+			});
+			popupButton.popup = {
+				expanded: false,
+				id: 'dojoPopupButton'
+			};
+
+			disabledBasicButton.disabled = true;
+			disabledIconButton.disabled = true;
+			disabledPopupButton.popup = {
+				expanded: false,
+				id: 'dojoPopupButton'
+			};
+			disabledPopupButton.disabled = true;
+			disabledToggleButton.disabled = true;
+			disabledToggleButton.addEventListener('click', function () {
+				disabledToggleButton.pressed = !disabledToggleButton.pressed;
+			});
+
+			// Checkbox
+			var checkbox = document.getElementById('dojoCheckedCheckbox');
+			var disabledCheckedCheckbox = document.getElementById('dojoDisabledCheckedCheckbox');
+			var disabledCheckbox = document.getElementById('dojoDisabledUnCheckedCheckbox');
+
+			checkbox.checked = true;
+			checkbox.addEventListener('change', function () {
+				checkbox.checked = !checkbox.checked;
+			});
+
+			disabledCheckedCheckbox.checked = true;
+			disabledCheckedCheckbox.disabled = true;
+			disabledCheckbox.disabled = true;
+
+			// Toggle
+			var toggle = document.getElementById('dojoCheckedToggle');
+			var disabledCheckedToggle = document.getElementById('dojoDisabledCheckedToggle');
+			var disabledUnCheckedToggle = document.getElementById('dojoDisabledUnCheckedToggle');
+
+			toggle.checked = true;
+			toggle.addEventListener('change', function () {
+				toggle.checked = !toggle.checked;
+			});
+
+			disabledCheckedToggle.disabled = true;
+			disabledCheckedToggle.checked = true;
+			disabledUnCheckedToggle.disabled = true;
+			disabledUnCheckedToggle.checked = false;
+
+			// Radio
+			var radioOne = document.getElementById('dojoRadioOne');
+			var radioTwo = document.getElementById('dojoRadioTwo');
+			var disabledRadio = document.getElementById('dojoDisabledUnCheckedRadio');
+
+			radioOne.checked = true;
+
+			// Text Input Widgets
+			inputsTab.label = "Text Input Widgets";
+
+			var textInput = document.getElementById('dojoTextInput');
+			var requiredInput = document.getElementById('dojoRequiredTextInput');
+			var emailInput = document.getElementById('dojoEmailTextInput');
+			var disabledInput = document.getElementById('dojoDisabledTextInput');
+			var twitterInput = document.getElementById('dojoTwitterEnhancedInput');
+			var priceInput = document.getElementById('dojoPriceEnhancedInput');
+
+			textInput.addEventListener('input', function () {
+				if (event.detail) {
+					textInput.setAttribute('value', event.detail[0]);
+				}
+			});
+
+			requiredInput.addEventListener('input', function () {
+				if (event.detail) {
+					requiredInput.setAttribute('value', event.detail[0]);
+				}
+			});
+
+			emailInput.addEventListener('input', function () {
+				if (event.detail) {
+					emailInput.setAttribute('value', event.detail[0]);
+				}
+			});
+
+			requiredInput.required = true;
+			disabledInput.value = "Initial Value";
+			disabledInput.disabled = true;
+			disabledInput.readOnly = true;
+
+			twitterInput.addonBefore = [ '@' ];
+			priceInput.addonBefore = [ '$' ];
+			priceInput.addonAfter = [ '.00' ];
+
+			twitterInput.addEventListener('input', function () {
+				if (event.detail) {
+					twitterInput.setAttribute('value', event.detail[0]);
+				}
+			});
+
+			priceInput.addEventListener('input', function () {
+				if (event.detail) {
+					priceInput.setAttribute('value', event.detail[0]);
+				}
+			});
+
+
+			var timePicker = document.getElementById('dojoBasicTimePicker');
+
+			timePicker.clearable = true;
+			timePicker.end = '23:59';
+			timePicker.label = 'Basic Time Picker';
+			timePicker.start = '00:00';
+			timePicker.step = 1800;
+			timePicker.value = '10:30';
+			timePicker.options = undefined;
+			timePicker.addEventListener('change', function (event) {
+				if (event.detail) {
+					timePicker.value = event.detail[0];
+				}
+			});
+
+			textareaTab.label = "Text Area";
+
+			var textarea = document.getElementById('dojoTextarea');
+			var disabledTextarea = document.getElementById('dojoDisabledTextarea');
+
+			textarea.columns = 40;
+			textarea.rows = 8;
+			textarea.placeholder = 'Hello, World';
+
+			disabledTextarea.columns = 40;
+			disabledTextarea.rows = 8;
+			disabledTextarea.placeholder = 'Hello, World';
+			disabledTextarea.disabled = true;
+
+			// Selects
+			selectsTab.label = "Selects";
+
+			var select = document.getElementById('dojoSimpleSelect');
+			var disabledSelect = document.getElementById('dojoSimpleDisabledSelect');
+			var nativeSelect = document.getElementById('dojoNativeSelect');
+			var disabledNativeSelect = document.getElementById('dojoDisabledNativeSelect');
+			var complexSelect = document.getElementById('dojoComplexSelect');
+			var complexNativeSelect = document.getElementById('dojoComplexNativeSelect');
+
+			select.options = [ 'foo', 'bar', 'baz', 'qux' ];
+			select.addEventListener('change', function(event) {
+				select.setAttribute('value', event.detail[0]);
+			});
+			disabledSelect.disabled = true;
+			disabledSelect.options = [ 'foo', 'bar', 'baz', 'qux' ];
+			nativeSelect.options = [ 'foo', 'bar', 'baz', 'qux' ];
+			nativeSelect.useNativeElement = true;
+			disabledNativeSelect.options = [ 'foo', 'bar', 'baz', 'qux' ];
+			disabledNativeSelect.useNativeElement = true;
+			disabledNativeSelect.disabled = true;
+
+			var animalOptions = [
+				{
+					value: 'cat',
+					label: 'Cat'
+				},
+				{
+					value: 'dog',
+					label: 'Dog'
+				},
+				{
+					value: 'hamster',
+					label: 'Hamster'
+				},
+				{
+					value: 'goat',
+					label: 'Goat',
+					disabled: true
+				}
+			];
+
+			var getOptionDisabled = function (option) {
+				return option.disabled;
+			}
+			var getOptionLabel = function (option) {
+				return option.label;
+			}
+			var getOptionValue = function (option) {
+				return option.value;
+			}
+
+			complexSelect.options = animalOptions;
+			complexSelect.getOptionDisabled = getOptionDisabled;
+			complexSelect.getOptionLabel = getOptionLabel;
+			complexSelect.getOptionValue = getOptionValue;
+			complexSelect.addEventListener('change', function(event) {
+				complexSelect.setAttribute('value', event.detail[0].value);
+			});
+
+			complexNativeSelect.useNativeElement = true;
+			complexNativeSelect.options = animalOptions;
+			complexNativeSelect.getOptionDisabled = getOptionDisabled;
+			complexNativeSelect.getOptionLabel = getOptionLabel;
+			complexNativeSelect.getOptionValue = getOptionValue;
+
+			// Progress
+			progressTab.label = "Progress";
+
+			var progress = document.getElementById('dojoProgress');
+			var progressMaxOne = document.getElementById('dojoProgressMaxOne');
+			var progressCustomOutput = document.getElementById('dojoProgressCustomOutput');
+			var progressNoOutput = document.getElementById('dojoProgressNoOutput');
+
+			progress.value = 50;
+			progressMaxOne.value = 0.3;
+			progressMaxOne.max = 1;
+			progressCustomOutput.value = 250;
+			progressCustomOutput.max = 750;
+			progressCustomOutput.output = function(value, percent) {
+				return value + ' of 750 is ' + percent;
+			}
+			progressNoOutput.value = 10;
+			progressNoOutput.showOutput = false;
+
+			// Sliders
+			sliderTab.label = "Slider";
+
+			var slider = document.getElementById('dojoSlider');
+			var disabledSlider = document.getElementById('dojoDisabledSlider');
+			var verticalSlider = document.getElementById('dojoVerticalSlider');
+
+			slider.min = 0;
+			slider.max = 100;
+			slider.step = 1;
+			slider.output = function (value) {
+				if (value < 20) { return 'I am a Klingon'; }
+				if (value < 40) { return 'Tribbles only cause trouble'; }
+				if (value < 60) { return 'They\`re kind of cute'; }
+				if (value < 80) { return 'Most of my salary goes to tribble food'; }
+				else { return 'I permanently altered the ecology of a planet for my tribbles'; }
+			}
+			slider.value = 50;
+			slider.addEventListener('input', function (event) {
+				slider.value = event.detail[0];
+			});
+			disabledSlider.min = 0;
+			disabledSlider.max = 100;
+			disabledSlider.step = 1;
+			disabledSlider.value = 30;
+			disabledSlider.disabled = true;
+			verticalSlider.value = 0;
+			verticalSlider.vertical = true;
+			verticalSlider.invalid = false;
+			verticalSlider.outputIsTooltip = true;
+			verticalSlider.output = function (value) {
+				return verticalSlider.invalid ? value + '!' : value + '';
+			}
+			verticalSlider.addEventListener('input', function (event) {
+				var value = event.detail[0];
+				verticalSlider.invalid = value > 50;
+				verticalSlider.value = value;
+			});
+		</script>
+	</body>
+</html>

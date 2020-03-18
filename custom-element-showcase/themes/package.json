@@ -1,0 +1,33 @@
+{
+    "name": "@dojo/themes",
+    "version": "6.0.0",
+    "description": "Dojo Themes",
+    "homepage": "https://dojo.io",
+    "bugs": {
+        "url": "https://github.com/dojo/themes/issues"
+    },
+    "license": "BSD-3-Clause",
+    "main": "main.js",
+    "engines": {
+        "npm": ">=3.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dojo/themes.git"
+    },
+    "devDependencies": {
+        "@dojo/cli": "^6.0.0",
+        "@dojo/cli-build-theme": "^6.0.0",
+        "@dojo/scripts": "~3.1.0",
+        "@material/button": "^2.1.1",
+        "cpx": "1.5.0",
+        "npm-run-all": "4.1.5",
+        "rimraf": "2.6.2",
+        "shx": "0.3.2",
+        "typescript": "2.6.2"
+    }
+
+,"_resolved": "https://registry.npmjs.org/@dojo/themes/-/themes-6.0.0.tgz"
+,"_integrity": "sha512-48a/r7Cd6VtEXHdDt+WR6CQcFos6CiKEYfsvY5GqqiPe/UkrefWgCzNm4p7RA+l8pBVP3J1dy9/V1L7HWzHJbA=="
+,"_from": "@dojo/themes@6.0.0"
+}

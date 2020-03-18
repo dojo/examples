@@ -1,0 +1,21 @@
+@import './variables.css';
+
+.root {
+	composes: mdc-button from '@material/button/dist/mdc.button.css';
+}
+
+.raised {
+	composes: mdc-button--raised from '@material/button/dist/mdc.button.css';
+}
+
+.unelevated {
+	composes: mdc-button--unelevated from '@material/button/dist/mdc.button.css';
+}
+
+.outlined {
+	composes: mdc-button--outlined from '@material/button/dist/mdc.button.css';
+}
+
+.dense {
+	composes: mdc-button--dense from '@material/button/dist/mdc.button.css';
+}
