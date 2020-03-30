@@ -45,7 +45,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 													executor(fetchFeedProcess)({
 														page: 0,
 														type: 'feed',
-														filter: username,
+														filter: username
 													});
 												}}
 												classes={['nav-link', type === 'feed' && 'active']}
@@ -63,7 +63,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 												executor(fetchFeedProcess)({
 													page: 0,
 													type: 'global',
-													filter: username,
+													filter: username
 												});
 											}}
 											classes={['nav-link', type === 'global' && 'active']}
@@ -93,7 +93,7 @@ export const Home = factory(function Home({ middleware: { store } }) {
 										executor(fetchFeedProcess)({
 											type,
 											filter: type === 'tag' ? tagName : username,
-											page,
+											page
 										});
 									}}
 								/>

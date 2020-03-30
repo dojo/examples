@@ -15,5 +15,5 @@ export default {
 	paris: 'París',
 	tokyo: 'Tokio',
 
-	multipleLocales: 'múltiples idiomas',
+	multipleLocales: 'múltiples idiomas'
 };

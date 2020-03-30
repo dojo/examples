@@ -12,7 +12,7 @@ import store from '../../store';
 import { replace } from '@dojo/framework/stores/state/operations';
 
 const mockEvent = {
-	preventDefault() {},
+	preventDefault() {}
 };
 
 describe('tags widget', () => {
@@ -21,7 +21,7 @@ describe('tags widget', () => {
 		const mockStore = createMockStoreMiddleware([[fetchFeedProcess, fetchFeed]]);
 		const h = harness(() => w(Tags, {}), { middleware: [[store, mockStore]] });
 		const expected = v('div', { classes: ['col-md-3'] }, [
-			v('div', { classes: ['sidebar'] }, [v('p', ['Popular Tags']), v('div', { classes: ['tag-list'] }, [])]),
+			v('div', { classes: ['sidebar'] }, [v('p', ['Popular Tags']), v('div', { classes: ['tag-list'] }, [])])
 		]);
 
 		h.expect(() => expected);
@@ -38,13 +38,13 @@ describe('tags widget', () => {
 					v('p', ['Popular Tags']),
 					v('div', { classes: ['tag-list'] }, [
 						v('a', { href: '', onclick: () => {}, key: '0', classes: ['tag-pill', 'tag-default'] }, [
-							'first',
+							'first'
 						]),
 						v('a', { href: '', onclick: () => {}, key: '1', classes: ['tag-pill', 'tag-default'] }, [
-							'second',
-						]),
-					]),
-				]),
+							'second'
+						])
+					])
+				])
 			])
 		);
 

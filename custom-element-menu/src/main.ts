@@ -12,7 +12,7 @@ class Example extends WidgetBase {
 		return w(Menu, { onSelected: this._onSelected }, [
 			w(MenuItem, { key: 'a', title: 'Menu Item A' }),
 			w(MenuItem, { key: 'b', title: 'Menu Item B', selected: true }),
-			w(MenuItem, { key: 'c', title: 'Menu Item C' }),
+			w(MenuItem, { key: 'c', title: 'Menu Item C' })
 		]);
 	}
 }

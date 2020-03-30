@@ -15,16 +15,16 @@ const config = [
 		outlet: 'view',
 		defaultParams: {
 			filter: 'all',
-			view: 'list',
+			view: 'list'
 		},
 		defaultRoute: true,
 		children: [
 			{
 				path: 'todo/{id}',
-				outlet: 'edit',
-			},
-		],
-	},
+				outlet: 'edit'
+			}
+		]
+	}
 ];
 registerRouterInjector(config, registry);
 

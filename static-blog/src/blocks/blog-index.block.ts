@@ -24,7 +24,7 @@ export default async function () {
 		blogs.push({
 			sortDate: new Date(`${meta.date}`),
 			file: parse(file).name,
-			meta,
+			meta
 		});
 	}
 

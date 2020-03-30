@@ -193,7 +193,7 @@ export default createWidget(({ middleware }) => {
 										classes={[
 											css.todoItem,
 											editingId === todo.id && css.editing,
-											Boolean(todo.completed) && css.completed,
+											Boolean(todo.completed) && css.completed
 										]}
 									>
 										<div classes={[css.view]}>

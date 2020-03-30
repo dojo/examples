@@ -19,5 +19,5 @@ export default {
 	'dojo2-todo-mvc-kitchensink/todoCard': todoCard,
 	'dojo2-todo-mvc-kitchensink/themeSwitcher': themeSwitcher,
 	'dojo2-todo-mvc-kitchensink/credits': credits,
-	'dojo2-todo-mvc-kitchensink/todoDetails': todoDetails,
+	'dojo2-todo-mvc-kitchensink/todoDetails': todoDetails
 };

@@ -21,7 +21,7 @@ const factory = create({ injector, diffProperty, cache, invalidator }).propertie
 export const ActiveLink = factory(function ActiveLink({
 	middleware: { diffProperty, injector, cache, invalidator },
 	properties,
-	children,
+	children
 }) {
 	const { to, routerKey = 'router', params, matchParams = params, activeClasses } = properties();
 	let { classes = [], ...props } = properties();

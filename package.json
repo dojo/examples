@@ -14,7 +14,8 @@
     "tabWidth": 4,
     "useTabs": true,
     "printWidth": 120,
-    "arrowParens": "always"
+    "arrowParens": "always",
+    "trailingComma": "none"
   },
   "lint-staged": {
     "*.{ts,tsx,md}": [

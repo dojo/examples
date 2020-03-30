@@ -22,19 +22,19 @@ describe('App', () => {
 						columnReorder: false,
 						columnResizer: false,
 						compoundColumns: false,
-						columnSet: false,
+						columnSet: false
 					},
 					data: [
 						{ first: 'Bob', last: 'Thomson', id: 1, hasChildren: true },
-						{ first: 'Tom', last: 'Bobson', id: 2, hasChildren: true },
+						{ first: 'Tom', last: 'Bobson', id: 2, hasChildren: true }
 					],
 					columns: [
 						{ field: 'first', label: 'First', renderExpando: true } as any,
-						{ field: 'last', label: 'Last' },
+						{ field: 'last', label: 'Last' }
 					],
 					columnSets: [
 						[[{ field: 'id', label: 'ID' }]],
-						[[{ field: 'first', label: 'First' }], [{ field: 'last', label: 'Last' }]],
+						[[{ field: 'first', label: 'First' }], [{ field: 'last', label: 'Last' }]]
 					],
 					rowsPerPage: 5,
 					previousNextArrows: true,
@@ -55,19 +55,19 @@ describe('App', () => {
 					enableTreeTransitions: false,
 					treeIndentWidth: 9,
 
-					onColumnStateChange: () => {},
+					onColumnStateChange: () => {}
 				}),
 				v(
 					'button',
 					{
-						onclick: () => {},
+						onclick: () => {}
 					},
 					['Add Data']
 				),
 				v(
 					'button',
 					{
-						onclick: () => {},
+						onclick: () => {}
 					},
 					['Change Columns']
 				),
@@ -75,87 +75,87 @@ describe('App', () => {
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Pagination On']
 					),
-					v('div', []),
+					v('div', [])
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Keyboard On']
 					),
-					v('div', []),
+					v('div', [])
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Selection On']
 					),
-					v('div', []),
+					v('div', [])
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Tree On']
 					),
-					v('div', []),
+					v('div', [])
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Column Hider On']
-					),
+					)
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Column Reorder On']
-					),
+					)
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Column Resizer On']
-					),
+					)
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Compound Columns On']
-					),
+					)
 				]),
 				v('p', [
 					v(
 						'button',
 						{
-							onclick: () => {},
+							onclick: () => {}
 						},
 						['Turn Column Sets On']
-					),
-				]),
+					)
+				])
 			])
 		);
 	});

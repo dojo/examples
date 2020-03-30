@@ -8,7 +8,7 @@ import {
 	tagInputProcess,
 	addTagProcess,
 	removeTagProcess,
-	publishArticleProcess,
+	publishArticleProcess
 } from '../processes/editorProcesses';
 import ErrorList from './ErrorList';
 

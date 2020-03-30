@@ -38,7 +38,7 @@ const updateUserSettingsCommand = commandFactory(async ({ path, get }) => {
 	const response = await fetch(`${baseUrl}/user`, {
 		method: 'put',
 		headers: getHeaders(token),
-		body: JSON.stringify(requestPayload),
+		body: JSON.stringify(requestPayload)
 	});
 
 	const json = await response.json();
@@ -47,13 +47,13 @@ const updateUserSettingsCommand = commandFactory(async ({ path, get }) => {
 		replace(path('session'), json.user),
 		replace(path('settings'), undefined),
 		replace(path('routing', 'outlet'), 'user'),
-		replace(path('routing', 'params'), { username: get(path('settings', 'username')) }),
+		replace(path('routing', 'params'), { username: get(path('settings', 'username')) })
 	];
 });
 
 export const getUserSettingsProcess = createProcess('user-settings', [
 	startUserSettingsCommand,
-	getUserSettingsCommand,
+	getUserSettingsCommand
 ]);
 export const updateUserSettingsProcess = createProcess('update-user-settings', [updateUserSettingsCommand]);
 export const usernameInputProcess = createProcess('username-input', [usernameInputCommand]);

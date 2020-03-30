@@ -22,7 +22,7 @@ const titles = [
 	'Proof That [subject] Are Exactly What You Are Looking For',
 	'[subject] Becoming A Challenge? [number] Tips for [subject] [better]',
 	"The [organization]'s Secret Campaign Against [subject]",
-	"Drone Overhead? Why [organization] Can't Have You Panic",
+	"Drone Overhead? Why [organization] Can't Have You Panic"
 ];
 
 const subjects = ['Waning Gibbous', 'Government Test Sites', 'Tin Foil Hats', 'Cats'];
@@ -74,7 +74,7 @@ export function getListItems(count = 10): Promise<{ title: string; summary: stri
 
 		articles.push({
 			title: generateArticleTitle(),
-			summary,
+			summary
 		});
 	}
 

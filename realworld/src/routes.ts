@@ -1,27 +1,27 @@
 export default [
 	{
 		path: 'login',
-		outlet: 'login',
+		outlet: 'login'
 	},
 	{
 		path: 'register',
-		outlet: 'register',
+		outlet: 'register'
 	},
 	{
 		path: 'user/{username}',
-		outlet: 'user',
+		outlet: 'user'
 	},
 	{
 		path: 'user/{username}/favorites',
-		outlet: 'favorites',
+		outlet: 'favorites'
 	},
 	{
 		path: 'article/{slug}',
-		outlet: 'article',
+		outlet: 'article'
 	},
 	{
 		path: 'settings',
-		outlet: 'settings',
+		outlet: 'settings'
 	},
 	{
 		path: 'editor',
@@ -29,13 +29,13 @@ export default [
 		children: [
 			{
 				path: 'editor/{slug}',
-				outlet: 'edit-post',
-			},
-		],
+				outlet: 'edit-post'
+			}
+		]
 	},
 	{
 		path: 'home',
 		outlet: 'home',
-		defaultRoute: true,
-	},
+		defaultRoute: true
+	}
 ];

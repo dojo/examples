@@ -53,14 +53,14 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 									onclick={() => {
 										executor(followUserProcess)({
 											following,
-											username,
+											username
 										});
 									}}
 									classes={[
 										'btn',
 										'btn-sm',
 										'action-btn',
-										following ? 'btn-secondary' : 'btn-outline-secondary',
+										following ? 'btn-secondary' : 'btn-outline-secondary'
 									]}
 								>
 									<i classes={['ion-plus-round']}></i>
@@ -114,7 +114,7 @@ export const Profile = factory(function Profile({ middleware: { store }, propert
 									executor(getProfileFeedProcess)({
 										type,
 										username,
-										page,
+										page
 									});
 								}}
 							/>

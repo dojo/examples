@@ -19,7 +19,7 @@ function getHandPosition(size: number, angle: number, innerRadius: number) {
 	const radius = size / 2;
 	return {
 		x: radius + innerRadius * Math.cos(angle),
-		y: radius + innerRadius * Math.sin(angle),
+		y: radius + innerRadius * Math.sin(angle)
 	};
 }
 
@@ -32,7 +32,7 @@ function getHandAnimation(duration: number, size: number) {
 		from: `0 ${center} ${center}`,
 		to: `360 ${center} ${center}`,
 		dur: `${duration}s`,
-		repeatCount: 'indefinite',
+		repeatCount: 'indefinite'
 	});
 }
 
@@ -61,7 +61,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 						classes: [css.hourText],
 						'text-anchor': 'middle',
 						x: `${x}`,
-						y: `${y + padding / 2}`,
+						y: `${y + padding / 2}`
 					},
 					[formatNumber(i, locale)]
 				)
@@ -89,7 +89,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 					x1: `${radius}`,
 					y1: `${radius}`,
 					x2: `${hourX}`,
-					y2: `${hourY}`,
+					y2: `${hourY}`
 				},
 				[getHandAnimation(12 * 60 * 60, size)]
 			),
@@ -100,7 +100,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 					x1: `${radius}`,
 					y1: `${radius}`,
 					x2: `${minuteX}`,
-					y2: `${minuteY}`,
+					y2: `${minuteY}`
 				},
 				[getHandAnimation(60 * 60, size)]
 			),
@@ -111,7 +111,7 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 					x1: `${radius}`,
 					y1: `${radius}`,
 					x2: `${secondX}`,
-					y2: `${secondY}`,
+					y2: `${secondY}`
 				},
 				[getHandAnimation(60, size)]
 			),
@@ -119,8 +119,8 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 				classes: [css.joint],
 				cx: `${radius}`,
 				cy: `${radius}`,
-				r: `4`,
-			}),
+				r: `4`
+			})
 		]);
 	}
 
@@ -130,24 +130,24 @@ export default factory(function Clock({ properties, middleware: { i18n } }) {
 			{
 				classes: [css.clock],
 				height: `${size}`,
-				width: `${size}`,
+				width: `${size}`
 			},
 			[
 				v('circle', {
 					cx: `${radius}`,
 					cy: `${radius}`,
-					r: `${radius}`,
+					r: `${radius}`
 				}),
 				renderHours(),
-				renderHands(),
+				renderHands()
 			]
 		),
 		v(
 			'p',
 			{
-				classes: [css.label],
+				classes: [css.label]
 			},
 			[label]
-		),
+		)
 	]);
 });

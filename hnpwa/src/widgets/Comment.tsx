@@ -11,7 +11,7 @@ const factory = create().properties<CommentProperties>();
 
 const CommentWidget = factory(function Comment({ properties }) {
 	const {
-		comment: { user, content, time_ago, comments = [] },
+		comment: { user, content, time_ago, comments = [] }
 	} = properties();
 
 	return (

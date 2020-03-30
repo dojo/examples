@@ -148,7 +148,7 @@ export const App = factory(function App({ middleware: { icache } }) {
 										<div
 											classes={['image']}
 											styles={{
-												backgroundImage: `url("${details.sprites.front_default}")`,
+												backgroundImage: `url("${details.sprites.front_default}")`
 											}}
 										/>
 									</div>

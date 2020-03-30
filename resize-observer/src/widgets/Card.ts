@@ -12,20 +12,20 @@ export default factory(function Column({ middleware: { breakpoint }, properties 
 	const { breakpoint: bp } = breakpoint.get('root', {
 		SM: 0,
 		MD: 150,
-		LG: 300,
+		LG: 300
 	}) || { breakpoint: 'SM' };
 	const { labelOnLeft } = properties();
 	return v(
 		'div',
 		{
 			key: 'root',
-			classes: [css.root, bp === 'SM' ? css.small : bp === 'MD' ? css.medium : css.big],
+			classes: [css.root, bp === 'SM' ? css.small : bp === 'MD' ? css.medium : css.big]
 		},
 		[
 			v(
 				'div',
 				{
-					classes: labelOnLeft ? css.badgeLeft : css.badge,
+					classes: labelOnLeft ? css.badgeLeft : css.badge
 				},
 				[bp === 'SM' ? 'small' : bp === 'MD' ? 'med' : 'big']
 			),
@@ -33,9 +33,9 @@ export default factory(function Column({ middleware: { breakpoint }, properties 
 			v('div', { key: 'body', classes: css.bodyHolder }, [
 				v('h3', { classes: css.title }, [`Card Title`]),
 				v('p', [
-					'A basic card component. By default, the image is on top and full-width, but inside larger containers the image is positioned on the left and in very small containers the image is not displayed.',
-				]),
-			]),
+					'A basic card component. By default, the image is on top and full-width, but inside larger containers the image is positioned on the left and in very small containers the image is not displayed.'
+				])
+			])
 		]
 	);
 });

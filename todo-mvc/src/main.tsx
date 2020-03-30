@@ -11,8 +11,8 @@ registerRouterInjector(
 			path: 'filter/{filter}',
 			outlet: 'filter',
 			defaultParams: { filter: 'all' },
-			defaultRoute: true,
-		},
+			defaultRoute: true
+		}
 	],
 	registry
 );

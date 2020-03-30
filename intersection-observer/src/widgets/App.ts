@@ -29,7 +29,7 @@ export default factory(function App({ middleware: { icache } }) {
 					const data = icache.get('data') || [];
 					icache.set('loading', false);
 					icache.set('data', [...data, ...newData]);
-				},
-			}),
+				}
+			})
 	]);
 });

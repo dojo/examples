@@ -8,7 +8,7 @@ import {
 	FollowUserPayload,
 	AddCommentPayload,
 	DeleteCommentPayload,
-	NewCommentPayload,
+	NewCommentPayload
 } from './interfaces';
 
 const startLoadingArticleCommand = commandFactory(({ path, payload: { slug } }) => {
@@ -16,21 +16,21 @@ const startLoadingArticleCommand = commandFactory(({ path, payload: { slug } }) 
 		replace(path('article', slug, 'item'), undefined),
 		replace(path('article', slug, 'comments'), []),
 		replace(path('article', slug, 'isLoading'), true),
-		replace(path('article', slug, 'isLoaded'), false),
+		replace(path('article', slug, 'isLoaded'), false)
 	];
 });
 
 const loadArticleCommand = commandFactory<SlugPayload>(async ({ get, path, payload: { slug } }) => {
 	const token = get(path('session', 'token'));
 	const response = await fetch(`${baseUrl}/articles/${slug}`, {
-		headers: getHeaders(token),
+		headers: getHeaders(token)
 	});
 	const json = await response.json();
 
 	return [
 		replace(path('article', slug, 'item'), json.article),
 		replace(path('article', slug, 'isLoading'), false),
-		replace(path('article', slug, 'isLoaded'), true),
+		replace(path('article', slug, 'isLoaded'), true)
 	];
 });
 
@@ -39,7 +39,7 @@ const favoriteArticleCommand = commandFactory<FavoriteArticlePayload>(
 		const token = get(path('session', 'token'));
 		const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, {
 			method: favorited ? 'delete' : 'post',
-			headers: getHeaders(token),
+			headers: getHeaders(token)
 		});
 		const json = await response.json();
 		return [replace(path('article', slug, 'item'), json.article)];
@@ -51,7 +51,7 @@ const followUserCommand = commandFactory<Required<FollowUserPayload>>(
 		const token = get(path('session', 'token'));
 		const response = await fetch(`${baseUrl}/profiles/${username}/follow`, {
 			method: following ? 'delete' : 'post',
-			headers: getHeaders(token),
+			headers: getHeaders(token)
 		});
 		const json = await response.json();
 		const article = get(path('article', slug, 'item'));
@@ -62,7 +62,7 @@ const followUserCommand = commandFactory<Required<FollowUserPayload>>(
 const loadCommentsCommand = commandFactory<SlugPayload>(async ({ get, path, payload: { slug } }) => {
 	const token = get(path('session', 'token'));
 	const response = await fetch(`${baseUrl}/articles/${slug}/comments`, {
-		headers: getHeaders(token),
+		headers: getHeaders(token)
 	});
 	const json = await response.json();
 
@@ -73,20 +73,20 @@ const addCommentCommand = commandFactory<AddCommentPayload>(async ({ get, path, 
 	const token = get(path('session', 'token'));
 	const requestPayload = {
 		comment: {
-			body: newComment,
-		},
+			body: newComment
+		}
 	};
 	const response = await fetch(`${baseUrl}/articles/${slug}/comments`, {
 		method: 'post',
 		headers: getHeaders(token),
-		body: JSON.stringify(requestPayload),
+		body: JSON.stringify(requestPayload)
 	});
 	const json = await response.json();
 	const comments = get(path('article', slug, 'comments'));
 
 	return [
 		replace(path('article', slug, 'comments'), [...comments, json.comment]),
-		replace(path('article', slug, 'newComment'), ''),
+		replace(path('article', slug, 'newComment'), '')
 	];
 });
 
@@ -94,7 +94,7 @@ const deleteCommentCommand = commandFactory<DeleteCommentPayload>(async ({ at, g
 	const token = get(path('session', 'token'));
 	await fetch(`${baseUrl}/articles/${slug}/comments/${id}`, {
 		method: 'delete',
-		headers: getHeaders(token),
+		headers: getHeaders(token)
 	});
 	const comments = get(path('article', slug, 'comments'));
 	let index = -1;
@@ -119,14 +119,14 @@ const deleteArticleCommand = commandFactory<SlugPayload>(async ({ get, path, pay
 	const token = get(path('session', 'token'));
 	await fetch(`${baseUrl}/articles/${slug}`, {
 		method: 'delete',
-		headers: getHeaders(token),
+		headers: getHeaders(token)
 	});
 	return [replace(path('routing', 'outlet'), 'home')];
 });
 
 export const getArticleProcess = createProcess('get-article', [
 	startLoadingArticleCommand,
-	[loadArticleCommand, loadCommentsCommand],
+	[loadArticleCommand, loadCommentsCommand]
 ]);
 export const deleteCommentProcess = createProcess('delete-comment', [deleteCommentCommand]);
 export const addCommentProcess = createProcess('add-comment', [addCommentCommand]);

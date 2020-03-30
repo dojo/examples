@@ -2,10 +2,10 @@ export default [
 	{
 		path: '/',
 		outlet: 'blog-list',
-		defaultRoute: true,
+		defaultRoute: true
 	},
 	{
 		path: 'blog/{blog}',
-		outlet: 'blog',
-	},
+		outlet: 'blog'
+	}
 ];

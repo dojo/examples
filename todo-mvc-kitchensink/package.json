@@ -7,7 +7,7 @@
 		"dev": "dojo build app -m dev -w -s",
 		"build": "dojo build",
 		"build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+		"lint": "eslint \"src/**/*.{ts,tsx}\"",
 		"test:ci": "echo no tests"
 	},
 	"repository": {

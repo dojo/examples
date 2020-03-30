@@ -16,7 +16,7 @@ export interface MenuItemProperties {
 	tag: 'demo-menu-item',
 	events: ['onSelected'],
 	attributes: ['title'],
-	properties: ['data', 'selected'],
+	properties: ['data', 'selected']
 })
 @theme(css)
 export class MenuItem extends ThemedMixin(WidgetBase)<MenuItemProperties> {
@@ -32,10 +32,10 @@ export class MenuItem extends ThemedMixin(WidgetBase)<MenuItemProperties> {
 				'span',
 				{
 					classes: this.theme([css.item, selected ? css.selected : null]),
-					onclick: this._onClick,
+					onclick: this._onClick
 				},
 				[this.properties.title]
-			),
+			)
 		]);
 	}
 }

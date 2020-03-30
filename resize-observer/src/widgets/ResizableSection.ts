@@ -20,7 +20,7 @@ const columnClasses: { [index: number]: string } = {
 	5: css.fiveColumns,
 	6: css.sixColumns,
 	7: css.sevenColumns,
-	8: css.eightColumns,
+	8: css.eightColumns
 };
 
 export default factory(function ResizableSection({ properties, children }) {
@@ -30,7 +30,7 @@ export default factory(function ResizableSection({ properties, children }) {
 		'div',
 		{
 			key: 'root',
-			classes: [css.root, isSmall ? css.eightColumns : columnClasses[columns]],
+			classes: [css.root, isSmall ? css.eightColumns : columnClasses[columns]]
 		},
 		[
 			isSmall
@@ -40,13 +40,13 @@ export default factory(function ResizableSection({ properties, children }) {
 							'button',
 							{
 								disabled: columns <= (isMedium ? 2 : 1),
-								onclick: shrink,
+								onclick: shrink
 							},
 							['Shrink Component']
 						),
-						v('button', { disabled: columns === 8, onclick: expand }, ['Expand Component']),
+						v('button', { disabled: columns === 8, onclick: expand }, ['Expand Component'])
 				  ]),
-			...children(),
+			...children()
 		]
 	);
 });

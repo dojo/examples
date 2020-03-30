@@ -21,7 +21,7 @@ export default factory(function App({ middleware: { store } }) {
 										onclick={() => {
 											store.executor(updateNameProcess)({
 												company: company.name,
-												person,
+												person
 											});
 										}}
 									>

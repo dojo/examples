@@ -7,7 +7,7 @@
 		"build": "dojo build",
 		"build:ghpages": "dojo build --dojorc .dojorc-ghpages",
 		"build:test": "dojo build -m unit",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+		"lint": "eslint \"src/**/*.{ts,tsx}\"",
 		"test": "run-s build:test test:local",
 		"test:ci": "run-s build:test test:headless",
 		"test:local": "dojo test -c local",

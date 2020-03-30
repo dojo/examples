@@ -21,14 +21,14 @@ const loginCommand = commandFactory<{ email: string; password: string }>(async (
 	const requestPayload = {
 		user: {
 			email: payload.email,
-			password: payload.password,
-		},
+			password: payload.password
+		}
 	};
 
 	const response = await fetch(`${baseUrl}/users/login`, {
 		method: 'post',
 		body: JSON.stringify(requestPayload),
-		headers: getHeaders(),
+		headers: getHeaders()
 	});
 
 	const json = await response.json();
@@ -36,7 +36,7 @@ const loginCommand = commandFactory<{ email: string; password: string }>(async (
 		return [
 			replace(path('login', 'isLoading'), true),
 			replace(path('errors'), json.errors),
-			replace(path('session'), {}),
+			replace(path('session'), {})
 		];
 	}
 
@@ -46,7 +46,7 @@ const loginCommand = commandFactory<{ email: string; password: string }>(async (
 		replace(path('routing', 'outlet'), 'home'),
 		replace(path('login', 'isLoading'), false),
 		replace(path('errors'), undefined),
-		replace(path('session'), json.user),
+		replace(path('session'), json.user)
 	];
 });
 
@@ -56,21 +56,21 @@ const registerCommand = commandFactory<{ username: string; email: string; passwo
 			user: {
 				username,
 				email,
-				password,
-			},
+				password
+			}
 		};
 
 		const response = await fetch(`${baseUrl}/users`, {
 			method: 'post',
 			body: JSON.stringify(requestPayload),
-			headers: getHeaders(),
+			headers: getHeaders()
 		});
 		const json = await response.json();
 		if (!response.ok) {
 			return [
 				replace(path('register', 'isLoading'), false),
 				replace(path('errors'), json.errors),
-				replace(path('session'), {}),
+				replace(path('session'), {})
 			];
 		}
 
@@ -80,7 +80,7 @@ const registerCommand = commandFactory<{ username: string; email: string; passwo
 			replace(path('routing', 'outlet'), 'home'),
 			replace(path('register', 'isLoading'), false),
 			replace(path('errors'), undefined),
-			replace(path('session'), json.user),
+			replace(path('session'), json.user)
 		];
 	}
 );

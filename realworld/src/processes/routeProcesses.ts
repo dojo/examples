@@ -17,7 +17,7 @@ const changeRouteCommand = commandFactory<ChangeRoutePayload>(({ get, path, payl
 		replace(path('editor'), undefined),
 		isProfile(currentOutlet, outlet) ? replace(path('profile', 'feed'), {}) : replace(path('profile'), undefined),
 		replace(path('feed'), undefined),
-		replace(path('errors'), {}),
+		replace(path('errors'), {})
 	];
 });
 export const changeRouteProcess = createProcess('change-route', [changeRouteCommand]);
