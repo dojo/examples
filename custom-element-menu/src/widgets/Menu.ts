@@ -14,7 +14,7 @@ interface MenuProperties {
 @theme(css)
 @customElement<MenuProperties>({
 	tag: 'demo-menu',
-	events: ['onSelected']
+	events: ['onSelected'],
 })
 export class Menu extends ThemedMixin(WidgetBase)<MenuProperties, WNode<MenuItem>> {
 	private _selectedId!: number;
@@ -31,7 +31,7 @@ export class Menu extends ThemedMixin(WidgetBase)<MenuProperties, WNode<MenuItem
 				const properties: Partial<any> = {
 					onSelected: (data: any) => {
 						this._onSelected(index, data);
-					}
+					},
 				};
 				if (this._selectedId !== undefined) {
 					properties.selected = index === this._selectedId;
@@ -45,10 +45,10 @@ export class Menu extends ThemedMixin(WidgetBase)<MenuProperties, WNode<MenuItem
 			v(
 				'ol',
 				{
-					classes: this.theme(css.menuContainer)
+					classes: this.theme(css.menuContainer),
 				},
 				items
-			)
+			),
 		]);
 	}
 }

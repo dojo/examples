@@ -16,5 +16,5 @@ export default {
 	paris: 'フランス',
 	tokyo: '東京',
 
-	multipleLocales: '複数のロケール'
+	multipleLocales: '複数のロケール',
 };

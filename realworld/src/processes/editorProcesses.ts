@@ -56,14 +56,14 @@ const publishArticleCommand = commandFactory(async ({ get, path }) => {
 	const token = get(path('session', 'token'));
 	const slug = get(path('editor', 'slug'));
 	const requestPayload = {
-		article: get(path('editor'))
+		article: get(path('editor')),
 	};
 
 	const url = slug ? `${baseUrl}/articles/${slug}` : `${baseUrl}/articles`;
 	const response = await fetch(url, {
 		method: slug ? 'put' : 'post',
 		headers: getHeaders(token),
-		body: JSON.stringify(requestPayload)
+		body: JSON.stringify(requestPayload),
 	});
 	const json = await response.json();
 
@@ -74,7 +74,7 @@ const publishArticleCommand = commandFactory(async ({ get, path }) => {
 	return [
 		replace(path('article', slug, 'item'), json.article),
 		replace(path('article', slug, 'isLoading'), true),
-		replace(path('editor'), undefined)
+		replace(path('editor'), undefined),
 	];
 });
 

@@ -7,7 +7,7 @@ import {
 	imageUrlInputProcess,
 	getUserSettingsProcess,
 	usernameInputProcess,
-	updateUserSettingsProcess
+	updateUserSettingsProcess,
 } from './../processes/settingsProcesses';
 import { logoutProcess } from '../processes/loginProcesses';
 

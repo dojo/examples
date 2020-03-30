@@ -17,13 +17,15 @@
 		"noUnusedLocals": true,
 		"outDir": "_build/",
 		"removeComments": false,
+		"importHelpers": true,
+		"downlevelIteration": true,
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-		"types": [ "intern" ]
+		"types": []
 	},
 	"include": [
 		"./src/**/*.ts",
-		"./tests/**/*.ts"
+		"./src/**/*.tsx"
 	]
 }

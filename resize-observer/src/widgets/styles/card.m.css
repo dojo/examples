@@ -1,5 +1,5 @@
 .root {
-	border: 1px solid rgba(0,0,0,.075);
+	border: 1px solid rgba(0, 0, 0, 0.075);
 	display: flex;
 	flex: row;
 	padding: 1em;
@@ -17,9 +17,9 @@
 		background: #40bf80;
 	}
 
-    & .badgeLeft {
-        background: #40bf80;
-    }
+	& .badgeLeft {
+		background: #40bf80;
+	}
 }
 
 .medium {
@@ -32,50 +32,50 @@
 
 	& .badge {
 		background: #ab47bc;
-  	}
+	}
 	& .badgeLeft {
 		background: #ab47bc;
-  	}
+	}
 }
 
 .small {
-    & .figureHolder {
-        display: none;
-    }
+	& .figureHolder {
+		display: none;
+	}
 
 	& .badge {
-		  background: #33b2cc;
- 	}
+		background: #33b2cc;
+	}
 
 	& .badgeLeft {
-		  background: #33b2cc;
+		background: #33b2cc;
 	}
 }
 
 .badge {
-	composes: badge from './common.m.css';
+	composes: badge from "./common.m.css";
 }
 
 .badgeLeft {
-    color: #fff;
-    background: #fff;
-    font-size: .8em;
-    font-weight: 700;
-    letter-spacing: .1em;
-    position: absolute;
-    left: -1.2em;
-    text-align: center;
-    top: 3.1em;
-    transform: rotate(-45deg);
-    transform-origin: 0 0;
-    width: 6em;
-    z-index: 10;
-    transition: all 0.5s ease-in;
+	color: #fff;
+	background: #fff;
+	font-size: 0.8em;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	position: absolute;
+	left: -1.2em;
+	text-align: center;
+	top: 3.1em;
+	transform: rotate(-45deg);
+	transform-origin: 0 0;
+	width: 6em;
+	z-index: 10;
+	transition: all 0.5s ease-in;
 }
 
 .figure {
 	border: 1px solid #e6e6e6;
-	padding: .25em;
+	padding: 0.25em;
 }
 
 .figure:after {
@@ -99,7 +99,7 @@
 .title {
 	font-size: 1.4em;
 	font-weight: 600;
-	margin-bottom: .53571em;
+	margin-bottom: 0.53571em;
 }
 
 .bodyHolder {

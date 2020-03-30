@@ -22,10 +22,10 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es5",
-		"types": [ "intern", "dojo" ]
+		"types": [ "intern" ]
 	},
 	"include": [
 		"./src/**/*.ts",
-		"./tests/**/*.ts"
+		"./src/**/*.tsx"
 	]
 }

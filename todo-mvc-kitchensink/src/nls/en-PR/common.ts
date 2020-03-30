@@ -12,7 +12,7 @@ const messages = {
 		=1 {thin' left}
 		other {thin's left}}`,
 	searchPlaceholder: "be searchin'",
-	themeSwitchTitle: 'Pirate Mode'
+	themeSwitchTitle: 'Pirate Mode',
 };
 
 export default messages;

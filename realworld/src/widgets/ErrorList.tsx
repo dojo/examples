@@ -14,7 +14,7 @@ export const ErrorList = factory(function ErrorList({ properties }) {
 	for (let i = 0; i < errorCategories.length; i++) {
 		errorList = [
 			...errorList,
-			...errors[errorCategories[i]].map((error: string) => `${errorCategories[i]} ${error}`)
+			...errors[errorCategories[i]].map((error: string) => `${errorCategories[i]} ${error}`),
 		];
 	}
 	errorList;

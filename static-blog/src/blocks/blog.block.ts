@@ -13,10 +13,7 @@ const parseFrontmatter = require('remark-parse-yaml');
 const remarkExternalLinks = require('remark-external-links');
 
 function getMetaData(content: string) {
-	const pipeline = unified()
-		.use(markdown, { commonmark: true })
-		.use(frontmatter, 'yaml')
-		.use(parseFrontmatter);
+	const pipeline = unified().use(markdown, { commonmark: true }).use(frontmatter, 'yaml').use(parseFrontmatter);
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
@@ -26,7 +23,7 @@ function getMetaData(content: string) {
 
 const toVNodes = (content: string) => {
 	let counter = 0;
-	let pipeline = unified()
+	const pipeline = unified()
 		.use(markdown as any, { commonmark: true })
 		.use(frontmatter, 'yaml')
 		.use(remarkExternalLinks, { target: '_blank', rel: ['nofollow'] })
@@ -39,7 +36,7 @@ const toVNodes = (content: string) => {
 	return toH((tag: string, props: any, children: any[]) => v(tag, { ...props, key: counter++ }, children), result);
 };
 
-export default function({ path }: { path: string }) {
+export default function ({ path }: { path: string }) {
 	const contentPath = join(__dirname, '..', '..', 'content', path);
 	const file = readFileSync(contentPath, 'utf8');
 	const content = toVNodes(file);

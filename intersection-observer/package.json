@@ -3,24 +3,25 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
+    "dev": "dojo build app -m dev -w -s",
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-    "build:tests": "dojo build -m unit && dojo build -m functional",
-    "test-ci": "dojo build -m dev && npm run build:tests && dojo test -a -c \"browserstack\"  --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
-    "test": "dojo build -m dev && npm run build:tests && dojo test -a"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test:ci": "echo no tests"
   },
   "dependencies": {
-    "@dojo/framework": "^6.0.0",
-    "tslib": "~1.9.1"
+    "@dojo/framework": "7.0.0-alpha.13",
+    "tslib": "~1.9.3"
   },
   "devDependencies": {
-    "@dojo/cli": "^6.0.0",
-    "@dojo/cli-build-app": "^6.0.0",
-    "@dojo/cli-test-intern": "^6.0.0",
-    "@types/glob": "~5.0.0",
-    "@types/grunt": "~0.4.0",
-    "@types/node": "^6.0.46",
-    "@types/sinon": "^1.16.35",
+    "@dojo/cli": "7.0.0-alpha.1",
+    "@dojo/cli-build-app": "7.0.0-alpha.10",
+    "@dojo/cli-test-intern": "7.0.0-alpha.6",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
     "typescript": "~3.4.5"
   }
 }

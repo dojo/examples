@@ -5,7 +5,7 @@ import DgridWrapper, {
 	SelectionMode,
 	Selections,
 	SelectionType,
-	ColumnStateChangeData
+	ColumnStateChangeData,
 } from '@dojo/interop/dgrid/DgridWrapper';
 import { deepMixin } from '@dojo/framework/core/util';
 
@@ -29,12 +29,12 @@ function buildToggleLabel(label: string, currentValue: boolean) {
 export class App extends WidgetBase {
 	private _data: DataItem[] = [
 		{ first: 'Bob', last: 'Thomson', id: 1, hasChildren: true },
-		{ first: 'Tom', last: 'Bobson', id: 2, hasChildren: true }
+		{ first: 'Tom', last: 'Bobson', id: 2, hasChildren: true },
 	];
 
 	private _columnSets = [
 		[[{ field: 'id', label: 'ID' }]],
-		[[{ field: 'first', label: 'First' }], [{ field: 'last', label: 'Last' }]]
+		[[{ field: 'first', label: 'First' }], [{ field: 'last', label: 'Last' }]],
 	];
 
 	private _compoundColumns = [
@@ -42,10 +42,10 @@ export class App extends WidgetBase {
 			label: 'Full Name',
 			children: [
 				{ field: 'first', label: 'First' },
-				{ field: 'last', label: 'Last' }
-			]
+				{ field: 'last', label: 'Last' },
+			],
 		},
-		{ field: 'id', label: 'ID' }
+		{ field: 'id', label: 'ID' },
 	];
 
 	protected render() {
@@ -60,7 +60,7 @@ export class App extends WidgetBase {
 					columnReorder: this._columnReorderOn,
 					columnResizer: this._columnResizerOn,
 					compoundColumns: this._compoundColumnsOn,
-					columnSet: this._columnSetsOn
+					columnSet: this._columnSetsOn,
 				},
 				data: this._data,
 				columns: this._compoundColumnsOn ? this._compoundColumns : this._columnDefs[this._columnToggle],
@@ -93,19 +93,19 @@ export class App extends WidgetBase {
 
 				onColumnStateChange: (columnStateData: ColumnStateChangeData) => {
 					console.log('COLUMN STATE CHANGE', columnStateData);
-				}
+				},
 			}),
 			v(
 				'button',
 				{
-					onclick: this.addData
+					onclick: this.addData,
 				},
 				['Add Data']
 			),
 			v(
 				'button',
 				{
-					onclick: this.swapColumnDef
+					onclick: this.swapColumnDef,
 				},
 				['Change Columns']
 			),
@@ -113,87 +113,87 @@ export class App extends WidgetBase {
 				v(
 					'button',
 					{
-						onclick: this.togglePagination
+						onclick: this.togglePagination,
 					},
 					[buildToggleLabel('Pagination', this._paginationOn)]
 				),
-				v('div', this.renderPaginationButtons())
+				v('div', this.renderPaginationButtons()),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleKeyboard
+						onclick: this.toggleKeyboard,
 					},
 					[buildToggleLabel('Keyboard', this._keyboardOn)]
 				),
-				v('div', this.renderKeyboardButtons())
+				v('div', this.renderKeyboardButtons()),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleSelectionOnOff
+						onclick: this.toggleSelectionOnOff,
 					},
 					[buildToggleLabel('Selection', this._selectionType != null)]
 				),
-				v('div', this.renderSelectionButtons())
+				v('div', this.renderSelectionButtons()),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleTree
+						onclick: this.toggleTree,
 					},
 					[buildToggleLabel('Tree', this._treeOn)]
 				),
-				v('div', this.renderTreeButtons())
+				v('div', this.renderTreeButtons()),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleColumnHider
+						onclick: this.toggleColumnHider,
 					},
 					[buildToggleLabel('Column Hider', this._columnHiderOn)]
-				)
+				),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleColumnReorder
+						onclick: this.toggleColumnReorder,
 					},
 					[buildToggleLabel('Column Reorder', this._columnReorderOn)]
-				)
+				),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleColumnResizer
+						onclick: this.toggleColumnResizer,
 					},
 					[buildToggleLabel('Column Resizer', this._columnResizerOn)]
-				)
+				),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleCompoundColumns
+						onclick: this.toggleCompoundColumns,
 					},
 					[buildToggleLabel('Compound Columns', this._compoundColumnsOn)]
-				)
+				),
 			]),
 			v('p', [
 				v(
 					'button',
 					{
-						onclick: this.toggleColumnSets
+						onclick: this.toggleColumnSets,
 					},
 					[buildToggleLabel('Column Sets', this._columnSetsOn)]
-				)
-			])
+				),
+			]),
 		]);
 	}
 
@@ -202,12 +202,12 @@ export class App extends WidgetBase {
 			return [
 				v('button', { onclick: this.updateRowsPerPage }, ['Set Rows Per Page ' + this.nextRowsPerPage()]),
 				v('button', { onclick: this.togglePreviousNextArrows }, [
-					buildToggleLabel('Prev/Next Arrows', this._previousNextArrows)
+					buildToggleLabel('Prev/Next Arrows', this._previousNextArrows),
 				]),
 				v('button', { onclick: this.toggleFirstLastArrows }, [
-					buildToggleLabel('First/Last Arrows', this._firstLastArrows)
+					buildToggleLabel('First/Last Arrows', this._firstLastArrows),
 				]),
-				v('button', { onclick: this.updatePagingLinks }, ['Set Paging Links # ' + this.nextPagingLinks()])
+				v('button', { onclick: this.updatePagingLinks }, ['Set Paging Links # ' + this.nextPagingLinks()]),
 			];
 		} else {
 			return [];
@@ -266,7 +266,7 @@ export class App extends WidgetBase {
 				last: 'Person',
 				id: this._data.length + 1,
 				hasChildren: false,
-				parent: (i % 2) + 1
+				parent: (i % 2) + 1,
 			});
 		}
 		this.invalidate();
@@ -276,13 +276,13 @@ export class App extends WidgetBase {
 	private _columnDefs = [
 		[
 			{ field: 'first', label: 'First', renderExpando: true },
-			{ field: 'last', label: 'Last' }
+			{ field: 'last', label: 'Last' },
 		],
 		[
 			{ field: 'id', label: 'ID', renderExpando: true },
 			{ field: 'first', label: 'First' },
-			{ field: 'last', label: 'Last' }
-		]
+			{ field: 'last', label: 'Last' },
+		],
 	];
 	private swapColumnDef(): void {
 		this._columnToggle = this._columnToggle ? 0 : 1;
@@ -328,26 +328,26 @@ export class App extends WidgetBase {
 			return [
 				v('div', [
 					v('button', { onclick: this.toggleSelectionType }, [
-						'Set Selection Type ' + (this._selectionType === SelectionType.row ? 'Cell' : 'Row')
-					])
+						'Set Selection Type ' + (this._selectionType === SelectionType.row ? 'Cell' : 'Row'),
+					]),
 				]),
 				v('div', [
 					v('button', { onclick: this.toggleDeselectOnRefresh }, [
-						buildToggleLabel('Deselect On Referesh', this._deselectOnRefresh)
+						buildToggleLabel('Deselect On Referesh', this._deselectOnRefresh),
 					]),
 					v('button', { onclick: this.toggleAllowSelectAll }, [
-						buildToggleLabel('Select All', this._allowSelectAll)
+						buildToggleLabel('Select All', this._allowSelectAll),
 					]),
 					v('button', { onclick: this.toggleAllowTextSelection }, [
-						buildToggleLabel('Allow Text Selection', this._allowTextSelection)
-					])
+						buildToggleLabel('Allow Text Selection', this._allowTextSelection),
+					]),
 				]),
 				v('div', [
 					v('button', { onclick: this.setSelectionModeNone }, ['Select Mode: None']),
 					v('button', { onclick: this.setSelectionModeMultiple }, ['Select Mode: Multiple']),
 					v('button', { onclick: this.setSelectionModeExtended }, ['Select Mode: Extended']),
-					v('button', { onclick: this.setSelectionModeSingle }, ['Select Mode: Single'])
-				])
+					v('button', { onclick: this.setSelectionModeSingle }, ['Select Mode: Single']),
+				]),
 			];
 		} else {
 			return [];
@@ -405,15 +405,15 @@ export class App extends WidgetBase {
 			return [
 				v('div', [
 					v('button', { onclick: this.toggleCollapseOnRefresh }, [
-						buildToggleLabel('Collapse on Refresh', this._collapseOnRefresh)
+						buildToggleLabel('Collapse on Refresh', this._collapseOnRefresh),
 					]),
 					v('button', { onclick: this.toggleEnableTreeTransitions }, [
-						buildToggleLabel('Tree Transitions', this._enableTreeTransitions)
+						buildToggleLabel('Tree Transitions', this._enableTreeTransitions),
 					]),
 					v('button', { onclick: this.updateTreeIndentWidth }, [
-						'Set Tree Indent ' + this.nextTreeIndentWidth()
-					])
-				])
+						'Set Tree Indent ' + this.nextTreeIndentWidth(),
+					]),
+				]),
 			];
 		} else {
 			return [];

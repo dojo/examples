@@ -4,7 +4,7 @@ export default {
 		es: () => require('./es/main'),
 		hi: () => require('./hi/main'),
 		fr: () => require('./fr/main'),
-		ja: () => require('./ja/main')
+		ja: () => require('./ja/main'),
 	},
 	messages: {
 		arabic: 'Arabic',
@@ -24,6 +24,6 @@ export default {
 		paris: 'Paris',
 		tokyo: 'Tokyo',
 
-		multipleLocales: 'Multiple Locales'
-	}
+		multipleLocales: 'Multiple Locales',
+	},
 };

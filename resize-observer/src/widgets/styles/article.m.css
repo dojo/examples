@@ -1,12 +1,13 @@
 .root {
 	background: #fff;
-	border: 1px solid rgba(0,0,0,.075);
+	border: 1px solid rgba(0, 0, 0, 0.075);
 	padding: 1.5em;
 	position: relative;
 	overflow: hidden;
 }
 
-.content {}
+.content {
+}
 
 .text {
 	padding: 0;
@@ -41,14 +42,13 @@
 }
 
 .title {
-	border-bottom: 1px solid rgba(0,0,0,.1);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	font-weight: 700;
-	letter-spacing: .15em;
+	letter-spacing: 0.15em;
 	margin-bottom: 1em;
-	padding-bottom: .5em;
+	padding-bottom: 0.5em;
 	text-transform: uppercase;
 	font-size: 1.2em;
-
 }
 
 .root p {
@@ -56,5 +56,5 @@
 }
 
 .badge {
-	composes: badge from './common.m.css';
+	composes: badge from "./common.m.css";
 }

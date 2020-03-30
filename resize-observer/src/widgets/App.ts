@@ -75,7 +75,7 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 	const { breakpoint: bp } = breakpoint.get('root', {
 		SM: 0,
 		MD: 800,
-		LG: 1000
+		LG: 1000,
 	}) || { breakpoint: 'LG' };
 	const isSmall = bp === 'SM';
 	const isMedium = bp === 'MD';
@@ -102,10 +102,10 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 		w(Article, {}),
 		v('div', {}, [
 			v('h3', {}, ['Nested Components']),
-			w(Column, {}, [w(Card, { labelOnLeft: true }), w(Card, { labelOnLeft: true })])
+			w(Column, {}, [w(Card, { labelOnLeft: true }), w(Card, { labelOnLeft: true })]),
 		]),
 		w(Calendar, {}),
-		w(Card, {})
+		w(Card, {}),
 	];
 
 	return v('div', { classes: css.root }, [
@@ -117,10 +117,10 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 							onClick: () => () => {
 								const offset = icache.get<number>('offset') || 0;
 								icache.set('offset', (offset + 1) % 4);
-							}
+							},
 						},
 						['Switch Demo Positions']
-					)
+					),
 			  ])
 			: null,
 		v('div', { key: 'root' }, [
@@ -144,13 +144,13 @@ export default factory(function App({ middleware: { breakpoint, icache } }) {
 									shrink,
 									columns,
 									isSmall,
-									isMedium
+									isMedium,
 								},
 								[widgets[index]]
 						  )
 						: null;
 				})
-			)
-		])
+			),
+		]),
 	]);
 });

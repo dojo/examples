@@ -2,14 +2,18 @@
   "name": "dgrid-wrapper-app",
   "version": "1.0.0",
   "scripts": {
+    "dev": "dojo build app -m dev -w -s",
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-    "build:tests": "dojo build --legacy -m unit && dojo build --legacy -m functional",
-    "test-ci": "dojo build -m dist && npm run build:tests && dojo test -a -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
-    "test": "dojo build -m dist && npm run build:tests && dojo test -c local -a"
+    "build:test": "dojo build -m unit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test": "run-s build:test test:local",
+    "test:ci": "run-s build:test test:headless",
+    "test:local": "dojo test -c local",
+    "test:headless": "dojo test -c headless"
   },
   "dependencies": {
-    "@dojo/framework": "^6.0.0",
+    "@dojo/framework": "7.0.0-alpha.13",
     "@dojo/interop": "^6.0.0",
     "dgrid": "1.2.1",
     "dijit": "1.13.0",
@@ -19,15 +23,17 @@
     "tslib": "1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli": "^6.0.0",
-    "@dojo/cli-build-app": "^6.0.0",
-    "@dojo/cli-test-intern": "^6.0.0",
-    "@types/dojo": "^1.9.40",
-    "@types/glob": "~5.0.0",
-    "@types/grunt": "~0.4.0",
-    "@types/node": "^6.0.46",
-    "@types/sinon": "^1.16.35",
-    "intern": "4.3.1",
+    "@dojo/cli": "7.0.0-alpha.1",
+    "@dojo/cli-build-app": "7.0.0-alpha.10",
+    "@dojo/cli-test-intern": "7.0.0-alpha.6",
+    "@dojo/scripts": "^4.0.2",
+    "@types/dojo": "^1.9.42",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "npm-run-all": "4.1.5",
     "typescript": "3.4.5"
   }
 }

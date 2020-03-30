@@ -9,10 +9,10 @@ interface FeedPaginationProperties {
 
 const factory = create({}).properties<FeedPaginationProperties>();
 
-export const FeedPagination = factory(function({ properties }) {
+export const FeedPagination = factory(function ({ properties }) {
 	const { total, currentPage, fetchFeed } = properties();
 
-	let pageNumbers: DNode[] = [];
+	const pageNumbers: DNode[] = [];
 	for (let page = 0; page < Math.ceil(total / 10); page++) {
 		const isActive = currentPage === page;
 		const onclick = (event: MouseEvent) => {

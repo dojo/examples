@@ -9,7 +9,7 @@ export default function generateData(size: number): any {
 		}
 		companies.push({
 			name: faker.company.companyName(),
-			people
+			people,
 		});
 	}
 	return companies;

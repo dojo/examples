@@ -4,4 +4,4 @@ import { registry } from './store';
 import { App } from './App';
 
 const r = renderer(() => <App />);
-r.mount({ domNode: document.getElementById('app')!, registry });
+r.mount({ registry });

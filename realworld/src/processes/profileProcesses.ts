@@ -8,7 +8,7 @@ const startGetProfileCommand = commandFactory(({ path }) => {
 	return [
 		replace(path('profile', 'user', 'isLoading'), true),
 		replace(path('profile', 'user', 'isLoaded'), false),
-		replace(path('profile', 'feed', 'items'), undefined)
+		replace(path('profile', 'feed', 'items'), undefined),
 	];
 });
 
@@ -17,7 +17,7 @@ const startGetProfileFeedCommand = commandFactory(({ path, payload: { page, type
 		replace(path('profile', 'feed', 'isLoading'), true),
 		replace(path('profile', 'feed', 'isLoaded'), false),
 		replace(path('profile', 'feed', 'category'), type),
-		replace(path('profile', 'feed', 'page'), page)
+		replace(path('profile', 'feed', 'page'), page),
 	];
 });
 
@@ -25,7 +25,7 @@ const followUserCommand = commandFactory<FollowUserPayload>(async ({ get, path, 
 	const token = get(path('session', 'token'));
 	const response = await fetch(`${baseUrl}/profiles/${username}/follow`, {
 		method: following ? 'delete' : 'post',
-		headers: getHeaders(token)
+		headers: getHeaders(token),
 	});
 	const json = await response.json();
 
@@ -36,7 +36,7 @@ const getProfileCommand = commandFactory<{ username: string; type: string }>(
 	async ({ get, path, payload: { username } }) => {
 		const token = get(path('session', 'token'));
 		const response = await fetch(`${baseUrl}/profiles/${username}`, {
-			headers: getHeaders(token)
+			headers: getHeaders(token),
 		});
 		const json = await response.json();
 
@@ -46,7 +46,7 @@ const getProfileCommand = commandFactory<{ username: string; type: string }>(
 			replace(path('profile', 'user', 'bio'), json.profile.bio),
 			replace(path('profile', 'user', 'following'), json.profile.following),
 			replace(path('profile', 'user', 'isLoading'), false),
-			replace(path('profile', 'user', 'isLoaded'), true)
+			replace(path('profile', 'user', 'isLoaded'), true),
 		];
 	}
 );
@@ -73,17 +73,17 @@ const getProfileFeedCommand = commandFactory<{ username: string; type: string; p
 			replace(path('profile', 'feed', 'total'), json.articlesCount),
 			replace(path('profile', 'feed', 'offset'), offset),
 			replace(path('profile', 'feed', 'isLoading'), false),
-			replace(path('profile', 'feed', 'isLoaded'), true)
+			replace(path('profile', 'feed', 'isLoaded'), true),
 		];
 	}
 );
 
 export const getProfileProcess = createProcess('get-profile', [
 	[startGetProfileCommand, startGetProfileFeedCommand],
-	[getProfileCommand, getProfileFeedCommand]
+	[getProfileCommand, getProfileFeedCommand],
 ]);
 export const getProfileFeedProcess = createProcess('get-profile-feed', [
 	startGetProfileFeedCommand,
-	getProfileFeedCommand
+	getProfileFeedCommand,
 ]);
 export const followUserProcess = createProcess('follow-user', [followUserCommand]);

@@ -14,7 +14,7 @@ export const ArticlePreview = factory(function ArticlePreview({ properties }) {
 	const {
 		favoriteArticle,
 		article,
-		article: { author, favorited, slug }
+		article: { author, favorited, slug },
 	} = properties();
 
 	let buttonClasses = ['btn', 'btn-outline-primary', 'btn-sm', 'pull-xs-right'];

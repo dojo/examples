@@ -11,14 +11,18 @@ import nlsBundle from '../nls/main';
 import Clock from './Clock';
 
 function getLocalizedDate(date: Date, tz: string) {
-	const { years, months, date: day, hours, minutes, seconds, milliseconds } = moment(date)
-		.tz(tz)
-		.toObject();
+	const { years, months, date: day, hours, minutes, seconds, milliseconds } = moment(date).tz(tz).toObject();
 
 	return new Date(years, months, day, hours, minutes, seconds, milliseconds);
 }
 
-const cities = [
+interface City {
+	key: keyof typeof nlsBundle.messages;
+	locale: string;
+	tz: string;
+}
+
+const cities: City[] = [
 	{ key: 'mexicoCity', locale: 'es', tz: 'America/Mexico_City' },
 	{ key: 'newYork', locale: 'en', tz: 'America/New_York' },
 	{ key: 'london', locale: 'en', tz: 'Europe/London' },
@@ -26,7 +30,7 @@ const cities = [
 	{ key: 'cairo', locale: 'ar', tz: 'Africa/Cairo' },
 	{ key: 'paris', locale: 'fr', tz: 'Europe/Paris' },
 	{ key: 'newDehli', locale: 'hi', tz: 'Asia/Colombo' },
-	{ key: 'tokyo', locale: 'ja', tz: 'Asia/Tokyo' }
+	{ key: 'tokyo', locale: 'ja', tz: 'Asia/Tokyo' },
 ];
 const languages = [
 	{ key: 'arabic', locale: 'ar', name: 'عربى' },
@@ -34,7 +38,7 @@ const languages = [
 	{ key: 'spanish', locale: 'es', name: 'Español' },
 	{ key: 'french', locale: 'fr', name: 'Français' },
 	{ key: 'hindi', locale: 'hi', name: 'हिंदी' },
-	{ key: 'japanese', locale: 'ja', name: '日本語' }
+	{ key: 'japanese', locale: 'ja', name: '日本語' },
 ];
 
 const factory = create({ i18n, invalidator, icache });
@@ -47,7 +51,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 	const { messages } = i18n.localize(nlsBundle);
 	let localeDetails = i18n.get();
 	if (!localeDetails || !localeDetails.locale) {
-		let rtl = isRtl(i18nCore.locale);
+		const rtl = isRtl(i18nCore.locale);
 		localeDetails = { locale: i18nCore.locale, rtl };
 		i18n.set(localeDetails);
 	}
@@ -62,27 +66,27 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 					if (!document.hidden) {
 						invalidator();
 					}
-				}
-			}
+				},
+			},
 		},
 		[
 			v(
 				'div',
 				{
 					lang: localeDetails.locale,
-					dir: localeDetails.rtl ? 'rtl' : 'ltr'
+					dir: localeDetails.rtl ? 'rtl' : 'ltr',
 				},
 				[
 					v(
 						'div',
 						{
-							classes: [css.formFields]
+							classes: [css.formFields],
 						},
 						[
 							v(
 								'div',
 								{
-									classes: [css.formField]
+									classes: [css.formField],
 								},
 								[
 									v('label', { for: 'language' }, [messages.language]),
@@ -93,32 +97,37 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 											onchange: (event) => {
 												const locale = event.target.options[event.target.selectedIndex].value;
 												i18n.set({ locale, rtl: isRtl(locale) });
-											}
+											},
 										},
 										languages.map((data) => {
 											const language = (messages as any)[data.key];
 											const label =
-												localeDetails!.locale!.indexOf(data.locale) === 0
+												localeDetails &&
+												localeDetails.locale &&
+												localeDetails.locale.indexOf(data.locale) === 0
 													? language
 													: `${language} (${data.name})`;
 
 											return v(
 												'option',
 												{
-													selected: localeDetails!.locale!.indexOf(data.locale) === 0,
-													value: data.locale
+													selected:
+														localeDetails &&
+														localeDetails.locale &&
+														localeDetails.locale.indexOf(data.locale) === 0,
+													value: data.locale,
 												},
 												[label]
 											);
 										})
-									)
+									),
 								]
 							),
 
 							v(
 								'div',
 								{
-									classes: [css.formField]
+									classes: [css.formField],
 								},
 								[
 									v('label', { for: 'multipleLocales' }, [messages.multipleLocales]),
@@ -128,16 +137,16 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 										onchange: (event: Event) => {
 											const input = event.target as HTMLInputElement;
 											icache.set('multiple', input.checked);
-										}
-									})
+										},
+									}),
 								]
-							)
+							),
 						]
 					),
 					v(
 						'div',
 						{
-							classes: [css.clocks]
+							classes: [css.clocks],
 						},
 						cities.map(({ key, locale, tz }) => {
 							return Clock({
@@ -146,12 +155,12 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 								key,
 								locale: multiple ? locale : undefined,
 								rtl: multiple && isRtl(locale),
-								size: 160
+								size: 160,
 							});
 						})
-					)
+					),
 				]
-			)
+			),
 		]
 	);
 });

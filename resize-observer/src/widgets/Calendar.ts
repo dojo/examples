@@ -26,15 +26,15 @@ const days: Day[] = [
 				time: '9 - 11 a.m.',
 				start: 9,
 				duration: 2,
-				description: 'Planning'
+				description: 'Planning',
 			},
 			{
 				time: '12 - 2 p.m.',
 				start: 12,
 				duration: 2,
-				description: 'Team lunch'
-			}
-		]
+				description: 'Team lunch',
+			},
+		],
 	},
 	{
 		date: 6,
@@ -44,21 +44,21 @@ const days: Day[] = [
 				time: '12 - 1 p.m.',
 				start: 12,
 				duration: 1,
-				description: 'Work out'
+				description: 'Work out',
 			},
 			{
 				time: '2 - 3 p.m.',
 				start: 14,
 				duration: 1,
-				description: 'Doctor'
+				description: 'Doctor',
 			},
 			{
 				time: '4 - 6 p.m.',
 				start: 16,
 				duration: 2,
-				description: 'Soccer'
-			}
-		]
+				description: 'Soccer',
+			},
+		],
 	},
 	{
 		date: 7,
@@ -68,15 +68,15 @@ const days: Day[] = [
 				time: '9 - 11 a.m.',
 				start: 9,
 				duration: 2,
-				description: 'Customer call'
+				description: 'Customer call',
 			},
 			{
 				time: '2 - 6 p.m.',
 				start: 14,
 				duration: 2,
-				description: 'Team event'
-			}
-		]
+				description: 'Team event',
+			},
+		],
 	},
 	{
 		date: 8,
@@ -86,9 +86,9 @@ const days: Day[] = [
 				time: '12 - 1 p.m.',
 				start: 12,
 				duration: 1,
-				description: 'Work out'
-			}
-		]
+				description: 'Work out',
+			},
+		],
 	},
 	{
 		date: 9,
@@ -98,10 +98,10 @@ const days: Day[] = [
 				time: '9 - 6 p.m.',
 				start: 9,
 				duration: 9,
-				description: 'No meetings'
-			}
-		]
-	}
+				description: 'No meetings',
+			},
+		],
+	},
 ];
 
 const entryHeight = 3.333;
@@ -112,7 +112,7 @@ export default factory(function Calendar({ middleware: { breakpoint } }) {
 	const { breakpoint: bp } = breakpoint.get('root', {
 		SM: 0,
 		MD: 500,
-		LG: 800
+		LG: 800,
 	}) || { breakpoint: 'SM' };
 	const isSmall = bp === 'SM';
 	const isMedium = bp === 'MD';
@@ -131,8 +131,8 @@ export default factory(function Calendar({ middleware: { breakpoint } }) {
 				v('header', { classes: css.calendarDayHeader }, [
 					v('div', { classes: css.calendarDate }, [
 						v('div', { classes: css.calendarDateMo }, [String(date)]),
-						v('div', { classes: css.calendarDateWk }, [weekday])
-					])
+						v('div', { classes: css.calendarDateWk }, [weekday]),
+					]),
 				]),
 				v(
 					'ul',
@@ -145,17 +145,17 @@ export default factory(function Calendar({ middleware: { breakpoint } }) {
 								classes: css.calendarEntry,
 								styles: {
 									height: `calc(${duration} * ${entryHeight}em)`,
-									top: `calc(${start} * ${entryHeight}em - ${9 * entryHeight}em)`
-								}
+									top: `calc(${start} * ${entryHeight}em - ${9 * entryHeight}em)`,
+								},
 							},
 							[
 								v('div', { classes: css.calendarEntryTime }, [time]),
-								v('div', { classes: css.calendarEntryDesc }, [description])
+								v('div', { classes: css.calendarEntryDesc }, [description]),
 							]
 						)
 					)
-				)
+				),
 			])
-		)
+		),
 	]);
 });

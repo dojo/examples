@@ -13,4 +13,4 @@ const registry = new Registry();
 registerRouterInjector(routes, registry, { HistoryManager: StateHistory });
 
 const r = renderer(() => <App />);
-r.mount({ registry, domNode: document.getElementById('app')! });
+r.mount({ registry });

@@ -10,5 +10,5 @@ export default {
 	london: 'Londres',
 	mexicoCity: 'Mexico',
 
-	multipleLocales: 'Plusieurs langues'
+	multipleLocales: 'Plusieurs langues',
 };

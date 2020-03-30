@@ -28,7 +28,7 @@ interface AppState {
 const icache = createICacheMiddleware<AppState>();
 const factory = create({ icache });
 
-function getUrl(offset: number, size: number = 20) {
+function getUrl(offset: number, size = 20) {
 	return `https://pokeapi.co/api/v2/pokemon?limit=${size}&offset=${offset}`;
 }
 
@@ -148,7 +148,7 @@ export const App = factory(function App({ middleware: { icache } }) {
 										<div
 											classes={['image']}
 											styles={{
-												backgroundImage: `url("${details.sprites.front_default}")`
+												backgroundImage: `url("${details.sprites.front_default}")`,
 											}}
 										/>
 									</div>

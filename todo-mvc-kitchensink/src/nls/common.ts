@@ -1,5 +1,5 @@
 const locales = {
-	'en-PR': () => import('./en-PR/common')
+	'en-PR': () => import('./en-PR/common'),
 };
 
 const messages = {
@@ -18,7 +18,7 @@ const messages = {
 		=1 {item left}
 		other {items left}}`,
 	searchPlaceholder: 'Quick Filter',
-	themeSwitchTitle: 'Pirate Mode'
+	themeSwitchTitle: 'Pirate Mode',
 };
 
 export default { locales, messages };

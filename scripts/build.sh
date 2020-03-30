@@ -16,7 +16,8 @@ then
 	echo "Skipping build for deployment matrix."
 else
 	cd $PROJECT_DIR
-	runCommandAndCheckStatus npm run test-ci
+	runCommandAndCheckStatus npm run lint
+	runCommandAndCheckStatus npm run test:ci
 	runCommandAndCheckStatus npm run build
 	cd ..
 fi

@@ -4,14 +4,15 @@
 	margin: 100px auto;
 	background-color: #333;
 	border-radius: 100%;
-	animation: sk-scaleout 1.0s infinite ease-in-out;
+	animation: sk-scaleout 1s infinite ease-in-out;
 }
 
 @keyframes sk-scaleout {
 	0% {
 		transform: scale(0);
-	} 100% {
-		transform: scale(1.0);
+	}
+	100% {
+		transform: scale(1);
 		opacity: 0;
 	}
 }

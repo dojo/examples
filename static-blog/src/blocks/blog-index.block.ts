@@ -7,10 +7,7 @@ const frontmatter = require('remark-frontmatter');
 const parseFrontmatter = require('remark-parse-yaml');
 
 function getMetaData(content: string) {
-	const pipeline = unified()
-		.use(markdown, { commonmark: true })
-		.use(frontmatter, 'yaml')
-		.use(parseFrontmatter);
+	const pipeline = unified().use(markdown, { commonmark: true }).use(frontmatter, 'yaml').use(parseFrontmatter);
 
 	const nodes = pipeline.parse(content);
 	const result = pipeline.runSync(nodes);
@@ -18,16 +15,16 @@ function getMetaData(content: string) {
 	return node ? node.data.parsedValue : {};
 }
 
-export default async function() {
+export default async function () {
 	const files = glob.sync(join(__dirname, '..', '..', 'content', '*.md'));
 	const blogs: any[] = [];
-	for (let file of files) {
+	for (const file of files) {
 		const content = readFileSync(file, 'utf8');
 		const meta = getMetaData(content);
 		blogs.push({
 			sortDate: new Date(`${meta.date}`),
 			file: parse(file).name,
-			meta
+			meta,
 		});
 	}
 

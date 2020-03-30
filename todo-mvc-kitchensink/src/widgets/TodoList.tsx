@@ -1,4 +1,4 @@
-import { create, tsx, v } from '@dojo/framework/core/vdom';
+import { create, tsx } from '@dojo/framework/core/vdom';
 import { theme } from '@dojo/framework/core/middleware/theme';
 import store, { Todo } from '../store';
 

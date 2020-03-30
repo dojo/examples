@@ -130,7 +130,7 @@ const saveTodo = createProcess('save-todo', [saveTodoCommand, todoReadModeComman
 const updateTodoInput = createProcess('update-todo-input', [updateTodoCommand]);
 const clearCompleted = createProcess('clear-completed', [clearCompletedCommand]);
 
-function filter(filterName: string = 'all', todo: Todo): boolean {
+function filter(filterName = 'all', todo: Todo): boolean {
 	switch (filterName) {
 		case 'completed':
 			return !!todo.completed;
@@ -193,7 +193,7 @@ export default createWidget(({ middleware }) => {
 										classes={[
 											css.todoItem,
 											editingId === todo.id && css.editing,
-											Boolean(todo.completed) && css.completed
+											Boolean(todo.completed) && css.completed,
 										]}
 									>
 										<div classes={[css.view]}>

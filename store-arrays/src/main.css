@@ -12,19 +12,19 @@ body {
 }
 
 .child {
-    padding: 5px;
+	padding: 5px;
 	width: 200px;
-    user-select: none;
+	user-select: none;
 	border: 1px black solid;
 	margin: 5px;
 }
 
 .company {
-    padding-bottom: 5px;
-    height: 50px;
+	padding-bottom: 5px;
+	height: 50px;
 }
 
 .people {
-    display: flex;
-    justify-content: space-between
+	display: flex;
+	justify-content: space-between;
 }

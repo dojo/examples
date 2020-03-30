@@ -37,7 +37,7 @@ export const ResizeWidget = factory(function ResizeWidget({ middleware: { resize
 					contenteditable="true"
 					styles={{
 						fontFamily,
-						fontSize: `${fontSize}px`
+						fontSize: `${fontSize}px`,
 					}}
 				>
 					<h1>Here is some text</h1>

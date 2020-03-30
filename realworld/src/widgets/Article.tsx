@@ -10,7 +10,7 @@ import {
 	deleteArticleProcess,
 	addCommentProcess,
 	newCommentInputProcess,
-	deleteCommentProcess
+	deleteCommentProcess,
 } from '../processes/articleProcesses';
 
 export interface ArticleProperties {
@@ -57,7 +57,7 @@ export const Article = factory(function Article({ middleware: { store }, propert
 				executor(followUserProcess)({
 					slug,
 					username: article.author.username,
-					following: article.author.following
+					following: article.author.following,
 				});
 			}}
 			deleteArticle={() => {

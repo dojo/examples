@@ -24,7 +24,7 @@ const startFetchingFeedCommand = commandFactory<FetchFeedPayload>(({ path, paylo
 		replace(path('feed', 'filter'), filter),
 		replace(path('feed', 'tagName'), type === 'tag' ? filter : undefined),
 		replace(path('feed', 'page'), page),
-		replace(path('feed', 'items'), undefined)
+		replace(path('feed', 'items'), undefined),
 	];
 });
 
@@ -56,7 +56,7 @@ export const fetchFeedCommand = commandFactory<FetchFeedPayload>(
 			replace(path('feed', 'category'), type),
 			replace(path('feed', 'filter'), filter),
 			replace(path('feed', 'isLoading'), false),
-			replace(path('feed', 'isLoaded'), true)
+			replace(path('feed', 'isLoaded'), true),
 		];
 	}
 );
@@ -70,7 +70,7 @@ const favoriteFeedArticleCommand = commandFactory<FavoriteArticlePayload>(
 		const token = get(path('session', 'token'));
 		const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, {
 			method: favorited ? 'delete' : 'post',
-			headers: getHeaders(token)
+			headers: getHeaders(token),
 		});
 		const json = await response.json();
 		let feedPath = path('feed', 'items');

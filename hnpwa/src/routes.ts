@@ -5,11 +5,11 @@ export default [
 		defaultRoute: true,
 		defaultParams: {
 			category: 'top',
-			page: '1'
-		}
+			page: '1',
+		},
 	},
 	{
 		path: '/comments/{id}',
-		outlet: 'comments'
-	}
+		outlet: 'comments',
+	},
 ];
