@@ -12,6 +12,7 @@ env:
   - PROJECT_DIR=realworld
   - PROJECT_DIR=world-clock
   - PROJECT_DIR=custom-element-menu
+  - PROJECT_DIR=custom-element-showcase
   - PROJECT_DIR=auto-deploy
   - PROJECT_DIR=intersection-observer
   - PROJECT_DIR=resize-observer
