@@ -130,7 +130,7 @@ const saveTodo = createProcess('save-todo', [saveTodoCommand, todoReadModeComman
 const updateTodoInput = createProcess('update-todo-input', [updateTodoCommand]);
 const clearCompleted = createProcess('clear-completed', [clearCompletedCommand]);
 
-function filter(filterName: string = 'all', todo: Todo): boolean {
+function filter(filterName = 'all', todo: Todo): boolean {
 	switch (filterName) {
 		case 'completed':
 			return !!todo.completed;

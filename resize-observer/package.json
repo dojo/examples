@@ -2,25 +2,26 @@
   "name": "resize-observer",
   "version": "1.0.0",
   "scripts": {
+    "dev": "dojo build app -m dev -w -s",
     "build": "dojo build",
     "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
-    "test-ci": "dojo build -m dev && dojo build -m unit && dojo test -c \"browserstack\" --usr dylanschiemann2 -k 4Q2g8YAc9qeZzB2hECnS",
-    "test": "dojo build -m dev && dojo build -m unit && dojo test"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test:ci": "echo no tests"
   },
   "main": "src/main.ts",
   "dependencies": {
-    "@dojo/framework": "^6.0.0",
-    "@dojo/widgets": "^6.0.0",
-    "tslib": "~1.9.1"
+    "@dojo/framework": "7.0.0-alpha.13",
+    "@dojo/widgets": "7.0.0-alpha.1",
+    "tslib": "~1.9.3"
   },
   "devDependencies": {
-    "@dojo/cli": "^6.0.0",
-    "@dojo/cli-build-app": "^6.0.0",
-    "@dojo/cli-test-intern": "^6.0.0",
-    "@types/glob": "~5.0.0",
-    "@types/grunt": "~0.4.0",
-    "@types/node": "^6.0.46",
-    "@types/sinon": "^1.16.35",
+    "@dojo/cli": "7.0.0-alpha.1",
+    "@dojo/cli-build-app": "7.0.0-alpha.10",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
     "typescript": "~3.4.5"
   }
 }

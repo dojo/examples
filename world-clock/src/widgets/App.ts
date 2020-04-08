@@ -11,14 +11,18 @@ import nlsBundle from '../nls/main';
 import Clock from './Clock';
 
 function getLocalizedDate(date: Date, tz: string) {
-	const { years, months, date: day, hours, minutes, seconds, milliseconds } = moment(date)
-		.tz(tz)
-		.toObject();
+	const { years, months, date: day, hours, minutes, seconds, milliseconds } = moment(date).tz(tz).toObject();
 
 	return new Date(years, months, day, hours, minutes, seconds, milliseconds);
 }
 
-const cities = [
+interface City {
+	key: keyof typeof nlsBundle.messages;
+	locale: string;
+	tz: string;
+}
+
+const cities: City[] = [
 	{ key: 'mexicoCity', locale: 'es', tz: 'America/Mexico_City' },
 	{ key: 'newYork', locale: 'en', tz: 'America/New_York' },
 	{ key: 'london', locale: 'en', tz: 'Europe/London' },
@@ -47,7 +51,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 	const { messages } = i18n.localize(nlsBundle);
 	let localeDetails = i18n.get();
 	if (!localeDetails || !localeDetails.locale) {
-		let rtl = isRtl(i18nCore.locale);
+		const rtl = isRtl(i18nCore.locale);
 		localeDetails = { locale: i18nCore.locale, rtl };
 		i18n.set(localeDetails);
 	}
@@ -98,14 +102,19 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 										languages.map((data) => {
 											const language = (messages as any)[data.key];
 											const label =
-												localeDetails!.locale!.indexOf(data.locale) === 0
+												localeDetails &&
+												localeDetails.locale &&
+												localeDetails.locale.indexOf(data.locale) === 0
 													? language
 													: `${language} (${data.name})`;
 
 											return v(
 												'option',
 												{
-													selected: localeDetails!.locale!.indexOf(data.locale) === 0,
+													selected:
+														localeDetails &&
+														localeDetails.locale &&
+														localeDetails.locale.indexOf(data.locale) === 0,
 													value: data.locale
 												},
 												[label]

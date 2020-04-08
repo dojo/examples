@@ -7,7 +7,7 @@ import nlsBundle from '../nls/main';
 
 export interface ClockProperties {
 	date: Date;
-	labelKey: string;
+	labelKey: keyof typeof nlsBundle.messages;
 	size: number;
 }
 

@@ -1,5 +1,5 @@
 .badge {
-	composes: badge from './common.m.css';
+	composes: badge from "./common.m.css";
 }
 
 .root {
@@ -10,12 +10,12 @@
 	overflow: hidden;
 
 	& .badge {
-		  background: #33b2cc;
-  	}
+		background: #33b2cc;
+	}
 
 	& .calendarTimes {
 		display: none;
- 	}
+	}
 
 	& .calendarDay {
 		border-top: 1px solid hsl(0, 0%, 92.5%);
@@ -51,38 +51,37 @@
 	}
 
 	& .calendarEntries {
-		  margin: 0;
-		  max-width: 100%;
-		  padding: 0;
+		margin: 0;
+		max-width: 100%;
+		padding: 0;
 	}
 
 	& .calendarEntry {
-		  border: 1px solid hsl(0, 0%, 75%);
-		  border-radius: 0.2em;
-		  cursor: pointer;
-		  line-height: 1.2;
-		  list-style: none;
-		  margin: 0 0 1em;
-		  padding: 0.5em;
+		border: 1px solid hsl(0, 0%, 75%);
+		border-radius: 0.2em;
+		cursor: pointer;
+		line-height: 1.2;
+		list-style: none;
+		margin: 0 0 1em;
+		padding: 0.5em;
 	}
 
 	& .calendarEntryTime {
-		  font-size: 0.9em;
-		  font-weight: 600;
-		  margin-bottom: 0.1em;
+		font-size: 0.9em;
+		font-weight: 600;
+		margin-bottom: 0.1em;
 	}
 
 	& .calendarEntryDesc {
-		  font-size: 0.9em;
+		font-size: 0.9em;
 	}
 }
-
 
 /* Medium */
 .root.medium {
 	& .badge {
 		background: #ab47bc;
-  	}
+	}
 
 	& .calendarDay {
 		display: flex;
@@ -139,7 +138,6 @@
 	}
 
 	& .calendarTime {
-
 		border-top: 1px solid #eee;
 		font-size: calc(1em * 0.8);
 		height: calc(3.333em / 0.8);

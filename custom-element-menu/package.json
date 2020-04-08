@@ -3,31 +3,32 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
+    "clean": "shx rm -rf src/assets",
+    "move-to-assets": "shx mv output/dist src/assets",
+    "dev": "npm run build:widgets && npm run move-to-assets && dojo build app -m dev -w -s",
     "build:app:ghpages": "dojo build app --dojorc .dojorc-ghpages",
     "build:app": "dojo build app",
     "build:widgets": "dojo build widget",
-    "clean": "shx rm -rf src/assets",
-    "move-to-assets": "shx mv output/dist src/assets",
     "build:ghpages": "npm run build:widgets && npm run move-to-assets && npm run build:app:ghpages && npm run clean",
     "build": "npm run build:widgets && npm run move-to-assets && npm run build:app && npm run clean",
-    "test-ci": "echo no tests"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test:ci": "echo no tests"
   },
   "dependencies": {
-    "@dojo/framework": "^6.0.0",
-    "tslib": "~1.9.1",
-    "@webcomponents/custom-elements": "~1.0.8"
+    "@dojo/framework": "7.0.0-alpha.13",
+    "tslib": "~1.9.3",
+    "@webcomponents/custom-elements": "~1.0.9"
   },
   "devDependencies": {
-    "@dojo/cli": "^6.0.0",
-    "@dojo/cli-build-app": "^6.0.0",
-    "@dojo/cli-build-widget": "^6.0.0",
-    "@dojo/cli-test-intern": "^6.0.0",
-    "@types/glob": "~5.0.0",
-    "@types/grunt": "~0.4.0",
-    "@types/node": "^6.0.46",
-    "@types/sinon": "^1.16.35",
-    "shx": "^0.2.2",
-    "sinon": "^2.0.0",
+    "@dojo/cli": "7.0.0-alpha.1",
+    "@dojo/cli-build-app": "7.0.0-alpha.10",
+    "@dojo/cli-build-widget": "7.0.0-alpha.7",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "shx": "^0.3.2",
     "ts-loader": "5.4.5",
     "typescript": "~3.4.5"
   }

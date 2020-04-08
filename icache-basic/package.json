@@ -5,17 +5,23 @@
     "dev": "dojo build --mode dev --watch --serve",
     "build": "dojo build --mode dist",
     "build:dev": "dojo build --mode dev",
-    "test-ci": "echo no tests"
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test:ci": "echo no tests"
   },
   "main": "src/main.tsx",
   "dependencies": {
-    "@dojo/framework": "^6.0.0",
+    "@dojo/framework": "7.0.0-alpha.13",
     "cldrjs": "0.5.0",
-    "tslib": "~1.9.1"
+    "tslib": "~1.9.3"
   },
   "devDependencies": {
-    "@dojo/cli": "^6.0.0",
-    "@dojo/cli-build-app": "^6.0.0",
+    "@dojo/cli": "7.0.0-alpha.1",
+    "@dojo/cli-build-app": "7.0.0-alpha.10",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
     "typescript": "~3.4.5"
   },
   "keywords": [],

@@ -1,7 +1,7 @@
 .root {
 	display: flex;
 	padding: 8px 16px 8px 0;
-	border-bottom: 1px solid rgba(0,0,0,0.07);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .root:first-of-type {
@@ -43,12 +43,12 @@
 	margin-top: 10px;
 }
 
-@keyframes placeHolderShimmer{
-	0%{
-		background-position: -468px 0
+@keyframes placeHolderShimmer {
+	0% {
+		background-position: -468px 0;
 	}
-	100%{
-		background-position: 468px 0
+	100% {
+		background-position: 468px 0;
 	}
 }
 

@@ -1,11 +1,11 @@
 .root {
-  max-width: 800px;
-  margin: 100px auto 0;
+	max-width: 800px;
+	margin: 100px auto 0;
 }
 
 .title {
-  font-weight: 300;
-  font-size: 72px;
-  text-align: center;
-  margin: 0 0 100px 0;
+	font-weight: 300;
+	font-size: 72px;
+	text-align: center;
+	margin: 0 0 100px 0;
 }

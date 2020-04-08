@@ -68,7 +68,7 @@ To be used as a block a module needs to have a `.block.ts` extension and a defau
 
 ```ts
 // src/my-block.block.ts
-export default function(foo: string) {
+export default function (foo: string) {
 	// do your block things
 }
 ```

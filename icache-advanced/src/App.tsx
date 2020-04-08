@@ -28,7 +28,7 @@ interface AppState {
 const icache = createICacheMiddleware<AppState>();
 const factory = create({ icache });
 
-function getUrl(offset: number, size: number = 20) {
+function getUrl(offset: number, size = 20) {
 	return `https://pokeapi.co/api/v2/pokemon?limit=${size}&offset=${offset}`;
 }
 

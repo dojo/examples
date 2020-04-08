@@ -36,7 +36,7 @@ const betters = ['Faster', 'Stronger', 'Successful'];
 const organizations = ['The Government', 'The CIA', 'The FBI', 'Math Teachers'];
 
 function generateArticleTitle() {
-	let template = titles[Math.floor(Math.random() * titles.length)];
+	const template = titles[Math.floor(Math.random() * titles.length)];
 
 	return template.replace(/\[[^\]]+\]/g, (match) => {
 		switch (match) {

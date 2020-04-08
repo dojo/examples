@@ -24,12 +24,10 @@
 		"target": "es5",
 		"types": [
 			"node"
-		]
+		]	
 	},
 	"include": [
 		"./src/**/*.ts",
-		"./tests/**/*.ts",
-		"./src/**/*.tsx",
-		"./tests/**/*.tsx"
+		"./src/**/*.tsx"
 	]
 }
