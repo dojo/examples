@@ -47,7 +47,7 @@ function isRtl(locale = '') {
 }
 
 export default factory(function App({ properties, middleware: { i18n, invalidator, icache } }) {
-    const { locale } = properties();
+	const { locale } = properties();
 	const { messages } = i18n.localize(nlsBundle);
 	const multiple = icache.get<boolean>('multiple') || false;
 	const date = new Date();
@@ -96,16 +96,14 @@ export default factory(function App({ properties, middleware: { i18n, invalidato
 										languages.map((data) => {
 											const language = (messages as any)[data.key];
 											const label =
-                                            locale && locale.indexOf(data.locale) === 0
+												locale && locale.indexOf(data.locale) === 0
 													? language
 													: `${language} (${data.name})`;
 
 											return v(
 												'option',
 												{
-													selected:
-														locale &&
-														locale.indexOf(data.locale) === 0,
+													selected: locale && locale.indexOf(data.locale) === 0,
 													value: data.locale
 												},
 												[label]

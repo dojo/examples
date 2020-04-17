@@ -9,7 +9,7 @@ registerI18nInjector({ locale: 'en' }, registry);
 
 const config = [
 	{
-        id: 'view',
+		id: 'view',
 		path: 'view/{view}/{filter}',
 		outlet: 'view',
 		defaultParams: {
@@ -19,7 +19,7 @@ const config = [
 		defaultRoute: true,
 		children: [
 			{
-                id: 'edit',
+				id: 'edit',
 				path: 'todo/{id}',
 				outlet: 'edit'
 			}
