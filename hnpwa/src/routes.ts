@@ -1,5 +1,6 @@
 export default [
 	{
+		id: 'content',
 		path: '/{category}/{page}',
 		outlet: 'content',
 		defaultRoute: true,
@@ -9,6 +10,7 @@ export default [
 		}
 	},
 	{
+		id: 'comments',
 		path: '/comments/{id}',
 		outlet: 'comments'
 	}

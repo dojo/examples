@@ -15,11 +15,11 @@ const factory = create({ store });
 
 export const Settings = factory(function Settings({ middleware: { store } }) {
 	const { get, path, executor } = store;
-	const settings = get(path('settings'));
+	let settings = get(path('settings'));
 
 	if (!settings) {
 		executor(getUserSettingsProcess)({});
-		return null;
+		settings = get(path('settings'));
 	}
 
 	return (

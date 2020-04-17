@@ -8,6 +8,7 @@ const registry = new Registry();
 registerRouterInjector(
 	[
 		{
+			id: 'filter',
 			path: 'filter/{filter}',
 			outlet: 'filter',
 			defaultParams: { filter: 'all' },

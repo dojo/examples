@@ -14,14 +14,14 @@
 		"test:headless": "dojo test -c headless"
 	},
 	"dependencies": {
-		"@dojo/framework": "7.0.0-alpha.13",
+		"@dojo/framework": "next",
 		"snarkdown": "^1.2.2",
 		"tslib": "^1.10.0"
 	},
 	"devDependencies": {
-		"@dojo/cli": "7.0.0-alpha.1",
-		"@dojo/cli-build-app": "7.0.0-alpha.10",
-		"@dojo/cli-test-intern": "7.0.0-alpha.6",
+		"@dojo/cli": "next",
+		"@dojo/cli-build-app": "next",
+		"@dojo/cli-test-intern": "next",
 		"@dojo/scripts": "^4.0.2",
 		"@types/node": "^12.12.32",
 		"@types/sinon": "^7.5.2",

@@ -3,10 +3,6 @@
 	flex-wrap: wrap;
 }
 
-.clocks > * {
-	padding: 0 1rem;
-}
-
 .formFields {
 	align-items: center;
 	display: flex;
@@ -17,6 +13,6 @@
 	margin-right: 1rem;
 }
 
-.formField > label {
+.label {
 	margin-right: 0.5rem;
 }

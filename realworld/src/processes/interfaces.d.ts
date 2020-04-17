@@ -1,5 +1,5 @@
 import { Session } from '../interfaces';
-import { OutletContext } from '@dojo/framework/routing/interfaces';
+import { RouteContext } from '@dojo/framework/routing/interfaces';
 
 export interface SlugPayload {
 	slug: string;
@@ -75,5 +75,5 @@ export interface SetSessionPayload {
 
 export interface ChangeRoutePayload {
 	outlet: string;
-	context: OutletContext;
+	context: RouteContext;
 }

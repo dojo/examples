@@ -1,5 +1,5 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
-import { Outlet } from '@dojo/framework/routing/Outlet';
+import { Route } from '@dojo/framework/routing/Route';
 
 import Header from './widgets/Header';
 import Settings from './widgets/Settings';
@@ -17,9 +17,9 @@ export const App = factory(function App() {
 	return (
 		<div>
 			<Header />
-			<Outlet id="login" renderer={() => <Login />} />
-			<Outlet id="register" renderer={() => <Register />} />
-			<Outlet
+			<Route id="login" renderer={() => <Login />} />
+			<Route id="register" renderer={() => <Register />} />
+			<Route
 				id="user"
 				renderer={(details) => {
 					if (details.isExact()) {
@@ -27,12 +27,12 @@ export const App = factory(function App() {
 					}
 				}}
 			/>
-			<Outlet
+			<Route
 				id="favorites"
 				renderer={(details) => <Profile type="favorites" username={details.params.username} />}
 			/>
-			<Outlet id="edit-post" renderer={(details) => <Editor slug={details.params.slug} />} />
-			<Outlet
+			<Route id="edit-post" renderer={(details) => <Editor slug={details.params.slug} />} />
+			<Route
 				id="new-post"
 				renderer={(details) => {
 					if (details.isExact()) {
@@ -40,9 +40,9 @@ export const App = factory(function App() {
 					}
 				}}
 			/>
-			<Outlet id="article" renderer={(details) => <Article slug={details.params.slug} />} />
-			<Outlet id="settings" renderer={() => <Settings />} />
-			<Outlet id="home" renderer={() => <Home />} />
+			<Route id="article" renderer={(details) => <Article slug={details.params.slug} />} />
+			<Route id="settings" renderer={() => <Settings />} />
+			<Route id="home" renderer={() => <Home />} />
 			<Footer />
 		</div>
 	);

@@ -3,7 +3,7 @@ const { assert } = intern.getPlugin('chai');
 import { stub } from 'sinon';
 
 import { v, w } from '@dojo/framework/core/vdom';
-import harness from '@dojo/framework/testing/harness';
+import harness from '@dojo/framework/testing/harness/harness';
 import createMockStoreMiddleware from '@dojo/framework/testing/mocks/middleware/store';
 
 import { fetchFeedProcess } from '../../processes/feedProcesses';

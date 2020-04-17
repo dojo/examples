@@ -1,4 +1,3 @@
-import i18nCore from '@dojo/framework/i18n/i18n';
 import { create, v, w, invalidator } from '@dojo/framework/core/vdom';
 import i18n from '@dojo/framework/core/middleware/i18n';
 import icache from '@dojo/framework/core/middleware/icache';
@@ -43,18 +42,13 @@ const languages = [
 
 const factory = create({ i18n, invalidator, icache });
 
-function isRtl(locale: string) {
+function isRtl(locale = '') {
 	return /^ar(-.*)?$/.test(locale);
 }
 
-export default factory(function App({ middleware: { i18n, invalidator, icache } }) {
+export default factory(function App({ properties, middleware: { i18n, invalidator, icache } }) {
+    const { locale } = properties();
 	const { messages } = i18n.localize(nlsBundle);
-	let localeDetails = i18n.get();
-	if (!localeDetails || !localeDetails.locale) {
-		const rtl = isRtl(i18nCore.locale);
-		localeDetails = { locale: i18nCore.locale, rtl };
-		i18n.set(localeDetails);
-	}
 	const multiple = icache.get<boolean>('multiple') || false;
 	const date = new Date();
 
@@ -73,8 +67,8 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 			v(
 				'div',
 				{
-					lang: localeDetails.locale,
-					dir: localeDetails.rtl ? 'rtl' : 'ltr'
+					lang: locale,
+					dir: isRtl(locale) ? 'rtl' : 'ltr'
 				},
 				[
 					v(
@@ -89,7 +83,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 									classes: [css.formField]
 								},
 								[
-									v('label', { for: 'language' }, [messages.language]),
+									v('label', { classes: [css.label], for: 'language' }, [messages.language]),
 									v(
 										'select',
 										{
@@ -102,9 +96,7 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 										languages.map((data) => {
 											const language = (messages as any)[data.key];
 											const label =
-												localeDetails &&
-												localeDetails.locale &&
-												localeDetails.locale.indexOf(data.locale) === 0
+                                            locale && locale.indexOf(data.locale) === 0
 													? language
 													: `${language} (${data.name})`;
 
@@ -112,9 +104,8 @@ export default factory(function App({ middleware: { i18n, invalidator, icache } 
 												'option',
 												{
 													selected:
-														localeDetails &&
-														localeDetails.locale &&
-														localeDetails.locale.indexOf(data.locale) === 0,
+														locale &&
+														locale.indexOf(data.locale) === 0,
 													value: data.locale
 												},
 												[label]

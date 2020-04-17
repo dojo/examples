@@ -4,7 +4,7 @@ date: 2019-09-01
 author: The Dojo Team
 description: Template blog built with Dojo using build time rendering and Dojo blocks.
 tags: javascript, web development, dojo
-image: assets/blog/version-6-dojo/featured.png
+image: assets/dojo-btr-and-blocks.jpg
 ---
 
 # What is build time rendering?

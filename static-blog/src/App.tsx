@@ -1,5 +1,5 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 import Header from './Header';
 import BlogList from './BlogList';
 import Blog from './Blog';
@@ -10,8 +10,8 @@ export default factory(function App() {
 	return (
 		<div>
 			<Header title="My Dojo Blog" />
-			<Outlet id="blog-list" renderer={() => <BlogList />} />
-			<Outlet id="blog" renderer={({ params }) => <Blog name={params.blog} />} />
+			<Route id="blog-list" renderer={() => <BlogList />} />
+			<Route id="blog" renderer={({ params }) => <Blog name={params.blog} />} />
 		</div>
 	);
 });
