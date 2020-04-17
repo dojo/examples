@@ -1,6 +1,6 @@
 import { tsx, create } from '@dojo/framework/core/vdom';
 import { theme } from '@dojo/framework/core/middleware/theme';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 
 import TodoList from './widgets/TodoList';
 import ThemeSwitcher from './widgets/ThemeSwitcher';
@@ -21,14 +21,14 @@ export default factory(function App({ middleware: { theme } }) {
 				<ThemeSwitcher />
 				<TodoHeader />
 				<TodoSearch />
-				<Outlet
+				<Route
 					key="list"
 					id="view"
 					renderer={({ params: { view, filter } }) => {
 						return <TodoList view={view} filter={filter} />;
 					}}
 				/>
-				<Outlet
+				<Route
 					key="footer"
 					id="view"
 					renderer={({ params: { view, filter } }) => {

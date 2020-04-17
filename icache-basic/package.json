@@ -10,13 +10,13 @@
   },
   "main": "src/main.tsx",
   "dependencies": {
-    "@dojo/framework": "7.0.0-alpha.13",
+    "@dojo/framework": "next",
     "cldrjs": "0.5.0",
     "tslib": "~1.9.3"
   },
   "devDependencies": {
-    "@dojo/cli": "7.0.0-alpha.1",
-    "@dojo/cli-build-app": "7.0.0-alpha.10",
+    "@dojo/cli": "next",
+    "@dojo/cli-build-app": "next",
     "@typescript-eslint/eslint-plugin": "2.25.0",
     "@typescript-eslint/parser": "2.25.0",
     "eslint": "6.8.0",

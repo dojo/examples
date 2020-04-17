@@ -6,3 +6,4 @@ export const badge: string;
 export const medium: string;
 export const small: string;
 export const title: string;
+export const paragraph: string;

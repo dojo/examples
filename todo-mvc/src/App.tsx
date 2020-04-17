@@ -1,7 +1,7 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
 import { createStoreMiddleware } from '@dojo/framework/core/middleware/store';
 import { createCommandFactory, createProcess } from '@dojo/framework/stores/process';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 import ActiveLink from '@dojo/framework/routing/ActiveLink';
 
 import * as css from './App.m.css';
@@ -158,7 +158,7 @@ export default createWidget(({ middleware }) => {
 	const itemCount = todos.length - completedCount;
 
 	return (
-		<Outlet
+		<Route
 			id="filter"
 			renderer={(matchDetails) => {
 				const filtered = todos.filter((todo) => filter(matchDetails.params.filter, todo));

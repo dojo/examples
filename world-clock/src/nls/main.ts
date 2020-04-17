@@ -1,10 +1,10 @@
 export default {
 	locales: {
-		ar: () => require('./ar/main'),
-		es: () => require('./es/main'),
-		hi: () => require('./hi/main'),
-		fr: () => require('./fr/main'),
-		ja: () => require('./ja/main')
+		ar: () => import('./ar/main'),
+		es: () => import('./es/main'),
+		hi: () => import('./hi/main'),
+		fr: () => import('./fr/main'),
+		ja: () => import('./ja/main')
 	},
 	messages: {
 		arabic: 'Arabic',

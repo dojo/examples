@@ -1,5 +1,5 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
-import Outlet from '@dojo/framework/routing/Outlet';
+import Route from '@dojo/framework/routing/Route';
 
 import Comments from './Comments';
 import Content from './Content';
@@ -14,13 +14,13 @@ export default factory(function App() {
 		<div>
 			<Menu />
 			<main classes={[css.main]}>
-				<Outlet
+				<Route
 					id="content"
 					renderer={({ params: { category, page } }) => {
 						return <Content key={`${category}-${page}`} category={category} page={parseInt(page)} />;
 					}}
 				/>
-				<Outlet
+				<Route
 					id="comments"
 					renderer={({ params: { id } }) => {
 						return <Comments key={id} id={id} />;

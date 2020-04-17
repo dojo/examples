@@ -6,7 +6,7 @@
     "build:ghpages": "npm run build",
     "build": "shx rm -rf dist && shx mkdir dist && shx cp src/index.html dist && shx cp -r node_modules/@webcomponents/custom-elements dist && shx cp -r node_modules/@dojo/widgets/dist dist/widgets && shx cp -r node_modules/@dojo/themes dist/themes",
     "lint": "echo \"no lint\"",
-    "test-ci": "echo \"no tests\""
+    "test:ci": "echo \"no tests\""
   },
   "dependencies": {
     "@dojo/themes": "^6.0.0",

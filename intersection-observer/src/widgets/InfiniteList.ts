@@ -24,7 +24,7 @@ export default factory(function InfiniteList({ middleware: { intersection }, pro
 		v(
 			'div',
 			{ key: 'data' },
-			data.map(({ title, summary }) => w(Item, { title, summary }))
+			data.map(({ title, summary }, i) => w(Item, { key: i, title, summary }))
 		),
 		v('div', { key: 'bottom', classes: css.bottom })
 	]);
