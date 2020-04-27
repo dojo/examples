@@ -1,0 +1,19 @@
+@import '../../variables.css';
+
+.root {
+	background-color: var(--color-blue);
+	border-radius: calc(var(--grid-size) / 4);
+	border: none;
+	color: var(--color-white);
+	font-family: inherit;
+	font-size: var(--font-size-small);
+	font-weight: bold;
+	height: var(--button-height);
+	min-width: 132px;
+	outline: none;
+	padding: 0;
+}
+
+.disabled {
+	opacity: 0.25;
+}

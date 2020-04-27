@@ -1,0 +1,41 @@
+@import '../../variables.css';
+
+.root {
+	margin-top: calc(10 * var(--grid-size));
+}
+
+.copyButton {
+	background-color: var(--color-blue) !important;
+	border-bottom-right-radius: calc(var(--grid-size) / 4);
+	border-top-right-radius: calc(var(--grid-size) / 4);
+	border: 1px solid var(--color-blue);
+	height: 100%;
+	outline: none;
+	transition: all 0.05s;
+}
+
+.success {
+	background-color: var(--color-green) !important;
+	border-color: var(--color-green);
+}
+
+.hashInput {
+	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 6);
+}
+
+.layoutRoot {
+	height: 100%;
+	width: 100%;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.column:first-child {
+	flex-basis: auto;
+	padding-right: calc(var(--grid-size) * 5);
+	width: calc(var(--grid-size) * 38);
+}

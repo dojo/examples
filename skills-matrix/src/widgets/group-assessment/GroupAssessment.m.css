@@ -1,0 +1,24 @@
+@import '../../variables.css';
+
+.root {
+	margin-bottom: calc(var(--grid-size) * 8);
+}
+
+.title {
+	margin-bottom: calc(var(--grid-size) * 2.25);
+}
+
+.row {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	margin-bottom: calc(var(--grid-size) * 2);
+	user-select: none;
+}
+
+.name {
+	color: var(--color-gray);
+	margin-left: calc(var(--grid-size) * 3);
+	position: relative;
+	top: calc(var(--grid-size) / -4);
+}
