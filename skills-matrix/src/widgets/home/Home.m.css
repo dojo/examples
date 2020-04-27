@@ -1,0 +1,93 @@
+@import '../../variables.css';
+
+:root {
+	--column-content-height: calc(var(--grid-size) * 25);
+}
+
+.root {
+	align-items: center;
+	display: flex;
+	height: var(--content-height);
+	position: relative;
+}
+
+.layoutRoot {
+	height: 100%;
+	width: 100%;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.columnContent {
+	height: var(--column-content-height);
+}
+
+.column:first-child {
+	border-right: 1px solid var(--color-light-gray);
+}
+
+.column:first-child .columnContent {
+	padding-right: calc(var(--grid-size) * 14);
+}
+
+.column:last-child .columnContent {
+	padding-left: calc(var(--grid-size) * 14);
+}
+
+.heading {
+	margin-bottom: calc(var(--grid-size) * 1.75);
+}
+
+.icon {
+	margin-right: var(--grid-size);
+}
+
+.label {
+	color: var(--color-blue);
+	display: block;
+	font-size: var(--font-size-normal);
+	font-style: italic;
+	margin-bottom: calc(var(--grid-size) / 2);
+}
+
+.textInput {
+	margin-bottom: calc(var(--grid-size) * 2);
+}
+
+.wrapper {
+	font-size: 0;
+}
+
+.textArea {
+	border-radius: var(--input-border-radius);
+	border: 1px solid var(--color-light-gray);
+	color: var(--color-gray);
+	font-family: inherit;
+	font-size: var(--font-size-small);
+	height: calc(14.5 * var(--grid-size));
+	margin-bottom: calc(var(--grid-size) * 2);
+	max-width: var(--input-width);
+	outline: none;
+	padding: calc(var(--grid-size) * 1.25);
+	width: 100%;
+}
+
+.divider {
+	background-color: var(--color-white);
+	border-radius: 50%;
+	border: 1px solid var(--color-light-gray);
+	font-size: var(--font-size-normal);
+	font-weight: bold;
+	height: calc(var(--grid-size) * 6.25);
+	left: 50%;
+	line-height: calc(var(--grid-size) * 6.25);
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(var(--grid-size) * 6.25);
+}

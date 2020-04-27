@@ -1,0 +1,45 @@
+@import '../../variables.css';
+
+.root {
+	margin-top: calc(10 * var(--grid-size));
+}
+
+.layoutRoot {
+	height: 100%;
+	width: 100%;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.column:first-child {
+	flex-basis: auto;
+	padding-right: calc(var(--grid-size) * 5);
+	width: calc(var(--grid-size) * 38);
+}
+
+.column:last-child {
+	flex: 1;
+}
+
+.editLink {
+	color: var(--color-blue);
+	display: block;
+	font-size: var(--font-size-small);
+	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 4);
+	text-decoration: none;
+}
+
+.linkText {
+	margin-right: calc(var(--grid-size) / 2);
+}
+
+.showToggle {
+	color: var(--color-black);
+	cursor: pointer;
+	font-size: var(--font-size-small);
+	margin-left: var(--grid-size);
+}

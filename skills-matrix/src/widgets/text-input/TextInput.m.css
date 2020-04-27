@@ -1,0 +1,27 @@
+@import '../../variables.css';
+
+.input {
+	border-radius: var(--input-border-radius);
+	border: 1px solid var(--color-light-gray);
+	color: var(--color-gray);
+	font-family: inherit;
+	font-size: var(--font-size-small);
+	height: var(--input-height);
+	outline: none;
+	padding: 0 calc(var(--grid-size) * 1.25);
+	width: 100%;
+}
+
+.wrapper {
+	align-items: stretch;
+	display: flex;
+	max-width: var(--input-width);
+}
+
+.label {
+	color: var(--color-blue);
+	display: block;
+	font-size: var(--font-size-normal);
+	font-style: italic;
+	margin-bottom: calc(var(--grid-size) / 2);
+}
