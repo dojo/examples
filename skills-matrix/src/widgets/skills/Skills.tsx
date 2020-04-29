@@ -13,6 +13,8 @@ import { SkillKey } from '../skill-key/SkillKey';
 import TextInput from '../text-input/TextInput';
 import * as css from './Skills.m.css';
 
+const SUCCESS_DURATION = 2000;
+
 const factory = create({ store, icache });
 
 export const Skills = factory(function ({
@@ -46,7 +48,7 @@ export const Skills = factory(function ({
 							<Button
 								classes={{
 									'@dojo/widgets/button': {
-										root: [css.copyButton, icache.get('success') && css.success]
+										root: [css.copyButton]
 									}
 								}}
 								onClick={() => {
@@ -54,7 +56,7 @@ export const Skills = factory(function ({
 									icache.set('success', true);
 									setTimeout(() => {
 										icache.set('success', false);
-									}, 1000);
+									}, SUCCESS_DURATION);
 								}}
 							>
 								<Icon icon="copy" />
@@ -62,6 +64,7 @@ export const Skills = factory(function ({
 						)
 					}}
 				</TextInput>
+				{<div classes={[css.success, icache.get('success') && css.successVisible]}>Copied!</div>}
 			</div>
 			<SkillKey />
 		</div>

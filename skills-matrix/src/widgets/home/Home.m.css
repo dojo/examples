@@ -39,7 +39,7 @@
 }
 
 .heading {
-	margin-bottom: calc(var(--grid-size) * 1.75);
+	margin-bottom: calc(var(--grid-size) * 2);
 }
 
 .icon {
