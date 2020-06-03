@@ -9,6 +9,7 @@ import { store } from '../../middleware/store';
 import { loadAssessment, newAssessment } from '../../processes/assessment.processes';
 import { loadAssessments } from '../../processes/assessments.processes';
 import { RouteName } from '../../routes';
+import { cleanCopyUrl } from '../../util/clipboard';
 import { createHash, isSkillHash } from '../../util/skills';
 import Button from '../button/Button';
 import TextInput from '../text-input/TextInput';
@@ -34,10 +35,11 @@ export const Home = factory(function ({
 
 	const editProfile = async () => {
 		const value = icache.get<string>('person') || '';
+		const cleanValue = cleanCopyUrl(value);
 
 		const { error } = isSkillHash(value)
-			? await executor(loadAssessment)({ hash: value })
-			: await executor(newAssessment)({ name: value });
+			? await executor(loadAssessment)({ hash: cleanValue })
+			: await executor(newAssessment)({ name: cleanValue });
 
 		if (error) {
 			// TODO display error message
@@ -98,12 +100,17 @@ export const Home = factory(function ({
 				}}
 				initialValue={hashes}
 				onValue={(value) => icache.set('hashes', value)}
+				placeholder="Enter comma-separated hashes..."
 			></TextArea>
 			<Button
 				disabled={!hashes}
 				onClick={async () => {
 					const value = icache.get<string>('hashes') || '';
-					const hashes = value.split('\n').map((value) => value.trim());
+					const hashes = value
+						.replace(/(\n+|\,+)/g, '\n')
+						.split('\n')
+						.filter((value) => value.length > 0)
+						.map((value) => cleanCopyUrl(value).trim());
 
 					const { error } = await executor(loadAssessments)({ hashes });
 					!error && router().go(RouteName.Compare, {});

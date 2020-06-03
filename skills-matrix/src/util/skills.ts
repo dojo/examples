@@ -96,6 +96,7 @@ export async function getMatrixVersion(matrix: SkillMatrix | AssessmentMatrix, l
  */
 export function createAssessment(matrix: SkillMatrix, base?: Partial<Omit<Assessment, 'skills'>>): Assessment {
 	return {
+		hash: '',
 		skills: createAssessmentMatrix(matrix),
 		...base
 	};
@@ -121,6 +122,7 @@ export async function getAssessment(hash: string, matrix: SkillMatrix): Promise<
 	}
 	const levels = decodeLevels(base64DecodeBuffer(levelHash));
 	return {
+		hash,
 		name,
 		skills: createAssessmentMatrix(matrix, levels)
 	};

@@ -28,7 +28,7 @@
 .editLink {
 	color: var(--color-blue);
 	display: block;
-	font-size: var(--font-size-small);
+	font-size: var(--font-size-normal);
 	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 4);
 	text-decoration: none;
 }
@@ -40,6 +40,26 @@
 .showToggle {
 	color: var(--color-black);
 	cursor: pointer;
-	font-size: var(--font-size-small);
+	font-size: var(--font-size-normal);
 	margin-left: var(--grid-size);
+}
+
+.copyButton {
+	background-color: var(--color-blue) !important;
+	border-bottom-right-radius: calc(var(--grid-size) / 4);
+	border-top-right-radius: calc(var(--grid-size) / 4);
+	border: 1px solid var(--color-blue);
+	height: 100%;
+	outline: none;
+	width: calc(var(--grid-size) * 5) !important;
+}
+
+.successButton {
+	background-color: var(--color-green) !important;
+	border: 1px solid var(--color-green);
+	color: var(--color-white);
+}
+
+.hashInput {
+	margin: calc(var(--grid-size) * 3.5) 0;
 }

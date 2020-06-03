@@ -10,21 +10,19 @@ export const SkillKey = factory(function () {
 	return (
 		<div>
 			<h1 classes={css.title}>Key</h1>
-			<div classes={css.level}>
-				<LevelIcon level={Level.None} small />
-				<span classes={[css.entry, css.level1]}>None</span>
-			</div>
-			<div classes={css.level}>
-				<LevelIcon level={Level.Basic} small />
-				<span classes={[css.entry, css.level2]}>Basic</span>
-			</div>
-			<div classes={css.level}>
-				<LevelIcon level={Level.Proficient} small />
-				<span classes={[css.entry, css.level3]}>Proficient</span>
-			</div>
-			<div classes={css.level}>
-				<LevelIcon level={Level.Expert} small />
-				<span classes={[css.entry, css.level4]}>Expert</span>
+			<div classes={css.skillRow}>
+				<div classes={css.level}>
+					<LevelIcon level={Level.Basic} small />
+					<span classes={[css.entry, css.level2]}>Basic</span>
+				</div>
+				<div classes={css.level}>
+					<LevelIcon level={Level.Proficient} small />
+					<span classes={[css.entry, css.level3]}>Proficient</span>
+				</div>
+				<div classes={css.level}>
+					<LevelIcon level={Level.Expert} small />
+					<span classes={[css.entry, css.level4]}>Expert</span>
+				</div>
 			</div>
 		</div>
 	);

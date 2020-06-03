@@ -7,7 +7,7 @@
 .level {
 	align-items: center;
 	display: flex;
-	margin-bottom: calc(var(--grid-size) * 1.5);
+	margin-right: calc(var(--grid-size) * 1.5);
 }
 
 .entry {
@@ -31,4 +31,8 @@
 
 .level4 {
 	color: var(--color-light-blue);
+}
+
+.skillRow {
+	display: flex;
 }

@@ -15,6 +15,7 @@ const newAssessmentCommand = commandFactory<{ name?: string }>(async ({ payload:
 	const { matrix, matrixVersion } = state;
 	const assessment = createAssessment(matrix, { name });
 	const hash = createHash(assessment, matrixVersion);
+	assessment.hash = hash;
 
 	state.skills = {
 		assessment,

@@ -1,19 +1,20 @@
 import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
+import { Icon as DojoIcon } from '@dojo/widgets/icon';
 import TwoColumnLayout from '@dojo/widgets/two-column-layout';
 
 import { Level, SkillName } from '../../interfaces';
 import { store } from '../../middleware/store';
 import { newAssessment, updateName, updateSkill } from '../../processes/assessment.processes';
-import { copyToClipboard } from '../../util/clipboard';
+import { buildCopyUrl, copyToClipboard } from '../../util/clipboard';
 import { GroupAssessment } from '../group-assessment/GroupAssessment';
 import { Icon } from '../icon/Icon';
 import { SkillKey } from '../skill-key/SkillKey';
 import TextInput from '../text-input/TextInput';
 import * as css from './Skills.m.css';
 
-const SUCCESS_DURATION = 2000;
+const SUCCESS_DURATION = 1250;
 
 const factory = create({ store, icache });
 
@@ -48,23 +49,22 @@ export const Skills = factory(function ({
 							<Button
 								classes={{
 									'@dojo/widgets/button': {
-										root: [css.copyButton]
+										root: [css.copyButton, icache.get('success') && css.successButton]
 									}
 								}}
 								onClick={() => {
-									copyToClipboard(hash);
+									copyToClipboard(buildCopyUrl([hash]));
 									icache.set('success', true);
 									setTimeout(() => {
 										icache.set('success', false);
 									}, SUCCESS_DURATION);
 								}}
 							>
-								<Icon icon="copy" />
+								{icache.get('success') ? <DojoIcon type="checkIcon" /> : <Icon icon="copy" />}
 							</Button>
 						)
 					}}
 				</TextInput>
-				{<div classes={[css.success, icache.get('success') && css.successVisible]}>Copied!</div>}
 			</div>
 			<SkillKey />
 		</div>

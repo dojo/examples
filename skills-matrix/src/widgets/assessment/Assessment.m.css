@@ -10,7 +10,7 @@
 	border: 1px solid var(--color-light-gray);
 	color: var(--color-dark-gray);
 	display: inline-flex;
-	font-size: var(--font-size-small);
+	font-size: var(--font-size-normal);
 	margin-bottom: var(--grid-size);
 	margin-right: var(--grid-size);
 	padding: var(--grid-size) calc(var(--grid-size) * 1.25);

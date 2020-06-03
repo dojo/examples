@@ -5,6 +5,7 @@ import * as css from './App.m.css';
 import router from './middleware/router';
 import { store } from './middleware/store';
 import { loadAssessment, newAssessment } from './processes/assessment.processes';
+import { loadAssessments } from './processes/assessments.processes';
 import { OutletName, RouteName } from './routes';
 import { isSkillHash } from './util/skills';
 import { Compare } from './widgets/compare/Compare';
@@ -43,7 +44,16 @@ export default factory(function App({
 								});
 								return null;
 							},
-							[RouteName.Compare]: <Compare />
+							[RouteName.Compare]: <Compare />,
+							[RouteName.MultiCompare]: ({ params: { hashList } }) => {
+								const rawHashList = decodeURIComponent(hashList).split(',');
+								const filteredHashList = rawHashList.filter((hash) => isSkillHash(hash));
+								const result = executor(loadAssessments)({ hashes: filteredHashList });
+								Promise.resolve<any>(result).then(() => {
+									router().go(RouteName.Compare, {});
+								});
+								return null;
+							}
 						}}
 					</Outlet>
 				</div>
