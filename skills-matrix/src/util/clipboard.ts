@@ -1,3 +1,5 @@
+import { RouteName } from '../routes';
+
 export async function copyToClipboard(text: string) {
 	try {
 		if (navigator.clipboard) {
@@ -24,4 +26,15 @@ function copyWithExecCommand(text: string) {
 	if (!result) {
 		console.log('Failed to copy using fallback');
 	}
+}
+
+export function buildCopyUrl(hashList: string[]) {
+	if (hashList.length === 1) {
+		return `${window.location.origin}/#${RouteName.Skills}/${hashList[0]}`;
+	}
+	return `${window.location.origin}/#${RouteName.Compare}/${hashList.join(',')}`;
+}
+
+export function cleanCopyUrl(url: string) {
+	return url.replace(/^.*\//, '');
 }

@@ -2,6 +2,7 @@ import { RouteConfig } from '@dojo/framework/routing/interfaces';
 
 export const enum RouteName {
 	Compare = 'compare',
+	MultiCompare = 'multiCompare',
 	EditSkills = 'editSkills',
 	Home = 'home',
 	Skills = 'skills'
@@ -33,7 +34,14 @@ const routes: RouteConfig[] = [
 	{
 		path: 'compare',
 		id: RouteName.Compare,
-		outlet: OutletName.Main
+		outlet: OutletName.Main,
+		children: [
+			{
+				path: '{hashList}',
+				id: RouteName.MultiCompare,
+				outlet: OutletName.Main
+			}
+		]
 	}
 ];
 

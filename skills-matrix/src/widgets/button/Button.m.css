@@ -6,7 +6,7 @@
 	border: none;
 	color: var(--color-white);
 	font-family: inherit;
-	font-size: var(--font-size-small);
+	font-size: var(--font-size-normal);
 	font-weight: bold;
 	height: var(--button-height);
 	min-width: 132px;

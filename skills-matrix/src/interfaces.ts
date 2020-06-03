@@ -27,6 +27,7 @@ export interface SkillMatrix {
 }
 
 export interface Assessment {
+	hash: string;
 	name?: string;
 	skills: AssessmentMatrix;
 }
@@ -43,3 +44,12 @@ export type SkillAssessment = {
 	skill: string;
 	level: Level;
 };
+
+export interface AssessmentEntry {
+	active: boolean;
+	assessment: Assessment;
+}
+
+export interface AssessmentMap {
+	[hash: string]: boolean;
+}

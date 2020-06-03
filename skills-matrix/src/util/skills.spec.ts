@@ -12,6 +12,7 @@ const smallSkillMatrix: SkillMatrix = {
 };
 
 const smallAssessment: Assessment = {
+	hash: '',
 	name: 'Paul',
 	skills: {
 		recipes: {
@@ -55,6 +56,7 @@ describe('skills', () => {
 
 	describe('createAssessment', () => {
 		const expectedSkillAssessment = {
+			hash: '',
 			skills: {
 				recipes: {
 					tacos: 0,
@@ -89,8 +91,10 @@ describe('skills', () => {
 	describe('getAssessment', () => {
 		it('reverses a hash into an assessment', async () => {
 			const hash = createHash(smallAssessment, version);
-
-			assert.deepEqual(await getAssessment(hash, smallSkillMatrix), smallAssessment);
+			assert.deepEqual(await getAssessment(hash, smallSkillMatrix), {
+				...smallAssessment,
+				hash
+			});
 		});
 
 		it(`throws if the version doesn't match the matrix version`, async () => {
