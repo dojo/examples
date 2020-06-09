@@ -6,8 +6,9 @@ import TwoColumnLayout from '@dojo/widgets/two-column-layout';
 
 import { Level, SkillName } from '../../interfaces';
 import { store } from '../../middleware/store';
-import { newAssessment, updateName, updateSkill } from '../../processes/assessment.processes';
+import { loadAssessment, newAssessment, updateName, updateSkill } from '../../processes/assessment.processes';
 import { buildCopyUrl, copyToClipboard } from '../../util/clipboard';
+import { resumeHash } from '../../util/persistence';
 import { GroupAssessment } from '../group-assessment/GroupAssessment';
 import { Icon } from '../icon/Icon';
 import { SkillKey } from '../skill-key/SkillKey';
@@ -25,9 +26,14 @@ export const Skills = factory(function ({
 	}
 }) {
 	const assessment = get(path('skills', 'assessment'));
-	const hash = get(path('skills', 'hash'));
+	const hash = get(path('skills', 'hash')) || resumeHash();
 
-	if (!assessment) {
+	if (hash && !assessment) {
+		executor(loadAssessment)({ hash });
+		return;
+	}
+
+	if (!hash && !assessment) {
 		executor(newAssessment)({});
 		return;
 	}
@@ -53,7 +59,7 @@ export const Skills = factory(function ({
 									}
 								}}
 								onClick={() => {
-									copyToClipboard(buildCopyUrl([hash]));
+									copyToClipboard(buildCopyUrl([hash || '']));
 									icache.set('success', true);
 									setTimeout(() => {
 										icache.set('success', false);

@@ -10,6 +10,7 @@ import { loadAssessment, newAssessment } from '../../processes/assessment.proces
 import { loadAssessments } from '../../processes/assessments.processes';
 import { RouteName } from '../../routes';
 import { cleanCopyUrl } from '../../util/clipboard';
+import { resumeHash } from '../../util/persistence';
 import { createHash, isSkillHash } from '../../util/skills';
 import Button from '../button/Button';
 import TextInput from '../text-input/TextInput';
@@ -24,7 +25,11 @@ export const Home = factory(function ({
 		store: { get, path, executor }
 	}
 }) {
-	const person = icache.getOrSet('person', get(path('skills', 'hash')));
+	const person = icache.getOrSet('person', () => {
+		const storeValue = get(path('skills', 'hash'));
+		const persistedValue = resumeHash();
+		return storeValue || persistedValue;
+	});
 	const hashes = icache.getOrSet(
 		'hashes',
 		get(path('compare', 'assessments'))
@@ -42,7 +47,7 @@ export const Home = factory(function ({
 			: await executor(newAssessment)({ name: cleanValue });
 
 		if (error) {
-			// TODO display error message
+			console.error(error);
 		} else {
 			router().go(RouteName.Skills, {});
 		}
@@ -107,7 +112,7 @@ export const Home = factory(function ({
 				onClick={async () => {
 					const value = icache.get<string>('hashes') || '';
 					const hashes = value
-						.replace(/(\n+|\,+)/g, '\n')
+						.replace(/(\n+|\,+|\s+)/g, '\n')
 						.split('\n')
 						.filter((value) => value.length > 0)
 						.map((value) => cleanCopyUrl(value).trim());
