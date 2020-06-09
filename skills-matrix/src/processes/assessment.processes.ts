@@ -1,6 +1,7 @@
 import { createCommandFactory, createProcess } from '@dojo/framework/stores/process';
 
 import { Level, SkillHash, SkillMatrix, SkillName, State } from '../interfaces';
+import { persistHash } from '../util/persistence';
 import { createAssessment, createHash, getAssessment, getMatrixVersion } from '../util/skills';
 
 const commandFactory = createCommandFactory<State>();
@@ -44,6 +45,7 @@ const updateNameCommand = commandFactory(({ payload: { name }, state }) => {
 
 		const hash = createHash(state.skills.assessment, matrixVersion);
 		state.skills.hash = hash;
+		persistHash(hash);
 	}
 });
 
@@ -54,6 +56,7 @@ const updateSkillCommand = commandFactory<UpdatedSkill>(async ({ payload: { grou
 
 		const hash = createHash(state.skills.assessment, matrixVersion);
 		state.skills.hash = hash;
+		persistHash(hash);
 	}
 });
 

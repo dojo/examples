@@ -36,5 +36,5 @@ export function buildCopyUrl(hashList: string[]) {
 }
 
 export function cleanCopyUrl(url: string) {
-	return url.replace(/^.*\//, '');
+	return url.replace(/^.*(#(skills)|(compare))\//, '');
 }

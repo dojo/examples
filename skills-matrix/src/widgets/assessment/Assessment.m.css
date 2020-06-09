@@ -24,3 +24,8 @@
 .title {
 	margin-bottom: calc(var(--grid-size) * 1.25);
 }
+
+.noResults {
+	font-style: italic;
+	margin-bottom: var(--grid-size);
+}

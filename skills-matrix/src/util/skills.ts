@@ -106,7 +106,7 @@ export function createAssessment(matrix: SkillMatrix, base?: Partial<Omit<Assess
  * Transforms a personal assessment into a hash
  */
 export function createHash(assessment: Assessment, version: string): SkillHash {
-	const name = assessment.name || '';
+	const name = assessment.name?.replace(/\s/g, '+') || '';
 	const hash = base64EncodeBuffer(encodeLevels(getLevels(assessment.skills)));
 	return `${name}${DELIMITER}${version}${DELIMITER}${hash}`;
 }
@@ -123,7 +123,7 @@ export async function getAssessment(hash: string, matrix: SkillMatrix): Promise<
 	const levels = decodeLevels(base64DecodeBuffer(levelHash));
 	return {
 		hash,
-		name,
+		name: name.replace(/\+/g, ' '),
 		skills: createAssessmentMatrix(matrix, levels)
 	};
 }

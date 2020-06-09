@@ -16,11 +16,11 @@ const Widget = factory(function ({ properties, children }) {
 	const { title, skillAssessments } = properties();
 
 	return (
-		skillAssessments.length > 0 && (
-			<div classes={css.root}>
-				<h1 classes={css.title}>{title}</h1>
-				<div>
-					{skillAssessments.map(({ skill, level }) => (
+		<div classes={css.root}>
+			<h1 classes={css.title}>{title}</h1>
+			<div>
+				{skillAssessments.length > 0 ? (
+					skillAssessments.map(({ skill, level }) => (
 						<Chip
 							key={skill}
 							classes={{
@@ -35,11 +35,13 @@ const Widget = factory(function ({ properties, children }) {
 								icon: () => <LevelIcon small level={level} />
 							}}
 						</Chip>
-					))}
-					{children()}
-				</div>
+					))
+				) : (
+					<div classes={css.noResults}>No matching skills found</div>
+				)}
+				{children()}
 			</div>
-		)
+		</div>
 	);
 });
 
