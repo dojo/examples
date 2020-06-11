@@ -44,8 +44,6 @@ const getProfileCommand = commandFactory<{ username: string; type: string }>(
 			isLoading: false,
 			isLoaded: true
 		}
-		return [
-		];
 	}
 );
 
@@ -71,7 +69,8 @@ const getProfileFeedCommand = commandFactory<{ username: string; type: string; p
 			total: json.articlesCount,
 			offset: offset,
 			isLoading: false,
-			isLoaded: true
+			isLoaded: true,
+			category: type
 		};
 	}
 );

@@ -35,6 +35,7 @@ const loginCommand = commandFactory<{ email: string; password: string }>(async (
 		state.login.isLoading = true;
 		state.errors = json.errors;
 		state.session = undefined;
+		return;
 	}
 
 	global.sessionStorage.setItem('conduit-session', JSON.stringify(json.user));
@@ -65,6 +66,7 @@ const registerCommand = commandFactory<{ username: string; email: string; passwo
 			state.register.isLoading = false;
 			state.errors = json.errors;
 			state.session = undefined;
+			return;
 		}
 
 		global.sessionStorage.setItem('conduit-session', JSON.stringify(json.user));

@@ -101,7 +101,7 @@ const deleteCommentCommand = commandFactory<DeleteCommentPayload>(async ({ state
 	}
 
 	if (index !== -1) {
-		state.article[slug].comments.slice(index, 1);
+		state.article[slug].comments.splice(index, 1);
 	}
 });
 
