@@ -1,62 +1,62 @@
 import { createProcess } from '@dojo/framework/stores/process';
-import { replace, add, remove } from '@dojo/framework/stores/state/operations';
 import { getHeaders, commandFactory } from './utils';
 import { baseUrl } from '../config';
 import { TitlePayload, DescriptionPayload, BodyPayload, TagPayload, SlugPayload } from './interfaces';
 
-const titleInputCommand = commandFactory<TitlePayload>(({ path, payload: { title } }) => {
-	return [replace(path('editor', 'title'), title)];
+const titleInputCommand = commandFactory<TitlePayload>(({ state, payload: { title } }) => {
+	state.editor.title = title;
 });
 
-const descriptionInputCommand = commandFactory<DescriptionPayload>(({ path, payload: { description } }) => {
-	return [replace(path('editor', 'description'), description)];
+const descriptionInputCommand = commandFactory<DescriptionPayload>(({ state, payload: { description } }) => {
+	state.editor.description = description;
 });
 
-const bodyInputCommand = commandFactory<BodyPayload>(({ path, payload: { body } }) => {
-	return [replace(path('editor', 'body'), body)];
+const bodyInputCommand = commandFactory<BodyPayload>(({ state, payload: { body } }) => {
+	state.editor.body = body;
 });
 
-const tagInputCommand = commandFactory<TagPayload>(({ path, payload: { tag } }) => {
-	return [replace(path('editor', 'tag'), tag)];
+const tagInputCommand = commandFactory<TagPayload>(({ state, payload: { tag } }) => {
+	state.editor.tag = tag;
 });
 
-const addTagCommand = commandFactory<TagPayload>(({ get, at, path, payload: { tag } }) => {
-	const length = (get(path('editor', 'tagList')) || []).length;
-	return [add(at(path('editor', 'tagList'), length), tag)];
-});
-
-const clearTagInputCommand = commandFactory(({ path }) => {
-	return [replace(path('editor', 'tag'), '')];
-});
-
-const removeTagCommand = commandFactory<TagPayload>(({ get, at, path, payload: { tag } }) => {
-	const tags = get(path('editor', 'tagList'));
-	const index = tags.indexOf(tag);
-	if (index !== -1) {
-		return [remove(at(path('editor', 'tagList'), index))];
+const addTagCommand = commandFactory<TagPayload>(({ state, payload: { tag } }) => {
+	if (!state.editor.tagList) {
+		state.editor.tagList = [];
 	}
-	return [];
+	state.editor.tagList.push(tag);
 });
 
-const getArticleForEditorCommand = commandFactory<SlugPayload>(async ({ path, payload: { slug } }) => {
+const clearTagInputCommand = commandFactory(({ state }) => {
+	state.editor.tag = '';
+});
+
+const removeTagCommand = commandFactory<TagPayload>(({ state, payload: { tag } }) => {
+	const tags = state.editor.tagList || [];
+	const index = tags.indexOf(tag);
+	if (index !== -1 && state.editor.tagList) {
+		state.editor.tagList.splice(index, 1);
+	}
+});
+
+const getArticleForEditorCommand = commandFactory<SlugPayload>(async ({ state, payload: { slug } }) => {
 	const response = await fetch(`${baseUrl}/articles/${slug}`);
 	const json = await response.json();
-	return [replace(path('editor'), json.article)];
+	state.editor = json.article;
 });
 
-const clearEditorCommand = commandFactory(({ path }) => {
-	return [replace(path('editor'), {})];
+const clearEditorCommand = commandFactory(({ state }) => {
+	state.editor = {};
 });
 
-const startPublishCommand = commandFactory(({ path }) => {
-	return [replace(path('editor', 'isLoading'), true)];
+const startPublishCommand = commandFactory(({ state }) => {
+	state.editor.isLoading = true;
 });
 
-const publishArticleCommand = commandFactory(async ({ get, path }) => {
-	const token = get(path('session', 'token'));
-	const slug = get(path('editor', 'slug'));
+const publishArticleCommand = commandFactory(async ({ state }) => {
+	const token = state.session && state.session.token;
+	const slug = state.editor.slug;
 	const requestPayload = {
-		article: get(path('editor'))
+		article: state.editor
 	};
 
 	const url = slug ? `${baseUrl}/articles/${slug}` : `${baseUrl}/articles`;
@@ -68,14 +68,16 @@ const publishArticleCommand = commandFactory(async ({ get, path }) => {
 	const json = await response.json();
 
 	if (!response.ok) {
-		return [replace(path('editor', 'isLoading'), false), replace(path('errors'), json.errors)];
+		state.editor.isLoading = false;
+		state.errors = json.errors;
+		return;
 	}
 
-	return [
-		replace(path('article', slug, 'item'), json.article),
-		replace(path('article', slug, 'isLoading'), true),
-		replace(path('editor'), undefined)
-	];
+	if (slug) {
+		state.article[slug].item = json.article;
+		state.article[slug].isLoading = true;
+	}
+	state.editor = {};
 });
 
 export const titleInputProcess = createProcess('title-input', [titleInputCommand]);

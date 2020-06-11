@@ -10,6 +10,7 @@ import Store from '@dojo/framework/stores/Store';
 import config from './routes';
 import Registry from '@dojo/framework/core/Registry';
 import { changeRouteProcess } from './processes/routeProcesses';
+import {replace} from "@dojo/framework/stores/state/operations";
 
 export const registry = new Registry();
 const router = registerRouterInjector(config, registry);
@@ -23,6 +24,16 @@ const store = createStoreMiddleware<State>((store: Store) => {
 		setSessionProcess(store)({ session: JSON.parse(session) });
 	}
 	getTagsProcess(store)({});
+	store.apply([
+		replace(store.path('settings'), {}),
+		replace(store.path('feed'), {}),
+		replace(store.path('profile'), {}),
+		replace(store.path('routing'), {}),
+		replace(store.path('login'), {}),
+		replace(store.path('register'), {}),
+		replace(store.path('editor'), {}),
+		replace(store.path('article'), {}),
+	])
 	router.on('nav', ({ outlet, context }: any) => {
 		changeRouteProcess(store)({ outlet, context });
 	});
