@@ -1,8 +1,0 @@
-{
-	"build-app": {
-		"base": "/examples/todo-mvc/"
-	},
-	"test-intern": {},
-	"create-app": {},
-	"create-widget": {}
-}

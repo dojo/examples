@@ -1,7 +1,0 @@
-{
-	"build-app": {
-		"base": "/examples/world-clock/",
-		"locale": "en",
-		"supportedLocales": [ "es", "fr", "hi", "ar", "ja" ]
-	}
-}

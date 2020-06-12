@@ -2,18 +2,8 @@
   "build-app": {
     "build-time-render": {
 			"static": true,
-      "root": "app",
-			"paths": [
-				"home",
-				"blog/dojo-btr-and-blocks"
-			],
-			"puppeteerOptions": {
-				"args": [
-					"--no-sandbox",
-					"--disable-setuid-sandbox"
-				]
-			}
-    },
+			  "root": "app"
+		},
 		"pwa": {
 			"manifest": {
 				"name": "dojo-blog",
