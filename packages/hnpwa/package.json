@@ -6,6 +6,7 @@
     "build:deploy": "dojo build --dojorc .dojorc-deploy && shx rm -rf node_modules",
     "dev": "dojo build -m dev -w -s",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "package": "shx cp -r output/dist/ ../../output/dist/hnpwa/",
     "test:ci": "echo \"no tests\""
   },
   "main": "src/main.tsx",
