@@ -18,7 +18,7 @@ const startGetProfileFeedCommand = commandFactory(({ state, payload: { page, typ
 });
 
 const followUserCommand = commandFactory<FollowUserPayload>(async ({ state, payload: { username, following } }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	const response = await fetch(`${baseUrl}/profiles/${username}/follow`, {
 		method: following ? 'delete' : 'post',
 		headers: getHeaders(token)
@@ -30,7 +30,7 @@ const followUserCommand = commandFactory<FollowUserPayload>(async ({ state, payl
 
 const getProfileCommand = commandFactory<{ username: string; type: string }>(
 	async ({ state, payload: { username } }) => {
-		const token = state.session && state.session.token;
+		const token = state.session?.token;
 		const response = await fetch(`${baseUrl}/profiles/${username}`, {
 			headers: getHeaders(token)
 		});
@@ -49,7 +49,7 @@ const getProfileCommand = commandFactory<{ username: string; type: string }>(
 
 const getProfileFeedCommand = commandFactory<{ username: string; type: string; page: number }>(
 	async ({ state, payload: { type, username, page } }) => {
-		const token = state.session && state.session.token;
+		const token = state.session?.token;
 		const offset = page * 10;
 		let url = `${baseUrl}/articles?`;
 

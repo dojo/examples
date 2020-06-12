@@ -32,7 +32,7 @@ const getUserSettingsCommand = commandFactory(({ state  }) => {
 });
 
 const updateUserSettingsCommand = commandFactory(async ({ state }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	const requestPayload = state.settings;
 	const response = await fetch(`${baseUrl}/user`, {
 		method: 'put',

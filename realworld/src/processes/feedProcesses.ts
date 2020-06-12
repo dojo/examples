@@ -31,7 +31,7 @@ const startFetchingFeedCommand = commandFactory<FetchFeedPayload>(({ state, payl
 
 export const fetchFeedCommand = commandFactory<FetchFeedPayload>(
 	async ({ state, payload: { type, page, filter } }) => {
-		const token = state.session && state.session.token;
+		const token = state.session?.token;
 		const offset = page * 10;
 		let url: string;
 
@@ -66,15 +66,15 @@ const clearFeedCommand = commandFactory(({ state }) => {
 
 const favoriteFeedArticleCommand = commandFactory<FavoriteArticlePayload>(
 	async ({ state, payload: { slug, favorited, type } }) => {
-		const token = state.session && state.session.token;
+		const token = state.session?.token;
 		const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, {
 			method: favorited ? 'delete' : 'post',
 			headers: getHeaders(token)
 		});
 		const json = await response.json();
-		let articles = state.feed && state.feed.items;
+		let articles = state.feed?.items;
 		if (type === 'favorites' || type === 'user') {
-			articles = state.profile.feed && state.profile.feed.items;
+			articles = state.profile.feed?.items;
 		}
 
 		const index = getItemIndex(articles, slug);

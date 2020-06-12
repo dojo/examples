@@ -21,7 +21,7 @@ const startLoadingArticleCommand = commandFactory(({ state, payload: { slug } })
 });
 
 const loadArticleCommand = commandFactory<SlugPayload>(async ({ state, payload: { slug } }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	const response = await fetch(`${baseUrl}/articles/${slug}`, {
 		headers: getHeaders(token)
 	});
@@ -34,7 +34,7 @@ const loadArticleCommand = commandFactory<SlugPayload>(async ({ state, payload: 
 
 const favoriteArticleCommand = commandFactory<FavoriteArticlePayload>(
 	async ({ state, payload: { slug, favorited } }) => {
-		const token = state.session && state.session.token;
+		const token = state.session?.token;
 		const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, {
 			method: favorited ? 'delete' : 'post',
 			headers: getHeaders(token)
@@ -46,19 +46,19 @@ const favoriteArticleCommand = commandFactory<FavoriteArticlePayload>(
 
 const followUserCommand = commandFactory<Required<FollowUserPayload>>(
 	async ({ state,payload: { slug, username, following } }) => {
-		const token = state.session && state.session.token;
+		const token = state.session?.token;
 		const response = await fetch(`${baseUrl}/profiles/${username}/follow`, {
 			method: following ? 'delete' : 'post',
 			headers: getHeaders(token)
 		});
 		const json = await response.json();
-		const article = state.article[slug] && state.article[slug].item;
+		const article = state.article[slug]?.item;
 		state.article[slug].item = article && { ...article, author: json.profile };
 	}
 );
 
 const loadCommentsCommand = commandFactory<SlugPayload>(async ({ state, payload: { slug } }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	const response = await fetch(`${baseUrl}/articles/${slug}/comments`, {
 		headers: getHeaders(token)
 	});
@@ -67,7 +67,7 @@ const loadCommentsCommand = commandFactory<SlugPayload>(async ({ state, payload:
 });
 
 const addCommentCommand = commandFactory<AddCommentPayload>(async ({ state, payload: { slug, newComment } }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	const requestPayload = {
 		comment: {
 			body: newComment
@@ -86,7 +86,7 @@ const addCommentCommand = commandFactory<AddCommentPayload>(async ({ state, payl
 });
 
 const deleteCommentCommand = commandFactory<DeleteCommentPayload>(async ({ state, payload: { slug, id } }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	await fetch(`${baseUrl}/articles/${slug}/comments/${id}`, {
 		method: 'delete',
 		headers: getHeaders(token)
@@ -110,7 +110,7 @@ const newCommentInputCommand = commandFactory<NewCommentPayload>(({ state, paylo
 });
 
 const deleteArticleCommand = commandFactory<SlugPayload>(async ({ state, payload: { slug } }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	await fetch(`${baseUrl}/articles/${slug}`, {
 		method: 'delete',
 		headers: getHeaders(token)

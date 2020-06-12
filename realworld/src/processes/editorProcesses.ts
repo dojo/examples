@@ -53,7 +53,7 @@ const startPublishCommand = commandFactory(({ state }) => {
 });
 
 const publishArticleCommand = commandFactory(async ({ state }) => {
-	const token = state.session && state.session.token;
+	const token = state.session?.token;
 	const slug = state.editor.slug;
 	const requestPayload = {
 		article: state.editor
