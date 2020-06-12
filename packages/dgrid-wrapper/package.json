@@ -4,9 +4,10 @@
   "scripts": {
     "dev": "dojo build app -m dev -w -s",
     "build": "dojo build",
-    "build:ghpages": "dojo build --dojorc .dojorc-ghpages",
+    "build:deploy": "dojo build --dojorc .dojorc-deploy",
     "build:test": "dojo build -m unit",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "package": "shx cp -r output/dist/ ../../output/dist/dgrid-wrapper/",
     "test": "run-s build:test test:local",
     "test:ci": "run-s build:test test:headless",
     "test:local": "dojo test -c local",

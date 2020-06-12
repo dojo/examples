@@ -2,13 +2,16 @@
   "name": "examples",
   "version": "1.0.0",
   "scripts": {
+    "install": "lerna bootstrap",
+    "build": "shx rm -rf output && lerna run build:deploy && shx mkdir output && shx mkdir output/dist && lerna run package",
     "prettier": "prettier --write \"**/*.{ts,tsx,md}\" --ignore-path=.gitignore"
   },
   "devDependencies": {
     "husky": "4.2.3",
-    "lerna": "^3.22.1",
+    "lerna": "3.22.1",
     "lint-staged": "10.0.10",
-    "prettier": "2.0.2"
+    "prettier": "2.0.2",
+    "shx": "0.3.2"
   },
   "prettier": {
     "singleQuote": true,
