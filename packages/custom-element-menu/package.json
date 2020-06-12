@@ -8,7 +8,7 @@
     "dev": "npm run build:widgets && npm run move-to-assets && dojo build app -m dev -w -s",
     "build:app": "dojo build app",
     "build:widgets": "dojo build widget",
-    "build:deploy": "npm run build:widgets && npm run move-to-assets && npm run build:app -- --dojorc .dojorc-deploy && npm run clean",
+    "build:deploy": "npm run build:widgets && npm run move-to-assets && npm run build:app -- --dojorc .dojorc-deploy && npm run clean && shx rm -rf node_modules",
     "build": "npm run build:widgets && npm run move-to-assets && npm run build:app && npm run clean",
     "package": "shx cp -r output/dist/ ../../output/dist/custom-element-menu/",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",

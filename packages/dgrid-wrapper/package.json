@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "dojo build app -m dev -w -s",
     "build": "dojo build",
-    "build:deploy": "dojo build --dojorc .dojorc-deploy",
+    "build:deploy": "dojo build --dojorc .dojorc-deploy && shx rm -rf node_modules",
     "build:test": "dojo build -m unit",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "package": "shx cp -r output/dist/ ../../output/dist/dgrid-wrapper/",
