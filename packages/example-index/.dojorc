@@ -1,0 +1,11 @@
+{
+	"build-app": {
+		"build-time-render": {
+			"static": true,
+			"root": "root",
+			"discoverPaths": false
+		}
+	},
+	"test-intern": {},
+	"create-app": {}
+}
