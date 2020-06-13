@@ -3,7 +3,7 @@
   "description": "An example that use that demonstrates the custom elements from @dojo/widgets and themes from @dojo/themes",
   "version": "1.0.0",
   "scripts": {
-    "build:deploy": "npm run build && shx rm -rf node_modules",
+    "build:deploy": "npm install && npm run build && shx rm -rf node_modules",
     "build": "shx rm -rf dist && shx mkdir dist && shx cp src/index.html dist && shx cp -r node_modules/@webcomponents/custom-elements dist && shx cp -r node_modules/@dojo/widgets/dist dist/widgets && shx cp -r node_modules/@dojo/themes dist/themes",
     "lint": "echo \"no lint\"",
     "test:ci": "echo \"no tests\"",

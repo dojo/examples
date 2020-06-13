@@ -5,7 +5,7 @@
     "dev": "dojo build --mode dev --watch --serve",
     "build": "dojo build --mode dist",
     "build:dev": "dojo build --mode dev",
-    "build:deploy": "dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
+    "build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "package": "shx cp -r output/dist/ ../../output/dist/resize-middleware/",
     "test:ci": "echo no tests"

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "dojo build",
-    "build:deploy": "dojo build --dojorc .dojorc-deploy && shx rm -rf node_modules",
+    "build:deploy": "npm install && dojo build --dojorc .dojorc-deploy && shx rm -rf node_modules",
     "dev": "dojo build -m dev -w -s",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "package": "shx cp -r output/dist/ ../../output/dist/hnpwa/",

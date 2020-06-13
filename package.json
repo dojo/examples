@@ -2,7 +2,6 @@
   "name": "examples",
   "version": "1.0.0",
   "scripts": {
-    "install": "lerna bootstrap",
     "build": "shx rm -rf output && lerna run build:deploy && shx mkdir output && shx mkdir output/dist && lerna run package",
     "prettier": "prettier --write \"**/*.{ts,tsx,md}\" --ignore-path=.gitignore"
   },

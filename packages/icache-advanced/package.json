@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "dojo build --mode dev --watch --serve",
     "build": "dojo build --mode dist",
-    "build:deploy": "dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
+    "build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
     "build:dev": "dojo build --mode dev",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "package": "shx cp -r output/dist/ ../../output/dist/icache-advanced/",

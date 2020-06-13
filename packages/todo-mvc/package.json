@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "dojo build app -m dev -w -s",
     "build": "dojo build",
-    "build:deploy": "dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
+    "build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
     "build:tests": "dojo build -m unit && dojo build -m functional",
     "package": "shx cp -r output/dist/ ../../output/dist/todo-mvc/",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
