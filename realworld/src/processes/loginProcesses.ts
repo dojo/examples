@@ -1,23 +1,22 @@
 import global from '@dojo/framework/shim/global';
 import { createProcess } from '@dojo/framework/stores/process';
-import { replace } from '@dojo/framework/stores/state/operations';
 import { getHeaders, commandFactory } from './utils';
 import { baseUrl } from '../config';
 import { SetSessionPayload } from './interfaces';
 
-const startLoginCommand = commandFactory(({ path }) => {
-	return [replace(path('login', 'isLoading'), true)];
+const startLoginCommand = commandFactory(({ state }) => {
+	state.login = { isLoading: true, isLoaded: false };
 });
 
-const startRegisterCommand = commandFactory(({ path }) => {
-	return [replace(path('register', 'isLoading'), true)];
+const startRegisterCommand = commandFactory(({ state }) => {
+	state.register = { isLoading: true, isLoaded: false };
 });
 
-const setSessionCommand = commandFactory<SetSessionPayload>(({ path, payload: { session } }) => {
-	return [replace(path('session'), session)];
+const setSessionCommand = commandFactory<SetSessionPayload>(({ state, payload: { session } }) => {
+	state.session = session;
 });
 
-const loginCommand = commandFactory<{ email: string; password: string }>(async ({ path, payload }) => {
+const loginCommand = commandFactory<{ email: string; password: string }>(async ({ state, payload }) => {
 	const requestPayload = {
 		user: {
 			email: payload.email,
@@ -33,25 +32,22 @@ const loginCommand = commandFactory<{ email: string; password: string }>(async (
 
 	const json = await response.json();
 	if (!response.ok) {
-		return [
-			replace(path('login', 'isLoading'), true),
-			replace(path('errors'), json.errors),
-			replace(path('session'), {})
-		];
+		state.login.isLoading = true;
+		state.errors = json.errors;
+		state.session = undefined;
+		return;
 	}
 
 	global.sessionStorage.setItem('conduit-session', JSON.stringify(json.user));
 
-	return [
-		replace(path('routing', 'outlet'), 'home'),
-		replace(path('login', 'isLoading'), false),
-		replace(path('errors'), undefined),
-		replace(path('session'), json.user)
-	];
+	state.routing.outlet = 'home';
+	state.login.isLoading = false;
+	state.errors = undefined;
+	state.session = json.user;
 });
 
 const registerCommand = commandFactory<{ username: string; email: string; password: string }>(
-	async ({ path, payload: { username, email, password } }) => {
+	async ({ state, payload: { username, email, password } }) => {
 		const requestPayload = {
 			user: {
 				username,
@@ -67,27 +63,25 @@ const registerCommand = commandFactory<{ username: string; email: string; passwo
 		});
 		const json = await response.json();
 		if (!response.ok) {
-			return [
-				replace(path('register', 'isLoading'), false),
-				replace(path('errors'), json.errors),
-				replace(path('session'), {})
-			];
+			state.register.isLoading = false;
+			state.errors = json.errors;
+			state.session = undefined;
+			return;
 		}
 
 		global.sessionStorage.setItem('conduit-session', JSON.stringify(json.user));
 
-		return [
-			replace(path('routing', 'outlet'), 'home'),
-			replace(path('register', 'isLoading'), false),
-			replace(path('errors'), undefined),
-			replace(path('session'), json.user)
-		];
+		state.routing.outlet = 'home';
+		state.register.isLoading = false;
+		state.errors = undefined;
+		state.session = json.user;
 	}
 );
 
-const logoutCommand = commandFactory(({ path }) => {
+const logoutCommand = commandFactory(({ state }) => {
 	global.sessionStorage.removeItem('conduit-session');
-	return [replace(path('session'), {}), replace(path('routing', 'outlet'), 'home')];
+	state.session = undefined;
+	state.routing.outlet = 'home';
 });
 
 export const loginProcess = createProcess('login', [startLoginCommand, loginCommand]);

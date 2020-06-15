@@ -17,7 +17,7 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 	const { get, path, executor } = store;
 	let settings = get(path('settings'));
 
-	if (!settings) {
+	if (!settings.username) {
 		executor(getUserSettingsProcess)({});
 		settings = get(path('settings'));
 	}

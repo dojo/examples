@@ -1,5 +1,4 @@
 import { createProcess } from '@dojo/framework/stores/process';
-import { replace } from '@dojo/framework/stores/state/operations';
 import { commandFactory } from './utils';
 import { ChangeRoutePayload } from './interfaces';
 
@@ -8,16 +7,19 @@ function isProfile(currentOutlet: string, outlet: string) {
 	return outlets.indexOf(currentOutlet) > -1 && outlets.indexOf(outlet) > -1;
 }
 
-const changeRouteCommand = commandFactory<ChangeRoutePayload>(({ get, path, payload: { outlet, context } }) => {
-	const currentOutlet = get(path('routing', 'outlet'));
-	return [
-		replace(path('routing', 'outlet'), outlet),
-		replace(path('routing', 'params'), context.params),
-		replace(path('settings'), undefined),
-		replace(path('editor'), undefined),
-		isProfile(currentOutlet, outlet) ? replace(path('profile', 'feed'), {}) : replace(path('profile'), undefined),
-		replace(path('feed'), undefined),
-		replace(path('errors'), {})
-	];
+const changeRouteCommand = commandFactory<ChangeRoutePayload>(({ state, payload: { outlet, context } }) => {
+	const currentOutlet = state.routing.outlet;
+
+	state.routing.outlet = outlet;
+	state.routing.params = context.params;
+	state.settings = {};
+	state.editor = {}
+	if (isProfile(currentOutlet, outlet) && state.profile) {
+		state.profile.feed = {}
+	} else {
+		state.profile = {};
+	}
+	state.feed = {};
+	state.errors = {};
 });
 export const changeRouteProcess = createProcess('change-route', [changeRouteCommand]);

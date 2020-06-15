@@ -53,16 +53,16 @@ export interface Settings extends User, ResourceBased {
 }
 
 export interface Article extends ResourceBased {
-	item: ArticleItem;
+	item?: ArticleItem;
 	comments: Comment[];
 	newComment: string;
 }
 
 export interface Feed extends ResourceBased {
 	category: string;
-	tagName: string;
+	tagName?: string;
 	filter: string;
-	items: ArticleItem[];
+	items?: ArticleItem[];
 	offset: number;
 	page: number;
 	total: number;
@@ -95,22 +95,22 @@ export interface Editor extends ResourceBased {
 }
 
 export interface Profile {
-	user: AuthorProfile & ResourceBased;
-	feed: Feed;
+	user: Partial<AuthorProfile & ResourceBased>;
+	feed: Partial<Feed>;
 }
 
 interface State {
-	settings: Settings;
+	settings: Partial<Settings>;
 	article: {
 		[index: string]: Article;
 	};
-	feed: Feed;
-	session: Session;
-	profile: Profile;
+	feed: Partial<Feed>;
+	session?: Session;
+	profile: Partial<Profile>;
 	routing: Routing;
 	tags: string[];
-	errors: Errors;
+	errors?: Errors;
 	login: ResourceBased;
 	register: ResourceBased;
-	editor: Editor;
+	editor: Partial<Editor>;
 }
