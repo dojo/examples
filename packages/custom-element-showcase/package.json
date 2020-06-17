@@ -10,8 +10,8 @@
     "package": "shx cp -r dist/ ../../output/dist/custom-element-showcase/"
   },
   "dependencies": {
-    "@dojo/themes": "^6.0.0",
-    "@dojo/widgets": "^6.0.0",
+    "@dojo/themes": "6.0.0",
+    "@dojo/widgets": "6.0.0",
     "@webcomponents/custom-elements": "~1.0.9"
   },
   "devDependencies": {

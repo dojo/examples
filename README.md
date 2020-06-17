@@ -96,7 +96,7 @@ Refer to each `README.md` for details on installing and testing the examples:
 
 ### Building all Examples
 
-From the root directory, run `npm install` and then `npm run build:deploy`. The built examples are output into the `output/dist` directory at the of the product.
+From the root directory, run `npm install` and then `npm run build`. The built examples are output into the `output/dist` directory at the of the product.
 
 ## Licensing Information
 
