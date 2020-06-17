@@ -8,55 +8,98 @@ For current progress on Dojo, contribution guidelines and other information, ple
 
 -   [Examples](#examples)
 -   [How do I contribute?](#how-do-i-contribute)
+    -   [Adding an Example](#adding-an-example)
     -   [Installation & Testing](#installation--testing)
+    -   [Building all Examples](#building-all-examples)
 -   [Licensing information](#licensing-information)
 
 ## Examples
 
 Here is a table of the current examples available in this repository complete with code and a hosted demonstration:
 
-| Example                 | Code                              | Demo                                                            | Sandbox                                                                                 | Overview                                                                                                                                                                                    |
-| ----------------------- | --------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TodoMVC                 | [Link](./todo-mvc)                | [Link](https://dojo.github.io/examples/todo-mvc)                | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc)              | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.                                                                                                       |
-| TodoMVC (kitchen sink)  | [Link](./todo-mvc-kitchensink)    | [Link](https://dojo.github.io/examples/todo-mvc-kitchensink)    | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc-kitchensink)  | Feature-enhanced version of TodoMVC built using Dojo packages.                                                                                                                              |
-| iCache Basic            | [Link](./icache-basic)            | [Link](https://dojo.github.io/examples/icache-basic)            | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/icache-basic)          | Basic example of icache middleware usage                                                                                                                                                    |
-| iCache Advanced         | [Link](./icache-advanced)         | [Link](https://dojo.github.io/examples/icache-advanced)         | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/icache-advanced)       | Example of getOrSet icache API and typed icache                                                                                                                                             |
-| Resize Middleware       | [Link](./resize-middleware)       | [Link](https://dojo.github.io/examples/resize-middleware)       | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/resize-middleware)     | Demonstrates working with an element that changes dimensions                                                                                                                                |
-| HNPWA                   | [Link](./hnpwa)                   | [Link](https://dojo-2-hnpwa-d668d.firebaseapp.com/)             | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/hnpwa)                 | Reference implementation of [HNPWA](https://hnpwa.com/) built using Dojo packages.                                                                                                          |
-| Widget Showcase         | [Link](./widget-showcase)         | [Link](https://dojo.github.io/examples/widget-showcase)         | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/widget-showcase)       | Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets).                                                                                                                  |
-| Custom Element Showcase | [Link](./custom-element-showcase) | [Link](https://dojo.github.io/examples/custom-element-showcase) |                                                                                         | Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets) compiled as [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). |
-| Custom Element Menu     | [Link](./custom-element-menu)     | [Link](https://dojo.github.io/examples/custom-element-menu)     |                                                                                         | Demonstration of a menu widget compiled as a [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).                                           |
-| Real-world Application  | [Link](./realworld)               | [Link](https://dojo.github.io/examples/realworld)               | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/realworld)             | A real-world implementation of an existing site using Dojo packages: conduit.                                                                                                               |
-| Intersection Observer   | [Link](./intersection-observer)   | [Link](https://dojo.github.io/examples/intersection-observer/)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/intersection-observer) | Demonstration of the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta and how it can be used to create an infinite scrolling list.                                   |
-| Resize Observer         | [Link](./resize-observer)         | [Link](https://dojo.github.io/examples/resize-observer/)        |                                                                                         | Demonstration of the [`Resize`](https://github.com/dojo/widget-core#resize) meta and how it can be used to create responsive components.                                                    |
-| Dgrid Wrapper           | [Link](./dgrid-wrapper)           | [Link](https://dojo.github.io/examples/dgrid-wrapper)           |                                                                                         | Demonstration of the [`Dgrid Wrapper`](https://github.com/dojo/interop/tree/master/src/dgrid) for running [dgrid](http://dgrid.io) in a reactive way in a modern Dojo application.          |
-| World Clock             | [Link](./world-clock)             | [Link](https://dojo.github.io/examples/world-clock)             |                                                                                         | Demonstration of i18n in an application built using Dojo packages.                                                                                                                          |
-| Static Blog             | [Link](./static-blog)             | [Link](https://dojo.github.io/examples/static-blog)             | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/static-blog)           | Template for creating a blog using dojo with build time rendering and blocks                                                                                                                |
-| Store Arrays            | [Link](./store-arrays)            | [Link](https://dojo.github.io/examples/store-arrays)            | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/store-arrays)          | Demonstrates working with arrays in @dojo/stores                                                                                                                                            |
+| Example                 | Code                                       | Demo                                                     | Sandbox                                                                                          | Overview                                                                                                                                                                                    |
+| ----------------------- | ------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TodoMVC                 | [Link](./pacakges/todo-mvc)                | [Link](https://examples.dojo.io/todo-mvc)                | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/todo-mvc)              | Reference implementation of [TodoMVC](http://todomvc.com/) built using Dojo packages.                                                                                                       |
+| TodoMVC (kitchen sink)  | [Link](./pacakges/todo-mvc-kitchensink)    | [Link](https://examples.dojo.io/todo-mvc-kitchensink)    | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/todo-mvc-kitchensink)  | Feature-enhanced version of TodoMVC built using Dojo packages.                                                                                                                              |
+| iCache Basic            | [Link](./pacakges/icache-basic)            | [Link](https://examples.dojo.io/icache-basic)            | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/icache-basic)          | Basic example of icache middleware usage                                                                                                                                                    |
+| iCache Advanced         | [Link](./pacakges/icache-advanced)         | [Link](https://examples.dojo.io/icache-advanced)         | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/icache-advanced)       | Example of getOrSet icache API and typed icache                                                                                                                                             |
+| Resize Middleware       | [Link](./pacakges/resize-middleware)       | [Link](https://examples.dojo.io/resize-middleware)       | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/resize-middleware)     | Demonstrates working with an element that changes dimensions                                                                                                                                |
+| HNPWA                   | [Link](./pacakges/hnpwa)                   | [Link](https://examples.dojo.io/hnpwa)                   | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/hnpwa)                 | Reference implementation of [HNPWA](https://hnpwa.com/) built using Dojo packages.                                                                                                          |
+| Widget Showcase         | [Link](./pacakges/widget-showcase)         | [Link](https://examples.dojo.io/widget-showcase)         | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/widget-showcase)       | Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets).                                                                                                                  |
+| Custom Element Showcase | [Link](./pacakges/custom-element-showcase) | [Link](https://examples.dojo.io/custom-element-showcase) |                                                                                                  | Showcase of widgets from [@dojo/widgets](https://github.com/dojo/widgets) compiled as [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). |
+| Custom Element Menu     | [Link](./pacakges/custom-element-menu)     | [Link](https://examples.dojo.io/custom-element-menu)     |                                                                                                  | Demonstration of a menu widget compiled as a [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).                                           |
+| Real-world Application  | [Link](./pacakges/realworld)               | [Link](https://examples.dojo.io/realworld)               | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/realworld)             | A real-world implementation of an existing site using Dojo packages: conduit.                                                                                                               |
+| Intersection Observer   | [Link](./pacakges/intersection-observer)   | [Link](https://examples.dojo.io/intersection-observer/)  | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/intersection-observer) | Demonstration of the [`Intersection`](https://github.com/dojo/widget-core#intersection) meta and how it can be used to create an infinite scrolling list.                                   |
+| Resize Observer         | [Link](./pacakges/resize-observer)         | [Link](https://examples.dojo.io/resize-observer/)        |                                                                                                  | Demonstration of the [`Resize`](https://github.com/dojo/widget-core#resize) meta and how it can be used to create responsive components.                                                    |
+| Dgrid Wrapper           | [Link](./pacakges/dgrid-wrapper)           | [Link](https://examples.dojo.io/dgrid-wrapper)           |                                                                                                  | Demonstration of the [`Dgrid Wrapper`](https://github.com/dojo/interop/tree/master/packages/src/dgrid) for running [dgrid](http://dgrid.io) in a reactive way in a modern Dojo application. |
+| World Clock             | [Link](./pacakges/world-clock)             | [Link](https://examples.dojo.io/world-clock)             |                                                                                                  | Demonstration of i18n in an application built using Dojo packages.                                                                                                                          |
+| Static Blog             | [Link](./pacakges/static-blog)             | [Link](https://examples.dojo.io/static-blog)             | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/static-blog)           | Template for creating a blog using dojo with build time rendering and blocks                                                                                                                |
+| Store Arrays            | [Link](./pacakges/store-arrays)            | [Link](https://examples.dojo.io/store-arrays)            | [Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/store-arrays)          | Demonstrates working with arrays in @dojo/stores                                                                                                                                            |
 
 ## How Do I Contribute?
 
-We appreciate your interest! Please see the [Dojo Meta Repository](https://github.com/dojo/meta#readme) for the Contributing Guidelines and Style Guide.
+We appreciate your interest!
+
+### Adding an Example
+
+To add an example to the project, create the example in the `packages` directory. In order to build and deploy the application there are a few required.
+
+#### Npm Scripts
+
+There are two required npm scripts:
+
+##### build:deploy
+
+The `build:deploy` script needs to install node modules at the beginning and remove them at the end after successfully building the example. E.g.
+
+```
+"build:deploy": "npm install && dojo build --dojorc .dojorc-deploy && shx rm -rf node_modules",
+```
+
+#### package
+
+The `package` script needs move the built output into the correct directory in the main output/dist directory. E.g.
+
+```
+"package": "shx cp -r output/dist/ ../../output/dist/hnpwa/",
+```
+
+#### `.dojorc-deploy` file
+
+A `.dojorc-deploy` file that extends the base `.dojorc` but specifies a base of the examples directory name. E.g.
+
+```json
+{
+	"extends": ".dojorc",
+	"build-app": {
+		"base": "/hnpwa/"
+	}
+}
+```
 
 ### Installation & Testing
 
 Refer to each `README.md` for details on installing and testing the examples:
 
--   [todo-mvc](./todo-mvc/README.md)
--   [todo-mvc-kitchensink](./todo-mvc-kitchensink/README.md)
--   [hnpwa](./hnpwa/README.md)
--   [custom-element-menu](./custom-element-menu/README.md)
--   [widget-showcase](./widget-showcase/README.md)
--   [custom-element-showcase](./custom-element-showcase/README.md)
--   [dojo-cli-example](./dojo-cli-example/README.md)
--   [Conduit RealWorld Application](./realworld/README.md)
--   [intersection-observer](./intersection-observer/README.md)
--   [resize-observer](./resize-observer/README.md)
--   [dgrid-wrapper](./dgrid-wrapper/README.md)
--   [world-clock](./world-clock/README.md)
+-   [todo-mvc](./pacakges/todo-mvc/README.md)
+-   [todo-mvc-kitchensink](./pacakges/todo-mvc-kitchensink/README.md)
+-   [hnpwa](./pacakges/hnpwa/README.md)
+-   [custom-element-menu](./pacakges/custom-element-menu/README.md)
+-   [widget-showcase](./pacakges/widget-showcase/README.md)
+-   [custom-element-showcase](./pacakges/custom-element-showcase/README.md)
+-   [dojo-cli-example](./pacakges/dojo-cli-example/README.md)
+-   [Conduit RealWorld Application](./pacakges/realworld/README.md)
+-   [intersection-observer](./pacakges/intersection-observer/README.md)
+-   [resize-observer](./pacakges/resize-observer/README.md)
+-   [dgrid-wrapper](./pacakges/dgrid-wrapper/README.md)
+-   [world-clock](./pacakges/world-clock/README.md)
+
+### Building all Examples
+
+From the root directory, run `npm install` and then `npm run build:deploy`. The built examples are output into the `output/dist` directory at the of the product.
 
 ## Licensing Information
 
 © 2018 [JS Foundation](https://js.foundation/). [New BSD](http://opensource.org/licenses/BSD-3-Clause) license.
 
-[Link](https://codesandbox.io/s/github/dojo/examples/tree/master/todo-mvc) |
+[Link](https://codesandbox.io/s/github/dojo/examples/tree/master/packages/todo-mvc) |
