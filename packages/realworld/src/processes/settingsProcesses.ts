@@ -27,7 +27,7 @@ const startUserSettingsCommand = commandFactory(({ state }) => {
 	state.settings = { isLoaded: false, isLoading: false };
 });
 
-const getUserSettingsCommand = commandFactory(({ state  }) => {
+const getUserSettingsCommand = commandFactory(({ state }) => {
 	state.settings = { ...state.session };
 });
 
@@ -47,7 +47,7 @@ const updateUserSettingsCommand = commandFactory(async ({ state }) => {
 	state.routing = {
 		outlet: 'user',
 		params: { username: state.settings.username || '' }
-	}
+	};
 });
 
 export const getUserSettingsProcess = createProcess('user-settings', [

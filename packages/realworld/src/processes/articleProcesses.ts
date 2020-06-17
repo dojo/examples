@@ -45,7 +45,7 @@ const favoriteArticleCommand = commandFactory<FavoriteArticlePayload>(
 );
 
 const followUserCommand = commandFactory<Required<FollowUserPayload>>(
-	async ({ state,payload: { slug, username, following } }) => {
+	async ({ state, payload: { slug, username, following } }) => {
 		const token = state.session?.token;
 		const response = await fetch(`${baseUrl}/profiles/${username}/follow`, {
 			method: following ? 'delete' : 'post',

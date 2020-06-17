@@ -13,9 +13,9 @@ const changeRouteCommand = commandFactory<ChangeRoutePayload>(({ state, payload:
 	state.routing.outlet = outlet;
 	state.routing.params = context.params;
 	state.settings = {};
-	state.editor = {}
+	state.editor = {};
 	if (isProfile(currentOutlet, outlet) && state.profile) {
-		state.profile.feed = {}
+		state.profile.feed = {};
 	} else {
 		state.profile = {};
 	}

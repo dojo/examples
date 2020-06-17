@@ -29,36 +29,34 @@ const startFetchingFeedCommand = commandFactory<FetchFeedPayload>(({ state, payl
 	state.feed.items = undefined;
 });
 
-export const fetchFeedCommand = commandFactory<FetchFeedPayload>(
-	async ({ state, payload: { type, page, filter } }) => {
-		const token = state.session?.token;
-		const offset = page * 10;
-		let url: string;
+export const fetchFeedCommand = commandFactory<FetchFeedPayload>(async ({ state, payload: { type, page, filter } }) => {
+	const token = state.session?.token;
+	const offset = page * 10;
+	let url: string;
 
-		switch (type) {
-			case 'feed':
-				url = `${baseUrl}/articles/feed?`;
-				break;
-			case 'tag':
-				url = `${baseUrl}/articles?tag=${filter}&`;
-				break;
-			default:
-				url = `${baseUrl}/articles/?`;
-				break;
-		}
-
-		const response = await fetch(`${url}limit=10&offset=${offset}`, { headers: getHeaders(token) });
-		const json = await response.json();
-		state.feed.items = json.articles;
-		state.feed.total = json.articlesCount;
-		state.feed.offset = offset;
-		state.feed.page = page;
-		state.feed.category = type;
-		state.feed.filter = filter;
-		state.feed.isLoading = false;
-		state.feed.isLoaded = true;
+	switch (type) {
+		case 'feed':
+			url = `${baseUrl}/articles/feed?`;
+			break;
+		case 'tag':
+			url = `${baseUrl}/articles?tag=${filter}&`;
+			break;
+		default:
+			url = `${baseUrl}/articles/?`;
+			break;
 	}
-);
+
+	const response = await fetch(`${url}limit=10&offset=${offset}`, { headers: getHeaders(token) });
+	const json = await response.json();
+	state.feed.items = json.articles;
+	state.feed.total = json.articlesCount;
+	state.feed.offset = offset;
+	state.feed.page = page;
+	state.feed.category = type;
+	state.feed.filter = filter;
+	state.feed.isLoading = false;
+	state.feed.isLoaded = true;
+});
 
 const clearFeedCommand = commandFactory(({ state }) => {
 	state.feed = {};

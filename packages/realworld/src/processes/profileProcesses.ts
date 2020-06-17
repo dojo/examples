@@ -43,7 +43,7 @@ const getProfileCommand = commandFactory<{ username: string; type: string }>(
 			following: json.profile.following,
 			isLoading: false,
 			isLoaded: true
-		}
+		};
 	}
 );
 
