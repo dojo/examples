@@ -1,0 +1,12 @@
+{
+	"build-app": {
+		"build-time-render": {
+			"static": true,
+			"root": "root",
+			"discoverPaths": false,
+			"renderer": "jsdom"
+		}
+	},
+	"test-intern": {},
+	"create-app": {}
+}

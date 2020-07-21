@@ -1,0 +1,40 @@
+{
+  "name": "dgrid-wrapper-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "dojo build app -m dev -w -s",
+    "build": "dojo build",
+    "build:deploy": "npm install && dojo build --dojorc .dojorc-deploy && shx rm -rf node_modules",
+    "build:test": "dojo build -m unit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "package": "shx cp -r output/dist/ ../../output/dist/dgrid-wrapper/",
+    "test": "run-s build:test test:local",
+    "test:ci": "run-s build:test test:headless",
+    "test:local": "dojo test -c local",
+    "test:headless": "dojo test -c headless"
+  },
+  "dependencies": {
+    "@dojo/framework": "~7.0.0",
+    "@dojo/interop": "~7.0.0",
+    "dgrid": "1.2.1",
+    "dijit": "1.13.0",
+    "dojo": "1.13.7",
+    "dojo-dstore": "1.1.2",
+    "dojo-util": "1.13.0",
+    "tslib": "1.9.1"
+  },
+  "devDependencies": {
+    "@dojo/cli": "~7.0.0",
+    "@dojo/cli-build-app": "~7.0.1",
+    "@dojo/cli-test-intern": "~7.0.0",
+    "@dojo/scripts": "^4.0.2",
+    "@types/dojo": "^1.9.42",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "npm-run-all": "4.1.5",
+    "typescript": "3.4.5"
+  }
+}

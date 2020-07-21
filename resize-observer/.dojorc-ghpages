@@ -1,7 +1,0 @@
-{
-	"build-app": {
-		"base": "/examples/resize-observer/",
-		"legacy": true
-	},
-	"test-intern": {}
-}

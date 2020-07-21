@@ -1,0 +1,20 @@
+{
+  "name": "custom-element-showcase",
+  "description": "An example that use that demonstrates the custom elements from @dojo/widgets and themes from @dojo/themes",
+  "version": "1.0.0",
+  "scripts": {
+    "build:deploy": "npm install && npm run build && shx rm -rf node_modules",
+    "build": "shx rm -rf dist && shx mkdir dist && shx cp src/index.html dist && shx cp -r node_modules/@webcomponents/custom-elements dist && shx cp -r node_modules/@dojo/widgets/dist dist/widgets && shx cp -r node_modules/@dojo/themes dist/themes",
+    "lint": "echo \"no lint\"",
+    "test:ci": "echo \"no tests\"",
+    "package": "shx cp -r dist/ ../../output/dist/custom-element-showcase/"
+  },
+  "dependencies": {
+    "@dojo/themes": "6.0.0",
+    "@dojo/widgets": "6.0.0",
+    "@webcomponents/custom-elements": "~1.0.9"
+  },
+  "devDependencies": {
+    "shx": "^0.3.2"
+  }
+}

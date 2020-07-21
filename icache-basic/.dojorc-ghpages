@@ -1,8 +1,0 @@
-{
-	"build-app": {
-		"base": "/examples/icache-basic/"
-	},
-	"test-intern": {},
-	"create-app": {},
-	"create-widget": {}
-}

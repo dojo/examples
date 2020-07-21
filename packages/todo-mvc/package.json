@@ -1,0 +1,34 @@
+{
+  "name": "dojo-todo-mvc",
+  "version": "0.0.1",
+  "description": "TodoMVC using Dojo",
+  "main": "src/main.tsx",
+  "scripts": {
+    "dev": "dojo build app -m dev -w -s",
+    "build": "dojo build",
+    "build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
+    "build:tests": "dojo build -m unit && dojo build -m functional",
+    "package": "shx cp -r output/dist/ ../../output/dist/todo-mvc/",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test:ci": "echo no tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojo/examples.git"
+  },
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@dojo/framework": "~7.0.0",
+    "tslib": "~1.9.3"
+  },
+  "devDependencies": {
+    "@dojo/cli": "~7.0.0",
+    "@dojo/cli-build-app": "~7.0.0",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "typescript": "~3.4.5"
+  }
+}

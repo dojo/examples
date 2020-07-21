@@ -1,0 +1,42 @@
+{
+  "build-app": {
+    "build-time-render": {
+			"static": true,
+			"root": "app",
+			"renderer": "jsdom"
+		},
+		"pwa": {
+			"manifest": {
+				"name": "dojo-blog",
+				"short_name": "dojo-blog",
+				"description": "dojo-blog",
+				"background_color": "#ffffff",
+				"theme_color": "#222127",
+				"icons": [
+					{
+						"src": "src/logo.png",
+						"sizes": [
+							128,
+							256,
+							512
+						]
+					}
+				]
+			},
+			"serviceWorker": {
+				"clientsClaim": true,
+				"routes": [
+					{
+						"urlPattern": ".*",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
+					}
+				]
+			}
+		}
+  },
+	"test-intern": {},
+	"create-app": {}
+}

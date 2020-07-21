@@ -1,8 +1,0 @@
-{
-	"build-app": {
-		"base": "/examples/todo-mvc-kitchensink/",
-		"locale": "en",
-		"supportedLocales": [ "en-PR" ],
-		"cldrPaths": [ "cldr-data/supplemental/likelySubtags.json", "cldr-data/supplemental/plurals.json" ]
-	}
-}

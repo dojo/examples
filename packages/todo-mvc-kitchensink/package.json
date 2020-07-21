@@ -1,0 +1,38 @@
+{
+	"name": "dojo2-todo-mvc-kitchensink",
+	"version": "0.0.1",
+	"description": "TodoMVC using Dojo",
+	"main": "src/main.tsx",
+	"scripts": {
+		"dev": "dojo build app -m dev -w -s",
+		"build": "dojo build",
+		"build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
+		"lint": "eslint \"src/**/*.{ts,tsx}\"",
+		"package": "shx cp -r output/dist/ ../../output/dist/todo-mvc-kitchensink/",
+		"test:ci": "echo no tests"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dojo/examples.git"
+	},
+	"license": "BSD-3-Clause",
+	"dependencies": {
+		"@dojo/framework": "~7.0.0",
+		"@dojo/widgets": "~7.0.0",
+		"cldr-data": "~36.0.0",
+		"cldrjs": "0.5.1",
+		"tslib": "~1.9.3"
+	},
+	"devDependencies": {
+		"@dojo/cli": "~7.0.0",
+		"@dojo/cli-build-app": "~7.0.0",
+		"@types/node": "^12.12.32",
+		"@typescript-eslint/eslint-plugin": "2.25.0",
+		"@typescript-eslint/parser": "2.25.0",
+		"eslint": "6.8.0",
+		"eslint-config-prettier": "6.10.1",
+		"eslint-plugin-import": "2.20.2",
+		"loader-utils": "^1.2.3",
+		"typescript": "~3.4.5"
+	}
+}

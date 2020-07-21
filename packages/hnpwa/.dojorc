@@ -1,0 +1,55 @@
+{
+	"build-app": {
+		"legacy": false,
+		"pwa": {
+			"manifest": {
+				"name": "dojo-2-hn",
+				"short_name": "dojo-2-hn",
+				"description": "dojo-2-hn",
+				"background_color": "#ffffff",
+				"theme_color": "#222127",
+				"icons": [
+					{
+						"src": "src/img/hn.png",
+						"sizes": [
+							128,
+							256,
+							512
+						]
+					}
+				]
+			},
+			"serviceWorker": {
+				"clientsClaim": true,
+				"routes": [
+					{
+						"urlPattern": "https://node-hnapi.herokuapp.com",
+						"strategy": "networkFirst",
+						"expiration": {
+							"maxEntries": 25
+						}
+					}
+				]
+			}
+		},
+		"build-time-render": {
+			"root": "app",
+			"renderer": "jsdom",
+			"paths": [
+				{
+					"path": "#comments/9999",
+					"match": [
+						"#comments\/.*"
+					]
+				},
+				{
+					"path": "#dummy/1",
+					"match": [
+						"#[a-zA-Z]+\/\\d+"
+					]
+				}
+			]
+		}
+	},
+	"test-intern": {}
+}

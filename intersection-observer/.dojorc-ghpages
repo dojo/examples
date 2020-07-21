@@ -1,6 +1,0 @@
-{
-	"build-app": {
-		"base": "/examples/intersection-observer/"
-	},
-	"test-intern": {}
-}
