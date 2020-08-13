@@ -1,7 +1,5 @@
 export const root: string;
-export const layoutRoot: string;
 export const column: string;
-export const columnContent: string;
 export const heading: string;
 export const icon: string;
 export const label: string;
@@ -9,3 +7,5 @@ export const textInput: string;
 export const wrapper: string;
 export const textArea: string;
 export const divider: string;
+export const dividerLine: string;
+export const dividerBadge: string;

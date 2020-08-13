@@ -2,7 +2,6 @@ import { icache } from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Icon from '@dojo/widgets/icon';
 import TextArea from '@dojo/widgets/text-area';
-import TwoColumLayout from '@dojo/widgets/two-column-layout';
 
 import router from '../../middleware/router';
 import { store } from '../../middleware/store';
@@ -54,7 +53,7 @@ export const Home = factory(function ({
 	};
 
 	const leading = (
-		<div classes={css.columnContent}>
+		<div classes={css.column}>
 			<h1 classes={css.heading}>
 				<Icon
 					classes={{
@@ -84,7 +83,7 @@ export const Home = factory(function ({
 	);
 
 	const trailing = (
-		<div classes={css.columnContent}>
+		<div classes={css.column}>
 			<h1 classes={css.heading}>
 				<Icon
 					classes={{
@@ -128,20 +127,14 @@ export const Home = factory(function ({
 
 	return (
 		<div classes={css.root}>
-			<div classes={css.divider}>OR</div>
-			<TwoColumLayout
-				classes={{
-					'@dojo/widgets/two-column-layout': {
-						root: [css.layoutRoot],
-						column: [css.column]
-					}
-				}}
-			>
-				{{
-					leading,
-					trailing
-				}}
-			</TwoColumLayout>
+			{leading}
+
+			<div classes={css.divider}>
+				<div classes={css.dividerLine}></div>
+				<div classes={css.dividerBadge}>OR</div>
+			</div>
+
+			{trailing}
 		</div>
 	);
 });
