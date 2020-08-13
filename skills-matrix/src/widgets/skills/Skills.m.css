@@ -1,7 +1,15 @@
 @import '../../variables.css';
 
 .root {
+	display: flex;
+	flex-direction: column;
 	margin-top: calc(10 * var(--grid-size));
+	height: 100%;
+	width: 100%;
+
+	@media (min-width: 660px) {
+		flex-direction: row;
+	}
 }
 
 .copyButton {
@@ -37,11 +45,6 @@
 	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 5);
 }
 
-.layoutRoot {
-	height: 100%;
-	width: 100%;
-}
-
 .column {
 	display: flex;
 	flex-direction: column;
@@ -50,6 +53,14 @@
 
 .column:first-child {
 	flex-basis: auto;
+	border-bottom: 1px solid var(--color-gray);
+	margin-bottom: calc(2 * var(--grid-size));
+	padding-bottom: calc(2 * var(--grid-size));
 	padding-right: calc(var(--grid-size) * 5);
 	width: calc(var(--grid-size) * 38);
+
+	@media (min-width: 660px) {
+		border-bottom: none;
+		margin-bottom: 0;
+	}
 }

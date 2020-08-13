@@ -2,7 +2,6 @@ import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 import { Icon as DojoIcon } from '@dojo/widgets/icon';
-import TwoColumnLayout from '@dojo/widgets/two-column-layout';
 
 import { Level, SkillName } from '../../interfaces';
 import { store } from '../../middleware/store';
@@ -39,7 +38,7 @@ export const Skills = factory(function ({
 	}
 
 	const leading = (
-		<div>
+		<div classes={css.column}>
 			<TextInput
 				key="personName"
 				label="Full Name"
@@ -49,7 +48,12 @@ export const Skills = factory(function ({
 				}}
 			/>
 			<div classes={css.hashInput}>
-				<TextInput key="hashInput" label="Your Hash" initialValue={hash} disabled>
+				<TextInput
+					key="hashInput"
+					label="Your Hash"
+					initialValue={hash}
+					disabled
+				>
 					{{
 						trailing: (
 							<Button
@@ -76,7 +80,7 @@ export const Skills = factory(function ({
 		</div>
 	);
 	const skillFields = (
-		<div>
+		<div classes={css.column}>
 			{Object.entries(assessment.skills).map(([groupName, group]) => (
 				<GroupAssessment
 					title={groupName}
@@ -92,19 +96,8 @@ export const Skills = factory(function ({
 
 	return (
 		<div classes={css.root}>
-			<TwoColumnLayout
-				classes={{
-					'@dojo/widgets/two-column-layout': {
-						root: [css.layoutRoot],
-						column: [css.column]
-					}
-				}}
-			>
-				{{
-					leading,
-					trailing: skillFields
-				}}
-			</TwoColumnLayout>
+			{leading}
+			{skillFields}
 		</div>
 	);
 });
