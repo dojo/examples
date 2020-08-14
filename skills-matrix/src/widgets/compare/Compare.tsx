@@ -8,6 +8,7 @@ import { AssessmentMap, Level } from '../../interfaces';
 import { store } from '../../middleware/store';
 import { addAssessment, deleteAssessment, setFilters } from '../../processes/assessments.processes';
 import { buildCopyUrl, copyToClipboard } from '../../util/clipboard';
+import { persistComparison, resumeComparison } from '../../util/persistence';
 import { getSkillAssessment, getSkillNames } from '../../util/skills';
 import { AssessmentList } from '../assessment-list/AssessmentList';
 import { Assessment } from '../assessment/Assessment';
@@ -31,6 +32,20 @@ export const Compare = factory(function ({
 	const assessments = get(path('compare', 'assessments')).sort(({ name: nameA = '' }, { name: nameB = '' }) =>
 		nameA < nameB ? -1 : 1
 	);
+
+	if (assessments && assessments.length) {
+		persistComparison(assessments.map(assessment => assessment.hash).join(','));
+	}
+	else {
+		const resumeHashes = resumeComparison();
+		if (resumeHashes) {
+			resumeHashes.split(',').forEach(function (hash) {
+				executor(addAssessment)({ hash });
+			});
+
+			return;
+		}
+	}
 	const assessmentsMap: AssessmentMap = icache.getOrSet('assessmentsMap', {});
 	const filters = get(path('compare', 'filters')) || [];
 	const showAll = icache.getOrSet<number[]>('showAll', []);

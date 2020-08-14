@@ -104,7 +104,7 @@ export const Home = factory(function ({
 				}}
 				initialValue={hashes}
 				onValue={(value) => icache.set('hashes', value)}
-				placeholder="Enter comma-separated hashes..."
+				placeholder="Enter multiple hashes separated by commas or new lines…"
 			></TextArea>
 			<Button
 				disabled={!hashes}
