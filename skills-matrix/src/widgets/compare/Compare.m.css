@@ -1,12 +1,15 @@
 @import '../../variables.css';
 
 .root {
+	display: flex;
+	flex-direction: column;
 	margin-top: calc(10 * var(--grid-size));
-}
-
-.layoutRoot {
 	height: 100%;
 	width: 100%;
+
+	@media (min-width: 661px) {
+		flex-direction: row;
+	}
 }
 
 .column {
@@ -16,9 +19,18 @@
 }
 
 .column:first-child {
+	border-bottom: 1px solid var(--color-light-gray);
+	margin-bottom: calc(2 * var(--grid-size));
 	flex-basis: auto;
+	padding-bottom: calc(2 * var(--grid-size));
 	padding-right: calc(var(--grid-size) * 5);
 	width: calc(var(--grid-size) * 38);
+
+	@media (min-width: 661px) {
+		border-bottom: none;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
 }
 
 .column:last-child {

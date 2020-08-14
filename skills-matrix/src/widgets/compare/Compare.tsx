@@ -2,7 +2,6 @@ import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 import { Icon as DojoIcon } from '@dojo/widgets/icon';
-import TwoColumnLayout from '@dojo/widgets/two-column-layout';
 
 import { AssessmentMap, Level } from '../../interfaces';
 import { store } from '../../middleware/store';
@@ -54,7 +53,7 @@ export const Compare = factory(function ({
 	const isFiltering = filters.length > 0;
 
 	const leading = (
-		<div>
+		<div classes={css.column}>
 			<SkillsetFilter
 				skills={skills}
 				initialSelected={filters}
@@ -121,7 +120,7 @@ export const Compare = factory(function ({
 	);
 
 	const trailing = (
-		<div>
+		<div classes={css.column}>
 			{assessments.map(({ hash, name = '', skills }, i) => {
 				if (assessmentsMap[hash]) {
 					return undefined;
@@ -152,19 +151,8 @@ export const Compare = factory(function ({
 
 	return (
 		<div classes={css.root}>
-			<TwoColumnLayout
-				classes={{
-					'@dojo/widgets/two-column-layout': {
-						root: [css.layoutRoot],
-						column: [css.column]
-					}
-				}}
-			>
-				{{
-					leading,
-					trailing
-				}}
-			</TwoColumnLayout>
+			{leading}
+			{trailing}
 		</div>
 	);
 });
