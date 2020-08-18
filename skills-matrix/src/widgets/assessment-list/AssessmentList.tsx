@@ -42,7 +42,7 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 								>
 									Yes
 								</div>
-								<div classes={css.no} onclick={() => icache.set('closingHash', undefined)}>
+								<div classes={css.no} onclick={function () { icache.set('closingHash', undefined) }}>
 									No
 								</div>
 							</virtual>
@@ -63,7 +63,7 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 								>
 									{assessment.name}
 								</Checkbox>
-								<div classes={css.close} onclick={() => icache.set('closingHash', assessment.hash)}>
+								<div classes={css.close} onclick={function () { icache.set('closingHash', assessment.hash)}}>
 									<Icon type="closeIcon" />
 								</div>
 							</virtual>
@@ -99,7 +99,7 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 							}}
 						</TextInput>
 					) : (
-						<div classes={css.add} onclick={() => icache.set('editing', true)}>
+						<div classes={css.add} onclick={function () { icache.set('editing', true) }}>
 							<Icon type="plusIcon" /> Add Hash
 						</div>
 					)}

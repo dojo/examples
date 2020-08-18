@@ -11,15 +11,15 @@
 		"test:all": "dojo build --mode unit && dojo build --mode functional && dojo test --all --config local"
 	},
 	"dependencies": {
-		"@dojo/framework": "7.0.0-alpha.16",
-		"@dojo/widgets": "7.0.0-alpha.4",
+		"@dojo/framework": "~7.0.0",
+		"@dojo/widgets": "~7.0.0",
 		"tslib": "~1.9.3"
 	},
 	"devDependencies": {
-		"@dojo/cli": "7.0.0-alpha.1",
-		"@dojo/cli-build-app": "7.0.0-alpha.11",
-		"@dojo/cli-test-intern": "7.0.0-alpha.6",
-		"@types/node": "^12.12.32",
+		"@dojo/cli": "~7.0.0",
+		"@dojo/cli-build-app": "~7.0.0",
+		"@dojo/cli-test-intern": "~7.0.0",
+		"@types/node": "^14.0.13",
 		"atob": "^2.1.2",
 		"btoa": "^1.2.1",
 		"node-webcrypto-ossl": "^2.0.1",
