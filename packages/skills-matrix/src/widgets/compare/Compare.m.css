@@ -75,3 +75,8 @@
 .hashInput {
 	margin: calc(var(--grid-size) * 3.5) 0;
 }
+
+.hashInputInner {
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}

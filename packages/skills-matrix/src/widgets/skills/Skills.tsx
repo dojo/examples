@@ -52,6 +52,7 @@ export const Skills = factory(function ({
 					key="hashInput"
 					label="Your Hash"
 					initialValue={hash}
+					inputStyles={css.hashInputInner}
 					disabled
 				>
 					{{

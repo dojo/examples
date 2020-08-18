@@ -6,3 +6,4 @@ export const showToggle: string;
 export const copyButton: string;
 export const successButton: string;
 export const hashInput: string;
+export const hashInputInner: string;

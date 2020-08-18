@@ -45,6 +45,11 @@
 	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 5);
 }
 
+.hashInputInner {
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
 .column {
 	display: flex;
 	flex-direction: column;

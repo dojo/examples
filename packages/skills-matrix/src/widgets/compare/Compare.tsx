@@ -69,6 +69,7 @@ export const Compare = factory(function ({
 						.filter((assessment) => !assessmentsMap[assessment.hash])
 						.map((assessment) => assessment.hash)
 						.join(',')}
+					inputStyles={css.hashInputInner}
 					disabled
 				>
 					{{
