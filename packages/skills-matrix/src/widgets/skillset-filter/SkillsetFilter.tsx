@@ -18,36 +18,10 @@ const resource = createResourceMiddleware();
 const factory = create({ icache, resource }).properties<SkillsetFilterProperties>();
 const typeAheadResourceTemplate = createMemoryResourceTemplate<{ value: string }>();
 
-/*
-function createTypeaheadResource(skills: string[]) {
-	const template: DataTemplate<{ value: string }> = {
-		read({ query, offset = 0, size }, _set, get) {
-			const allValues = get();
-			const searchValues = query
-				? query.filter(({ keys, value }) => value && keys.indexOf('value') >= 0).map(({ value }) => value!)
-				: [];
-			const filtered =
-				query &&
-				allValues.filter(({ value }) =>
-					searchValues.some((search) => value.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
-				);
-			const result = filtered || allValues;
-			return { data: result.slice(offset, size && offset + size), total: result.length };
-		}
-	};
-	const resource = createResource(template);
-	return {
-		resource: () => resource,
-		data: skills.map((skill) => ({ value: skill }))
-	};
-}
-*/
-
-export const SkillsetFilter = factory(function ({ properties, middleware: { icache } }) {
-	const { /* skills, */ onChange, initialSelected = [] } = properties();
+export const SkillsetFilter = factory(function ({ id, properties, middleware: { icache, resource } }) {
+	const { skills, onChange, initialSelected = [] } = properties();
 
 	const items = [];
-//	const resource = createTypeaheadResource(skills);
 	const selected = icache.getOrSet<string[]>('selected', initialSelected);
 
 	for (let skill of selected) {
@@ -83,16 +57,13 @@ export const SkillsetFilter = factory(function ({ properties, middleware: { icac
 						menuWrapper: [css.menu]
 					}
 				}}
-				resource={{
-					template: {
-						template: typeAheadResourceTemplate,
-						id: 'skillsetFilter',
-						initOptions: {
-							// data: skills.map(value => ({ value })),
-							id: 'skills'
-						}
+				resource={resource({
+					template: typeAheadResourceTemplate,
+					initOptions: {
+						data: skills.map(value => ({ value })),
+						id
 					}
-				}}
+				})}
 				onValue={(value) => {
 					if (!selected.includes(value)) {
 						const values = [...selected, value];
