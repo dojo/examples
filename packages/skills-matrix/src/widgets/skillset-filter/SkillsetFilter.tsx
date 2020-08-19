@@ -50,6 +50,10 @@ export const SkillsetFilter = factory(function ({ id, properties, middleware: { 
 		<div classes={css.controls}>
 			<Typeahead
 				classes={{
+					'@dojo/widgets/list-item': {
+						root: [css.listItemRoot],
+						selected: [css.listItemSelected]
+					},
 					'@dojo/widgets/text-input': {
 						input: [css.input]
 					},

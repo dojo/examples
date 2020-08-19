@@ -33,6 +33,15 @@
 	margin-top: calc(var(--grid-size) * 2);
 }
 
+.listItemRoot {
+	height: auto;
+}
+
+.listItemSelected {
+	background: white;
+	color: gray;
+}
+
 .menu {
 	border: 1px solid var(--color-light-gray);
 }
