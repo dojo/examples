@@ -1,0 +1,17 @@
+.input {
+	border-radius: var(--input-border-radius);
+	border: 1px solid var(--color-light-gray);
+	color: var(--color-gray);
+	font-family: inherit;
+	font-size: var(--font-size-normal);
+	height: calc(14.5 * var(--grid-size));
+	margin-bottom: calc(var(--grid-size) * 2);
+	max-width: var(--input-width);
+	outline: none;
+	padding: calc(var(--grid-size) * 1.25);
+	width: 100%;
+}
+
+.inputWrapper {
+	font-size: 0;
+}

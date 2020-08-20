@@ -2,6 +2,7 @@ import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 import { Icon as DojoIcon } from '@dojo/widgets/icon';
+import { TextInput } from '@dojo/widgets/text-input';
 
 import { AssessmentMap, Level } from '../../interfaces';
 import { store } from '../../middleware/store';
@@ -14,7 +15,6 @@ import { Assessment } from '../assessment/Assessment';
 import { Icon } from '../icon/Icon';
 import { SkillKey } from '../skill-key/SkillKey';
 import { SkillsetFilter } from '../skillset-filter/SkillsetFilter';
-import TextInput from '../text-input/TextInput';
 import * as css from './Compare.m.css';
 
 const factory = create({ store, icache });
@@ -64,15 +64,14 @@ export const Compare = factory(function ({
 			<div classes={css.hashInput}>
 				<TextInput
 					key="hashInput"
-					label="Combined Hash"
 					initialValue={assessments
 						.filter((assessment) => !assessmentsMap[assessment.hash])
 						.map((assessment) => assessment.hash)
 						.join(',')}
-					inputStyles={css.hashInputInner}
 					disabled
 				>
 					{{
+						label: 'Combined Hash',
 						trailing: (
 							<Button
 								classes={{

@@ -7,16 +7,6 @@
 	justify-content: center;
 }
 
-.headerRoot {
-	background: var(--color-blue);
-	color: var(--color-white);
-	font-size: var(--font-size-large);
-	height: var(--header-height);
-	max-width: 100vw;
-	padding: 0 var(--content-gutter);
-	width: var(--content-width);
-}
-
 .arrow {
 	margin-right: calc(var(--grid-size) * 2);
 }

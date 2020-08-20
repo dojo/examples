@@ -9,7 +9,7 @@ import * as css from './Header.m.css';
 
 const factory = create();
 
-export default factory(function ({ properties }) {
+export default factory(function () {
 	const backArrow = () => (
 		<Link to={RouteName.Home} classes={css.arrow}>
 			<Icon icon="backArrow" />
@@ -25,13 +25,7 @@ export default factory(function ({ properties }) {
 
 	return (
 		<div classes={[css.root]}>
-			<Header
-				classes={{
-					'@dojo/widgets/header': {
-						root: [css.headerRoot]
-					}
-				}}
-			>
+			<Header>
 				{{
 					title: 'Skill Tracker',
 					leading

@@ -1,3 +1,4 @@
+import theme from '@dojo/framework/core/middleware/theme';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Outlet from '@dojo/framework/routing/Outlet';
 
@@ -7,22 +8,28 @@ import { store } from './middleware/store';
 import { loadAssessment, newAssessment } from './processes/assessment.processes';
 import { loadAssessments } from './processes/assessments.processes';
 import { OutletName, RouteName } from './routes';
+import matrixTheme from './themes/matrix';
 import { isSkillHash } from './util/skills';
 import { Compare } from './widgets/compare/Compare';
 import Header from './widgets/header/Header';
 import { Home } from './widgets/home/Home';
 import { Skills } from './widgets/skills/Skills';
 
-const factory = create({ store, router });
+const factory = create({ store, router, theme });
 
 export default factory(function App({
 	middleware: {
 		store: { get, path, executor },
-		router
+		router,
+		theme
 	}
 }) {
 	if (!get(path('matrix'))) {
 		return null;
+	}
+
+	if (!theme.get()) {
+		theme.set(matrixTheme);
 	}
 
 	return (

@@ -1,7 +1,6 @@
-@import '../../variables.css';
-
 .input {
-	border-radius: var(--input-border-radius);
+	border-bottom-left-radius: var(--input-border-radius);
+	border-top-left-radius: var(--input-border-radius);
 	border: 1px solid var(--color-light-gray);
 	color: var(--color-gray);
 	font-family: inherit;
@@ -12,16 +11,19 @@
 	width: 100%;
 }
 
+.input:last-child {
+	border-bottom-right-radius: var(--input-border-radius);
+	border-top-right-radius: var(--input-border-radius);
+}
+
 .wrapper {
 	align-items: stretch;
 	display: flex;
+	flex-direction: column;
 	max-width: var(--input-width);
 }
 
-.label {
-	color: var(--color-blue);
-	display: block;
-	font-size: var(--font-size-normal);
-	font-style: italic;
-	margin-bottom: calc(var(--grid-size) / 2);
+.inputWrapper {
+	display: flex;
+	flex-direction: row;
 }

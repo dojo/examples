@@ -3,10 +3,10 @@ import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 import Checkbox from '@dojo/widgets/checkbox';
 import Icon from '@dojo/widgets/icon';
+import { TextInput } from '@dojo/widgets/text-input';
 
 import { Assessment, AssessmentMap } from '../../interfaces';
 import { cleanCopyUrl } from '../../util/clipboard';
-import TextInput from '../text-input/TextInput';
 import * as css from './AssessmentList.m.css';
 
 export interface AssessmentListProperties {

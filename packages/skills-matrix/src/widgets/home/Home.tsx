@@ -2,6 +2,7 @@ import { icache } from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Icon from '@dojo/widgets/icon';
 import TextArea from '@dojo/widgets/text-area';
+import { TextInput } from '@dojo/widgets/text-input';
 
 import router from '../../middleware/router';
 import { store } from '../../middleware/store';
@@ -12,7 +13,6 @@ import { cleanCopyUrl } from '../../util/clipboard';
 import { resumeHash } from '../../util/persistence';
 import { createHash, isSkillHash } from '../../util/skills';
 import Button from '../button/Button';
-import TextInput from '../text-input/TextInput';
 import * as css from './Home.m.css';
 
 const factory = create({ icache, router, store });
@@ -73,8 +73,9 @@ export const Home = factory(function ({
 					}}
 					placeholder="Enter name or hash..."
 					initialValue={person}
-					label="Full name or existing hash"
-				/>
+				>
+					{{ label: 'Full name or existing hash' }}
+				</TextInput>
 			</div>
 			<Button onClick={() => editProfile()} disabled={!person}>
 				{isPersonHash ? 'Edit Hash' : 'Create New'}
@@ -96,12 +97,6 @@ export const Home = factory(function ({
 				Compare Profiles
 			</h1>
 			<TextArea
-				classes={{
-					'@dojo/widgets/text-area': {
-						input: [css.textArea],
-						inputWrapper: [css.wrapper]
-					}
-				}}
 				initialValue={hashes}
 				onValue={(value) => icache.set('hashes', value)}
 				placeholder="Enter multiple hashes separated by commas or new lines…"

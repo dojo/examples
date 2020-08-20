@@ -2,6 +2,7 @@ import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 import { Icon as DojoIcon } from '@dojo/widgets/icon';
+import { TextInput } from '@dojo/widgets/text-input';
 
 import { Level, SkillName } from '../../interfaces';
 import { store } from '../../middleware/store';
@@ -11,7 +12,6 @@ import { resumeHash } from '../../util/persistence';
 import { GroupAssessment } from '../group-assessment/GroupAssessment';
 import { Icon } from '../icon/Icon';
 import { SkillKey } from '../skill-key/SkillKey';
-import TextInput from '../text-input/TextInput';
 import * as css from './Skills.m.css';
 
 const SUCCESS_DURATION = 1250;
@@ -41,26 +41,26 @@ export const Skills = factory(function ({
 		<div classes={css.column}>
 			<TextInput
 				key="personName"
-				label="Full Name"
 				initialValue={assessment.name}
 				onValue={(value) => {
 					executor(updateName)({ name: value });
 				}}
-			/>
+			>
+				{{ label: 'Full Name' }}
+			</TextInput>
 			<div classes={css.hashInput}>
 				<TextInput
 					key="hashInput"
-					label="Your Hash"
 					initialValue={hash}
-					inputStyles={css.hashInputInner}
 					disabled
 				>
 					{{
+						label: 'Your Hash',
 						trailing: (
 							<Button
 								classes={{
 									'@dojo/widgets/button': {
-										root: [css.copyButton, icache.get('success') && css.successButton]
+										root: [icache.get('success') && css.successButton]
 									}
 								}}
 								onClick={() => {

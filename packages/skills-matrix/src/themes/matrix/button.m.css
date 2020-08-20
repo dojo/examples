@@ -1,0 +1,11 @@
+.root {
+	composes: root from '../../../node_modules/@dojo/widgets/theme/default/button.m.css';
+	background-color: var(--color-gray) /*!important*/;
+	border-bottom-right-radius: calc(var(--grid-size) / 4);
+	border-top-right-radius: calc(var(--grid-size) / 4);
+	border: 1px solid var(--color-gray);
+	color: var(--color-white);
+	height: 100%;
+	outline: none;
+	width: calc(var(--grid-size) * 5);
+}
