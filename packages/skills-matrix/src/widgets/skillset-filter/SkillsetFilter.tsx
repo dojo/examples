@@ -24,6 +24,17 @@ export const SkillsetFilter = factory(function ({ id, properties, middleware: { 
 	const content = (
 		<div classes={css.controls}>
 			<ChipTypeahead
+				classes={{
+					'@dojo/widgets/chip': {
+						closeIconWrapper: [css.typeaheadChip]
+					},
+					'@dojo/widgets/list-item': { // TODO: has no effect
+						selected: [css.typeaheadSelected]
+					},
+					'@dojo/widgets/typeahead': { // TODO: has no effect
+						listItem: [css.listItem]
+					}
+				}}
 				resource={resource({
 					template: typeAheadResourceTemplate,
 					initOptions: {

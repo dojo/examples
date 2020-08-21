@@ -1,9 +1,6 @@
 export const root: string;
 export const title: string;
 export const row: string;
-export const checkbox: string;
-export const inputWrapper: string;
-export const input: string;
 export const close: string;
 export const addControls: string;
 export const add: string;
@@ -11,4 +8,3 @@ export const deleteText: string;
 export const yes: string;
 export const no: string;
 export const inputButton: string;
-export const allowed: string;

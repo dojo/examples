@@ -1,0 +1,16 @@
+.root {
+	align-items: center;
+	border-radius: calc(var(--grid-size) * 0.75);
+	border: 1px solid var(--color-light-gray);
+	color: var(--color-dark-gray);
+	display: inline-flex;
+	font-size: var(--font-size-normal);
+	margin-bottom: var(--grid-size);
+	margin-right: var(--grid-size);
+	padding: var(--grid-size) calc(var(--grid-size) * 1.25);
+}
+
+.iconWrapper {
+	height: calc(var(--grid-size) * 2);
+	margin-right: var(--grid-size);
+}

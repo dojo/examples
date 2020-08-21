@@ -17,20 +17,6 @@
 	margin-bottom: calc(var(--grid-size) * 1.5);
 }
 
-.checkbox {
-	align-items: center;
-	display: flex;
-	flex-grow: 1;
-}
-
-.inputWrapper {
-	margin-right: var(--grid-size);
-}
-
-.input {
-	margin-left: 0;
-}
-
 .close {
 	color: var(--color-gray);
 	cursor: pointer;
@@ -65,18 +51,7 @@
 	font-weight: bold;
 }
 
-.inputButton {
-	background-color: var(--color-gray) !important;
-	border-bottom-right-radius: calc(var(--grid-size) / 4);
-	border-top-right-radius: calc(var(--grid-size) / 4);
-	border: 1px solid var(--color-gray);
-	color: var(--color-white);
-	height: 100%;
-	outline: none;
-	width: calc(var(--grid-size) * 5);
-}
-
-.allowed {
-	background-color: var(--color-green) !important;
-	border: 1px solid var(--color-green);
+.inputButton:not([disabled]) {
+	background-color: var(--color-green);
+	border-color: var(--color-green);
 }

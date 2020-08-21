@@ -1,5 +1,6 @@
 import { icache } from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
+import { Button } from '@dojo/widgets/button';
 import Icon from '@dojo/widgets/icon';
 import TextArea from '@dojo/widgets/text-area';
 import { TextInput } from '@dojo/widgets/text-input';
@@ -12,7 +13,6 @@ import { RouteName } from '../../routes';
 import { cleanCopyUrl } from '../../util/clipboard';
 import { resumeHash } from '../../util/persistence';
 import { createHash, isSkillHash } from '../../util/skills';
-import Button from '../button/Button';
 import * as css from './Home.m.css';
 
 const factory = create({ icache, router, store });

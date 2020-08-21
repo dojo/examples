@@ -13,6 +13,7 @@ import { GroupAssessment } from '../group-assessment/GroupAssessment';
 import { Icon } from '../icon/Icon';
 import { SkillKey } from '../skill-key/SkillKey';
 import * as css from './Skills.m.css';
+import * as buttonCss from '../styles/button.m.css';
 
 const SUCCESS_DURATION = 1250;
 
@@ -60,7 +61,7 @@ export const Skills = factory(function ({
 							<Button
 								classes={{
 									'@dojo/widgets/button': {
-										root: [icache.get('success') && css.successButton]
+										root: [buttonCss.trailing, icache.get('success') && css.successButton]
 									}
 								}}
 								onClick={() => {

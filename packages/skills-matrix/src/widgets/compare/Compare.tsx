@@ -16,6 +16,7 @@ import { Icon } from '../icon/Icon';
 import { SkillKey } from '../skill-key/SkillKey';
 import { SkillsetFilter } from '../skillset-filter/SkillsetFilter';
 import * as css from './Compare.m.css';
+import * as buttonCss from '../styles/button.m.css';
 
 const factory = create({ store, icache });
 
@@ -76,7 +77,7 @@ export const Compare = factory(function ({
 							<Button
 								classes={{
 									'@dojo/widgets/button': {
-										root: [css.copyButton, icache.get('success') && css.successButton]
+										root: [buttonCss.trailing, icache.get('success') && css.successButton]
 									}
 								}}
 								onClick={() => {

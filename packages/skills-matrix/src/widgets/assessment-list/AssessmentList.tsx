@@ -49,13 +49,6 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 						) : (
 							<virtual>
 								<Checkbox
-									classes={{
-										'@dojo/widgets/checkbox': {
-											root: [css.checkbox],
-											inputWrapper: [css.inputWrapper],
-											input: [css.input]
-										}
-									}}
 									checked={!assessmentsMap[assessment.hash]}
 									onValue={(checked) =>
 										checked ? onChange(assessment.hash, false) : onChange(assessment.hash, true)
@@ -78,10 +71,7 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 									<Button
 										classes={{
 											'@dojo/widgets/button': {
-												root: [
-													css.inputButton,
-													newHash && newHash.trim().length > 0 && css.allowed
-												]
+												root: [css.inputButton]
 											}
 										}}
 										disabled={!newHash || newHash.trim().length === 0}
