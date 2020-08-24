@@ -29,12 +29,11 @@ export const SkillsetFilter = factory(function ({ id, properties, middleware: { 
 						closeIconWrapper: [css.typeaheadChip]
 					},
 					'@dojo/widgets/list-item': { // TODO: has no effect
+						root: [css.listItem],
 						selected: [css.typeaheadSelected]
-					},
-					'@dojo/widgets/typeahead': { // TODO: has no effect
-						listItem: [css.listItem]
 					}
 				}}
+				placement="bottom"
 				resource={resource({
 					template: typeAheadResourceTemplate,
 					initOptions: {

@@ -8,3 +8,7 @@
 	white-space: nowrap;
 	width: 100%;
 }
+
+.values {
+	margin-top: var(--grid-size);
+}
