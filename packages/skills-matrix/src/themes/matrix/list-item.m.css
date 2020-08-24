@@ -1,0 +1,13 @@
+.root {
+	background: white;
+	border: 1px solid transparent;
+	cursor: pointer;
+	height: 45px;
+	padding: 11px 10px 10px 10px;
+}
+
+.selected {
+	background: white;
+	color: var(--color-gray);
+	cursor: default;
+}

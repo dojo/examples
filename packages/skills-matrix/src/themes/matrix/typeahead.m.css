@@ -1,0 +1,12 @@
+/* TODO: this does not have any effect */
+.menuItemRoot {
+	background: pink !important;
+	border: 2px solid purple !important;
+	color: red;
+	padding-top: 11px;
+}
+
+.menuWrapper {
+	border: 1px solid var(--color-light-gray);
+	border-top-width: 0;
+}

@@ -27,10 +27,6 @@ export const SkillsetFilter = factory(function ({ id, properties, middleware: { 
 				classes={{
 					'@dojo/widgets/chip': {
 						closeIconWrapper: [css.typeaheadChip]
-					},
-					'@dojo/widgets/list-item': { // TODO: has no effect
-						root: [css.listItem],
-						selected: [css.typeaheadSelected]
 					}
 				}}
 				placement="bottom"

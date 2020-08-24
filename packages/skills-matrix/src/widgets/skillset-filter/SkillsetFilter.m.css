@@ -33,18 +33,10 @@
 	margin-top: calc(var(--grid-size) * 2);
 }
 
-.listItem {
-	padding-top: 11px;
-}
-
 .menu {
 	border: 1px solid var(--color-light-gray);
 }
 
 .typeaheadChip {
 	margin-left: calc(0.5 * var(--grid-size));
-}
-
-.typeaheadSelected {
-	background: var(--color-white);
 }
