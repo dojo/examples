@@ -1,4 +1,5 @@
 /* TODO: this does not have any effect */
+/* It would be preferable to move the typeahead-specific styles from list-item.m.css to here */
 .menuItemRoot {
 	background: pink !important;
 	border: 2px solid purple !important;
@@ -6,7 +7,7 @@
 	padding-top: 11px;
 }
 
-.menuWrapper {
+.menuRoot {
 	border: 1px solid var(--color-light-gray);
 	border-top-width: 0;
 }
