@@ -5,6 +5,7 @@
 		"dev": "dojo build --mode dev --watch --serve",
 		"build": "dojo build --mode dist",
 		"build:dev": "dojo build --mode dev",
+		"build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
 		"test": "dojo test",
 		"test:unit": "dojo build --mode unit && dojo test --unit --config local",
 		"test:functional": "dojo build --mode functional && dojo test --functional --config local",
