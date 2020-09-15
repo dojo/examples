@@ -3,12 +3,13 @@
 .root {
 	display: flex;
 	flex-direction: column;
-	margin-top: calc(10 * var(--grid-size));
+	margin-top: var(--content-gutter);
 	height: 100%;
 	width: 100%;
 
 	@media (min-width: 661px) {
 		flex-direction: row;
+		margin-top: calc(10 * var(--grid-size));
 	}
 }
 
@@ -20,9 +21,9 @@
 
 .column:first-child {
 	border-bottom: 1px solid var(--color-light-gray);
-	margin-bottom: calc(2 * var(--grid-size));
+	margin-bottom: calc(3 * var(--grid-size));
 	flex-basis: auto;
-	padding-bottom: calc(2 * var(--grid-size));
+	padding-bottom: calc(3 * var(--grid-size));
 	padding-right: calc(var(--grid-size) * 5);
 	width: calc(var(--grid-size) * 38);
 
@@ -50,10 +51,10 @@
 }
 
 .showToggle {
-	color: var(--color-black);
+	color: var(--color-light-blue);
 	cursor: pointer;
 	font-size: var(--font-size-normal);
-	margin-left: var(--grid-size);
+	font-weight: bold;
 }
 
 .successButton {

@@ -140,9 +140,9 @@ export const Compare = factory(function ({
 				return (
 					<Assessment title={name} skillAssessments={skillAssessments}>
 						{isFiltering && (
-							<span classes={css.showToggle} onclick={toggleShowAll}>
+							<div classes={css.showToggle} onclick={toggleShowAll}>
 								{shouldShowAll ? 'See Less' : 'See All'}
-							</span>
+							</div>
 						)}
 					</Assessment>
 				);
