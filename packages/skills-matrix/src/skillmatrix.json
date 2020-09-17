@@ -93,9 +93,10 @@
 		"Rust",
 		"HyperScript API",
 		"Java",
+		"Kotlin",
 		"JavaScript",
-		"Swift",
 		"TypeScript",
+		"Swift",
 		"Visual Basic"
 	],
 	"PHP": ["PHP", "CakePHP", "CodeIgniter", "Composer", "Laravel", "Yii Framework", "Zend Framework"],
