@@ -8,6 +8,7 @@ import { TextInput } from '@dojo/widgets/text-input';
 import { Assessment, AssessmentMap } from '../../interfaces';
 import { cleanCopyUrl } from '../../util/clipboard';
 import * as css from './AssessmentList.m.css';
+import * as buttonCss from '../styles/button.m.css';
 
 export interface AssessmentListProperties {
 	assessments: Assessment[];
@@ -71,7 +72,7 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 									<Button
 										classes={{
 											'@dojo/widgets/button': {
-												root: [css.inputButton]
+												root: [buttonCss.trailing, css.inputButton]
 											}
 										}}
 										disabled={!newHash || newHash.trim().length === 0}

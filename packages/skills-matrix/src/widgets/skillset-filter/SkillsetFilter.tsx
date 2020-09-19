@@ -1,4 +1,3 @@
-import icache from '@dojo/framework/core/middleware/icache';
 import { createMemoryResourceTemplate, createResourceMiddleware } from '@dojo/framework/core/middleware/resources';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Card from '@dojo/widgets/card';
@@ -14,11 +13,11 @@ export interface SkillsetFilterProperties {
 }
 
 const resource = createResourceMiddleware();
-const factory = create({ icache, resource }).properties<SkillsetFilterProperties>();
+const factory = create({ resource }).properties<SkillsetFilterProperties>();
 const typeAheadResourceTemplate = createMemoryResourceTemplate<{ value: string }>();
 
-export const SkillsetFilter = factory(function ({ id, properties, middleware: { icache, resource } }) {
-	const { skills, onChange } = properties();
+export const SkillsetFilter = factory(function ({ id, properties, middleware: { resource } }) {
+	const { initialSelected, skills, onChange } = properties();
 
 	const header = <h1 classes={css.title}>Filter By Skillset</h1>;
 	const content = (
@@ -29,6 +28,7 @@ export const SkillsetFilter = factory(function ({ id, properties, middleware: { 
 						closeIconWrapper: [css.typeaheadChip]
 					}
 				}}
+				initialValue={initialSelected}
 				placement="bottom"
 				resource={resource({
 					template: typeAheadResourceTemplate,
