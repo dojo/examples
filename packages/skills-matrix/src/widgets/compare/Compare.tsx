@@ -2,6 +2,7 @@ import icache from '@dojo/framework/core/middleware/icache';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 import { Icon as DojoIcon } from '@dojo/widgets/icon';
+import { Dialog } from '@dojo/widgets/dialog';
 import { TextInput } from '@dojo/widgets/text-input';
 
 import { AssessmentMap, Level } from '../../interfaces';
@@ -9,7 +10,7 @@ import { store } from '../../middleware/store';
 import { addAssessment, deleteAssessment, setFilters } from '../../processes/assessments.processes';
 import { buildCopyUrl, copyToClipboard } from '../../util/clipboard';
 import { persistComparison, resumeComparison } from '../../util/persistence';
-import { getSkillAssessment, getSkillNames } from '../../util/skills';
+import { DELIMITER, getSkillAssessment, getSkillNames } from '../../util/skills';
 import { AssessmentList } from '../assessment-list/AssessmentList';
 import { Assessment } from '../assessment/Assessment';
 import { Icon } from '../icon/Icon';
@@ -34,9 +35,8 @@ export const Compare = factory(function ({
 	);
 
 	if (assessments && assessments.length) {
-		persistComparison(assessments.map(assessment => assessment.hash).join(','));
-	}
-	else {
+		persistComparison(assessments.map((assessment) => assessment.hash).join(','));
+	} else {
 		const resumeHashes = resumeComparison();
 		if (resumeHashes) {
 			resumeHashes.split(',').forEach(function (hash) {
@@ -52,6 +52,7 @@ export const Compare = factory(function ({
 	const skills = Array.from(getSkillNames(matrix));
 	const filterSet = new Set(filters);
 	const isFiltering = filters.length > 0;
+	const outdatedHashes = icache.getOrSet('outdatedHashes', () => get(path('compare', 'outdatedHashes')));
 
 	const leading = (
 		<div classes={css.column}>
@@ -113,8 +114,11 @@ export const Compare = factory(function ({
 						[hash]: active
 					});
 				}}
-				onRemove={(assessment) => {
-					executor(deleteAssessment)({ hash: assessment.hash });
+				onRemove={async (assessment) => {
+					await executor(deleteAssessment)({ hash: assessment.hash });
+					const newAssessments = get(path('compare', 'assessments'));
+					newAssessments.length === 0 && persistComparison('');
+					// persistComparison
 				}}
 			/>
 		</div>
@@ -138,7 +142,7 @@ export const Compare = factory(function ({
 					icache.set('showAll', filteredShowAll);
 				};
 				return (
-					<Assessment title={name} skillAssessments={skillAssessments}>
+					<Assessment title={name} skillAssessments={skillAssessments} key={hash}>
 						{isFiltering && (
 							<div classes={css.showToggle} onclick={toggleShowAll}>
 								{shouldShowAll ? 'See Less' : 'See All'}
@@ -154,6 +158,34 @@ export const Compare = factory(function ({
 		<div classes={css.root}>
 			{leading}
 			{trailing}
+			<Dialog
+				underlay={false}
+				closeable={true}
+				onRequestClose={() => icache.set('outdatedHashes', [])}
+				open={outdatedHashes && outdatedHashes.length > 0}
+				role="dialog"
+				classes={{
+					'@dojo/widgets/dialog': {
+						title: [css.dialogTitle],
+						content: [css.dialogContent],
+						actions: [css.dialogActions]
+					}
+				}}
+			>
+				{{
+					title: 'Outdated Hashes',
+					content: (
+						<virtual>
+							The following users have outdated hashes and should update them accordingly:
+							<br />
+							<ul>
+								{outdatedHashes && outdatedHashes.map((hash) => <li>{hash.split(DELIMITER)[0]}</li>)}
+							</ul>
+						</virtual>
+					),
+					actions: <Button onClick={() => icache.set('outdatedHashes', [])}>Continue</Button>
+				}}
+			</Dialog>
 		</div>
 	);
 });

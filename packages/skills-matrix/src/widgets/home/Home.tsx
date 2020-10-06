@@ -4,6 +4,7 @@ import { Button } from '@dojo/widgets/button';
 import Icon from '@dojo/widgets/icon';
 import TextArea from '@dojo/widgets/text-area';
 import { TextInput } from '@dojo/widgets/text-input';
+import { CachedSkill } from '../../interfaces';
 
 import router from '../../middleware/router';
 import { store } from '../../middleware/store';
@@ -12,7 +13,7 @@ import { loadAssessments } from '../../processes/assessments.processes';
 import { RouteName } from '../../routes';
 import { cleanCopyUrl } from '../../util/clipboard';
 import { resumeHash } from '../../util/persistence';
-import { createHash, isSkillHash } from '../../util/skills';
+import { createAssessment, createHash, DELIMITER, getAssessment, isSkillHash } from '../../util/skills';
 import * as css from './Home.m.css';
 
 const factory = create({ icache, router, store });
@@ -24,6 +25,7 @@ export const Home = factory(function ({
 		store: { get, path, executor }
 	}
 }) {
+	const currentVersion = get(path('matrixVersion'));
 	const person = icache.getOrSet('person', () => {
 		const storeValue = get(path('skills', 'hash'));
 		const persistedValue = resumeHash();
@@ -37,12 +39,46 @@ export const Home = factory(function ({
 	);
 	const isPersonHash = isSkillHash(person);
 
-	const editProfile = async () => {
-		const value = icache.get<string>('person') || '';
-		const cleanValue = cleanCopyUrl(value);
+	const convertHash = async (hash: string, fromVersion: string, toVersion: string) => {
+		const oldMatrix = get(path('matrixHistory'))[fromVersion];
+		const matrix = get(path('matrix'));
 
+		const oldAssessment = await getAssessment(hash, oldMatrix);
+		const assessment = createAssessment(matrix, { name: oldAssessment.name });
+
+		// TODO: Mark added and removed category / skills
+		const newSkills: CachedSkill[] = [];
+		for (const category in assessment.skills) {
+			for (const skill in assessment.skills[category]) {
+				if (oldAssessment.skills[category] && oldAssessment.skills[category][skill] !== undefined) {
+					const oldSkillValue = oldAssessment.skills[category][skill];
+					assessment.skills[category][skill] = oldSkillValue;
+				} else {
+					newSkills.push({ category, skill });
+				}
+			}
+		}
+
+		return { hash: createHash(assessment, toVersion), newSkills };
+	};
+
+	const editProfile = async () => {
+		let value = icache.get<string>('person') || '';
+		let newSkills: CachedSkill[] = [];
+
+		// Convert old hashes to new hashes
+		if (isSkillHash(value)) {
+			const hashVersion = value.split(DELIMITER)[1];
+			if (hashVersion !== currentVersion) {
+				const result = await convertHash(value, hashVersion, currentVersion);
+				value = result.hash;
+				newSkills = result.newSkills;
+			}
+		}
+
+		const cleanValue = cleanCopyUrl(value);
 		const { error } = isSkillHash(value)
-			? await executor(loadAssessment)({ hash: cleanValue })
+			? await executor(loadAssessment)({ hash: cleanValue, newSkills })
 			: await executor(newAssessment)({ name: cleanValue });
 
 		if (error) {
@@ -111,7 +147,14 @@ export const Home = factory(function ({
 						.filter((value) => value.length > 0)
 						.map((value) => cleanCopyUrl(value).trim());
 
-					const { error } = await executor(loadAssessments)({ hashes });
+					const outdatedHashes = hashes.filter((hash) => {
+						const hashVersion = hash.split(DELIMITER)[1];
+						if (hashVersion !== currentVersion) {
+							return true;
+						}
+					});
+
+					const { error } = await executor(loadAssessments)({ hashes, outdatedHashes });
 					!error && router().go(RouteName.Compare, {});
 				}}
 			>

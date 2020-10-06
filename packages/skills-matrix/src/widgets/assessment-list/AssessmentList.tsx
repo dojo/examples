@@ -32,23 +32,32 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 				{assessments.map((assessment) => (
 					<div classes={css.row} key={assessment.hash}>
 						{closingHash === assessment.hash ? (
-							<virtual>
-								<div classes={css.deleteText}>Delete {assessment.name}?</div>
+							<virtual key="deleteControls">
+								<div classes={css.deleteText} key="deletePrompt">
+									Delete {assessment.name}?
+								</div>
 								<div
 									classes={css.yes}
 									onclick={() => {
 										onRemove(assessment);
 										icache.set('closingHash', undefined);
 									}}
+									key="yesButton"
 								>
 									Yes
 								</div>
-								<div classes={css.no} onclick={function () { icache.set('closingHash', undefined) }}>
+								<div
+									classes={css.no}
+									onclick={function () {
+										icache.set('closingHash', undefined);
+									}}
+									key="noButton"
+								>
 									No
 								</div>
 							</virtual>
 						) : (
-							<virtual>
+							<virtual key="hashList">
 								<Checkbox
 									checked={!assessmentsMap[assessment.hash]}
 									onValue={(checked) =>
@@ -57,7 +66,12 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 								>
 									{assessment.name}
 								</Checkbox>
-								<div classes={css.close} onclick={function () { icache.set('closingHash', assessment.hash)}}>
+								<div
+									classes={css.close}
+									onclick={function () {
+										icache.set('closingHash', assessment.hash);
+									}}
+								>
 									<Icon type="closeIcon" />
 								</div>
 							</virtual>
@@ -90,7 +104,12 @@ const Widget = factory(function ({ middleware: { icache }, properties, children 
 							}}
 						</TextInput>
 					) : (
-						<div classes={css.add} onclick={function () { icache.set('editing', true) }}>
+						<div
+							classes={css.add}
+							onclick={function () {
+								icache.set('editing', true);
+							}}
+						>
 							<Icon type="plusIcon" /> Add Hash
 						</div>
 					)}

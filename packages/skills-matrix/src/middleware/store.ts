@@ -5,7 +5,7 @@ import { replace } from '@dojo/framework/stores/state/operations';
 import { State } from '../interfaces';
 import { getMatrixVersion } from '../util/skills';
 
-const matrix = require('../skillmatrix.json');
+const matrixData = require('../skillmatrix.json');
 
 const commandFactory = createCommandFactory<State>();
 const initializeCommand = commandFactory<State>(({ payload, path }) => {
@@ -14,10 +14,20 @@ const initializeCommand = commandFactory<State>(({ payload, path }) => {
 const initialize = createProcess('initialize', [initializeCommand]);
 
 export const store = createStoreMiddleware<State>(async (store) => {
+	const matrix = matrixData[0];
 	const matrixVersion = await getMatrixVersion(matrix);
+	const matrixHistory: { [version: string]: any } = {};
+	const oldVersions = matrixData.slice(1);
+
+	for (const oldMatrix of oldVersions) {
+		const oldVersion = await getMatrixVersion(oldMatrix);
+		matrixHistory[oldVersion] = oldMatrix;
+	}
+
 	const initialState: State = {
 		matrix,
 		matrixVersion,
+		matrixHistory,
 		skills: {},
 		compare: {
 			assessments: []

@@ -5,12 +5,15 @@ import { getAssessment } from '../util/skills';
 
 const commandFactory = createCommandFactory<State>();
 
-const loadAssessmentsCommand = commandFactory<{ hashes: string[] }>(async ({ state, payload: { hashes } }) => {
-	const matrix = state.matrix;
-	const assessments = await Promise.all(hashes.map((hash) => getAssessment(hash, matrix)));
+const loadAssessmentsCommand = commandFactory<{ hashes: string[]; outdatedHashes?: string[] }>(
+	async ({ state, payload: { hashes, outdatedHashes } }) => {
+		const matrix = state.matrix;
+		const assessments = await Promise.all(hashes.map((hash) => getAssessment(hash, matrix)));
 
-	state.compare.assessments = assessments;
-});
+		state.compare.assessments = assessments;
+		state.compare.outdatedHashes = outdatedHashes;
+	}
+);
 
 const addAssessmentCommand = commandFactory<{ hash: string }>(async ({ state, payload: { hash } }) => {
 	const matrix = state.matrix;
@@ -28,5 +31,5 @@ const deleteAssessmentCommand = commandFactory<{ hash: string }>(async ({ state,
 
 export const loadAssessments = createProcess('set-assessments', [loadAssessmentsCommand]);
 export const setFilters = createProcess('set-filters', [setFiltersCommand]);
-export const deleteAssessment = createProcess('remove-assessent', [deleteAssessmentCommand]);
+export const deleteAssessment = createProcess('remove-assessnent', [deleteAssessmentCommand]);
 export const addAssessment = createProcess('add-assessment', [addAssessmentCommand]);

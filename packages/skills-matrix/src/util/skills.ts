@@ -7,9 +7,10 @@ import {
 	SkillHash,
 	SkillMatrix
 } from '../interfaces';
+import { cleanCopyUrl } from './clipboard';
 import { base64DecodeBuffer, base64EncodeBuffer, decodeLevels, encodeLevels, sha1 } from './crypto';
 
-const DELIMITER = '-';
+export const DELIMITER = '-';
 
 export function isSkillHash(value: any): value is SkillHash {
 	return typeof value === 'string' && value.indexOf(DELIMITER, value.indexOf(DELIMITER) + 1) >= 0;
@@ -98,7 +99,8 @@ export function createAssessment(matrix: SkillMatrix, base?: Partial<Omit<Assess
 	return {
 		hash: '',
 		skills: createAssessmentMatrix(matrix),
-		...base
+		...base,
+		name: base && base.name && cleanCopyUrl(base.name)
 	};
 }
 
@@ -115,11 +117,7 @@ export function createHash(assessment: Assessment, version: string): SkillHash {
  * Transforms a hash into a personal assessment
  */
 export async function getAssessment(hash: string, matrix: SkillMatrix): Promise<Assessment> {
-	const [name, version, levelHash] = hash.split(DELIMITER);
-	const matrixVersion = await getMatrixVersion(matrix);
-	if (version !== matrixVersion) {
-		throw new Error(`hash requires version ${version} of skill matrix. Has ${matrixVersion}`);
-	}
+	const [name, , levelHash] = hash.split(DELIMITER);
 	const levels = decodeLevels(base64DecodeBuffer(levelHash));
 	return {
 		hash,

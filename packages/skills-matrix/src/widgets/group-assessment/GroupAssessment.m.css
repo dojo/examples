@@ -22,3 +22,17 @@
 	position: relative;
 	top: calc(var(--grid-size) / -4);
 }
+
+.isNew {
+	color: var(--color-black);
+	font-weight: bold;
+}
+
+.isNew .name:after {
+	content: '(new!)';
+	display: inline-block;
+	margin-left: calc(var(--grid-size) / 2);
+	font-weight: normal;
+	font-style: italic;
+	color: var(--color-green);
+}

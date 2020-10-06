@@ -5,3 +5,6 @@ export const linkText: string;
 export const showToggle: string;
 export const successButton: string;
 export const hashInput: string;
+export const dialogTitle: string;
+export const dialogContent: string;
+export const dialogActions: string;

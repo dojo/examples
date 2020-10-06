@@ -1,6 +1,6 @@
 import { createCommandFactory, createProcess } from '@dojo/framework/stores/process';
 
-import { Level, SkillHash, SkillMatrix, SkillName, State } from '../interfaces';
+import { Level, CachedSkill, SkillHash, SkillMatrix, SkillName, State } from '../interfaces';
 import { persistHash } from '../util/persistence';
 import { createAssessment, createHash, getAssessment, getMatrixVersion } from '../util/skills';
 
@@ -24,13 +24,15 @@ const newAssessmentCommand = commandFactory<{ name?: string }>(async ({ payload:
 	};
 });
 
-const loadAssessmentCommand = commandFactory<{ hash: SkillHash }>(async ({ payload: { hash }, state }) => {
-	const { matrix } = state;
-	const assessment = await getAssessment(hash, matrix);
-
-	state.skills.assessment = assessment;
-	state.skills.hash = hash;
-});
+const loadAssessmentCommand = commandFactory<{ hash: SkillHash; newSkills?: CachedSkill[] }>(
+	async ({ payload: { hash, newSkills }, state }) => {
+		const { matrix } = state;
+		const assessment = await getAssessment(hash, matrix);
+		state.skills.newSkills = newSkills;
+		state.skills.assessment = assessment;
+		state.skills.hash = hash;
+	}
+);
 
 export interface UpdatedSkill {
 	group: string;
