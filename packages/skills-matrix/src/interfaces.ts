@@ -1,13 +1,18 @@
 export interface State {
 	matrix: SkillMatrix;
 	matrixVersion: string;
+	matrixHistory: {
+		[version: string]: SkillMatrix;
+	};
 	skills: {
 		assessment?: Assessment;
 		hash?: string;
+		newSkills?: CachedSkill[];
 	};
 	compare: {
 		assessments: Assessment[];
 		filters?: SkillName[];
+		outdatedHashes?: string[];
 	};
 }
 
@@ -21,6 +26,11 @@ export const enum Level {
 export type SkillName = string;
 
 export type SkillHash = string;
+
+export type CachedSkill = {
+	skill: string;
+	category: string;
+};
 
 export interface SkillMatrix {
 	[group: string]: SkillName[];

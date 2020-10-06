@@ -1,8 +1,8 @@
 import { createCommandFactory, createProcess } from '@dojo/framework/stores/process';
 
-import { Level, SkillHash, SkillMatrix, SkillName, State } from '../interfaces';
+import { Level, CachedSkill, SkillHash, SkillMatrix, SkillName, State } from '../interfaces';
 import { persistHash } from '../util/persistence';
-import { createAssessment, createHash, getAssessment, getMatrixVersion } from '../util/skills';
+import { createAssessment, createHash, DELIMITER, getAssessment, getMatrixVersion } from '../util/skills';
 
 const commandFactory = createCommandFactory<State>();
 
@@ -25,11 +25,37 @@ const newAssessmentCommand = commandFactory<{ name?: string }>(async ({ payload:
 });
 
 const loadAssessmentCommand = commandFactory<{ hash: SkillHash }>(async ({ payload: { hash }, state }) => {
-	const { matrix } = state;
-	const assessment = await getAssessment(hash, matrix);
+	let sanitizedHash = hash;
 
+	const { matrix, matrixHistory, matrixVersion } = state;
+
+	const [, hashVersion] = hash.split(DELIMITER);
+	const newSkills: CachedSkill[] = [];
+
+	if (hashVersion !== matrixVersion) {
+		const oldMatrix = matrixHistory[hashVersion];
+		const oldAssessment = await getAssessment(hash, oldMatrix);
+		const assessment = createAssessment(matrix, { name: oldAssessment.name });
+
+		for (const category in assessment.skills) {
+			for (const skill in assessment.skills[category]) {
+				if (oldAssessment.skills[category] && oldAssessment.skills[category][skill] !== undefined) {
+					const oldSkillValue = oldAssessment.skills[category][skill];
+					assessment.skills[category][skill] = oldSkillValue;
+				} else {
+					newSkills.push({ category, skill });
+				}
+			}
+		}
+
+		sanitizedHash = createHash(assessment, matrixVersion);
+	}
+
+	const assessment = await getAssessment(sanitizedHash, matrix);
+	state.skills.newSkills = newSkills;
 	state.skills.assessment = assessment;
-	state.skills.hash = hash;
+	state.skills.hash = sanitizedHash;
+	persistHash(hash);
 });
 
 export interface UpdatedSkill {
@@ -39,6 +65,7 @@ export interface UpdatedSkill {
 }
 
 const updateNameCommand = commandFactory(({ payload: { name }, state }) => {
+	console.log('update name', name);
 	const { matrixVersion } = state;
 	if (state.skills.assessment) {
 		state.skills.assessment.name = name;

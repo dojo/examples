@@ -38,9 +38,9 @@ export const Home = factory(function ({
 	const isPersonHash = isSkillHash(person);
 
 	const editProfile = async () => {
-		const value = icache.get<string>('person') || '';
-		const cleanValue = cleanCopyUrl(value);
+		let value = icache.get<string>('person') || '';
 
+		const cleanValue = cleanCopyUrl(value);
 		const { error } = isSkillHash(value)
 			? await executor(loadAssessment)({ hash: cleanValue })
 			: await executor(newAssessment)({ name: cleanValue });
