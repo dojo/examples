@@ -1,0 +1,29 @@
+.input {
+	border-bottom-left-radius: var(--input-border-radius);
+	border-top-left-radius: var(--input-border-radius);
+	border: 1px solid var(--color-light-gray);
+	color: var(--color-gray);
+	font-family: inherit;
+	font-size: var(--font-size-normal);
+	height: var(--input-height);
+	outline: none;
+	padding: 0 calc(var(--grid-size) * 1.25);
+	width: 100%;
+}
+
+.input:last-child {
+	border-bottom-right-radius: var(--input-border-radius);
+	border-top-right-radius: var(--input-border-radius);
+}
+
+.wrapper {
+	align-items: stretch;
+	display: flex;
+	flex-direction: column;
+	max-width: var(--input-width);
+}
+
+.inputWrapper {
+	display: flex;
+	flex-direction: row;
+}

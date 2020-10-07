@@ -1,0 +1,30 @@
+:root {
+	/* Typography */
+	--font-size-large: 18px;
+	--font-size-medium: 16px;
+	--font-size-normal: 14px;
+
+	/* Colors */
+	--color-blue: #0a2944;
+	--color-dark-gray: #252525;
+	--color-gray: #737373;
+	--color-green: #2ecc71;
+	--color-light-blue: #3498db;
+	--color-light-gray: #d7d7d7;
+	--color-off-white: hsl(207, 8%, 74%);
+	--color-red: #e74c3c;
+	--color-teal: #1abc9c;
+	--color-white: #ffffff;
+
+	/* Layout */
+	--grid-size: 8px;
+
+	--button-height: calc(var(--grid-size) * 4);
+	--content-gutter: calc(var(--grid-size) * 4);
+	--content-height: calc(100vh - var(--header-height));
+	--content-width: calc(1170px + (2 * var(--content-gutter)));
+	--header-height: calc(var(--grid-size) * 7.5);
+	--input-border-radius: calc(var(--grid-size) / 4);
+	--input-height: calc(var(--grid-size) * 5);
+	--input-width: 470px;
+}

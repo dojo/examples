@@ -1,0 +1,12 @@
+@import '../../variables.css';
+
+.root {
+	align-items: center;
+	background: var(--color-blue);
+	display: flex;
+	justify-content: center;
+}
+
+.arrow {
+	margin-right: calc(var(--grid-size) * 2);
+}

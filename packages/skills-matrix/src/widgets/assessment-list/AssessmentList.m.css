@@ -1,0 +1,57 @@
+@import '../../variables.css';
+
+.root {
+	margin-top: calc(var(--grid-size) * 3);
+	font-size: var(--font-size-normal);
+}
+
+.title {
+	margin-bottom: var(--grid-size);
+}
+
+.row {
+	align-items: center;
+	display: flex;
+	height: calc(var(--grid-size) * 3);
+	line-height: calc(var(--grid-size) * 3);
+	margin-bottom: calc(var(--grid-size) * 1.5);
+}
+
+.close {
+	color: var(--color-gray);
+	cursor: pointer;
+}
+
+.addControls {
+	margin-top: calc(var(--grid-size) * 3);
+}
+
+.add {
+	color: var(--color-light-blue);
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.deleteText {
+	color: var(--color-red);
+	font-weight: bold;
+	flex: 1;
+}
+
+.yes {
+	color: var(--color-gray);
+	cursor: pointer;
+	font-weight: bold;
+	margin-right: calc(var(--grid-size) * 2);
+}
+
+.no {
+	color: var(--color-black);
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.inputButton:not([disabled]) {
+	background-color: var(--color-green);
+	border-color: var(--color-green);
+}

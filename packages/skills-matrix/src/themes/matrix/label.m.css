@@ -1,0 +1,6 @@
+.root {
+	color: var(--color-blue);
+	font-size: var(--font-size-normal);
+	font-style: italic;
+	margin-bottom: calc(var(--grid-size) / 2);
+}

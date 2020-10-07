@@ -1,0 +1,67 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	margin-top: var(--content-gutter);
+	height: 100%;
+	width: 100%;
+
+	@media (min-width: 661px) {
+		flex-direction: row;
+		margin-top: calc(10 * var(--grid-size));
+	}
+}
+
+.copyButton {
+	background-color: var(--color-blue) !important;
+	border-bottom-right-radius: calc(var(--grid-size) / 4);
+	border-top-right-radius: calc(var(--grid-size) / 4);
+	border: 1px solid var(--color-blue);
+	height: 100%;
+	outline: none;
+	width: calc(var(--grid-size) * 5) !important;
+}
+
+.successButton {
+	background-color: var(--color-green) !important;
+	border: 1px solid var(--color-green);
+	color: var(--color-white);
+}
+
+.success {
+	font-style: italic;
+	height: calc(var(--grid-size) * 2.5);
+	line-height: calc(var(--grid-size) * 2.5);
+	margin-top: var(--grid-size);
+	opacity: 0;
+}
+
+.successVisible {
+	opacity: 1;
+	font-size: var(--font-size-normal);
+}
+
+.hashInput {
+	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 5);
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.column:first-child {
+	flex-basis: auto;
+	border-bottom: 1px solid var(--color-light-gray);
+	margin-bottom: calc(3 * var(--grid-size));
+	padding-bottom: calc(3 * var(--grid-size));
+	padding-right: calc(var(--grid-size) * 5);
+	width: calc(var(--grid-size) * 38);
+
+	@media (min-width: 661px) {
+		border-bottom: none;
+		margin-bottom: 0;
+	}
+}

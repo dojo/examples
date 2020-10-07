@@ -1,0 +1,14 @@
+@import '../../variables.css';
+
+.root {
+	margin-bottom: calc(var(--grid-size) * 3);
+}
+
+.title {
+	margin-bottom: calc(var(--grid-size) * 1.25);
+}
+
+.noResults {
+	font-style: italic;
+	margin-bottom: var(--grid-size);
+}

@@ -1,0 +1,88 @@
+@import '../../variables.css';
+
+:root {
+	--column-content-height: calc(var(--grid-size) * 25);
+}
+
+.root {
+	align-items: center;
+	display: flex;
+	height: var(--content-height);
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+
+	@media (min-width: 661px) {
+		flex-direction: row;
+	}
+}
+
+.column {
+	flex-grow: 0;
+	width: 100%;
+
+	@media (min-width: 661px) {
+		flex-grow: 1;
+		height: var(--column-content-height);
+	}
+}
+
+.heading {
+	margin-bottom: calc(var(--grid-size) * 2);
+}
+
+.icon {
+	margin-right: var(--grid-size);
+}
+
+.label {
+	color: var(--color-blue);
+	display: block;
+	font-size: var(--font-size-normal);
+	font-style: italic;
+	margin-bottom: calc(var(--grid-size) / 2);
+}
+
+.textInput {
+	margin-bottom: calc(var(--grid-size) * 2);
+}
+
+.divider {
+	height: calc(12 * var(--grid-size));
+	position: relative;
+	width: 100%;
+
+	@media (min-width: 661px) {
+		height: 100%;
+		width: calc(28 * var(--grid-size));
+	}
+}
+
+.dividerLine {
+	border-bottom: 1px solid var(--color-light-gray);
+	height: 50%;
+	width: 100%;
+
+	@media (min-width: 661px) {
+		border-right: 1px solid var(--color-light-gray);
+		height: 100%;
+		width: 50%;
+	}
+}
+
+.dividerBadge {
+	background-color: var(--color-white);
+	border-radius: 50%;
+	border: 1px solid var(--color-light-gray);
+	font-size: var(--font-size-normal);
+	font-weight: bold;
+	height: calc(var(--grid-size) * 6.25);
+	left: 50%;
+	line-height: calc(var(--grid-size) * 6.25);
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(var(--grid-size) * 6.25);
+}

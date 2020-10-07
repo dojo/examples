@@ -1,0 +1,16 @@
+.root {
+	align-items: center;
+	display: flex;
+	background: var(--color-blue);
+	color: var(--color-white);
+	font-size: var(--font-size-large);
+	height: var(--header-height);
+	max-width: 100vw;
+	padding: 0 var(--content-gutter);
+	width: var(--content-width);
+}
+
+.row {
+	display: flex;
+	flex: 1;
+}

@@ -1,0 +1,30 @@
+{
+	"name": "skills-matrix",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "dojo build --mode dev --watch --serve",
+		"build": "dojo build --mode dist",
+		"build:dev": "dojo build --mode dev",
+		"build:deploy": "npm install && dojo build --mode dist --dojorc .dojorc-deploy && shx rm -rf node_modules",
+		"package": "shx cp -r output/dist/ ../../output/dist/skills-matrix/",
+		"test": "dojo test",
+		"test:unit": "dojo build --mode unit && dojo test --unit --config local",
+		"test:functional": "dojo build --mode functional && dojo test --functional --config local",
+		"test:all": "dojo build --mode unit && dojo build --mode functional && dojo test --all --config local"
+	},
+	"dependencies": {
+		"@dojo/framework": "~7.0.0",
+		"@dojo/widgets": "~7.0.3",
+		"tslib": "~1.9.3"
+	},
+	"devDependencies": {
+		"@dojo/cli": "~7.0.0",
+		"@dojo/cli-build-app": "~7.0.0",
+		"@dojo/cli-test-intern": "~7.0.0",
+		"@types/node": "^14.0.13",
+		"atob": "^2.1.2",
+		"btoa": "^1.2.1",
+		"node-webcrypto-ossl": "^2.0.1",
+		"typescript": "^3.8"
+	}
+}

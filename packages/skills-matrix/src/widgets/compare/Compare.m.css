@@ -1,0 +1,97 @@
+@import '../../variables.css';
+
+.root {
+	display: flex;
+	flex-direction: column;
+	margin-top: var(--content-gutter);
+	height: 100%;
+	width: 100%;
+
+	@media (min-width: 661px) {
+		flex-direction: row;
+		margin-top: calc(10 * var(--grid-size));
+	}
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.column:first-child {
+	border-bottom: 1px solid var(--color-light-gray);
+	margin-bottom: calc(3 * var(--grid-size));
+	flex-basis: auto;
+	padding-bottom: calc(3 * var(--grid-size));
+	padding-right: calc(var(--grid-size) * 5);
+	width: calc(var(--grid-size) * 38);
+
+	@media (min-width: 661px) {
+		border-bottom: none;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}
+
+.column:last-child {
+	flex: 1;
+}
+
+.editLink {
+	color: var(--color-blue);
+	display: block;
+	font-size: var(--font-size-normal);
+	margin: calc(var(--grid-size) * 1.5) 0 calc(var(--grid-size) * 4);
+	text-decoration: none;
+}
+
+.linkText {
+	margin-right: calc(var(--grid-size) / 2);
+}
+
+.showToggle {
+	color: var(--color-light-blue);
+	cursor: pointer;
+	font-size: var(--font-size-normal);
+	font-weight: bold;
+}
+
+.successButton {
+	background-color: var(--color-green) !important;
+	border: 1px solid var(--color-green);
+	color: var(--color-white);
+}
+
+.hashInput {
+	margin: calc(var(--grid-size) * 3.5) 0;
+}
+
+.dialogTitle {
+	background: var(--color-blue);
+	border-top-left-radius: calc(var(--grid-size) * 0.75);
+	border-top-right-radius: calc(var(--grid-size) * 0.75);
+	color: var(--color-white);
+	font-size: var(--font-size-medium);
+	font-weight: bold;
+	padding: calc(var(--grid-size) * 2);
+}
+
+.dialogContent {
+	background: var(--color-white);
+	border-left: 1px solid var(--color-light-gray);
+	border-right: 1px solid var(--color-light-gray);
+	padding: calc(var(--grid-size) * 3);
+}
+
+.dialogActions {
+	background: var(--color-white);
+	border-bottom-left-radius: calc(var(--grid-size) * 0.75);
+	border-bottom-right-radius: calc(var(--grid-size) * 0.75);
+	border-bottom: 1px solid var(--color-light-gray);
+	border-left: 1px solid var(--color-light-gray);
+	border-right: 1px solid var(--color-light-gray);
+	padding-top: 0;
+	padding: calc(var(--grid-size) * 3);
+	text-align: right;
+}

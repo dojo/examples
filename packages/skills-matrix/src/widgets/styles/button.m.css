@@ -1,0 +1,7 @@
+.trailing {
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	height: var(--input-height);
+	min-width: auto;
+	padding: 10px;
+}

@@ -1,0 +1,13 @@
+.root {
+	align-items: center;
+	display: flex;
+	flex-grow: 1;
+}
+
+.inputWrapper {
+	margin-right: var(--grid-size);
+}
+
+.input {
+	margin-left: 0;
+}
