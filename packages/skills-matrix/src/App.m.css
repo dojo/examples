@@ -1,18 +1,5 @@
 @import './variables.css';
 
-* {
-	box-sizing: border-box;
-}
-
-h1 {
-	align-items: center;
-	color: var(--color-blue);
-	display: flex;
-	font-size: var(--font-size-normal);
-	font-weight: 900;
-	margin: 0;
-}
-
 .container {
 	align-content: center;
 	display: flex;
