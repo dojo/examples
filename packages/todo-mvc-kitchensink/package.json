@@ -21,6 +21,7 @@
 		"@dojo/widgets": "~7.0.0",
 		"cldr-data": "~36.0.0",
 		"cldrjs": "0.5.1",
+		"globalize": "1.4.0",
 		"tslib": "~1.9.3"
 	},
 	"devDependencies": {
