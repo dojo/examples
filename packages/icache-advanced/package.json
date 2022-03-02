@@ -12,7 +12,7 @@
   },
   "main": "src/main.tsx",
   "dependencies": {
-    "@dojo/framework": "~7.0.0",
+    "@dojo/framework": "~8.0.0",
     "@material/button": "2.3.0",
     "@material/card": "2.3.0",
     "@material/typography": "2.3.0",
@@ -20,7 +20,7 @@
     "tslib": "~1.9.3"
   },
   "devDependencies": {
-    "@dojo/cli": "~7.0.0",
+    "@dojo/cli": "~8.0.0",
     "@dojo/cli-build-app": "~7.0.0",
     "@typescript-eslint/eslint-plugin": "2.25.0",
     "@typescript-eslint/parser": "2.25.0",

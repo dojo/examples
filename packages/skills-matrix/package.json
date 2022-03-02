@@ -13,12 +13,12 @@
 		"test:all": "dojo build --mode unit && dojo build --mode functional && dojo test --all --config local"
 	},
 	"dependencies": {
-		"@dojo/framework": "~7.0.0",
-		"@dojo/widgets": "~7.0.3",
+		"@dojo/framework": "~8.0.0",
+		"@dojo/widgets": "~8.0.3",
 		"tslib": "~1.9.3"
 	},
 	"devDependencies": {
-		"@dojo/cli": "~7.0.0",
+		"@dojo/cli": "~8.0.0",
 		"@dojo/cli-build-app": "~7.0.0",
 		"@dojo/cli-test-intern": "~7.0.0",
 		"@types/node": "^14.0.13",
