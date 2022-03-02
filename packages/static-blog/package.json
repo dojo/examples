@@ -12,7 +12,7 @@
   },
   "main": "src/main.tsx",
   "dependencies": {
-    "@dojo/framework": "~7.0.0",
+    "@dojo/framework": "~8.0.0",
     "@mapbox/rehype-prism": "0.4.0",
     "canonical-path": "1.0.0",
     "cldrjs": "0.5.1",
@@ -30,7 +30,7 @@
     "tslib": "1.10.0"
   },
   "devDependencies": {
-    "@dojo/cli": "~7.0.0",
+    "@dojo/cli": "~8.0.0",
     "@dojo/cli-build-app": "~7.0.0",
     "@types/fs-extra": "8.1.0",
     "@types/glob": "7.1.1",

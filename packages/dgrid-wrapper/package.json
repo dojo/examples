@@ -14,8 +14,8 @@
     "test:headless": "dojo test -c headless"
   },
   "dependencies": {
-    "@dojo/framework": "~7.0.0",
-    "@dojo/interop": "~7.0.0",
+    "@dojo/framework": "~8.0.0",
+    "@dojo/interop": "~8.0.0",
     "dgrid": "1.2.1",
     "dijit": "1.13.0",
     "dojo": "1.13.7",
@@ -24,7 +24,7 @@
     "tslib": "1.9.1"
   },
   "devDependencies": {
-    "@dojo/cli": "~7.0.0",
+    "@dojo/cli": "~8.0.0",
     "@dojo/cli-build-app": "~7.0.1",
     "@dojo/cli-test-intern": "~7.0.0",
     "@dojo/scripts": "^4.0.2",

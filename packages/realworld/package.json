@@ -15,12 +15,12 @@
 		"test:headless": "dojo test -c headless"
 	},
 	"dependencies": {
-		"@dojo/framework": "~7.0.0",
+		"@dojo/framework": "~8.0.0",
 		"snarkdown": "^1.2.2",
 		"tslib": "^1.10.0"
 	},
 	"devDependencies": {
-		"@dojo/cli": "~7.0.0",
+		"@dojo/cli": "~8.0.0",
 		"@dojo/cli-build-app": "~7.0.0",
 		"@dojo/cli-test-intern": "~7.0.0",
 		"@dojo/scripts": "^4.0.2",
