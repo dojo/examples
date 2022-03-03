@@ -18,8 +18,8 @@
 	},
 	"devDependencies": {
 		"@dojo/cli": "~8.0.0",
-		"@dojo/cli-build-app": "~7.0.0",
-		"@dojo/cli-test-intern": "~7.0.0",
+		"@dojo/cli-build-app": "~8.0.1",
+		"@dojo/cli-test-intern": "~8.0.0",
 		"@types/node": "^14.0.13",
 		"typescript": "~3.4.5"
 	}

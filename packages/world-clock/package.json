@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@dojo/cli": "~8.0.0",
-    "@dojo/cli-build-app": "~8.0.0",
+    "@dojo/cli-build-app": "~8.0.1",
     "@types/moment-timezone": "0.5.13",
     "@types/node": "^12.12.32",
     "@typescript-eslint/eslint-plugin": "2.25.0",

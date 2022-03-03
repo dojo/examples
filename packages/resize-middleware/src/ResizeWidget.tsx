@@ -13,7 +13,7 @@ export const ResizeWidget = factory(function ResizeWidget({ middleware: { resize
 		<div key="root">
 			<select
 				onchange={(event) => {
-					icache.set('font', (event.target as HTMLInputElement).value);
+					icache.set('font', (event.target as HTMLSelectElement).value);
 				}}
 			>
 				<option value="arial">arial</option>

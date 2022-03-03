@@ -33,9 +33,8 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 								<fieldset classes={['form-group']}>
 									<input
 										value={settings.image}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(imageUrlInputProcess)({ imageUrl: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(imageUrlInputProcess)({ imageUrl: event.target.value });
 										}}
 										placeholder=""
 										classes={['form-control', 'form-control-lg']}
@@ -44,9 +43,8 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 								<fieldset classes={['form-group']}>
 									<input
 										value={settings.username}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(usernameInputProcess)({ username: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(usernameInputProcess)({ username: event.target.value });
 										}}
 										placeholder="Your Name"
 										classes={['form-control', 'form-control-lg']}
@@ -56,9 +54,8 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 									<textarea
 										rows={8}
 										value={settings.bio}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLTextAreaElement;
-											executor(bioInputProcess)({ bio: target.value });
+										oninput={(event: KeyboardEvent<HTMLTextAreaElement>) => {
+											executor(bioInputProcess)({ bio: event.target.value });
 										}}
 										placeholder="Short bio about you"
 										classes={['form-control', 'form-control-lg']}
@@ -67,9 +64,8 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 								<fieldset classes={['form-group']}>
 									<input
 										value={settings.email}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(emailInputProcess)({ email: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(emailInputProcess)({ email: event.target.value });
 										}}
 										placeholder="Email"
 										classes={['form-control', 'form-control-lg']}
@@ -79,9 +75,8 @@ export const Settings = factory(function Settings({ middleware: { store } }) {
 									<input
 										value={settings.password}
 										type="password"
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(passwordInputProcess)({ password: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(passwordInputProcess)({ password: event.target.value });
 										}}
 										placeholder="Password"
 										classes={['form-control', 'form-control-lg']}

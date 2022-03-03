@@ -99,9 +99,8 @@ export const Article = factory(function Article({ middleware: { store }, propert
 										classes={['form-control']}
 										placeholder="Write a comment..."
 										rows={3}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(newCommentInputProcess)({ slug, newComment: target.value });
+										oninput={(event: KeyboardEvent<HTMLTextAreaElement>) => {
+											executor(newCommentInputProcess)({ slug, newComment: event.target.value });
 										}}
 									/>
 								</div>

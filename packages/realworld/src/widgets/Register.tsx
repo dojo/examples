@@ -15,17 +15,14 @@ export const Register = factory(function Register({ middleware: { store, icache 
 	const email = icache.get<string>('email') || '';
 	const username = icache.get<string>('username') || '';
 	const password = icache.get<string>('password') || '';
-	function setEmail(event: KeyboardEvent) {
-		const target = event.target as HTMLInputElement;
-		icache.set('email', target.value);
+	function setEmail(event: KeyboardEvent<HTMLInputElement>) {
+		icache.set('email', event.target.value);
 	}
-	function setPassword(event: KeyboardEvent) {
-		const target = event.target as HTMLInputElement;
-		icache.set('password', target.value);
+	function setPassword(event: KeyboardEvent<HTMLInputElement>) {
+		icache.set('password', event.target.value);
 	}
-	function setUsername(event: KeyboardEvent) {
-		const target = event.target as HTMLInputElement;
-		icache.set('username', target.value);
+	function setUsername(event: KeyboardEvent<HTMLInputElement>) {
+		icache.set('username', event.target.value);
 	}
 
 	return (

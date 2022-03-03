@@ -15,9 +15,8 @@ export default factory(function TodoSearch({ middleware: { store, theme, i18n } 
 	const { searchPlaceholder } = i18n.localize(bundle).messages;
 	const value = get(path('search'));
 
-	function onInput(event: KeyboardEvent) {
-		const target = event.target as HTMLInputElement;
-		executor(todoSearch)({ search: target.value });
+	function onInput(event: KeyboardEvent<HTMLInputElement>) {
+		executor(todoSearch)({ search: event.target.value });
 	}
 
 	return (

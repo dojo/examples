@@ -40,9 +40,8 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 								<fieldset classes={['form-group']}>
 									<input
 										value={article.title}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(titleInputProcess)({ title: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(titleInputProcess)({ title: event.target.value });
 										}}
 										placeholder="Article Title"
 										classes={['form-control', 'form-control-lg']}
@@ -51,9 +50,8 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 								<fieldset classes={['form-group']}>
 									<input
 										value={article.description}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(descInputProcess)({ description: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(descInputProcess)({ description: event.target.value });
 										}}
 										placeholder="What's this article about?"
 										classes={['form-control', 'form-control-lg']}
@@ -62,9 +60,8 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 								<fieldset classes={['form-group']}>
 									<textarea
 										value={article.body}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(bodyInputProcess)({ body: target.value });
+										oninput={(event: KeyboardEvent<HTMLTextAreaElement>) => {
+											executor(bodyInputProcess)({ body: event.target.value });
 										}}
 										rows={8}
 										placeholder="Write your article (in markdown)"
@@ -73,16 +70,14 @@ export const Editor = factory(function Editor({ middleware: { store }, propertie
 								</fieldset>
 								<fieldset classes={['form-group']}>
 									<input
-										onkeydown={(event: KeyboardEvent) => {
+										onkeydown={(event: KeyboardEvent<HTMLInputElement>) => {
 											if (event.keyCode === 13) {
 												event.preventDefault();
-												const target = event.target as HTMLInputElement;
-												executor(addTagProcess)({ tag: target.value });
+												executor(addTagProcess)({ tag: event.target.value });
 											}
 										}}
-										oninput={(event: KeyboardEvent) => {
-											const target = event.target as HTMLInputElement;
-											executor(tagInputProcess)({ tag: target.value });
+										oninput={(event: KeyboardEvent<HTMLInputElement>) => {
+											executor(tagInputProcess)({ tag: event.target.value });
 										}}
 										value={article.tag}
 										placeholder="Enter Tag"
