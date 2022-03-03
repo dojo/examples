@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "@dojo/cli": "~8.0.0",
-    "@dojo/cli-build-app": "~7.0.0",
-    "@dojo/cli-build-widget": "~7.0.0",
+    "@dojo/cli-build-app": "~8.0.1",
+    "@dojo/cli-build-widget": "~8.0.0",
     "@typescript-eslint/eslint-plugin": "2.25.0",
     "@typescript-eslint/parser": "2.25.0",
     "eslint": "6.8.0",

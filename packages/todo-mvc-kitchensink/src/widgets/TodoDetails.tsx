@@ -14,7 +14,7 @@ export default factory(function TodoDetails({ middleware: { theme, store } }) {
 	const id = get(path('editingId'));
 	return (
 		<div
-			onkeyup={(event: KeyboardEvent) => {
+			onkeyup={(event: KeyboardEvent<HTMLDivElement>) => {
 				event.stopPropagation();
 				event.preventDefault();
 				if (event.which === 27) {
@@ -38,9 +38,8 @@ export default factory(function TodoDetails({ middleware: { theme, store } }) {
 					<textarea
 						focus={() => true}
 						value={value}
-						oninput={(event: KeyboardEvent) => {
-							const target = event.target as HTMLTextAreaElement;
-							executor(updateTodoInput)({ label: target.value });
+						oninput={(event: KeyboardEvent<HTMLTextAreaElement>) => {
+							executor(updateTodoInput)({ label: event.target.value });
 						}}
 						classes={[todoDetailsTextArea]}
 					/>

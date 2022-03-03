@@ -14,13 +14,11 @@ export const Login = factory(function Login({ middleware: { store, icache } }) {
 	const errors = get(path('errors'));
 	const email = icache.get<string>('email') || '';
 	const password = icache.get<string>('password') || '';
-	function setEmail(event: KeyboardEvent) {
-		const target = event.target as HTMLInputElement;
-		icache.set('email', target.value);
+	function setEmail(event: KeyboardEvent<HTMLInputElement>) {
+		icache.set('email', event.target.value);
 	}
-	function setPassword(event: KeyboardEvent) {
-		const target = event.target as HTMLInputElement;
-		icache.set('password', target.value);
+	function setPassword(event: KeyboardEvent<HTMLInputElement>) {
+		icache.set('password', event.target.value);
 	}
 
 	return (

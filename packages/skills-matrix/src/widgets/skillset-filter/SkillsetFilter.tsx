@@ -1,4 +1,3 @@
-import { createMemoryResourceTemplate, createResourceMiddleware } from '@dojo/framework/core/middleware/resources';
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Card from '@dojo/widgets/card';
 import { ChipTypeahead } from '@dojo/widgets/chip-typeahead';
@@ -12,11 +11,9 @@ export interface SkillsetFilterProperties {
 	onChange?(selected: string[]): void;
 }
 
-const resource = createResourceMiddleware();
-const factory = create({ resource }).properties<SkillsetFilterProperties>();
-const typeAheadResourceTemplate = createMemoryResourceTemplate<{ value: string }>();
+const factory = create().properties<SkillsetFilterProperties>();
 
-export const SkillsetFilter = factory(function ({ id, properties, middleware: { resource } }) {
+export const SkillsetFilter = factory(function ({ id, properties }) {
 	const { initialSelected, skills, onChange } = properties();
 
 	const header = <h1 classes={css.title}>Filter By Skillset</h1>;
@@ -30,15 +27,13 @@ export const SkillsetFilter = factory(function ({ id, properties, middleware: { 
 				}}
 				initialValue={initialSelected}
 				placement="bottom"
-				resource={resource({
-					template: typeAheadResourceTemplate,
-					initOptions: {
-						data: skills.map(value => ({ value })),
-						id
-					}
-				})}
+				resource={{
+					data: skills.map((value) => ({ label: value, value })),
+					id,
+					idKey: 'value'
+				}}
 				onValue={function (values) {
-					onChange?.(values);
+					onChange?.(values.map((option) => option.value));
 				}}
 			>
 				{{ label: '' }}
