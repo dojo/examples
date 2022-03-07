@@ -24,7 +24,7 @@ To use `todo-mvc`, clone the `examples` repository and install the npm dependenc
 
 ```shell
 git clone https://github.com/dojo/examples
-cd examples/todo-mvc
+cd examples/packages/todo-mvc
 npm install
 ```
 
